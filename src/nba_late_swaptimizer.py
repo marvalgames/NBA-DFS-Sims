@@ -3,11 +3,16 @@ import csv
 import os
 import datetime
 import re
+import timeit
+
 import numpy as np
 import pulp as plp
 import random
 import itertools
 import pytz
+from datetime import timedelta, timezone
+
+from numba.core.cgutils import printf
 
 
 class NBA_Late_Swaptimizer:
@@ -48,6 +53,7 @@ class NBA_Late_Swaptimizer:
         self.load_config()
         self.load_rules()
         self.eastern = pytz.timezone("US/Eastern")
+        #self.eastern = pytz.timezone("US/Hawaii")
 
         projection_path = os.path.join(
             os.path.dirname(__file__),
@@ -80,6 +86,59 @@ class NBA_Late_Swaptimizer:
         return itertools.chain([next(iterator).lower()], iterator)
 
     # Load player IDs for exporting
+    def load_player_ids(self, path):
+        with open(path, encoding="utf-8-sig") as file:
+            reader = csv.DictReader(file)
+
+            for row in reader:
+                # Determine key components
+                name_key = "Name" if self.site == "dk" else "Nickname"
+                player_name = row[name_key].replace("-", "#")
+                team = row["TeamAbbrev"] if self.site == "dk" else row["Team"]
+                position = row["Position"]
+
+                # Construct the key for self.player_dict
+                key = (player_name, position, team)
+
+                # Ensure the key exists in the dictionary
+                if key not in self.player_dict:
+                    self.player_dict[key] = {}  # Initialize a new dictionary for the player
+
+                # Update the dictionary for this player
+                if self.site == "dk":
+                    # Add DraftKings-specific fields
+                    self.player_dict[key]["ID"] = int(row["ID"])
+                    self.player_dict[key]["Matchup"] = row["Game Info"].split(" ")[0]
+
+                    # Parse and localize game time
+                    game_time = " ".join(row["Game Info"].split()[1:])
+                    self.player_dict[key]["GameTime"] = datetime.datetime.strptime(
+                        game_time[:-3], "%m/%d/%Y %I:%M%p"
+                    )
+
+                    # Add the matchup to the list if it's not already there
+                    if row["Game Info"].split(" ")[0] not in self.matchup_list:
+                        self.matchup_list.append(row["Game Info"].split(" ")[0])
+                else:
+                    # Add FanDuel-specific fields
+                    self.player_dict[key]["ID"] = row["Id"].replace("-", "#")
+                    self.player_dict[key]["Matchup"] = row["Game"]
+
+                    # Add the matchup to the list if it's not already there
+                    if row["Game"] not in self.matchup_list:
+                        self.matchup_list.append(row["Game"])
+
+                # Update ids_to_gametime for all players in player_ids
+                if self.site == "dk":
+                    game_time = " ".join(row["Game Info"].split()[1:])
+                    game_time = self.eastern.localize(
+                        datetime.datetime.strptime(game_time[:-3], "%m/%d/%Y %I:%M%p")
+                    )
+                    self.ids_to_gametime[row["ID"]] = game_time
+
+                # Debugging: print added/updated player
+                print(f"Added/Updated Player: {self.player_dict[key]}")
+    '''
     def load_player_ids(self, path):
         with open(path, encoding="utf-8-sig") as file:
             reader = csv.DictReader(file)
@@ -127,6 +186,8 @@ class NBA_Late_Swaptimizer:
                         datetime.datetime.strptime(game_time[:-3], "%m/%d/%Y %I:%M%p")
                     )
                     self.ids_to_gametime[row["ID"]] = game_time
+                    print(f"{player_name} {game_time}")
+                    '''
 
     def load_rules(self):
         self.at_most = self.config["at_most"]
@@ -189,8 +250,15 @@ class NBA_Late_Swaptimizer:
             current_time = current_time_utc.astimezone(
                 self.eastern
             )  # convert UTC to 'US/Eastern'
-            # current_time = datetime.datetime(2023, 10, 24, 20, 0) # testing time, such that LAL/DEN is locked
+
+            # Define the specific date and time
+            specific_date = datetime.datetime(2024, 11, 21, 19, 15)
+            # Define a timezone offset (e.g., UTC-5 for Eastern Standard Time)
+            eastern_offset = timezone(timedelta(hours=-5))
+            # Make the datetime offset-aware
+            current_time = specific_date.replace(tzinfo=eastern_offset)
             print(f"Current time (ET): {current_time}")
+
             for row in reader:
                 if row["entry id"] != "" and self.site == "dk":
                     PG_id = re.search(r"\((\d+)\)", row["pg"]).group(1)
@@ -260,10 +328,21 @@ class NBA_Late_Swaptimizer:
         # We will use PuLP as our solver - https://coin-or.github.io/pulp/
 
         current_time_utc = datetime.datetime.now(pytz.utc)  # get the current UTC time
+
         current_time = current_time_utc.astimezone(
             self.eastern
-        )  # convert UTC to 'US/Eastern'
+        )
+        # convert UTC to 'US/Eastern'
 
+        # Define the specific date and time
+        specific_date = datetime.datetime(2024, 11, 21, 19, 15)
+        # Define a timezone offset (e.g., UTC-5 for Eastern Standard Time)
+        eastern_offset = timezone(timedelta(hours=-5))
+        # Make the datetime offset-aware
+        current_time = specific_date.replace(tzinfo=eastern_offset)
+        print(f"Current time (ET): {current_time}")
+
+        print(current_time)
         # We want to create a variable for each roster slot.
         # There will be an index for each player and the variable will be binary (0 or 1) representing whether the player is included or excluded from the roster.
         for lineup_obj in self.lineups:
@@ -531,7 +610,7 @@ class NBA_Late_Swaptimizer:
                 i += 1
 
             try:
-                self.problem.solve(plp.PULP_CBC_CMD(msg=0))
+                self.problem.solve(plp.PULP_CBC_CMD(msg=False))
             except plp.PulpSolverError:
                 print(
                     "Infeasibility reached - only generated {} lineups out of {}. Continuing with export.".format(
@@ -542,11 +621,14 @@ class NBA_Late_Swaptimizer:
 
             ## Check for infeasibility
             if plp.LpStatus[self.problem.status] != "Optimal":
+                '''
                 print(
                     "Infeasibility reached - only generated {} lineups out of {}. Continuing with export.".format(
                         len(self.lineups), self.num_lineups
                     )
                 )
+                '''
+                print("Infeasibility reached")
                 break
 
             # Get the lineup and add it to our list
@@ -562,6 +644,8 @@ class NBA_Late_Swaptimizer:
         sorted_lineups = []
         for lineup, old_lineup in self.output_lineups:
             sorted_lineup = self.sort_lineup(lineup)
+            for item in sorted_lineup:
+                print(f"{item}")
             sorted_lineup = self.adjust_roster_for_late_swap(sorted_lineup, old_lineup)
             new_sorted_lineup = []
             sorted_lineups.append((sorted_lineup, old_lineup))
@@ -716,6 +800,14 @@ class NBA_Late_Swaptimizer:
                         "Position"
                     ]
                     # Check the conditions for the swap
+                    #lineup[i], lineup[primary_i] = lineup[primary_i], lineup[i]
+                    #break  # Break out of the inner loop once a swap is made
+                    #print(f"Error parsing start time for game {game_id}, {game}")
+                    #print(f"primary player start time {primary_player_start_time} ")
+                    #print(f"current player start time {current_player_start_time} ")
+
+
+
                     if (
                         primary_player_start_time > current_player_start_time
                         and self.is_valid_for_position(primary_player, i)
@@ -726,4 +818,8 @@ class NBA_Late_Swaptimizer:
                         )
                         lineup[i], lineup[primary_i] = lineup[primary_i], lineup[i]
                         break  # Break out of the inner loop once a swap is made
+
+        #for item in lineup:
+            #print(item)
+
         return lineup

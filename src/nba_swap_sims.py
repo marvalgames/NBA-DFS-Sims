@@ -18,6 +18,7 @@ import requests
 import pytz
 from datetime import timezone, timedelta
 
+
 @jit(nopython=True)
 def salary_boost(salary, max_salary):
     return (salary / max_salary) ** 2
@@ -63,7 +64,7 @@ class NBA_Swaptimizer_Sims:
     num_minutes_per_player = 48
     optimal_score = 0
     min_salary = None
-    teams_dict = defaultdict(list) 
+    teams_dict = defaultdict(list)
     missing_ids = {}
 
     def __init__(self, num_iterations, site=None, num_uniques=1):
@@ -71,10 +72,10 @@ class NBA_Swaptimizer_Sims:
         self.num_iterations = num_iterations
         self.num_uniques = int(num_uniques)
         if self.site == 'dk':
-            self.roster_construction = ['PG','SG','SF','PF','C','G','F','UTIL']
+            self.roster_construction = ['PG', 'SG', 'SF', 'PF', 'C', 'G', 'F', 'UTIL']
             self.max_salary = 50000
         elif self.site == 'fd':
-            self.roster_construction = ['PG','PG','SG','SG','SF','SF','PF','C']
+            self.roster_construction = ['PG', 'PG', 'SG', 'SG', 'SF', 'SF', 'PF', 'C']
             self.max_salary = 60000
         self.load_config()
         self.load_rules()
@@ -90,15 +91,15 @@ class NBA_Swaptimizer_Sims:
             "../{}_data/{}".format(self.site, self.config["player_path"]),
         )
         self.load_player_ids(player_path)
-        #print(self.player_dict)
         self.get_optimal()
         contest_path = os.path.join(
-        os.path.dirname(__file__),
+            os.path.dirname(__file__),
             "../{}_data/{}".format(self.site, self.config["contest_structure_path"]),
         )
         self.load_contest_data(contest_path)
         print("Contest payout structure loaded.")
-        
+        print()
+
         live_contest_path = os.path.join(
             os.path.dirname(__file__),
             "../{}_data/{}".format(self.site, self.config["live_contest_path"]),
@@ -106,35 +107,32 @@ class NBA_Swaptimizer_Sims:
         self.extract_player_points(live_contest_path)
         self.load_live_contest(live_contest_path)
         print('live contest loaded')
+        print()
         if "late_swap_path" in self.config.keys():
             late_swap_path = os.path.join(
                 os.path.dirname(__file__),
                 "../{}_data/{}".format(self.site, self.config["late_swap_path"]),
             )
-        #    self.user_li
-        #if self.user_lineups == True:
             self.load_player_lineups(late_swap_path)
 
     # Load config from file
     def load_config(self):
         with open(
-            os.path.join(os.path.dirname(__file__), "../config.json"),
-            encoding="utf-8-sig",
+                os.path.join(os.path.dirname(__file__), "../config.json"),
+                encoding="utf-8-sig",
         ) as json_file:
             self.config = json.load(json_file)
 
     # make column lookups on datafiles case insensitive
     def lower_first(self, iterator):
         return itertools.chain([next(iterator).lower()], iterator)
-    
+
     def get_optimal(self):
         # Setup our linear programming equation - https://en.wikipedia.org/wiki/Linear_programming
         # We will use PuLP as our solver - https://coin-or.github.io/pulp/
-
         # We want to create a variable for each roster slot.
         # There will be an index for each player and the variable will be binary (0 or 1) representing whether the player is included or excluded from the roster.
         problem = plp.LpProblem("NBA", plp.LpMaximize)
-
         lp_variables = {}
         for player, attributes in self.player_dict.items():
             player_id = attributes["ID"]
@@ -265,6 +263,7 @@ class NBA_Swaptimizer_Sims:
             # Constraint to ensure each player is only selected once
             for player in self.player_dict:
                 player_id = self.player_dict[player]["ID"]
+
                 problem += (
                     plp.lpSum(
                         lp_variables[(player, pos, player_id)]
@@ -274,8 +273,10 @@ class NBA_Swaptimizer_Sims:
                     f"Can only select {player} once",
                 )
 
+        #print(self.contest_lineups)
         try:
             problem.solve(plp.PULP_CBC_CMD(msg=0))
+            print()
         except plp.PulpSolverError:
             print(
                 "Infeasibility reached - only generated {} lineups out of {}. Continuing with export.".format(
@@ -294,24 +295,13 @@ class NBA_Swaptimizer_Sims:
         player_unqiue_keys = [
             player for player in lp_variables if lp_variables[player].varValue != 0
         ]
-        print(player_unqiue_keys[0][0])
         players = []
         for p in player_unqiue_keys:
             players.append(p[0])
 
         fpts_proj = sum(self.player_dict[player]["fieldFpts"] for player in players)
-        # sal_used = sum(self.player_dict[player]["Salary"] for player in players)
-
-        var_values = [
-            value.varValue for value in problem.variables() if value.varValue != 0
-        ]
-        player_unqiue_keys = [
-            player for player in lp_variables if lp_variables[player].varValue != 0
-        ]
-        #problem.writeLP('problem.lp')
         self.optimal_score = float(fpts_proj)
-        print(self.optimal_score, player_unqiue_keys, var_values)
-        
+
     def load_contest_data(self, path):
         with open(path, encoding="utf-8-sig") as file:
             reader = csv.DictReader(self.lower_first(file))
@@ -357,24 +347,24 @@ class NBA_Swaptimizer_Sims:
                 player_name = []
             else:
                 player_name.append(word)
-        
+
         # for the last player in the string
         if pos:
             players[pos] = " ".join(player_name) if player_name else "LOCKED"
-            
+
         # In case there are positions that weren't found in the lineup_string
         for position in positions_order:
             if position not in players:
                 players[position] = "LOCKED"
-        
+
         return players
-            
+
     def update_bayesian_projection(self, player_key):
         player = self.player_dict[player_key]
         total_game_minutes = self.num_minutes_per_player  # total minutes in a game per player
         actual_fpts = player['ActualFpts']
         minutes_played = total_game_minutes - player['Minutes Remaining']
-        
+
         # Calculate the game progress for the logarithmic scaling
         game_progress = minutes_played / total_game_minutes
         log_base = 10  # Define the base for logarithmic scaling
@@ -409,14 +399,15 @@ class NBA_Swaptimizer_Sims:
             updated_projection = actual_fpts + updated_remaining_projection
 
             minutes_ratio = minutes_played / total_game_minutes
-            log_decay_factor_variance = math.log(minutes_ratio + 1, log_base) / math.log(total_game_minutes + 1, log_base)
+            log_decay_factor_variance = math.log(minutes_ratio + 1, log_base) / math.log(total_game_minutes + 1,
+                                                                                         log_base)
 
             # Adjust the scaling factor for variance to account for the decay
             scaling_factor_variance = log_decay_factor_variance
 
             # Adjust the remaining variance
             adjusted_remaining_variance = remaining_variance * (1 - scaling_factor_variance)
-            
+
             # Update the posterior variance
             posterior_variance = adjusted_remaining_variance
 
@@ -428,8 +419,9 @@ class NBA_Swaptimizer_Sims:
         # Update the player's projections
         player['BayesianProjectedFpts'] = updated_projection
         player['BayesianProjectedVar'] = posterior_variance
+        #print(f'player {player}')
         return player
-    
+
     def get_live_scores(self):
         game_date = datetime.datetime.now().date()
 
@@ -469,43 +461,41 @@ class NBA_Swaptimizer_Sims:
         # Format the date into the string format the NBA API expects ('YYYY-MM-DD')
         formatted_date = game_date.strftime('%Y-%m-%d')
 
-        #formatted_date = '2023-11-07'
-        headers= {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36',
-                'Referer': 'https://www.nba.com/'}
+        formatted_date = '2024-11-21'
+        headers = {
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36',
+            'Referer': 'https://www.nba.com/'}
 
         # Insert the formatted date into the URL
         scoreboard_url = f'https://stats.nba.com/stats/scoreboardv2?DayOffset=0&GameDate={formatted_date}&LeagueID=00'
-
-
         scoreboard_json = requests.get(scoreboard_url, headers=headers).json()
-
         # Assuming `data` is the JSON response parsed into a Python dictionary
         games_info = scoreboard_json['resultSets'][0]['rowSet']
         # print(scoreboard_json['resultSets'][0]['headers'])
-        
-        # games_info = [
-        #     ['2023-11-06T00:00:00', 1, '0022300145', 2, '3rd Qtr             ', '20231106/GSWDET', 1610612765, 1610612744, '2023', 3, '3:20 ', None, 'BSDET', 'NBCSBA', 'Q3 3:20  - ', 'Little Caesars Arena', 0, 0],
-        #     ['2023-11-06T00:00:00', 2, '0022300146', 2, '3rd Qtr             ', '20231106/SASIND', 1610612754, 1610612759, '2023', 3, '8:51 ', None, 'BSIN', 'BSSW-SA', 'Q3 8:51  - ', 'Gainbridge Fieldhouse', 0, 0],
-        #     ['2023-11-06T00:00:00', 3, '0022300147', 2, '3rd Qtr             ', '20231106/DALORL', 1610612753, 1610612742, '2023', 3, '9:25 ', None, 'BSFL', 'BSSW-DAL', 'Q3 9:25  - ', 'Amway Center', 0, 0],
-        #     ['2023-11-06T00:00:00', 4, '0022300148', 2, '3rd Qtr             ', '20231106/WASPHI', 1610612755, 1610612764, '2023', 3, '7:50 ', None, 'NBCSP', 'MNMT', 'Q3 7:50  - ', 'Wells Fargo Center', 0, 0],
-        #     ['2023-11-06T00:00:00', 5, '0022300149', 2, 'Halftime            ', '20231106/MILBKN', 1610612751, 1610612749, '2023', 2, '     ', None, 'YES', 'BSWI', 'Q2       - ', 'Barclays Center', 0, 0],
-        #     ['2023-11-06T00:00:00', 6, '0022300150', 2, '2nd Qtr             ', '20231106/LALMIA', 1610612748, 1610612747, '2023', 2, '2:17 ', 'NBA TV', 'BSSUN', 'SPECSN', 'Q2 2:17  - NBA TV', 'Kaseya Center', 0, 0],
-        #     ['2023-11-06T00:00:00', 7, '0022300151', 2, 'Halftime            ', '20231106/LACNYK', 1610612752, 1610612746, '2023', 2, '     ', None, 'MSG', 'BSSC', 'Q2       - ', 'Madison Square Garden', 0, 0],
-        #     ['2023-11-06T00:00:00', 8, '0022300152', 2, '1st Qtr             ', '20231106/UTACHI', 1610612741, 1610612762, '2023', 1, '0:03 ', None, 'NBCSCH', 'KJZZ', 'Q1 0:03  - ', 'United Center', 0, 0],
-        #     ['2023-11-06T00:00:00', 9, '0022300153', 2, '1st Qtr             ', '20231106/SACHOU', 1610612745, 1610612758, '2023', 1, '1:21 ', None, 'SCHN', 'NBCSCA', 'Q1 1:21  - ', 'Toyota Center', 0, 0],
-        #     ['2023-11-06T00:00:00', 10, '0022300154', 2, '1st Qtr             ', '20231106/BOSMIN', 1610612750, 1610612738, '2023', 1, '1:53 ', None, 'BSN', 'NBCSB', 'Q1 1:53  - ', 'Target Center', 0, 0],
-        #     ['2023-11-06T00:00:00', 11, '0022300155', 2, 'End of 1st Qtr      ', '20231106/ATLOKC', 1610612760, 1610612737, '2023', 1, '     ', None, 'BSOK', 'BSSE-ATL', 'Q1       - ', 'Paycom Center', 0, 0],
-        #     ['2023-11-06T00:00:00', 12, '0022300156', 1, '9:00 pm ET', '20231106/NOPDEN', 1610612743, 1610612740, '2023', 0, '     ', None, 'ALT', 'BSNO', 'Q0       - ', 'Ball Arena', 0, 0]            
-        # ]
+
+        #debug
+        games_info = [
+            ['2024-11-21T00:00:00', 1, '0022400260', 3, '1st Qtr', '20241121/DETCHA', 1610612766, 1610612765, '2024', 1,
+             '11:30', 'NBA TV', 'FDSNSE-CHA', 'FDSNDTX', 'Q1 11:30    - NBA TV', 'Spectrum Center', 1, 0],
+            ['2024-11-21T00:00:00', 2, '0022400261', 3, '9:00 pm ET', '20241121/MINTOR', 1610612761, 1610612750, '2024',
+             0, '     ', None, 'TSN', 'FDSNNO', 'Q0       - ', 'Scotiabank Arena', 1, 0],
+            ['2024-11-21T00:00:00', 3, '0022400262', 3, '9:00 pm ET', '20241121/UTASAS', 1610612759, 1610612762, '2024',
+             0, '     ', None, 'FDSNSW', 'KJZZ', 'Q0       - ', 'Frost Bank Center', 1, 0],
+            ['2024-11-21T00:00:00', 4, '0022400263', 3, '9:00 pm ET', '20241121/ORLLAL', 1610612747, 1610612753, '2024',
+             0, '     ', None, 'SPECSN', 'FDSNFL', 'Q0       - ', 'Crypto.com Arena', 1, 0]
+        ]
+        #end debug
+
         # NBA regulation game length in minutes
         regulation_game_length = 48
         overtime_period_length = 5  # NBA overtime period length in minutes
 
         eastern = pytz.timezone('US/Eastern')
-        current_time_utc = datetime.datetime.now(timezone.utc)  # Current time in UTC
+        #current_time_utc = datetime.datetime.now(timezone.utc)  # Current time in UTC
+        current_time_utc = datetime.datetime(2024, 11, 21, 19, 15)  # testing time, such that LAL/DEN is locked
 
         for game in games_info:
-            print(game)
+            #print(game)
             game_id = game[2]
             home_team_id = game[6]
             visitor_team_id = game[7]
@@ -524,34 +514,34 @@ class NBA_Swaptimizer_Sims:
                     # Assuming game start time is in the format '10:00 pm ET'
                     game_date_str = game[0].split('T')[0]  # Extract the date part
                     game_start_time_str = game_status.replace('ET', '').strip()
-                    game_start_time = datetime.datetime.strptime(game_date_str + ' ' + game_start_time_str, '%Y-%m-%d %I:%M %p')
+                    game_start_time = datetime.datetime.strptime(game_date_str + ' ' + game_start_time_str,
+                                                                 '%Y-%m-%d %I:%M %p')
 
                     # Convert to UTC
-                    game_start_time_utc = eastern.localize(game_start_time).astimezone(pytz.utc)
+                    #game_start_time_utc = eastern.localize(game_start_time).astimezone(pytz.utc)
+                    game_start_time_utc = game_start_time
                     # Check if current UTC time is past the game start time
                     if current_time_utc >= game_start_time_utc:
                         game_locked = True
-                    print(current_time_utc, game_start_time_utc, game_locked)
                 except ValueError:
                     # Handle parsing errors
                     print(f"Error parsing start time for game {game_id}, {game}")
-            # Calculate the total time remaining
             # Calculate the total time remaining
             if live_period <= 4:  # Regulation time
                 total_minutes_remaining = (4 - live_period) * 12  # Time for the remaining quarters
                 if live_pc_time:
                     minutes, seconds = map(int, live_pc_time.split(":"))
-                    total_minutes_remaining += minutes # Add remaining minutes for the current quarter
+                    total_minutes_remaining += minutes  # Add remaining minutes for the current quarter
 
             else:  # Overtime
                 completed_overtimes = live_period - 4
                 total_minutes_remaining = (completed_overtimes * overtime_period_length)
                 if live_pc_time:
                     minutes, seconds = map(int, live_pc_time.split(":"))
-                    total_minutes_remaining += (overtime_period_length - minutes)  # Add remaining minutes for the current overtime
+                    total_minutes_remaining += (
+                                overtime_period_length - minutes)  # Add remaining minutes for the current overtime
                     if seconds > 0:
                         total_minutes_remaining -= 1  # Subtract a minute if there are seconds remaining
-
 
             # For finished games, set the remaining time to 0
             if 'Final' in game[4]:
@@ -560,25 +550,35 @@ class NBA_Swaptimizer_Sims:
             # Mapping team IDs to abbreviations and adding to the dictionary
             home_team_abbreviation = team_id_to_abbreviation.get(home_team_id, 'Unknown')
             visitor_team_abbreviation = team_id_to_abbreviation.get(visitor_team_id, 'Unknown')
-            #if home_team_abbreviation == 'SAC':
-            #    print(game, total_minutes_remaining)
-            matchup = (visitor_team_abbreviation,home_team_abbreviation)
+            matchup = (visitor_team_abbreviation, home_team_abbreviation)
             self.matchup_list.append(matchup)
-                # Assuming team_id_to_abbreviation is a dictionary that maps team IDs to their abbreviations
+            # Assuming team_id_to_abbreviation is a dictionary that maps team IDs to their abbreviations
             # Initialize dictionary entries if they don't exist
             if home_team_abbreviation not in self.time_remaining_dict:
-                self.time_remaining_dict[home_team_abbreviation] = {'Minutes Remaining': 0, 'GameLocked': False, 'GameTime': None, 'Opp':team_id_to_abbreviation.get(visitor_team_id, 'Unknown'), 'Matchup':matchup}
+                self.time_remaining_dict[home_team_abbreviation] = {'Minutes Remaining': 0, 'GameLocked': False,
+                                                                    'GameTime': None,
+                                                                    'Opp': team_id_to_abbreviation.get(visitor_team_id,
+                                                                                                       'Unknown'),
+                                                                    'Matchup': matchup}
             if visitor_team_abbreviation not in self.time_remaining_dict:
-                self.time_remaining_dict[visitor_team_abbreviation] = {'Minutes Remaining': 0, 'GameLocked': False, 'GameTime': None, 'Opp':team_id_to_abbreviation.get(home_team_id, 'Unknown'), 'Matchup':matchup}
+                self.time_remaining_dict[visitor_team_abbreviation] = {'Minutes Remaining': 0, 'GameLocked': False,
+                                                                       'GameTime': None,
+                                                                       'Opp': team_id_to_abbreviation.get(home_team_id,
+                                                                                                          'Unknown'),
+                                                                       'Matchup': matchup}
             self.matchups.add(matchup)
             self.time_remaining_dict[home_team_abbreviation]['Minutes Remaining'] = total_minutes_remaining
             self.time_remaining_dict[visitor_team_abbreviation]['Minutes Remaining'] = total_minutes_remaining
             self.time_remaining_dict[home_team_abbreviation]['GameLocked'] = game_locked
             self.time_remaining_dict[visitor_team_abbreviation]['GameLocked'] = game_locked
-            if game_locked == True:
+            if game_locked:
                 current_day = datetime.datetime.now().date()
-                self.time_remaining_dict[home_team_abbreviation]['GameTime'] = datetime.datetime.combine(current_day, datetime.time(0, 1))
-                self.time_remaining_dict[visitor_team_abbreviation]['GameTime'] = datetime.datetime.combine(current_day, datetime.time(0, 1))
+                self.time_remaining_dict[home_team_abbreviation]['GameTime'] = datetime.datetime.combine(current_day,
+                                                                                                         datetime.time(
+                                                                                                             0, 1))
+                self.time_remaining_dict[visitor_team_abbreviation]['GameTime'] = datetime.datetime.combine(current_day,
+                                                                                                            datetime.time(
+                                                                                                                0, 1))
             else:
                 date_part = datetime.datetime.strptime(game[0], '%Y-%m-%dT%H:%M:%S')
                 # Convert '9:00 pm ET' to 24-hour format and handle timezone
@@ -593,10 +593,10 @@ class NBA_Swaptimizer_Sims:
                 eastern = pytz.timezone('US/Eastern')
                 localized_datetime = eastern.localize(combined_datetime)
 
-                self.time_remaining_dict[home_team_abbreviation]['GameTime']  = localized_datetime
+                self.time_remaining_dict[home_team_abbreviation]['GameTime'] = localized_datetime
                 self.time_remaining_dict[visitor_team_abbreviation]['GameTime'] = localized_datetime
-        print(self.time_remaining_dict)
-            
+        #print(self.time_remaining_dict)
+
     def extract_player_points(self, path):
         with open(path, encoding="utf-8-sig") as file:
             reader = csv.DictReader(file)
@@ -606,13 +606,12 @@ class NBA_Swaptimizer_Sims:
                 else:
                     name = row['Player']
                     pos = row['Roster Position']
-                    for k,v in self.player_dict.items():
+                    for k, v in self.player_dict.items():
                         if v['Name'] == name and pos in v['Position']:
-                            #print('found player' + name)
                             self.player_dict[k]['ActualFpts'] = float(row['FPTS'])
                             self.update_bayesian_projection(k)
                             #print(self.player_dict[k])
-                            
+
     def get_username(self, text):
         # The regex will match any text up until it possibly encounters a space followed by (digit/digit)
         match = re.search(r"^(.+?)(?:\s*\(\d+/\d+\))?$", text)
@@ -620,11 +619,10 @@ class NBA_Swaptimizer_Sims:
             return match.group(1).strip()  # Strip to remove any trailing whitespaces
         return None  # or an appropriate value indicating no match
 
-
     def load_live_contest(self, path):
         match = re.search(r'contest-standings-(\d+).csv', path)
         positions_order = ["C", "F", "G", "PF", "PG", "SF", "SG", "UTIL"]
-        total_minutes_for_full_lineup = len(self.roster_construction)*self.num_minutes_per_player
+        total_minutes_for_full_lineup = len(self.roster_construction) * self.num_minutes_per_player
 
         if match:
             self.contest_id = match.group(1)
@@ -640,12 +638,12 @@ class NBA_Swaptimizer_Sims:
                 if name in self.contest_entries.keys():
                     self.contest_entries[name]['Entries'] += 1
                 else:
-                    self.contest_entries[name] = {'Entries':1, 'ROI': 0, 'Top1':0, 'Cashes':0, 'Wins':0}
+                    self.contest_entries[name] = {'Entries': 1, 'ROI': 0, 'Top1': 0, 'Cashes': 0, 'Wins': 0}
                 lineup_dict = {
                     "contest_id": self.contest_id,
-                    "EntryId" : row['EntryId'],
-                    'User' : name,
-                    "Type" : 'opp'
+                    "EntryId": row['EntryId'],
+                    'User': name,
+                    "Type": 'opp'
                 }
                 lineup_proj_fpts = 0
                 lineup_proj_stdv = 0
@@ -660,7 +658,8 @@ class NBA_Swaptimizer_Sims:
                     lineup_dict["TimeRemaining"] = 0
                     lineup_dict["ProjectedFpts"] = lineup_proj_fpts
                     lineup_dict["ProjectedStdDev"] = lineup_proj_stdv
-                    lineup_dict['OriginalLineup'] =  {'C': '', 'F': '', 'G': '', 'PF': '', 'PG': '', 'SF': '', 'SG': '', 'UTIL': ''},
+                    lineup_dict['OriginalLineup'] = {'C': '', 'F': '', 'G': '', 'PF': '', 'PG': '', 'SF': '', 'SG': '',
+                                                     'UTIL': ''},
                     lineup_dict['LockedSalary'] = 50000 if self.site == 'dk' else 60000
                     lineup_dict['LockedPlayers'] = len(self.roster_construction)
                     lineup_dict['UnlockedPlayers'] = 0
@@ -677,7 +676,7 @@ class NBA_Swaptimizer_Sims:
                     lineup_dict['EmptyLu'] = True
                     lineup_dict['UserLu'] = False
                     self.contest_lineups[str(row["EntryId"])] = lineup_dict
-                    
+
                 else:
                     lineup_minutes_remaining = 0
                     extracted_players = self.extract_players(row["Lineup"], positions_order)
@@ -690,7 +689,7 @@ class NBA_Swaptimizer_Sims:
                             continue
                         else:
                             lineup_dict[locked_key] = True
-                            
+
                             for k, v in self.player_dict.items():
                                 player_found = False
 
@@ -714,32 +713,38 @@ class NBA_Swaptimizer_Sims:
                                 if transformed_player_name in self.missing_ids.keys():
                                     lineup_salary += self.missing_ids[transformed_player_name]['Salary']
                                     lineup_dict[pos] = self.missing_ids[transformed_player_name]['ID']
-                                    self.player_dict[(transformed_player_name, str(self.missing_ids[transformed_player_name]['Position']), self.missing_ids[transformed_player_name]['Team'])] = {
-                                            "Fpts": 0,
-                                            "fieldFpts": 0,
-                                            "Position": self.missing_ids[transformed_player_name]['Position'],
-                                            "Name": player_name,
-                                            "DK Name": player_name,
-                                            "Matchup" : self.time_remaining_dict[self.missing_ids[transformed_player_name]['Team']]['Matchup'],
-                                            "Team": self.missing_ids[transformed_player_name]['Team'],
-                                            "Opp": self.time_remaining_dict[self.missing_ids[transformed_player_name]['Team']]['Opp'],
-                                            "ID": self.missing_ids[transformed_player_name]['ID'],
-                                            "UniqueKey": self.missing_ids[transformed_player_name]['UniqueKey'],
-                                            "Salary": self.missing_ids[transformed_player_name]['Salary'],
-                                            "StdDev": 0,
-                                            "Ceiling": 0,
-                                            "Ownership": 0,
-                                            "Correlations": {},
-                                            "Player Correlations": {},
-                                            "In Lineup": False,
-                                            "Minutes": 0,
-                                            "Minutes Remaining": 0,
-                                            "BayesianProjectedFpts": 0,
-                                            "BayesianProjectedVar": 0,
-                                            "ActualFpts" : 0,
-                                            "GameLocked" : True,
-                                            "GameTime" : None
-                                        }
+                                    self.player_dict[(
+                                    transformed_player_name, str(self.missing_ids[transformed_player_name]['Position']),
+                                    self.missing_ids[transformed_player_name]['Team'])] = {
+                                        "Fpts": 0,
+                                        "fieldFpts": 0,
+                                        "Position": self.missing_ids[transformed_player_name]['Position'],
+                                        "Name": player_name,
+                                        "DK Name": player_name,
+                                        "Matchup":
+                                            self.time_remaining_dict[self.missing_ids[transformed_player_name]['Team']][
+                                                'Matchup'],
+                                        "Team": self.missing_ids[transformed_player_name]['Team'],
+                                        "Opp":
+                                            self.time_remaining_dict[self.missing_ids[transformed_player_name]['Team']][
+                                                'Opp'],
+                                        "ID": self.missing_ids[transformed_player_name]['ID'],
+                                        "UniqueKey": self.missing_ids[transformed_player_name]['UniqueKey'],
+                                        "Salary": self.missing_ids[transformed_player_name]['Salary'],
+                                        "StdDev": 0,
+                                        "Ceiling": 0,
+                                        "Ownership": 0,
+                                        "Correlations": {},
+                                        "Player Correlations": {},
+                                        "In Lineup": False,
+                                        "Minutes": 0,
+                                        "Minutes Remaining": 0,
+                                        "BayesianProjectedFpts": 0,
+                                        "BayesianProjectedVar": 0,
+                                        "ActualFpts": 0,
+                                        "GameLocked": True,
+                                        "GameTime": None
+                                    }
                                     self.teams_dict[self.missing_ids[transformed_player_name]['Team']].append(
                                         {
                                             "Fpts": 0,
@@ -747,9 +752,11 @@ class NBA_Swaptimizer_Sims:
                                             "Position": self.missing_ids[transformed_player_name]['Position'],
                                             "Name": player_name,
                                             "DK Name": player_name,
-                                            "Matchup" : self.time_remaining_dict[self.missing_ids[transformed_player_name]['Team']]['Matchup'],
+                                            "Matchup": self.time_remaining_dict[
+                                                self.missing_ids[transformed_player_name]['Team']]['Matchup'],
                                             "Team": self.missing_ids[transformed_player_name]['Team'],
-                                            "Opp": self.time_remaining_dict[self.missing_ids[transformed_player_name]['Team']]['Opp'],
+                                            "Opp": self.time_remaining_dict[
+                                                self.missing_ids[transformed_player_name]['Team']]['Opp'],
                                             "ID": self.missing_ids[transformed_player_name]['ID'],
                                             "UniqueKey": self.missing_ids[transformed_player_name]['UniqueKey'],
                                             "Salary": self.missing_ids[transformed_player_name]['Salary'],
@@ -763,14 +770,14 @@ class NBA_Swaptimizer_Sims:
                                             "Minutes Remaining": 0,
                                             "BayesianProjectedFpts": 0,
                                             "BayesianProjectedVar": 0,
-                                            "ActualFpts" : 0,
-                                            "GameLocked" : True,
-                                            "GameTime" : None
+                                            "ActualFpts": 0,
+                                            "GameLocked": True,
+                                            "GameTime": None
                                         }
-                                    )  
+                                    )
                                 else:
                                     players_not_found.append(player_name)
-                                
+
                     lineup_dict["Points"] = float(row["Points"])
                     lineup_dict["TimeRemaining"] = lineup_minutes_remaining
                     lineup_dict["ProjectedFpts"] = lineup_proj_fpts
@@ -805,10 +812,9 @@ class NBA_Swaptimizer_Sims:
                     print(f'Missing player: {p}, missing id keys: {self.missing_ids.keys()}')
                 else:
                     print(f'Found player: {self.missing_ids[p]}')
-                
-        
+
     # Load player IDs for exporting
-    def load_player_ids(self, path):    
+    def load_player_ids(self, path):
         with open(path, encoding="utf-8-sig") as file:
             reader = csv.DictReader(file)
             for row in reader:
@@ -825,8 +831,8 @@ class NBA_Swaptimizer_Sims:
                         position.append("F")
                     position.append("UTIL")
                     #position = str(position)
-                
-                match = re.search(pattern="(\w{2,4}@\w{2,4})", string=row["Game Info"])
+
+                match = re.search(pattern=r"(\w{2,4}@\w{2,4})", string=row["Game Info"])
                 team_opp = ''
                 if match:
                     opp = match.groups()[0].split("@")
@@ -835,50 +841,25 @@ class NBA_Swaptimizer_Sims:
                             team_opp = m
                     opp = tuple(opp)
                 player_found = False
-                # if player_name == 'Tari Eason':
-                #     print(f'player_found status: {player_found}')
-                #     time.sleep(3)
-                for k,v in self.player_dict.items():
+                for k, v in self.player_dict.items():
                     if player_name == v['Name']:
                         player_found = True
                         if self.site == "dk":
-                            # if player_name == 'Tari Eason':
-                            #     print(f'player_found status: {player_found}, {k}, {v}')
-                            #     time.sleep(3)
                             v["ID"] = str(row["ID"])
-                            #self.player_dict[(player_name, position, team)]["Matchup"] = row["Game Info"].split(" ")[0]
                             v["UniqueKey"] = str(row["ID"])
-                            #self.player_dict[(player_name, position, team)]["Opp"] = team_opp
-                            
                         else:
                             v["ID"] = str(row["ID"]).replace("-", "#")
                             v["UniqueKey"] = str(row["ID"]).replace("-", "#")
-                            #self.player_dict[(player_name, position, team)]["Matchup"] = row["Game"]
-                            #self.player_dict[(player_name, position, team)]["Opp"] = team_opp  
                 if player_found == False:
-                    # if player_name == 'Tari Eason':
-                    #     print(f'player_found status: {player_found}')
-                    #     time.sleep(3)
                     if self.site == "dk":
-                        self.missing_ids[player_name] = {'Position': position, 'Team': team, 'ID':str(row["ID"]), "UniqueKey": str(row["ID"]), "Salary": int(row["Salary"])}   
+                        self.missing_ids[player_name] = {'Position': position, 'Team': team, 'ID': str(row["ID"]),
+                                                         "UniqueKey": str(row["ID"]), "Salary": int(row["Salary"])}
                     else:
-                        self.missing_ids[player_name] = {'Position': position, 'Team': team, 'ID':str(row["ID"]).replace("-", "#"), "UniqueKey": str(row["ID"]).replace("-", "#"), "Salary": int(row["Salary"])}   
-                                           
-                # if (player_name, position, team) in self.player_dict:
-                #     self.ids_to_gametime[int(row["ID"])] = self.player_dict[(player_name, position, team)]["GameTime"]
-                #     if self.site == "dk":
-                #         self.player_dict[(player_name, position, team)]["ID"] = str(row["ID"])
-                #         #self.player_dict[(player_name, position, team)]["Matchup"] = row["Game Info"].split(" ")[0]
-                #         self.player_dict[(player_name, position, team)]["UniqueKey"] = str(row["ID"])
-                #         #self.player_dict[(player_name, position, team)]["Opp"] = team_opp
-                #         # Check if game is In Progress
-                        
-                #     else:
-                #         self.player_dict[(player_name, position, team)]["ID"] = str(row["ID"]).replace("-", "#")
-                #         self.player_dict[(player_name, position, team)]["UniqueKey"] = str(row["ID"]).replace("-", "#")
-                #         #self.player_dict[(player_name, position, team)]["Matchup"] = row["Game"]
-                #         #self.player_dict[(player_name, position, team)]["Opp"] = team_opp
-        #print(self.missing_ids)
+                        self.missing_ids[player_name] = {'Position': position, 'Team': team,
+                                                         'ID': str(row["ID"]).replace("-", "#"),
+                                                         "UniqueKey": str(row["ID"]).replace("-", "#"),
+                                                         "Salary": int(row["Salary"])}
+
 
     def load_rules(self):
         self.at_most = self.config["at_most"]
@@ -1026,7 +1007,7 @@ class NBA_Swaptimizer_Sims:
                     "Position": position,
                     "Name": player_name,
                     "DK Name": row["name"],
-                    "Matchup" : self.time_remaining_dict[team]['Matchup'],
+                    "Matchup": self.time_remaining_dict[team]['Matchup'],
                     "Team": team,
                     "Opp": self.time_remaining_dict[team]['Opp'],
                     "ID": "",
@@ -1041,10 +1022,10 @@ class NBA_Swaptimizer_Sims:
                     "Minutes": mins,
                     "Minutes Remaining": self.time_remaining_dict[team]['Minutes Remaining'],
                     "BayesianProjectedFpts": fpts,
-                    "BayesianProjectedVar": stddev**2,
-                    "ActualFpts" : 0,
-                    "GameLocked" : self.time_remaining_dict[team]['GameLocked'],
-                    "GameTime" : self.time_remaining_dict[team]['GameTime']
+                    "BayesianProjectedVar": stddev ** 2,
+                    "ActualFpts": 0,
+                    "GameLocked": self.time_remaining_dict[team]['GameLocked'],
+                    "GameTime": self.time_remaining_dict[team]['GameTime']
                 }
 
                 # Check if player is in player_dict and get Opp, ID, Opp Pitcher ID and Opp Pitcher Name
@@ -1066,10 +1047,6 @@ class NBA_Swaptimizer_Sims:
         # Read projections into a dictionary
         with open(path, encoding="utf-8-sig") as file:
             reader = csv.DictReader(self.lower_first(file))
-            current_time = datetime.datetime.now()  # get the current time
-            
-            # current_time = datetime.datetime(2023, 10, 24, 20, 0) # testing time, such that LAL/DEN is locked
-            #print(f"Current time (UTC): {current_time}")
             for row in reader:
                 if row["entry id"] != "" and self.site == "dk":
                     PG_id = re.search(r"\((\d+)\)", row["pg"]).group(1)
@@ -1085,8 +1062,6 @@ class NBA_Swaptimizer_Sims:
                         self.player_keys.append(str(row['entry id']))
                         lu['UserLu'] = True
                         lu['Type'] = 'user'
-                        #print(row['entry id']+ 'found')
-                        #print(lu)
                         for pos in ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]:
                             if lu[pos + "_is_locked"] == False:
                                 if pos == "PG":
@@ -1098,21 +1073,27 @@ class NBA_Swaptimizer_Sims:
                                 elif pos == "PF":
                                     lu[pos] = PF_id
                                 elif pos == "C":
-                                    lu[pos] = C_id 
+                                    lu[pos] = C_id
                                 elif pos == "G":
                                     lu[pos] = G_id
                                 elif pos == "F":
                                     lu[pos] = F_id
                                 elif pos == "UTIL":
-                                    #print(lu)
-                                    #print(lu[pos], UTIL_id)
                                     lu[pos] = UTIL_id
-                                    #print(lu[pos], self.contest_lineups[str(row['entry id'])][pos])
                     else:
                         print(f'Lineup {row["entry id"]} not found in contest file.')
-        #print(f"Successfully loaded {len(self.player_keys)} lineups for late swap.")
-        #print(self.player_keys)
-        #print(self.contest_lineups['3983050569'])
+
+        # Assuming self.player_keys contains the entry IDs of the loaded lineups
+        for entry_id in self.player_keys:
+            lineup = self.contest_lineups[entry_id]
+            print(f"Loaded Lineup {entry_id}:")
+            for position in ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]:
+                player_id = lineup.get(position)
+                #print(f"  {position}: {player_id}")
+
+        print()  # Blank line for separation
+        print(f"Successfully loaded {len(self.player_keys)} lineups for late swap.")
+        print()
 
     def swaptimize(self):
         # Setup our linear programming equation - https://en.wikipedia.org/wiki/Linear_programming
@@ -1142,9 +1123,9 @@ class NBA_Swaptimizer_Sims:
                         np.random.normal(
                             self.player_dict[player]["Fpts"],
                             (
-                                self.player_dict[player]["StdDev"]
-                                * self.randomness_amount
-                                / 100
+                                    self.player_dict[player]["StdDev"]
+                                    * self.randomness_amount
+                                    / 100
                             ),
                         )
                         * lp_variables[(player, pos, attributes["ID"])]
@@ -1361,7 +1342,8 @@ class NBA_Swaptimizer_Sims:
 
             # Don't dupe a lineup we already used
             i = 0
-            for lineup, _ in self.output_lineups:
+
+            for lineup,  _ in self.output_lineups:
                 player_ids = [tpl[2] for tpl in lineup]
                 player_keys_to_exlude = []
                 for key, attr in self.player_dict.items():
@@ -1375,8 +1357,11 @@ class NBA_Swaptimizer_Sims:
                 )
                 i += 1
 
+
             try:
                 problem.solve(plp.PULP_CBC_CMD(msg=0))
+                #for v in problem.variables():
+                    #print(f"Problem Variables {v.name}: {v.varValue}")
             except plp.PulpSolverError:
                 print(
                     "Infeasibility reached - only generated {} lineups out of {}. Continuing with export.".format(
@@ -1394,13 +1379,20 @@ class NBA_Swaptimizer_Sims:
                 )
                 break
 
+            #print(f"Output lineups structure: {self.output_lineups}")
             # Get the lineup and add it to our list
             selected_vars = [
                 player for player in lp_variables if lp_variables[player].varValue != 0
             ]
             for player in selected_vars:
                 lineup_obj[player[1]] = player[2]
-                
+            self.output_lineups.append((selected_vars, lineup_obj))
+            count = len(self.output_lineups)
+            print(f"Swapped lineup: {self.output_lineups[count-1]}")
+            print(f"Swapped lineup : {count}")
+            print()
+
+
     def convert_player_dict_to_pid_keys(self):
         self.player_dict = {v['ID']: v for v in self.player_dict.values()}
 
@@ -1408,7 +1400,6 @@ class NBA_Swaptimizer_Sims:
         self.convert_player_dict_to_pid_keys()
         self.first_idx = list(self.contest_lineups.keys())[0]
         print('lineup after loading:')
-        print(self.contest_lineups[self.first_idx])
         start = time.time()
         min_fpts = self.optimal_score - (self.max_pct_off_optimal * self.optimal_score)
         ids = []
@@ -1478,12 +1469,11 @@ class NBA_Swaptimizer_Sims:
                 self.site,
                 self.roster_construction,
                 pos_index_dict,
-                np.min(salaries) if len(salaries) >0 else 0
+                np.min(salaries) if len(salaries) > 0 else 0
             )
             problems.append(lu_tuple)
-        #print(problems[0])
         with multiprocessing.Pool(multiprocessing.cpu_count()) as pool:
-            results = pool.starmap(self.generate_lineups,problems)
+            results = pool.starmap(self.generate_lineups, problems)
 
         # New function to get names from IDs in a lineup
         def get_names_from_ids(lineup):
@@ -1497,17 +1487,12 @@ class NBA_Swaptimizer_Sims:
         bad_lus = []
         good_lu_count = 0
         minutes_count = {}  # Dictionary to keep track of count by UsedPlayerMinutes
-        
+
         for r in results:
             for p in self.roster_construction:
                 try:
                     if r[p] == 'LOCKED':
                         bad_lu_count += 1
-                        #if bad_lu_count < 5:
-                        #    print(r)                
-                        #if r['UsedPlayerMinutes'] == 288:
-                        #    print(r)
-                        # Increment the count for the specific UsedPlayerMinutes
                         if r['UsedPlayerMinutes'] in minutes_count:
                             minutes_count[r['UsedPlayerMinutes']] += 1
                         else:
@@ -1519,48 +1504,35 @@ class NBA_Swaptimizer_Sims:
                 good_lu_count += 1
 
         print(f'bad lineups: {bad_lu_count}, good lineups: {good_lu_count}')
-        # Extract and print names
-        #for idx in [0, 5000, 10000, 25000, 103310]:
-            #if idx < len(results):  # Ensure the index exists in the results
-                #original_names = results[idx]['OriginalLineup']
-                #try:
-                #    new_names = get_names_from_ids(results[idx])
-                #except:
-                #    print(results)
-                #    break
-                #print(f"Original lineup for result {idx}: {original_names}")
-                #print(f"New lineup for result {idx}: {new_names}, salary: {results[idx]['Salary']}, fpts: {results[idx]['Points']}")
-                #print(results[idx])
-                #print("-----")
+        print()
         end = time.time()
-# Assuming results is a list of tuples like the one you provided
+        # Assuming results is a list of tuples like the one you provided
         self.contest_lineups = {lineup['EntryId']: lineup for lineup in results}
         print('lineup after guessing:')
-        print(self.contest_lineups[self.first_idx])
         self.count_lineups_and_extract_fields()
-        print('guessing contest lines took {} seconds'.format(end-start))
-    
+        print('guessing contest lines took {} seconds'.format(end - start))
+
     @staticmethod
     def generate_lineups(
-        key,
-        lineup,
-        ids,
-        in_lineup,
-        pos_matrix,
-        ownership,
-        salary_floor,
-        salary_ceiling,
-        optimal_score,
-        salaries,
-        projections,
-        max_pct_off_optimal,
-        teams,
-        matchups,
-        num_players_in_roster,
-        site,
-        roster_construction,
-        pos_index_dict,
-        player_salary_floor
+            key,
+            lineup,
+            ids,
+            in_lineup,
+            pos_matrix,
+            ownership,
+            salary_floor,
+            salary_ceiling,
+            optimal_score,
+            salaries,
+            projections,
+            max_pct_off_optimal,
+            teams,
+            matchups,
+            num_players_in_roster,
+            site,
+            roster_construction,
+            pos_index_dict,
+            player_salary_floor
     ):
         rng = np.random.default_rng()  # Use default_rng for a more modern RNG
         lineup_copy = lineup.copy()
@@ -1591,11 +1563,8 @@ class NBA_Swaptimizer_Sims:
             lineup['Salary'] = int(salary) if np.isscalar(salary) else int(salary[0])
             lineup['ProjectedFieldFpts'] = proj if np.isscalar(proj) else proj[0]
             lineup['UnlockedFieldFpts'] = unlocked_proj if np.isscalar(unlocked_proj) else unlocked_proj[0]
-            #if lineup['EntryId'] == '3983870229':
-            #    log_lineup_state("Finalized Lineup:", lineup)
-            #print(lineup)
             return lineup
-    
+
         def reset_lineup():
             # Helper function to reset lineup to the initial state
             nonlocal salary, proj, unlocked_proj, player_teams, lineup_matchups, in_lineup, players_remaining
@@ -1628,7 +1597,8 @@ class NBA_Swaptimizer_Sims:
                     valid_players = np.nonzero(
                         (pos > 0) &
                         (in_lineup == 0) &
-                        (salaries <= max_allowable_salary) &  # Players must be affordable within the max allowable salary
+                        (
+                                    salaries <= max_allowable_salary) &  # Players must be affordable within the max allowable salary
                         (salaries >= player_salary_floor)  # Players must meet the minimum salary requirement
                     )[0]
                     if players_remaining == 1:
@@ -1637,14 +1607,14 @@ class NBA_Swaptimizer_Sims:
                             & (in_lineup == 0)
                             & (salaries <= remaining_salary)
                             & (salary + salaries >= salary_floor)
-                            & (salaries <= max_allowable_salary) 
+                            & (salaries <= max_allowable_salary)
                         )[0]
                     else:
                         valid_players = np.nonzero(
                             (pos > 0)
                             & (in_lineup == 0)
                             & (salaries <= remaining_salary)
-                            & (salaries <= max_allowable_salary) 
+                            & (salaries <= max_allowable_salary)
                         )[0]
                     if not valid_players.size:
                         lineup = reset_lineup()  # No valid players, reset lineup
@@ -1673,13 +1643,6 @@ class NBA_Swaptimizer_Sims:
                             choice = rng.choice(plyr_list, p=prob_list)
                     except:
                         lineup = reset_lineup()
-                        #if lineup['EntryId'] == '3983870229':
-                        #    log_lineup_state("can't find choice", lineup)
-                        #    if players_remaining == 1:
-                        #        print(f'{key} unable to find choice for position {position}, plyr_list {plyr_list}, boosted probs {boosted_probabilities}')
-                        #    else:
-                        #        print(f'{key} unable to find choice for position {position}, plyr_list {plyr_list}, prob list {prob_list}')                                
-                        #print(f'{key} restarting lineup generation {lineup}, {players_remaining}')
                         continue  # Skip to the next iteration of the while loop
                     players_remaining -= 1
                     choice_idx = np.nonzero(ids == choice)[0]
@@ -1699,11 +1662,12 @@ class NBA_Swaptimizer_Sims:
                 if players_remaining == 0:
                     # Check if the lineup is valid after all positions are filled
                     if is_valid_lineup(salary, proj, player_teams):
-                        return finalize_lineup(lineup, salary, proj, unlocked_proj)  # If lineup is valid, finalize and return
+                        return finalize_lineup(lineup, salary, proj,
+                                               unlocked_proj)  # If lineup is valid, finalize and return
                 #print(f'unable to find valid lineup for {key}, {lineup}')
                 lineup = reset_lineup()
-                
-        # Backoff strategy if max_attempts is reached without a valid lineup
+
+            # Backoff strategy if max_attempts is reached without a valid lineup
             #print(f"Backoff triggered for lineup {lineup} with key: {key}. New salary floor: {salary_floor}, new projection: {reasonable_projection}")
 
             if salary_floor > min_salary_floor:
@@ -1720,10 +1684,9 @@ class NBA_Swaptimizer_Sims:
                 #print(f"Minimum thresholds reached without a valid lineup for key {key}.")
                 return lineup  # Return the best attempt or a lineup indicating failure
 
-
     def calc_gamma(self, mean, sd):
         alpha = (mean / sd) ** 2
-        beta = sd**2 / mean
+        beta = sd ** 2 / mean
         return alpha, beta
 
     def count_lineups_and_extract_fields(self):
@@ -1759,26 +1722,24 @@ class NBA_Swaptimizer_Sims:
                 self.field_lineups[lineup_set]['Count'] += 1
                 self.field_lineups[lineup_set]['EntryIds'].append(entry_id)
 
-        
-
     @staticmethod
     def run_simulation_for_game(
-        team1_id,
-        team1,
-        team2_id,
-        team2,
-        num_iterations,
-        roster_construction,
-        time_remaining_dict
+            team1_id,
+            team1,
+            team2_id,
+            team2,
+            num_iterations,
+            roster_construction,
+            time_remaining_dict
     ):
         # Define correlations between positions
-        if time_remaining_dict[team1_id]['Minutes Remaining']== 0:
+        if time_remaining_dict[team1_id]['Minutes Remaining'] == 0:
             game = team1 + team2
             temp_fpts_dict = {}
             for i, player in enumerate(game):
                 temp_fpts_dict[player["ID"]] = np.full(num_iterations, player["BayesianProjectedFpts"])
                 # If time remaining is zero, we set the player's fantasy points to their BayesianProjectedFpts
-        else: 
+        else:
             def get_corr_value(player1, player2):
                 # First, check for specific player-to-player correlations
                 if player2["Name"] in player1.get("Player Correlations", {}):
@@ -1826,9 +1787,9 @@ class NBA_Swaptimizer_Sims:
                             corr_matrix[i][j] = 1
                         else:
                             matrix[i][j] = (
-                                get_corr_value(players[i], players[j])
-                                * players[i]["StdDev"]
-                                * players[j]["StdDev"]
+                                    get_corr_value(players[i], players[j])
+                                    * players[i]["StdDev"]
+                                    * players[j]["StdDev"]
                             )
                             corr_matrix[i][j] = get_corr_value(players[i], players[j])
                 return matrix, corr_matrix
@@ -1842,8 +1803,6 @@ class NBA_Swaptimizer_Sims:
 
             game = team1 + team2
             covariance_matrix, corr_matrix = build_covariance_matrix(game)
-            # print(team1_id, team2_id)
-            # print(corr_matrix)
             corr_matrix = np.array(corr_matrix)
 
             # Given eigenvalues and eigenvectors from previous code
@@ -1870,16 +1829,13 @@ class NBA_Swaptimizer_Sims:
                     sample = samples[:, i]
                 else:
                     sample = samples[:, i]
-                # if player['Team'] in ['LAR','SEA']:
-                #     print(player['Name'], player['Fpts'], player['StdDev'], sample, np.mean(sample), np.std(sample))
                 player_samples.append(sample)
 
             temp_fpts_dict = {}
-            # print(team1_id, team2_id, len(game), uniform_samples.T.shape, len(player_samples), covariance_matrix.shape )
 
             for i, player in enumerate(game):
                 temp_fpts_dict[player["ID"]] = player_samples[i]
-                
+
         return temp_fpts_dict
 
     @staticmethod
@@ -1905,8 +1861,8 @@ class NBA_Swaptimizer_Sims:
                 lineup_count = field_lineups_count[lineup_index]
                 prize_for_lineup = (
                     (
-                        payout_cumsum[payout_index + lineup_count - 1]
-                        - payout_cumsum[payout_index - 1]
+                            payout_cumsum[payout_index + lineup_count - 1]
+                            - payout_cumsum[payout_index - 1]
                     )
                     / lineup_count
                     if payout_index != 0
@@ -1924,11 +1880,7 @@ class NBA_Swaptimizer_Sims:
         temp_fpts_dict = {}
         size = self.num_iterations
         game_simulation_params = []
-        #print(self.time_remaining_dict)
-        #random_keys = random.sample(list(self.contest_lineups.keys()), 5)
-        #random_5_entries = {key: self.contest_lineups[key] for key in random_keys}
-        #print(random_5_entries)
-        if len(self.matchups)>0:
+        if len(self.matchups) > 0:
             for m in self.matchups:
                 game_simulation_params.append(
                     (
@@ -1945,7 +1897,7 @@ class NBA_Swaptimizer_Sims:
                 results = pool.starmap(self.run_simulation_for_game, game_simulation_params)
 
             for res in results:
-                temp_fpts_dict.update(res)  
+                temp_fpts_dict.update(res)
 
         field_lineups_count = np.array(
             [self.field_lineups[idx]["Count"] for idx in self.field_lineups.keys()]
@@ -1953,7 +1905,7 @@ class NBA_Swaptimizer_Sims:
 
         fpts_array = np.zeros((len(self.field_lineups), self.num_iterations))
         kcelite_idx = None
-        
+
         for index, (keys, values) in enumerate(self.field_lineups.items()):
             try:
                 fpts_sim = sum([temp_fpts_dict[player] for player in values["Lineup"]])
@@ -1961,23 +1913,16 @@ class NBA_Swaptimizer_Sims:
                 for player in values["Lineup"]:
                     if player not in temp_fpts_dict.keys():
                         print(player)
-                        # for k,v in self.player_dict.items():
-                        # if v['ID'] == player:
-                        #        print(k,v)
-                # print('cant find player in sim dict', values["Lineup"], temp_fpts_dict.keys())
-            # store lineup fpts sum in 2d np array where index (row) corresponds to index of field_lineups and columns are the fpts from each sim
             fpts_array[index] = fpts_sim
-            
+
         fpts_array = fpts_array.astype(np.float16)
-        print(fpts_array)
-        # ranks = np.argsort(fpts_array, axis=0)[::-1].astype(np.uint16)
         ranks = np.argsort(-fpts_array, axis=0).astype(np.uint32)
 
         # count wins, top 10s vectorized
         wins, win_counts = np.unique(ranks[0, :], return_counts=True)
 
         top1pct, top1pct_counts = np.unique(
-            ranks[0 : math.ceil(0.01 * len(self.field_lineups)), :], return_counts=True
+            ranks[0: math.ceil(0.01 * len(self.field_lineups)), :], return_counts=True
         )
 
         payout_array = np.array(list(self.payout_structure.values()))
@@ -1987,7 +1932,7 @@ class NBA_Swaptimizer_Sims:
             shape=self.field_size - len(payout_array), fill_value=-self.entry_fee
         )
         payout_array = np.concatenate((payout_array, l_array))
-        
+
         cashes, cash_counts = np.unique(ranks[0:len(list(self.payout_structure.values()))], return_counts=True)
 
         # Adjusted ROI calculation
@@ -2000,7 +1945,7 @@ class NBA_Swaptimizer_Sims:
         chunk_size = self.num_iterations // 16  # Adjust chunk size as needed
         simulation_chunks = [
             (
-                ranks[:, i : min(i + chunk_size, self.num_iterations)].copy(),
+                ranks[:, i: min(i + chunk_size, self.num_iterations)].copy(),
                 payout_array,
                 self.entry_fee,
                 field_lineups_keys_array,
@@ -2015,7 +1960,7 @@ class NBA_Swaptimizer_Sims:
             results = pool.map(self.calculate_payouts, simulation_chunks)
 
         combined_result_array = np.sum(results, axis=0)
-        
+
         total_sum = 0
         index_to_key = list(self.field_lineups.keys())
         for idx, roi in enumerate(combined_result_array):
@@ -2053,8 +1998,10 @@ class NBA_Swaptimizer_Sims:
             + str(diff)
             + " seconds. Outputting."
         )
+        print()
 
     def output(self):
+
         unique = {}
         for index, y in self.field_lineups.items():
             win_p = round(y["Wins"] / self.num_iterations * 100, 2)
@@ -2064,8 +2011,6 @@ class NBA_Swaptimizer_Sims:
             lu_idx = self.lineup_to_int[index]
             for entry in y['EntryIds']:
                 x = self.contest_lineups[entry]
-                # if index == 0:
-                #    print(x)
                 lu_type = x["Type"]
                 userName = x['User']
                 salary = x['Salary']
@@ -2099,7 +2044,6 @@ class NBA_Swaptimizer_Sims:
                 ceil_p = fpts_p + std_p
                 counter = Counter(lu_teams)
                 stacks = counter.most_common()
-                
 
                 # Find the QB team in stacks and set it as primary stack, remove it from stacks and subtract 1 to make sure qb isn't counted
                 primaryStack = str(stacks[0][0]) + " " + str(stacks[0][1])
@@ -2115,7 +2059,7 @@ class NBA_Swaptimizer_Sims:
                         roi_p = round(
                             y["ROI"] / self.entry_fee / self.num_iterations * 100, 2
                         )
-                        roi_round = round(y["ROI"] / self.num_iterations, 2)                        
+                        roi_round = round(y["ROI"] / self.num_iterations, 2)
                         self.contest_entries[userName]['ROI'] += y['ROI']
                         self.contest_entries[userName]['Wins'] += y['Wins']
                         self.contest_entries[userName]['Top1'] += y['Top1Percent']
@@ -2138,6 +2082,7 @@ class NBA_Swaptimizer_Sims:
                             f" ({x['UTIL']}),"
                             f"{fpts_p},{ceil_p},{salary},{win_p}%,{top10_p}%,{roi_p}%,{own_p},{own_s},${roi_round},{primaryStack},{secondaryStack},{lu_type},{simDupes},{userName},{lu_idx},{entry}"
                         )
+                        unique[index] = lineup_str
                     else:
                         lineup_str = (
                             f"{lu_names[0].replace('#', '-')}"
@@ -2158,56 +2103,7 @@ class NBA_Swaptimizer_Sims:
                             f" ({x['Lineup'][7]}),"
                             f"{fpts_p},{ceil_p},{salary},{win_p}%,{top10_p}%,{own_p},{own_s},{primaryStack},{secondaryStack},{lu_type},{simDupes},{userName},{lu_idx},{entry}"
                         )
-                elif self.site == "fd":
-                    if self.use_contest_data:
-                        roi_p = round(
-                            x["ROI"] / self.entry_fee / self.num_iterations * 100, 2
-                        )
-                        roi_round = round(x["ROI"] / self.num_iterations, 2)
-                        lineup_str = (
-                            f"{lu_names[0].replace('#', '-')}"
-                            f" ({x['Lineup'][0]}),"
-                            f"{lu_names[1].replace('#', '-')}"
-                            f" ({x['Lineup'][1]}),"
-                            f"{lu_names[2].replace('#', '-')}"
-                            f" ({x['Lineup'][2]}),"
-                            f"{lu_names[3].replace('#', '-')}"
-                            f" ({x['Lineup'][3]}),"
-                            f"{lu_names[4].replace('#', '-')}"
-                            f" ({x['Lineup'][4]}),"
-                            f"{lu_names[5].replace('#', '-')}"
-                            f" ({x['Lineup'][5]}),"
-                            f"{lu_names[6].replace('#', '-')}"
-                            f" ({x['Lineup'][6]}),"
-                            f"{lu_names[7].replace('#', '-')}"
-                            f" ({x['Lineup'][7]}),"
-                            f"{lu_names[8].replace('#', '-')}"
-                            f" ({x['Lineup'][8]}),"
-                            f"{fpts_p},{ceil_p},{salary},{win_p}%,{top10_p}%,{roi_p}%,{own_p},{own_s},${roi_round},{primaryStack},{secondaryStack},{lu_type},{simDupes},{userName},{lu_idx},{entry}"
-                        )
-                    else:
-                        lineup_str = (
-                            f"{lu_names[0].replace('#', '-')}"
-                            f" ({x['Lineup'][0]}),"
-                            f"{lu_names[1].replace('#', '-')}"
-                            f" ({x['Lineup'][1]}),"
-                            f"{lu_names[2].replace('#', '-')}"
-                            f" ({x['Lineup'][2]}),"
-                            f"{lu_names[3].replace('#', '-')}"
-                            f" ({x['Lineup'][3]}),"
-                            f"{lu_names[4].replace('#', '-')}"
-                            f" ({x['Lineup'][4]}),"
-                            f"{lu_names[5].replace('#', '-')}"
-                            f" ({x['Lineup'][5]}),"
-                            f"{lu_names[6].replace('#', '-')}"
-                            f" ({x['Lineup'][6]}),"
-                            f"{lu_names[7].replace('#', '-')}"
-                            f" ({x['Lineup'][7]}),"
-                            f"{lu_names[8].replace('#', '-')}"
-                            f" ({x['Lineup'][8]}),"
-                            f"{fpts_p},{ceil_p},{salary},{win_p}%,{top10_p}%,{own_p},{own_s},{primaryStack},{secondaryStack},{lu_type},{simDupes},{userName},{lu_idx},{entry}"
-                        )
-                unique[index] = lineup_str
+                        unique[index] = lineup_str
 
         out_path = os.path.join(
             os.path.dirname(__file__),
@@ -2283,14 +2179,14 @@ class NBA_Swaptimizer_Sims:
                         }
                     else:
                         unique_players[player]["Wins"] = (
-                            unique_players[player]["Wins"] + val["Wins"]
+                                unique_players[player]["Wins"] + val["Wins"]
                         )
                         unique_players[player]["Top1Percent"] = (
-                            unique_players[player]["Top1Percent"] + val["Top1Percent"]
+                                unique_players[player]["Top1Percent"] + val["Top1Percent"]
                         )
                         unique_players[player]["In"] += val["Count"]
                         unique_players[player]["ROI"] = (
-                            unique_players[player]["ROI"] + val["ROI"]
+                                unique_players[player]["ROI"] + val["ROI"]
                         )
 
             for player, data in unique_players.items():
@@ -2323,17 +2219,28 @@ class NBA_Swaptimizer_Sims:
                         min
                     )
                 )
+
+
         sorted_lineups = []
+        for lineup, old_lineup in self.output_lineups:
+            if "contest_id" not in old_lineup or "EntryId" not in old_lineup:
+                raise KeyError(f"Missing required keys in old_lineup: {old_lineup}")
+
         for lineup, old_lineup in self.output_lineups:
             sorted_lineup = self.sort_lineup(lineup)
             sorted_lineup = self.adjust_roster_for_late_swap(sorted_lineup, old_lineup)
-            new_sorted_lineup = []
+            for item in sorted_lineup:
+                print(f"Sorted Lineup {item}")
             sorted_lineups.append((sorted_lineup, old_lineup))
+            print()
+
+        print(f"Number of lineups in sorted_lineups: {len(sorted_lineups)}")
 
         late_swap_lineups_contest_entry_dict = {
-            (old_lineup["contest_id"], old_lineup["entry_id"]): new_lineup
+            (old_lineup["contest_id"], old_lineup["EntryId"]): new_lineup
             for new_lineup, old_lineup in sorted_lineups
         }
+
         if 'late_swap_path' in self.config.keys():
             late_swap_path = os.path.join(
                 os.path.dirname(__file__),
@@ -2350,45 +2257,62 @@ class NBA_Swaptimizer_Sims:
             PLACEHOLDER = "PLACEHOLDER_FOR_NONE"
             # If any row has a None key, ensure the placeholder is in the fieldnames
             for row in rows:
+                #print(row)
                 if None in row and PLACEHOLDER not in fieldnames:
                     fieldnames.append(PLACEHOLDER)
 
+            print()
             # Now, modify the rows
             updated_rows = []
+            #print("Keys in self.player_dict:", list(self.player_dict.keys()))  # Debugging
+
             for row in rows:
                 if row["Entry ID"] != "":
                     contest_id = row["Contest ID"]
                     entry_id = row["Entry ID"]
-                    matching_lineup = late_swap_lineups_contest_entry_dict.get(
-                        (contest_id, entry_id)
-                    )
+                    key = (contest_id, entry_id)
+
+                    print(f'Contest ID: {row["Contest ID"]}, Entry ID: {row["Entry ID"]}')
+
+                    # Retrieve the matching lineup
+                    #matching_lineup = late_swap_lineups_contest_entry_dict.get(key)
+                    matching_lineup = late_swap_lineups_contest_entry_dict.get(key)
+                    print(matching_lineup)
+
                     if matching_lineup:
-                        row[
-                            "PG"
-                        ] = f"{self.player_dict[matching_lineup[0]]['Name']} ({self.player_dict[matching_lineup[0]]['ID']})"
-                        row[
-                            "SG"
-                        ] = f"{self.player_dict[matching_lineup[1]]['Name']} ({self.player_dict[matching_lineup[1]]['ID']})"
-                        row[
-                            "SF"
-                        ] = f"{self.player_dict[matching_lineup[2]]['Name']} ({self.player_dict[matching_lineup[2]]['ID']})"
-                        row[
-                            "PF"
-                        ] = f"{self.player_dict[matching_lineup[3]]['Name']} ({self.player_dict[matching_lineup[3]]['ID']})"
-                        row[
-                            "C"
-                        ] = f"{self.player_dict[matching_lineup[4]]['Name']} ({self.player_dict[matching_lineup[4]]['ID']})"
-                        row[
-                            "G"
-                        ] = f"{self.player_dict[matching_lineup[5]]['Name']} ({self.player_dict[matching_lineup[5]]['ID']})"
-                        row[
-                            "F"
-                        ] = f"{self.player_dict[matching_lineup[6]]['Name']} ({self.player_dict[matching_lineup[6]]['ID']})"
-                        row[
-                            "UTIL"
-                        ] = f"{self.player_dict[matching_lineup[7]]['Name']} ({self.player_dict[matching_lineup[7]]['ID']})"
+                        print("Matching lineup found.")
+                        print()
+
+                        for i, position in enumerate(["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]):
+                            # Retrieve the player entry from the lineup
+                            player_entry = matching_lineup[i]
+                            print(f"Processing player entry: {player_entry}")
+
+                            # Extract the player ID from the entry
+                            if isinstance(player_entry, tuple):
+                                player_id = player_entry[-1]  # Extract the ID from the tuple
+                                print(f"Extracted Player ID: {player_id}")
+                            else:
+                                player_id = player_entry  # Assume it's already an ID
+                                print(f"Player ID is directly: {player_id}")
+
+                            # Access player_dict using the player ID
+                            if player_id in self.player_dict:
+                                player_data = self.player_dict[player_id]
+                                row[position] = f"{player_data['Name']} ({player_data['ID']})"
+                            else:
+                                print(f"Player ID not found in player_dict: {player_id}")
+                                row[position] = "Unknown Player"
+
+                        print()
+                        print("Updated Row:")
+                        print(row)
+                        print()
 
                 updated_rows.append(row)
+
+
+
 
             new_late_swap_path = os.path.join(
                 os.path.dirname(__file__),
@@ -2424,90 +2348,15 @@ class NBA_Swaptimizer_Sims:
             sorted_lineup = [None] * 9
 
         for player in lineup:
-            player_key, pos, _ = player
+            player_key, pos, player_id = player  # Extract the ID as well
             order_idx = order.index(pos)
             if sorted_lineup[order_idx] is None:
-                sorted_lineup[order_idx] = player_key
+                # Include the full tuple (key, position, ID) in the sorted lineup
+                sorted_lineup[order_idx] = (player_key, pos, player_id)
             else:
-                sorted_lineup[order_idx + 1] = player_key
-        return sorted_lineup
-    
-    def is_valid_for_position(self, player, position_idx):
-        return any(
-            pos in self.position_map[position_idx]
-            for pos in self.player_dict[player]['Position']
-        )
+                # Handle the case where the position is already filled
+                sorted_lineup[order_idx + 1] = (player_key, pos, player_id)
 
-    def adjust_roster_for_late_swap(self, lineup, old_lineup):
-        if self.site == "fd":
-            return lineup
-
-        POSITIONS = ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]
-
-        def is_locked(position_index):
-            if 0 <= position_index < 8:
-                position_name = POSITIONS[position_index]
-                return old_lineup[f"{position_name}_is_locked"]
-            else:
-                raise ValueError(f"Invalid position index: {position_index}")
-
-        for i, position in enumerate(POSITIONS):
-            # Only check G, F, and UTIL positions
-            if position in ["G", "F", "UTIL"]:
-                current_player = lineup[i]
-                current_player_start_time = self.player_dict[current_player]["GameTime"]
-
-                # Look for a swap candidate among primary positions
-                for primary_i, primary_pos in enumerate(
-                    POSITIONS[:5]
-                ):  # Only the primary positions (0 to 4)
-                    primary_player = lineup[primary_i]
-                    primary_player_start_time = self.player_dict[primary_player][
-                        "GameTime"
-                    ]
-
-                    if is_locked(primary_i) or is_locked(i):
-                        print(
-                            f"Skipping swap between {primary_player} and {current_player} because one of them is locked"
-                        )
-                        continue
-
-                    # Check the conditions for the swap
-                    primary_player_positions = self.player_dict[primary_player][
-                        "Position"
-                    ]
-                    current_player_positions = self.player_dict[current_player][
-                        "Position"
-                    ]
-                    # Check the conditions for the swap
-                    if (
-                        primary_player_start_time > current_player_start_time
-                        and self.is_valid_for_position(primary_player, i)
-                        and self.is_valid_for_position(current_player, primary_i)
-                    ):
-                        print(
-                            f"Swapping {primary_player} and {current_player}, for positions {primary_pos} and {position}"
-                        )
-                        lineup[i], lineup[primary_i] = lineup[primary_i], lineup[i]
-                        break  # Break out of the inner loop once a swap is made
-        return lineup
-
-
-    def sort_lineup(self, lineup):
-        if self.site == "dk":
-            order = ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]
-            sorted_lineup = [None] * 8
-        else:
-            order = ["PG", "PG", "SG", "SG", "SF", "SF", "PF", "PF", "C"]
-            sorted_lineup = [None] * 9
-
-        for player in lineup:
-            player_key, pos, _ = player
-            order_idx = order.index(pos)
-            if sorted_lineup[order_idx] is None:
-                sorted_lineup[order_idx] = player_key
-            else:
-                sorted_lineup[order_idx + 1] = player_key
         return sorted_lineup
 
     def adjust_roster_for_late_swap(self, lineup, old_lineup):
@@ -2520,52 +2369,29 @@ class NBA_Swaptimizer_Sims:
             if 0 <= position_index < 8:
                 position_name = POSITIONS[position_index]
                 return old_lineup[f"{position_name}_is_locked"]
-            else:
-                raise ValueError(f"Invalid position index: {position_index}")
+            raise ValueError(f"Invalid position index: {position_index}")
 
         for i, position in enumerate(POSITIONS):
-            # Only check G, F, and UTIL positions
-            if position in ["G", "F", "UTIL"]:
-                current_player = lineup[i]
-                current_player_start_time = self.player_dict[current_player]["GameTime"]
+            if position not in ["G", "F", "UTIL"]:
+                continue
 
-                # Look for a swap candidate among primary positions
-                for primary_i, primary_pos in enumerate(
-                    POSITIONS[:5]
-                ):  # Only the primary positions (0 to 4)
-                    primary_player = lineup[primary_i]
-                    primary_player_start_time = self.player_dict[primary_player][
-                        "GameTime"
-                    ]
+            current_player = lineup[i]
+            current_player_data = self.player_dict.get(current_player, {})
+            current_player_start_time = current_player_data.get("GameTime", float('inf'))
 
-                    if is_locked(primary_i) or is_locked(i):
-                        print(
-                            f"Skipping swap between {primary_player} and {current_player} because one of them is locked"
-                        )
-                        continue
+            for primary_i, primary_pos in enumerate(POSITIONS[:5]):
+                primary_player = lineup[primary_i]
+                primary_player_data = self.player_dict.get(primary_player, {})
+                primary_player_start_time = primary_player_data.get("GameTime", float('inf'))
 
-                    # Check the conditions for the swap
-                    primary_player_positions = self.player_dict[primary_player][
-                        "Position"
-                    ]
-                    current_player_positions = self.player_dict[current_player][
-                        "Position"
-                    ]
-                    if (
+                if is_locked(primary_i) or is_locked(i):
+                    continue
+
+                if (
                         primary_player_start_time > current_player_start_time
-                        and any(
-                            pos in primary_player_positions
-                            for pos in current_player_positions
-                        )
-                        and any(
-                            pos in current_player_positions
-                            for pos in primary_player_positions
-                        )
-                    ):
-                        # Perform the swap
-                        print(
-                            f"Swapping {primary_player} and {current_player}, for positions {primary_pos} and {position}"
-                        )
-                        lineup[i], lineup[primary_i] = lineup[primary_i], lineup[i]
-                        break  # Break out of the inner loop once a swap is made
+                        and set(primary_player_data.get("Position", [])) & set(current_player_data.get("Position", []))
+                ):
+                    lineup[i], lineup[primary_i] = lineup[primary_i], lineup[i]
+                    break
+
         return lineup

@@ -5,16 +5,16 @@ from nba_late_swaptimizer import NBA_Late_Swaptimizer
 
 def main():
     site = "dk"
+    process = "opto"
+    process = "swap_sim"
     process = "sim"
-    #process = "swap_sim"
-    # process = "opto"
-    #process = "swap"
+
     num_lineups = 20
     num_uniques = 1
     use_contest_data = True
     field_size = 1000
     use_file_upload = False
-    num_iterations = 10000
+    num_iterations = 20000
 
     if process == 'opto':
         opto = NBA_Optimizer(site, num_lineups, num_uniques)

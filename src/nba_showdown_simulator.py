@@ -324,7 +324,7 @@ class nba_showdown_simulator:
                 if result:
                     matchup, game_time = result
                     self.game_info[matchup] = game_time
-                match = re.search(pattern="(\w{2,4}@\w{2,4})", string=row[game_info])
+                match = re.search(pattern=r"(\w{2,4}@\w{2,4})", string=row[game_info])
                 if match:
                     opp = match.groups()[0].split("@")
                     
