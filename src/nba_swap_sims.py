@@ -71,6 +71,8 @@ class NBA_Swaptimizer_Sims:
         self.site = site
         self.num_iterations = num_iterations
         self.num_uniques = int(num_uniques)
+        #self.min_salary = int(min_salary)
+        #self.projection_minimum = int(projection_minimum)
         if self.site == 'dk':
             self.roster_construction = ['PG', 'SG', 'SF', 'PF', 'C', 'G', 'F', 'UTIL']
             self.max_salary = 50000
@@ -364,6 +366,7 @@ class NBA_Swaptimizer_Sims:
         total_game_minutes = self.num_minutes_per_player  # total minutes in a game per player
         actual_fpts = player['ActualFpts']
         minutes_played = total_game_minutes - player['Minutes Remaining']
+        #print(f'Player: {player['Name']} Fpts: {actual_fpts}')
 
         # Calculate the game progress for the logarithmic scaling
         game_progress = minutes_played / total_game_minutes
@@ -459,9 +462,12 @@ class NBA_Swaptimizer_Sims:
         }
 
         # Format the date into the string format the NBA API expects ('YYYY-MM-DD')
-        formatted_date = game_date.strftime('%Y-%m-%d')
 
-        formatted_date = '2024-11-21'
+        formatted_date = game_date.strftime('%Y-%m-%d')
+        # Comment Out for Live Games
+        formatted_date = '2024-11-26'
+        #
+
         headers = {
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36',
             'Referer': 'https://www.nba.com/'}
@@ -472,30 +478,30 @@ class NBA_Swaptimizer_Sims:
         # Assuming `data` is the JSON response parsed into a Python dictionary
         games_info = scoreboard_json['resultSets'][0]['rowSet']
         # print(scoreboard_json['resultSets'][0]['headers'])
+        # NBA regulation game length in minutes
 
-        #debug
+        # Comment Out for Live Games
         games_info = [
-            ['2024-11-21T00:00:00', 1, '0022400260', 3, '1st Qtr', '20241121/DETCHA', 1610612766, 1610612765, '2024', 1,
-             '11:30', 'NBA TV', 'FDSNSE-CHA', 'FDSNDTX', 'Q1 11:30    - NBA TV', 'Spectrum Center', 1, 0],
-            ['2024-11-21T00:00:00', 2, '0022400261', 3, '9:00 pm ET', '20241121/MINTOR', 1610612761, 1610612750, '2024',
-             0, '     ', None, 'TSN', 'FDSNNO', 'Q0       - ', 'Scotiabank Arena', 1, 0],
-            ['2024-11-21T00:00:00', 3, '0022400262', 3, '9:00 pm ET', '20241121/UTASAS', 1610612759, 1610612762, '2024',
-             0, '     ', None, 'FDSNSW', 'KJZZ', 'Q0       - ', 'Frost Bank Center', 1, 0],
-            ['2024-11-21T00:00:00', 4, '0022400263', 3, '9:00 pm ET', '20241121/ORLLAL', 1610612747, 1610612753, '2024',
-             0, '     ', None, 'SPECSN', 'FDSNFL', 'Q0       - ', 'Crypto.com Arena', 1, 0]
+            ['2024-11-26T00:00:00', 1, '0022400035', 2, '2nd Qtr             ', '20241126/CHIWAS', 1610612764, 1610612741, '2024', 2, '7:47 ', None, 'MNMT', 'CHSN', 'Q2 7:47  - ', 'Capital One Arena', 0, 0],
+            ['2024-11-26T00:00:00', 2, '0022400036', 2, '1st Qtr             ', '20241126/MILMIA', 1610612748, 1610612749, '2024', 1, '7:43 ', 'TNT', None, None, 'Q1 7:43  - TNT', 'Kaseya Center', 0, 0],
+            ['2024-11-26T00:00:00', 3, '0022400037', 1, '8:00 pm ET', '20241126/HOUMIN', 1610612750, 1610612745, '2024', 0, '     ', None, 'FDSNNO', 'SCHN', 'Q0       - ', 'Target Center', 0, 0],
+            ['2024-11-26T00:00:00', 4, '0022400038', 1, '9:00 pm ET', '20241126/SASUTA', 1610612762, 1610612759, '2024', 0, '     ', None, 'KJZZ', 'FDSNSW', 'Q0       - ', 'Delta Center', 0, 0],
+            ['2024-11-26T00:00:00', 5, '0022400039', 1, '10:00 pm ET', '20241126/LALPHX', 1610612756, 1610612747, '2024', 0, '     ', 'TNT', None, 'SPECSN', 'Q0       - TNT', 'Footprint Center', 0, 0]
         ]
-        #end debug
+        #
 
         # NBA regulation game length in minutes
         regulation_game_length = 48
         overtime_period_length = 5  # NBA overtime period length in minutes
 
         eastern = pytz.timezone('US/Eastern')
-        #current_time_utc = datetime.datetime.now(timezone.utc)  # Current time in UTC
-        current_time_utc = datetime.datetime(2024, 11, 21, 19, 15)  # testing time, such that LAL/DEN is locked
+        current_time_utc = datetime.datetime.now(timezone.utc)  # Current time in UTC
+        # Comment Out for Live Games
+        current_time_utc = pytz.utc.localize(datetime.datetime(2024, 11, 26, 19, 35))  # Testing as aware datetime
+        #
 
         for game in games_info:
-            #print(game)
+            print(game)
             game_id = game[2]
             home_team_id = game[6]
             visitor_team_id = game[7]
@@ -518,8 +524,7 @@ class NBA_Swaptimizer_Sims:
                                                                  '%Y-%m-%d %I:%M %p')
 
                     # Convert to UTC
-                    #game_start_time_utc = eastern.localize(game_start_time).astimezone(pytz.utc)
-                    game_start_time_utc = game_start_time
+                    game_start_time_utc = eastern.localize(game_start_time).astimezone(pytz.utc)
                     # Check if current UTC time is past the game start time
                     if current_time_utc >= game_start_time_utc:
                         game_locked = True
@@ -866,13 +871,16 @@ class NBA_Swaptimizer_Sims:
         self.at_least = self.config["at_least"]
         self.team_limits = self.config["team_limits"]
         self.global_team_limit = int(self.config["global_team_limit"])
-        self.projection_minimum = int(self.config["projection_minimum"])
         self.randomness_amount = float(self.config["randomness"])
         self.matchup_limits = self.config["matchup_limits"]
         self.matchup_at_least = self.config["matchup_at_least"]
-        self.min_salary = int(self.config["min_lineup_salary"])
         self.default_var = float(self.config["default_var"])
         self.max_pct_off_optimal = float(self.config['max_pct_off_optimal'])
+        self.projection_minimum = int(self.config["projection_minimum"])
+        self.min_salary = int(self.config["min_lineup_salary"])
+        #self.projection_minimum = int(self.projection_minimum)
+        #self.min_salary = int(self.min_salary)
+
 
     def load_projections(self, path):
         # Read projections into a dictionary
@@ -1410,8 +1418,15 @@ class NBA_Swaptimizer_Sims:
         teams = []
         opponents = []
         matchups = []
+        #print("Player dictionary keys:", list(self.player_dict.keys()))
+        #for k, v in self.player_dict.items():
+            #print(f"Key: {k}, Value: {v}")
+
         for k in self.player_dict.keys():
+            print()
+            print("Processing player:", k)
             if self.player_dict[k].get('GameLocked', True) == False:
+                print("Player passed GameLocked check:", self.player_dict[k])
                 if "Team" not in self.player_dict[k].keys():
                     print(
                         self.player_dict[k]["Name"],
@@ -1427,12 +1442,19 @@ class NBA_Swaptimizer_Sims:
                 teams.append(self.player_dict[k]["Team"])
                 matchups.append(self.player_dict[k]["Matchup"])
                 pos_list = []
+                print("Roster construction:", self.roster_construction)
                 for pos in self.roster_construction:
                     if pos in self.player_dict[k]["Position"]:
                         pos_list.append(1)
                     else:
                         pos_list.append(0)
                 positions.append(np.array(pos_list))
+            else:
+                print("Player failed GameLocked check:", self.player_dict[k])
+
+        print("Number of valid players:", len(ids))
+        print("Number of projections:", len(projections))
+        print("Number of salaries:", len(salaries))
         in_lineup = np.zeros(shape=len(ids))
         ownership = np.array(ownership)
         salaries = np.array(salaries)
@@ -1534,12 +1556,19 @@ class NBA_Swaptimizer_Sims:
             pos_index_dict,
             player_salary_floor
     ):
+        #print(f"ids shape: {ids.shape}")
+        #print(f"pos_matrix shape: {pos_matrix.shape}")
+        #print(f"ownership shape: {ownership.shape}")
+        #print(f"salaries shape: {salaries.shape}")
+        #print(f"projections shape: {projections.shape}")
+
         rng = np.random.default_rng()  # Use default_rng for a more modern RNG
         lineup_copy = lineup.copy()
         iteration_count = 0
         total_players = num_players_in_roster
         reasonable_projection = optimal_score - (max_pct_off_optimal * optimal_score)
-        max_players_per_team = 4 if site == "fd" else None
+        #max_players_per_team = 4 if site == "fd" else None
+        max_players_per_team = None
         max_attempts = 10  # set a maximum number of attempts before reducing floors
         player_teams = []
         lineup_matchups = []
@@ -1581,6 +1610,8 @@ class NBA_Swaptimizer_Sims:
             print(f"{action} - Lineup State for {key}: {state}")
 
         # Start of lineup generation logic
+
+
         if lineup['UserLu'] or lineup['EmptyLu'] or lineup['UnlockedPlayers'] == 0:
             return lineup.copy()
         while True:
@@ -1805,6 +1836,14 @@ class NBA_Swaptimizer_Sims:
             covariance_matrix, corr_matrix = build_covariance_matrix(game)
             corr_matrix = np.array(corr_matrix)
 
+            covariance_matrix, corr_matrix = build_covariance_matrix(game)
+            covariance_matrix = np.array(corr_matrix)
+
+            if covariance_matrix.ndim != 2 or covariance_matrix.shape == (0,):
+                print(
+                    f"Simulation skipped for game between {team1_id} and {team2_id} due to invalid covariance matrix shape: {covariance_matrix.shape}")
+                return {}
+
             # Given eigenvalues and eigenvectors from previous code
             eigenvalues, eigenvectors = np.linalg.eigh(covariance_matrix)
 
@@ -1875,6 +1914,8 @@ class NBA_Swaptimizer_Sims:
     def run_tournament_simulation(self):
         print(f"Running {self.num_iterations} simulations")
         print(f"Number of unique field lineups: {len(self.field_lineups.keys())}")
+        print(self.matchups)
+        print()
 
         start_time = time.time()
         temp_fpts_dict = {}
@@ -1913,7 +1954,7 @@ class NBA_Swaptimizer_Sims:
                 for player in values["Lineup"]:
                     if player not in temp_fpts_dict.keys():
                         print(player)
-            fpts_array[index] = fpts_sim
+                fpts_array[index] = fpts_sim
 
         fpts_array = fpts_array.astype(np.float16)
         ranks = np.argsort(-fpts_array, axis=0).astype(np.uint32)
@@ -1954,6 +1995,8 @@ class NBA_Swaptimizer_Sims:
             )  # Adding field_lineups_count here
             for i in range(0, self.num_iterations, chunk_size)
         ]
+
+
 
         # Use the pool to process the chunks in parallel
         with multiprocessing.Pool() as pool:
@@ -1999,6 +2042,8 @@ class NBA_Swaptimizer_Sims:
             + " seconds. Outputting."
         )
         print()
+
+
 
     def output(self):
 

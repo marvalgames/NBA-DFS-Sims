@@ -36,10 +36,14 @@ class NBA_Optimizer:
     randomness_amount = 0
     min_salary = None
 
-    def __init__(self, site=None, num_lineups=0, num_uniques=1):
+    def __init__(self, site=None, num_lineups=0, num_uniques=1, min_salary=49000, randomness=100, global_team_limit=4, projection_min = 15):
         self.site = site
         self.num_lineups = int(num_lineups)
         self.num_uniques = int(num_uniques)
+        self.randomness_amount = int(randomness)
+        self.min_salary = int(min_salary)
+        self.global_team_limit =int(global_team_limit)
+        self.projection_minimum = int(projection_min)
         self.load_config()
         self.load_rules()
 
@@ -117,15 +121,15 @@ class NBA_Optimizer:
                             self.matchup_list.append(game_str)
 
     def load_rules(self):
+        self.matchup_limits = self.config["matchup_limits"]
+        self.matchup_at_least = self.config["matchup_at_least"]
         self.at_most = self.config["at_most"]
         self.at_least = self.config["at_least"]
         self.team_limits = self.config["team_limits"]
         self.global_team_limit = int(self.config["global_team_limit"])
-        self.projection_minimum = int(self.config["projection_minimum"])
-        self.randomness_amount = float(self.config["randomness"])
-        self.matchup_limits = self.config["matchup_limits"]
-        self.matchup_at_least = self.config["matchup_at_least"]
-        self.min_salary = int(self.config["min_lineup_salary"])
+        #self.projection_minimum = int(self.config["projection_minimum"])
+        #self.randomness_amount = float(self.config["randomness"])
+        #self.min_salary = int(self.config["min_lineup_salary"])
 
     # Load projections from file
     def load_projections(self, path):
@@ -188,6 +192,7 @@ class NBA_Optimizer:
                     name=f"{player}_{pos}_{player_id}", cat=plp.LpBinary
                 )
 
+        print(f'random {self.randomness_amount}')
         # set the objective - maximize fpts & set randomness amount from config
         if self.randomness_amount != 0:
             self.problem += (
@@ -320,6 +325,8 @@ class NBA_Optimizer:
                 for (player, pos_str, team) in self.player_dict
                 if team == teamIdent
             ) <= int(limit), "At most {} players from {}".format(limit, teamIdent)
+
+        print(f'team limit {self.global_team_limit}')
 
         if self.global_team_limit is not None:
             if not (self.site == "fd" and self.global_team_limit >= 4):

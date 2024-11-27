@@ -7,14 +7,14 @@ def main():
     site = "dk"
     process = "opto"
     process = "swap_sim"
-    process = "sim"
+    #process = "sim"
 
     num_lineups = 20
     num_uniques = 1
     use_contest_data = True
     field_size = 1000
     use_file_upload = False
-    num_iterations = 20000
+    num_iterations = 5000
 
     if process == 'opto':
         opto = NBA_Optimizer(site, num_lineups, num_uniques)

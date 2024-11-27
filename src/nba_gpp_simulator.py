@@ -46,7 +46,7 @@ class NBA_GPP_Simulator:
     matchups = set()
     projection_minimum = 15
     randomness_amount = 100
-    min_lineup_salary = 48000
+    min_lineup_salary = 49000
     max_pct_off_optimal = 0.4
     overlap_limit = 7
     teams_dict = collections.defaultdict(list)  # Initialize teams_dict
@@ -72,7 +72,10 @@ class NBA_GPP_Simulator:
         num_iterations,
         use_contest_data,
         use_lineup_input,
+        min_lineup_salary,
+        projection_min
     ):
+        self.projection_min = int(projection_min)
         self.site = site
         self.use_lineup_input = use_lineup_input
         self.load_config()
@@ -124,6 +127,7 @@ class NBA_GPP_Simulator:
         # self.adjust_default_stdev()
         self.assertPlayerDict()
         self.num_iterations = int(num_iterations)
+        self.min_lineup_salary = int(min_lineup_salary)
         self.get_optimal()
         if self.use_lineup_input:
             self.load_lineups_from_file()
@@ -136,12 +140,16 @@ class NBA_GPP_Simulator:
         return itertools.chain([next(iterator).lower()], iterator)
 
     def load_rules(self):
-        self.projection_minimum = int(self.config["projection_minimum"])
-        self.randomness_amount = float(self.config["randomness"])
-        self.min_lineup_salary = int(self.config["min_lineup_salary"])
+        self.projection_minimum = int(self.projection_minimum)
+        self.randomness_amount = float(self.config["randomness"])#not used by sims
+        self.min_lineup_salary = int(self.min_lineup_salary)
         self.max_pct_off_optimal = float(self.config["max_pct_off_optimal"])
         self.default_var = float(self.config["default_var"])
         self.correlation_rules = self.config["custom_correlations"]
+        #self.projection_minimum = int(self.config["projection_minimum"])
+        #self.randomness_amount = float(self.config["randomness"])#not used by sims
+        #self.min_lineup_salary = int(self.config["min_lineup_salary"])
+
 
     def assertPlayerDict(self):
         for p, s in list(self.player_dict.items()):
@@ -1115,6 +1123,7 @@ class NBA_GPP_Simulator:
             opponents = []
             matchups = []
             # put def first to make it easier to avoid overlap
+            #print(f'projection min {self.projection_min}')
             for k in self.player_dict.keys():
                 if "Team" not in self.player_dict[k].keys():
                     print(
