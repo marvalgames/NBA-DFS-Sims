@@ -1,11 +1,12 @@
 import json
 import logging
+import multiprocessing
 import os
+import subprocess
 import sys
 import traceback
-from opcode import i
 
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QTimer, QProcess
 from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QLabel, QComboBox, QLineEdit, QCheckBox, QPushButton, \
     QSpinBox, QMessageBox, QApplication
@@ -16,43 +17,6 @@ import nba_gpp_simulator
 import nba_swap_sims
 from PyQt6.QtWidgets import QGridLayout  # Add this import
 from concurrent.futures import ThreadPoolExecutor
-
-
-from PyQt6.QtCore import QObject, QThread, pyqtSignal
-import logging
-import traceback
-
-class SimulationWorker(QObject):
-    finished = pyqtSignal()  # Signal for when the simulation finishes
-    error = pyqtSignal(str)  # Signal for when an error occurs
-    progress = pyqtSignal(str)  # Signal to report progress (optional)
-
-    def __init__(self, num_iterations, site, num_uniques):
-        super().__init__()
-        self.num_iterations = num_iterations
-        self.site = site
-        self.num_uniques = num_uniques
-
-
-    def run(self):
-        """Long-running task."""
-        try:
-            print("Initializing simulation...")
-            sim_to = nba_swap_sims.NBA_Swaptimizer_Sims(self.num_iterations, self.site, self.num_uniques)
-            sim_to.swaptimize()
-            sim_to.compute_best_guesses_parallel()
-            print("Running tournament simulation...")
-            sim_to.run_tournament_simulation()
-            #sim_to.output()
-            print("Simulation completed successfully.")
-            self.finished.emit()
-        except Exception as e:
-            #logging.error("Error during simulation logic", exc_info=True)
-            print("Error during simulation logic")
-            self.error.emit(traceback.format_exc())
-
-
-
 
 
 class MainApp(QMainWindow):
@@ -181,9 +145,11 @@ class MainApp(QMainWindow):
 
         # Example: Print loaded config values
         print("Loaded configuration:", self.config)
+        #self.run_swap_sim()
 
         # Initialize the UI
         self.init_ui()
+
 
     def load_config(self, file_path):
         """Load configuration from a JSON file."""
@@ -237,7 +203,6 @@ class MainApp(QMainWindow):
         self.num_iterations_input = QLineEdit(str(self.num_iterations), self)
         layout.addWidget(self.num_iterations_input, 2, 1)  # Row 0, Column 1
 
-
         # Advanced Parameters Label
         num_repeats = 1
         repeated_string = " " * num_repeats
@@ -275,10 +240,6 @@ class MainApp(QMainWindow):
         self.projection_minimum_input.setValue(self.projection_minimum)
         layout.addWidget(self.projection_minimum_input, 7, 1)  # Row 6, Column 1
 
-
-
-
-
         # Team Limit
         layout.addWidget(QLabel("Team Limit:", self), 8, 0)  # Row 7, Column 0
         self.global_team_limit_input = QSpinBox(self)
@@ -293,7 +254,6 @@ class MainApp(QMainWindow):
         #btn_update_params.setFixedSize(default_button_width, 50)
         btn_update_params.clicked.connect(self.update_parameters)
         layout.addWidget(btn_update_params, 9, 0, 1, 3)  # Row 1, spans 2 columns
-
 
         btn_opto = QPushButton("Optimize Lineups", self)
         #btn_opto.setFixedSize(default_button_width, default_button_height)
@@ -317,8 +277,6 @@ class MainApp(QMainWindow):
         layout.addWidget(btn_quit, 13, 0, 1, 3)  # Row 11, spans 2 columns
 
         central_widget.setLayout(layout)
-
-
 
     def update_parameters(self):
         # Retrieve the current values from the input fields
@@ -363,38 +321,89 @@ class MainApp(QMainWindow):
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {e}")
 
+
     def run_swap_sim(self):
-        # Disable the button while running
-        #self.button.setEnabled(False)
+        self.update_parameters()
+        # Disable the button or any relevant GUI elements if needed
+        # Get the directory of the current script
 
-        # Create the worker and thread
-        self.worker = SimulationWorker(num_iterations=50, site="dk", num_uniques=1)
-        self.thread = QThread()
-        self.worker.moveToThread(self.thread)
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        run_swap_sim_path = os.path.join(script_dir, 'run_swap_sim.py')
 
-        # Connect signals and slots
-        self.thread.started.connect(self.worker.run)
-        self.worker.finished.connect(self.on_simulation_complete)
-        self.worker.error.connect(self.on_simulation_error)
-        self.worker.finished.connect(self.thread.quit)
-        self.worker.finished.connect(self.worker.deleteLater)
-        self.thread.finished.connect(self.thread.deleteLater)
-
-        # Start the thread
-        self.thread.start()
-
-    def on_simulation_complete(self):
-        print("Simulation completed successfully!")
-        #self.button.setEnabled(True)
-
-    def on_simulation_error(self, error_message):
-        print(f"Simulation failed: {error_message}")
-        #self.button.setEnabled(True)
+        #script_dir = "D:\\SHARED"  # Temporary directory for testing
+        #run_swap_sim_path = os.path.join(script_dir, 'run_swap_sim.py')
+        cwd_dir = os.path.dirname(run_swap_sim_path)
 
 
+        #print("Script directory:", script_dir)
+        print("Path to run_swap_sim.py:", run_swap_sim_path)
+        print(f"Python {sys.executable}")
+        #print("Path to cwd_dir", cwd_dir)
+
+
+        # Build the command to run the external script
+        #command = [
+          #  sys.executable,  # Path to the Python interpreter
+            #run_swap_sim_path
+            #str(self.num_iterations),
+            #self.site,
+            #str(self.num_uniques)
+        #]
+
+        # Set the working directory to the 'src' directory
+        env = os.environ.copy()  # Copy the current environment
+        #self.process = subprocess.Popen(
+          #  command,
+           # stdout=subprocess.PIPE,
+            #stderr=subprocess.PIPE,
+            #text=True,
+            #cwd=os.path.dirname(run_swap_sim_path),
+            #env=env  # Pass the environment variables
+        #)
+
+        # Set up QProcess
+        test_dir = os.path.dirname(run_swap_sim_path)
+        print(f'TEST DIR {test_dir}')
+        self.process = QProcess(self)
+        self.process.setWorkingDirectory(test_dir)
+        self.process.readyReadStandardOutput.connect(self.handle_stdout)
+        self.process.readyReadStandardError.connect(self.handle_stderr)
+        self.process.finished.connect(self.on_process_finished)
+        self.process.errorOccurred.connect(self.handle_process_error)
+
+        # Build the command
+        command = [
+            sys.executable,  # Python interpreter
+            run_swap_sim_path,  # Script path
+            str(self.num_iterations),  # num_iterations argument
+            self.site,  # site argument
+            str(self.num_uniques)  # num_uniques argument
+        ]
+
+        # Debugging: Print the command
+        print("Command to execute:", command)
+
+        # Start the process with all arguments
+        self.process.start(command[0], command[1:])
 
 
 
+    def handle_process_error(self, error):
+        print(f"QProcess Error: {error}")
+
+    def handle_stdout(self):
+        output = self.process.readAllStandardOutput().data().decode()
+        print("Output:", output)
+
+    def handle_stderr(self):
+        error = self.process.readAllStandardError().data().decode()
+        print("Error:", error)
+
+    def on_process_finished(self, exit_code, exit_status):
+        if exit_code == 0:
+            QMessageBox.information(self, "Success", "Simulation completed successfully!")
+        else:
+            QMessageBox.critical(self, "Error", f"Simulation failed with exit code {exit_code}")
 
 
 if __name__ == "__main__":

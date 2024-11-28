@@ -14,7 +14,7 @@ def main():
     use_contest_data = True
     field_size = 1000
     use_file_upload = False
-    num_iterations = 5000
+    num_iterations = 500
 
     if process == 'opto':
         opto = NBA_Optimizer(site, num_lineups, num_uniques)

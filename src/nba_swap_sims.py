@@ -465,7 +465,7 @@ class NBA_Swaptimizer_Sims:
 
         formatted_date = game_date.strftime('%Y-%m-%d')
         # Comment Out for Live Games
-        formatted_date = '2024-11-26'
+        #formatted_date = '2024-11-26'
         #
 
         headers = {
@@ -481,13 +481,13 @@ class NBA_Swaptimizer_Sims:
         # NBA regulation game length in minutes
 
         # Comment Out for Live Games
-        games_info = [
-            ['2024-11-26T00:00:00', 1, '0022400035', 2, '2nd Qtr             ', '20241126/CHIWAS', 1610612764, 1610612741, '2024', 2, '7:47 ', None, 'MNMT', 'CHSN', 'Q2 7:47  - ', 'Capital One Arena', 0, 0],
-            ['2024-11-26T00:00:00', 2, '0022400036', 2, '1st Qtr             ', '20241126/MILMIA', 1610612748, 1610612749, '2024', 1, '7:43 ', 'TNT', None, None, 'Q1 7:43  - TNT', 'Kaseya Center', 0, 0],
-            ['2024-11-26T00:00:00', 3, '0022400037', 1, '8:00 pm ET', '20241126/HOUMIN', 1610612750, 1610612745, '2024', 0, '     ', None, 'FDSNNO', 'SCHN', 'Q0       - ', 'Target Center', 0, 0],
-            ['2024-11-26T00:00:00', 4, '0022400038', 1, '9:00 pm ET', '20241126/SASUTA', 1610612762, 1610612759, '2024', 0, '     ', None, 'KJZZ', 'FDSNSW', 'Q0       - ', 'Delta Center', 0, 0],
-            ['2024-11-26T00:00:00', 5, '0022400039', 1, '10:00 pm ET', '20241126/LALPHX', 1610612756, 1610612747, '2024', 0, '     ', 'TNT', None, 'SPECSN', 'Q0       - TNT', 'Footprint Center', 0, 0]
-        ]
+        #games_info = [
+          #  ['2024-11-26T00:00:00', 1, '0022400035', 2, '2nd Qtr             ', '20241126/CHIWAS', 1610612764, 1610612741, '2024', 2, '7:47 ', None, 'MNMT', 'CHSN', 'Q2 7:47  - ', 'Capital One Arena', 0, 0],
+           # ['2024-11-26T00:00:00', 2, '0022400036', 2, '1st Qtr             ', '20241126/MILMIA', 1610612748, 1610612749, '2024', 1, '7:43 ', 'TNT', None, None, 'Q1 7:43  - TNT', 'Kaseya Center', 0, 0],
+            #['2024-11-26T00:00:00', 3, '0022400037', 1, '8:00 pm ET', '20241126/HOUMIN', 1610612750, 1610612745, '2024', 0, '     ', None, 'FDSNNO', 'SCHN', 'Q0       - ', 'Target Center', 0, 0],
+            #['2024-11-26T00:00:00', 4, '0022400038', 1, '9:00 pm ET', '20241126/SASUTA', 1610612762, 1610612759, '2024', 0, '     ', None, 'KJZZ', 'FDSNSW', 'Q0       - ', 'Delta Center', 0, 0],
+            #['2024-11-26T00:00:00', 5, '0022400039', 1, '10:00 pm ET', '20241126/LALPHX', 1610612756, 1610612747, '2024', 0, '     ', 'TNT', None, 'SPECSN', 'Q0       - TNT', 'Footprint Center', 0, 0]
+        #]
         #
 
         # NBA regulation game length in minutes
@@ -497,7 +497,7 @@ class NBA_Swaptimizer_Sims:
         eastern = pytz.timezone('US/Eastern')
         current_time_utc = datetime.datetime.now(timezone.utc)  # Current time in UTC
         # Comment Out for Live Games
-        current_time_utc = pytz.utc.localize(datetime.datetime(2024, 11, 26, 19, 35))  # Testing as aware datetime
+        #current_time_utc = pytz.utc.localize(datetime.datetime(2024, 11, 26, 19, 35))  # Testing as aware datetime
         #
 
         for game in games_info:
@@ -1921,6 +1921,8 @@ class NBA_Swaptimizer_Sims:
         temp_fpts_dict = {}
         size = self.num_iterations
         game_simulation_params = []
+        '''
+
         if len(self.matchups) > 0:
             for m in self.matchups:
                 game_simulation_params.append(
@@ -1936,9 +1938,12 @@ class NBA_Swaptimizer_Sims:
                 )
             with multiprocessing.Pool() as pool:
                 results = pool.starmap(self.run_simulation_for_game, game_simulation_params)
+                
+            
 
             for res in results:
                 temp_fpts_dict.update(res)
+
 
         field_lineups_count = np.array(
             [self.field_lineups[idx]["Count"] for idx in self.field_lineups.keys()]
@@ -1955,6 +1960,7 @@ class NBA_Swaptimizer_Sims:
                     if player not in temp_fpts_dict.keys():
                         print(player)
                 fpts_array[index] = fpts_sim
+
 
         fpts_array = fpts_array.astype(np.float16)
         ranks = np.argsort(-fpts_array, axis=0).astype(np.uint32)
@@ -2002,6 +2008,7 @@ class NBA_Swaptimizer_Sims:
         with multiprocessing.Pool() as pool:
             results = pool.map(self.calculate_payouts, simulation_chunks)
 
+
         combined_result_array = np.sum(results, axis=0)
 
         total_sum = 0
@@ -2032,6 +2039,8 @@ class NBA_Swaptimizer_Sims:
                 # Find the index where lineup_int_key is found in wins array
                 cash_index = np.where(cashes == lineup_int_key)[0][0]
                 self.field_lineups[lineup_key]["Cashes"] += cash_counts[cash_index]
+                
+            '''
 
         end_time = time.time()
         diff = end_time - start_time
@@ -2047,7 +2056,9 @@ class NBA_Swaptimizer_Sims:
 
     def output(self):
 
+
         unique = {}
+        '''
         for index, y in self.field_lineups.items():
             win_p = round(y["Wins"] / self.num_iterations * 100, 2)
             top10_p = round((y["Top1Percent"] / self.num_iterations) * 100, 2)
@@ -2265,7 +2276,7 @@ class NBA_Swaptimizer_Sims:
                     )
                 )
 
-
+        '''
         sorted_lineups = []
         for lineup, old_lineup in self.output_lineups:
             if "contest_id" not in old_lineup or "EntryId" not in old_lineup:
