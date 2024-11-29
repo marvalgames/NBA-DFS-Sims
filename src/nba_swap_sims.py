@@ -465,7 +465,7 @@ class NBA_Swaptimizer_Sims:
 
         formatted_date = game_date.strftime('%Y-%m-%d')
         # Comment Out for Live Games
-        #formatted_date = '2024-11-26'
+        formatted_date = '2024-11-26'
         #
 
         headers = {
@@ -481,13 +481,13 @@ class NBA_Swaptimizer_Sims:
         # NBA regulation game length in minutes
 
         # Comment Out for Live Games
-        #games_info = [
-          #  ['2024-11-26T00:00:00', 1, '0022400035', 2, '2nd Qtr             ', '20241126/CHIWAS', 1610612764, 1610612741, '2024', 2, '7:47 ', None, 'MNMT', 'CHSN', 'Q2 7:47  - ', 'Capital One Arena', 0, 0],
-           # ['2024-11-26T00:00:00', 2, '0022400036', 2, '1st Qtr             ', '20241126/MILMIA', 1610612748, 1610612749, '2024', 1, '7:43 ', 'TNT', None, None, 'Q1 7:43  - TNT', 'Kaseya Center', 0, 0],
-            #['2024-11-26T00:00:00', 3, '0022400037', 1, '8:00 pm ET', '20241126/HOUMIN', 1610612750, 1610612745, '2024', 0, '     ', None, 'FDSNNO', 'SCHN', 'Q0       - ', 'Target Center', 0, 0],
-            #['2024-11-26T00:00:00', 4, '0022400038', 1, '9:00 pm ET', '20241126/SASUTA', 1610612762, 1610612759, '2024', 0, '     ', None, 'KJZZ', 'FDSNSW', 'Q0       - ', 'Delta Center', 0, 0],
-            #['2024-11-26T00:00:00', 5, '0022400039', 1, '10:00 pm ET', '20241126/LALPHX', 1610612756, 1610612747, '2024', 0, '     ', 'TNT', None, 'SPECSN', 'Q0       - TNT', 'Footprint Center', 0, 0]
-        #]
+        games_info = [
+            ['2024-11-26T00:00:00', 1, '0022400035', 2, '2nd Qtr             ', '20241126/CHIWAS', 1610612764, 1610612741, '2024', 2, '7:47 ', None, 'MNMT', 'CHSN', 'Q2 7:47  - ', 'Capital One Arena', 0, 0],
+            ['2024-11-26T00:00:00', 2, '0022400036', 2, '1st Qtr             ', '20241126/MILMIA', 1610612748, 1610612749, '2024', 1, '7:43 ', 'TNT', None, None, 'Q1 7:43  - TNT', 'Kaseya Center', 0, 0],
+            ['2024-11-26T00:00:00', 3, '0022400037', 1, '8:00 pm ET', '20241126/HOUMIN', 1610612750, 1610612745, '2024', 0, '     ', None, 'FDSNNO', 'SCHN', 'Q0       - ', 'Target Center', 0, 0],
+            ['2024-11-26T00:00:00', 4, '0022400038', 1, '9:00 pm ET', '20241126/SASUTA', 1610612762, 1610612759, '2024', 0, '     ', None, 'KJZZ', 'FDSNSW', 'Q0       - ', 'Delta Center', 0, 0],
+            ['2024-11-26T00:00:00', 5, '0022400039', 1, '10:00 pm ET', '20241126/LALPHX', 1610612756, 1610612747, '2024', 0, '     ', 'TNT', None, 'SPECSN', 'Q0       - TNT', 'Footprint Center', 0, 0]
+        ]
         #
 
         # NBA regulation game length in minutes
@@ -497,7 +497,7 @@ class NBA_Swaptimizer_Sims:
         eastern = pytz.timezone('US/Eastern')
         current_time_utc = datetime.datetime.now(timezone.utc)  # Current time in UTC
         # Comment Out for Live Games
-        #current_time_utc = pytz.utc.localize(datetime.datetime(2024, 11, 26, 19, 35))  # Testing as aware datetime
+        current_time_utc = pytz.utc.localize(datetime.datetime(2024, 11, 26, 19, 35))  # Testing as aware datetime
         #
 
         for game in games_info:
@@ -1094,7 +1094,7 @@ class NBA_Swaptimizer_Sims:
         # Assuming self.player_keys contains the entry IDs of the loaded lineups
         for entry_id in self.player_keys:
             lineup = self.contest_lineups[entry_id]
-            print(f"Loaded Lineup {entry_id}:")
+            #print(f"Loaded Lineup {entry_id}:")
             for position in ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]:
                 player_id = lineup.get(position)
                 #print(f"  {position}: {player_id}")
@@ -1302,6 +1302,8 @@ class NBA_Swaptimizer_Sims:
 
                 # Constraint to ensure each player is only selected once
                 for player in self.player_dict:
+                    #print(self.player_dict.items())
+                    #print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
                     player_id = self.player_dict[player]["ID"]
                     problem += (
                         plp.lpSum(
@@ -1423,10 +1425,10 @@ class NBA_Swaptimizer_Sims:
             #print(f"Key: {k}, Value: {v}")
 
         for k in self.player_dict.keys():
-            print()
-            print("Processing player:", k)
+            #print()
+            #print("Processing player:", k)
             if self.player_dict[k].get('GameLocked', True) == False:
-                print("Player passed GameLocked check:", self.player_dict[k])
+                #print("Player passed GameLocked check:", self.player_dict[k])
                 if "Team" not in self.player_dict[k].keys():
                     print(
                         self.player_dict[k]["Name"],
@@ -1442,15 +1444,15 @@ class NBA_Swaptimizer_Sims:
                 teams.append(self.player_dict[k]["Team"])
                 matchups.append(self.player_dict[k]["Matchup"])
                 pos_list = []
-                print("Roster construction:", self.roster_construction)
+                #print("Roster construction:", self.roster_construction)
                 for pos in self.roster_construction:
                     if pos in self.player_dict[k]["Position"]:
                         pos_list.append(1)
                     else:
                         pos_list.append(0)
                 positions.append(np.array(pos_list))
-            else:
-                print("Player failed GameLocked check:", self.player_dict[k])
+            #else:
+                #print("Player failed GameLocked check:", self.player_dict[k])
 
         print("Number of valid players:", len(ids))
         print("Number of projections:", len(projections))
@@ -1513,6 +1515,8 @@ class NBA_Swaptimizer_Sims:
         for r in results:
             for p in self.roster_construction:
                 try:
+                    #print(r)
+                    #print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
                     if r[p] == 'LOCKED':
                         bad_lu_count += 1
                         if r['UsedPlayerMinutes'] in minutes_count:
@@ -2284,6 +2288,8 @@ class NBA_Swaptimizer_Sims:
 
         for lineup, old_lineup in self.output_lineups:
             sorted_lineup = self.sort_lineup(lineup)
+            for item in sorted_lineup:
+                print(f"{item}")
             sorted_lineup = self.adjust_roster_for_late_swap(sorted_lineup, old_lineup)
             for item in sorted_lineup:
                 print(f"Sorted Lineup {item}")
@@ -2342,7 +2348,7 @@ class NBA_Swaptimizer_Sims:
                         for i, position in enumerate(["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]):
                             # Retrieve the player entry from the lineup
                             player_entry = matching_lineup[i]
-                            print(f"Processing player entry: {player_entry}")
+                            #print(f"Processing player entry: {player_entry}")
 
                             # Extract the player ID from the entry
                             if isinstance(player_entry, tuple):
@@ -2369,7 +2375,6 @@ class NBA_Swaptimizer_Sims:
 
 
 
-
             new_late_swap_path = os.path.join(
                 os.path.dirname(__file__),
                 "../output/late_swap_{}.csv".format(
@@ -2385,6 +2390,10 @@ class NBA_Swaptimizer_Sims:
                 for row in updated_rows:
                     if None in row:
                         row[PLACEHOLDER] = row.pop(None)
+                        print(row.get('PLACEHOLDER_FOR_NONE'))
+                        print(row.keys())
+                        print(row.values())
+                        print('xxxxxxxxxxxxxxxxxxxxxx')
                     writer.writerow(row)
 
             with open(new_late_swap_path, "r", encoding="utf-8-sig") as file:
@@ -2417,37 +2426,61 @@ class NBA_Swaptimizer_Sims:
 
     def adjust_roster_for_late_swap(self, lineup, old_lineup):
         if self.site == "fd":
-            return lineup
+            return lineup  # Skip adjustment for "fd"
 
         POSITIONS = ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]
 
         def is_locked(position_index):
-            if 0 <= position_index < 8:
+            """Check if a position is locked in the old lineup."""
+            if 0 <= position_index < len(POSITIONS):
                 position_name = POSITIONS[position_index]
-                return old_lineup[f"{position_name}_is_locked"]
+                return old_lineup.get(f"{position_name}_is_locked", False)  # Default to False if key is missing
             raise ValueError(f"Invalid position index: {position_index}")
 
+        # Ensure locked players remain in their positions
+        for i, position in enumerate(POSITIONS):
+            if is_locked(i):
+                print(f"Position {position} is locked. Ensuring locked player stays in position.")
+                lineup[i] = old_lineup[position]  # Force the locked player into their position in the new lineup
+
+        # Iterate over non-locked positions for adjustments
         for i, position in enumerate(POSITIONS):
             if position not in ["G", "F", "UTIL"]:
-                continue
+                continue  # Skip non-flexible positions
 
             current_player = lineup[i]
             current_player_data = self.player_dict.get(current_player, {})
             current_player_start_time = current_player_data.get("GameTime", float('inf'))
 
-            for primary_i, primary_pos in enumerate(POSITIONS[:5]):
+            # Skip this position if it is locked
+            if is_locked(i):
+                continue
+
+            for primary_i, primary_pos in enumerate(POSITIONS[:5]):  # Iterate only over primary positions
                 primary_player = lineup[primary_i]
                 primary_player_data = self.player_dict.get(primary_player, {})
                 primary_player_start_time = primary_player_data.get("GameTime", float('inf'))
 
-                if is_locked(primary_i) or is_locked(i):
+                # Skip if the primary position is locked or involves a locked player
+                if is_locked(primary_i):
                     continue
 
+                # Ensure the current and primary players are not the same locked player
+                if current_player == old_lineup.get(primary_pos) or primary_player == old_lineup.get(position):
+                    print(f"Skipping swap: Locked players involved ({current_player}, {primary_player})")
+                    continue
+
+                # Check if swapping is valid based on game start times and position overlap
                 if (
                         primary_player_start_time > current_player_start_time
                         and set(primary_player_data.get("Position", [])) & set(current_player_data.get("Position", []))
                 ):
+                    # Swap players between positions
+                    print(f"Swapping {current_player} with {primary_player}")
                     lineup[i], lineup[primary_i] = lineup[primary_i], lineup[i]
-                    break
+                    break  # Exit the loop once a swap is made
 
         return lineup
+
+
+

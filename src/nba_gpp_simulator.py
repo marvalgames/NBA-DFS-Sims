@@ -91,6 +91,7 @@ class NBA_GPP_Simulator:
             os.path.dirname(__file__),
             "../{}_data/{}".format(site, self.config["player_path"]),
         )
+
         self.load_player_ids(player_path)
 
         if site == "dk":
@@ -1658,7 +1659,7 @@ class NBA_GPP_Simulator:
                         fpts_p += v["Fpts"]
                         fieldFpts_p += v["fieldFpts"]
                         ceil_p += v["Ceiling"]
-                        own_p.append(v["Ownership"] / 100)
+                        own_p.append(v["Ownership"])
                         lu_names.append(v["DK Name"])
                         lu_teams.append(v["Team"])
                         continue
@@ -1671,7 +1672,7 @@ class NBA_GPP_Simulator:
             # After removing QB team, the first team in stacks will be the team with most players not in QB stack
             secondaryStack = str(stacks[1][0]) + " " + str(stacks[1][1])
             own_s = np.sum(own_p)
-            own_p = np.prod(own_p)
+            own_p = np.prod(own_p) / 1000000
             win_p = round(x["Wins"] / self.num_iterations * 100, 2)
             top10_p = round((x["Top1Percent"] / self.num_iterations) * 100, 2)
             cash_p = round(x["Cashes"] / self.num_iterations * 100, 2)
@@ -1679,7 +1680,7 @@ class NBA_GPP_Simulator:
             if self.site == "dk":
                 if self.use_contest_data:
                     roi_p = round(
-                        x["ROI"] / self.entry_fee / self.num_iterations * 100, 2
+                        x["ROI"] / self.entry_fee / self.num_iterations * 1, 2
                     )
                     roi_round = round(x["ROI"] / self.num_iterations, 2)
                     lineup_str = (
@@ -1721,37 +1722,7 @@ class NBA_GPP_Simulator:
                         f" ({x['Lineup'][7]}),"
                         f"{fpts_p},{fieldFpts_p},{ceil_p},{salary},{win_p}%,{top10_p}%,{own_p},{own_s},{primaryStack},{secondaryStack},{lu_type},{simDupes}"
                     )
-            elif self.site == "fd":
-                if self.use_contest_data:
-                    roi_p = round(
-                        x["ROI"] / self.entry_fee / self.num_iterations * 100, 2
-                    )
-                    roi_round = round(x["ROI"] / self.num_iterations, 2)
-                    lineup_str = (
-                        f"{x['Lineup'][0]}:{lu_names[0].replace('#', '-')},"
-                        f"{x['Lineup'][1]}:{lu_names[1].replace('#', '-')},"
-                        f"{x['Lineup'][2]}:{lu_names[2].replace('#', '-')},"
-                        f"{x['Lineup'][3]}:{lu_names[3].replace('#', '-')},"
-                        f"{x['Lineup'][4]}:{lu_names[4].replace('#', '-')},"
-                        f"{x['Lineup'][5]}:{lu_names[5].replace('#', '-')},"
-                        f"{x['Lineup'][6]}:{lu_names[6].replace('#', '-')},"
-                        f"{x['Lineup'][7]}:{lu_names[7].replace('#', '-')},"
-                        f"{x['Lineup'][8]}:{lu_names[8].replace('#', '-')},"
-                        f"{fpts_p},{fieldFpts_p},{ceil_p},{salary},{win_p}%,{top10_p}%,{roi_p}%,{own_p},{own_s},${roi_round},{primaryStack},{secondaryStack},{lu_type},{simDupes}"
-                    )
-                else:
-                    lineup_str = (
-                        f"{x['Lineup'][0]}:{lu_names[0].replace('#', '-')},"
-                        f"{x['Lineup'][1]}:{lu_names[1].replace('#', '-')},"
-                        f"{x['Lineup'][2]}:{lu_names[2].replace('#', '-')},"
-                        f"{x['Lineup'][3]}:{lu_names[3].replace('#', '-')},"
-                        f"{x['Lineup'][4]}:{lu_names[4].replace('#', '-')},"
-                        f"{x['Lineup'][5]}:{lu_names[5].replace('#', '-')},"
-                        f"{x['Lineup'][6]}:{lu_names[6].replace('#', '-')},"
-                        f"{x['Lineup'][7]}:{lu_names[7].replace('#', '-')},"
-                        f"{x['Lineup'][8]}:{lu_names[8].replace('#', '-')},"
-                        f"{fpts_p},{fieldFpts_p},{ceil_p},{salary},{win_p}%,{top10_p}%,{own_p},{own_s},{primaryStack},{secondaryStack},{lu_type},{simDupes}"
-                    )
+
             unique[index] = lineup_str
 
         out_path = os.path.join(
@@ -1760,7 +1731,18 @@ class NBA_GPP_Simulator:
                 self.site, self.field_size, self.num_iterations
             ),
         )
+
+        # Sort the `unique` dictionary by a criterion, e.g., ROI
+        # Assuming `lineup_str` contains ROI as a percentage at a specific position
+        sorted_unique = sorted(
+            unique.items(),  # Convert dictionary to list of tuples
+            key=lambda item: float(item[1].split(",")[14].replace("%", "")),  # Adjust index based on ROI position
+            reverse=True,  # Sort descending if higher ROI is better
+        )
+
+        # Open the file and write the sorted data
         with open(out_path, "w") as f:
+            # Write headers based on site and contest data
             if self.site == "dk":
                 if self.use_contest_data:
                     f.write(
@@ -1768,7 +1750,7 @@ class NBA_GPP_Simulator:
                     )
                 else:
                     f.write(
-                        "PG,SG,SF,PF,C,G,F,UTIL,Fpts Proj,Field Fpts Proj,Ceiling,Salary,Win %,Top 1%, Proj. Own. Product,Own. Sum,Stack1 Type,Stack2 Type,Lineup Type,Sim Dupes\n"
+                        "PG,SG,SF,PF,C,G,F,UTIL,Fpts Proj,Field Fpts Proj,Ceiling,Salary,Win %,Top 1%,Proj. Own. Product,Own. Sum,Stack1 Type,Stack2 Type,Lineup Type,Sim Dupes\n"
                     )
             elif self.site == "fd":
                 if self.use_contest_data:
@@ -1780,8 +1762,11 @@ class NBA_GPP_Simulator:
                         "PG,PG,SG,SG,SF,SF,PF,PF,C,Fpts Proj,Field Fpts Proj,Ceiling,Salary,Win %,Top 1%,Proj. Own. Product,Own. Sum,Stack1 Type,Stack2 Type,Lineup Type,Sim Dupes\n"
                     )
 
-            for fpts, lineup_str in unique.items():
-                f.write("%s\n" % lineup_str)
+            # Write each sorted lineup
+            for _, lineup_str in sorted_unique:
+                f.write(f"{lineup_str}\n")
+
+
 
         out_path = os.path.join(
             os.path.dirname(__file__),
