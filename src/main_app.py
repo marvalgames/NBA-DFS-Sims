@@ -1,22 +1,15 @@
 import json
-import logging
-import multiprocessing
 import os
-import subprocess
 import sys
-import traceback
 
 from PyQt6.QtCore import Qt, QTimer, QProcess
-from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QLabel, QComboBox, QLineEdit, QCheckBox, QPushButton, \
     QSpinBox, QMessageBox, QApplication
 
 from nba_optimizer import NBA_Optimizer
-from nba_late_swaptimizer import NBA_Late_Swaptimizer
 import nba_gpp_simulator
 import nba_swap_sims
 from PyQt6.QtWidgets import QGridLayout  # Add this import
-from concurrent.futures import ThreadPoolExecutor
 
 
 class MainApp(QMainWindow):
@@ -143,10 +136,6 @@ class MainApp(QMainWindow):
         self.use_file_upload = False
         self.num_iterations = 100
 
-        # Example: Print loaded config values
-        print("Loaded configuration:", self.config)
-        #self.run_swap_sim()
-
         # Initialize the UI
         self.init_ui()
 
@@ -191,13 +180,6 @@ class MainApp(QMainWindow):
         self.use_contest_data_checkbox = QCheckBox(self)
         self.use_contest_data_checkbox.setChecked(self.use_contest_data)
         layout.addWidget(self.use_contest_data_checkbox, 0, 3)
-
-        '''
-        layout.addWidget(QLabel("Use File Upload:", self), 1, 2)
-        self.use_file_upload_checkbox = QCheckBox(self)
-        self.use_file_upload_checkbox.setChecked(self.use_file_upload)
-        layout.addWidget(self.use_file_upload_checkbox, 1, 3)
-        '''
 
         layout.addWidget(QLabel("Number of Iterations:", self), 2, 0)  # Row 0, Column 0
         self.num_iterations_input = QLineEdit(str(self.num_iterations), self)
@@ -335,35 +317,8 @@ class MainApp(QMainWindow):
         cwd_dir = os.path.dirname(run_swap_sim_path)
 
 
-        #print("Script directory:", script_dir)
-        print("Path to run_swap_sim.py:", run_swap_sim_path)
-        print(f"Python {sys.executable}")
-        #print("Path to cwd_dir", cwd_dir)
-
-
-        # Build the command to run the external script
-        #command = [
-          #  sys.executable,  # Path to the Python interpreter
-            #run_swap_sim_path
-            #str(self.num_iterations),
-            #self.site,
-            #str(self.num_uniques)
-        #]
-
-        # Set the working directory to the 'src' directory
-        env = os.environ.copy()  # Copy the current environment
-        #self.process = subprocess.Popen(
-          #  command,
-           # stdout=subprocess.PIPE,
-            #stderr=subprocess.PIPE,
-            #text=True,
-            #cwd=os.path.dirname(run_swap_sim_path),
-            #env=env  # Pass the environment variables
-        #)
-
         # Set up QProcess
         test_dir = os.path.dirname(run_swap_sim_path)
-        print(f'TEST DIR {test_dir}')
         self.process = QProcess(self)
         self.process.setWorkingDirectory(test_dir)
         self.process.readyReadStandardOutput.connect(self.handle_stdout)
@@ -381,7 +336,7 @@ class MainApp(QMainWindow):
         ]
 
         # Debugging: Print the command
-        print("Command to execute:", command)
+        #print("Command to execute:", command)
 
         # Start the process with all arguments
         self.process.start(command[0], command[1:])

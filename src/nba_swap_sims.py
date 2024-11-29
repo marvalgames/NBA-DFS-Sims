@@ -2313,7 +2313,7 @@ class NBA_Swaptimizer_Sims:
             fieldnames = []
             with open(late_swap_path, "r", encoding="utf-8-sig") as file:
                 reader = csv.DictReader(file)
-                fieldnames = reader.fieldnames
+                fieldnames = reader.fieldnames[:12]
                 rows = [row for row in reader]
 
             PLACEHOLDER = "PLACEHOLDER_FOR_NONE"
@@ -2329,6 +2329,9 @@ class NBA_Swaptimizer_Sims:
             #print("Keys in self.player_dict:", list(self.player_dict.keys()))  # Debugging
 
             for row in rows:
+                # Retain only the first 11 keys for each row
+                trimmed_row = {key: row.get(key, "") for key in fieldnames}
+
                 if row["Entry ID"] != "":
                     contest_id = row["Contest ID"]
                     entry_id = row["Entry ID"]
@@ -2361,17 +2364,17 @@ class NBA_Swaptimizer_Sims:
                             # Access player_dict using the player ID
                             if player_id in self.player_dict:
                                 player_data = self.player_dict[player_id]
-                                row[position] = f"{player_data['Name']} ({player_data['ID']})"
+                                trimmed_row[position] = f"{player_data['Name']} ({player_data['ID']})"
                             else:
                                 print(f"Player ID not found in player_dict: {player_id}")
-                                row[position] = "Unknown Player"
+                                trimmed_row[position] = "Unknown Player"
 
                         print()
                         print("Updated Row:")
-                        print(row)
+                        print(trimmed_row)
                         print()
 
-                updated_rows.append(row)
+                updated_rows.append(trimmed_row)
 
 
 
