@@ -73,12 +73,8 @@ class NBA_Swaptimizer_Sims:
         self.num_uniques = int(num_uniques)
         #self.min_salary = int(min_salary)
         #self.projection_minimum = int(projection_minimum)
-        if self.site == 'dk':
-            self.roster_construction = ['PG', 'SG', 'SF', 'PF', 'C', 'G', 'F', 'UTIL']
-            self.max_salary = 50000
-        elif self.site == 'fd':
-            self.roster_construction = ['PG', 'PG', 'SG', 'SG', 'SF', 'SF', 'PF', 'C']
-            self.max_salary = 60000
+        self.roster_construction = ['PG', 'SG', 'SF', 'PF', 'C', 'G', 'F', 'UTIL']
+        self.max_salary = 50000
         self.load_config()
         self.load_rules()
         self.get_live_scores()
@@ -116,6 +112,8 @@ class NBA_Swaptimizer_Sims:
                 "../{}_data/{}".format(self.site, self.config["late_swap_path"]),
             )
             self.load_player_lineups(late_swap_path)
+            print('player lineups loaded')
+            print()
 
     # Load config from file
     def load_config(self):
@@ -281,7 +279,7 @@ class NBA_Swaptimizer_Sims:
             print()
         except plp.PulpSolverError:
             print(
-                "Infeasibility reached - only generated {} lineups out of {}. Continuing with export.".format(
+                "282 Infeasibility reached - only generated {} lineups out of {}. Continuing with export.".format(
                     len(self.output_lineups), self.lineups
                 )
             )
@@ -289,7 +287,7 @@ class NBA_Swaptimizer_Sims:
         ## Check for infeasibility
         if plp.LpStatus[problem.status] != "Optimal":
             print(
-                "Infeasibility reached - only generated {} lineups out of {}. Continuing with export.".format(
+                "290 Infeasibility reached - only generated {} lineups out of {}. Continuing with export.".format(
                     len(self.lineups), self.num_lineups
                 )
             )
@@ -1036,6 +1034,11 @@ class NBA_Swaptimizer_Sims:
                     "GameTime": self.time_remaining_dict[team]['GameTime']
                 }
 
+
+
+                # Print player name and GameLocked status
+
+
                 # Check if player is in player_dict and get Opp, ID, Opp Pitcher ID and Opp Pitcher Name
                 if (player_name, pos_str, team) in self.player_dict:
                     player_data["Opp"] = self.player_dict[
@@ -1045,10 +1048,31 @@ class NBA_Swaptimizer_Sims:
                         (player_name, pos_str, team)
                     ].get("ID", "")
 
+                #print(f"Player Name: {player_data['Name']}")
+                #print(f"Game Locked: {player_data['GameLocked']}")
+                #print('------------------------------------------------------------')
+
                 self.player_dict[(player_name, pos_str, team)] = player_data
                 self.teams_dict[team].append(
                     player_data
                 )  # Add player data to their respective team
+
+                # Access GameLocked using the correct key
+                #game_locked_status = self.player_dict[(player_name, pos_str, team)]["GameLocked"]
+                #print(f"GameLocked for {player_name}, {pos_str}, {team}: {game_locked_status}")
+
+                game_locked_status = self.player_dict[(player_name, pos_str, team)]["GameLocked"]
+                #print(f"GameLocked for {player_name}, {pos_str}, {team}: {game_locked_status}")
+
+
+                # Iterate through the player_dict and print each player on one row
+                #for key, value in self.player_dict.items():
+                #   print(f"Player Key: {key}")
+                 #   print(f"Player Data: {value}")
+                # print("------------------------------------------------------------")
+
+                #rint("------------------------------------------------------------")
+
 
     # Load user lineups for late swap
     def load_player_lineups(self, path):
@@ -1114,15 +1138,31 @@ class NBA_Swaptimizer_Sims:
             print(
                 f"Swaptimizing lineup {pk} in contest {lineup_obj['contest_id']}"
             )
+
+            #game_locked_status = self.player_dict[(player_name, pos_str, team)]["GameLocked"]
+            #print(f"GameLocked for {player_name}, {pos_str}, {team}: {game_locked_status}")
+
             problem = plp.LpProblem("NBA", plp.LpMaximize)
 
             lp_variables = {}
             for player, attributes in self.player_dict.items():
+                player_name = attributes['Name']
                 player_id = attributes["ID"]
+                player_game_locked = attributes["GameLocked"]
+                #print(f"Player:  {player_name} {player_game_locked}")
+
                 for pos in attributes["Position"]:
                     lp_variables[(player, pos, player_id)] = plp.LpVariable(
                         name=f"{player}_{pos}_{player_id}", cat=plp.LpBinary
                     )
+
+                    # Add constraint to exclude locked players
+                    #if player_game_locked:  # If player is locked
+                      #  problem += (
+                        #    lp_variables[(player, pos, player_id)] == 0,
+                          #  f"Exclude locked player {player_name} at {pos}"
+                        #)
+
 
             # set the objective - maximize fpts & set randomness amount from config
             if self.randomness_amount != 0:
@@ -1274,6 +1314,8 @@ class NBA_Swaptimizer_Sims:
             # Force players to be used if they are locked
             POSITIONS = ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]
             FORCE_PLAYERS = []
+
+            # Identify forced players
             for position in POSITIONS:
                 if lineup_obj[position + "_is_locked"]:
                     player_id = lineup_obj[position]
@@ -1281,11 +1323,29 @@ class NBA_Swaptimizer_Sims:
                         if str(attributes["ID"]) == str(player_id):
                             FORCE_PLAYERS.append((p_tuple, position, attributes["ID"]))
 
+            # Create a set of forced player IDs for quick lookup
+            forced_player_ids = {player_id for _, _, player_id in FORCE_PLAYERS}
+
+            # Add constraints to force players
             for forced_player in FORCE_PLAYERS:
                 problem += (
                     lp_variables[forced_player] == 1,
                     f"Force player {forced_player}",
                 )
+
+            # Exclude players who are locked AND not forced
+            for player, attributes in self.player_dict.items():
+                player_id = attributes["ID"]
+                player_game_locked = attributes["GameLocked"]
+
+                for pos in attributes["Position"]:
+                    variable_key = (player, pos, player_id)
+
+                    if player_game_locked and player_id not in forced_player_ids:
+                        problem += (
+                            lp_variables[variable_key] == 0,
+                            f"Exclude locked player {player} at {pos}",
+                        )
 
             if self.site == "dk":
                 # Constraints for specific positions
@@ -1351,6 +1411,7 @@ class NBA_Swaptimizer_Sims:
                     )
 
             # Don't dupe a lineup we already used
+
             i = 0
 
             for lineup,  _ in self.output_lineups:
@@ -1374,7 +1435,7 @@ class NBA_Swaptimizer_Sims:
                     #print(f"Problem Variables {v.name}: {v.varValue}")
             except plp.PulpSolverError:
                 print(
-                    "Infeasibility reached - only generated {} lineups out of {}. Continuing with export.".format(
+                    "1417 Infeasibility reached - only generated {} lineups out of {}. Continuing with export.".format(
                         len(self.output_lineups), self.lineups
                     )
                 )
@@ -1383,7 +1444,7 @@ class NBA_Swaptimizer_Sims:
             ## Check for infeasibility
             if plp.LpStatus[problem.status] != "Optimal":
                 print(
-                    "Infeasibility reached - only generated {} lineups out of {}. Continuing with export.".format(
+                    "1426 Infeasibility reached - only generated {} lineups out of {}. Continuing with export.".format(
                         len(self.lineups), self.num_lineups
                     )
                 )
