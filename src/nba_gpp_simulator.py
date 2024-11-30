@@ -92,6 +92,7 @@ class NBA_GPP_Simulator:
             "../{}_data/{}".format(site, self.config["player_path"]),
         )
 
+
         self.load_player_ids(player_path)
 
         if site == "dk":
@@ -1766,7 +1767,68 @@ class NBA_GPP_Simulator:
             for _, lineup_str in sorted_unique:
                 f.write(f"{lineup_str}\n")
 
+        input_csv_path = os.path.join(
+            os.path.dirname(__file__),
+            "../{}_data/{}".format(self.site, self.config["late_swap_path"]),
+        )
+        output_csv_path = os.path.join(
+            os.path.dirname(__file__),
+            "../output/{}".format(self.site, self.config["late_swap_path"]), "_lineups",
+        )
+        # Read the input CSV file
+        print(output_csv_path)
+        with open(input_csv_path, "r") as infile:
+            reader = csv.DictReader(infile)
+            rows = list(reader)
+            print('------------------------------------------------------------------')
+            for row in reader:
+                print(row)
+                print('------------------------------------------------------------------')
 
+        output_csv_path = os.path.join(
+            os.path.dirname(__file__),
+            "../output/{}".format(self.config["late_swap_path"]),
+        )
+
+        # Combine data from sorted_unique with the read CSV
+        combined_data = []
+        for i, row in enumerate(rows):
+            if not row["Entry ID"] or row["Entry ID"] == "0":
+                continue
+            combined_row = {
+                "Entry ID": row["Entry ID"],
+                "Contest Name": row["Contest Name"],
+                "Contest ID": row["Contest ID"],
+                "Entry Fee": row["Entry Fee"],
+            }
+            # Split lineup_str from sorted_unique and map to columns
+            _, lineup_str = sorted_unique[i]
+            lineup_data = lineup_str.split(",")
+            combined_row.update({
+                "PG": lineup_data[0],
+                "SG": lineup_data[1],
+                "SF": lineup_data[2],
+                "PF": lineup_data[3],
+                "C": lineup_data[4],
+                "G": lineup_data[5],
+                "F": lineup_data[6],
+                "UTIL": lineup_data[7],
+            })
+            combined_data.append(combined_row)
+            print('------------------------------------')
+            print(combined_row)
+
+        # Write combined data to a new CSV file
+        with open(output_csv_path, "w", newline="") as outfile:
+            fieldnames = [
+                "Entry ID", "Contest Name", "Contest ID", "Entry Fee",
+                "PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"
+            ]
+            writer = csv.DictWriter(outfile, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(combined_data)
+
+        print(f"Combined data written to {output_csv_path}")
 
         out_path = os.path.join(
             os.path.dirname(__file__),

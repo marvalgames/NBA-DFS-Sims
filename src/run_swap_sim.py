@@ -28,6 +28,7 @@ def main():
     print('Swap Sim Module Started')
     print(f"Arguments: num_iterations={num_iterations}, site={site}, num_uniques={num_uniques}")
 
+
     # Run the simulation
     sim_to = nba_swap_sims.NBA_Swaptimizer_Sims(num_iterations, site, num_uniques)
     sim_to.swaptimize()
