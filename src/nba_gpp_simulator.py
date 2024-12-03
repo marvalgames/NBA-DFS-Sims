@@ -92,6 +92,7 @@ class NBA_GPP_Simulator:
             "../{}_data/{}".format(site, self.config["player_path"]),
         )
 
+        print(f"Default solver: {plp.LpSolverDefault}")
 
         self.load_player_ids(player_path)
 
@@ -338,109 +339,8 @@ class NBA_GPP_Simulator:
                     <= 7
                 )
 
-        elif self.site == "fd":
-            # Need at least 2 RBs can have up to 3 with FLEX slot
-            problem += (
-                plp.lpSum(
-                    lp_variables[self.player_dict[(player, pos_str, team)]["UniqueKey"]]
-                    for (player, pos_str, team) in self.player_dict
-                    if "PG" in self.player_dict[(player, pos_str, team)]["Position"]
-                )
-                >= 2
-            )
-            problem += (
-                plp.lpSum(
-                    lp_variables[self.player_dict[(player, pos_str, team)]["UniqueKey"]]
-                    for (player, pos_str, team) in self.player_dict
-                    if "PG" in self.player_dict[(player, pos_str, team)]["Position"]
-                )
-                <= 5
-            )
-            problem += (
-                plp.lpSum(
-                    lp_variables[self.player_dict[(player, pos_str, team)]["UniqueKey"]]
-                    for (player, pos_str, team) in self.player_dict
-                    if "SG" in self.player_dict[(player, pos_str, team)]["Position"]
-                )
-                >= 2
-            )
-            problem += (
-                plp.lpSum(
-                    lp_variables[self.player_dict[(player, pos_str, team)]["UniqueKey"]]
-                    for (player, pos_str, team) in self.player_dict
-                    if "SG" in self.player_dict[(player, pos_str, team)]["Position"]
-                )
-                <= 5
-            )
-            problem += (
-                plp.lpSum(
-                    lp_variables[self.player_dict[(player, pos_str, team)]["UniqueKey"]]
-                    for (player, pos_str, team) in self.player_dict
-                    if "SF" in self.player_dict[(player, pos_str, team)]["Position"]
-                )
-                >= 2
-            )
-            problem += (
-                plp.lpSum(
-                    lp_variables[self.player_dict[(player, pos_str, team)]["UniqueKey"]]
-                    for (player, pos_str, team) in self.player_dict
-                    if "SF" in self.player_dict[(player, pos_str, team)]["Position"]
-                )
-                <= 5
-            )
-            problem += (
-                plp.lpSum(
-                    lp_variables[self.player_dict[(player, pos_str, team)]["UniqueKey"]]
-                    for (player, pos_str, team) in self.player_dict
-                    if "PF" in self.player_dict[(player, pos_str, team)]["Position"]
-                )
-                >= 2
-            )
-            problem += (
-                plp.lpSum(
-                    lp_variables[self.player_dict[(player, pos_str, team)]["UniqueKey"]]
-                    for (player, pos_str, team) in self.player_dict
-                    if "PF" in self.player_dict[(player, pos_str, team)]["Position"]
-                )
-                <= 5
-            )
-            problem += (
-                plp.lpSum(
-                    lp_variables[self.player_dict[(player, pos_str, team)]["UniqueKey"]]
-                    for (player, pos_str, team) in self.player_dict
-                    if "C" in self.player_dict[(player, pos_str, team)]["Position"]
-                )
-                >= 1
-            )
-            problem += (
-                plp.lpSum(
-                    lp_variables[self.player_dict[(player, pos_str, team)]["UniqueKey"]]
-                    for (player, pos_str, team) in self.player_dict
-                    if "C" in self.player_dict[(player, pos_str, team)]["Position"]
-                )
-                <= 4
-            )
-            # Can only roster 9 total players
-            problem += (
-                plp.lpSum(
-                    lp_variables[self.player_dict[(player, pos_str, team)]["UniqueKey"]]
-                    for (player, pos_str, team) in self.player_dict
-                )
-                == 9
-            )
-            # Max 4 per team
-            for team in self.team_list:
-                problem += (
-                    plp.lpSum(
-                        lp_variables[self.player_dict[(player, pos_str, team)]["ID"]]
-                        for (player, pos_str, team) in self.player_dict
-                        if self.player_dict[(player, pos_str, team)]["Team"] == team
-                    )
-                    <= 4
-                )
-
         try:
-            problem.solve(plp.PULP_CBC_CMD(msg=0))
+            problem.solve(plp.PULP_CBC_CMD(msg=False))
         except plp.PulpSolverError:
             print(
                 "Infeasibility reached - only generated {} lineups out of {}. Continuing with export.".format(
@@ -1829,6 +1729,16 @@ class NBA_GPP_Simulator:
             writer.writerows(combined_data)
 
         print(f"Combined data written to {output_csv_path}")
+
+
+
+
+
+
+
+
+
+
 
         out_path = os.path.join(
             os.path.dirname(__file__),

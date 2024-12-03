@@ -309,13 +309,13 @@ class MainApp(QMainWindow):
         # Disable the button or any relevant GUI elements if needed
         # Get the directory of the current script
 
-        script_dir = os.path.dirname(os.path.abspath(__file__))
+        #script_dir = os.path.dirname(os.path.abspath(__file__))
+        if getattr(sys, 'frozen', False):  # Check if running as a bundled app
+            script_dir = sys._MEIPASS  # PyInstaller temp directory
+        else:
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+
         run_swap_sim_path = os.path.join(script_dir, 'run_swap_sim.py')
-
-        #script_dir = "D:\\SHARED"  # Temporary directory for testing
-        #run_swap_sim_path = os.path.join(script_dir, 'run_swap_sim.py')
-        cwd_dir = os.path.dirname(run_swap_sim_path)
-
 
         # Set up QProcess
         test_dir = os.path.dirname(run_swap_sim_path)
@@ -362,7 +362,10 @@ class MainApp(QMainWindow):
 
 
 if __name__ == "__main__":
+    import multiprocessing
+    multiprocessing.freeze_support()  # Necessary for Windows
     app = QApplication(sys.argv)
     main_window = MainApp()
     main_window.show()
     sys.exit(app.exec())
+
