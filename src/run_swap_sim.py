@@ -1,17 +1,9 @@
-
-# run_swap_sim.py
-# test_script.py
-#import sys
-
-
-
 import sys
 import nba_swap_sims
 
 
-import sys
-
 def main():
+    print("run_swap_sim.py has started.")  # Add this line
     if len(sys.argv) < 4:  # Ensure at least three arguments are passed
         print(f"Usage: {sys.argv[0]} <num_iterations> <site> <num_uniques>")
         sys.exit(1)
@@ -24,6 +16,8 @@ def main():
     except ValueError:
         print("Error: num_iterations and num_uniques must be integers")
         sys.exit(1)
+
+    print(f"Arguments received: num_iterations={num_iterations}, site={site}, num_uniques={num_uniques}")
 
     print('Swap Sim Module Started')
     print(f"Arguments: num_iterations={num_iterations}, site={site}, num_uniques={num_uniques}")

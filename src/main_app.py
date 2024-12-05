@@ -2,14 +2,13 @@ import json
 import os
 import sys
 
-from PyQt6.QtCore import Qt, QTimer, QProcess
-from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QLabel, QComboBox, QLineEdit, QCheckBox, QPushButton, \
+from PyQt6.QtCore import QProcess
+from PyQt6.QtWidgets import QGridLayout  # Add this import
+from PyQt6.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit, QCheckBox, QPushButton, \
     QSpinBox, QMessageBox, QApplication
 
-from nba_optimizer import NBA_Optimizer
 import nba_gpp_simulator
-import nba_swap_sims
-from PyQt6.QtWidgets import QGridLayout  # Add this import
+from nba_optimizer import NBA_Optimizer
 
 
 class MainApp(QMainWindow):
@@ -303,22 +302,30 @@ class MainApp(QMainWindow):
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {e}")
 
-
     def run_swap_sim(self):
         self.update_parameters()
-        # Disable the button or any relevant GUI elements if needed
-        # Get the directory of the current script
 
-        #script_dir = os.path.dirname(os.path.abspath(__file__))
-        if getattr(sys, 'frozen', False):  # Check if running as a bundled app
-            script_dir = sys._MEIPASS  # PyInstaller temp directory
-        else:
+        # Get the directory of the current script
+        if getattr(sys, 'frozen', False):  # Running in PyInstaller bundle
+            script_dir = sys._MEIPASS
+        else:  # Running in development
             script_dir = os.path.dirname(os.path.abspath(__file__))
 
         run_swap_sim_path = os.path.join(script_dir, 'run_swap_sim.py')
 
+        # Debugging: Print the script paths
+        print(f"Script Directory: {script_dir}")
+        print(f"Run Swap Sim Path: {run_swap_sim_path}")
+
+        # Ensure the script exists
+        if not os.path.exists(run_swap_sim_path):
+            print(f"Error: Script not found at {run_swap_sim_path}")
+            return
+
         # Set up QProcess
         test_dir = os.path.dirname(run_swap_sim_path)
+        print(f"Test Directory: {test_dir}")
+
         self.process = QProcess(self)
         self.process.setWorkingDirectory(test_dir)
         self.process.readyReadStandardOutput.connect(self.handle_stdout)
@@ -326,9 +333,12 @@ class MainApp(QMainWindow):
         self.process.finished.connect(self.on_process_finished)
         self.process.errorOccurred.connect(self.handle_process_error)
 
+        # Use the system Python interpreter
+        python_executable = sys.executable  # System Python in PATH
+
         # Build the command
         command = [
-            sys.executable,  # Python interpreter
+            python_executable,  # Python interpreter
             run_swap_sim_path,  # Script path
             str(self.num_iterations),  # num_iterations argument
             self.site,  # site argument
@@ -336,29 +346,25 @@ class MainApp(QMainWindow):
         ]
 
         # Debugging: Print the command
-        #print("Command to execute:", command)
+        print("Command to execute:", command)
 
         # Start the process with all arguments
         self.process.start(command[0], command[1:])
 
 
-
-    def handle_process_error(self, error):
-        print(f"QProcess Error: {error}")
-
     def handle_stdout(self):
-        output = self.process.readAllStandardOutput().data().decode()
-        print("Output:", output)
+        output = self.process.readAllStandardOutput().data().decode().strip()
+        print(f"STDOUT: {output}")
 
     def handle_stderr(self):
-        error = self.process.readAllStandardError().data().decode()
-        print("Error:", error)
+        error = self.process.readAllStandardError().data().decode().strip()
+        print(f"STDERR: {error}")
 
     def on_process_finished(self, exit_code, exit_status):
-        if exit_code == 0:
-            QMessageBox.information(self, "Success", "Simulation completed successfully!")
-        else:
-            QMessageBox.critical(self, "Error", f"Simulation failed with exit code {exit_code}")
+        print(f"Process finished with exit code {exit_code} and status {exit_status}")
+
+    def handle_process_error(self, error):
+        print(f"Process error occurred: {error}")
 
 
 if __name__ == "__main__":

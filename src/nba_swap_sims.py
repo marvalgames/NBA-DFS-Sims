@@ -1,22 +1,22 @@
-import json
 import csv
-import os
 import datetime
-import re
-import numpy as np
-import pulp as plp
-import random
 import itertools
-import re
+import json
 import math
 import multiprocessing
+import os
+import random
+import re
 import time
 from collections import Counter, defaultdict
-from numba import jit, prange
-from scipy.stats import norm, kendalltau, multivariate_normal, gamma
+from datetime import timezone
 import requests
+import numpy as np
+import pulp as plp
 import pytz
-from datetime import timezone, timedelta
+from numba import jit
+from scipy.stats import multivariate_normal
+import zipfile
 
 
 @jit(nopython=True)
@@ -98,6 +98,7 @@ class NBA_Swaptimizer_Sims:
         print("Contest payout structure loaded.")
         print()
 
+        '''
         live_contest_path = os.path.join(
             os.path.dirname(__file__),
             "../{}_data/{}".format(self.site, self.config["live_contest_path"]),
@@ -105,6 +106,57 @@ class NBA_Swaptimizer_Sims:
         self.extract_player_points(live_contest_path)
         self.load_live_contest(live_contest_path)
         print('live contest loaded')
+        '''
+        # Load live contest path
+        try:
+            # Step 1: Define the folder path using the original logic
+            folder_path = os.path.join(
+                os.path.dirname(__file__),
+                f"../{self.site}_data/"
+            )
+
+            if not os.path.exists(folder_path):
+                raise FileNotFoundError(f"The folder {folder_path} does not exist.")
+
+            # Step 2: Locate the file starting with "contest-standings"
+            contest_files = [
+                f for f in os.listdir(folder_path) if f.startswith("contest-standings")
+            ]
+
+            if not contest_files:
+                raise FileNotFoundError("No file starting with 'contest-standings' found in the folder.")
+
+            contest_file_path = os.path.join(folder_path, contest_files[0])  # Use the first match
+            print(f"Found contest file: {contest_file_path}")
+
+            # Step 3: Check if the file is a .zip and extract it
+            if contest_file_path.endswith(".zip"):
+                with zipfile.ZipFile(contest_file_path, 'r') as zip_ref:
+                    extracted_files = zip_ref.namelist()
+                    zip_ref.extractall(folder_path)
+                    print(f"Extracted files: {extracted_files}")
+
+                    if len(extracted_files) != 1:
+                        raise ValueError("The .zip file should contain exactly one file.")
+
+                    # Set the live_contest_path to the extracted file
+                    live_contest_path = os.path.join(folder_path, extracted_files[0])
+                    print(f"Live contest path set to extracted file: {live_contest_path}")
+            else:
+                # If not a zip file, use the file directly
+                live_contest_path = contest_file_path
+                print(f"Live contest path set to file: {live_contest_path}")
+
+            # Step 4: Load the contest data
+            self.extract_player_points(live_contest_path)
+            self.load_live_contest(live_contest_path)
+            print("Live contest loaded.")
+
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+
+
         print()
         if "late_swap_path" in self.config.keys():
             late_swap_path = os.path.join(

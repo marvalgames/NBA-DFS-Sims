@@ -4,6 +4,9 @@ import os
 import pandas as pd
 import xlwings as xw
 from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget
+from nba_api.stats.endpoints import leaguedashteamstats
+
+from nba_fetch import fetch_advanced_team_stats
 
 
 class ImportTool(QMainWindow):
@@ -119,7 +122,7 @@ class ImportTool(QMainWindow):
         layout = QVBoxLayout()
         # Buttons
 
-        fta_button = QPushButton("Import fta.csv to SOG Projections")
+        fta_button = QPushButton("Import fta.csv to FTA Projections")
         fta_button.clicked.connect(self.import_fta_entries)
 
         dk_button = QPushButton("Import entries.csv to DK List")
@@ -166,18 +169,113 @@ class ImportTool(QMainWindow):
         )
         print("Done importing FTA to fta.")
 
+    import os
+    from pathlib import Path
+    import pandas as pd
+    import xlwings as xw
+
     def import_dk_entries(self):
         print("Importing DKEntries to dk_list...")
-        self.import_csv_to_sheet(
-            csv_file="entries.csv",
-            sheet_name="dk_list",
-            csv_start_row=7,
-            csv_start_col=0,
-            excel_start_row=2,
-            excel_start_col=2,
-        )
+        csv_file = "entries.csv"
+        excel_file = "nba.xlsm"
+        sheet_name = "dk_list"
+
+        # Define the output directory and CSV file path
+        current_folder = Path(__file__).resolve().parent
+        sibling_folder = current_folder.parent / "dk_data"  # Sibling folder
+        sibling_folder.mkdir(exist_ok=True)  # Create the folder if it doesn't exist
+        output_csv_file = sibling_folder / "DKSalaries.csv"  # Output CSV file path
+
+        try:
+            # Step 1: Define the columns to read
+            columns_to_read = list(range(13, 22))  # Columns N (13) to V (21) in zero-based indexing
+
+            # Step 2: Load the CSV
+            data = pd.read_csv(
+                csv_file,
+                skiprows=7,  # Skip the first 7 rows (rows 1-7)
+                usecols=columns_to_read,  # Only read columns N–V
+                header=0  # Use the first remaining row (row 8) as headers
+            )
+
+            # Step 3: Write the same data to the new CSV file
+            data.to_csv(output_csv_file, index=False)
+            print(f"Data successfully written to '{output_csv_file}'.")
+
+            # Step 4: Open Excel and write the data
+            app = xw.App(visible=False)  # Set to True if you want to see the Excel window
+            try:
+                wb = app.books.open(excel_file)  # Open the Excel workbook
+                ws = wb.sheets[sheet_name]  # Select the target sheet
+
+                # Clear the range in the sheet before writing
+                ws.range("B2").expand().clear()  # Clear existing data starting from column B, row 2
+
+                # Write the data to the sheet
+                ws.range("B2").value = data.values
+
+                # Save the workbook
+                wb.save()
+                print(f"Data successfully imported to sheet '{sheet_name}' in '{excel_file}'.")
+            finally:
+                wb.close()
+                app.quit()
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
         print("Done importing DKEntries to dk_list.")
 
+    def import_sog_projections(self):
+        print("Importing DKEntries to dk_list...")
+        csv_file = "entries.csv"
+        excel_file = "nba.xlsm"
+        sheet_name = "sog_projections"
+        try:
+            # Step 1: Define the columns to read
+            columns_to_read = list(range(13, 22))  # Columns N (13) to V (21) in zero-based indexing
+
+            # Step 2: Load the CSV
+            data = pd.read_csv(
+                csv_file,
+                skiprows=7,  # Skip the first 7 rows (rows 1-7)
+                usecols=columns_to_read,  # Only read columns N–V
+                header=0  # Use the first remaining row (row 8) as headers
+            )
+
+            # Step 3: Open Excel and write the data
+            app = xw.App(visible=False)  # Set to True if you want to see the Excel window
+            try:
+                wb = app.books.open(excel_file)  # Open the Excel workbook
+                ws = wb.sheets[sheet_name]  # Select the target sheet
+
+                # Clear the range in the sheet before writing
+                ws.range("B2").expand().clear()  # Clear existing data starting from column N, row 2
+
+                # Write the data to the sheet
+                ws.range("B2").value = data.values
+
+                # Save the workbook
+                wb.save()
+                print(f"Data successfully imported to sheet '{sheet_name}' in '{excel_file}'.")
+            finally:
+                wb.close()
+                app.quit()
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+
+        #self.import_csv_to_sheet(
+          #  csv_file="entries.csv",
+          #  sheet_name="dk_list",
+           # csv_start_row=7,
+           # csv_start_col=0,
+           # excel_start_row=2,
+           # excel_start_col=2,
+        #)
+
+
+        print("Done importing DKEntries to dk_list.")
+    '''
     def import_sog_projections(self):
         print("Importing DKEntries to sog_projections...")
         self.import_csv_to_sheet(
@@ -189,6 +287,7 @@ class ImportTool(QMainWindow):
             excel_start_col=2,
         )
         print("Done importing DKEntries to sog_projections.")
+    '''
 
     def import_darko(self):
         print("Importing DARKO to darko...")
@@ -203,28 +302,97 @@ class ImportTool(QMainWindow):
         print("Done importing DARKO to darko.")
 
     def import_advanced(self):
-        print("Importing Advanced to team_ratings...")
-        self.import_csv_to_sheet(
-            csv_file="advanced.csv",
-            sheet_name="team_ratings",
-            csv_start_row=0,
-            csv_start_col=1,
-            excel_start_row=2,
-            excel_start_col=2,
-        )
-        print("Done importing Advanced to team_ratings.")
+        print("Fetching and importing Advanced Team Stats...")
+
+        try:
+            # Step 1: Fetch the data
+            season = '2024-25'
+            season_type = 'Regular Season'
+
+            # Fetch the data using the function
+            df = fetch_advanced_team_stats(season, season_type)
+
+            # Sort the DataFrame by 'TEAM_NAME'
+            df_sorted = df.sort_values(by='TEAM_NAME')
+            csv_file_path = "advanced.csv"
+
+            # Save the DataFrame to the CSV
+            df_sorted.to_csv(csv_file_path, index=False)
+            print(f"Advanced stats saved to: {csv_file_path}")
+
+            # Step 3: Import the saved CSV to the "team_ratings" sheet in the Excel file
+
+            # Specify the columns to read
+            columns_to_read = [0, 1, 2, 3, 4, 6, 7, 9, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 26, 25]
+
+            self.import_csv_to_sheet(
+                csv_file=str(csv_file_path),
+                sheet_name="team_ratings",
+                csv_start_row=0,
+                csv_start_col=0,  # No need to filter columns here; `usecols` handles it
+                excel_start_row=2,
+                excel_start_col=1,
+                usecols=columns_to_read
+            )
+
+            print("Done importing Advanced stats to team_ratings.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
     def import_traditional(self):
-        print("Importing Traditional to team_ratings...")
-        self.import_csv_to_sheet(
-            csv_file="traditional.csv",
-            sheet_name="team_ratings",
-            csv_start_row=0,
-            csv_start_col=1,
-            excel_start_row=2,
-            excel_start_col=25,
-        )
-        print("Done importing Advanced to team_ratings.")
+        print("Fetching and importing Traditional Team Stats...")
+
+        try:
+            # Step 1: Fetch the data
+            season = '2024-25'
+            season_type = 'Regular Season'
+
+            # Fetch the data using nba_api's endpoint for traditional stats
+            team_stats = leaguedashteamstats.LeagueDashTeamStats(
+                season=season,
+                season_type_all_star=season_type,
+                measure_type_detailed_defense='Base',  # 'Base' corresponds to traditional stats
+                per_mode_detailed='Totals'  # Totals per mode
+            )
+
+            # Convert to DataFrame
+            df = team_stats.get_data_frames()[0]
+
+            # Sort the DataFrame by 'TEAM_NAME'
+            df_sorted = df.sort_values(by='TEAM_NAME')
+
+            # Step 2: Save the fetched data to 'traditional.csv' in the output folder
+            #script_dir = Path(__file__).resolve().parent  # Script directory
+            #output_dir = script_dir / "output"  # Define the output folder
+            #output_dir.mkdir(exist_ok=True)  # Create the folder if it doesn't exist
+
+            # Define the CSV file path
+            #csv_file_path = output_dir / "traditional.csv"
+            csv_file_path = "traditional.csv"
+
+            # Save the DataFrame to the CSV
+            df_sorted.to_csv(csv_file_path, index=False)
+            print(f"Traditional stats saved to: {csv_file_path}")
+
+            # Step 3: Import the saved CSV to the "team_ratings" sheet in the Excel file
+
+            # Specify the columns to read
+            columns_to_read = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27]  # columns to import
+
+            self.import_csv_to_sheet(
+                csv_file=str(csv_file_path),
+                sheet_name="team_ratings",
+                csv_start_row=0,
+                csv_start_col=0,  # No need to filter columns here; `usecols` handles it
+                excel_start_row=2,
+                excel_start_col=24,  # Start writing from a different column
+                usecols=columns_to_read
+            )
+
+            print("Done importing Traditional stats to team_ratings.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
 
     def run_all_imports(self):
         print("Running all imports...")
@@ -241,18 +409,12 @@ class ImportTool(QMainWindow):
     import xlwings as xw
 
     def import_csv_to_sheet(
-            self, csv_file, sheet_name, csv_start_row, csv_start_col, excel_start_row, excel_start_col
+            self, csv_file, sheet_name, csv_start_row, csv_start_col, excel_start_row, excel_start_col, usecols=None
     ):
-        # Define the current script folder and sibling folder
-        #current_folder = Path(__file__).parent  # Current script directory (src)
-        #target_folder = current_folder.parent/"dk-import"  # Sibling folder (dk-import)
-
-        # Always combine target_folder with the csv_file parameter
-        #combined_csv_file = target_folder/Path(csv_file).name
+        # Combine the CSV file path
         combined_csv_file = csv_file
 
-        # Excel file is in the same target_folder
-        #excel_file = target_folder/"nba.xlsm"
+        # Excel file
         excel_file = "nba.xlsm"
 
         print(f"Excel File: {excel_file}")
@@ -263,12 +425,22 @@ class ImportTool(QMainWindow):
         try:
             wb = app.books.open(excel_file)
 
-            # Load CSV data
-            data = pd.read_csv(combined_csv_file)
+            # Load CSV data with optional column filtering
+            data = pd.read_csv(combined_csv_file, usecols=usecols)
             data_to_write = data.iloc[csv_start_row:, csv_start_col:]
+            csv_row_count, csv_col_count = data_to_write.shape
 
             # Write data to the specified sheet
             ws = wb.sheets[sheet_name]
+
+            # Clear the existing rows in the target sheet (up to the CSV's column count)
+            clear_range = ws.range(
+                (excel_start_row, excel_start_col),
+                (excel_start_row + csv_row_count + 1000, excel_start_col + csv_col_count - 1)
+            )
+            clear_range.value = None  # Clear the cells
+
+            # Write the new data
             ws.range((excel_start_row, excel_start_col)).value = data_to_write.values
 
             # Save and close the workbook
@@ -276,6 +448,7 @@ class ImportTool(QMainWindow):
         finally:
             wb.close()
             app.quit()
+
 
 
 

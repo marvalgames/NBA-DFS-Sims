@@ -4,9 +4,9 @@
 a = Analysis(
     ['main_app.py'],
     pathex=[],
-    binaries=[('C:\\Users\\Ramos\\My Drive (blbramos@gmail.com)\\PyVirtual\\Lib\\site-packages\\pulp\\solverdir\\cbc\\win\\64\\cbc.exe', '.')],
-    datas=[('run_swap_sim.py', '.')],
-    hiddenimports=[],
+    binaries=[('C:\\Python\\pyVirtual\\.venv\\Lib\\site-packages\\pulp\\solverdir\\cbc\\win\\64\\cbc.exe', '.')],
+    datas=[('run_swap_sim.py', '.'), ('nba_swap_sims.py', '.')],
+    hiddenimports=['requests', 'pulp'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
