@@ -2009,7 +2009,8 @@ class NBA_Swaptimizer_Sims:
         combined_result_array = np.zeros(num_lineups)
 
         payout_cumsum = np.cumsum(payout_array)
-
+        print('calculate payouts')
+        print("-----------------------")
         for r in range(ranks.shape[1]):
             ranks_in_sim = ranks[:, r]
             payout_index = 0
@@ -2060,7 +2061,6 @@ class NBA_Swaptimizer_Sims:
 
             for res in results:
                 temp_fpts_dict.update(res)
-
 
         field_lineups_count = np.array(
             [self.field_lineups[idx]["Count"] for idx in self.field_lineups.keys()]
