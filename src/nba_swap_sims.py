@@ -119,12 +119,20 @@ class NBA_Swaptimizer_Sims:
                 raise FileNotFoundError(f"The folder {folder_path} does not exist.")
 
             # Step 2: Locate the file starting with "contest-standings"
+            #contest_files = [
+                #f for f in os.listdir(folder_path) if f.startswith("contest-standings")
+            #]
+
+            # Step 2: Locate the files starting with "contest-standings" with full paths
             contest_files = [
-                f for f in os.listdir(folder_path) if f.startswith("contest-standings")
+                os.path.join(folder_path, f) for f in os.listdir(folder_path) if f.startswith("contest-standings")
             ]
 
             if not contest_files:
                 raise FileNotFoundError("No file starting with 'contest-standings' found in the folder.")
+
+            # Sort files by modification time (newest first)
+            contest_files = sorted(contest_files, key=os.path.getmtime, reverse=True)
 
             contest_file_path = os.path.join(folder_path, contest_files[0])  # Use the first match
             print(f"Found contest file: {contest_file_path}")
@@ -515,7 +523,7 @@ class NBA_Swaptimizer_Sims:
 
         formatted_date = game_date.strftime('%Y-%m-%d')
         # Comment Out for Live Games
-        #formatted_date = '2024-11-26'
+        formatted_date = '2024-11-26'
         #
 
         headers = {
@@ -531,13 +539,13 @@ class NBA_Swaptimizer_Sims:
         # NBA regulation game length in minutes
 
         # Comment Out for Live Games
-        #games_info = [
-          #  ['2024-11-26T00:00:00', 1, '0022400035', 2, '2nd Qtr             ', '20241126/CHIWAS', 1610612764, 1610612741, '2024', 2, '7:47 ', None, 'MNMT', 'CHSN', 'Q2 7:47  - ', 'Capital One Arena', 0, 0],
-           # ['2024-11-26T00:00:00', 2, '0022400036', 2, '1st Qtr             ', '20241126/MILMIA', 1610612748, 1610612749, '2024', 1, '7:43 ', 'TNT', None, None, 'Q1 7:43  - TNT', 'Kaseya Center', 0, 0],
-            #['2024-11-26T00:00:00', 3, '0022400037', 1, '8:00 pm ET', '20241126/HOUMIN', 1610612750, 1610612745, '2024', 0, '     ', None, 'FDSNNO', 'SCHN', 'Q0       - ', 'Target Center', 0, 0],
-            #['2024-11-26T00:00:00', 4, '0022400038', 1, '9:00 pm ET', '20241126/SASUTA', 1610612762, 1610612759, '2024', 0, '     ', None, 'KJZZ', 'FDSNSW', 'Q0       - ', 'Delta Center', 0, 0],
-            #['2024-11-26T00:00:00', 5, '0022400039', 1, '10:00 pm ET', '20241126/LALPHX', 1610612756, 1610612747, '2024', 0, '     ', 'TNT', None, 'SPECSN', 'Q0       - TNT', 'Footprint Center', 0, 0]
-        #]
+        games_info = [
+            ['2024-11-26T00:00:00', 1, '0022400035', 2, '2nd Qtr             ', '20241126/CHIWAS', 1610612764, 1610612741, '2024', 2, '7:47 ', None, 'MNMT', 'CHSN', 'Q2 7:47  - ', 'Capital One Arena', 0, 0],
+            ['2024-11-26T00:00:00', 2, '0022400036', 2, '1st Qtr             ', '20241126/MILMIA', 1610612748, 1610612749, '2024', 1, '7:43 ', 'TNT', None, None, 'Q1 7:43  - TNT', 'Kaseya Center', 0, 0],
+            ['2024-11-26T00:00:00', 3, '0022400037', 1, '8:00 pm ET', '20241126/HOUMIN', 1610612750, 1610612745, '2024', 0, '     ', None, 'FDSNNO', 'SCHN', 'Q0       - ', 'Target Center', 0, 0],
+            ['2024-11-26T00:00:00', 4, '0022400038', 1, '9:00 pm ET', '20241126/SASUTA', 1610612762, 1610612759, '2024', 0, '     ', None, 'KJZZ', 'FDSNSW', 'Q0       - ', 'Delta Center', 0, 0],
+            ['2024-11-26T00:00:00', 5, '0022400039', 1, '10:00 pm ET', '20241126/LALPHX', 1610612756, 1610612747, '2024', 0, '     ', 'TNT', None, 'SPECSN', 'Q0       - TNT', 'Footprint Center', 0, 0]
+        ]
         #
 
         # NBA regulation game length in minutes
@@ -547,7 +555,7 @@ class NBA_Swaptimizer_Sims:
         eastern = pytz.timezone('US/Eastern')
         current_time_utc = datetime.datetime.now(timezone.utc)  # Current time in UTC
         # Comment Out for Live Games
-        #current_time_utc = pytz.utc.localize(datetime.datetime(2024, 11, 26, 19, 35))  # Testing as aware datetime
+        current_time_utc = pytz.utc.localize(datetime.datetime(2024, 11, 26, 19, 35))  # Testing as aware datetime
         #
 
         for game in games_info:
@@ -1129,6 +1137,8 @@ class NBA_Swaptimizer_Sims:
     # Load user lineups for late swap
     def load_player_lineups(self, path):
         # Read projections into a dictionary
+        print(path)
+        print("----------------------")
         with open(path, encoding="utf-8-sig") as file:
             reader = csv.DictReader(self.lower_first(file))
             for row in reader:

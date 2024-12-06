@@ -1,4652 +1,2822 @@
 \* NBA *\
 Maximize
-Objective: 13.5631824362 ("Ja'Kobe_Walter",_'SG',_'TOR')_G_36873511
- + 18.6044110231 ("Ja'Kobe_Walter",_'SG',_'TOR')_SG_36873511
- + 6.10869591436 ("Ja'Kobe_Walter",_'SG',_'TOR')_UTIL_36873511
- + 6.80677776614 ("Royce_O'Neale",_'SF_PF',_'PHX')_F_36873391
- + 16.6788617674 ("Royce_O'Neale",_'SF_PF',_'PHX')_PF_36873391
- + 19.152401188 ("Royce_O'Neale",_'SF_PF',_'PHX')_SF_36873391
- + 11.8148505011 ("Royce_O'Neale",_'SF_PF',_'PHX')_UTIL_36873391
- + 6.30298975806 ('AJ_Green',_'PG_SG',_'MIL')_G_36873559
- + 16.7705283223 ('AJ_Green',_'PG_SG',_'MIL')_PG_36873559
- + 17.6285709542 ('AJ_Green',_'PG_SG',_'MIL')_SG_36873559
- + 8.67515766533 ('AJ_Green',_'PG_SG',_'MIL')_UTIL_36873559
- + 24.5300918171 ('Aaron_Wiggins',_'SF_PF',_'OKC')_F_36873524
- + 13.6622668761 ('Aaron_Wiggins',_'SF_PF',_'OKC')_PF_36873524
- + 0.0521745808417 ('Aaron_Wiggins',_'SF_PF',_'OKC')_SF_36873524
- + 19.5466758658 ('Aaron_Wiggins',_'SF_PF',_'OKC')_UTIL_36873524
- + 5.74849138126 ('Adem_Bona',_'C',_'PHI')_C_36873608
- + 6.50392331611 ('Adem_Bona',_'C',_'PHI')_UTIL_36873608
- + 13.6162836127 ('Ajay_Mitchell',_'PG',_'OKC')_G_36873706
- - 1.18049995638 ('Ajay_Mitchell',_'PG',_'OKC')_PG_36873706
- + 22.8439592963 ('Ajay_Mitchell',_'PG',_'OKC')_UTIL_36873706
- + 20.3664977021 ('Alexandre_Sarr',_'PF_C',_'WAS')_C_36873292
- + 15.280042744 ('Alexandre_Sarr',_'PF_C',_'WAS')_F_36873292
- + 35.3697756161 ('Alexandre_Sarr',_'PF_C',_'WAS')_PF_36873292
- + 24.2736289428 ('Alexandre_Sarr',_'PF_C',_'WAS')_UTIL_36873292
- + 15.3057580614 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_F_36873591
- + 12.5145615183 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_G_36873591
- + 10.7662301978 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SF_36873591
- + 15.3821149251 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SG_36873591
- + 5.90702828812 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_UTIL_36873591
- + 21.7873892351 ('Andrew_Nembhard',_'PG_SG',_'IND')_G_36873397
- + 34.2793195447 ('Andrew_Nembhard',_'PG_SG',_'IND')_PG_36873397
- + 14.1964867377 ('Andrew_Nembhard',_'PG_SG',_'IND')_SG_36873397
- + 24.0013717055 ('Andrew_Nembhard',_'PG_SG',_'IND')_UTIL_36873397
- + 21.2459212402 ('Anthony_Black',_'PG_SG',_'ORL')_G_36873472
- + 12.7175517247 ('Anthony_Black',_'PG_SG',_'ORL')_PG_36873472
- + 5.24701513612 ('Anthony_Black',_'PG_SG',_'ORL')_SG_36873472
- + 11.7187152458 ('Anthony_Black',_'PG_SG',_'ORL')_UTIL_36873472
- + 11.4817585603 ('Anthony_Gill',_'PF_C',_'WAS')_C_36873904
- + 10.2292210657 ('Anthony_Gill',_'PF_C',_'WAS')_F_36873904
- + 4.38176168615 ('Anthony_Gill',_'PF_C',_'WAS')_PF_36873904
- + 10.3164949233 ('Anthony_Gill',_'PF_C',_'WAS')_UTIL_36873904
- + 8.47531130394 ('Ausar_Thompson',_'SF_PF',_'DET')_F_36873478
- + 21.6365352249 ('Ausar_Thompson',_'SF_PF',_'DET')_PF_36873478
- + 17.1134723442 ('Ausar_Thompson',_'SF_PF',_'DET')_SF_36873478
- + 18.5929627396 ('Ausar_Thompson',_'SF_PF',_'DET')_UTIL_36873478
- + 22.9405434614 ('Bennedict_Mathurin',_'SG_SF',_'IND')_F_36873185
- + 26.904264639 ('Bennedict_Mathurin',_'SG_SF',_'IND')_G_36873185
- + 23.9987705914 ('Bennedict_Mathurin',_'SG_SF',_'IND')_SF_36873185
- + 34.1027682827 ('Bennedict_Mathurin',_'SG_SF',_'IND')_SG_36873185
- + 33.801136175 ('Bennedict_Mathurin',_'SG_SF',_'IND')_UTIL_36873185
- + 21.9094801051 ('Bilal_Coulibaly',_'SF',_'WAS')_F_36873287
- + 33.0558491439 ('Bilal_Coulibaly',_'SF',_'WAS')_SF_36873287
- + 39.0460544416 ('Bilal_Coulibaly',_'SF',_'WAS')_UTIL_36873287
- + 40.418834492 ('Bobby_Portis',_'PF_C',_'MIL')_C_36873248
- + 24.5726444515 ('Bobby_Portis',_'PF_C',_'MIL')_F_36873248
- + 12.7165666884 ('Bobby_Portis',_'PF_C',_'MIL')_PF_36873248
- + 24.330160102 ('Bobby_Portis',_'PF_C',_'MIL')_UTIL_36873248
- + 24.762064612 ('Bradley_Beal',_'SG_SF',_'PHX')_F_36873146
- + 41.3098830021 ('Bradley_Beal',_'SG_SF',_'PHX')_G_36873146
- + 33.5407560443 ('Bradley_Beal',_'SG_SF',_'PHX')_SF_36873146
- + 36.7042630024 ('Bradley_Beal',_'SG_SF',_'PHX')_SG_36873146
- + 32.9510984272 ('Bradley_Beal',_'SG_SF',_'PHX')_UTIL_36873146
- + 32.0571680317 ('Brandon_Clarke',_'PF_C',_'MEM')_C_36873424
- - 0.0315195621637 ('Brandon_Clarke',_'PF_C',_'MEM')_F_36873424
- + 24.9544894948 ('Brandon_Clarke',_'PF_C',_'MEM')_PF_36873424
- + 15.2179193988 ('Brandon_Clarke',_'PF_C',_'MEM')_UTIL_36873424
- + 32.4285311277 ('Brandon_Miller',_'SG_SF',_'CHA')_F_36873126
- + 46.8299934217 ('Brandon_Miller',_'SG_SF',_'CHA')_G_36873126
- + 44.6959942156 ('Brandon_Miller',_'SG_SF',_'CHA')_SF_36873126
- + 57.5824523143 ('Brandon_Miller',_'SG_SF',_'CHA')_SG_36873126
- + 38.7373378746 ('Brandon_Miller',_'SG_SF',_'CHA')_UTIL_36873126
- + 27.6192129987 ('Brice_Sensabaugh',_'SF',_'UTA')_F_36873588
- + 10.5483233698 ('Brice_Sensabaugh',_'SF',_'UTA')_SF_36873588
- + 19.1648015782 ('Brice_Sensabaugh',_'SF',_'UTA')_UTIL_36873588
- + 40.6587988914 ('Brook_Lopez',_'C',_'MIL')_C_36873212
- + 33.0974620722 ('Brook_Lopez',_'C',_'MIL')_UTIL_36873212
- + 5.94631690103 ('Bruno_Fernando',_'C',_'TOR')_C_36873748
- + 12.902403235 ('Bruno_Fernando',_'C',_'TOR')_UTIL_36873748
- + 39.0152777191 ('Cade_Cunningham',_'PG',_'DET')_G_36873073
- + 52.3094523622 ('Cade_Cunningham',_'PG',_'DET')_PG_36873073
- + 40.7224990771 ('Cade_Cunningham',_'PG',_'DET')_UTIL_36873073
- + 27.3158645621 ('Caleb_Martin',_'PF',_'PHI')_F_36873377
- + 17.8455992842 ('Caleb_Martin',_'PF',_'PHI')_PF_36873377
- + 20.5602689955 ('Caleb_Martin',_'PF',_'PHI')_UTIL_36873377
- + 15.3031580227 ('Cameron_Payne',_'PG_SG',_'NYK')_G_36873547
- + 14.9235935416 ('Cameron_Payne',_'PG_SG',_'NYK')_PG_36873547
- + 13.9943442134 ('Cameron_Payne',_'PG_SG',_'NYK')_SG_36873547
- + 7.07042139215 ('Cameron_Payne',_'PG_SG',_'NYK')_UTIL_36873547
- + 26.8415828621 ('Caris_LeVert',_'PG_SG',_'CLE')_G_36873361
- + 15.9146615685 ('Caris_LeVert',_'PG_SG',_'CLE')_PG_36873361
- + 12.339454337 ('Caris_LeVert',_'PG_SG',_'CLE')_SG_36873361
- + 21.7726410707 ('Caris_LeVert',_'PG_SG',_'CLE')_UTIL_36873361
- + 25.4506867745 ('Carlton_Carrington',_'PG_SG',_'WAS')_G_36873404
- + 26.9394214077 ('Carlton_Carrington',_'PG_SG',_'WAS')_PG_36873404
- + 8.0954582398 ('Carlton_Carrington',_'PG_SG',_'WAS')_SG_36873404
- + 21.853928595 ('Carlton_Carrington',_'PG_SG',_'WAS')_UTIL_36873404
- + 16.4217075903 ('Cason_Wallace',_'PG_SG',_'OKC')_G_36873428
- + 17.640555028 ('Cason_Wallace',_'PG_SG',_'OKC')_PG_36873428
- + 21.1635724825 ('Cason_Wallace',_'PG_SG',_'OKC')_SG_36873428
- + 26.0431898857 ('Cason_Wallace',_'PG_SG',_'OKC')_UTIL_36873428
- + 21.5364680723 ('Chris_Boucher',_'PF_C',_'TOR')_C_36873543
- + 24.5429880844 ('Chris_Boucher',_'PF_C',_'TOR')_F_36873543
- + 34.8748112629 ('Chris_Boucher',_'PF_C',_'TOR')_PF_36873543
- + 24.1070445164 ('Chris_Boucher',_'PF_C',_'TOR')_UTIL_36873543
- + 27.5281409614 ('Chris_Paul',_'PG',_'SAS')_G_36873238
- + 26.9043145615 ('Chris_Paul',_'PG',_'SAS')_PG_36873238
- + 25.1594001653 ('Chris_Paul',_'PG',_'SAS')_UTIL_36873238
- + 23.5712939746 ('Cody_Martin',_'SF',_'CHA')_F_36873348
- + 27.9414810182 ('Cody_Martin',_'SF',_'CHA')_SF_36873348
- + 30.7732052931 ('Cody_Martin',_'SF',_'CHA')_UTIL_36873348
- + 20.6182877889 ('Cole_Anthony',_'PG_SG',_'ORL')_G_36873646
- + 7.81334106292 ('Cole_Anthony',_'PG_SG',_'ORL')_PG_36873646
- + 18.3737963126 ('Cole_Anthony',_'PG_SG',_'ORL')_SG_36873646
- + 5.46433941867 ('Cole_Anthony',_'PG_SG',_'ORL')_UTIL_36873646
- + 6.79928001499 ('Collin_Sexton',_'PG_SG',_'UTA')_G_36873208
- + 25.0857036839 ('Collin_Sexton',_'PG_SG',_'UTA')_PG_36873208
- + 21.9728824255 ('Collin_Sexton',_'PG_SG',_'UTA')_SG_36873208
- + 20.3079253129 ('Collin_Sexton',_'PG_SG',_'UTA')_UTIL_36873208
- + 10.3185102751 ('Corey_Kispert',_'SG_SF',_'WAS')_F_36873408
- + 27.0437361727 ('Corey_Kispert',_'SG_SF',_'WAS')_G_36873408
- + 7.59082285794 ('Corey_Kispert',_'SG_SF',_'WAS')_SF_36873408
- + 21.7693403125 ('Corey_Kispert',_'SG_SF',_'WAS')_SG_36873408
- + 14.8709770439 ('Corey_Kispert',_'SG_SF',_'WAS')_UTIL_36873408
- + 58.2705820166 ('Damian_Lillard',_'PG',_'MIL')_G_36873080
- + 32.5596622617 ('Damian_Lillard',_'PG',_'MIL')_PG_36873080
- + 31.1204510991 ('Damian_Lillard',_'PG',_'MIL')_UTIL_36873080
- + 34.4490551245 ('Daniel_Gafford',_'C',_'DAL')_C_36873246
- + 3.87789005472 ('Daniel_Gafford',_'C',_'DAL')_UTIL_36873246
- + 66.7764776991 ('Darius_Garland',_'PG',_'CLE')_G_36873158
- + 29.5573108576 ('Darius_Garland',_'PG',_'CLE')_PG_36873158
- + 47.4202175765 ('Darius_Garland',_'PG',_'CLE')_UTIL_36873158
- + 27.8928131958 ('Davion_Mitchell',_'PG_SG',_'TOR')_G_36873566
- + 9.52113617423 ('Davion_Mitchell',_'PG_SG',_'TOR')_PG_36873566
- + 11.6686117562 ('Davion_Mitchell',_'PG_SG',_'TOR')_SG_36873566
- + 23.1019638272 ('Davion_Mitchell',_'PG_SG',_'TOR')_UTIL_36873566
- + 5.96510167249 ('Dean_Wade',_'SF_PF',_'CLE')_F_36873596
- + 5.3560075091 ('Dean_Wade',_'SF_PF',_'CLE')_PF_36873596
- + 5.35129581958 ('Dean_Wade',_'SF_PF',_'CLE')_SF_36873596
- + 3.77410530298 ('Dean_Wade',_'SF_PF',_'CLE')_UTIL_36873596
- + 6.98558629391 ('Delon_Wright',_'PG',_'MIL')_G_36873688
- + 12.6960459523 ('Delon_Wright',_'PG',_'MIL')_PG_36873688
- + 3.30819752701 ('Delon_Wright',_'PG',_'MIL')_UTIL_36873688
- + 37.842983786 ('Dereck_Lively_II',_'C',_'DAL')_C_36873290
- + 12.2467905489 ('Dereck_Lively_II',_'C',_'DAL')_UTIL_36873290
- + 46.9950993927 ('Desmond_Bane',_'SG_SF',_'MEM')_F_36873167
- + 23.2781703858 ('Desmond_Bane',_'SG_SF',_'MEM')_G_36873167
- + 29.5951607314 ('Desmond_Bane',_'SG_SF',_'MEM')_SF_36873167
- + 20.7220275985 ('Desmond_Bane',_'SG_SF',_'MEM')_SG_36873167
- + 30.0244817356 ('Desmond_Bane',_'SG_SF',_'MEM')_UTIL_36873167
- + 39.4267271517 ('Devin_Booker',_'PG_SG',_'PHX')_G_36873095
- + 20.9498456505 ('Devin_Booker',_'PG_SG',_'PHX')_PG_36873095
- + 9.93191118112 ('Devin_Booker',_'PG_SG',_'PHX')_SG_36873095
- + 71.7628590459 ('Devin_Booker',_'PG_SG',_'PHX')_UTIL_36873095
- + 13.5972312134 ('Devin_Vassell',_'SG',_'SAS')_G_36873340
- + 22.6332356462 ('Devin_Vassell',_'SG',_'SAS')_SG_36873340
- + 6.6090962326 ('Devin_Vassell',_'SG',_'SAS')_UTIL_36873340
- + 0.847986599532 ('Dillon_Jones',_'PF',_'OKC')_F_36873699
- + 4.05817549913 ('Dillon_Jones',_'PF',_'OKC')_PF_36873699
- + 8.33678138719 ('Dillon_Jones',_'PF',_'OKC')_UTIL_36873699
- + 27.9313068454 ('Donovan_Mitchell',_'PG_SG',_'CLE')_G_36873087
- + 62.038018089 ('Donovan_Mitchell',_'PG_SG',_'CLE')_PG_36873087
- + 49.8550855671 ('Donovan_Mitchell',_'PG_SG',_'CLE')_SG_36873087
- + 41.9444755639 ('Donovan_Mitchell',_'PG_SG',_'CLE')_UTIL_36873087
- + 25.681739413 ('Drew_Eubanks',_'C',_'UTA')_C_36873691
- + 9.24624566879 ('Drew_Eubanks',_'C',_'UTA')_UTIL_36873691
- + 48.6898209704 ('Evan_Mobley',_'PF_C',_'CLE')_C_36873135
- + 63.5346930694 ('Evan_Mobley',_'PF_C',_'CLE')_F_36873135
- + 44.7294810875 ('Evan_Mobley',_'PF_C',_'CLE')_PF_36873135
- + 45.2316292401 ('Evan_Mobley',_'PF_C',_'CLE')_UTIL_36873135
- + 12.2958519223 ('Franz_Wagner',_'SF_PF',_'ORL')_F_36873076
- + 40.8037339416 ('Franz_Wagner',_'SF_PF',_'ORL')_PF_36873076
- + 38.2727220945 ('Franz_Wagner',_'SF_PF',_'ORL')_SF_36873076
- + 36.3621080404 ('Franz_Wagner',_'SF_PF',_'ORL')_UTIL_36873076
- + 25.758884043 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_F_36873532
- + 26.1739039408 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_G_36873532
- + 21.237316943 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SF_36873532
- + 20.4175831635 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SG_36873532
- + 17.2406452775 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_UTIL_36873532
- + 25.6175005843 ('Georges_Niang',_'SF_PF',_'CLE')_F_36873435
- + 20.7818135972 ('Georges_Niang',_'SF_PF',_'CLE')_PF_36873435
- + 21.1675455799 ('Georges_Niang',_'SF_PF',_'CLE')_SF_36873435
- + 25.1141083198 ('Georges_Niang',_'SF_PF',_'CLE')_UTIL_36873435
- + 51.3118824569 ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_C_36873056
- + 69.2385581623 ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_F_36873056
- + 53.73404812 ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_PF_36873056
- + 65.3390992095 ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_UTIL_36873056
- + 21.0951960978 ('Goga_Bitadze',_'C',_'ORL')_C_36873304
- + 9.02468020031 ('Goga_Bitadze',_'C',_'ORL')_UTIL_36873304
- + 3.77296337372 ('Grayson_Allen',_'SG',_'PHX')_G_36873351
- + 15.3757481687 ('Grayson_Allen',_'SG',_'PHX')_SG_36873351
- + 23.3496303892 ('Grayson_Allen',_'SG',_'PHX')_UTIL_36873351
- + 34.0398778736 ('Guerschon_Yabusele',_'PF_C',_'PHI')_C_36873275
- + 32.8841462632 ('Guerschon_Yabusele',_'PF_C',_'PHI')_F_36873275
- + 15.6255793567 ('Guerschon_Yabusele',_'PF_C',_'PHI')_PF_36873275
- + 25.4636803075 ('Guerschon_Yabusele',_'PF_C',_'PHI')_UTIL_36873275
- + 20.4850909403 ('Harrison_Barnes',_'SF_PF',_'SAS')_F_36873413
- + 23.8229233743 ('Harrison_Barnes',_'SF_PF',_'SAS')_PF_36873413
- + 22.5912156199 ('Harrison_Barnes',_'SF_PF',_'SAS')_SF_36873413
- + 18.6653769981 ('Harrison_Barnes',_'SF_PF',_'SAS')_UTIL_36873413
- + 13.2059091177 ('Isaac_Okoro',_'SG_SF',_'CLE')_F_36873516
- + 21.0241974958 ('Isaac_Okoro',_'SG_SF',_'CLE')_G_36873516
- + 14.0202313237 ('Isaac_Okoro',_'SG_SF',_'CLE')_SF_36873516
- + 18.025210112 ('Isaac_Okoro',_'SG_SF',_'CLE')_SG_36873516
- + 21.3043322488 ('Isaac_Okoro',_'SG_SF',_'CLE')_UTIL_36873516
- + 8.71273450056 ('Isaiah_Collier',_'PG',_'UTA')_G_36873862
- - 2.50844630396 ('Isaiah_Collier',_'PG',_'UTA')_PG_36873862
- + 6.06289136328 ('Isaiah_Collier',_'PG',_'UTA')_UTIL_36873862
- + 63.2304445908 ('Isaiah_Hartenstein',_'C',_'OKC')_C_36873165
- + 43.0306186257 ('Isaiah_Hartenstein',_'C',_'OKC')_UTIL_36873165
- + 22.049805472 ('Isaiah_Joe',_'SG_SF',_'OKC')_F_36873574
- + 18.4668614251 ('Isaiah_Joe',_'SG_SF',_'OKC')_G_36873574
- + 21.1011252604 ('Isaiah_Joe',_'SG_SF',_'OKC')_SF_36873574
- + 14.037718449 ('Isaiah_Joe',_'SG_SF',_'OKC')_SG_36873574
- + 9.07493662183 ('Isaiah_Joe',_'SG_SF',_'OKC')_UTIL_36873574
- + 18.0931096564 ('Isaiah_Stewart',_'C',_'DET')_C_36873476
- + 16.045853602 ('Isaiah_Stewart',_'C',_'DET')_UTIL_36873476
- + 60.1249313951 ('Ja_Morant',_'PG',_'MEM')_G_36873102
- + 47.8026493026 ('Ja_Morant',_'PG',_'MEM')_PG_36873102
- + 40.997738823 ('Ja_Morant',_'PG',_'MEM')_UTIL_36873102
- + 13.9936166661 ('Jaden_Hardy',_'PG_SG',_'DAL')_G_36873420
- + 12.672152872 ('Jaden_Hardy',_'PG_SG',_'DAL')_PG_36873420
- + 9.33757041178 ('Jaden_Hardy',_'PG_SG',_'DAL')_SG_36873420
- + 10.2688604874 ('Jaden_Hardy',_'PG_SG',_'DAL')_UTIL_36873420
- + 29.5452718558 ('Jaden_Ivey',_'PG_SG',_'DET')_G_36873139
- + 18.1589127975 ('Jaden_Ivey',_'PG_SG',_'DET')_PG_36873139
- + 52.326557864 ('Jaden_Ivey',_'PG_SG',_'DET')_SG_36873139
- + 22.8774460208 ('Jaden_Ivey',_'PG_SG',_'DET')_UTIL_36873139
- + 20.6358777164 ('Jake_LaRavia',_'SF_PF',_'MEM')_F_36873463
- + 6.86490292153 ('Jake_LaRavia',_'SF_PF',_'MEM')_PF_36873463
- + 12.3032704032 ('Jake_LaRavia',_'SF_PF',_'MEM')_SF_36873463
- + 11.8649120319 ('Jake_LaRavia',_'SF_PF',_'MEM')_UTIL_36873463
- + 43.3728521501 ('Jakob_Poeltl',_'C',_'TOR')_C_36873176
- + 45.3639242352 ('Jakob_Poeltl',_'C',_'TOR')_UTIL_36873176
- + 58.5977421444 ('Jalen_Brunson',_'PG',_'NYK')_G_36873109
- + 50.6837310079 ('Jalen_Brunson',_'PG',_'NYK')_PG_36873109
- + 21.2896702603 ('Jalen_Brunson',_'PG',_'NYK')_UTIL_36873109
- + 44.564508744 ('Jalen_Duren',_'C',_'DET')_C_36873236
- + 32.8746856517 ('Jalen_Duren',_'C',_'DET')_UTIL_36873236
- + 21.2107376592 ('Jalen_Suggs',_'PG',_'ORL')_G_36873219
- + 28.1367196883 ('Jalen_Suggs',_'PG',_'ORL')_PG_36873219
- + 30.2420029248 ('Jalen_Suggs',_'PG',_'ORL')_UTIL_36873219
- + 35.5936372081 ('Jalen_Williams',_'PF',_'OKC')_F_36873099
- + 48.2951307356 ('Jalen_Williams',_'PF',_'OKC')_PF_36873099
- + 41.0887390955 ('Jalen_Williams',_'PF',_'OKC')_UTIL_36873099
- + 16.1660554197 ('Jamal_Shead',_'PG',_'TOR')_G_36873745
- + 16.2688702039 ('Jamal_Shead',_'PG',_'TOR')_PG_36873745
- + 10.9794849521 ('Jamal_Shead',_'PG',_'TOR')_UTIL_36873745
- + 2.13501676344 ('Jamison_Battle',_'SF',_'TOR')_F_36873674
- + 9.34876450139 ('Jamison_Battle',_'SF',_'TOR')_SF_36873674
- + 16.0775844055 ('Jamison_Battle',_'SF',_'TOR')_UTIL_36873674
- + 25.2054711234 ('Jarace_Walker',_'SF_PF',_'IND')_F_36873528
- + 17.5573437067 ('Jarace_Walker',_'SF_PF',_'IND')_PF_36873528
- + 13.5591369037 ('Jarace_Walker',_'SF_PF',_'IND')_SF_36873528
- + 17.9165822396 ('Jarace_Walker',_'SF_PF',_'IND')_UTIL_36873528
- + 6.92358050502 ('Jared_Butler',_'PG',_'WAS')_G_36873891
- + 9.11886884341 ('Jared_Butler',_'PG',_'WAS')_PG_36873891
- + 5.93633492019 ('Jared_Butler',_'PG',_'WAS')_UTIL_36873891
- + 9.30610793354 ('Jared_McCain',_'PG_SG',_'PHI')_G_36873190
- + 14.5759637643 ('Jared_McCain',_'PG_SG',_'PHI')_PG_36873190
- + 21.5450120368 ('Jared_McCain',_'PG_SG',_'PHI')_SG_36873190
- + 25.5524527346 ('Jared_McCain',_'PG_SG',_'PHI')_UTIL_36873190
- + 41.3666431363 ('Jaren_Jackson_Jr.',_'PF',_'MEM')_F_36873143
- + 39.0190865206 ('Jaren_Jackson_Jr.',_'PF',_'MEM')_PF_36873143
- + 29.4755618606 ('Jaren_Jackson_Jr.',_'PF',_'MEM')_UTIL_36873143
- + 34.3236952669 ('Jarrett_Allen',_'C',_'CLE')_C_36873206
- + 38.4355439282 ('Jarrett_Allen',_'C',_'CLE')_UTIL_36873206
- + 2.98229491753 ('Jay_Huff',_'C',_'MEM')_C_36873622
- + 0.218335979222 ('Jay_Huff',_'C',_'MEM')_UTIL_36873622
- + 23.3152046445 ('Jaylen_Wells',_'SG_SF',_'MEM')_F_36873486
- + 17.3631485391 ('Jaylen_Wells',_'SG_SF',_'MEM')_G_36873486
- + 26.1301175735 ('Jaylen_Wells',_'SG_SF',_'MEM')_SF_36873486
- + 24.0166816666 ('Jaylen_Wells',_'SG_SF',_'MEM')_SG_36873486
- + 21.7032175178 ('Jaylen_Wells',_'SG_SF',_'MEM')_UTIL_36873486
- + 60.4986161026 ('Jeremy_Sochan',_'C',_'SAS')_C_36873226
- + 36.8020200627 ('Jeremy_Sochan',_'C',_'SAS')_UTIL_36873226
- + 0.608030457542 ('Jericho_Sims',_'PF_C',_'NYK')_C_36873610
- + 13.072158237 ('Jericho_Sims',_'PF_C',_'NYK')_F_36873610
- + 13.8055052529 ('Jericho_Sims',_'PF_C',_'NYK')_PF_36873610
- + 5.62816844077 ('Jericho_Sims',_'PF_C',_'NYK')_UTIL_36873610
- + 35.5094481026 ('John_Collins',_'PF_C',_'UTA')_C_36873161
- + 38.4055484494 ('John_Collins',_'PF_C',_'UTA')_F_36873161
- + 43.2701675975 ('John_Collins',_'PF_C',_'UTA')_PF_36873161
- + 3.45660008741 ('John_Collins',_'PF_C',_'UTA')_UTIL_36873161
- + 7.44874849638 ('Johnny_Juzang',_'SG_SF',_'UTA')_F_36873663
- + 9.93731947395 ('Johnny_Juzang',_'SG_SF',_'UTA')_G_36873663
- + 16.9384092597 ('Johnny_Juzang',_'SG_SF',_'UTA')_SF_36873663
- + 17.1397114955 ('Johnny_Juzang',_'SG_SF',_'UTA')_SG_36873663
- + 24.7681985103 ('Johnny_Juzang',_'SG_SF',_'UTA')_UTIL_36873663
- + 19.1980976689 ('Jonas_Valanciunas',_'C',_'WAS')_C_36873324
- + 9.77031769086 ('Jonas_Valanciunas',_'C',_'WAS')_UTIL_36873324
- + 20.8578767153 ('Jonathan_Isaac',_'PF_C',_'ORL')_C_36873496
- + 25.1651222792 ('Jonathan_Isaac',_'PF_C',_'ORL')_F_36873496
- + 26.7425641466 ('Jonathan_Isaac',_'PF_C',_'ORL')_PF_36873496
- + 4.19160081821 ('Jonathan_Isaac',_'PF_C',_'ORL')_UTIL_36873496
- + 2.31671126068 ('Jonathan_Mogbo',_'C',_'TOR')_C_36873630
- + 6.13785052809 ('Jonathan_Mogbo',_'C',_'TOR')_UTIL_36873630
- + 46.0276217715 ('Jordan_Poole',_'PG_SG',_'WAS')_G_36873181
- + 42.792631411 ('Jordan_Poole',_'PG_SG',_'WAS')_PG_36873181
- + 34.6150915263 ('Jordan_Poole',_'PG_SG',_'WAS')_SG_36873181
- + 35.8285302274 ('Jordan_Poole',_'PG_SG',_'WAS')_UTIL_36873181
- + 15.8482113228 ('Josh_Green',_'SF_PF',_'CHA')_F_36873380
- + 20.8104009571 ('Josh_Green',_'SF_PF',_'CHA')_PF_36873380
- + 19.8789776556 ('Josh_Green',_'SF_PF',_'CHA')_SF_36873380
- + 33.5327771457 ('Josh_Green',_'SF_PF',_'CHA')_UTIL_36873380
- + 33.4265559053 ('Josh_Hart',_'SF_PF',_'NYK')_F_36873197
- + 32.1984045781 ('Josh_Hart',_'SF_PF',_'NYK')_PF_36873197
- + 31.5264614624 ('Josh_Hart',_'SF_PF',_'NYK')_SF_36873197
- + 32.2901718835 ('Josh_Hart',_'SF_PF',_'NYK')_UTIL_36873197
- + 20.8062485141 ('Josh_Okogie',_'SF',_'PHX')_F_36873452
- + 9.60636972578 ('Josh_Okogie',_'SF',_'PHX')_SF_36873452
- + 14.5809075007 ('Josh_Okogie',_'SF',_'PHX')_UTIL_36873452
- + 23.1199864633 ('Julian_Champagnie',_'SF_PF',_'SAS')_F_36873326
- + 24.4676997164 ('Julian_Champagnie',_'SF_PF',_'SAS')_PF_36873326
- + 27.0969502597 ('Julian_Champagnie',_'SF_PF',_'SAS')_SF_36873326
- + 21.4533225014 ('Julian_Champagnie',_'SF_PF',_'SAS')_UTIL_36873326
- + 19.1232801114 ('KJ_Martin',_'SF_PF',_'PHI')_F_36873537
- + 11.9660355108 ('KJ_Martin',_'SF_PF',_'PHI')_PF_36873537
- - 3.75638205003 ('KJ_Martin',_'SF_PF',_'PHI')_SF_36873537
- + 17.3819314476 ('KJ_Martin',_'SF_PF',_'PHI')_UTIL_36873537
- + 31.0749269579 ('Karl#Anthony_Towns',_'C',_'NYK')_C_36873085
- + 43.2316645386 ('Karl#Anthony_Towns',_'C',_'NYK')_UTIL_36873085
- + 18.0955677751 ('Keldon_Johnson',_'SF_PF',_'SAS')_F_36873365
- + 3.5026449527 ('Keldon_Johnson',_'SF_PF',_'SAS')_PF_36873365
- - 3.48550057036 ('Keldon_Johnson',_'SF_PF',_'SAS')_SF_36873365
- + 17.6154773119 ('Keldon_Johnson',_'SF_PF',_'SAS')_UTIL_36873365
- + 16.0897156503 ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_F_36873316
- + 21.8991510538 ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_G_36873316
- + 21.0480741815 ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_SF_36873316
- + 23.9338080463 ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_SG_36873316
- + 22.088971156 ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_UTIL_36873316
- + 14.1639895168 ('Kenrich_Williams',_'PF_C',_'OKC')_C_36873684
- + 18.858379418 ('Kenrich_Williams',_'PF_C',_'OKC')_F_36873684
- - 6.20092635108 ('Kenrich_Williams',_'PF_C',_'OKC')_PF_36873684
- + 1.43247503613 ('Kenrich_Williams',_'PF_C',_'OKC')_UTIL_36873684
- + 23.3956501889 ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_G_36873432
- + 22.1191086975 ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_SG_36873432
- + 24.4100305505 ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_UTIL_36873432
- + 82.4368171399 ('Kevin_Durant',_'PF_C',_'PHX')_C_36873105
- + 87.9442183235 ('Kevin_Durant',_'PF_C',_'PHX')_F_36873105
- + 36.8062838759 ('Kevin_Durant',_'PF_C',_'PHX')_PF_36873105
- + 52.1207460016 ('Kevin_Durant',_'PF_C',_'PHX')_UTIL_36873105
- + 23.1979921782 ('Keyonte_George',_'PG',_'UTA')_G_36873252
- + 19.5421544132 ('Keyonte_George',_'PG',_'UTA')_PG_36873252
- + 32.3459880971 ('Keyonte_George',_'PG',_'UTA')_UTIL_36873252
- + 14.9226511961 ('Klay_Thompson',_'SG_SF',_'DAL')_F_36873296
- + 24.4795768403 ('Klay_Thompson',_'SG_SF',_'DAL')_G_36873296
- + 12.51724962 ('Klay_Thompson',_'SG_SF',_'DAL')_SF_36873296
- + 32.1982602379 ('Klay_Thompson',_'SG_SF',_'DAL')_SG_36873296
- + 26.8248802473 ('Klay_Thompson',_'SG_SF',_'DAL')_UTIL_36873296
- + 25.3106879375 ('Kyle_Lowry',_'PG',_'PHI')_G_36873556
- + 11.4323141838 ('Kyle_Lowry',_'PG',_'PHI')_PG_36873556
- + 10.7177973163 ('Kyle_Lowry',_'PG',_'PHI')_UTIL_36873556
- + 45.1776775263 ('Kyrie_Irving',_'PG_SG',_'DAL')_G_36873091
- + 43.464391263 ('Kyrie_Irving',_'PG_SG',_'DAL')_PG_36873091
- + 42.4479336522 ('Kyrie_Irving',_'PG_SG',_'DAL')_SG_36873091
- + 30.2258986898 ('Kyrie_Irving',_'PG_SG',_'DAL')_UTIL_36873091
- + 21.0314987943 ('Kyshawn_George',_'SF_PF',_'WAS')_F_36873448
- + 17.398162951 ('Kyshawn_George',_'SF_PF',_'WAS')_PF_36873448
- + 24.6106650551 ('Kyshawn_George',_'SF_PF',_'WAS')_SF_36873448
- + 17.0252434452 ('Kyshawn_George',_'SF_PF',_'WAS')_UTIL_36873448
- + 59.018478198 ('Lauri_Markkanen',_'SF_PF',_'UTA')_F_36873172
- + 36.5568959816 ('Lauri_Markkanen',_'SF_PF',_'UTA')_PF_36873172
- + 54.6223623362 ('Lauri_Markkanen',_'SF_PF',_'UTA')_SF_36873172
- + 29.1381028284 ('Lauri_Markkanen',_'SF_PF',_'UTA')_UTIL_36873172
- + 15.0817982764 ('Luguentz_Dort',_'SG_SF',_'OKC')_F_36873306
- + 12.0840033123 ('Luguentz_Dort',_'SG_SF',_'OKC')_G_36873306
- + 21.3515503953 ('Luguentz_Dort',_'SG_SF',_'OKC')_SF_36873306
- + 28.6978768674 ('Luguentz_Dort',_'SG_SF',_'OKC')_SG_36873306
- + 20.0385508985 ('Luguentz_Dort',_'SG_SF',_'OKC')_UTIL_36873306
- + 66.8693602077 ('Luka_Doncic',_'PG',_'DAL')_G_36873060
- + 42.2096561174 ('Luka_Doncic',_'PG',_'DAL')_PG_36873060
- + 39.7497960883 ('Luka_Doncic',_'PG',_'DAL')_UTIL_36873060
- + 7.1126640734 ('Luke_Kennard',_'SG_SF',_'MEM')_F_36873641
- + 3.40161584827 ('Luke_Kennard',_'SG_SF',_'MEM')_G_36873641
- + 6.904239103 ('Luke_Kennard',_'SG_SF',_'MEM')_SF_36873641
- + 0.0951067122471 ('Luke_Kennard',_'SG_SF',_'MEM')_SG_36873641
- + 9.13225117712 ('Luke_Kennard',_'SG_SF',_'MEM')_UTIL_36873641
- + 9.25882940268 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_G_36873262
- + 14.9863913074 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_PG_36873262
- + 0.889287139384 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_SG_36873262
- + 27.5103661891 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_UTIL_36873262
- + 20.5331662342 ('Malik_Beasley',_'SG_SF',_'DET')_F_36873255
- + 41.9693067717 ('Malik_Beasley',_'SG_SF',_'DET')_G_36873255
- + 33.0146580808 ('Malik_Beasley',_'SG_SF',_'DET')_SF_36873255
- + 36.4613465535 ('Malik_Beasley',_'SG_SF',_'DET')_SG_36873255
- + 26.062917035 ('Malik_Beasley',_'SG_SF',_'DET')_UTIL_36873255
- + 6.32529430365 ('Marcus_Sasser',_'PG',_'DET')_G_36873616
- + 9.02224678842 ('Marcus_Sasser',_'PG',_'DET')_PG_36873616
- + 5.67241512427 ('Marcus_Sasser',_'PG',_'DET')_UTIL_36873616
- + 38.3108551517 ('Marcus_Smart',_'PG_SG',_'MEM')_G_36873373
- + 29.8741291146 ('Marcus_Smart',_'PG_SG',_'MEM')_PG_36873373
- + 36.4635646759 ('Marcus_Smart',_'PG_SG',_'MEM')_SG_36873373
- + 24.3724211037 ('Marcus_Smart',_'PG_SG',_'MEM')_UTIL_36873373
- + 7.10727040355 ('Mark_Williams',_'C',_'CHA')_C_36873260
- + 21.5631924427 ('Mark_Williams',_'C',_'CHA')_UTIL_36873260
- + 19.7215164248 ('Mason_Plumlee',_'C',_'PHX')_C_36873514
- + 29.7289759566 ('Mason_Plumlee',_'C',_'PHX')_UTIL_36873514
- + 6.13472215523 ('Maxi_Kleber',_'PF_C',_'DAL')_C_36873600
- + 7.41224463851 ('Maxi_Kleber',_'PF_C',_'DAL')_F_36873600
- - 1.06366847032 ('Maxi_Kleber',_'PF_C',_'DAL')_PF_36873600
- + 1.13584994589 ('Maxi_Kleber',_'PF_C',_'DAL')_UTIL_36873600
- + 0.835552765203 ('Micah_Potter',_'PF',_'UTA')_F_36873859
- + 4.62044509989 ('Micah_Potter',_'PF',_'UTA')_PF_36873859
- + 7.87953906601 ('Micah_Potter',_'PF',_'UTA')_UTIL_36873859
- + 29.935862992 ('Mikal_Bridges',_'SG_SF',_'NYK')_F_36873241
- + 27.7108129557 ('Mikal_Bridges',_'SG_SF',_'NYK')_G_36873241
- + 30.1552962301 ('Mikal_Bridges',_'SG_SF',_'NYK')_SF_36873241
- + 44.7855424889 ('Mikal_Bridges',_'SG_SF',_'NYK')_SG_36873241
- + 38.8630965541 ('Mikal_Bridges',_'SG_SF',_'NYK')_UTIL_36873241
- + 6.71901047162 ('Miles_McBride',_'PG_SG',_'NYK')_G_36873455
- + 13.5834236695 ('Miles_McBride',_'PG_SG',_'NYK')_PG_36873455
- + 17.0111877656 ('Miles_McBride',_'PG_SG',_'NYK')_SG_36873455
- + 14.5608962922 ('Miles_McBride',_'PG_SG',_'NYK')_UTIL_36873455
- - 0.421233715842 ('Monte_Morris',_'PG',_'PHX')_G_36873681
- + 14.5588360008 ('Monte_Morris',_'PG',_'PHX')_PG_36873681
- + 11.9407312468 ('Monte_Morris',_'PG',_'PHX')_UTIL_36873681
- + 46.3005929688 ('Moritz_Wagner',_'C',_'ORL')_C_36873395
- + 32.2319127146 ('Moritz_Wagner',_'C',_'ORL')_UTIL_36873395
- + 7.18199781533 ('Moses_Brown',_'C',_'IND')_C_36873880
- + 3.82434650599 ('Moses_Brown',_'C',_'IND')_UTIL_36873880
- + 24.6198552401 ('Moussa_Diabate',_'PF_C',_'CHA')_C_36873354
- + 27.6159038405 ('Moussa_Diabate',_'PF_C',_'CHA')_F_36873354
- + 29.6295428255 ('Moussa_Diabate',_'PF_C',_'CHA')_PF_36873354
- + 17.5469691086 ('Moussa_Diabate',_'PF_C',_'CHA')_UTIL_36873354
- + 25.7844103729 ('Myles_Turner',_'C',_'IND')_C_36873201
- + 11.8386348607 ('Myles_Turner',_'C',_'IND')_UTIL_36873201
- + 7.68356683391 ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_F_36873652
- + 2.03029838554 ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_G_36873652
- + 8.5201743891 ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_SF_36873652
- + 14.378641503 ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_SG_36873652
- + 15.6964168034 ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_UTIL_36873652
- + 31.6207839919 ('OG_Anunoby',_'SF_PF',_'NYK')_F_36873222
- + 36.2872076186 ('OG_Anunoby',_'SF_PF',_'NYK')_PF_36873222
- + 34.6336162617 ('OG_Anunoby',_'SF_PF',_'NYK')_SF_36873222
- + 27.4318933645 ('OG_Anunoby',_'SF_PF',_'NYK')_UTIL_36873222
- + 27.1841003739 ('Obi_Toppin',_'PF_C',_'IND')_C_36873579
- + 17.376080653 ('Obi_Toppin',_'PF_C',_'IND')_F_36873579
- + 20.6735762898 ('Obi_Toppin',_'PF_C',_'IND')_PF_36873579
- + 8.1232643218 ('Obi_Toppin',_'PF_C',_'IND')_UTIL_36873579
- + 29.576482338 ('Ochai_Agbaji',_'SF_PF',_'TOR')_F_36873369
- + 13.0814785771 ('Ochai_Agbaji',_'SF_PF',_'TOR')_PF_36873369
- + 24.4174906323 ('Ochai_Agbaji',_'SF_PF',_'TOR')_SF_36873369
- + 30.6436637385 ('Ochai_Agbaji',_'SF_PF',_'TOR')_UTIL_36873369
- + 16.9910170867 ('Oso_Ighodaro',_'PF_C',_'PHX')_C_36873570
- + 13.2996088019 ('Oso_Ighodaro',_'PF_C',_'PHX')_F_36873570
- + 17.9317954232 ('Oso_Ighodaro',_'PF_C',_'PHX')_PF_36873570
- + 11.1258587068 ('Oso_Ighodaro',_'PF_C',_'PHX')_UTIL_36873570
- + 30.566539417 ('PJ_Washington',_'PF',_'DAL')_F_36873178
- + 38.6929386381 ('PJ_Washington',_'PF',_'DAL')_PF_36873178
- + 33.7413102477 ('PJ_Washington',_'PF',_'DAL')_UTIL_36873178
- + 52.1239007161 ('Pascal_Siakam',_'PF',_'IND')_F_36873151
- + 37.9671426565 ('Pascal_Siakam',_'PF',_'IND')_PF_36873151
- + 42.5313291445 ('Pascal_Siakam',_'PF',_'IND')_UTIL_36873151
- + 6.6936594044 ('Pat_Connaughton',_'SF_PF',_'MIL')_F_36873637
- + 1.02576271528 ('Pat_Connaughton',_'SF_PF',_'MIL')_PF_36873637
- + 2.6906931953 ('Pat_Connaughton',_'SF_PF',_'MIL')_SF_36873637
- + 5.63246848699 ('Pat_Connaughton',_'SF_PF',_'MIL')_UTIL_36873637
- + 21.9082646917 ('Paul_George',_'SF_PF',_'PHI')_F_36873154
- + 54.9629986288 ('Paul_George',_'SF_PF',_'PHI')_PF_36873154
- + 61.4286225515 ('Paul_George',_'SF_PF',_'PHI')_SF_36873154
- + 37.6957694023 ('Paul_George',_'SF_PF',_'PHI')_UTIL_36873154
- + 32.4121599612 ('Quentin_Grimes',_'SG_SF',_'DAL')_F_36873311
- - 2.81366856276 ('Quentin_Grimes',_'SG_SF',_'DAL')_G_36873311
- + 22.1925206474 ('Quentin_Grimes',_'SG_SF',_'DAL')_SF_36873311
- + 18.5298566147 ('Quentin_Grimes',_'SG_SF',_'DAL')_SG_36873311
- + 25.4994431096 ('Quentin_Grimes',_'SG_SF',_'DAL')_UTIL_36873311
- + 13.4495073105 ('Quenton_Jackson',_'SG_SF',_'IND')_F_36873551
- + 11.3097867521 ('Quenton_Jackson',_'SG_SF',_'IND')_G_36873551
- + 22.4675640612 ('Quenton_Jackson',_'SG_SF',_'IND')_SF_36873551
- + 15.0805555742 ('Quenton_Jackson',_'SG_SF',_'IND')_SG_36873551
- + 4.26174209834 ('Quenton_Jackson',_'SG_SF',_'IND')_UTIL_36873551
- + 50.0410500255 ('RJ_Barrett',_'SF_PF',_'TOR')_F_36873131
- + 47.2071726977 ('RJ_Barrett',_'SF_PF',_'TOR')_PF_36873131
- + 30.8599255929 ('RJ_Barrett',_'SF_PF',_'TOR')_SF_36873131
- + 65.7465168725 ('RJ_Barrett',_'SF_PF',_'TOR')_UTIL_36873131
- + 10.2416348105 ('Ricky_Council_IV',_'SG_SF',_'PHI')_F_36873583
- + 31.4049040946 ('Ricky_Council_IV',_'SG_SF',_'PHI')_G_36873583
- + 6.99668279121 ('Ricky_Council_IV',_'SG_SF',_'PHI')_SF_36873583
- + 19.1121045892 ('Ricky_Council_IV',_'SG_SF',_'PHI')_SG_36873583
- + 17.754817801 ('Ricky_Council_IV',_'SG_SF',_'PHI')_UTIL_36873583
- + 16.008745627 ('Ryan_Dunn',_'PF',_'PHX')_F_36873619
- + 9.01156260457 ('Ryan_Dunn',_'PF',_'PHX')_PF_36873619
- + 15.4069151672 ('Ryan_Dunn',_'PF',_'PHX')_UTIL_36873619
- + 6.3498750378 ('Sam_Merrill',_'SG',_'CLE')_G_36873624
- + 14.8266037439 ('Sam_Merrill',_'SG',_'CLE')_SG_36873624
- + 18.1776155771 ('Sam_Merrill',_'SG',_'CLE')_UTIL_36873624
- + 19.7451839934 ('Santi_Aldama',_'PF',_'MEM')_F_36873272
- + 18.0625786118 ('Santi_Aldama',_'PF',_'MEM')_PF_36873272
- + 16.5542994554 ('Santi_Aldama',_'PF',_'MEM')_UTIL_36873272
- + 47.5400456576 ('Scottie_Barnes',_'PG_SF',_'TOR')_F_36873115
- + 29.5026274985 ('Scottie_Barnes',_'PG_SF',_'TOR')_G_36873115
- + 71.3666691407 ('Scottie_Barnes',_'PG_SF',_'TOR')_PG_36873115
- + 49.9617891324 ('Scottie_Barnes',_'PG_SF',_'TOR')_SF_36873115
- + 68.8306745579 ('Scottie_Barnes',_'PG_SF',_'TOR')_UTIL_36873115
- + 44.636909568 ('Scotty_Pippen_Jr.',_'PG',_'MEM')_G_36873439
- + 25.0378892034 ('Scotty_Pippen_Jr.',_'PG',_'MEM')_PG_36873439
- + 28.2717581912 ('Scotty_Pippen_Jr.',_'PG',_'MEM')_UTIL_36873439
- + 14.0887020149 ('Seth_Curry',_'SG',_'CHA')_G_36873696
- + 12.491789139 ('Seth_Curry',_'SG',_'CHA')_SG_36873696
- + 20.6677135112 ('Seth_Curry',_'SG',_'CHA')_UTIL_36873696
- + 100.479516097 ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_G_36873065
- + 74.7395161926 ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_PG_36873065
- + 50.5565547716 ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_UTIL_36873065
- + 0.0846638287712 ('Simone_Fontecchio',_'PF',_'DET')_F_36873627
- + 10.9085513313 ('Simone_Fontecchio',_'PF',_'DET')_PF_36873627
- + 25.0423049555 ('Simone_Fontecchio',_'PF',_'DET')_UTIL_36873627
- + 3.4750904338 ('Spencer_Dinwiddie',_'PG',_'DAL')_G_36873358
- + 13.4918041234 ('Spencer_Dinwiddie',_'PG',_'DAL')_PG_36873358
- + 10.0985775112 ('Spencer_Dinwiddie',_'PG',_'DAL')_UTIL_36873358
- + 24.5090639255 ('Stephon_Castle',_'SG',_'SAS')_G_36873330
- + 45.1418582577 ('Stephon_Castle',_'SG',_'SAS')_SG_36873330
- + 22.9823980683 ('Stephon_Castle',_'SG',_'SAS')_UTIL_36873330
- + 28.0667372055 ('T.J._McConnell',_'PG',_'IND')_G_36873345
- - 1.35309092845 ('T.J._McConnell',_'PG',_'IND')_PG_36873345
- + 16.0716087385 ('T.J._McConnell',_'PG',_'IND')_UTIL_36873345
- + 4.47712752381 ('Taj_Gibson',_'C',_'CHA')_C_36873798
- + 8.2784983764 ('Taj_Gibson',_'C',_'CHA')_UTIL_36873798
- + 13.6210027789 ('Taurean_Prince',_'SF_PF',_'MIL')_F_36873507
- + 18.3999454926 ('Taurean_Prince',_'SF_PF',_'MIL')_PF_36873507
- + 16.3258697595 ('Taurean_Prince',_'SF_PF',_'MIL')_SF_36873507
- + 18.0615555011 ('Taurean_Prince',_'SF_PF',_'MIL')_UTIL_36873507
- + 12.6728651514 ('Tidjane_Salaun',_'PF',_'CHA')_F_36873563
- + 19.0713039738 ('Tidjane_Salaun',_'PF',_'CHA')_PF_36873563
- + 6.06532568322 ('Tidjane_Salaun',_'PF',_'CHA')_UTIL_36873563
- + 18.6130236651 ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_F_36873500
- + 6.26055964347 ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_G_36873500
- + 22.3252060795 ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_SF_36873500
- + 18.7715566864 ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_SG_36873500
- + 19.8619602418 ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_UTIL_36873500
- + 44.6057681633 ('Tobias_Harris',_'PF',_'DET')_F_36873228
- + 35.3956532554 ('Tobias_Harris',_'PF',_'DET')_PF_36873228
- + 12.9706207579 ('Tobias_Harris',_'PF',_'DET')_UTIL_36873228
- + 0.965861892977 ('Tristan_da_Silva',_'SF_PF',_'ORL')_F_36873604
- + 11.4245096816 ('Tristan_da_Silva',_'SF_PF',_'ORL')_PF_36873604
- + 8.77809120159 ('Tristan_da_Silva',_'SF_PF',_'ORL')_SF_36873604
- + 20.2374413569 ('Tristan_da_Silva',_'SF_PF',_'ORL')_UTIL_36873604
- + 35.1913116355 ('Tyrese_Haliburton',_'PG',_'IND')_G_36873112
- + 55.3477546618 ('Tyrese_Haliburton',_'PG',_'IND')_PG_36873112
- + 35.158673037 ('Tyrese_Haliburton',_'PG',_'IND')_UTIL_36873112
- + 49.654735448 ('Tyrese_Maxey',_'PG',_'PHI')_G_36873120
- + 52.6163395297 ('Tyrese_Maxey',_'PG',_'PHI')_PG_36873120
- + 42.8261804208 ('Tyrese_Maxey',_'PG',_'PHI')_UTIL_36873120
- + 21.2754725424 ('Tyus_Jones',_'PG',_'PHX')_G_36873266
- + 5.9919246035 ('Tyus_Jones',_'PG',_'PHX')_PG_36873266
- + 5.99471269523 ('Tyus_Jones',_'PG',_'PHX')_UTIL_36873266
- + 25.7770786732 ('Vasilije_Micic',_'PG',_'CHA')_G_36873401
- + 23.23069643 ('Vasilije_Micic',_'PG',_'CHA')_PG_36873401
- + 30.4339168261 ('Vasilije_Micic',_'PG',_'CHA')_UTIL_36873401
- + 50.5767885595 ('Victor_Wembanyama',_'C',_'SAS')_C_36873063
- + 68.4999485506 ('Victor_Wembanyama',_'C',_'SAS')_UTIL_36873063
- + 27.5709755654 ('Walker_Kessler',_'C',_'UTA')_C_36873217
- + 35.5071110045 ('Walker_Kessler',_'C',_'UTA')_UTIL_36873217
- + 25.8988930107 ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_C_36873336
- + 15.8479587768 ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_F_36873336
- + 17.4708442286 ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_PF_36873336
- + 13.5215333974 ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_UTIL_36873336
- + 5.93744304412 ('Zach_Collins',_'C',_'SAS')_C_36873446
- + 10.4676062123 ('Zach_Collins',_'C',_'SAS')_UTIL_36873446
+Objective: 16.6442767977 ("D'Angelo_Russell",_'PG',_'LAL')_G_36791258
+ + 16.3373709459 ("D'Angelo_Russell",_'PG',_'LAL')_PG_36791258
+ + 12.6418954289 ("D'Angelo_Russell",_'PG',_'LAL')_UTIL_36791258
+ + 23.9567795377 ("Royce_O'Neale",_'SF_PF',_'PHX')_F_36791239
+ + 26.0728481273 ("Royce_O'Neale",_'SF_PF',_'PHX')_PF_36791239
+ + 18.5883147873 ("Royce_O'Neale",_'SF_PF',_'PHX')_SF_36791239
+ + 19.9211377361 ("Royce_O'Neale",_'SF_PF',_'PHX')_UTIL_36791239
+ + 15.2834437478 ('AJ_Green',_'PG_SG',_'MIL')_G_36791297
+ + 25.0806084835 ('AJ_Green',_'PG_SG',_'MIL')_PG_36791297
+ + 30.4531425895 ('AJ_Green',_'PG_SG',_'MIL')_SG_36791297
+ + 12.5678763173 ('AJ_Green',_'PG_SG',_'MIL')_UTIL_36791297
+ + 2.86993129734 ('Aaron_Holiday',_'PG',_'HOU')_G_36791537
+ + 11.6220222482 ('Aaron_Holiday',_'PG',_'HOU')_PG_36791537
+ + 2.21839319215 ('Aaron_Holiday',_'PG',_'HOU')_UTIL_36791537
+ + 19.9401274346 ('Alec_Burks',_'PG_SG',_'MIA')_G_36791345
+ + 19.2338963422 ('Alec_Burks',_'PG_SG',_'MIA')_PG_36791345
+ + 18.6858628014 ('Alec_Burks',_'PG_SG',_'MIA')_SG_36791345
+ + 5.27017597384 ('Alec_Burks',_'PG_SG',_'MIA')_UTIL_36791345
+ + 57.7699263087 ('Alexandre_Sarr',_'PF_C',_'WAS')_C_36791220
+ + 30.8158041458 ('Alexandre_Sarr',_'PF_C',_'WAS')_F_36791220
+ + 23.0020099902 ('Alexandre_Sarr',_'PF_C',_'WAS')_PF_36791220
+ + 50.5581831159 ('Alexandre_Sarr',_'PF_C',_'WAS')_UTIL_36791220
+ + 25.2236555662 ('Alperen_Sengun',_'C',_'HOU')_C_36791065
+ + 34.7954527529 ('Alperen_Sengun',_'C',_'HOU')_UTIL_36791065
+ + 27.4899748738 ('Amen_Thompson',_'SG_SF',_'HOU')_F_36791207
+ + 28.3573964638 ('Amen_Thompson',_'SG_SF',_'HOU')_G_36791207
+ + 14.4278421412 ('Amen_Thompson',_'SG_SF',_'HOU')_SF_36791207
+ + 10.1534918934 ('Amen_Thompson',_'SG_SF',_'HOU')_SG_36791207
+ + 13.3796404676 ('Amen_Thompson',_'SG_SF',_'HOU')_UTIL_36791207
+ + 19.6490732449 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_F_36791323
+ + 20.3337417079 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_G_36791323
+ + 12.3299264213 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SF_36791323
+ + 25.4112510601 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SG_36791323
+ + 16.4044535817 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_UTIL_36791323
+ + 23.1356775784 ('Anthony_Davis',_'C',_'LAL')_C_36791048
+ + 74.2386012852 ('Anthony_Davis',_'C',_'LAL')_UTIL_36791048
+ + 48.0806072656 ('Anthony_Edwards',_'PG_SG',_'MIN')_G_36791054
+ + 48.2332207157 ('Anthony_Edwards',_'PG_SG',_'MIN')_PG_36791054
+ + 42.8022296687 ('Anthony_Edwards',_'PG_SG',_'MIN')_SG_36791054
+ + 61.476315676 ('Anthony_Edwards',_'PG_SG',_'MIN')_UTIL_36791054
+ + 28.1700255911 ('Austin_Reaves',_'PG_SG',_'LAL')_G_36791116
+ + 44.1341180934 ('Austin_Reaves',_'PG_SG',_'LAL')_PG_36791116
+ + 34.6003510051 ('Austin_Reaves',_'PG_SG',_'LAL')_SG_36791116
+ + 45.6365572013 ('Austin_Reaves',_'PG_SG',_'LAL')_UTIL_36791116
+ + 30.9537848289 ('Ayo_Dosunmu',_'PG_SG',_'CHI')_G_36791173
+ + 24.351696076 ('Ayo_Dosunmu',_'PG_SG',_'CHI')_PG_36791173
+ + 29.8347965001 ('Ayo_Dosunmu',_'PG_SG',_'CHI')_SG_36791173
+ + 29.08431618 ('Ayo_Dosunmu',_'PG_SG',_'CHI')_UTIL_36791173
+ + 21.4798436722 ('Bam_Adebayo',_'C',_'MIA')_C_36791067
+ + 27.9937779183 ('Bam_Adebayo',_'C',_'MIA')_UTIL_36791067
+ + 22.3137314943 ('Bilal_Coulibaly',_'SF',_'WAS')_F_36791159
+ + 20.4094920046 ('Bilal_Coulibaly',_'SF',_'WAS')_SF_36791159
+ + 28.3954666307 ('Bilal_Coulibaly',_'SF',_'WAS')_UTIL_36791159
+ + 1.12447349319 ('Blake_Wesley',_'PG',_'SAS')_G_36791620
+ + 4.9999598856 ('Blake_Wesley',_'PG',_'SAS')_PG_36791620
+ + 4.39859694336 ('Blake_Wesley',_'PG',_'SAS')_UTIL_36791620
+ + 56.0045921402 ('Bobby_Portis',_'PF_C',_'MIL')_C_36791169
+ + 40.0554344929 ('Bobby_Portis',_'PF_C',_'MIL')_F_36791169
+ + 57.8035690421 ('Bobby_Portis',_'PF_C',_'MIL')_PF_36791169
+ + 34.9368942544 ('Bobby_Portis',_'PF_C',_'MIL')_UTIL_36791169
+ + 24.5638162007 ('Bradley_Beal',_'SG_SF',_'PHX')_F_36791092
+ + 43.0105626446 ('Bradley_Beal',_'SG_SF',_'PHX')_G_36791092
+ + 27.0090792753 ('Bradley_Beal',_'SG_SF',_'PHX')_SF_36791092
+ + 31.05684132 ('Bradley_Beal',_'SG_SF',_'PHX')_SG_36791092
+ + 32.5348179301 ('Bradley_Beal',_'SG_SF',_'PHX')_UTIL_36791092
+ + 13.2203411724 ('Brice_Sensabaugh',_'SF_PF',_'UTA')_F_36791447
+ + 10.2381003857 ('Brice_Sensabaugh',_'SF_PF',_'UTA')_PF_36791447
+ + 14.3523153132 ('Brice_Sensabaugh',_'SF_PF',_'UTA')_SF_36791447
+ + 15.6810664838 ('Brice_Sensabaugh',_'SF_PF',_'UTA')_UTIL_36791447
+ + 25.4559042899 ('Brook_Lopez',_'C',_'MIL')_C_36791144
+ + 14.0152187372 ('Brook_Lopez',_'C',_'MIL')_UTIL_36791144
+ + 13.0575598397 ('Cam_Reddish',_'SG',_'LAL')_G_36791349
+ + 10.5069360796 ('Cam_Reddish',_'SG',_'LAL')_SG_36791349
+ + 10.6830070215 ('Cam_Reddish',_'SG',_'LAL')_UTIL_36791349
+ + 29.5792965767 ('Carlton_Carrington',_'PG_SG',_'WAS')_G_36791212
+ + 30.6354865247 ('Carlton_Carrington',_'PG_SG',_'WAS')_PG_36791212
+ + 26.8085820166 ('Carlton_Carrington',_'PG_SG',_'WAS')_SG_36791212
+ + 31.0206137358 ('Carlton_Carrington',_'PG_SG',_'WAS')_UTIL_36791212
+ + 30.5325875275 ('Chris_Paul',_'PG',_'SAS')_G_36791133
+ + 25.4858199161 ('Chris_Paul',_'PG',_'SAS')_PG_36791133
+ + 34.6565863959 ('Chris_Paul',_'PG',_'SAS')_UTIL_36791133
+ + 6.60095765979 ('Christian_Koloko',_'C',_'LAL')_C_36791393
+ + 8.41392930708 ('Christian_Koloko',_'C',_'LAL')_UTIL_36791393
+ + 46.732904344 ('Coby_White',_'PG_SG',_'CHI')_G_36791108
+ + 31.3925924502 ('Coby_White',_'PG_SG',_'CHI')_PG_36791108
+ + 35.7657639802 ('Coby_White',_'PG_SG',_'CHI')_SG_36791108
+ + 24.7939795831 ('Coby_White',_'PG_SG',_'CHI')_UTIL_36791108
+ + 6.28506693383 ('Cody_Williams',_'SF',_'UTA')_F_36791411
+ + 16.5340773322 ('Cody_Williams',_'SF',_'UTA')_SF_36791411
+ + 5.4978766631 ('Cody_Williams',_'SF',_'UTA')_UTIL_36791411
+ + 40.9424918403 ('Collin_Sexton',_'PG_SG',_'UTA')_G_36791150
+ + 30.3565974926 ('Collin_Sexton',_'PG_SG',_'UTA')_PG_36791150
+ + 37.5513269152 ('Collin_Sexton',_'PG_SG',_'UTA')_SG_36791150
+ + 36.8461693354 ('Collin_Sexton',_'PG_SG',_'UTA')_UTIL_36791150
+ + 28.8268378232 ('Corey_Kispert',_'SG_SF',_'WAS')_F_36791268
+ + 33.7463821772 ('Corey_Kispert',_'SG_SF',_'WAS')_G_36791268
+ + 34.4293049603 ('Corey_Kispert',_'SG_SF',_'WAS')_SF_36791268
+ + 19.9456149887 ('Corey_Kispert',_'SG_SF',_'WAS')_SG_36791268
+ + 29.2955865021 ('Corey_Kispert',_'SG_SF',_'WAS')_UTIL_36791268
+ + 9.28330717703 ('Daishen_Nix',_'PG',_'MIN')_G_36791458
+ + 10.2403932913 ('Daishen_Nix',_'PG',_'MIN')_PG_36791458
+ + 10.9795951522 ('Daishen_Nix',_'PG',_'MIN')_UTIL_36791458
+ + 37.1665340171 ('Dalen_Terry',_'SG_SF',_'CHI')_F_36791383
+ + 11.9263657632 ('Dalen_Terry',_'SG_SF',_'CHI')_G_36791383
+ + 17.6797591631 ('Dalen_Terry',_'SG_SF',_'CHI')_SF_36791383
+ + 19.7927509529 ('Dalen_Terry',_'SG_SF',_'CHI')_SG_36791383
+ + 24.1936476015 ('Dalen_Terry',_'SG_SF',_'CHI')_UTIL_36791383
+ + 24.8196068478 ('Dalton_Knecht',_'SG_SF',_'LAL')_F_36791199
+ + 30.7182492029 ('Dalton_Knecht',_'SG_SF',_'LAL')_G_36791199
+ + 18.9897452198 ('Dalton_Knecht',_'SG_SF',_'LAL')_SF_36791199
+ + 18.0877240641 ('Dalton_Knecht',_'SG_SF',_'LAL')_SG_36791199
+ + 16.1473028854 ('Dalton_Knecht',_'SG_SF',_'LAL')_UTIL_36791199
+ + 42.8984252674 ('Damian_Lillard',_'PG',_'MIL')_G_36791062
+ + 71.3129727383 ('Damian_Lillard',_'PG',_'MIL')_PG_36791062
+ + 50.0379509344 ('Damian_Lillard',_'PG',_'MIL')_UTIL_36791062
+ + 12.6558733418 ('Delon_Wright',_'PG',_'MIL')_G_36791358
+ + 8.98565484791 ('Delon_Wright',_'PG',_'MIL')_PG_36791358
+ + 11.5908199038 ('Delon_Wright',_'PG',_'MIL')_UTIL_36791358
+ + 39.2581934408 ('Devin_Booker',_'PG_SG',_'PHX')_G_36791058
+ + 52.0018692702 ('Devin_Booker',_'PG_SG',_'PHX')_PG_36791058
+ + 57.738415351 ('Devin_Booker',_'PG_SG',_'PHX')_SG_36791058
+ + 62.8174930487 ('Devin_Booker',_'PG_SG',_'PHX')_UTIL_36791058
+ + 31.2189234297 ('Dillon_Brooks',_'SF',_'HOU')_F_36791290
+ + 14.2338384308 ('Dillon_Brooks',_'SF',_'HOU')_SF_36791290
+ + 12.3089018088 ('Dillon_Brooks',_'SF',_'HOU')_UTIL_36791290
+ + 28.5129204501 ('Donte_DiVincenzo',_'PG_SG',_'MIN')_G_36791189
+ + 18.1823581626 ('Donte_DiVincenzo',_'PG_SG',_'MIN')_PG_36791189
+ + 33.9136763797 ('Donte_DiVincenzo',_'PG_SG',_'MIN')_SG_36791189
+ + 15.0757096673 ('Donte_DiVincenzo',_'PG_SG',_'MIN')_UTIL_36791189
+ + 20.0628164962 ('Drew_Eubanks',_'C',_'UTA')_C_36791361
+ + 15.8027874548 ('Drew_Eubanks',_'C',_'UTA')_UTIL_36791361
+ + 18.0243619745 ('Duncan_Robinson',_'SG',_'MIA')_G_36791265
+ + 16.2081946892 ('Duncan_Robinson',_'SG',_'MIA')_SG_36791265
+ + 26.5274365256 ('Duncan_Robinson',_'SG',_'MIA')_UTIL_36791265
+ + 43.0497820294 ('Fred_VanVleet',_'PG',_'HOU')_G_36791105
+ + 15.4898419583 ('Fred_VanVleet',_'PG',_'HOU')_PG_36791105
+ + 21.9907432685 ('Fred_VanVleet',_'PG',_'HOU')_UTIL_36791105
+ + 8.9783984372 ('Gabe_Vincent',_'PG_SG',_'LAL')_G_36791564
+ + 1.91023576213 ('Gabe_Vincent',_'PG_SG',_'LAL')_PG_36791564
+ + 10.0270979477 ('Gabe_Vincent',_'PG_SG',_'LAL')_SG_36791564
+ + 6.71819641073 ('Gabe_Vincent',_'PG_SG',_'LAL')_UTIL_36791564
+ + 30.5228664673 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_F_36791306
+ + 18.1602322106 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_G_36791306
+ + 32.3756780644 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SF_36791306
+ + 15.8755072382 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SG_36791306
+ + 27.7378156083 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_UTIL_36791306
+ + 26.7578782114 ('Grayson_Allen',_'SG',_'PHX')_G_36791301
+ + 26.1600804955 ('Grayson_Allen',_'SG',_'PHX')_SG_36791301
+ + 12.3654686529 ('Grayson_Allen',_'SG',_'PHX')_UTIL_36791301
+ + 16.6384478389 ('Harrison_Barnes',_'SF_PF',_'SAS')_F_36791254
+ + 25.0746781612 ('Harrison_Barnes',_'SF_PF',_'SAS')_PF_36791254
+ + 23.5893455526 ('Harrison_Barnes',_'SF_PF',_'SAS')_SF_36791254
+ + 25.0503629508 ('Harrison_Barnes',_'SF_PF',_'SAS')_UTIL_36791254
+ + 14.8240373387 ('Haywood_Highsmith',_'SF_PF',_'MIA')_F_36791277
+ + 21.7142889301 ('Haywood_Highsmith',_'SF_PF',_'MIA')_PF_36791277
+ + 17.5198914731 ('Haywood_Highsmith',_'SF_PF',_'MIA')_SF_36791277
+ + 16.7108420622 ('Haywood_Highsmith',_'SF_PF',_'MIA')_UTIL_36791277
+ + 25.1987255331 ('Isaiah_Collier',_'PG',_'UTA')_G_36791363
+ + 24.3627541818 ('Isaiah_Collier',_'PG',_'UTA')_PG_36791363
+ + 9.85598770921 ('Isaiah_Collier',_'PG',_'UTA')_UTIL_36791363
+ + 32.8895589983 ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_C_36791261
+ + 29.0217335464 ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_F_36791261
+ + 21.6465072847 ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_PF_36791261
+ + 28.0407189027 ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_UTIL_36791261
+ + 22.3567877887 ('Jaden_McDaniels',_'SF',_'MIN')_F_36791204
+ + 15.5137391706 ('Jaden_McDaniels',_'SF',_'MIN')_SF_36791204
+ + 12.6038160881 ('Jaden_McDaniels',_'SF',_'MIN')_UTIL_36791204
+ + 8.27173584943 ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_F_36791224
+ + 20.2545171683 ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_PF_36791224
+ + 13.002161583 ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_SF_36791224
+ + 20.4402246595 ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_UTIL_36791224
+ + 4.16834170041 ('Jalen_Green',_'SG',_'HOU')_G_36791130
+ + 35.0159629175 ('Jalen_Green',_'SG',_'HOU')_SG_36791130
+ + 35.5888766042 ('Jalen_Green',_'SG',_'HOU')_UTIL_36791130
+ + 29.9825579783 ('Jalen_Smith',_'C',_'CHI')_C_36791343
+ + 18.320978787 ('Jalen_Smith',_'C',_'CHI')_UTIL_36791343
+ + 35.4977676254 ('Jimmy_Butler',_'SF_PF',_'MIA')_F_36791088
+ + 27.4099965763 ('Jimmy_Butler',_'SF_PF',_'MIA')_PF_36791088
+ + 34.2989477979 ('Jimmy_Butler',_'SF_PF',_'MIA')_SF_36791088
+ + 49.0201673249 ('Jimmy_Butler',_'SF_PF',_'MIA')_UTIL_36791088
+ + 7.67171378599 ('Jock_Landale',_'C',_'HOU')_C_36791418
+ + 11.742118239 ('Jock_Landale',_'C',_'HOU')_UTIL_36791418
+ + 7.37288181782 ('Joe_Ingles',_'PF',_'MIN')_F_36791444
+ + 10.6693817771 ('Joe_Ingles',_'PF',_'MIN')_PF_36791444
+ + 5.63165527332 ('Joe_Ingles',_'PF',_'MIN')_UTIL_36791444
+ + 43.1260850368 ('John_Collins',_'PF_C',_'UTA')_C_36791101
+ + 38.9303468596 ('John_Collins',_'PF_C',_'UTA')_F_36791101
+ + 62.5053469105 ('John_Collins',_'PF_C',_'UTA')_PF_36791101
+ + 28.8633282471 ('John_Collins',_'PF_C',_'UTA')_UTIL_36791101
+ + 10.1257593852 ('Johnny_Juzang',_'SG_SF',_'UTA')_F_36791398
+ + 19.6149339279 ('Johnny_Juzang',_'SG_SF',_'UTA')_G_36791398
+ + 16.020130663 ('Johnny_Juzang',_'SG_SF',_'UTA')_SF_36791398
+ + 25.0332864686 ('Johnny_Juzang',_'SG_SF',_'UTA')_SG_36791398
+ + 25.881632234 ('Johnny_Juzang',_'SG_SF',_'UTA')_UTIL_36791398
+ + 26.0144260184 ('Jonas_Valanciunas',_'C',_'WAS')_C_36791237
+ + 3.55439042236 ('Jonas_Valanciunas',_'C',_'WAS')_UTIL_36791237
+ + 36.3680550149 ('Josh_Giddey',_'PG',_'CHI')_G_36791127
+ + 18.341914048 ('Josh_Giddey',_'PG',_'CHI')_PG_36791127
+ + 9.72085070951 ('Josh_Giddey',_'PG',_'CHI')_UTIL_36791127
+ + 16.4376682712 ('Josh_Okogie',_'SF',_'PHX')_F_36791246
+ + 4.34012421 ('Josh_Okogie',_'SF',_'PHX')_SF_36791246
+ + 22.9780750889 ('Josh_Okogie',_'SF',_'PHX')_UTIL_36791246
+ + 12.4620657049 ('Josh_Richardson',_'PG_SG',_'MIA')_G_36791376
+ + 2.14995431117 ('Josh_Richardson',_'PG_SG',_'MIA')_PG_36791376
+ + 3.94099933597 ('Josh_Richardson',_'PG_SG',_'MIA')_SG_36791376
+ + 3.40720154743 ('Josh_Richardson',_'PG_SG',_'MIA')_UTIL_36791376
+ + 15.7985505943 ('Julian_Champagnie',_'SG_SF',_'SAS')_F_36791228
+ + 43.8052186916 ('Julian_Champagnie',_'SG_SF',_'SAS')_G_36791228
+ + 22.5478189718 ('Julian_Champagnie',_'SG_SF',_'SAS')_SF_36791228
+ + 25.3527960045 ('Julian_Champagnie',_'SG_SF',_'SAS')_SG_36791228
+ + 34.6391687501 ('Julian_Champagnie',_'SG_SF',_'SAS')_UTIL_36791228
+ + 36.4633199398 ('Julius_Randle',_'PF_C',_'MIN')_C_36791075
+ + 39.2992240231 ('Julius_Randle',_'PF_C',_'MIN')_F_36791075
+ + 30.9826837587 ('Julius_Randle',_'PF_C',_'MIN')_PF_36791075
+ + 59.7845771906 ('Julius_Randle',_'PF_C',_'MIN')_UTIL_36791075
+ + 25.531105417 ('Jusuf_Nurkic',_'C',_'PHX')_C_36791139
+ + 19.8636741237 ('Jusuf_Nurkic',_'C',_'PHX')_UTIL_36791139
+ + 21.1116298355 ('Keldon_Johnson',_'SF_PF',_'SAS')_F_36791180
+ + 26.7231556113 ('Keldon_Johnson',_'SF_PF',_'SAS')_PF_36791180
+ + 29.3234982273 ('Keldon_Johnson',_'SF_PF',_'SAS')_SF_36791180
+ + 23.8536259651 ('Keldon_Johnson',_'SF_PF',_'SAS')_UTIL_36791180
+ + 21.3231566967 ('Kevin_Love',_'C',_'MIA')_C_36791315
+ + 19.0979277506 ('Kevin_Love',_'C',_'MIA')_UTIL_36791315
+ + 35.9344737549 ('Keyonte_George',_'PG',_'UTA')_G_36791166
+ + 16.0786133135 ('Keyonte_George',_'PG',_'UTA')_PG_36791166
+ + 26.2177353152 ('Keyonte_George',_'PG',_'UTA')_UTIL_36791166
+ + 40.6546227176 ('Kyle_Kuzma',_'PF',_'WAS')_F_36791136
+ + 17.8517249182 ('Kyle_Kuzma',_'PF',_'WAS')_PF_36791136
+ + 55.4921335552 ('Kyle_Kuzma',_'PF',_'WAS')_UTIL_36791136
+ + 24.6149470179 ('Kyshawn_George',_'SF_PF',_'WAS')_F_36791286
+ + 20.7959956721 ('Kyshawn_George',_'SF_PF',_'WAS')_PF_36791286
+ + 9.79954176702 ('Kyshawn_George',_'SF_PF',_'WAS')_SF_36791286
+ + 6.23181963635 ('Kyshawn_George',_'SF_PF',_'WAS')_UTIL_36791286
+ + 17.4793931004 ('Lauri_Markkanen',_'SF_PF',_'UTA')_F_36791097
+ + 34.7173812146 ('Lauri_Markkanen',_'SF_PF',_'UTA')_PF_36791097
+ + 49.8458969855 ('Lauri_Markkanen',_'SF_PF',_'UTA')_SF_36791097
+ + 42.4757069874 ('Lauri_Markkanen',_'SF_PF',_'UTA')_UTIL_36791097
+ + 88.0121924769 ('LeBron_James',_'PF_C',_'LAL')_C_36791050
+ + 47.7562356899 ('LeBron_James',_'PF_C',_'LAL')_F_36791050
+ + 32.4487344856 ('LeBron_James',_'PF_C',_'LAL')_PF_36791050
+ + 60.931911931 ('LeBron_James',_'PF_C',_'LAL')_UTIL_36791050
+ + 14.9544998261 ('Malaki_Branham',_'SG_SF',_'SAS')_F_36791451
+ + 8.788083116 ('Malaki_Branham',_'SG_SF',_'SAS')_G_36791451
+ + 14.9263455071 ('Malaki_Branham',_'SG_SF',_'SAS')_SF_36791451
+ + 17.2348365844 ('Malaki_Branham',_'SG_SF',_'SAS')_SG_36791451
+ + 11.8465002161 ('Malaki_Branham',_'SG_SF',_'SAS')_UTIL_36791451
+ + 35.1450390538 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_G_36791162
+ + 34.1626317172 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_PG_36791162
+ + 29.7113148658 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_SG_36791162
+ + 30.8575061487 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_UTIL_36791162
+ - 4.00234348119 ('Marvin_Bagley_III',_'C',_'WAS')_C_36791510
+ + 8.0371957502 ('Marvin_Bagley_III',_'C',_'WAS')_UTIL_36791510
+ + 20.4539226127 ('Mason_Plumlee',_'C',_'PHX')_C_36791311
+ - 0.238300454451 ('Mason_Plumlee',_'C',_'PHX')_UTIL_36791311
+ + 16.1727628821 ('Matas_Buzelis',_'SF_PF',_'CHI')_F_36791317
+ + 25.8117789281 ('Matas_Buzelis',_'SF_PF',_'CHI')_PF_36791317
+ + 18.9437175711 ('Matas_Buzelis',_'SF_PF',_'CHI')_SF_36791317
+ + 16.2752571811 ('Matas_Buzelis',_'SF_PF',_'CHI')_UTIL_36791317
+ + 6.10101536155 ('Max_Christie',_'SF',_'LAL')_F_36791370
+ + 6.9189122408 ('Max_Christie',_'SF',_'LAL')_SF_36791370
+ + 7.92906641427 ('Max_Christie',_'SF',_'LAL')_UTIL_36791370
+ + 12.3277845829 ('Monte_Morris',_'PG',_'PHX')_G_36791388
+ + 8.0320772426 ('Monte_Morris',_'PG',_'PHX')_PG_36791388
+ + 3.07395664295 ('Monte_Morris',_'PG',_'PHX')_UTIL_36791388
+ + 27.1485884802 ('Naz_Reid',_'PF_C',_'MIN')_C_36791216
+ + 31.1815329953 ('Naz_Reid',_'PF_C',_'MIN')_F_36791216
+ + 10.1014438459 ('Naz_Reid',_'PF_C',_'MIN')_PF_36791216
+ + 58.347382517 ('Naz_Reid',_'PF_C',_'MIN')_UTIL_36791216
+ + 27.9221629971 ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_F_36791281
+ + 29.1203484134 ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_G_36791281
+ + 28.8605233034 ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_SF_36791281
+ + 35.0288722329 ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_SG_36791281
+ + 14.919632616 ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_UTIL_36791281
+ + 13.4480282766 ('Nikola_Jovic',_'PF',_'MIA')_F_36791352
+ + 22.8024486167 ('Nikola_Jovic',_'PF',_'MIA')_PF_36791352
+ + 19.095515433 ('Nikola_Jovic',_'PF',_'MIA')_UTIL_36791352
+ + 30.4532836656 ('Nikola_Vucevic',_'C',_'CHI')_C_36791073
+ + 43.6366746959 ('Nikola_Vucevic',_'C',_'CHI')_UTIL_36791073
+ + 16.7472442664 ('Oso_Ighodaro',_'PF_C',_'PHX')_C_36791334
+ + 12.0982447985 ('Oso_Ighodaro',_'PF_C',_'PHX')_F_36791334
+ + 14.7942548637 ('Oso_Ighodaro',_'PF_C',_'PHX')_PF_36791334
+ + 22.0005142248 ('Oso_Ighodaro',_'PF_C',_'PHX')_UTIL_36791334
+ + 15.2465047732 ('Pat_Connaughton',_'SF_PF',_'MIL')_F_36791366
+ + 25.5974383597 ('Pat_Connaughton',_'SF_PF',_'MIL')_PF_36791366
+ + 15.8709777166 ('Pat_Connaughton',_'SF_PF',_'MIL')_SF_36791366
+ + 11.6434892626 ('Pat_Connaughton',_'SF_PF',_'MIL')_UTIL_36791366
+ + 4.10926893838 ('Reed_Sheppard',_'PG_SG',_'HOU')_G_36791414
+ + 9.59089391185 ('Reed_Sheppard',_'PG_SG',_'HOU')_PG_36791414
+ + 15.0181446064 ('Reed_Sheppard',_'PG_SG',_'HOU')_SG_36791414
+ + 4.43279721819 ('Reed_Sheppard',_'PG_SG',_'HOU')_UTIL_36791414
+ + 19.0298908458 ('Rudy_Gobert',_'C',_'MIN')_C_36791120
+ + 26.394911429 ('Rudy_Gobert',_'C',_'MIN')_UTIL_36791120
+ + 19.7951221853 ('Rui_Hachimura',_'SF_PF',_'LAL')_F_36791233
+ + 15.3178176322 ('Rui_Hachimura',_'SF_PF',_'LAL')_PF_36791233
+ + 24.5948066543 ('Rui_Hachimura',_'SF_PF',_'LAL')_SF_36791233
+ + 21.4184546652 ('Rui_Hachimura',_'SF_PF',_'LAL')_UTIL_36791233
+ + 9.50146426348 ('Ryan_Dunn',_'PF',_'PHX')_F_36791355
+ + 11.3732879715 ('Ryan_Dunn',_'PF',_'PHX')_PF_36791355
+ + 5.85014793638 ('Ryan_Dunn',_'PF',_'PHX')_UTIL_36791355
+ + 15.1798845739 ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_C_36791432
+ + 8.87694411188 ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_F_36791432
+ + 16.586760644 ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_PF_36791432
+ + 20.9465608395 ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_UTIL_36791432
+ + 27.4630086102 ('Stephon_Castle',_'SG',_'SAS')_G_36791196
+ + 22.4641096008 ('Stephon_Castle',_'SG',_'SAS')_SG_36791196
+ + 24.8364645013 ('Stephon_Castle',_'SG',_'SAS')_UTIL_36791196
+ + 29.2066736734 ('Tari_Eason',_'SF_PF',_'HOU')_F_36791146
+ + 35.0338529898 ('Tari_Eason',_'SF_PF',_'HOU')_PF_36791146
+ + 34.5068570549 ('Tari_Eason',_'SF_PF',_'HOU')_SF_36791146
+ + 4.29805005739 ('Tari_Eason',_'SF_PF',_'HOU')_UTIL_36791146
+ + 23.3144716709 ('Taurean_Prince',_'SF_PF',_'MIL')_F_36791293
+ + 32.3848775788 ('Taurean_Prince',_'SF_PF',_'MIL')_PF_36791293
+ + 29.6544507923 ('Taurean_Prince',_'SF_PF',_'MIL')_SF_36791293
+ + 21.037306679 ('Taurean_Prince',_'SF_PF',_'MIL')_UTIL_36791293
+ - 1.64475053683 ('Torrey_Craig',_'PF',_'CHI')_F_36791331
+ + 1.95919610069 ('Torrey_Craig',_'PF',_'CHI')_PF_36791331
+ + 18.3607494992 ('Torrey_Craig',_'PF',_'CHI')_UTIL_36791331
+ + 16.9160762704 ('Tre_Jones',_'PG',_'SAS')_G_36791373
+ + 8.83046483931 ('Tre_Jones',_'PG',_'SAS')_PG_36791373
+ + 9.14235222253 ('Tre_Jones',_'PG',_'SAS')_UTIL_36791373
+ + 31.8941789741 ('Tyler_Herro',_'PG_SG',_'MIA')_G_36791079
+ + 34.9931095936 ('Tyler_Herro',_'PG_SG',_'MIA')_PG_36791079
+ + 17.7464589638 ('Tyler_Herro',_'PG_SG',_'MIA')_SG_36791079
+ + 40.3781992713 ('Tyler_Herro',_'PG_SG',_'MIA')_UTIL_36791079
+ + 28.315569621 ('Tyus_Jones',_'PG',_'PHX')_G_36791156
+ + 28.6474565729 ('Tyus_Jones',_'PG',_'PHX')_PG_36791156
+ + 25.5748955704 ('Tyus_Jones',_'PG',_'PHX')_UTIL_36791156
+ + 58.2844987597 ('Victor_Wembanyama',_'C',_'SAS')_C_36791046
+ + 34.4851818434 ('Victor_Wembanyama',_'C',_'SAS')_UTIL_36791046
+ + 26.3926973049 ('Walker_Kessler',_'C',_'UTA')_C_36791154
+ + 32.1322535064 ('Walker_Kessler',_'C',_'UTA')_UTIL_36791154
+ + 18.6836327544 ('Zach_Collins',_'C',_'SAS')_C_36791187
+ + 23.0428723032 ('Zach_Collins',_'C',_'SAS')_UTIL_36791187
+ + 26.9854260938 ('Zach_LaVine',_'SG_SF',_'CHI')_F_36791083
+ + 46.0770264442 ('Zach_LaVine',_'SG_SF',_'CHI')_G_36791083
+ + 55.3328391055 ('Zach_LaVine',_'SG_SF',_'CHI')_SF_36791083
+ + 60.5357960203 ('Zach_LaVine',_'SG_SF',_'CHI')_SG_36791083
+ + 45.5314972689 ('Zach_LaVine',_'SG_SF',_'CHI')_UTIL_36791083
 Subject To
-Can_only_select_("Ja'Kobe_Walter",_'SG',_'TOR')_once:
- ("Ja'Kobe_Walter",_'SG',_'TOR')_G_36873511
- + ("Ja'Kobe_Walter",_'SG',_'TOR')_SG_36873511
- + ("Ja'Kobe_Walter",_'SG',_'TOR')_UTIL_36873511 <= 1
+Can_only_select_("D'Angelo_Russell",_'PG',_'LAL')_once:
+ ("D'Angelo_Russell",_'PG',_'LAL')_G_36791258
+ + ("D'Angelo_Russell",_'PG',_'LAL')_PG_36791258
+ + ("D'Angelo_Russell",_'PG',_'LAL')_UTIL_36791258 <= 1
 Can_only_select_("Royce_O'Neale",_'SF/PF',_'PHX')_once:
- ("Royce_O'Neale",_'SF_PF',_'PHX')_F_36873391
- + ("Royce_O'Neale",_'SF_PF',_'PHX')_PF_36873391
- + ("Royce_O'Neale",_'SF_PF',_'PHX')_SF_36873391
- + ("Royce_O'Neale",_'SF_PF',_'PHX')_UTIL_36873391 <= 1
+ ("Royce_O'Neale",_'SF_PF',_'PHX')_F_36791239
+ + ("Royce_O'Neale",_'SF_PF',_'PHX')_PF_36791239
+ + ("Royce_O'Neale",_'SF_PF',_'PHX')_SF_36791239
+ + ("Royce_O'Neale",_'SF_PF',_'PHX')_UTIL_36791239 <= 1
 Can_only_select_('AJ_Green',_'PG/SG',_'MIL')_once:
- ('AJ_Green',_'PG_SG',_'MIL')_G_36873559
- + ('AJ_Green',_'PG_SG',_'MIL')_PG_36873559
- + ('AJ_Green',_'PG_SG',_'MIL')_SG_36873559
- + ('AJ_Green',_'PG_SG',_'MIL')_UTIL_36873559 <= 1
-Can_only_select_('Aaron_Wiggins',_'SF/PF',_'OKC')_once:
- ('Aaron_Wiggins',_'SF_PF',_'OKC')_F_36873524
- + ('Aaron_Wiggins',_'SF_PF',_'OKC')_PF_36873524
- + ('Aaron_Wiggins',_'SF_PF',_'OKC')_SF_36873524
- + ('Aaron_Wiggins',_'SF_PF',_'OKC')_UTIL_36873524 <= 1
-Can_only_select_('Adem_Bona',_'C',_'PHI')_once:
- ('Adem_Bona',_'C',_'PHI')_C_36873608
- + ('Adem_Bona',_'C',_'PHI')_UTIL_36873608 <= 1
-Can_only_select_('Ajay_Mitchell',_'PG',_'OKC')_once:
- ('Ajay_Mitchell',_'PG',_'OKC')_G_36873706
- + ('Ajay_Mitchell',_'PG',_'OKC')_PG_36873706
- + ('Ajay_Mitchell',_'PG',_'OKC')_UTIL_36873706 <= 1
+ ('AJ_Green',_'PG_SG',_'MIL')_G_36791297
+ + ('AJ_Green',_'PG_SG',_'MIL')_PG_36791297
+ + ('AJ_Green',_'PG_SG',_'MIL')_SG_36791297
+ + ('AJ_Green',_'PG_SG',_'MIL')_UTIL_36791297 <= 1
+Can_only_select_('Aaron_Holiday',_'PG',_'HOU')_once:
+ ('Aaron_Holiday',_'PG',_'HOU')_G_36791537
+ + ('Aaron_Holiday',_'PG',_'HOU')_PG_36791537
+ + ('Aaron_Holiday',_'PG',_'HOU')_UTIL_36791537 <= 1
+Can_only_select_('Alec_Burks',_'PG/SG',_'MIA')_once:
+ ('Alec_Burks',_'PG_SG',_'MIA')_G_36791345
+ + ('Alec_Burks',_'PG_SG',_'MIA')_PG_36791345
+ + ('Alec_Burks',_'PG_SG',_'MIA')_SG_36791345
+ + ('Alec_Burks',_'PG_SG',_'MIA')_UTIL_36791345 <= 1
 Can_only_select_('Alexandre_Sarr',_'PF/C',_'WAS')_once:
- ('Alexandre_Sarr',_'PF_C',_'WAS')_C_36873292
- + ('Alexandre_Sarr',_'PF_C',_'WAS')_F_36873292
- + ('Alexandre_Sarr',_'PF_C',_'WAS')_PF_36873292
- + ('Alexandre_Sarr',_'PF_C',_'WAS')_UTIL_36873292 <= 1
+ ('Alexandre_Sarr',_'PF_C',_'WAS')_C_36791220
+ + ('Alexandre_Sarr',_'PF_C',_'WAS')_F_36791220
+ + ('Alexandre_Sarr',_'PF_C',_'WAS')_PF_36791220
+ + ('Alexandre_Sarr',_'PF_C',_'WAS')_UTIL_36791220 <= 1
+Can_only_select_('Alperen_Sengun',_'C',_'HOU')_once:
+ ('Alperen_Sengun',_'C',_'HOU')_C_36791065
+ + ('Alperen_Sengun',_'C',_'HOU')_UTIL_36791065 <= 1
+Can_only_select_('Amen_Thompson',_'SG/SF',_'HOU')_once:
+ ('Amen_Thompson',_'SG_SF',_'HOU')_F_36791207
+ + ('Amen_Thompson',_'SG_SF',_'HOU')_G_36791207
+ + ('Amen_Thompson',_'SG_SF',_'HOU')_SF_36791207
+ + ('Amen_Thompson',_'SG_SF',_'HOU')_SG_36791207
+ + ('Amen_Thompson',_'SG_SF',_'HOU')_UTIL_36791207 <= 1
 Can_only_select_('Andre_Jackson_Jr.',_'SG/SF',_'MIL')_once:
- ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_F_36873591
- + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_G_36873591
- + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SF_36873591
- + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SG_36873591
- + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_UTIL_36873591 <= 1
-Can_only_select_('Andrew_Nembhard',_'PG/SG',_'IND')_once:
- ('Andrew_Nembhard',_'PG_SG',_'IND')_G_36873397
- + ('Andrew_Nembhard',_'PG_SG',_'IND')_PG_36873397
- + ('Andrew_Nembhard',_'PG_SG',_'IND')_SG_36873397
- + ('Andrew_Nembhard',_'PG_SG',_'IND')_UTIL_36873397 <= 1
-Can_only_select_('Anthony_Black',_'PG/SG',_'ORL')_once:
- ('Anthony_Black',_'PG_SG',_'ORL')_G_36873472
- + ('Anthony_Black',_'PG_SG',_'ORL')_PG_36873472
- + ('Anthony_Black',_'PG_SG',_'ORL')_SG_36873472
- + ('Anthony_Black',_'PG_SG',_'ORL')_UTIL_36873472 <= 1
-Can_only_select_('Anthony_Gill',_'PF/C',_'WAS')_once:
- ('Anthony_Gill',_'PF_C',_'WAS')_C_36873904
- + ('Anthony_Gill',_'PF_C',_'WAS')_F_36873904
- + ('Anthony_Gill',_'PF_C',_'WAS')_PF_36873904
- + ('Anthony_Gill',_'PF_C',_'WAS')_UTIL_36873904 <= 1
-Can_only_select_('Ausar_Thompson',_'SF/PF',_'DET')_once:
- ('Ausar_Thompson',_'SF_PF',_'DET')_F_36873478
- + ('Ausar_Thompson',_'SF_PF',_'DET')_PF_36873478
- + ('Ausar_Thompson',_'SF_PF',_'DET')_SF_36873478
- + ('Ausar_Thompson',_'SF_PF',_'DET')_UTIL_36873478 <= 1
-Can_only_select_('Bennedict_Mathurin',_'SG/SF',_'IND')_once:
- ('Bennedict_Mathurin',_'SG_SF',_'IND')_F_36873185
- + ('Bennedict_Mathurin',_'SG_SF',_'IND')_G_36873185
- + ('Bennedict_Mathurin',_'SG_SF',_'IND')_SF_36873185
- + ('Bennedict_Mathurin',_'SG_SF',_'IND')_SG_36873185
- + ('Bennedict_Mathurin',_'SG_SF',_'IND')_UTIL_36873185 <= 1
+ ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_F_36791323
+ + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_G_36791323
+ + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SF_36791323
+ + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SG_36791323
+ + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_UTIL_36791323 <= 1
+Can_only_select_('Anthony_Davis',_'C',_'LAL')_once:
+ ('Anthony_Davis',_'C',_'LAL')_C_36791048
+ + ('Anthony_Davis',_'C',_'LAL')_UTIL_36791048 <= 1
+Can_only_select_('Anthony_Edwards',_'PG/SG',_'MIN')_once:
+ ('Anthony_Edwards',_'PG_SG',_'MIN')_G_36791054
+ + ('Anthony_Edwards',_'PG_SG',_'MIN')_PG_36791054
+ + ('Anthony_Edwards',_'PG_SG',_'MIN')_SG_36791054
+ + ('Anthony_Edwards',_'PG_SG',_'MIN')_UTIL_36791054 <= 1
+Can_only_select_('Austin_Reaves',_'PG/SG',_'LAL')_once:
+ ('Austin_Reaves',_'PG_SG',_'LAL')_G_36791116
+ + ('Austin_Reaves',_'PG_SG',_'LAL')_PG_36791116
+ + ('Austin_Reaves',_'PG_SG',_'LAL')_SG_36791116
+ + ('Austin_Reaves',_'PG_SG',_'LAL')_UTIL_36791116 <= 1
+Can_only_select_('Ayo_Dosunmu',_'PG/SG',_'CHI')_once:
+ ('Ayo_Dosunmu',_'PG_SG',_'CHI')_G_36791173
+ + ('Ayo_Dosunmu',_'PG_SG',_'CHI')_PG_36791173
+ + ('Ayo_Dosunmu',_'PG_SG',_'CHI')_SG_36791173
+ + ('Ayo_Dosunmu',_'PG_SG',_'CHI')_UTIL_36791173 <= 1
+Can_only_select_('Bam_Adebayo',_'C',_'MIA')_once:
+ ('Bam_Adebayo',_'C',_'MIA')_C_36791067
+ + ('Bam_Adebayo',_'C',_'MIA')_UTIL_36791067 <= 1
 Can_only_select_('Bilal_Coulibaly',_'SF',_'WAS')_once:
- ('Bilal_Coulibaly',_'SF',_'WAS')_F_36873287
- + ('Bilal_Coulibaly',_'SF',_'WAS')_SF_36873287
- + ('Bilal_Coulibaly',_'SF',_'WAS')_UTIL_36873287 <= 1
+ ('Bilal_Coulibaly',_'SF',_'WAS')_F_36791159
+ + ('Bilal_Coulibaly',_'SF',_'WAS')_SF_36791159
+ + ('Bilal_Coulibaly',_'SF',_'WAS')_UTIL_36791159 <= 1
+Can_only_select_('Blake_Wesley',_'PG',_'SAS')_once:
+ ('Blake_Wesley',_'PG',_'SAS')_G_36791620
+ + ('Blake_Wesley',_'PG',_'SAS')_PG_36791620
+ + ('Blake_Wesley',_'PG',_'SAS')_UTIL_36791620 <= 1
 Can_only_select_('Bobby_Portis',_'PF/C',_'MIL')_once:
- ('Bobby_Portis',_'PF_C',_'MIL')_C_36873248
- + ('Bobby_Portis',_'PF_C',_'MIL')_F_36873248
- + ('Bobby_Portis',_'PF_C',_'MIL')_PF_36873248
- + ('Bobby_Portis',_'PF_C',_'MIL')_UTIL_36873248 <= 1
+ ('Bobby_Portis',_'PF_C',_'MIL')_C_36791169
+ + ('Bobby_Portis',_'PF_C',_'MIL')_F_36791169
+ + ('Bobby_Portis',_'PF_C',_'MIL')_PF_36791169
+ + ('Bobby_Portis',_'PF_C',_'MIL')_UTIL_36791169 <= 1
 Can_only_select_('Bradley_Beal',_'SG/SF',_'PHX')_once:
- ('Bradley_Beal',_'SG_SF',_'PHX')_F_36873146
- + ('Bradley_Beal',_'SG_SF',_'PHX')_G_36873146
- + ('Bradley_Beal',_'SG_SF',_'PHX')_SF_36873146
- + ('Bradley_Beal',_'SG_SF',_'PHX')_SG_36873146
- + ('Bradley_Beal',_'SG_SF',_'PHX')_UTIL_36873146 <= 1
-Can_only_select_('Brandon_Clarke',_'PF/C',_'MEM')_once:
- ('Brandon_Clarke',_'PF_C',_'MEM')_C_36873424
- + ('Brandon_Clarke',_'PF_C',_'MEM')_F_36873424
- + ('Brandon_Clarke',_'PF_C',_'MEM')_PF_36873424
- + ('Brandon_Clarke',_'PF_C',_'MEM')_UTIL_36873424 <= 1
-Can_only_select_('Brandon_Miller',_'SG/SF',_'CHA')_once:
- ('Brandon_Miller',_'SG_SF',_'CHA')_F_36873126
- + ('Brandon_Miller',_'SG_SF',_'CHA')_G_36873126
- + ('Brandon_Miller',_'SG_SF',_'CHA')_SF_36873126
- + ('Brandon_Miller',_'SG_SF',_'CHA')_SG_36873126
- + ('Brandon_Miller',_'SG_SF',_'CHA')_UTIL_36873126 <= 1
-Can_only_select_('Brice_Sensabaugh',_'SF',_'UTA')_once:
- ('Brice_Sensabaugh',_'SF',_'UTA')_F_36873588
- + ('Brice_Sensabaugh',_'SF',_'UTA')_SF_36873588
- + ('Brice_Sensabaugh',_'SF',_'UTA')_UTIL_36873588 <= 1
+ ('Bradley_Beal',_'SG_SF',_'PHX')_F_36791092
+ + ('Bradley_Beal',_'SG_SF',_'PHX')_G_36791092
+ + ('Bradley_Beal',_'SG_SF',_'PHX')_SF_36791092
+ + ('Bradley_Beal',_'SG_SF',_'PHX')_SG_36791092
+ + ('Bradley_Beal',_'SG_SF',_'PHX')_UTIL_36791092 <= 1
+Can_only_select_('Brice_Sensabaugh',_'SF/PF',_'UTA')_once:
+ ('Brice_Sensabaugh',_'SF_PF',_'UTA')_F_36791447
+ + ('Brice_Sensabaugh',_'SF_PF',_'UTA')_PF_36791447
+ + ('Brice_Sensabaugh',_'SF_PF',_'UTA')_SF_36791447
+ + ('Brice_Sensabaugh',_'SF_PF',_'UTA')_UTIL_36791447 <= 1
 Can_only_select_('Brook_Lopez',_'C',_'MIL')_once:
- ('Brook_Lopez',_'C',_'MIL')_C_36873212
- + ('Brook_Lopez',_'C',_'MIL')_UTIL_36873212 <= 1
-Can_only_select_('Bruno_Fernando',_'C',_'TOR')_once:
- ('Bruno_Fernando',_'C',_'TOR')_C_36873748
- + ('Bruno_Fernando',_'C',_'TOR')_UTIL_36873748 <= 1
-Can_only_select_('Cade_Cunningham',_'PG',_'DET')_once:
- ('Cade_Cunningham',_'PG',_'DET')_G_36873073
- + ('Cade_Cunningham',_'PG',_'DET')_PG_36873073
- + ('Cade_Cunningham',_'PG',_'DET')_UTIL_36873073 <= 1
-Can_only_select_('Caleb_Martin',_'PF',_'PHI')_once:
- ('Caleb_Martin',_'PF',_'PHI')_F_36873377
- + ('Caleb_Martin',_'PF',_'PHI')_PF_36873377
- + ('Caleb_Martin',_'PF',_'PHI')_UTIL_36873377 <= 1
-Can_only_select_('Cameron_Payne',_'PG/SG',_'NYK')_once:
- ('Cameron_Payne',_'PG_SG',_'NYK')_G_36873547
- + ('Cameron_Payne',_'PG_SG',_'NYK')_PG_36873547
- + ('Cameron_Payne',_'PG_SG',_'NYK')_SG_36873547
- + ('Cameron_Payne',_'PG_SG',_'NYK')_UTIL_36873547 <= 1
-Can_only_select_('Caris_LeVert',_'PG/SG',_'CLE')_once:
- ('Caris_LeVert',_'PG_SG',_'CLE')_G_36873361
- + ('Caris_LeVert',_'PG_SG',_'CLE')_PG_36873361
- + ('Caris_LeVert',_'PG_SG',_'CLE')_SG_36873361
- + ('Caris_LeVert',_'PG_SG',_'CLE')_UTIL_36873361 <= 1
+ ('Brook_Lopez',_'C',_'MIL')_C_36791144
+ + ('Brook_Lopez',_'C',_'MIL')_UTIL_36791144 <= 1
+Can_only_select_('Cam_Reddish',_'SG',_'LAL')_once:
+ ('Cam_Reddish',_'SG',_'LAL')_G_36791349
+ + ('Cam_Reddish',_'SG',_'LAL')_SG_36791349
+ + ('Cam_Reddish',_'SG',_'LAL')_UTIL_36791349 <= 1
 Can_only_select_('Carlton_Carrington',_'PG/SG',_'WAS')_once:
- ('Carlton_Carrington',_'PG_SG',_'WAS')_G_36873404
- + ('Carlton_Carrington',_'PG_SG',_'WAS')_PG_36873404
- + ('Carlton_Carrington',_'PG_SG',_'WAS')_SG_36873404
- + ('Carlton_Carrington',_'PG_SG',_'WAS')_UTIL_36873404 <= 1
-Can_only_select_('Cason_Wallace',_'PG/SG',_'OKC')_once:
- ('Cason_Wallace',_'PG_SG',_'OKC')_G_36873428
- + ('Cason_Wallace',_'PG_SG',_'OKC')_PG_36873428
- + ('Cason_Wallace',_'PG_SG',_'OKC')_SG_36873428
- + ('Cason_Wallace',_'PG_SG',_'OKC')_UTIL_36873428 <= 1
-Can_only_select_('Chris_Boucher',_'PF/C',_'TOR')_once:
- ('Chris_Boucher',_'PF_C',_'TOR')_C_36873543
- + ('Chris_Boucher',_'PF_C',_'TOR')_F_36873543
- + ('Chris_Boucher',_'PF_C',_'TOR')_PF_36873543
- + ('Chris_Boucher',_'PF_C',_'TOR')_UTIL_36873543 <= 1
+ ('Carlton_Carrington',_'PG_SG',_'WAS')_G_36791212
+ + ('Carlton_Carrington',_'PG_SG',_'WAS')_PG_36791212
+ + ('Carlton_Carrington',_'PG_SG',_'WAS')_SG_36791212
+ + ('Carlton_Carrington',_'PG_SG',_'WAS')_UTIL_36791212 <= 1
 Can_only_select_('Chris_Paul',_'PG',_'SAS')_once:
- ('Chris_Paul',_'PG',_'SAS')_G_36873238
- + ('Chris_Paul',_'PG',_'SAS')_PG_36873238
- + ('Chris_Paul',_'PG',_'SAS')_UTIL_36873238 <= 1
-Can_only_select_('Cody_Martin',_'SF',_'CHA')_once:
- ('Cody_Martin',_'SF',_'CHA')_F_36873348
- + ('Cody_Martin',_'SF',_'CHA')_SF_36873348
- + ('Cody_Martin',_'SF',_'CHA')_UTIL_36873348 <= 1
-Can_only_select_('Cole_Anthony',_'PG/SG',_'ORL')_once:
- ('Cole_Anthony',_'PG_SG',_'ORL')_G_36873646
- + ('Cole_Anthony',_'PG_SG',_'ORL')_PG_36873646
- + ('Cole_Anthony',_'PG_SG',_'ORL')_SG_36873646
- + ('Cole_Anthony',_'PG_SG',_'ORL')_UTIL_36873646 <= 1
+ ('Chris_Paul',_'PG',_'SAS')_G_36791133
+ + ('Chris_Paul',_'PG',_'SAS')_PG_36791133
+ + ('Chris_Paul',_'PG',_'SAS')_UTIL_36791133 <= 1
+Can_only_select_('Christian_Koloko',_'C',_'LAL')_once:
+ ('Christian_Koloko',_'C',_'LAL')_C_36791393
+ + ('Christian_Koloko',_'C',_'LAL')_UTIL_36791393 <= 1
+Can_only_select_('Coby_White',_'PG/SG',_'CHI')_once:
+ ('Coby_White',_'PG_SG',_'CHI')_G_36791108
+ + ('Coby_White',_'PG_SG',_'CHI')_PG_36791108
+ + ('Coby_White',_'PG_SG',_'CHI')_SG_36791108
+ + ('Coby_White',_'PG_SG',_'CHI')_UTIL_36791108 <= 1
+Can_only_select_('Cody_Williams',_'SF',_'UTA')_once:
+ ('Cody_Williams',_'SF',_'UTA')_F_36791411
+ + ('Cody_Williams',_'SF',_'UTA')_SF_36791411
+ + ('Cody_Williams',_'SF',_'UTA')_UTIL_36791411 <= 1
 Can_only_select_('Collin_Sexton',_'PG/SG',_'UTA')_once:
- ('Collin_Sexton',_'PG_SG',_'UTA')_G_36873208
- + ('Collin_Sexton',_'PG_SG',_'UTA')_PG_36873208
- + ('Collin_Sexton',_'PG_SG',_'UTA')_SG_36873208
- + ('Collin_Sexton',_'PG_SG',_'UTA')_UTIL_36873208 <= 1
+ ('Collin_Sexton',_'PG_SG',_'UTA')_G_36791150
+ + ('Collin_Sexton',_'PG_SG',_'UTA')_PG_36791150
+ + ('Collin_Sexton',_'PG_SG',_'UTA')_SG_36791150
+ + ('Collin_Sexton',_'PG_SG',_'UTA')_UTIL_36791150 <= 1
 Can_only_select_('Corey_Kispert',_'SG/SF',_'WAS')_once:
- ('Corey_Kispert',_'SG_SF',_'WAS')_F_36873408
- + ('Corey_Kispert',_'SG_SF',_'WAS')_G_36873408
- + ('Corey_Kispert',_'SG_SF',_'WAS')_SF_36873408
- + ('Corey_Kispert',_'SG_SF',_'WAS')_SG_36873408
- + ('Corey_Kispert',_'SG_SF',_'WAS')_UTIL_36873408 <= 1
+ ('Corey_Kispert',_'SG_SF',_'WAS')_F_36791268
+ + ('Corey_Kispert',_'SG_SF',_'WAS')_G_36791268
+ + ('Corey_Kispert',_'SG_SF',_'WAS')_SF_36791268
+ + ('Corey_Kispert',_'SG_SF',_'WAS')_SG_36791268
+ + ('Corey_Kispert',_'SG_SF',_'WAS')_UTIL_36791268 <= 1
+Can_only_select_('Daishen_Nix',_'PG',_'MIN')_once:
+ ('Daishen_Nix',_'PG',_'MIN')_G_36791458
+ + ('Daishen_Nix',_'PG',_'MIN')_PG_36791458
+ + ('Daishen_Nix',_'PG',_'MIN')_UTIL_36791458 <= 1
+Can_only_select_('Dalen_Terry',_'SG/SF',_'CHI')_once:
+ ('Dalen_Terry',_'SG_SF',_'CHI')_F_36791383
+ + ('Dalen_Terry',_'SG_SF',_'CHI')_G_36791383
+ + ('Dalen_Terry',_'SG_SF',_'CHI')_SF_36791383
+ + ('Dalen_Terry',_'SG_SF',_'CHI')_SG_36791383
+ + ('Dalen_Terry',_'SG_SF',_'CHI')_UTIL_36791383 <= 1
+Can_only_select_('Dalton_Knecht',_'SG/SF',_'LAL')_once:
+ ('Dalton_Knecht',_'SG_SF',_'LAL')_F_36791199
+ + ('Dalton_Knecht',_'SG_SF',_'LAL')_G_36791199
+ + ('Dalton_Knecht',_'SG_SF',_'LAL')_SF_36791199
+ + ('Dalton_Knecht',_'SG_SF',_'LAL')_SG_36791199
+ + ('Dalton_Knecht',_'SG_SF',_'LAL')_UTIL_36791199 <= 1
 Can_only_select_('Damian_Lillard',_'PG',_'MIL')_once:
- ('Damian_Lillard',_'PG',_'MIL')_G_36873080
- + ('Damian_Lillard',_'PG',_'MIL')_PG_36873080
- + ('Damian_Lillard',_'PG',_'MIL')_UTIL_36873080 <= 1
-Can_only_select_('Daniel_Gafford',_'C',_'DAL')_once:
- ('Daniel_Gafford',_'C',_'DAL')_C_36873246
- + ('Daniel_Gafford',_'C',_'DAL')_UTIL_36873246 <= 1
-Can_only_select_('Darius_Garland',_'PG',_'CLE')_once:
- ('Darius_Garland',_'PG',_'CLE')_G_36873158
- + ('Darius_Garland',_'PG',_'CLE')_PG_36873158
- + ('Darius_Garland',_'PG',_'CLE')_UTIL_36873158 <= 1
-Can_only_select_('Davion_Mitchell',_'PG/SG',_'TOR')_once:
- ('Davion_Mitchell',_'PG_SG',_'TOR')_G_36873566
- + ('Davion_Mitchell',_'PG_SG',_'TOR')_PG_36873566
- + ('Davion_Mitchell',_'PG_SG',_'TOR')_SG_36873566
- + ('Davion_Mitchell',_'PG_SG',_'TOR')_UTIL_36873566 <= 1
-Can_only_select_('Dean_Wade',_'SF/PF',_'CLE')_once:
- ('Dean_Wade',_'SF_PF',_'CLE')_F_36873596
- + ('Dean_Wade',_'SF_PF',_'CLE')_PF_36873596
- + ('Dean_Wade',_'SF_PF',_'CLE')_SF_36873596
- + ('Dean_Wade',_'SF_PF',_'CLE')_UTIL_36873596 <= 1
+ ('Damian_Lillard',_'PG',_'MIL')_G_36791062
+ + ('Damian_Lillard',_'PG',_'MIL')_PG_36791062
+ + ('Damian_Lillard',_'PG',_'MIL')_UTIL_36791062 <= 1
 Can_only_select_('Delon_Wright',_'PG',_'MIL')_once:
- ('Delon_Wright',_'PG',_'MIL')_G_36873688
- + ('Delon_Wright',_'PG',_'MIL')_PG_36873688
- + ('Delon_Wright',_'PG',_'MIL')_UTIL_36873688 <= 1
-Can_only_select_('Dereck_Lively_II',_'C',_'DAL')_once:
- ('Dereck_Lively_II',_'C',_'DAL')_C_36873290
- + ('Dereck_Lively_II',_'C',_'DAL')_UTIL_36873290 <= 1
-Can_only_select_('Desmond_Bane',_'SG/SF',_'MEM')_once:
- ('Desmond_Bane',_'SG_SF',_'MEM')_F_36873167
- + ('Desmond_Bane',_'SG_SF',_'MEM')_G_36873167
- + ('Desmond_Bane',_'SG_SF',_'MEM')_SF_36873167
- + ('Desmond_Bane',_'SG_SF',_'MEM')_SG_36873167
- + ('Desmond_Bane',_'SG_SF',_'MEM')_UTIL_36873167 <= 1
+ ('Delon_Wright',_'PG',_'MIL')_G_36791358
+ + ('Delon_Wright',_'PG',_'MIL')_PG_36791358
+ + ('Delon_Wright',_'PG',_'MIL')_UTIL_36791358 <= 1
 Can_only_select_('Devin_Booker',_'PG/SG',_'PHX')_once:
- ('Devin_Booker',_'PG_SG',_'PHX')_G_36873095
- + ('Devin_Booker',_'PG_SG',_'PHX')_PG_36873095
- + ('Devin_Booker',_'PG_SG',_'PHX')_SG_36873095
- + ('Devin_Booker',_'PG_SG',_'PHX')_UTIL_36873095 <= 1
-Can_only_select_('Devin_Vassell',_'SG',_'SAS')_once:
- ('Devin_Vassell',_'SG',_'SAS')_G_36873340
- + ('Devin_Vassell',_'SG',_'SAS')_SG_36873340
- + ('Devin_Vassell',_'SG',_'SAS')_UTIL_36873340 <= 1
-Can_only_select_('Dillon_Jones',_'PF',_'OKC')_once:
- ('Dillon_Jones',_'PF',_'OKC')_F_36873699
- + ('Dillon_Jones',_'PF',_'OKC')_PF_36873699
- + ('Dillon_Jones',_'PF',_'OKC')_UTIL_36873699 <= 1
-Can_only_select_('Donovan_Mitchell',_'PG/SG',_'CLE')_once:
- ('Donovan_Mitchell',_'PG_SG',_'CLE')_G_36873087
- + ('Donovan_Mitchell',_'PG_SG',_'CLE')_PG_36873087
- + ('Donovan_Mitchell',_'PG_SG',_'CLE')_SG_36873087
- + ('Donovan_Mitchell',_'PG_SG',_'CLE')_UTIL_36873087 <= 1
+ ('Devin_Booker',_'PG_SG',_'PHX')_G_36791058
+ + ('Devin_Booker',_'PG_SG',_'PHX')_PG_36791058
+ + ('Devin_Booker',_'PG_SG',_'PHX')_SG_36791058
+ + ('Devin_Booker',_'PG_SG',_'PHX')_UTIL_36791058 <= 1
+Can_only_select_('Dillon_Brooks',_'SF',_'HOU')_once:
+ ('Dillon_Brooks',_'SF',_'HOU')_F_36791290
+ + ('Dillon_Brooks',_'SF',_'HOU')_SF_36791290
+ + ('Dillon_Brooks',_'SF',_'HOU')_UTIL_36791290 <= 1
+Can_only_select_('Donte_DiVincenzo',_'PG/SG',_'MIN')_once:
+ ('Donte_DiVincenzo',_'PG_SG',_'MIN')_G_36791189
+ + ('Donte_DiVincenzo',_'PG_SG',_'MIN')_PG_36791189
+ + ('Donte_DiVincenzo',_'PG_SG',_'MIN')_SG_36791189
+ + ('Donte_DiVincenzo',_'PG_SG',_'MIN')_UTIL_36791189 <= 1
 Can_only_select_('Drew_Eubanks',_'C',_'UTA')_once:
- ('Drew_Eubanks',_'C',_'UTA')_C_36873691
- + ('Drew_Eubanks',_'C',_'UTA')_UTIL_36873691 <= 1
-Can_only_select_('Evan_Mobley',_'PF/C',_'CLE')_once:
- ('Evan_Mobley',_'PF_C',_'CLE')_C_36873135
- + ('Evan_Mobley',_'PF_C',_'CLE')_F_36873135
- + ('Evan_Mobley',_'PF_C',_'CLE')_PF_36873135
- + ('Evan_Mobley',_'PF_C',_'CLE')_UTIL_36873135 <= 1
-Can_only_select_('Franz_Wagner',_'SF/PF',_'ORL')_once:
- ('Franz_Wagner',_'SF_PF',_'ORL')_F_36873076
- + ('Franz_Wagner',_'SF_PF',_'ORL')_PF_36873076
- + ('Franz_Wagner',_'SF_PF',_'ORL')_SF_36873076
- + ('Franz_Wagner',_'SF_PF',_'ORL')_UTIL_36873076 <= 1
+ ('Drew_Eubanks',_'C',_'UTA')_C_36791361
+ + ('Drew_Eubanks',_'C',_'UTA')_UTIL_36791361 <= 1
+Can_only_select_('Duncan_Robinson',_'SG',_'MIA')_once:
+ ('Duncan_Robinson',_'SG',_'MIA')_G_36791265
+ + ('Duncan_Robinson',_'SG',_'MIA')_SG_36791265
+ + ('Duncan_Robinson',_'SG',_'MIA')_UTIL_36791265 <= 1
+Can_only_select_('Fred_VanVleet',_'PG',_'HOU')_once:
+ ('Fred_VanVleet',_'PG',_'HOU')_G_36791105
+ + ('Fred_VanVleet',_'PG',_'HOU')_PG_36791105
+ + ('Fred_VanVleet',_'PG',_'HOU')_UTIL_36791105 <= 1
+Can_only_select_('Gabe_Vincent',_'PG/SG',_'LAL')_once:
+ ('Gabe_Vincent',_'PG_SG',_'LAL')_G_36791564
+ + ('Gabe_Vincent',_'PG_SG',_'LAL')_PG_36791564
+ + ('Gabe_Vincent',_'PG_SG',_'LAL')_SG_36791564
+ + ('Gabe_Vincent',_'PG_SG',_'LAL')_UTIL_36791564 <= 1
 Can_only_select_('Gary_Trent_Jr.',_'SG/SF',_'MIL')_once:
- ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_F_36873532
- + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_G_36873532
- + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SF_36873532
- + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SG_36873532
- + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_UTIL_36873532 <= 1
-Can_only_select_('Georges_Niang',_'SF/PF',_'CLE')_once:
- ('Georges_Niang',_'SF_PF',_'CLE')_F_36873435
- + ('Georges_Niang',_'SF_PF',_'CLE')_PF_36873435
- + ('Georges_Niang',_'SF_PF',_'CLE')_SF_36873435
- + ('Georges_Niang',_'SF_PF',_'CLE')_UTIL_36873435 <= 1
-Can_only_select_('Giannis_Antetokounmpo',_'PF/C',_'MIL')_once:
- ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_C_36873056
- + ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_F_36873056
- + ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_PF_36873056
- + ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_UTIL_36873056 <= 1
-Can_only_select_('Goga_Bitadze',_'C',_'ORL')_once:
- ('Goga_Bitadze',_'C',_'ORL')_C_36873304
- + ('Goga_Bitadze',_'C',_'ORL')_UTIL_36873304 <= 1
+ ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_F_36791306
+ + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_G_36791306
+ + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SF_36791306
+ + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SG_36791306
+ + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_UTIL_36791306 <= 1
 Can_only_select_('Grayson_Allen',_'SG',_'PHX')_once:
- ('Grayson_Allen',_'SG',_'PHX')_G_36873351
- + ('Grayson_Allen',_'SG',_'PHX')_SG_36873351
- + ('Grayson_Allen',_'SG',_'PHX')_UTIL_36873351 <= 1
-Can_only_select_('Guerschon_Yabusele',_'PF/C',_'PHI')_once:
- ('Guerschon_Yabusele',_'PF_C',_'PHI')_C_36873275
- + ('Guerschon_Yabusele',_'PF_C',_'PHI')_F_36873275
- + ('Guerschon_Yabusele',_'PF_C',_'PHI')_PF_36873275
- + ('Guerschon_Yabusele',_'PF_C',_'PHI')_UTIL_36873275 <= 1
+ ('Grayson_Allen',_'SG',_'PHX')_G_36791301
+ + ('Grayson_Allen',_'SG',_'PHX')_SG_36791301
+ + ('Grayson_Allen',_'SG',_'PHX')_UTIL_36791301 <= 1
 Can_only_select_('Harrison_Barnes',_'SF/PF',_'SAS')_once:
- ('Harrison_Barnes',_'SF_PF',_'SAS')_F_36873413
- + ('Harrison_Barnes',_'SF_PF',_'SAS')_PF_36873413
- + ('Harrison_Barnes',_'SF_PF',_'SAS')_SF_36873413
- + ('Harrison_Barnes',_'SF_PF',_'SAS')_UTIL_36873413 <= 1
-Can_only_select_('Isaac_Okoro',_'SG/SF',_'CLE')_once:
- ('Isaac_Okoro',_'SG_SF',_'CLE')_F_36873516
- + ('Isaac_Okoro',_'SG_SF',_'CLE')_G_36873516
- + ('Isaac_Okoro',_'SG_SF',_'CLE')_SF_36873516
- + ('Isaac_Okoro',_'SG_SF',_'CLE')_SG_36873516
- + ('Isaac_Okoro',_'SG_SF',_'CLE')_UTIL_36873516 <= 1
+ ('Harrison_Barnes',_'SF_PF',_'SAS')_F_36791254
+ + ('Harrison_Barnes',_'SF_PF',_'SAS')_PF_36791254
+ + ('Harrison_Barnes',_'SF_PF',_'SAS')_SF_36791254
+ + ('Harrison_Barnes',_'SF_PF',_'SAS')_UTIL_36791254 <= 1
+Can_only_select_('Haywood_Highsmith',_'SF/PF',_'MIA')_once:
+ ('Haywood_Highsmith',_'SF_PF',_'MIA')_F_36791277
+ + ('Haywood_Highsmith',_'SF_PF',_'MIA')_PF_36791277
+ + ('Haywood_Highsmith',_'SF_PF',_'MIA')_SF_36791277
+ + ('Haywood_Highsmith',_'SF_PF',_'MIA')_UTIL_36791277 <= 1
 Can_only_select_('Isaiah_Collier',_'PG',_'UTA')_once:
- ('Isaiah_Collier',_'PG',_'UTA')_G_36873862
- + ('Isaiah_Collier',_'PG',_'UTA')_PG_36873862
- + ('Isaiah_Collier',_'PG',_'UTA')_UTIL_36873862 <= 1
-Can_only_select_('Isaiah_Hartenstein',_'C',_'OKC')_once:
- ('Isaiah_Hartenstein',_'C',_'OKC')_C_36873165
- + ('Isaiah_Hartenstein',_'C',_'OKC')_UTIL_36873165 <= 1
-Can_only_select_('Isaiah_Joe',_'SG/SF',_'OKC')_once:
- ('Isaiah_Joe',_'SG_SF',_'OKC')_F_36873574
- + ('Isaiah_Joe',_'SG_SF',_'OKC')_G_36873574
- + ('Isaiah_Joe',_'SG_SF',_'OKC')_SF_36873574
- + ('Isaiah_Joe',_'SG_SF',_'OKC')_SG_36873574
- + ('Isaiah_Joe',_'SG_SF',_'OKC')_UTIL_36873574 <= 1
-Can_only_select_('Isaiah_Stewart',_'C',_'DET')_once:
- ('Isaiah_Stewart',_'C',_'DET')_C_36873476
- + ('Isaiah_Stewart',_'C',_'DET')_UTIL_36873476 <= 1
-Can_only_select_('Ja_Morant',_'PG',_'MEM')_once:
- ('Ja_Morant',_'PG',_'MEM')_G_36873102
- + ('Ja_Morant',_'PG',_'MEM')_PG_36873102
- + ('Ja_Morant',_'PG',_'MEM')_UTIL_36873102 <= 1
-Can_only_select_('Jaden_Hardy',_'PG/SG',_'DAL')_once:
- ('Jaden_Hardy',_'PG_SG',_'DAL')_G_36873420
- + ('Jaden_Hardy',_'PG_SG',_'DAL')_PG_36873420
- + ('Jaden_Hardy',_'PG_SG',_'DAL')_SG_36873420
- + ('Jaden_Hardy',_'PG_SG',_'DAL')_UTIL_36873420 <= 1
-Can_only_select_('Jaden_Ivey',_'PG/SG',_'DET')_once:
- ('Jaden_Ivey',_'PG_SG',_'DET')_G_36873139
- + ('Jaden_Ivey',_'PG_SG',_'DET')_PG_36873139
- + ('Jaden_Ivey',_'PG_SG',_'DET')_SG_36873139
- + ('Jaden_Ivey',_'PG_SG',_'DET')_UTIL_36873139 <= 1
-Can_only_select_('Jake_LaRavia',_'SF/PF',_'MEM')_once:
- ('Jake_LaRavia',_'SF_PF',_'MEM')_F_36873463
- + ('Jake_LaRavia',_'SF_PF',_'MEM')_PF_36873463
- + ('Jake_LaRavia',_'SF_PF',_'MEM')_SF_36873463
- + ('Jake_LaRavia',_'SF_PF',_'MEM')_UTIL_36873463 <= 1
-Can_only_select_('Jakob_Poeltl',_'C',_'TOR')_once:
- ('Jakob_Poeltl',_'C',_'TOR')_C_36873176
- + ('Jakob_Poeltl',_'C',_'TOR')_UTIL_36873176 <= 1
-Can_only_select_('Jalen_Brunson',_'PG',_'NYK')_once:
- ('Jalen_Brunson',_'PG',_'NYK')_G_36873109
- + ('Jalen_Brunson',_'PG',_'NYK')_PG_36873109
- + ('Jalen_Brunson',_'PG',_'NYK')_UTIL_36873109 <= 1
-Can_only_select_('Jalen_Duren',_'C',_'DET')_once:
- ('Jalen_Duren',_'C',_'DET')_C_36873236
- + ('Jalen_Duren',_'C',_'DET')_UTIL_36873236 <= 1
-Can_only_select_('Jalen_Suggs',_'PG',_'ORL')_once:
- ('Jalen_Suggs',_'PG',_'ORL')_G_36873219
- + ('Jalen_Suggs',_'PG',_'ORL')_PG_36873219
- + ('Jalen_Suggs',_'PG',_'ORL')_UTIL_36873219 <= 1
-Can_only_select_('Jalen_Williams',_'PF',_'OKC')_once:
- ('Jalen_Williams',_'PF',_'OKC')_F_36873099
- + ('Jalen_Williams',_'PF',_'OKC')_PF_36873099
- + ('Jalen_Williams',_'PF',_'OKC')_UTIL_36873099 <= 1
-Can_only_select_('Jamal_Shead',_'PG',_'TOR')_once:
- ('Jamal_Shead',_'PG',_'TOR')_G_36873745
- + ('Jamal_Shead',_'PG',_'TOR')_PG_36873745
- + ('Jamal_Shead',_'PG',_'TOR')_UTIL_36873745 <= 1
-Can_only_select_('Jamison_Battle',_'SF',_'TOR')_once:
- ('Jamison_Battle',_'SF',_'TOR')_F_36873674
- + ('Jamison_Battle',_'SF',_'TOR')_SF_36873674
- + ('Jamison_Battle',_'SF',_'TOR')_UTIL_36873674 <= 1
-Can_only_select_('Jarace_Walker',_'SF/PF',_'IND')_once:
- ('Jarace_Walker',_'SF_PF',_'IND')_F_36873528
- + ('Jarace_Walker',_'SF_PF',_'IND')_PF_36873528
- + ('Jarace_Walker',_'SF_PF',_'IND')_SF_36873528
- + ('Jarace_Walker',_'SF_PF',_'IND')_UTIL_36873528 <= 1
-Can_only_select_('Jared_Butler',_'PG',_'WAS')_once:
- ('Jared_Butler',_'PG',_'WAS')_G_36873891
- + ('Jared_Butler',_'PG',_'WAS')_PG_36873891
- + ('Jared_Butler',_'PG',_'WAS')_UTIL_36873891 <= 1
-Can_only_select_('Jared_McCain',_'PG/SG',_'PHI')_once:
- ('Jared_McCain',_'PG_SG',_'PHI')_G_36873190
- + ('Jared_McCain',_'PG_SG',_'PHI')_PG_36873190
- + ('Jared_McCain',_'PG_SG',_'PHI')_SG_36873190
- + ('Jared_McCain',_'PG_SG',_'PHI')_UTIL_36873190 <= 1
-Can_only_select_('Jaren_Jackson_Jr.',_'PF',_'MEM')_once:
- ('Jaren_Jackson_Jr.',_'PF',_'MEM')_F_36873143
- + ('Jaren_Jackson_Jr.',_'PF',_'MEM')_PF_36873143
- + ('Jaren_Jackson_Jr.',_'PF',_'MEM')_UTIL_36873143 <= 1
-Can_only_select_('Jarrett_Allen',_'C',_'CLE')_once:
- ('Jarrett_Allen',_'C',_'CLE')_C_36873206
- + ('Jarrett_Allen',_'C',_'CLE')_UTIL_36873206 <= 1
-Can_only_select_('Jay_Huff',_'C',_'MEM')_once:
- ('Jay_Huff',_'C',_'MEM')_C_36873622 + ('Jay_Huff',_'C',_'MEM')_UTIL_36873622
- <= 1
-Can_only_select_('Jaylen_Wells',_'SG/SF',_'MEM')_once:
- ('Jaylen_Wells',_'SG_SF',_'MEM')_F_36873486
- + ('Jaylen_Wells',_'SG_SF',_'MEM')_G_36873486
- + ('Jaylen_Wells',_'SG_SF',_'MEM')_SF_36873486
- + ('Jaylen_Wells',_'SG_SF',_'MEM')_SG_36873486
- + ('Jaylen_Wells',_'SG_SF',_'MEM')_UTIL_36873486 <= 1
-Can_only_select_('Jeremy_Sochan',_'C',_'SAS')_once:
- ('Jeremy_Sochan',_'C',_'SAS')_C_36873226
- + ('Jeremy_Sochan',_'C',_'SAS')_UTIL_36873226 <= 1
-Can_only_select_('Jericho_Sims',_'PF/C',_'NYK')_once:
- ('Jericho_Sims',_'PF_C',_'NYK')_C_36873610
- + ('Jericho_Sims',_'PF_C',_'NYK')_F_36873610
- + ('Jericho_Sims',_'PF_C',_'NYK')_PF_36873610
- + ('Jericho_Sims',_'PF_C',_'NYK')_UTIL_36873610 <= 1
+ ('Isaiah_Collier',_'PG',_'UTA')_G_36791363
+ + ('Isaiah_Collier',_'PG',_'UTA')_PG_36791363
+ + ('Isaiah_Collier',_'PG',_'UTA')_UTIL_36791363 <= 1
+Can_only_select_('Jabari_Smith_Jr.',_'PF/C',_'HOU')_once:
+ ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_C_36791261
+ + ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_F_36791261
+ + ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_PF_36791261
+ + ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_UTIL_36791261 <= 1
+Can_only_select_('Jaden_McDaniels',_'SF',_'MIN')_once:
+ ('Jaden_McDaniels',_'SF',_'MIN')_F_36791204
+ + ('Jaden_McDaniels',_'SF',_'MIN')_SF_36791204
+ + ('Jaden_McDaniels',_'SF',_'MIN')_UTIL_36791204 <= 1
+Can_only_select_('Jaime_Jaquez_Jr.',_'SF/PF',_'MIA')_once:
+ ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_F_36791224
+ + ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_PF_36791224
+ + ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_SF_36791224
+ + ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_UTIL_36791224 <= 1
+Can_only_select_('Jalen_Green',_'SG',_'HOU')_once:
+ ('Jalen_Green',_'SG',_'HOU')_G_36791130
+ + ('Jalen_Green',_'SG',_'HOU')_SG_36791130
+ + ('Jalen_Green',_'SG',_'HOU')_UTIL_36791130 <= 1
+Can_only_select_('Jalen_Smith',_'C',_'CHI')_once:
+ ('Jalen_Smith',_'C',_'CHI')_C_36791343
+ + ('Jalen_Smith',_'C',_'CHI')_UTIL_36791343 <= 1
+Can_only_select_('Jimmy_Butler',_'SF/PF',_'MIA')_once:
+ ('Jimmy_Butler',_'SF_PF',_'MIA')_F_36791088
+ + ('Jimmy_Butler',_'SF_PF',_'MIA')_PF_36791088
+ + ('Jimmy_Butler',_'SF_PF',_'MIA')_SF_36791088
+ + ('Jimmy_Butler',_'SF_PF',_'MIA')_UTIL_36791088 <= 1
+Can_only_select_('Jock_Landale',_'C',_'HOU')_once:
+ ('Jock_Landale',_'C',_'HOU')_C_36791418
+ + ('Jock_Landale',_'C',_'HOU')_UTIL_36791418 <= 1
+Can_only_select_('Joe_Ingles',_'PF',_'MIN')_once:
+ ('Joe_Ingles',_'PF',_'MIN')_F_36791444
+ + ('Joe_Ingles',_'PF',_'MIN')_PF_36791444
+ + ('Joe_Ingles',_'PF',_'MIN')_UTIL_36791444 <= 1
 Can_only_select_('John_Collins',_'PF/C',_'UTA')_once:
- ('John_Collins',_'PF_C',_'UTA')_C_36873161
- + ('John_Collins',_'PF_C',_'UTA')_F_36873161
- + ('John_Collins',_'PF_C',_'UTA')_PF_36873161
- + ('John_Collins',_'PF_C',_'UTA')_UTIL_36873161 <= 1
+ ('John_Collins',_'PF_C',_'UTA')_C_36791101
+ + ('John_Collins',_'PF_C',_'UTA')_F_36791101
+ + ('John_Collins',_'PF_C',_'UTA')_PF_36791101
+ + ('John_Collins',_'PF_C',_'UTA')_UTIL_36791101 <= 1
 Can_only_select_('Johnny_Juzang',_'SG/SF',_'UTA')_once:
- ('Johnny_Juzang',_'SG_SF',_'UTA')_F_36873663
- + ('Johnny_Juzang',_'SG_SF',_'UTA')_G_36873663
- + ('Johnny_Juzang',_'SG_SF',_'UTA')_SF_36873663
- + ('Johnny_Juzang',_'SG_SF',_'UTA')_SG_36873663
- + ('Johnny_Juzang',_'SG_SF',_'UTA')_UTIL_36873663 <= 1
+ ('Johnny_Juzang',_'SG_SF',_'UTA')_F_36791398
+ + ('Johnny_Juzang',_'SG_SF',_'UTA')_G_36791398
+ + ('Johnny_Juzang',_'SG_SF',_'UTA')_SF_36791398
+ + ('Johnny_Juzang',_'SG_SF',_'UTA')_SG_36791398
+ + ('Johnny_Juzang',_'SG_SF',_'UTA')_UTIL_36791398 <= 1
 Can_only_select_('Jonas_Valanciunas',_'C',_'WAS')_once:
- ('Jonas_Valanciunas',_'C',_'WAS')_C_36873324
- + ('Jonas_Valanciunas',_'C',_'WAS')_UTIL_36873324 <= 1
-Can_only_select_('Jonathan_Isaac',_'PF/C',_'ORL')_once:
- ('Jonathan_Isaac',_'PF_C',_'ORL')_C_36873496
- + ('Jonathan_Isaac',_'PF_C',_'ORL')_F_36873496
- + ('Jonathan_Isaac',_'PF_C',_'ORL')_PF_36873496
- + ('Jonathan_Isaac',_'PF_C',_'ORL')_UTIL_36873496 <= 1
-Can_only_select_('Jonathan_Mogbo',_'C',_'TOR')_once:
- ('Jonathan_Mogbo',_'C',_'TOR')_C_36873630
- + ('Jonathan_Mogbo',_'C',_'TOR')_UTIL_36873630 <= 1
-Can_only_select_('Jordan_Poole',_'PG/SG',_'WAS')_once:
- ('Jordan_Poole',_'PG_SG',_'WAS')_G_36873181
- + ('Jordan_Poole',_'PG_SG',_'WAS')_PG_36873181
- + ('Jordan_Poole',_'PG_SG',_'WAS')_SG_36873181
- + ('Jordan_Poole',_'PG_SG',_'WAS')_UTIL_36873181 <= 1
-Can_only_select_('Josh_Green',_'SF/PF',_'CHA')_once:
- ('Josh_Green',_'SF_PF',_'CHA')_F_36873380
- + ('Josh_Green',_'SF_PF',_'CHA')_PF_36873380
- + ('Josh_Green',_'SF_PF',_'CHA')_SF_36873380
- + ('Josh_Green',_'SF_PF',_'CHA')_UTIL_36873380 <= 1
-Can_only_select_('Josh_Hart',_'SF/PF',_'NYK')_once:
- ('Josh_Hart',_'SF_PF',_'NYK')_F_36873197
- + ('Josh_Hart',_'SF_PF',_'NYK')_PF_36873197
- + ('Josh_Hart',_'SF_PF',_'NYK')_SF_36873197
- + ('Josh_Hart',_'SF_PF',_'NYK')_UTIL_36873197 <= 1
+ ('Jonas_Valanciunas',_'C',_'WAS')_C_36791237
+ + ('Jonas_Valanciunas',_'C',_'WAS')_UTIL_36791237 <= 1
+Can_only_select_('Josh_Giddey',_'PG',_'CHI')_once:
+ ('Josh_Giddey',_'PG',_'CHI')_G_36791127
+ + ('Josh_Giddey',_'PG',_'CHI')_PG_36791127
+ + ('Josh_Giddey',_'PG',_'CHI')_UTIL_36791127 <= 1
 Can_only_select_('Josh_Okogie',_'SF',_'PHX')_once:
- ('Josh_Okogie',_'SF',_'PHX')_F_36873452
- + ('Josh_Okogie',_'SF',_'PHX')_SF_36873452
- + ('Josh_Okogie',_'SF',_'PHX')_UTIL_36873452 <= 1
-Can_only_select_('Julian_Champagnie',_'SF/PF',_'SAS')_once:
- ('Julian_Champagnie',_'SF_PF',_'SAS')_F_36873326
- + ('Julian_Champagnie',_'SF_PF',_'SAS')_PF_36873326
- + ('Julian_Champagnie',_'SF_PF',_'SAS')_SF_36873326
- + ('Julian_Champagnie',_'SF_PF',_'SAS')_UTIL_36873326 <= 1
-Can_only_select_('KJ_Martin',_'SF/PF',_'PHI')_once:
- ('KJ_Martin',_'SF_PF',_'PHI')_F_36873537
- + ('KJ_Martin',_'SF_PF',_'PHI')_PF_36873537
- + ('KJ_Martin',_'SF_PF',_'PHI')_SF_36873537
- + ('KJ_Martin',_'SF_PF',_'PHI')_UTIL_36873537 <= 1
-Can_only_select_('Karl#Anthony_Towns',_'C',_'NYK')_once:
- ('Karl#Anthony_Towns',_'C',_'NYK')_C_36873085
- + ('Karl#Anthony_Towns',_'C',_'NYK')_UTIL_36873085 <= 1
+ ('Josh_Okogie',_'SF',_'PHX')_F_36791246
+ + ('Josh_Okogie',_'SF',_'PHX')_SF_36791246
+ + ('Josh_Okogie',_'SF',_'PHX')_UTIL_36791246 <= 1
+Can_only_select_('Josh_Richardson',_'PG/SG',_'MIA')_once:
+ ('Josh_Richardson',_'PG_SG',_'MIA')_G_36791376
+ + ('Josh_Richardson',_'PG_SG',_'MIA')_PG_36791376
+ + ('Josh_Richardson',_'PG_SG',_'MIA')_SG_36791376
+ + ('Josh_Richardson',_'PG_SG',_'MIA')_UTIL_36791376 <= 1
+Can_only_select_('Julian_Champagnie',_'SG/SF',_'SAS')_once:
+ ('Julian_Champagnie',_'SG_SF',_'SAS')_F_36791228
+ + ('Julian_Champagnie',_'SG_SF',_'SAS')_G_36791228
+ + ('Julian_Champagnie',_'SG_SF',_'SAS')_SF_36791228
+ + ('Julian_Champagnie',_'SG_SF',_'SAS')_SG_36791228
+ + ('Julian_Champagnie',_'SG_SF',_'SAS')_UTIL_36791228 <= 1
+Can_only_select_('Julius_Randle',_'PF/C',_'MIN')_once:
+ ('Julius_Randle',_'PF_C',_'MIN')_C_36791075
+ + ('Julius_Randle',_'PF_C',_'MIN')_F_36791075
+ + ('Julius_Randle',_'PF_C',_'MIN')_PF_36791075
+ + ('Julius_Randle',_'PF_C',_'MIN')_UTIL_36791075 <= 1
+Can_only_select_('Jusuf_Nurkic',_'C',_'PHX')_once:
+ ('Jusuf_Nurkic',_'C',_'PHX')_C_36791139
+ + ('Jusuf_Nurkic',_'C',_'PHX')_UTIL_36791139 <= 1
 Can_only_select_('Keldon_Johnson',_'SF/PF',_'SAS')_once:
- ('Keldon_Johnson',_'SF_PF',_'SAS')_F_36873365
- + ('Keldon_Johnson',_'SF_PF',_'SAS')_PF_36873365
- + ('Keldon_Johnson',_'SF_PF',_'SAS')_SF_36873365
- + ('Keldon_Johnson',_'SF_PF',_'SAS')_UTIL_36873365 <= 1
-Can_only_select_('Kelly_Oubre_Jr.',_'SG/SF',_'PHI')_once:
- ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_F_36873316
- + ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_G_36873316
- + ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_SF_36873316
- + ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_SG_36873316
- + ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_UTIL_36873316 <= 1
-Can_only_select_('Kenrich_Williams',_'PF/C',_'OKC')_once:
- ('Kenrich_Williams',_'PF_C',_'OKC')_C_36873684
- + ('Kenrich_Williams',_'PF_C',_'OKC')_F_36873684
- + ('Kenrich_Williams',_'PF_C',_'OKC')_PF_36873684
- + ('Kenrich_Williams',_'PF_C',_'OKC')_UTIL_36873684 <= 1
-Can_only_select_('Kentavious_Caldwell#Pope',_'SG',_'ORL')_once:
- ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_G_36873432
- + ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_SG_36873432
- + ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_UTIL_36873432 <= 1
-Can_only_select_('Kevin_Durant',_'PF/C',_'PHX')_once:
- ('Kevin_Durant',_'PF_C',_'PHX')_C_36873105
- + ('Kevin_Durant',_'PF_C',_'PHX')_F_36873105
- + ('Kevin_Durant',_'PF_C',_'PHX')_PF_36873105
- + ('Kevin_Durant',_'PF_C',_'PHX')_UTIL_36873105 <= 1
+ ('Keldon_Johnson',_'SF_PF',_'SAS')_F_36791180
+ + ('Keldon_Johnson',_'SF_PF',_'SAS')_PF_36791180
+ + ('Keldon_Johnson',_'SF_PF',_'SAS')_SF_36791180
+ + ('Keldon_Johnson',_'SF_PF',_'SAS')_UTIL_36791180 <= 1
+Can_only_select_('Kevin_Love',_'C',_'MIA')_once:
+ ('Kevin_Love',_'C',_'MIA')_C_36791315
+ + ('Kevin_Love',_'C',_'MIA')_UTIL_36791315 <= 1
 Can_only_select_('Keyonte_George',_'PG',_'UTA')_once:
- ('Keyonte_George',_'PG',_'UTA')_G_36873252
- + ('Keyonte_George',_'PG',_'UTA')_PG_36873252
- + ('Keyonte_George',_'PG',_'UTA')_UTIL_36873252 <= 1
-Can_only_select_('Klay_Thompson',_'SG/SF',_'DAL')_once:
- ('Klay_Thompson',_'SG_SF',_'DAL')_F_36873296
- + ('Klay_Thompson',_'SG_SF',_'DAL')_G_36873296
- + ('Klay_Thompson',_'SG_SF',_'DAL')_SF_36873296
- + ('Klay_Thompson',_'SG_SF',_'DAL')_SG_36873296
- + ('Klay_Thompson',_'SG_SF',_'DAL')_UTIL_36873296 <= 1
-Can_only_select_('Kyle_Lowry',_'PG',_'PHI')_once:
- ('Kyle_Lowry',_'PG',_'PHI')_G_36873556
- + ('Kyle_Lowry',_'PG',_'PHI')_PG_36873556
- + ('Kyle_Lowry',_'PG',_'PHI')_UTIL_36873556 <= 1
-Can_only_select_('Kyrie_Irving',_'PG/SG',_'DAL')_once:
- ('Kyrie_Irving',_'PG_SG',_'DAL')_G_36873091
- + ('Kyrie_Irving',_'PG_SG',_'DAL')_PG_36873091
- + ('Kyrie_Irving',_'PG_SG',_'DAL')_SG_36873091
- + ('Kyrie_Irving',_'PG_SG',_'DAL')_UTIL_36873091 <= 1
+ ('Keyonte_George',_'PG',_'UTA')_G_36791166
+ + ('Keyonte_George',_'PG',_'UTA')_PG_36791166
+ + ('Keyonte_George',_'PG',_'UTA')_UTIL_36791166 <= 1
+Can_only_select_('Kyle_Kuzma',_'PF',_'WAS')_once:
+ ('Kyle_Kuzma',_'PF',_'WAS')_F_36791136
+ + ('Kyle_Kuzma',_'PF',_'WAS')_PF_36791136
+ + ('Kyle_Kuzma',_'PF',_'WAS')_UTIL_36791136 <= 1
 Can_only_select_('Kyshawn_George',_'SF/PF',_'WAS')_once:
- ('Kyshawn_George',_'SF_PF',_'WAS')_F_36873448
- + ('Kyshawn_George',_'SF_PF',_'WAS')_PF_36873448
- + ('Kyshawn_George',_'SF_PF',_'WAS')_SF_36873448
- + ('Kyshawn_George',_'SF_PF',_'WAS')_UTIL_36873448 <= 1
+ ('Kyshawn_George',_'SF_PF',_'WAS')_F_36791286
+ + ('Kyshawn_George',_'SF_PF',_'WAS')_PF_36791286
+ + ('Kyshawn_George',_'SF_PF',_'WAS')_SF_36791286
+ + ('Kyshawn_George',_'SF_PF',_'WAS')_UTIL_36791286 <= 1
 Can_only_select_('Lauri_Markkanen',_'SF/PF',_'UTA')_once:
- ('Lauri_Markkanen',_'SF_PF',_'UTA')_F_36873172
- + ('Lauri_Markkanen',_'SF_PF',_'UTA')_PF_36873172
- + ('Lauri_Markkanen',_'SF_PF',_'UTA')_SF_36873172
- + ('Lauri_Markkanen',_'SF_PF',_'UTA')_UTIL_36873172 <= 1
-Can_only_select_('Luguentz_Dort',_'SG/SF',_'OKC')_once:
- ('Luguentz_Dort',_'SG_SF',_'OKC')_F_36873306
- + ('Luguentz_Dort',_'SG_SF',_'OKC')_G_36873306
- + ('Luguentz_Dort',_'SG_SF',_'OKC')_SF_36873306
- + ('Luguentz_Dort',_'SG_SF',_'OKC')_SG_36873306
- + ('Luguentz_Dort',_'SG_SF',_'OKC')_UTIL_36873306 <= 1
-Can_only_select_('Luka_Doncic',_'PG',_'DAL')_once:
- ('Luka_Doncic',_'PG',_'DAL')_G_36873060
- + ('Luka_Doncic',_'PG',_'DAL')_PG_36873060
- + ('Luka_Doncic',_'PG',_'DAL')_UTIL_36873060 <= 1
-Can_only_select_('Luke_Kennard',_'SG/SF',_'MEM')_once:
- ('Luke_Kennard',_'SG_SF',_'MEM')_F_36873641
- + ('Luke_Kennard',_'SG_SF',_'MEM')_G_36873641
- + ('Luke_Kennard',_'SG_SF',_'MEM')_SF_36873641
- + ('Luke_Kennard',_'SG_SF',_'MEM')_SG_36873641
- + ('Luke_Kennard',_'SG_SF',_'MEM')_UTIL_36873641 <= 1
+ ('Lauri_Markkanen',_'SF_PF',_'UTA')_F_36791097
+ + ('Lauri_Markkanen',_'SF_PF',_'UTA')_PF_36791097
+ + ('Lauri_Markkanen',_'SF_PF',_'UTA')_SF_36791097
+ + ('Lauri_Markkanen',_'SF_PF',_'UTA')_UTIL_36791097 <= 1
+Can_only_select_('LeBron_James',_'PF/C',_'LAL')_once:
+ ('LeBron_James',_'PF_C',_'LAL')_C_36791050
+ + ('LeBron_James',_'PF_C',_'LAL')_F_36791050
+ + ('LeBron_James',_'PF_C',_'LAL')_PF_36791050
+ + ('LeBron_James',_'PF_C',_'LAL')_UTIL_36791050 <= 1
+Can_only_select_('Malaki_Branham',_'SG/SF',_'SAS')_once:
+ ('Malaki_Branham',_'SG_SF',_'SAS')_F_36791451
+ + ('Malaki_Branham',_'SG_SF',_'SAS')_G_36791451
+ + ('Malaki_Branham',_'SG_SF',_'SAS')_SF_36791451
+ + ('Malaki_Branham',_'SG_SF',_'SAS')_SG_36791451
+ + ('Malaki_Branham',_'SG_SF',_'SAS')_UTIL_36791451 <= 1
 Can_only_select_('Malcolm_Brogdon',_'PG/SG',_'WAS')_once:
- ('Malcolm_Brogdon',_'PG_SG',_'WAS')_G_36873262
- + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_PG_36873262
- + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_SG_36873262
- + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_UTIL_36873262 <= 1
-Can_only_select_('Malik_Beasley',_'SG/SF',_'DET')_once:
- ('Malik_Beasley',_'SG_SF',_'DET')_F_36873255
- + ('Malik_Beasley',_'SG_SF',_'DET')_G_36873255
- + ('Malik_Beasley',_'SG_SF',_'DET')_SF_36873255
- + ('Malik_Beasley',_'SG_SF',_'DET')_SG_36873255
- + ('Malik_Beasley',_'SG_SF',_'DET')_UTIL_36873255 <= 1
-Can_only_select_('Marcus_Sasser',_'PG',_'DET')_once:
- ('Marcus_Sasser',_'PG',_'DET')_G_36873616
- + ('Marcus_Sasser',_'PG',_'DET')_PG_36873616
- + ('Marcus_Sasser',_'PG',_'DET')_UTIL_36873616 <= 1
-Can_only_select_('Marcus_Smart',_'PG/SG',_'MEM')_once:
- ('Marcus_Smart',_'PG_SG',_'MEM')_G_36873373
- + ('Marcus_Smart',_'PG_SG',_'MEM')_PG_36873373
- + ('Marcus_Smart',_'PG_SG',_'MEM')_SG_36873373
- + ('Marcus_Smart',_'PG_SG',_'MEM')_UTIL_36873373 <= 1
-Can_only_select_('Mark_Williams',_'C',_'CHA')_once:
- ('Mark_Williams',_'C',_'CHA')_C_36873260
- + ('Mark_Williams',_'C',_'CHA')_UTIL_36873260 <= 1
+ ('Malcolm_Brogdon',_'PG_SG',_'WAS')_G_36791162
+ + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_PG_36791162
+ + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_SG_36791162
+ + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_UTIL_36791162 <= 1
+Can_only_select_('Marvin_Bagley_III',_'C',_'WAS')_once:
+ ('Marvin_Bagley_III',_'C',_'WAS')_C_36791510
+ + ('Marvin_Bagley_III',_'C',_'WAS')_UTIL_36791510 <= 1
 Can_only_select_('Mason_Plumlee',_'C',_'PHX')_once:
- ('Mason_Plumlee',_'C',_'PHX')_C_36873514
- + ('Mason_Plumlee',_'C',_'PHX')_UTIL_36873514 <= 1
-Can_only_select_('Maxi_Kleber',_'PF/C',_'DAL')_once:
- ('Maxi_Kleber',_'PF_C',_'DAL')_C_36873600
- + ('Maxi_Kleber',_'PF_C',_'DAL')_F_36873600
- + ('Maxi_Kleber',_'PF_C',_'DAL')_PF_36873600
- + ('Maxi_Kleber',_'PF_C',_'DAL')_UTIL_36873600 <= 1
-Can_only_select_('Micah_Potter',_'PF',_'UTA')_once:
- ('Micah_Potter',_'PF',_'UTA')_F_36873859
- + ('Micah_Potter',_'PF',_'UTA')_PF_36873859
- + ('Micah_Potter',_'PF',_'UTA')_UTIL_36873859 <= 1
-Can_only_select_('Mikal_Bridges',_'SG/SF',_'NYK')_once:
- ('Mikal_Bridges',_'SG_SF',_'NYK')_F_36873241
- + ('Mikal_Bridges',_'SG_SF',_'NYK')_G_36873241
- + ('Mikal_Bridges',_'SG_SF',_'NYK')_SF_36873241
- + ('Mikal_Bridges',_'SG_SF',_'NYK')_SG_36873241
- + ('Mikal_Bridges',_'SG_SF',_'NYK')_UTIL_36873241 <= 1
-Can_only_select_('Miles_McBride',_'PG/SG',_'NYK')_once:
- ('Miles_McBride',_'PG_SG',_'NYK')_G_36873455
- + ('Miles_McBride',_'PG_SG',_'NYK')_PG_36873455
- + ('Miles_McBride',_'PG_SG',_'NYK')_SG_36873455
- + ('Miles_McBride',_'PG_SG',_'NYK')_UTIL_36873455 <= 1
+ ('Mason_Plumlee',_'C',_'PHX')_C_36791311
+ + ('Mason_Plumlee',_'C',_'PHX')_UTIL_36791311 <= 1
+Can_only_select_('Matas_Buzelis',_'SF/PF',_'CHI')_once:
+ ('Matas_Buzelis',_'SF_PF',_'CHI')_F_36791317
+ + ('Matas_Buzelis',_'SF_PF',_'CHI')_PF_36791317
+ + ('Matas_Buzelis',_'SF_PF',_'CHI')_SF_36791317
+ + ('Matas_Buzelis',_'SF_PF',_'CHI')_UTIL_36791317 <= 1
+Can_only_select_('Max_Christie',_'SF',_'LAL')_once:
+ ('Max_Christie',_'SF',_'LAL')_F_36791370
+ + ('Max_Christie',_'SF',_'LAL')_SF_36791370
+ + ('Max_Christie',_'SF',_'LAL')_UTIL_36791370 <= 1
 Can_only_select_('Monte_Morris',_'PG',_'PHX')_once:
- ('Monte_Morris',_'PG',_'PHX')_G_36873681
- + ('Monte_Morris',_'PG',_'PHX')_PG_36873681
- + ('Monte_Morris',_'PG',_'PHX')_UTIL_36873681 <= 1
-Can_only_select_('Moritz_Wagner',_'C',_'ORL')_once:
- ('Moritz_Wagner',_'C',_'ORL')_C_36873395
- + ('Moritz_Wagner',_'C',_'ORL')_UTIL_36873395 <= 1
-Can_only_select_('Moses_Brown',_'C',_'IND')_once:
- ('Moses_Brown',_'C',_'IND')_C_36873880
- + ('Moses_Brown',_'C',_'IND')_UTIL_36873880 <= 1
-Can_only_select_('Moussa_Diabate',_'PF/C',_'CHA')_once:
- ('Moussa_Diabate',_'PF_C',_'CHA')_C_36873354
- + ('Moussa_Diabate',_'PF_C',_'CHA')_F_36873354
- + ('Moussa_Diabate',_'PF_C',_'CHA')_PF_36873354
- + ('Moussa_Diabate',_'PF_C',_'CHA')_UTIL_36873354 <= 1
-Can_only_select_('Myles_Turner',_'C',_'IND')_once:
- ('Myles_Turner',_'C',_'IND')_C_36873201
- + ('Myles_Turner',_'C',_'IND')_UTIL_36873201 <= 1
-Can_only_select_('Nick_Smith_Jr.',_'SG/SF',_'CHA')_once:
- ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_F_36873652
- + ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_G_36873652
- + ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_SF_36873652
- + ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_SG_36873652
- + ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_UTIL_36873652 <= 1
-Can_only_select_('OG_Anunoby',_'SF/PF',_'NYK')_once:
- ('OG_Anunoby',_'SF_PF',_'NYK')_F_36873222
- + ('OG_Anunoby',_'SF_PF',_'NYK')_PF_36873222
- + ('OG_Anunoby',_'SF_PF',_'NYK')_SF_36873222
- + ('OG_Anunoby',_'SF_PF',_'NYK')_UTIL_36873222 <= 1
-Can_only_select_('Obi_Toppin',_'PF/C',_'IND')_once:
- ('Obi_Toppin',_'PF_C',_'IND')_C_36873579
- + ('Obi_Toppin',_'PF_C',_'IND')_F_36873579
- + ('Obi_Toppin',_'PF_C',_'IND')_PF_36873579
- + ('Obi_Toppin',_'PF_C',_'IND')_UTIL_36873579 <= 1
-Can_only_select_('Ochai_Agbaji',_'SF/PF',_'TOR')_once:
- ('Ochai_Agbaji',_'SF_PF',_'TOR')_F_36873369
- + ('Ochai_Agbaji',_'SF_PF',_'TOR')_PF_36873369
- + ('Ochai_Agbaji',_'SF_PF',_'TOR')_SF_36873369
- + ('Ochai_Agbaji',_'SF_PF',_'TOR')_UTIL_36873369 <= 1
+ ('Monte_Morris',_'PG',_'PHX')_G_36791388
+ + ('Monte_Morris',_'PG',_'PHX')_PG_36791388
+ + ('Monte_Morris',_'PG',_'PHX')_UTIL_36791388 <= 1
+Can_only_select_('Naz_Reid',_'PF/C',_'MIN')_once:
+ ('Naz_Reid',_'PF_C',_'MIN')_C_36791216
+ + ('Naz_Reid',_'PF_C',_'MIN')_F_36791216
+ + ('Naz_Reid',_'PF_C',_'MIN')_PF_36791216
+ + ('Naz_Reid',_'PF_C',_'MIN')_UTIL_36791216 <= 1
+Can_only_select_('Nickeil_Alexander#Walker',_'SG/SF',_'MIN')_once:
+ ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_F_36791281
+ + ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_G_36791281
+ + ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_SF_36791281
+ + ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_SG_36791281
+ + ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_UTIL_36791281 <= 1
+Can_only_select_('Nikola_Jovic',_'PF',_'MIA')_once:
+ ('Nikola_Jovic',_'PF',_'MIA')_F_36791352
+ + ('Nikola_Jovic',_'PF',_'MIA')_PF_36791352
+ + ('Nikola_Jovic',_'PF',_'MIA')_UTIL_36791352 <= 1
+Can_only_select_('Nikola_Vucevic',_'C',_'CHI')_once:
+ ('Nikola_Vucevic',_'C',_'CHI')_C_36791073
+ + ('Nikola_Vucevic',_'C',_'CHI')_UTIL_36791073 <= 1
 Can_only_select_('Oso_Ighodaro',_'PF/C',_'PHX')_once:
- ('Oso_Ighodaro',_'PF_C',_'PHX')_C_36873570
- + ('Oso_Ighodaro',_'PF_C',_'PHX')_F_36873570
- + ('Oso_Ighodaro',_'PF_C',_'PHX')_PF_36873570
- + ('Oso_Ighodaro',_'PF_C',_'PHX')_UTIL_36873570 <= 1
-Can_only_select_('PJ_Washington',_'PF',_'DAL')_once:
- ('PJ_Washington',_'PF',_'DAL')_F_36873178
- + ('PJ_Washington',_'PF',_'DAL')_PF_36873178
- + ('PJ_Washington',_'PF',_'DAL')_UTIL_36873178 <= 1
-Can_only_select_('Pascal_Siakam',_'PF',_'IND')_once:
- ('Pascal_Siakam',_'PF',_'IND')_F_36873151
- + ('Pascal_Siakam',_'PF',_'IND')_PF_36873151
- + ('Pascal_Siakam',_'PF',_'IND')_UTIL_36873151 <= 1
+ ('Oso_Ighodaro',_'PF_C',_'PHX')_C_36791334
+ + ('Oso_Ighodaro',_'PF_C',_'PHX')_F_36791334
+ + ('Oso_Ighodaro',_'PF_C',_'PHX')_PF_36791334
+ + ('Oso_Ighodaro',_'PF_C',_'PHX')_UTIL_36791334 <= 1
 Can_only_select_('Pat_Connaughton',_'SF/PF',_'MIL')_once:
- ('Pat_Connaughton',_'SF_PF',_'MIL')_F_36873637
- + ('Pat_Connaughton',_'SF_PF',_'MIL')_PF_36873637
- + ('Pat_Connaughton',_'SF_PF',_'MIL')_SF_36873637
- + ('Pat_Connaughton',_'SF_PF',_'MIL')_UTIL_36873637 <= 1
-Can_only_select_('Paul_George',_'SF/PF',_'PHI')_once:
- ('Paul_George',_'SF_PF',_'PHI')_F_36873154
- + ('Paul_George',_'SF_PF',_'PHI')_PF_36873154
- + ('Paul_George',_'SF_PF',_'PHI')_SF_36873154
- + ('Paul_George',_'SF_PF',_'PHI')_UTIL_36873154 <= 1
-Can_only_select_('Quentin_Grimes',_'SG/SF',_'DAL')_once:
- ('Quentin_Grimes',_'SG_SF',_'DAL')_F_36873311
- + ('Quentin_Grimes',_'SG_SF',_'DAL')_G_36873311
- + ('Quentin_Grimes',_'SG_SF',_'DAL')_SF_36873311
- + ('Quentin_Grimes',_'SG_SF',_'DAL')_SG_36873311
- + ('Quentin_Grimes',_'SG_SF',_'DAL')_UTIL_36873311 <= 1
-Can_only_select_('Quenton_Jackson',_'SG/SF',_'IND')_once:
- ('Quenton_Jackson',_'SG_SF',_'IND')_F_36873551
- + ('Quenton_Jackson',_'SG_SF',_'IND')_G_36873551
- + ('Quenton_Jackson',_'SG_SF',_'IND')_SF_36873551
- + ('Quenton_Jackson',_'SG_SF',_'IND')_SG_36873551
- + ('Quenton_Jackson',_'SG_SF',_'IND')_UTIL_36873551 <= 1
-Can_only_select_('RJ_Barrett',_'SF/PF',_'TOR')_once:
- ('RJ_Barrett',_'SF_PF',_'TOR')_F_36873131
- + ('RJ_Barrett',_'SF_PF',_'TOR')_PF_36873131
- + ('RJ_Barrett',_'SF_PF',_'TOR')_SF_36873131
- + ('RJ_Barrett',_'SF_PF',_'TOR')_UTIL_36873131 <= 1
-Can_only_select_('Ricky_Council_IV',_'SG/SF',_'PHI')_once:
- ('Ricky_Council_IV',_'SG_SF',_'PHI')_F_36873583
- + ('Ricky_Council_IV',_'SG_SF',_'PHI')_G_36873583
- + ('Ricky_Council_IV',_'SG_SF',_'PHI')_SF_36873583
- + ('Ricky_Council_IV',_'SG_SF',_'PHI')_SG_36873583
- + ('Ricky_Council_IV',_'SG_SF',_'PHI')_UTIL_36873583 <= 1
+ ('Pat_Connaughton',_'SF_PF',_'MIL')_F_36791366
+ + ('Pat_Connaughton',_'SF_PF',_'MIL')_PF_36791366
+ + ('Pat_Connaughton',_'SF_PF',_'MIL')_SF_36791366
+ + ('Pat_Connaughton',_'SF_PF',_'MIL')_UTIL_36791366 <= 1
+Can_only_select_('Reed_Sheppard',_'PG/SG',_'HOU')_once:
+ ('Reed_Sheppard',_'PG_SG',_'HOU')_G_36791414
+ + ('Reed_Sheppard',_'PG_SG',_'HOU')_PG_36791414
+ + ('Reed_Sheppard',_'PG_SG',_'HOU')_SG_36791414
+ + ('Reed_Sheppard',_'PG_SG',_'HOU')_UTIL_36791414 <= 1
+Can_only_select_('Rudy_Gobert',_'C',_'MIN')_once:
+ ('Rudy_Gobert',_'C',_'MIN')_C_36791120
+ + ('Rudy_Gobert',_'C',_'MIN')_UTIL_36791120 <= 1
+Can_only_select_('Rui_Hachimura',_'SF/PF',_'LAL')_once:
+ ('Rui_Hachimura',_'SF_PF',_'LAL')_F_36791233
+ + ('Rui_Hachimura',_'SF_PF',_'LAL')_PF_36791233
+ + ('Rui_Hachimura',_'SF_PF',_'LAL')_SF_36791233
+ + ('Rui_Hachimura',_'SF_PF',_'LAL')_UTIL_36791233 <= 1
 Can_only_select_('Ryan_Dunn',_'PF',_'PHX')_once:
- ('Ryan_Dunn',_'PF',_'PHX')_F_36873619
- + ('Ryan_Dunn',_'PF',_'PHX')_PF_36873619
- + ('Ryan_Dunn',_'PF',_'PHX')_UTIL_36873619 <= 1
-Can_only_select_('Sam_Merrill',_'SG',_'CLE')_once:
- ('Sam_Merrill',_'SG',_'CLE')_G_36873624
- + ('Sam_Merrill',_'SG',_'CLE')_SG_36873624
- + ('Sam_Merrill',_'SG',_'CLE')_UTIL_36873624 <= 1
-Can_only_select_('Santi_Aldama',_'PF',_'MEM')_once:
- ('Santi_Aldama',_'PF',_'MEM')_F_36873272
- + ('Santi_Aldama',_'PF',_'MEM')_PF_36873272
- + ('Santi_Aldama',_'PF',_'MEM')_UTIL_36873272 <= 1
-Can_only_select_('Scottie_Barnes',_'PG/SF',_'TOR')_once:
- ('Scottie_Barnes',_'PG_SF',_'TOR')_F_36873115
- + ('Scottie_Barnes',_'PG_SF',_'TOR')_G_36873115
- + ('Scottie_Barnes',_'PG_SF',_'TOR')_PG_36873115
- + ('Scottie_Barnes',_'PG_SF',_'TOR')_SF_36873115
- + ('Scottie_Barnes',_'PG_SF',_'TOR')_UTIL_36873115 <= 1
-Can_only_select_('Scotty_Pippen_Jr.',_'PG',_'MEM')_once:
- ('Scotty_Pippen_Jr.',_'PG',_'MEM')_G_36873439
- + ('Scotty_Pippen_Jr.',_'PG',_'MEM')_PG_36873439
- + ('Scotty_Pippen_Jr.',_'PG',_'MEM')_UTIL_36873439 <= 1
-Can_only_select_('Seth_Curry',_'SG',_'CHA')_once:
- ('Seth_Curry',_'SG',_'CHA')_G_36873696
- + ('Seth_Curry',_'SG',_'CHA')_SG_36873696
- + ('Seth_Curry',_'SG',_'CHA')_UTIL_36873696 <= 1
-Can_only_select_('Shai_Gilgeous#Alexander',_'PG',_'OKC')_once:
- ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_G_36873065
- + ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_PG_36873065
- + ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_UTIL_36873065 <= 1
-Can_only_select_('Simone_Fontecchio',_'PF',_'DET')_once:
- ('Simone_Fontecchio',_'PF',_'DET')_F_36873627
- + ('Simone_Fontecchio',_'PF',_'DET')_PF_36873627
- + ('Simone_Fontecchio',_'PF',_'DET')_UTIL_36873627 <= 1
-Can_only_select_('Spencer_Dinwiddie',_'PG',_'DAL')_once:
- ('Spencer_Dinwiddie',_'PG',_'DAL')_G_36873358
- + ('Spencer_Dinwiddie',_'PG',_'DAL')_PG_36873358
- + ('Spencer_Dinwiddie',_'PG',_'DAL')_UTIL_36873358 <= 1
+ ('Ryan_Dunn',_'PF',_'PHX')_F_36791355
+ + ('Ryan_Dunn',_'PF',_'PHX')_PF_36791355
+ + ('Ryan_Dunn',_'PF',_'PHX')_UTIL_36791355 <= 1
+Can_only_select_('Sandro_Mamukelashvili',_'PF/C',_'SAS')_once:
+ ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_C_36791432
+ + ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_F_36791432
+ + ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_PF_36791432
+ + ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_UTIL_36791432 <= 1
 Can_only_select_('Stephon_Castle',_'SG',_'SAS')_once:
- ('Stephon_Castle',_'SG',_'SAS')_G_36873330
- + ('Stephon_Castle',_'SG',_'SAS')_SG_36873330
- + ('Stephon_Castle',_'SG',_'SAS')_UTIL_36873330 <= 1
-Can_only_select_('T.J._McConnell',_'PG',_'IND')_once:
- ('T.J._McConnell',_'PG',_'IND')_G_36873345
- + ('T.J._McConnell',_'PG',_'IND')_PG_36873345
- + ('T.J._McConnell',_'PG',_'IND')_UTIL_36873345 <= 1
-Can_only_select_('Taj_Gibson',_'C',_'CHA')_once:
- ('Taj_Gibson',_'C',_'CHA')_C_36873798
- + ('Taj_Gibson',_'C',_'CHA')_UTIL_36873798 <= 1
+ ('Stephon_Castle',_'SG',_'SAS')_G_36791196
+ + ('Stephon_Castle',_'SG',_'SAS')_SG_36791196
+ + ('Stephon_Castle',_'SG',_'SAS')_UTIL_36791196 <= 1
+Can_only_select_('Tari_Eason',_'SF/PF',_'HOU')_once:
+ ('Tari_Eason',_'SF_PF',_'HOU')_F_36791146
+ + ('Tari_Eason',_'SF_PF',_'HOU')_PF_36791146
+ + ('Tari_Eason',_'SF_PF',_'HOU')_SF_36791146
+ + ('Tari_Eason',_'SF_PF',_'HOU')_UTIL_36791146 <= 1
 Can_only_select_('Taurean_Prince',_'SF/PF',_'MIL')_once:
- ('Taurean_Prince',_'SF_PF',_'MIL')_F_36873507
- + ('Taurean_Prince',_'SF_PF',_'MIL')_PF_36873507
- + ('Taurean_Prince',_'SF_PF',_'MIL')_SF_36873507
- + ('Taurean_Prince',_'SF_PF',_'MIL')_UTIL_36873507 <= 1
-Can_only_select_('Tidjane_Salaun',_'PF',_'CHA')_once:
- ('Tidjane_Salaun',_'PF',_'CHA')_F_36873563
- + ('Tidjane_Salaun',_'PF',_'CHA')_PF_36873563
- + ('Tidjane_Salaun',_'PF',_'CHA')_UTIL_36873563 <= 1
-Can_only_select_('Tim_Hardaway_Jr.',_'SG/SF',_'DET')_once:
- ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_F_36873500
- + ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_G_36873500
- + ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_SF_36873500
- + ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_SG_36873500
- + ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_UTIL_36873500 <= 1
-Can_only_select_('Tobias_Harris',_'PF',_'DET')_once:
- ('Tobias_Harris',_'PF',_'DET')_F_36873228
- + ('Tobias_Harris',_'PF',_'DET')_PF_36873228
- + ('Tobias_Harris',_'PF',_'DET')_UTIL_36873228 <= 1
-Can_only_select_('Tristan_da_Silva',_'SF/PF',_'ORL')_once:
- ('Tristan_da_Silva',_'SF_PF',_'ORL')_F_36873604
- + ('Tristan_da_Silva',_'SF_PF',_'ORL')_PF_36873604
- + ('Tristan_da_Silva',_'SF_PF',_'ORL')_SF_36873604
- + ('Tristan_da_Silva',_'SF_PF',_'ORL')_UTIL_36873604 <= 1
-Can_only_select_('Tyrese_Haliburton',_'PG',_'IND')_once:
- ('Tyrese_Haliburton',_'PG',_'IND')_G_36873112
- + ('Tyrese_Haliburton',_'PG',_'IND')_PG_36873112
- + ('Tyrese_Haliburton',_'PG',_'IND')_UTIL_36873112 <= 1
-Can_only_select_('Tyrese_Maxey',_'PG',_'PHI')_once:
- ('Tyrese_Maxey',_'PG',_'PHI')_G_36873120
- + ('Tyrese_Maxey',_'PG',_'PHI')_PG_36873120
- + ('Tyrese_Maxey',_'PG',_'PHI')_UTIL_36873120 <= 1
+ ('Taurean_Prince',_'SF_PF',_'MIL')_F_36791293
+ + ('Taurean_Prince',_'SF_PF',_'MIL')_PF_36791293
+ + ('Taurean_Prince',_'SF_PF',_'MIL')_SF_36791293
+ + ('Taurean_Prince',_'SF_PF',_'MIL')_UTIL_36791293 <= 1
+Can_only_select_('Torrey_Craig',_'PF',_'CHI')_once:
+ ('Torrey_Craig',_'PF',_'CHI')_F_36791331
+ + ('Torrey_Craig',_'PF',_'CHI')_PF_36791331
+ + ('Torrey_Craig',_'PF',_'CHI')_UTIL_36791331 <= 1
+Can_only_select_('Tre_Jones',_'PG',_'SAS')_once:
+ ('Tre_Jones',_'PG',_'SAS')_G_36791373
+ + ('Tre_Jones',_'PG',_'SAS')_PG_36791373
+ + ('Tre_Jones',_'PG',_'SAS')_UTIL_36791373 <= 1
+Can_only_select_('Tyler_Herro',_'PG/SG',_'MIA')_once:
+ ('Tyler_Herro',_'PG_SG',_'MIA')_G_36791079
+ + ('Tyler_Herro',_'PG_SG',_'MIA')_PG_36791079
+ + ('Tyler_Herro',_'PG_SG',_'MIA')_SG_36791079
+ + ('Tyler_Herro',_'PG_SG',_'MIA')_UTIL_36791079 <= 1
 Can_only_select_('Tyus_Jones',_'PG',_'PHX')_once:
- ('Tyus_Jones',_'PG',_'PHX')_G_36873266
- + ('Tyus_Jones',_'PG',_'PHX')_PG_36873266
- + ('Tyus_Jones',_'PG',_'PHX')_UTIL_36873266 <= 1
-Can_only_select_('Vasilije_Micic',_'PG',_'CHA')_once:
- ('Vasilije_Micic',_'PG',_'CHA')_G_36873401
- + ('Vasilije_Micic',_'PG',_'CHA')_PG_36873401
- + ('Vasilije_Micic',_'PG',_'CHA')_UTIL_36873401 <= 1
+ ('Tyus_Jones',_'PG',_'PHX')_G_36791156
+ + ('Tyus_Jones',_'PG',_'PHX')_PG_36791156
+ + ('Tyus_Jones',_'PG',_'PHX')_UTIL_36791156 <= 1
 Can_only_select_('Victor_Wembanyama',_'C',_'SAS')_once:
- ('Victor_Wembanyama',_'C',_'SAS')_C_36873063
- + ('Victor_Wembanyama',_'C',_'SAS')_UTIL_36873063 <= 1
+ ('Victor_Wembanyama',_'C',_'SAS')_C_36791046
+ + ('Victor_Wembanyama',_'C',_'SAS')_UTIL_36791046 <= 1
 Can_only_select_('Walker_Kessler',_'C',_'UTA')_once:
- ('Walker_Kessler',_'C',_'UTA')_C_36873217
- + ('Walker_Kessler',_'C',_'UTA')_UTIL_36873217 <= 1
-Can_only_select_('Wendell_Carter_Jr.',_'PF/C',_'ORL')_once:
- ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_C_36873336
- + ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_F_36873336
- + ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_PF_36873336
- + ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_UTIL_36873336 <= 1
+ ('Walker_Kessler',_'C',_'UTA')_C_36791154
+ + ('Walker_Kessler',_'C',_'UTA')_UTIL_36791154 <= 1
 Can_only_select_('Zach_Collins',_'C',_'SAS')_once:
- ('Zach_Collins',_'C',_'SAS')_C_36873446
- + ('Zach_Collins',_'C',_'SAS')_UTIL_36873446 <= 1
-Global_team_limit___at_most_4_players_from_CHA:
- ('Brandon_Miller',_'SG_SF',_'CHA')_F_36873126
- + ('Brandon_Miller',_'SG_SF',_'CHA')_G_36873126
- + ('Brandon_Miller',_'SG_SF',_'CHA')_SF_36873126
- + ('Brandon_Miller',_'SG_SF',_'CHA')_SG_36873126
- + ('Brandon_Miller',_'SG_SF',_'CHA')_UTIL_36873126
- + ('Cody_Martin',_'SF',_'CHA')_F_36873348
- + ('Cody_Martin',_'SF',_'CHA')_SF_36873348
- + ('Cody_Martin',_'SF',_'CHA')_UTIL_36873348
- + ('Josh_Green',_'SF_PF',_'CHA')_F_36873380
- + ('Josh_Green',_'SF_PF',_'CHA')_PF_36873380
- + ('Josh_Green',_'SF_PF',_'CHA')_SF_36873380
- + ('Josh_Green',_'SF_PF',_'CHA')_UTIL_36873380
- + ('Mark_Williams',_'C',_'CHA')_C_36873260
- + ('Mark_Williams',_'C',_'CHA')_UTIL_36873260
- + ('Moussa_Diabate',_'PF_C',_'CHA')_C_36873354
- + ('Moussa_Diabate',_'PF_C',_'CHA')_F_36873354
- + ('Moussa_Diabate',_'PF_C',_'CHA')_PF_36873354
- + ('Moussa_Diabate',_'PF_C',_'CHA')_UTIL_36873354
- + ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_F_36873652
- + ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_G_36873652
- + ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_SF_36873652
- + ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_SG_36873652
- + ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_UTIL_36873652
- + ('Seth_Curry',_'SG',_'CHA')_G_36873696
- + ('Seth_Curry',_'SG',_'CHA')_SG_36873696
- + ('Seth_Curry',_'SG',_'CHA')_UTIL_36873696
- + ('Taj_Gibson',_'C',_'CHA')_C_36873798
- + ('Taj_Gibson',_'C',_'CHA')_UTIL_36873798
- + ('Tidjane_Salaun',_'PF',_'CHA')_F_36873563
- + ('Tidjane_Salaun',_'PF',_'CHA')_PF_36873563
- + ('Tidjane_Salaun',_'PF',_'CHA')_UTIL_36873563
- + ('Vasilije_Micic',_'PG',_'CHA')_G_36873401
- + ('Vasilije_Micic',_'PG',_'CHA')_PG_36873401
- + ('Vasilije_Micic',_'PG',_'CHA')_UTIL_36873401 <= 4
-Global_team_limit___at_most_4_players_from_CLE:
- ('Caris_LeVert',_'PG_SG',_'CLE')_G_36873361
- + ('Caris_LeVert',_'PG_SG',_'CLE')_PG_36873361
- + ('Caris_LeVert',_'PG_SG',_'CLE')_SG_36873361
- + ('Caris_LeVert',_'PG_SG',_'CLE')_UTIL_36873361
- + ('Darius_Garland',_'PG',_'CLE')_G_36873158
- + ('Darius_Garland',_'PG',_'CLE')_PG_36873158
- + ('Darius_Garland',_'PG',_'CLE')_UTIL_36873158
- + ('Dean_Wade',_'SF_PF',_'CLE')_F_36873596
- + ('Dean_Wade',_'SF_PF',_'CLE')_PF_36873596
- + ('Dean_Wade',_'SF_PF',_'CLE')_SF_36873596
- + ('Dean_Wade',_'SF_PF',_'CLE')_UTIL_36873596
- + ('Donovan_Mitchell',_'PG_SG',_'CLE')_G_36873087
- + ('Donovan_Mitchell',_'PG_SG',_'CLE')_PG_36873087
- + ('Donovan_Mitchell',_'PG_SG',_'CLE')_SG_36873087
- + ('Donovan_Mitchell',_'PG_SG',_'CLE')_UTIL_36873087
- + ('Evan_Mobley',_'PF_C',_'CLE')_C_36873135
- + ('Evan_Mobley',_'PF_C',_'CLE')_F_36873135
- + ('Evan_Mobley',_'PF_C',_'CLE')_PF_36873135
- + ('Evan_Mobley',_'PF_C',_'CLE')_UTIL_36873135
- + ('Georges_Niang',_'SF_PF',_'CLE')_F_36873435
- + ('Georges_Niang',_'SF_PF',_'CLE')_PF_36873435
- + ('Georges_Niang',_'SF_PF',_'CLE')_SF_36873435
- + ('Georges_Niang',_'SF_PF',_'CLE')_UTIL_36873435
- + ('Isaac_Okoro',_'SG_SF',_'CLE')_F_36873516
- + ('Isaac_Okoro',_'SG_SF',_'CLE')_G_36873516
- + ('Isaac_Okoro',_'SG_SF',_'CLE')_SF_36873516
- + ('Isaac_Okoro',_'SG_SF',_'CLE')_SG_36873516
- + ('Isaac_Okoro',_'SG_SF',_'CLE')_UTIL_36873516
- + ('Jarrett_Allen',_'C',_'CLE')_C_36873206
- + ('Jarrett_Allen',_'C',_'CLE')_UTIL_36873206
- + ('Sam_Merrill',_'SG',_'CLE')_G_36873624
- + ('Sam_Merrill',_'SG',_'CLE')_SG_36873624
- + ('Sam_Merrill',_'SG',_'CLE')_UTIL_36873624 <= 4
-Global_team_limit___at_most_4_players_from_DAL:
- ('Daniel_Gafford',_'C',_'DAL')_C_36873246
- + ('Daniel_Gafford',_'C',_'DAL')_UTIL_36873246
- + ('Dereck_Lively_II',_'C',_'DAL')_C_36873290
- + ('Dereck_Lively_II',_'C',_'DAL')_UTIL_36873290
- + ('Jaden_Hardy',_'PG_SG',_'DAL')_G_36873420
- + ('Jaden_Hardy',_'PG_SG',_'DAL')_PG_36873420
- + ('Jaden_Hardy',_'PG_SG',_'DAL')_SG_36873420
- + ('Jaden_Hardy',_'PG_SG',_'DAL')_UTIL_36873420
- + ('Klay_Thompson',_'SG_SF',_'DAL')_F_36873296
- + ('Klay_Thompson',_'SG_SF',_'DAL')_G_36873296
- + ('Klay_Thompson',_'SG_SF',_'DAL')_SF_36873296
- + ('Klay_Thompson',_'SG_SF',_'DAL')_SG_36873296
- + ('Klay_Thompson',_'SG_SF',_'DAL')_UTIL_36873296
- + ('Kyrie_Irving',_'PG_SG',_'DAL')_G_36873091
- + ('Kyrie_Irving',_'PG_SG',_'DAL')_PG_36873091
- + ('Kyrie_Irving',_'PG_SG',_'DAL')_SG_36873091
- + ('Kyrie_Irving',_'PG_SG',_'DAL')_UTIL_36873091
- + ('Luka_Doncic',_'PG',_'DAL')_G_36873060
- + ('Luka_Doncic',_'PG',_'DAL')_PG_36873060
- + ('Luka_Doncic',_'PG',_'DAL')_UTIL_36873060
- + ('Maxi_Kleber',_'PF_C',_'DAL')_C_36873600
- + ('Maxi_Kleber',_'PF_C',_'DAL')_F_36873600
- + ('Maxi_Kleber',_'PF_C',_'DAL')_PF_36873600
- + ('Maxi_Kleber',_'PF_C',_'DAL')_UTIL_36873600
- + ('PJ_Washington',_'PF',_'DAL')_F_36873178
- + ('PJ_Washington',_'PF',_'DAL')_PF_36873178
- + ('PJ_Washington',_'PF',_'DAL')_UTIL_36873178
- + ('Quentin_Grimes',_'SG_SF',_'DAL')_F_36873311
- + ('Quentin_Grimes',_'SG_SF',_'DAL')_G_36873311
- + ('Quentin_Grimes',_'SG_SF',_'DAL')_SF_36873311
- + ('Quentin_Grimes',_'SG_SF',_'DAL')_SG_36873311
- + ('Quentin_Grimes',_'SG_SF',_'DAL')_UTIL_36873311
- + ('Spencer_Dinwiddie',_'PG',_'DAL')_G_36873358
- + ('Spencer_Dinwiddie',_'PG',_'DAL')_PG_36873358
- + ('Spencer_Dinwiddie',_'PG',_'DAL')_UTIL_36873358 <= 4
-Global_team_limit___at_most_4_players_from_DET:
- ('Ausar_Thompson',_'SF_PF',_'DET')_F_36873478
- + ('Ausar_Thompson',_'SF_PF',_'DET')_PF_36873478
- + ('Ausar_Thompson',_'SF_PF',_'DET')_SF_36873478
- + ('Ausar_Thompson',_'SF_PF',_'DET')_UTIL_36873478
- + ('Cade_Cunningham',_'PG',_'DET')_G_36873073
- + ('Cade_Cunningham',_'PG',_'DET')_PG_36873073
- + ('Cade_Cunningham',_'PG',_'DET')_UTIL_36873073
- + ('Isaiah_Stewart',_'C',_'DET')_C_36873476
- + ('Isaiah_Stewart',_'C',_'DET')_UTIL_36873476
- + ('Jaden_Ivey',_'PG_SG',_'DET')_G_36873139
- + ('Jaden_Ivey',_'PG_SG',_'DET')_PG_36873139
- + ('Jaden_Ivey',_'PG_SG',_'DET')_SG_36873139
- + ('Jaden_Ivey',_'PG_SG',_'DET')_UTIL_36873139
- + ('Jalen_Duren',_'C',_'DET')_C_36873236
- + ('Jalen_Duren',_'C',_'DET')_UTIL_36873236
- + ('Malik_Beasley',_'SG_SF',_'DET')_F_36873255
- + ('Malik_Beasley',_'SG_SF',_'DET')_G_36873255
- + ('Malik_Beasley',_'SG_SF',_'DET')_SF_36873255
- + ('Malik_Beasley',_'SG_SF',_'DET')_SG_36873255
- + ('Malik_Beasley',_'SG_SF',_'DET')_UTIL_36873255
- + ('Marcus_Sasser',_'PG',_'DET')_G_36873616
- + ('Marcus_Sasser',_'PG',_'DET')_PG_36873616
- + ('Marcus_Sasser',_'PG',_'DET')_UTIL_36873616
- + ('Simone_Fontecchio',_'PF',_'DET')_F_36873627
- + ('Simone_Fontecchio',_'PF',_'DET')_PF_36873627
- + ('Simone_Fontecchio',_'PF',_'DET')_UTIL_36873627
- + ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_F_36873500
- + ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_G_36873500
- + ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_SF_36873500
- + ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_SG_36873500
- + ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_UTIL_36873500
- + ('Tobias_Harris',_'PF',_'DET')_F_36873228
- + ('Tobias_Harris',_'PF',_'DET')_PF_36873228
- + ('Tobias_Harris',_'PF',_'DET')_UTIL_36873228 <= 4
-Global_team_limit___at_most_4_players_from_IND:
- ('Andrew_Nembhard',_'PG_SG',_'IND')_G_36873397
- + ('Andrew_Nembhard',_'PG_SG',_'IND')_PG_36873397
- + ('Andrew_Nembhard',_'PG_SG',_'IND')_SG_36873397
- + ('Andrew_Nembhard',_'PG_SG',_'IND')_UTIL_36873397
- + ('Bennedict_Mathurin',_'SG_SF',_'IND')_F_36873185
- + ('Bennedict_Mathurin',_'SG_SF',_'IND')_G_36873185
- + ('Bennedict_Mathurin',_'SG_SF',_'IND')_SF_36873185
- + ('Bennedict_Mathurin',_'SG_SF',_'IND')_SG_36873185
- + ('Bennedict_Mathurin',_'SG_SF',_'IND')_UTIL_36873185
- + ('Jarace_Walker',_'SF_PF',_'IND')_F_36873528
- + ('Jarace_Walker',_'SF_PF',_'IND')_PF_36873528
- + ('Jarace_Walker',_'SF_PF',_'IND')_SF_36873528
- + ('Jarace_Walker',_'SF_PF',_'IND')_UTIL_36873528
- + ('Moses_Brown',_'C',_'IND')_C_36873880
- + ('Moses_Brown',_'C',_'IND')_UTIL_36873880
- + ('Myles_Turner',_'C',_'IND')_C_36873201
- + ('Myles_Turner',_'C',_'IND')_UTIL_36873201
- + ('Obi_Toppin',_'PF_C',_'IND')_C_36873579
- + ('Obi_Toppin',_'PF_C',_'IND')_F_36873579
- + ('Obi_Toppin',_'PF_C',_'IND')_PF_36873579
- + ('Obi_Toppin',_'PF_C',_'IND')_UTIL_36873579
- + ('Pascal_Siakam',_'PF',_'IND')_F_36873151
- + ('Pascal_Siakam',_'PF',_'IND')_PF_36873151
- + ('Pascal_Siakam',_'PF',_'IND')_UTIL_36873151
- + ('Quenton_Jackson',_'SG_SF',_'IND')_F_36873551
- + ('Quenton_Jackson',_'SG_SF',_'IND')_G_36873551
- + ('Quenton_Jackson',_'SG_SF',_'IND')_SF_36873551
- + ('Quenton_Jackson',_'SG_SF',_'IND')_SG_36873551
- + ('Quenton_Jackson',_'SG_SF',_'IND')_UTIL_36873551
- + ('T.J._McConnell',_'PG',_'IND')_G_36873345
- + ('T.J._McConnell',_'PG',_'IND')_PG_36873345
- + ('T.J._McConnell',_'PG',_'IND')_UTIL_36873345
- + ('Tyrese_Haliburton',_'PG',_'IND')_G_36873112
- + ('Tyrese_Haliburton',_'PG',_'IND')_PG_36873112
- + ('Tyrese_Haliburton',_'PG',_'IND')_UTIL_36873112 <= 4
-Global_team_limit___at_most_4_players_from_MEM:
- ('Brandon_Clarke',_'PF_C',_'MEM')_C_36873424
- + ('Brandon_Clarke',_'PF_C',_'MEM')_F_36873424
- + ('Brandon_Clarke',_'PF_C',_'MEM')_PF_36873424
- + ('Brandon_Clarke',_'PF_C',_'MEM')_UTIL_36873424
- + ('Desmond_Bane',_'SG_SF',_'MEM')_F_36873167
- + ('Desmond_Bane',_'SG_SF',_'MEM')_G_36873167
- + ('Desmond_Bane',_'SG_SF',_'MEM')_SF_36873167
- + ('Desmond_Bane',_'SG_SF',_'MEM')_SG_36873167
- + ('Desmond_Bane',_'SG_SF',_'MEM')_UTIL_36873167
- + ('Ja_Morant',_'PG',_'MEM')_G_36873102
- + ('Ja_Morant',_'PG',_'MEM')_PG_36873102
- + ('Ja_Morant',_'PG',_'MEM')_UTIL_36873102
- + ('Jake_LaRavia',_'SF_PF',_'MEM')_F_36873463
- + ('Jake_LaRavia',_'SF_PF',_'MEM')_PF_36873463
- + ('Jake_LaRavia',_'SF_PF',_'MEM')_SF_36873463
- + ('Jake_LaRavia',_'SF_PF',_'MEM')_UTIL_36873463
- + ('Jaren_Jackson_Jr.',_'PF',_'MEM')_F_36873143
- + ('Jaren_Jackson_Jr.',_'PF',_'MEM')_PF_36873143
- + ('Jaren_Jackson_Jr.',_'PF',_'MEM')_UTIL_36873143
- + ('Jay_Huff',_'C',_'MEM')_C_36873622
- + ('Jay_Huff',_'C',_'MEM')_UTIL_36873622
- + ('Jaylen_Wells',_'SG_SF',_'MEM')_F_36873486
- + ('Jaylen_Wells',_'SG_SF',_'MEM')_G_36873486
- + ('Jaylen_Wells',_'SG_SF',_'MEM')_SF_36873486
- + ('Jaylen_Wells',_'SG_SF',_'MEM')_SG_36873486
- + ('Jaylen_Wells',_'SG_SF',_'MEM')_UTIL_36873486
- + ('Luke_Kennard',_'SG_SF',_'MEM')_F_36873641
- + ('Luke_Kennard',_'SG_SF',_'MEM')_G_36873641
- + ('Luke_Kennard',_'SG_SF',_'MEM')_SF_36873641
- + ('Luke_Kennard',_'SG_SF',_'MEM')_SG_36873641
- + ('Luke_Kennard',_'SG_SF',_'MEM')_UTIL_36873641
- + ('Marcus_Smart',_'PG_SG',_'MEM')_G_36873373
- + ('Marcus_Smart',_'PG_SG',_'MEM')_PG_36873373
- + ('Marcus_Smart',_'PG_SG',_'MEM')_SG_36873373
- + ('Marcus_Smart',_'PG_SG',_'MEM')_UTIL_36873373
- + ('Santi_Aldama',_'PF',_'MEM')_F_36873272
- + ('Santi_Aldama',_'PF',_'MEM')_PF_36873272
- + ('Santi_Aldama',_'PF',_'MEM')_UTIL_36873272
- + ('Scotty_Pippen_Jr.',_'PG',_'MEM')_G_36873439
- + ('Scotty_Pippen_Jr.',_'PG',_'MEM')_PG_36873439
- + ('Scotty_Pippen_Jr.',_'PG',_'MEM')_UTIL_36873439 <= 4
+ ('Zach_Collins',_'C',_'SAS')_C_36791187
+ + ('Zach_Collins',_'C',_'SAS')_UTIL_36791187 <= 1
+Can_only_select_('Zach_LaVine',_'SG/SF',_'CHI')_once:
+ ('Zach_LaVine',_'SG_SF',_'CHI')_F_36791083
+ + ('Zach_LaVine',_'SG_SF',_'CHI')_G_36791083
+ + ('Zach_LaVine',_'SG_SF',_'CHI')_SF_36791083
+ + ('Zach_LaVine',_'SG_SF',_'CHI')_SG_36791083
+ + ('Zach_LaVine',_'SG_SF',_'CHI')_UTIL_36791083 <= 1
+Global_team_limit___at_most_4_players_from_CHI:
+ ('Ayo_Dosunmu',_'PG_SG',_'CHI')_G_36791173
+ + ('Ayo_Dosunmu',_'PG_SG',_'CHI')_PG_36791173
+ + ('Ayo_Dosunmu',_'PG_SG',_'CHI')_SG_36791173
+ + ('Ayo_Dosunmu',_'PG_SG',_'CHI')_UTIL_36791173
+ + ('Coby_White',_'PG_SG',_'CHI')_G_36791108
+ + ('Coby_White',_'PG_SG',_'CHI')_PG_36791108
+ + ('Coby_White',_'PG_SG',_'CHI')_SG_36791108
+ + ('Coby_White',_'PG_SG',_'CHI')_UTIL_36791108
+ + ('Dalen_Terry',_'SG_SF',_'CHI')_F_36791383
+ + ('Dalen_Terry',_'SG_SF',_'CHI')_G_36791383
+ + ('Dalen_Terry',_'SG_SF',_'CHI')_SF_36791383
+ + ('Dalen_Terry',_'SG_SF',_'CHI')_SG_36791383
+ + ('Dalen_Terry',_'SG_SF',_'CHI')_UTIL_36791383
+ + ('Jalen_Smith',_'C',_'CHI')_C_36791343
+ + ('Jalen_Smith',_'C',_'CHI')_UTIL_36791343
+ + ('Josh_Giddey',_'PG',_'CHI')_G_36791127
+ + ('Josh_Giddey',_'PG',_'CHI')_PG_36791127
+ + ('Josh_Giddey',_'PG',_'CHI')_UTIL_36791127
+ + ('Matas_Buzelis',_'SF_PF',_'CHI')_F_36791317
+ + ('Matas_Buzelis',_'SF_PF',_'CHI')_PF_36791317
+ + ('Matas_Buzelis',_'SF_PF',_'CHI')_SF_36791317
+ + ('Matas_Buzelis',_'SF_PF',_'CHI')_UTIL_36791317
+ + ('Nikola_Vucevic',_'C',_'CHI')_C_36791073
+ + ('Nikola_Vucevic',_'C',_'CHI')_UTIL_36791073
+ + ('Torrey_Craig',_'PF',_'CHI')_F_36791331
+ + ('Torrey_Craig',_'PF',_'CHI')_PF_36791331
+ + ('Torrey_Craig',_'PF',_'CHI')_UTIL_36791331
+ + ('Zach_LaVine',_'SG_SF',_'CHI')_F_36791083
+ + ('Zach_LaVine',_'SG_SF',_'CHI')_G_36791083
+ + ('Zach_LaVine',_'SG_SF',_'CHI')_SF_36791083
+ + ('Zach_LaVine',_'SG_SF',_'CHI')_SG_36791083
+ + ('Zach_LaVine',_'SG_SF',_'CHI')_UTIL_36791083 <= 4
+Global_team_limit___at_most_4_players_from_HOU:
+ ('Aaron_Holiday',_'PG',_'HOU')_G_36791537
+ + ('Aaron_Holiday',_'PG',_'HOU')_PG_36791537
+ + ('Aaron_Holiday',_'PG',_'HOU')_UTIL_36791537
+ + ('Alperen_Sengun',_'C',_'HOU')_C_36791065
+ + ('Alperen_Sengun',_'C',_'HOU')_UTIL_36791065
+ + ('Amen_Thompson',_'SG_SF',_'HOU')_F_36791207
+ + ('Amen_Thompson',_'SG_SF',_'HOU')_G_36791207
+ + ('Amen_Thompson',_'SG_SF',_'HOU')_SF_36791207
+ + ('Amen_Thompson',_'SG_SF',_'HOU')_SG_36791207
+ + ('Amen_Thompson',_'SG_SF',_'HOU')_UTIL_36791207
+ + ('Dillon_Brooks',_'SF',_'HOU')_F_36791290
+ + ('Dillon_Brooks',_'SF',_'HOU')_SF_36791290
+ + ('Dillon_Brooks',_'SF',_'HOU')_UTIL_36791290
+ + ('Fred_VanVleet',_'PG',_'HOU')_G_36791105
+ + ('Fred_VanVleet',_'PG',_'HOU')_PG_36791105
+ + ('Fred_VanVleet',_'PG',_'HOU')_UTIL_36791105
+ + ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_C_36791261
+ + ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_F_36791261
+ + ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_PF_36791261
+ + ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_UTIL_36791261
+ + ('Jalen_Green',_'SG',_'HOU')_G_36791130
+ + ('Jalen_Green',_'SG',_'HOU')_SG_36791130
+ + ('Jalen_Green',_'SG',_'HOU')_UTIL_36791130
+ + ('Jock_Landale',_'C',_'HOU')_C_36791418
+ + ('Jock_Landale',_'C',_'HOU')_UTIL_36791418
+ + ('Reed_Sheppard',_'PG_SG',_'HOU')_G_36791414
+ + ('Reed_Sheppard',_'PG_SG',_'HOU')_PG_36791414
+ + ('Reed_Sheppard',_'PG_SG',_'HOU')_SG_36791414
+ + ('Reed_Sheppard',_'PG_SG',_'HOU')_UTIL_36791414
+ + ('Tari_Eason',_'SF_PF',_'HOU')_F_36791146
+ + ('Tari_Eason',_'SF_PF',_'HOU')_PF_36791146
+ + ('Tari_Eason',_'SF_PF',_'HOU')_SF_36791146
+ + ('Tari_Eason',_'SF_PF',_'HOU')_UTIL_36791146 <= 4
+Global_team_limit___at_most_4_players_from_LAL:
+ ("D'Angelo_Russell",_'PG',_'LAL')_G_36791258
+ + ("D'Angelo_Russell",_'PG',_'LAL')_PG_36791258
+ + ("D'Angelo_Russell",_'PG',_'LAL')_UTIL_36791258
+ + ('Anthony_Davis',_'C',_'LAL')_C_36791048
+ + ('Anthony_Davis',_'C',_'LAL')_UTIL_36791048
+ + ('Austin_Reaves',_'PG_SG',_'LAL')_G_36791116
+ + ('Austin_Reaves',_'PG_SG',_'LAL')_PG_36791116
+ + ('Austin_Reaves',_'PG_SG',_'LAL')_SG_36791116
+ + ('Austin_Reaves',_'PG_SG',_'LAL')_UTIL_36791116
+ + ('Cam_Reddish',_'SG',_'LAL')_G_36791349
+ + ('Cam_Reddish',_'SG',_'LAL')_SG_36791349
+ + ('Cam_Reddish',_'SG',_'LAL')_UTIL_36791349
+ + ('Christian_Koloko',_'C',_'LAL')_C_36791393
+ + ('Christian_Koloko',_'C',_'LAL')_UTIL_36791393
+ + ('Dalton_Knecht',_'SG_SF',_'LAL')_F_36791199
+ + ('Dalton_Knecht',_'SG_SF',_'LAL')_G_36791199
+ + ('Dalton_Knecht',_'SG_SF',_'LAL')_SF_36791199
+ + ('Dalton_Knecht',_'SG_SF',_'LAL')_SG_36791199
+ + ('Dalton_Knecht',_'SG_SF',_'LAL')_UTIL_36791199
+ + ('Gabe_Vincent',_'PG_SG',_'LAL')_G_36791564
+ + ('Gabe_Vincent',_'PG_SG',_'LAL')_PG_36791564
+ + ('Gabe_Vincent',_'PG_SG',_'LAL')_SG_36791564
+ + ('Gabe_Vincent',_'PG_SG',_'LAL')_UTIL_36791564
+ + ('LeBron_James',_'PF_C',_'LAL')_C_36791050
+ + ('LeBron_James',_'PF_C',_'LAL')_F_36791050
+ + ('LeBron_James',_'PF_C',_'LAL')_PF_36791050
+ + ('LeBron_James',_'PF_C',_'LAL')_UTIL_36791050
+ + ('Max_Christie',_'SF',_'LAL')_F_36791370
+ + ('Max_Christie',_'SF',_'LAL')_SF_36791370
+ + ('Max_Christie',_'SF',_'LAL')_UTIL_36791370
+ + ('Rui_Hachimura',_'SF_PF',_'LAL')_F_36791233
+ + ('Rui_Hachimura',_'SF_PF',_'LAL')_PF_36791233
+ + ('Rui_Hachimura',_'SF_PF',_'LAL')_SF_36791233
+ + ('Rui_Hachimura',_'SF_PF',_'LAL')_UTIL_36791233 <= 4
+Global_team_limit___at_most_4_players_from_MIA:
+ ('Alec_Burks',_'PG_SG',_'MIA')_G_36791345
+ + ('Alec_Burks',_'PG_SG',_'MIA')_PG_36791345
+ + ('Alec_Burks',_'PG_SG',_'MIA')_SG_36791345
+ + ('Alec_Burks',_'PG_SG',_'MIA')_UTIL_36791345
+ + ('Bam_Adebayo',_'C',_'MIA')_C_36791067
+ + ('Bam_Adebayo',_'C',_'MIA')_UTIL_36791067
+ + ('Duncan_Robinson',_'SG',_'MIA')_G_36791265
+ + ('Duncan_Robinson',_'SG',_'MIA')_SG_36791265
+ + ('Duncan_Robinson',_'SG',_'MIA')_UTIL_36791265
+ + ('Haywood_Highsmith',_'SF_PF',_'MIA')_F_36791277
+ + ('Haywood_Highsmith',_'SF_PF',_'MIA')_PF_36791277
+ + ('Haywood_Highsmith',_'SF_PF',_'MIA')_SF_36791277
+ + ('Haywood_Highsmith',_'SF_PF',_'MIA')_UTIL_36791277
+ + ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_F_36791224
+ + ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_PF_36791224
+ + ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_SF_36791224
+ + ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_UTIL_36791224
+ + ('Jimmy_Butler',_'SF_PF',_'MIA')_F_36791088
+ + ('Jimmy_Butler',_'SF_PF',_'MIA')_PF_36791088
+ + ('Jimmy_Butler',_'SF_PF',_'MIA')_SF_36791088
+ + ('Jimmy_Butler',_'SF_PF',_'MIA')_UTIL_36791088
+ + ('Josh_Richardson',_'PG_SG',_'MIA')_G_36791376
+ + ('Josh_Richardson',_'PG_SG',_'MIA')_PG_36791376
+ + ('Josh_Richardson',_'PG_SG',_'MIA')_SG_36791376
+ + ('Josh_Richardson',_'PG_SG',_'MIA')_UTIL_36791376
+ + ('Kevin_Love',_'C',_'MIA')_C_36791315
+ + ('Kevin_Love',_'C',_'MIA')_UTIL_36791315
+ + ('Nikola_Jovic',_'PF',_'MIA')_F_36791352
+ + ('Nikola_Jovic',_'PF',_'MIA')_PF_36791352
+ + ('Nikola_Jovic',_'PF',_'MIA')_UTIL_36791352
+ + ('Tyler_Herro',_'PG_SG',_'MIA')_G_36791079
+ + ('Tyler_Herro',_'PG_SG',_'MIA')_PG_36791079
+ + ('Tyler_Herro',_'PG_SG',_'MIA')_SG_36791079
+ + ('Tyler_Herro',_'PG_SG',_'MIA')_UTIL_36791079 <= 4
 Global_team_limit___at_most_4_players_from_MIL:
- ('AJ_Green',_'PG_SG',_'MIL')_G_36873559
- + ('AJ_Green',_'PG_SG',_'MIL')_PG_36873559
- + ('AJ_Green',_'PG_SG',_'MIL')_SG_36873559
- + ('AJ_Green',_'PG_SG',_'MIL')_UTIL_36873559
- + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_F_36873591
- + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_G_36873591
- + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SF_36873591
- + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SG_36873591
- + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_UTIL_36873591
- + ('Bobby_Portis',_'PF_C',_'MIL')_C_36873248
- + ('Bobby_Portis',_'PF_C',_'MIL')_F_36873248
- + ('Bobby_Portis',_'PF_C',_'MIL')_PF_36873248
- + ('Bobby_Portis',_'PF_C',_'MIL')_UTIL_36873248
- + ('Brook_Lopez',_'C',_'MIL')_C_36873212
- + ('Brook_Lopez',_'C',_'MIL')_UTIL_36873212
- + ('Damian_Lillard',_'PG',_'MIL')_G_36873080
- + ('Damian_Lillard',_'PG',_'MIL')_PG_36873080
- + ('Damian_Lillard',_'PG',_'MIL')_UTIL_36873080
- + ('Delon_Wright',_'PG',_'MIL')_G_36873688
- + ('Delon_Wright',_'PG',_'MIL')_PG_36873688
- + ('Delon_Wright',_'PG',_'MIL')_UTIL_36873688
- + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_F_36873532
- + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_G_36873532
- + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SF_36873532
- + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SG_36873532
- + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_UTIL_36873532
- + ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_C_36873056
- + ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_F_36873056
- + ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_PF_36873056
- + ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_UTIL_36873056
- + ('Pat_Connaughton',_'SF_PF',_'MIL')_F_36873637
- + ('Pat_Connaughton',_'SF_PF',_'MIL')_PF_36873637
- + ('Pat_Connaughton',_'SF_PF',_'MIL')_SF_36873637
- + ('Pat_Connaughton',_'SF_PF',_'MIL')_UTIL_36873637
- + ('Taurean_Prince',_'SF_PF',_'MIL')_F_36873507
- + ('Taurean_Prince',_'SF_PF',_'MIL')_PF_36873507
- + ('Taurean_Prince',_'SF_PF',_'MIL')_SF_36873507
- + ('Taurean_Prince',_'SF_PF',_'MIL')_UTIL_36873507 <= 4
-Global_team_limit___at_most_4_players_from_NYK:
- ('Cameron_Payne',_'PG_SG',_'NYK')_G_36873547
- + ('Cameron_Payne',_'PG_SG',_'NYK')_PG_36873547
- + ('Cameron_Payne',_'PG_SG',_'NYK')_SG_36873547
- + ('Cameron_Payne',_'PG_SG',_'NYK')_UTIL_36873547
- + ('Jalen_Brunson',_'PG',_'NYK')_G_36873109
- + ('Jalen_Brunson',_'PG',_'NYK')_PG_36873109
- + ('Jalen_Brunson',_'PG',_'NYK')_UTIL_36873109
- + ('Jericho_Sims',_'PF_C',_'NYK')_C_36873610
- + ('Jericho_Sims',_'PF_C',_'NYK')_F_36873610
- + ('Jericho_Sims',_'PF_C',_'NYK')_PF_36873610
- + ('Jericho_Sims',_'PF_C',_'NYK')_UTIL_36873610
- + ('Josh_Hart',_'SF_PF',_'NYK')_F_36873197
- + ('Josh_Hart',_'SF_PF',_'NYK')_PF_36873197
- + ('Josh_Hart',_'SF_PF',_'NYK')_SF_36873197
- + ('Josh_Hart',_'SF_PF',_'NYK')_UTIL_36873197
- + ('Karl#Anthony_Towns',_'C',_'NYK')_C_36873085
- + ('Karl#Anthony_Towns',_'C',_'NYK')_UTIL_36873085
- + ('Mikal_Bridges',_'SG_SF',_'NYK')_F_36873241
- + ('Mikal_Bridges',_'SG_SF',_'NYK')_G_36873241
- + ('Mikal_Bridges',_'SG_SF',_'NYK')_SF_36873241
- + ('Mikal_Bridges',_'SG_SF',_'NYK')_SG_36873241
- + ('Mikal_Bridges',_'SG_SF',_'NYK')_UTIL_36873241
- + ('Miles_McBride',_'PG_SG',_'NYK')_G_36873455
- + ('Miles_McBride',_'PG_SG',_'NYK')_PG_36873455
- + ('Miles_McBride',_'PG_SG',_'NYK')_SG_36873455
- + ('Miles_McBride',_'PG_SG',_'NYK')_UTIL_36873455
- + ('OG_Anunoby',_'SF_PF',_'NYK')_F_36873222
- + ('OG_Anunoby',_'SF_PF',_'NYK')_PF_36873222
- + ('OG_Anunoby',_'SF_PF',_'NYK')_SF_36873222
- + ('OG_Anunoby',_'SF_PF',_'NYK')_UTIL_36873222 <= 4
-Global_team_limit___at_most_4_players_from_OKC:
- ('Aaron_Wiggins',_'SF_PF',_'OKC')_F_36873524
- + ('Aaron_Wiggins',_'SF_PF',_'OKC')_PF_36873524
- + ('Aaron_Wiggins',_'SF_PF',_'OKC')_SF_36873524
- + ('Aaron_Wiggins',_'SF_PF',_'OKC')_UTIL_36873524
- + ('Ajay_Mitchell',_'PG',_'OKC')_G_36873706
- + ('Ajay_Mitchell',_'PG',_'OKC')_PG_36873706
- + ('Ajay_Mitchell',_'PG',_'OKC')_UTIL_36873706
- + ('Cason_Wallace',_'PG_SG',_'OKC')_G_36873428
- + ('Cason_Wallace',_'PG_SG',_'OKC')_PG_36873428
- + ('Cason_Wallace',_'PG_SG',_'OKC')_SG_36873428
- + ('Cason_Wallace',_'PG_SG',_'OKC')_UTIL_36873428
- + ('Dillon_Jones',_'PF',_'OKC')_F_36873699
- + ('Dillon_Jones',_'PF',_'OKC')_PF_36873699
- + ('Dillon_Jones',_'PF',_'OKC')_UTIL_36873699
- + ('Isaiah_Hartenstein',_'C',_'OKC')_C_36873165
- + ('Isaiah_Hartenstein',_'C',_'OKC')_UTIL_36873165
- + ('Isaiah_Joe',_'SG_SF',_'OKC')_F_36873574
- + ('Isaiah_Joe',_'SG_SF',_'OKC')_G_36873574
- + ('Isaiah_Joe',_'SG_SF',_'OKC')_SF_36873574
- + ('Isaiah_Joe',_'SG_SF',_'OKC')_SG_36873574
- + ('Isaiah_Joe',_'SG_SF',_'OKC')_UTIL_36873574
- + ('Jalen_Williams',_'PF',_'OKC')_F_36873099
- + ('Jalen_Williams',_'PF',_'OKC')_PF_36873099
- + ('Jalen_Williams',_'PF',_'OKC')_UTIL_36873099
- + ('Kenrich_Williams',_'PF_C',_'OKC')_C_36873684
- + ('Kenrich_Williams',_'PF_C',_'OKC')_F_36873684
- + ('Kenrich_Williams',_'PF_C',_'OKC')_PF_36873684
- + ('Kenrich_Williams',_'PF_C',_'OKC')_UTIL_36873684
- + ('Luguentz_Dort',_'SG_SF',_'OKC')_F_36873306
- + ('Luguentz_Dort',_'SG_SF',_'OKC')_G_36873306
- + ('Luguentz_Dort',_'SG_SF',_'OKC')_SF_36873306
- + ('Luguentz_Dort',_'SG_SF',_'OKC')_SG_36873306
- + ('Luguentz_Dort',_'SG_SF',_'OKC')_UTIL_36873306
- + ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_G_36873065
- + ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_PG_36873065
- + ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_UTIL_36873065 <= 4
-Global_team_limit___at_most_4_players_from_ORL:
- ('Anthony_Black',_'PG_SG',_'ORL')_G_36873472
- + ('Anthony_Black',_'PG_SG',_'ORL')_PG_36873472
- + ('Anthony_Black',_'PG_SG',_'ORL')_SG_36873472
- + ('Anthony_Black',_'PG_SG',_'ORL')_UTIL_36873472
- + ('Cole_Anthony',_'PG_SG',_'ORL')_G_36873646
- + ('Cole_Anthony',_'PG_SG',_'ORL')_PG_36873646
- + ('Cole_Anthony',_'PG_SG',_'ORL')_SG_36873646
- + ('Cole_Anthony',_'PG_SG',_'ORL')_UTIL_36873646
- + ('Franz_Wagner',_'SF_PF',_'ORL')_F_36873076
- + ('Franz_Wagner',_'SF_PF',_'ORL')_PF_36873076
- + ('Franz_Wagner',_'SF_PF',_'ORL')_SF_36873076
- + ('Franz_Wagner',_'SF_PF',_'ORL')_UTIL_36873076
- + ('Goga_Bitadze',_'C',_'ORL')_C_36873304
- + ('Goga_Bitadze',_'C',_'ORL')_UTIL_36873304
- + ('Jalen_Suggs',_'PG',_'ORL')_G_36873219
- + ('Jalen_Suggs',_'PG',_'ORL')_PG_36873219
- + ('Jalen_Suggs',_'PG',_'ORL')_UTIL_36873219
- + ('Jonathan_Isaac',_'PF_C',_'ORL')_C_36873496
- + ('Jonathan_Isaac',_'PF_C',_'ORL')_F_36873496
- + ('Jonathan_Isaac',_'PF_C',_'ORL')_PF_36873496
- + ('Jonathan_Isaac',_'PF_C',_'ORL')_UTIL_36873496
- + ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_G_36873432
- + ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_SG_36873432
- + ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_UTIL_36873432
- + ('Moritz_Wagner',_'C',_'ORL')_C_36873395
- + ('Moritz_Wagner',_'C',_'ORL')_UTIL_36873395
- + ('Tristan_da_Silva',_'SF_PF',_'ORL')_F_36873604
- + ('Tristan_da_Silva',_'SF_PF',_'ORL')_PF_36873604
- + ('Tristan_da_Silva',_'SF_PF',_'ORL')_SF_36873604
- + ('Tristan_da_Silva',_'SF_PF',_'ORL')_UTIL_36873604
- + ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_C_36873336
- + ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_F_36873336
- + ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_PF_36873336
- + ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_UTIL_36873336 <= 4
-Global_team_limit___at_most_4_players_from_PHI:
- ('Adem_Bona',_'C',_'PHI')_C_36873608
- + ('Adem_Bona',_'C',_'PHI')_UTIL_36873608
- + ('Caleb_Martin',_'PF',_'PHI')_F_36873377
- + ('Caleb_Martin',_'PF',_'PHI')_PF_36873377
- + ('Caleb_Martin',_'PF',_'PHI')_UTIL_36873377
- + ('Guerschon_Yabusele',_'PF_C',_'PHI')_C_36873275
- + ('Guerschon_Yabusele',_'PF_C',_'PHI')_F_36873275
- + ('Guerschon_Yabusele',_'PF_C',_'PHI')_PF_36873275
- + ('Guerschon_Yabusele',_'PF_C',_'PHI')_UTIL_36873275
- + ('Jared_McCain',_'PG_SG',_'PHI')_G_36873190
- + ('Jared_McCain',_'PG_SG',_'PHI')_PG_36873190
- + ('Jared_McCain',_'PG_SG',_'PHI')_SG_36873190
- + ('Jared_McCain',_'PG_SG',_'PHI')_UTIL_36873190
- + ('KJ_Martin',_'SF_PF',_'PHI')_F_36873537
- + ('KJ_Martin',_'SF_PF',_'PHI')_PF_36873537
- + ('KJ_Martin',_'SF_PF',_'PHI')_SF_36873537
- + ('KJ_Martin',_'SF_PF',_'PHI')_UTIL_36873537
- + ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_F_36873316
- + ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_G_36873316
- + ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_SF_36873316
- + ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_SG_36873316
- + ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_UTIL_36873316
- + ('Kyle_Lowry',_'PG',_'PHI')_G_36873556
- + ('Kyle_Lowry',_'PG',_'PHI')_PG_36873556
- + ('Kyle_Lowry',_'PG',_'PHI')_UTIL_36873556
- + ('Paul_George',_'SF_PF',_'PHI')_F_36873154
- + ('Paul_George',_'SF_PF',_'PHI')_PF_36873154
- + ('Paul_George',_'SF_PF',_'PHI')_SF_36873154
- + ('Paul_George',_'SF_PF',_'PHI')_UTIL_36873154
- + ('Ricky_Council_IV',_'SG_SF',_'PHI')_F_36873583
- + ('Ricky_Council_IV',_'SG_SF',_'PHI')_G_36873583
- + ('Ricky_Council_IV',_'SG_SF',_'PHI')_SF_36873583
- + ('Ricky_Council_IV',_'SG_SF',_'PHI')_SG_36873583
- + ('Ricky_Council_IV',_'SG_SF',_'PHI')_UTIL_36873583
- + ('Tyrese_Maxey',_'PG',_'PHI')_G_36873120
- + ('Tyrese_Maxey',_'PG',_'PHI')_PG_36873120
- + ('Tyrese_Maxey',_'PG',_'PHI')_UTIL_36873120 <= 4
+ ('AJ_Green',_'PG_SG',_'MIL')_G_36791297
+ + ('AJ_Green',_'PG_SG',_'MIL')_PG_36791297
+ + ('AJ_Green',_'PG_SG',_'MIL')_SG_36791297
+ + ('AJ_Green',_'PG_SG',_'MIL')_UTIL_36791297
+ + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_F_36791323
+ + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_G_36791323
+ + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SF_36791323
+ + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SG_36791323
+ + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_UTIL_36791323
+ + ('Bobby_Portis',_'PF_C',_'MIL')_C_36791169
+ + ('Bobby_Portis',_'PF_C',_'MIL')_F_36791169
+ + ('Bobby_Portis',_'PF_C',_'MIL')_PF_36791169
+ + ('Bobby_Portis',_'PF_C',_'MIL')_UTIL_36791169
+ + ('Brook_Lopez',_'C',_'MIL')_C_36791144
+ + ('Brook_Lopez',_'C',_'MIL')_UTIL_36791144
+ + ('Damian_Lillard',_'PG',_'MIL')_G_36791062
+ + ('Damian_Lillard',_'PG',_'MIL')_PG_36791062
+ + ('Damian_Lillard',_'PG',_'MIL')_UTIL_36791062
+ + ('Delon_Wright',_'PG',_'MIL')_G_36791358
+ + ('Delon_Wright',_'PG',_'MIL')_PG_36791358
+ + ('Delon_Wright',_'PG',_'MIL')_UTIL_36791358
+ + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_F_36791306
+ + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_G_36791306
+ + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SF_36791306
+ + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SG_36791306
+ + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_UTIL_36791306
+ + ('Pat_Connaughton',_'SF_PF',_'MIL')_F_36791366
+ + ('Pat_Connaughton',_'SF_PF',_'MIL')_PF_36791366
+ + ('Pat_Connaughton',_'SF_PF',_'MIL')_SF_36791366
+ + ('Pat_Connaughton',_'SF_PF',_'MIL')_UTIL_36791366
+ + ('Taurean_Prince',_'SF_PF',_'MIL')_F_36791293
+ + ('Taurean_Prince',_'SF_PF',_'MIL')_PF_36791293
+ + ('Taurean_Prince',_'SF_PF',_'MIL')_SF_36791293
+ + ('Taurean_Prince',_'SF_PF',_'MIL')_UTIL_36791293 <= 4
+Global_team_limit___at_most_4_players_from_MIN:
+ ('Anthony_Edwards',_'PG_SG',_'MIN')_G_36791054
+ + ('Anthony_Edwards',_'PG_SG',_'MIN')_PG_36791054
+ + ('Anthony_Edwards',_'PG_SG',_'MIN')_SG_36791054
+ + ('Anthony_Edwards',_'PG_SG',_'MIN')_UTIL_36791054
+ + ('Daishen_Nix',_'PG',_'MIN')_G_36791458
+ + ('Daishen_Nix',_'PG',_'MIN')_PG_36791458
+ + ('Daishen_Nix',_'PG',_'MIN')_UTIL_36791458
+ + ('Donte_DiVincenzo',_'PG_SG',_'MIN')_G_36791189
+ + ('Donte_DiVincenzo',_'PG_SG',_'MIN')_PG_36791189
+ + ('Donte_DiVincenzo',_'PG_SG',_'MIN')_SG_36791189
+ + ('Donte_DiVincenzo',_'PG_SG',_'MIN')_UTIL_36791189
+ + ('Jaden_McDaniels',_'SF',_'MIN')_F_36791204
+ + ('Jaden_McDaniels',_'SF',_'MIN')_SF_36791204
+ + ('Jaden_McDaniels',_'SF',_'MIN')_UTIL_36791204
+ + ('Joe_Ingles',_'PF',_'MIN')_F_36791444
+ + ('Joe_Ingles',_'PF',_'MIN')_PF_36791444
+ + ('Joe_Ingles',_'PF',_'MIN')_UTIL_36791444
+ + ('Julius_Randle',_'PF_C',_'MIN')_C_36791075
+ + ('Julius_Randle',_'PF_C',_'MIN')_F_36791075
+ + ('Julius_Randle',_'PF_C',_'MIN')_PF_36791075
+ + ('Julius_Randle',_'PF_C',_'MIN')_UTIL_36791075
+ + ('Naz_Reid',_'PF_C',_'MIN')_C_36791216
+ + ('Naz_Reid',_'PF_C',_'MIN')_F_36791216
+ + ('Naz_Reid',_'PF_C',_'MIN')_PF_36791216
+ + ('Naz_Reid',_'PF_C',_'MIN')_UTIL_36791216
+ + ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_F_36791281
+ + ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_G_36791281
+ + ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_SF_36791281
+ + ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_SG_36791281
+ + ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_UTIL_36791281
+ + ('Rudy_Gobert',_'C',_'MIN')_C_36791120
+ + ('Rudy_Gobert',_'C',_'MIN')_UTIL_36791120 <= 4
 Global_team_limit___at_most_4_players_from_PHX:
- ("Royce_O'Neale",_'SF_PF',_'PHX')_F_36873391
- + ("Royce_O'Neale",_'SF_PF',_'PHX')_PF_36873391
- + ("Royce_O'Neale",_'SF_PF',_'PHX')_SF_36873391
- + ("Royce_O'Neale",_'SF_PF',_'PHX')_UTIL_36873391
- + ('Bradley_Beal',_'SG_SF',_'PHX')_F_36873146
- + ('Bradley_Beal',_'SG_SF',_'PHX')_G_36873146
- + ('Bradley_Beal',_'SG_SF',_'PHX')_SF_36873146
- + ('Bradley_Beal',_'SG_SF',_'PHX')_SG_36873146
- + ('Bradley_Beal',_'SG_SF',_'PHX')_UTIL_36873146
- + ('Devin_Booker',_'PG_SG',_'PHX')_G_36873095
- + ('Devin_Booker',_'PG_SG',_'PHX')_PG_36873095
- + ('Devin_Booker',_'PG_SG',_'PHX')_SG_36873095
- + ('Devin_Booker',_'PG_SG',_'PHX')_UTIL_36873095
- + ('Grayson_Allen',_'SG',_'PHX')_G_36873351
- + ('Grayson_Allen',_'SG',_'PHX')_SG_36873351
- + ('Grayson_Allen',_'SG',_'PHX')_UTIL_36873351
- + ('Josh_Okogie',_'SF',_'PHX')_F_36873452
- + ('Josh_Okogie',_'SF',_'PHX')_SF_36873452
- + ('Josh_Okogie',_'SF',_'PHX')_UTIL_36873452
- + ('Kevin_Durant',_'PF_C',_'PHX')_C_36873105
- + ('Kevin_Durant',_'PF_C',_'PHX')_F_36873105
- + ('Kevin_Durant',_'PF_C',_'PHX')_PF_36873105
- + ('Kevin_Durant',_'PF_C',_'PHX')_UTIL_36873105
- + ('Mason_Plumlee',_'C',_'PHX')_C_36873514
- + ('Mason_Plumlee',_'C',_'PHX')_UTIL_36873514
- + ('Monte_Morris',_'PG',_'PHX')_G_36873681
- + ('Monte_Morris',_'PG',_'PHX')_PG_36873681
- + ('Monte_Morris',_'PG',_'PHX')_UTIL_36873681
- + ('Oso_Ighodaro',_'PF_C',_'PHX')_C_36873570
- + ('Oso_Ighodaro',_'PF_C',_'PHX')_F_36873570
- + ('Oso_Ighodaro',_'PF_C',_'PHX')_PF_36873570
- + ('Oso_Ighodaro',_'PF_C',_'PHX')_UTIL_36873570
- + ('Ryan_Dunn',_'PF',_'PHX')_F_36873619
- + ('Ryan_Dunn',_'PF',_'PHX')_PF_36873619
- + ('Ryan_Dunn',_'PF',_'PHX')_UTIL_36873619
- + ('Tyus_Jones',_'PG',_'PHX')_G_36873266
- + ('Tyus_Jones',_'PG',_'PHX')_PG_36873266
- + ('Tyus_Jones',_'PG',_'PHX')_UTIL_36873266 <= 4
+ ("Royce_O'Neale",_'SF_PF',_'PHX')_F_36791239
+ + ("Royce_O'Neale",_'SF_PF',_'PHX')_PF_36791239
+ + ("Royce_O'Neale",_'SF_PF',_'PHX')_SF_36791239
+ + ("Royce_O'Neale",_'SF_PF',_'PHX')_UTIL_36791239
+ + ('Bradley_Beal',_'SG_SF',_'PHX')_F_36791092
+ + ('Bradley_Beal',_'SG_SF',_'PHX')_G_36791092
+ + ('Bradley_Beal',_'SG_SF',_'PHX')_SF_36791092
+ + ('Bradley_Beal',_'SG_SF',_'PHX')_SG_36791092
+ + ('Bradley_Beal',_'SG_SF',_'PHX')_UTIL_36791092
+ + ('Devin_Booker',_'PG_SG',_'PHX')_G_36791058
+ + ('Devin_Booker',_'PG_SG',_'PHX')_PG_36791058
+ + ('Devin_Booker',_'PG_SG',_'PHX')_SG_36791058
+ + ('Devin_Booker',_'PG_SG',_'PHX')_UTIL_36791058
+ + ('Grayson_Allen',_'SG',_'PHX')_G_36791301
+ + ('Grayson_Allen',_'SG',_'PHX')_SG_36791301
+ + ('Grayson_Allen',_'SG',_'PHX')_UTIL_36791301
+ + ('Josh_Okogie',_'SF',_'PHX')_F_36791246
+ + ('Josh_Okogie',_'SF',_'PHX')_SF_36791246
+ + ('Josh_Okogie',_'SF',_'PHX')_UTIL_36791246
+ + ('Jusuf_Nurkic',_'C',_'PHX')_C_36791139
+ + ('Jusuf_Nurkic',_'C',_'PHX')_UTIL_36791139
+ + ('Mason_Plumlee',_'C',_'PHX')_C_36791311
+ + ('Mason_Plumlee',_'C',_'PHX')_UTIL_36791311
+ + ('Monte_Morris',_'PG',_'PHX')_G_36791388
+ + ('Monte_Morris',_'PG',_'PHX')_PG_36791388
+ + ('Monte_Morris',_'PG',_'PHX')_UTIL_36791388
+ + ('Oso_Ighodaro',_'PF_C',_'PHX')_C_36791334
+ + ('Oso_Ighodaro',_'PF_C',_'PHX')_F_36791334
+ + ('Oso_Ighodaro',_'PF_C',_'PHX')_PF_36791334
+ + ('Oso_Ighodaro',_'PF_C',_'PHX')_UTIL_36791334
+ + ('Ryan_Dunn',_'PF',_'PHX')_F_36791355
+ + ('Ryan_Dunn',_'PF',_'PHX')_PF_36791355
+ + ('Ryan_Dunn',_'PF',_'PHX')_UTIL_36791355
+ + ('Tyus_Jones',_'PG',_'PHX')_G_36791156
+ + ('Tyus_Jones',_'PG',_'PHX')_PG_36791156
+ + ('Tyus_Jones',_'PG',_'PHX')_UTIL_36791156 <= 4
 Global_team_limit___at_most_4_players_from_SAS:
- ('Chris_Paul',_'PG',_'SAS')_G_36873238
- + ('Chris_Paul',_'PG',_'SAS')_PG_36873238
- + ('Chris_Paul',_'PG',_'SAS')_UTIL_36873238
- + ('Devin_Vassell',_'SG',_'SAS')_G_36873340
- + ('Devin_Vassell',_'SG',_'SAS')_SG_36873340
- + ('Devin_Vassell',_'SG',_'SAS')_UTIL_36873340
- + ('Harrison_Barnes',_'SF_PF',_'SAS')_F_36873413
- + ('Harrison_Barnes',_'SF_PF',_'SAS')_PF_36873413
- + ('Harrison_Barnes',_'SF_PF',_'SAS')_SF_36873413
- + ('Harrison_Barnes',_'SF_PF',_'SAS')_UTIL_36873413
- + ('Jeremy_Sochan',_'C',_'SAS')_C_36873226
- + ('Jeremy_Sochan',_'C',_'SAS')_UTIL_36873226
- + ('Julian_Champagnie',_'SF_PF',_'SAS')_F_36873326
- + ('Julian_Champagnie',_'SF_PF',_'SAS')_PF_36873326
- + ('Julian_Champagnie',_'SF_PF',_'SAS')_SF_36873326
- + ('Julian_Champagnie',_'SF_PF',_'SAS')_UTIL_36873326
- + ('Keldon_Johnson',_'SF_PF',_'SAS')_F_36873365
- + ('Keldon_Johnson',_'SF_PF',_'SAS')_PF_36873365
- + ('Keldon_Johnson',_'SF_PF',_'SAS')_SF_36873365
- + ('Keldon_Johnson',_'SF_PF',_'SAS')_UTIL_36873365
- + ('Stephon_Castle',_'SG',_'SAS')_G_36873330
- + ('Stephon_Castle',_'SG',_'SAS')_SG_36873330
- + ('Stephon_Castle',_'SG',_'SAS')_UTIL_36873330
- + ('Victor_Wembanyama',_'C',_'SAS')_C_36873063
- + ('Victor_Wembanyama',_'C',_'SAS')_UTIL_36873063
- + ('Zach_Collins',_'C',_'SAS')_C_36873446
- + ('Zach_Collins',_'C',_'SAS')_UTIL_36873446 <= 4
-Global_team_limit___at_most_4_players_from_TOR:
- ("Ja'Kobe_Walter",_'SG',_'TOR')_G_36873511
- + ("Ja'Kobe_Walter",_'SG',_'TOR')_SG_36873511
- + ("Ja'Kobe_Walter",_'SG',_'TOR')_UTIL_36873511
- + ('Bruno_Fernando',_'C',_'TOR')_C_36873748
- + ('Bruno_Fernando',_'C',_'TOR')_UTIL_36873748
- + ('Chris_Boucher',_'PF_C',_'TOR')_C_36873543
- + ('Chris_Boucher',_'PF_C',_'TOR')_F_36873543
- + ('Chris_Boucher',_'PF_C',_'TOR')_PF_36873543
- + ('Chris_Boucher',_'PF_C',_'TOR')_UTIL_36873543
- + ('Davion_Mitchell',_'PG_SG',_'TOR')_G_36873566
- + ('Davion_Mitchell',_'PG_SG',_'TOR')_PG_36873566
- + ('Davion_Mitchell',_'PG_SG',_'TOR')_SG_36873566
- + ('Davion_Mitchell',_'PG_SG',_'TOR')_UTIL_36873566
- + ('Jakob_Poeltl',_'C',_'TOR')_C_36873176
- + ('Jakob_Poeltl',_'C',_'TOR')_UTIL_36873176
- + ('Jamal_Shead',_'PG',_'TOR')_G_36873745
- + ('Jamal_Shead',_'PG',_'TOR')_PG_36873745
- + ('Jamal_Shead',_'PG',_'TOR')_UTIL_36873745
- + ('Jamison_Battle',_'SF',_'TOR')_F_36873674
- + ('Jamison_Battle',_'SF',_'TOR')_SF_36873674
- + ('Jamison_Battle',_'SF',_'TOR')_UTIL_36873674
- + ('Jonathan_Mogbo',_'C',_'TOR')_C_36873630
- + ('Jonathan_Mogbo',_'C',_'TOR')_UTIL_36873630
- + ('Ochai_Agbaji',_'SF_PF',_'TOR')_F_36873369
- + ('Ochai_Agbaji',_'SF_PF',_'TOR')_PF_36873369
- + ('Ochai_Agbaji',_'SF_PF',_'TOR')_SF_36873369
- + ('Ochai_Agbaji',_'SF_PF',_'TOR')_UTIL_36873369
- + ('RJ_Barrett',_'SF_PF',_'TOR')_F_36873131
- + ('RJ_Barrett',_'SF_PF',_'TOR')_PF_36873131
- + ('RJ_Barrett',_'SF_PF',_'TOR')_SF_36873131
- + ('RJ_Barrett',_'SF_PF',_'TOR')_UTIL_36873131
- + ('Scottie_Barnes',_'PG_SF',_'TOR')_F_36873115
- + ('Scottie_Barnes',_'PG_SF',_'TOR')_G_36873115
- + ('Scottie_Barnes',_'PG_SF',_'TOR')_PG_36873115
- + ('Scottie_Barnes',_'PG_SF',_'TOR')_SF_36873115
- + ('Scottie_Barnes',_'PG_SF',_'TOR')_UTIL_36873115 <= 4
+ ('Blake_Wesley',_'PG',_'SAS')_G_36791620
+ + ('Blake_Wesley',_'PG',_'SAS')_PG_36791620
+ + ('Blake_Wesley',_'PG',_'SAS')_UTIL_36791620
+ + ('Chris_Paul',_'PG',_'SAS')_G_36791133
+ + ('Chris_Paul',_'PG',_'SAS')_PG_36791133
+ + ('Chris_Paul',_'PG',_'SAS')_UTIL_36791133
+ + ('Harrison_Barnes',_'SF_PF',_'SAS')_F_36791254
+ + ('Harrison_Barnes',_'SF_PF',_'SAS')_PF_36791254
+ + ('Harrison_Barnes',_'SF_PF',_'SAS')_SF_36791254
+ + ('Harrison_Barnes',_'SF_PF',_'SAS')_UTIL_36791254
+ + ('Julian_Champagnie',_'SG_SF',_'SAS')_F_36791228
+ + ('Julian_Champagnie',_'SG_SF',_'SAS')_G_36791228
+ + ('Julian_Champagnie',_'SG_SF',_'SAS')_SF_36791228
+ + ('Julian_Champagnie',_'SG_SF',_'SAS')_SG_36791228
+ + ('Julian_Champagnie',_'SG_SF',_'SAS')_UTIL_36791228
+ + ('Keldon_Johnson',_'SF_PF',_'SAS')_F_36791180
+ + ('Keldon_Johnson',_'SF_PF',_'SAS')_PF_36791180
+ + ('Keldon_Johnson',_'SF_PF',_'SAS')_SF_36791180
+ + ('Keldon_Johnson',_'SF_PF',_'SAS')_UTIL_36791180
+ + ('Malaki_Branham',_'SG_SF',_'SAS')_F_36791451
+ + ('Malaki_Branham',_'SG_SF',_'SAS')_G_36791451
+ + ('Malaki_Branham',_'SG_SF',_'SAS')_SF_36791451
+ + ('Malaki_Branham',_'SG_SF',_'SAS')_SG_36791451
+ + ('Malaki_Branham',_'SG_SF',_'SAS')_UTIL_36791451
+ + ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_C_36791432
+ + ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_F_36791432
+ + ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_PF_36791432
+ + ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_UTIL_36791432
+ + ('Stephon_Castle',_'SG',_'SAS')_G_36791196
+ + ('Stephon_Castle',_'SG',_'SAS')_SG_36791196
+ + ('Stephon_Castle',_'SG',_'SAS')_UTIL_36791196
+ + ('Tre_Jones',_'PG',_'SAS')_G_36791373
+ + ('Tre_Jones',_'PG',_'SAS')_PG_36791373
+ + ('Tre_Jones',_'PG',_'SAS')_UTIL_36791373
+ + ('Victor_Wembanyama',_'C',_'SAS')_C_36791046
+ + ('Victor_Wembanyama',_'C',_'SAS')_UTIL_36791046
+ + ('Zach_Collins',_'C',_'SAS')_C_36791187
+ + ('Zach_Collins',_'C',_'SAS')_UTIL_36791187 <= 4
 Global_team_limit___at_most_4_players_from_UTA:
- ('Brice_Sensabaugh',_'SF',_'UTA')_F_36873588
- + ('Brice_Sensabaugh',_'SF',_'UTA')_SF_36873588
- + ('Brice_Sensabaugh',_'SF',_'UTA')_UTIL_36873588
- + ('Collin_Sexton',_'PG_SG',_'UTA')_G_36873208
- + ('Collin_Sexton',_'PG_SG',_'UTA')_PG_36873208
- + ('Collin_Sexton',_'PG_SG',_'UTA')_SG_36873208
- + ('Collin_Sexton',_'PG_SG',_'UTA')_UTIL_36873208
- + ('Drew_Eubanks',_'C',_'UTA')_C_36873691
- + ('Drew_Eubanks',_'C',_'UTA')_UTIL_36873691
- + ('Isaiah_Collier',_'PG',_'UTA')_G_36873862
- + ('Isaiah_Collier',_'PG',_'UTA')_PG_36873862
- + ('Isaiah_Collier',_'PG',_'UTA')_UTIL_36873862
- + ('John_Collins',_'PF_C',_'UTA')_C_36873161
- + ('John_Collins',_'PF_C',_'UTA')_F_36873161
- + ('John_Collins',_'PF_C',_'UTA')_PF_36873161
- + ('John_Collins',_'PF_C',_'UTA')_UTIL_36873161
- + ('Johnny_Juzang',_'SG_SF',_'UTA')_F_36873663
- + ('Johnny_Juzang',_'SG_SF',_'UTA')_G_36873663
- + ('Johnny_Juzang',_'SG_SF',_'UTA')_SF_36873663
- + ('Johnny_Juzang',_'SG_SF',_'UTA')_SG_36873663
- + ('Johnny_Juzang',_'SG_SF',_'UTA')_UTIL_36873663
- + ('Keyonte_George',_'PG',_'UTA')_G_36873252
- + ('Keyonte_George',_'PG',_'UTA')_PG_36873252
- + ('Keyonte_George',_'PG',_'UTA')_UTIL_36873252
- + ('Lauri_Markkanen',_'SF_PF',_'UTA')_F_36873172
- + ('Lauri_Markkanen',_'SF_PF',_'UTA')_PF_36873172
- + ('Lauri_Markkanen',_'SF_PF',_'UTA')_SF_36873172
- + ('Lauri_Markkanen',_'SF_PF',_'UTA')_UTIL_36873172
- + ('Micah_Potter',_'PF',_'UTA')_F_36873859
- + ('Micah_Potter',_'PF',_'UTA')_PF_36873859
- + ('Micah_Potter',_'PF',_'UTA')_UTIL_36873859
- + ('Walker_Kessler',_'C',_'UTA')_C_36873217
- + ('Walker_Kessler',_'C',_'UTA')_UTIL_36873217 <= 4
+ ('Brice_Sensabaugh',_'SF_PF',_'UTA')_F_36791447
+ + ('Brice_Sensabaugh',_'SF_PF',_'UTA')_PF_36791447
+ + ('Brice_Sensabaugh',_'SF_PF',_'UTA')_SF_36791447
+ + ('Brice_Sensabaugh',_'SF_PF',_'UTA')_UTIL_36791447
+ + ('Cody_Williams',_'SF',_'UTA')_F_36791411
+ + ('Cody_Williams',_'SF',_'UTA')_SF_36791411
+ + ('Cody_Williams',_'SF',_'UTA')_UTIL_36791411
+ + ('Collin_Sexton',_'PG_SG',_'UTA')_G_36791150
+ + ('Collin_Sexton',_'PG_SG',_'UTA')_PG_36791150
+ + ('Collin_Sexton',_'PG_SG',_'UTA')_SG_36791150
+ + ('Collin_Sexton',_'PG_SG',_'UTA')_UTIL_36791150
+ + ('Drew_Eubanks',_'C',_'UTA')_C_36791361
+ + ('Drew_Eubanks',_'C',_'UTA')_UTIL_36791361
+ + ('Isaiah_Collier',_'PG',_'UTA')_G_36791363
+ + ('Isaiah_Collier',_'PG',_'UTA')_PG_36791363
+ + ('Isaiah_Collier',_'PG',_'UTA')_UTIL_36791363
+ + ('John_Collins',_'PF_C',_'UTA')_C_36791101
+ + ('John_Collins',_'PF_C',_'UTA')_F_36791101
+ + ('John_Collins',_'PF_C',_'UTA')_PF_36791101
+ + ('John_Collins',_'PF_C',_'UTA')_UTIL_36791101
+ + ('Johnny_Juzang',_'SG_SF',_'UTA')_F_36791398
+ + ('Johnny_Juzang',_'SG_SF',_'UTA')_G_36791398
+ + ('Johnny_Juzang',_'SG_SF',_'UTA')_SF_36791398
+ + ('Johnny_Juzang',_'SG_SF',_'UTA')_SG_36791398
+ + ('Johnny_Juzang',_'SG_SF',_'UTA')_UTIL_36791398
+ + ('Keyonte_George',_'PG',_'UTA')_G_36791166
+ + ('Keyonte_George',_'PG',_'UTA')_PG_36791166
+ + ('Keyonte_George',_'PG',_'UTA')_UTIL_36791166
+ + ('Lauri_Markkanen',_'SF_PF',_'UTA')_F_36791097
+ + ('Lauri_Markkanen',_'SF_PF',_'UTA')_PF_36791097
+ + ('Lauri_Markkanen',_'SF_PF',_'UTA')_SF_36791097
+ + ('Lauri_Markkanen',_'SF_PF',_'UTA')_UTIL_36791097
+ + ('Walker_Kessler',_'C',_'UTA')_C_36791154
+ + ('Walker_Kessler',_'C',_'UTA')_UTIL_36791154 <= 4
 Global_team_limit___at_most_4_players_from_WAS:
- ('Alexandre_Sarr',_'PF_C',_'WAS')_C_36873292
- + ('Alexandre_Sarr',_'PF_C',_'WAS')_F_36873292
- + ('Alexandre_Sarr',_'PF_C',_'WAS')_PF_36873292
- + ('Alexandre_Sarr',_'PF_C',_'WAS')_UTIL_36873292
- + ('Anthony_Gill',_'PF_C',_'WAS')_C_36873904
- + ('Anthony_Gill',_'PF_C',_'WAS')_F_36873904
- + ('Anthony_Gill',_'PF_C',_'WAS')_PF_36873904
- + ('Anthony_Gill',_'PF_C',_'WAS')_UTIL_36873904
- + ('Bilal_Coulibaly',_'SF',_'WAS')_F_36873287
- + ('Bilal_Coulibaly',_'SF',_'WAS')_SF_36873287
- + ('Bilal_Coulibaly',_'SF',_'WAS')_UTIL_36873287
- + ('Carlton_Carrington',_'PG_SG',_'WAS')_G_36873404
- + ('Carlton_Carrington',_'PG_SG',_'WAS')_PG_36873404
- + ('Carlton_Carrington',_'PG_SG',_'WAS')_SG_36873404
- + ('Carlton_Carrington',_'PG_SG',_'WAS')_UTIL_36873404
- + ('Corey_Kispert',_'SG_SF',_'WAS')_F_36873408
- + ('Corey_Kispert',_'SG_SF',_'WAS')_G_36873408
- + ('Corey_Kispert',_'SG_SF',_'WAS')_SF_36873408
- + ('Corey_Kispert',_'SG_SF',_'WAS')_SG_36873408
- + ('Corey_Kispert',_'SG_SF',_'WAS')_UTIL_36873408
- + ('Jared_Butler',_'PG',_'WAS')_G_36873891
- + ('Jared_Butler',_'PG',_'WAS')_PG_36873891
- + ('Jared_Butler',_'PG',_'WAS')_UTIL_36873891
- + ('Jonas_Valanciunas',_'C',_'WAS')_C_36873324
- + ('Jonas_Valanciunas',_'C',_'WAS')_UTIL_36873324
- + ('Jordan_Poole',_'PG_SG',_'WAS')_G_36873181
- + ('Jordan_Poole',_'PG_SG',_'WAS')_PG_36873181
- + ('Jordan_Poole',_'PG_SG',_'WAS')_SG_36873181
- + ('Jordan_Poole',_'PG_SG',_'WAS')_UTIL_36873181
- + ('Kyshawn_George',_'SF_PF',_'WAS')_F_36873448
- + ('Kyshawn_George',_'SF_PF',_'WAS')_PF_36873448
- + ('Kyshawn_George',_'SF_PF',_'WAS')_SF_36873448
- + ('Kyshawn_George',_'SF_PF',_'WAS')_UTIL_36873448
- + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_G_36873262
- + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_PG_36873262
- + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_SG_36873262
- + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_UTIL_36873262 <= 4
-Max_Salary: 4000 ("Ja'Kobe_Walter",_'SG',_'TOR')_G_36873511
- + 4000 ("Ja'Kobe_Walter",_'SG',_'TOR')_SG_36873511
- + 4000 ("Ja'Kobe_Walter",_'SG',_'TOR')_UTIL_36873511
- + 4500 ("Royce_O'Neale",_'SF_PF',_'PHX')_F_36873391
- + 4500 ("Royce_O'Neale",_'SF_PF',_'PHX')_PF_36873391
- + 4500 ("Royce_O'Neale",_'SF_PF',_'PHX')_SF_36873391
- + 4500 ("Royce_O'Neale",_'SF_PF',_'PHX')_UTIL_36873391
- + 3800 ('AJ_Green',_'PG_SG',_'MIL')_G_36873559
- + 3800 ('AJ_Green',_'PG_SG',_'MIL')_PG_36873559
- + 3800 ('AJ_Green',_'PG_SG',_'MIL')_SG_36873559
- + 3800 ('AJ_Green',_'PG_SG',_'MIL')_UTIL_36873559
- + 4000 ('Aaron_Wiggins',_'SF_PF',_'OKC')_F_36873524
- + 4000 ('Aaron_Wiggins',_'SF_PF',_'OKC')_PF_36873524
- + 4000 ('Aaron_Wiggins',_'SF_PF',_'OKC')_SF_36873524
- + 4000 ('Aaron_Wiggins',_'SF_PF',_'OKC')_UTIL_36873524
- + 3500 ('Adem_Bona',_'C',_'PHI')_C_36873608
- + 3500 ('Adem_Bona',_'C',_'PHI')_UTIL_36873608
- + 3000 ('Ajay_Mitchell',_'PG',_'OKC')_G_36873706
- + 3000 ('Ajay_Mitchell',_'PG',_'OKC')_PG_36873706
- + 3000 ('Ajay_Mitchell',_'PG',_'OKC')_UTIL_36873706
- + 5400 ('Alexandre_Sarr',_'PF_C',_'WAS')_C_36873292
- + 5400 ('Alexandre_Sarr',_'PF_C',_'WAS')_F_36873292
- + 5400 ('Alexandre_Sarr',_'PF_C',_'WAS')_PF_36873292
- + 5400 ('Alexandre_Sarr',_'PF_C',_'WAS')_UTIL_36873292
- + 3600 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_F_36873591
- + 3600 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_G_36873591
- + 3600 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SF_36873591
- + 3600 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SG_36873591
- + 3600 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_UTIL_36873591
- + 4500 ('Andrew_Nembhard',_'PG_SG',_'IND')_G_36873397
- + 4500 ('Andrew_Nembhard',_'PG_SG',_'IND')_PG_36873397
- + 4500 ('Andrew_Nembhard',_'PG_SG',_'IND')_SG_36873397
- + 4500 ('Andrew_Nembhard',_'PG_SG',_'IND')_UTIL_36873397
- + 4200 ('Anthony_Black',_'PG_SG',_'ORL')_G_36873472
- + 4200 ('Anthony_Black',_'PG_SG',_'ORL')_PG_36873472
- + 4200 ('Anthony_Black',_'PG_SG',_'ORL')_SG_36873472
- + 4200 ('Anthony_Black',_'PG_SG',_'ORL')_UTIL_36873472
- + 3000 ('Anthony_Gill',_'PF_C',_'WAS')_C_36873904
- + 3000 ('Anthony_Gill',_'PF_C',_'WAS')_F_36873904
- + 3000 ('Anthony_Gill',_'PF_C',_'WAS')_PF_36873904
- + 3000 ('Anthony_Gill',_'PF_C',_'WAS')_UTIL_36873904
- + 4100 ('Ausar_Thompson',_'SF_PF',_'DET')_F_36873478
- + 4100 ('Ausar_Thompson',_'SF_PF',_'DET')_PF_36873478
- + 4100 ('Ausar_Thompson',_'SF_PF',_'DET')_SF_36873478
- + 4100 ('Ausar_Thompson',_'SF_PF',_'DET')_UTIL_36873478
- + 7000 ('Bennedict_Mathurin',_'SG_SF',_'IND')_F_36873185
- + 7000 ('Bennedict_Mathurin',_'SG_SF',_'IND')_G_36873185
- + 7000 ('Bennedict_Mathurin',_'SG_SF',_'IND')_SF_36873185
- + 7000 ('Bennedict_Mathurin',_'SG_SF',_'IND')_SG_36873185
- + 7000 ('Bennedict_Mathurin',_'SG_SF',_'IND')_UTIL_36873185
- + 5600 ('Bilal_Coulibaly',_'SF',_'WAS')_F_36873287
- + 5600 ('Bilal_Coulibaly',_'SF',_'WAS')_SF_36873287
- + 5600 ('Bilal_Coulibaly',_'SF',_'WAS')_UTIL_36873287
- + 6000 ('Bobby_Portis',_'PF_C',_'MIL')_C_36873248
- + 6000 ('Bobby_Portis',_'PF_C',_'MIL')_F_36873248
- + 6000 ('Bobby_Portis',_'PF_C',_'MIL')_PF_36873248
- + 6000 ('Bobby_Portis',_'PF_C',_'MIL')_UTIL_36873248
- + 7700 ('Bradley_Beal',_'SG_SF',_'PHX')_F_36873146
- + 7700 ('Bradley_Beal',_'SG_SF',_'PHX')_G_36873146
- + 7700 ('Bradley_Beal',_'SG_SF',_'PHX')_SF_36873146
- + 7700 ('Bradley_Beal',_'SG_SF',_'PHX')_SG_36873146
- + 7700 ('Bradley_Beal',_'SG_SF',_'PHX')_UTIL_36873146
- + 4400 ('Brandon_Clarke',_'PF_C',_'MEM')_C_36873424
- + 4400 ('Brandon_Clarke',_'PF_C',_'MEM')_F_36873424
- + 4400 ('Brandon_Clarke',_'PF_C',_'MEM')_PF_36873424
- + 4400 ('Brandon_Clarke',_'PF_C',_'MEM')_UTIL_36873424
- + 8000 ('Brandon_Miller',_'SG_SF',_'CHA')_F_36873126
- + 8000 ('Brandon_Miller',_'SG_SF',_'CHA')_G_36873126
- + 8000 ('Brandon_Miller',_'SG_SF',_'CHA')_SF_36873126
- + 8000 ('Brandon_Miller',_'SG_SF',_'CHA')_SG_36873126
- + 8000 ('Brandon_Miller',_'SG_SF',_'CHA')_UTIL_36873126
- + 3700 ('Brice_Sensabaugh',_'SF',_'UTA')_F_36873588
- + 3700 ('Brice_Sensabaugh',_'SF',_'UTA')_SF_36873588
- + 3700 ('Brice_Sensabaugh',_'SF',_'UTA')_UTIL_36873588
- + 6500 ('Brook_Lopez',_'C',_'MIL')_C_36873212
- + 6500 ('Brook_Lopez',_'C',_'MIL')_UTIL_36873212
- + 3000 ('Bruno_Fernando',_'C',_'TOR')_C_36873748
- + 3000 ('Bruno_Fernando',_'C',_'TOR')_UTIL_36873748
- + 9700 ('Cade_Cunningham',_'PG',_'DET')_G_36873073
- + 9700 ('Cade_Cunningham',_'PG',_'DET')_PG_36873073
- + 9700 ('Cade_Cunningham',_'PG',_'DET')_UTIL_36873073
- + 4700 ('Caleb_Martin',_'PF',_'PHI')_F_36873377
- + 4700 ('Caleb_Martin',_'PF',_'PHI')_PF_36873377
- + 4700 ('Caleb_Martin',_'PF',_'PHI')_UTIL_36873377
- + 3800 ('Cameron_Payne',_'PG_SG',_'NYK')_G_36873547
- + 3800 ('Cameron_Payne',_'PG_SG',_'NYK')_PG_36873547
- + 3800 ('Cameron_Payne',_'PG_SG',_'NYK')_SG_36873547
- + 3800 ('Cameron_Payne',_'PG_SG',_'NYK')_UTIL_36873547
- + 4900 ('Caris_LeVert',_'PG_SG',_'CLE')_G_36873361
- + 4900 ('Caris_LeVert',_'PG_SG',_'CLE')_PG_36873361
- + 4900 ('Caris_LeVert',_'PG_SG',_'CLE')_SG_36873361
- + 4900 ('Caris_LeVert',_'PG_SG',_'CLE')_UTIL_36873361
- + 4600 ('Carlton_Carrington',_'PG_SG',_'WAS')_G_36873404
- + 4600 ('Carlton_Carrington',_'PG_SG',_'WAS')_PG_36873404
- + 4600 ('Carlton_Carrington',_'PG_SG',_'WAS')_SG_36873404
- + 4600 ('Carlton_Carrington',_'PG_SG',_'WAS')_UTIL_36873404
- + 4300 ('Cason_Wallace',_'PG_SG',_'OKC')_G_36873428
- + 4300 ('Cason_Wallace',_'PG_SG',_'OKC')_PG_36873428
- + 4300 ('Cason_Wallace',_'PG_SG',_'OKC')_SG_36873428
- + 4300 ('Cason_Wallace',_'PG_SG',_'OKC')_UTIL_36873428
- + 3800 ('Chris_Boucher',_'PF_C',_'TOR')_C_36873543
- + 3800 ('Chris_Boucher',_'PF_C',_'TOR')_F_36873543
- + 3800 ('Chris_Boucher',_'PF_C',_'TOR')_PF_36873543
- + 3800 ('Chris_Boucher',_'PF_C',_'TOR')_UTIL_36873543
- + 6000 ('Chris_Paul',_'PG',_'SAS')_G_36873238
- + 6000 ('Chris_Paul',_'PG',_'SAS')_PG_36873238
- + 6000 ('Chris_Paul',_'PG',_'SAS')_UTIL_36873238
- + 5000 ('Cody_Martin',_'SF',_'CHA')_F_36873348
- + 5000 ('Cody_Martin',_'SF',_'CHA')_SF_36873348
- + 5000 ('Cody_Martin',_'SF',_'CHA')_UTIL_36873348
- + 3300 ('Cole_Anthony',_'PG_SG',_'ORL')_G_36873646
- + 3300 ('Cole_Anthony',_'PG_SG',_'ORL')_PG_36873646
- + 3300 ('Cole_Anthony',_'PG_SG',_'ORL')_SG_36873646
- + 3300 ('Cole_Anthony',_'PG_SG',_'ORL')_UTIL_36873646
- + 6500 ('Collin_Sexton',_'PG_SG',_'UTA')_G_36873208
- + 6500 ('Collin_Sexton',_'PG_SG',_'UTA')_PG_36873208
- + 6500 ('Collin_Sexton',_'PG_SG',_'UTA')_SG_36873208
- + 6500 ('Collin_Sexton',_'PG_SG',_'UTA')_UTIL_36873208
- + 4500 ('Corey_Kispert',_'SG_SF',_'WAS')_F_36873408
- + 4500 ('Corey_Kispert',_'SG_SF',_'WAS')_G_36873408
- + 4500 ('Corey_Kispert',_'SG_SF',_'WAS')_SF_36873408
- + 4500 ('Corey_Kispert',_'SG_SF',_'WAS')_SG_36873408
- + 4500 ('Corey_Kispert',_'SG_SF',_'WAS')_UTIL_36873408
- + 9500 ('Damian_Lillard',_'PG',_'MIL')_G_36873080
- + 9500 ('Damian_Lillard',_'PG',_'MIL')_PG_36873080
- + 9500 ('Damian_Lillard',_'PG',_'MIL')_UTIL_36873080
- + 5900 ('Daniel_Gafford',_'C',_'DAL')_C_36873246
- + 5900 ('Daniel_Gafford',_'C',_'DAL')_UTIL_36873246
- + 7500 ('Darius_Garland',_'PG',_'CLE')_G_36873158
- + 7500 ('Darius_Garland',_'PG',_'CLE')_PG_36873158
- + 7500 ('Darius_Garland',_'PG',_'CLE')_UTIL_36873158
- + 3800 ('Davion_Mitchell',_'PG_SG',_'TOR')_G_36873566
- + 3800 ('Davion_Mitchell',_'PG_SG',_'TOR')_PG_36873566
- + 3800 ('Davion_Mitchell',_'PG_SG',_'TOR')_SG_36873566
- + 3800 ('Davion_Mitchell',_'PG_SG',_'TOR')_UTIL_36873566
- + 3600 ('Dean_Wade',_'SF_PF',_'CLE')_F_36873596
- + 3600 ('Dean_Wade',_'SF_PF',_'CLE')_PF_36873596
- + 3600 ('Dean_Wade',_'SF_PF',_'CLE')_SF_36873596
- + 3600 ('Dean_Wade',_'SF_PF',_'CLE')_UTIL_36873596
- + 3100 ('Delon_Wright',_'PG',_'MIL')_G_36873688
- + 3100 ('Delon_Wright',_'PG',_'MIL')_PG_36873688
- + 3100 ('Delon_Wright',_'PG',_'MIL')_UTIL_36873688
- + 5500 ('Dereck_Lively_II',_'C',_'DAL')_C_36873290
- + 5500 ('Dereck_Lively_II',_'C',_'DAL')_UTIL_36873290
- + 7300 ('Desmond_Bane',_'SG_SF',_'MEM')_F_36873167
- + 7300 ('Desmond_Bane',_'SG_SF',_'MEM')_G_36873167
- + 7300 ('Desmond_Bane',_'SG_SF',_'MEM')_SF_36873167
- + 7300 ('Desmond_Bane',_'SG_SF',_'MEM')_SG_36873167
- + 7300 ('Desmond_Bane',_'SG_SF',_'MEM')_UTIL_36873167
- + 8900 ('Devin_Booker',_'PG_SG',_'PHX')_G_36873095
- + 8900 ('Devin_Booker',_'PG_SG',_'PHX')_PG_36873095
- + 8900 ('Devin_Booker',_'PG_SG',_'PHX')_SG_36873095
- + 8900 ('Devin_Booker',_'PG_SG',_'PHX')_UTIL_36873095
- + 5100 ('Devin_Vassell',_'SG',_'SAS')_G_36873340
- + 5100 ('Devin_Vassell',_'SG',_'SAS')_SG_36873340
- + 5100 ('Devin_Vassell',_'SG',_'SAS')_UTIL_36873340
- + 3100 ('Dillon_Jones',_'PF',_'OKC')_F_36873699
- + 3100 ('Dillon_Jones',_'PF',_'OKC')_PF_36873699
- + 3100 ('Dillon_Jones',_'PF',_'OKC')_UTIL_36873699
- + 9100 ('Donovan_Mitchell',_'PG_SG',_'CLE')_G_36873087
- + 9100 ('Donovan_Mitchell',_'PG_SG',_'CLE')_PG_36873087
- + 9100 ('Donovan_Mitchell',_'PG_SG',_'CLE')_SG_36873087
- + 9100 ('Donovan_Mitchell',_'PG_SG',_'CLE')_UTIL_36873087
- + 3100 ('Drew_Eubanks',_'C',_'UTA')_C_36873691
- + 3100 ('Drew_Eubanks',_'C',_'UTA')_UTIL_36873691
- + 7800 ('Evan_Mobley',_'PF_C',_'CLE')_C_36873135
- + 7800 ('Evan_Mobley',_'PF_C',_'CLE')_F_36873135
- + 7800 ('Evan_Mobley',_'PF_C',_'CLE')_PF_36873135
- + 7800 ('Evan_Mobley',_'PF_C',_'CLE')_UTIL_36873135
- + 9600 ('Franz_Wagner',_'SF_PF',_'ORL')_F_36873076
- + 9600 ('Franz_Wagner',_'SF_PF',_'ORL')_PF_36873076
- + 9600 ('Franz_Wagner',_'SF_PF',_'ORL')_SF_36873076
- + 9600 ('Franz_Wagner',_'SF_PF',_'ORL')_UTIL_36873076
- + 3900 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_F_36873532
- + 3900 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_G_36873532
- + 3900 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SF_36873532
- + 3900 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SG_36873532
- + 3900 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_UTIL_36873532
- + 4300 ('Georges_Niang',_'SF_PF',_'CLE')_F_36873435
- + 4300 ('Georges_Niang',_'SF_PF',_'CLE')_PF_36873435
- + 4300 ('Georges_Niang',_'SF_PF',_'CLE')_SF_36873435
- + 4300 ('Georges_Niang',_'SF_PF',_'CLE')_UTIL_36873435
- + 12000 ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_C_36873056
- + 12000 ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_F_36873056
- + 12000 ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_PF_36873056
- + 12000 ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_UTIL_36873056
- + 5300 ('Goga_Bitadze',_'C',_'ORL')_C_36873304
- + 5300 ('Goga_Bitadze',_'C',_'ORL')_UTIL_36873304
- + 5000 ('Grayson_Allen',_'SG',_'PHX')_G_36873351
- + 5000 ('Grayson_Allen',_'SG',_'PHX')_SG_36873351
- + 5000 ('Grayson_Allen',_'SG',_'PHX')_UTIL_36873351
- + 5700 ('Guerschon_Yabusele',_'PF_C',_'PHI')_C_36873275
- + 5700 ('Guerschon_Yabusele',_'PF_C',_'PHI')_F_36873275
- + 5700 ('Guerschon_Yabusele',_'PF_C',_'PHI')_PF_36873275
- + 5700 ('Guerschon_Yabusele',_'PF_C',_'PHI')_UTIL_36873275
- + 4400 ('Harrison_Barnes',_'SF_PF',_'SAS')_F_36873413
- + 4400 ('Harrison_Barnes',_'SF_PF',_'SAS')_PF_36873413
- + 4400 ('Harrison_Barnes',_'SF_PF',_'SAS')_SF_36873413
- + 4400 ('Harrison_Barnes',_'SF_PF',_'SAS')_UTIL_36873413
- + 4000 ('Isaac_Okoro',_'SG_SF',_'CLE')_F_36873516
- + 4000 ('Isaac_Okoro',_'SG_SF',_'CLE')_G_36873516
- + 4000 ('Isaac_Okoro',_'SG_SF',_'CLE')_SF_36873516
- + 4000 ('Isaac_Okoro',_'SG_SF',_'CLE')_SG_36873516
- + 4000 ('Isaac_Okoro',_'SG_SF',_'CLE')_UTIL_36873516
- + 3000 ('Isaiah_Collier',_'PG',_'UTA')_G_36873862
- + 3000 ('Isaiah_Collier',_'PG',_'UTA')_PG_36873862
- + 3000 ('Isaiah_Collier',_'PG',_'UTA')_UTIL_36873862
- + 7300 ('Isaiah_Hartenstein',_'C',_'OKC')_C_36873165
- + 7300 ('Isaiah_Hartenstein',_'C',_'OKC')_UTIL_36873165
- + 3700 ('Isaiah_Joe',_'SG_SF',_'OKC')_F_36873574
- + 3700 ('Isaiah_Joe',_'SG_SF',_'OKC')_G_36873574
- + 3700 ('Isaiah_Joe',_'SG_SF',_'OKC')_SF_36873574
- + 3700 ('Isaiah_Joe',_'SG_SF',_'OKC')_SG_36873574
- + 3700 ('Isaiah_Joe',_'SG_SF',_'OKC')_UTIL_36873574
- + 4100 ('Isaiah_Stewart',_'C',_'DET')_C_36873476
- + 4100 ('Isaiah_Stewart',_'C',_'DET')_UTIL_36873476
- + 8700 ('Ja_Morant',_'PG',_'MEM')_G_36873102
- + 8700 ('Ja_Morant',_'PG',_'MEM')_PG_36873102
- + 8700 ('Ja_Morant',_'PG',_'MEM')_UTIL_36873102
- + 4400 ('Jaden_Hardy',_'PG_SG',_'DAL')_G_36873420
- + 4400 ('Jaden_Hardy',_'PG_SG',_'DAL')_PG_36873420
- + 4400 ('Jaden_Hardy',_'PG_SG',_'DAL')_SG_36873420
- + 4400 ('Jaden_Hardy',_'PG_SG',_'DAL')_UTIL_36873420
- + 7800 ('Jaden_Ivey',_'PG_SG',_'DET')_G_36873139
- + 7800 ('Jaden_Ivey',_'PG_SG',_'DET')_PG_36873139
- + 7800 ('Jaden_Ivey',_'PG_SG',_'DET')_SG_36873139
- + 7800 ('Jaden_Ivey',_'PG_SG',_'DET')_UTIL_36873139
- + 4300 ('Jake_LaRavia',_'SF_PF',_'MEM')_F_36873463
- + 4300 ('Jake_LaRavia',_'SF_PF',_'MEM')_PF_36873463
- + 4300 ('Jake_LaRavia',_'SF_PF',_'MEM')_SF_36873463
- + 4300 ('Jake_LaRavia',_'SF_PF',_'MEM')_UTIL_36873463
- + 7200 ('Jakob_Poeltl',_'C',_'TOR')_C_36873176
- + 7200 ('Jakob_Poeltl',_'C',_'TOR')_UTIL_36873176
- + 8500 ('Jalen_Brunson',_'PG',_'NYK')_G_36873109
- + 8500 ('Jalen_Brunson',_'PG',_'NYK')_PG_36873109
- + 8500 ('Jalen_Brunson',_'PG',_'NYK')_UTIL_36873109
- + 6100 ('Jalen_Duren',_'C',_'DET')_C_36873236
- + 6100 ('Jalen_Duren',_'C',_'DET')_UTIL_36873236
- + 6400 ('Jalen_Suggs',_'PG',_'ORL')_G_36873219
- + 6400 ('Jalen_Suggs',_'PG',_'ORL')_PG_36873219
- + 6400 ('Jalen_Suggs',_'PG',_'ORL')_UTIL_36873219
- + 8800 ('Jalen_Williams',_'PF',_'OKC')_F_36873099
- + 8800 ('Jalen_Williams',_'PF',_'OKC')_PF_36873099
- + 8800 ('Jalen_Williams',_'PF',_'OKC')_UTIL_36873099
- + 3000 ('Jamal_Shead',_'PG',_'TOR')_G_36873745
- + 3000 ('Jamal_Shead',_'PG',_'TOR')_PG_36873745
- + 3000 ('Jamal_Shead',_'PG',_'TOR')_UTIL_36873745
- + 3200 ('Jamison_Battle',_'SF',_'TOR')_F_36873674
- + 3200 ('Jamison_Battle',_'SF',_'TOR')_SF_36873674
- + 3200 ('Jamison_Battle',_'SF',_'TOR')_UTIL_36873674
- + 3900 ('Jarace_Walker',_'SF_PF',_'IND')_F_36873528
- + 3900 ('Jarace_Walker',_'SF_PF',_'IND')_PF_36873528
- + 3900 ('Jarace_Walker',_'SF_PF',_'IND')_SF_36873528
- + 3900 ('Jarace_Walker',_'SF_PF',_'IND')_UTIL_36873528
- + 3000 ('Jared_Butler',_'PG',_'WAS')_G_36873891
- + 3000 ('Jared_Butler',_'PG',_'WAS')_PG_36873891
- + 3000 ('Jared_Butler',_'PG',_'WAS')_UTIL_36873891
- + 6800 ('Jared_McCain',_'PG_SG',_'PHI')_G_36873190
- + 6800 ('Jared_McCain',_'PG_SG',_'PHI')_PG_36873190
- + 6800 ('Jared_McCain',_'PG_SG',_'PHI')_SG_36873190
- + 6800 ('Jared_McCain',_'PG_SG',_'PHI')_UTIL_36873190
- + 7700 ('Jaren_Jackson_Jr.',_'PF',_'MEM')_F_36873143
- + 7700 ('Jaren_Jackson_Jr.',_'PF',_'MEM')_PF_36873143
- + 7700 ('Jaren_Jackson_Jr.',_'PF',_'MEM')_UTIL_36873143
- + 6600 ('Jarrett_Allen',_'C',_'CLE')_C_36873206
- + 6600 ('Jarrett_Allen',_'C',_'CLE')_UTIL_36873206
- + 3400 ('Jay_Huff',_'C',_'MEM')_C_36873622
- + 3400 ('Jay_Huff',_'C',_'MEM')_UTIL_36873622
- + 4100 ('Jaylen_Wells',_'SG_SF',_'MEM')_F_36873486
- + 4100 ('Jaylen_Wells',_'SG_SF',_'MEM')_G_36873486
- + 4100 ('Jaylen_Wells',_'SG_SF',_'MEM')_SF_36873486
- + 4100 ('Jaylen_Wells',_'SG_SF',_'MEM')_SG_36873486
- + 4100 ('Jaylen_Wells',_'SG_SF',_'MEM')_UTIL_36873486
- + 6300 ('Jeremy_Sochan',_'C',_'SAS')_C_36873226
- + 6300 ('Jeremy_Sochan',_'C',_'SAS')_UTIL_36873226
- + 3500 ('Jericho_Sims',_'PF_C',_'NYK')_C_36873610
- + 3500 ('Jericho_Sims',_'PF_C',_'NYK')_F_36873610
- + 3500 ('Jericho_Sims',_'PF_C',_'NYK')_PF_36873610
- + 3500 ('Jericho_Sims',_'PF_C',_'NYK')_UTIL_36873610
- + 7400 ('John_Collins',_'PF_C',_'UTA')_C_36873161
- + 7400 ('John_Collins',_'PF_C',_'UTA')_F_36873161
- + 7400 ('John_Collins',_'PF_C',_'UTA')_PF_36873161
- + 7400 ('John_Collins',_'PF_C',_'UTA')_UTIL_36873161
- + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_F_36873663
- + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_G_36873663
- + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_SF_36873663
- + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_SG_36873663
- + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_UTIL_36873663
- + 5200 ('Jonas_Valanciunas',_'C',_'WAS')_C_36873324
- + 5200 ('Jonas_Valanciunas',_'C',_'WAS')_UTIL_36873324
- + 4100 ('Jonathan_Isaac',_'PF_C',_'ORL')_C_36873496
- + 4100 ('Jonathan_Isaac',_'PF_C',_'ORL')_F_36873496
- + 4100 ('Jonathan_Isaac',_'PF_C',_'ORL')_PF_36873496
- + 4100 ('Jonathan_Isaac',_'PF_C',_'ORL')_UTIL_36873496
- + 3300 ('Jonathan_Mogbo',_'C',_'TOR')_C_36873630
- + 3300 ('Jonathan_Mogbo',_'C',_'TOR')_UTIL_36873630
- + 6900 ('Jordan_Poole',_'PG_SG',_'WAS')_G_36873181
- + 6900 ('Jordan_Poole',_'PG_SG',_'WAS')_PG_36873181
- + 6900 ('Jordan_Poole',_'PG_SG',_'WAS')_SG_36873181
- + 6900 ('Jordan_Poole',_'PG_SG',_'WAS')_UTIL_36873181
- + 4800 ('Josh_Green',_'SF_PF',_'CHA')_F_36873380
- + 4800 ('Josh_Green',_'SF_PF',_'CHA')_PF_36873380
- + 4800 ('Josh_Green',_'SF_PF',_'CHA')_SF_36873380
- + 4800 ('Josh_Green',_'SF_PF',_'CHA')_UTIL_36873380
- + 6700 ('Josh_Hart',_'SF_PF',_'NYK')_F_36873197
- + 6700 ('Josh_Hart',_'SF_PF',_'NYK')_PF_36873197
- + 6700 ('Josh_Hart',_'SF_PF',_'NYK')_SF_36873197
- + 6700 ('Josh_Hart',_'SF_PF',_'NYK')_UTIL_36873197
- + 4200 ('Josh_Okogie',_'SF',_'PHX')_F_36873452
- + 4200 ('Josh_Okogie',_'SF',_'PHX')_SF_36873452
- + 4200 ('Josh_Okogie',_'SF',_'PHX')_UTIL_36873452
- + 5200 ('Julian_Champagnie',_'SF_PF',_'SAS')_F_36873326
- + 5200 ('Julian_Champagnie',_'SF_PF',_'SAS')_PF_36873326
- + 5200 ('Julian_Champagnie',_'SF_PF',_'SAS')_SF_36873326
- + 5200 ('Julian_Champagnie',_'SF_PF',_'SAS')_UTIL_36873326
- + 3900 ('KJ_Martin',_'SF_PF',_'PHI')_F_36873537
- + 3900 ('KJ_Martin',_'SF_PF',_'PHI')_PF_36873537
- + 3900 ('KJ_Martin',_'SF_PF',_'PHI')_SF_36873537
- + 3900 ('KJ_Martin',_'SF_PF',_'PHI')_UTIL_36873537
- + 9200 ('Karl#Anthony_Towns',_'C',_'NYK')_C_36873085
- + 9200 ('Karl#Anthony_Towns',_'C',_'NYK')_UTIL_36873085
- + 4900 ('Keldon_Johnson',_'SF_PF',_'SAS')_F_36873365
- + 4900 ('Keldon_Johnson',_'SF_PF',_'SAS')_PF_36873365
- + 4900 ('Keldon_Johnson',_'SF_PF',_'SAS')_SF_36873365
- + 4900 ('Keldon_Johnson',_'SF_PF',_'SAS')_UTIL_36873365
- + 5300 ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_F_36873316
- + 5300 ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_G_36873316
- + 5300 ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_SF_36873316
- + 5300 ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_SG_36873316
- + 5300 ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_UTIL_36873316
- + 3200 ('Kenrich_Williams',_'PF_C',_'OKC')_C_36873684
- + 3200 ('Kenrich_Williams',_'PF_C',_'OKC')_F_36873684
- + 3200 ('Kenrich_Williams',_'PF_C',_'OKC')_PF_36873684
- + 3200 ('Kenrich_Williams',_'PF_C',_'OKC')_UTIL_36873684
- + 4300 ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_G_36873432
- + 4300 ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_SG_36873432
- + 4300 ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_UTIL_36873432
- + 8600 ('Kevin_Durant',_'PF_C',_'PHX')_C_36873105
- + 8600 ('Kevin_Durant',_'PF_C',_'PHX')_F_36873105
- + 8600 ('Kevin_Durant',_'PF_C',_'PHX')_PF_36873105
- + 8600 ('Kevin_Durant',_'PF_C',_'PHX')_UTIL_36873105
- + 6200 ('Keyonte_George',_'PG',_'UTA')_G_36873252
- + 6200 ('Keyonte_George',_'PG',_'UTA')_PG_36873252
- + 6200 ('Keyonte_George',_'PG',_'UTA')_UTIL_36873252
- + 5400 ('Klay_Thompson',_'SG_SF',_'DAL')_F_36873296
- + 5400 ('Klay_Thompson',_'SG_SF',_'DAL')_G_36873296
- + 5400 ('Klay_Thompson',_'SG_SF',_'DAL')_SF_36873296
- + 5400 ('Klay_Thompson',_'SG_SF',_'DAL')_SG_36873296
- + 5400 ('Klay_Thompson',_'SG_SF',_'DAL')_UTIL_36873296
- + 3800 ('Kyle_Lowry',_'PG',_'PHI')_G_36873556
- + 3800 ('Kyle_Lowry',_'PG',_'PHI')_PG_36873556
- + 3800 ('Kyle_Lowry',_'PG',_'PHI')_UTIL_36873556
- + 9000 ('Kyrie_Irving',_'PG_SG',_'DAL')_G_36873091
- + 9000 ('Kyrie_Irving',_'PG_SG',_'DAL')_PG_36873091
- + 9000 ('Kyrie_Irving',_'PG_SG',_'DAL')_SG_36873091
- + 9000 ('Kyrie_Irving',_'PG_SG',_'DAL')_UTIL_36873091
- + 4200 ('Kyshawn_George',_'SF_PF',_'WAS')_F_36873448
- + 4200 ('Kyshawn_George',_'SF_PF',_'WAS')_PF_36873448
- + 4200 ('Kyshawn_George',_'SF_PF',_'WAS')_SF_36873448
- + 4200 ('Kyshawn_George',_'SF_PF',_'WAS')_UTIL_36873448
- + 7200 ('Lauri_Markkanen',_'SF_PF',_'UTA')_F_36873172
- + 7200 ('Lauri_Markkanen',_'SF_PF',_'UTA')_PF_36873172
- + 7200 ('Lauri_Markkanen',_'SF_PF',_'UTA')_SF_36873172
- + 7200 ('Lauri_Markkanen',_'SF_PF',_'UTA')_UTIL_36873172
- + 5200 ('Luguentz_Dort',_'SG_SF',_'OKC')_F_36873306
- + 5200 ('Luguentz_Dort',_'SG_SF',_'OKC')_G_36873306
- + 5200 ('Luguentz_Dort',_'SG_SF',_'OKC')_SF_36873306
- + 5200 ('Luguentz_Dort',_'SG_SF',_'OKC')_SG_36873306
- + 5200 ('Luguentz_Dort',_'SG_SF',_'OKC')_UTIL_36873306
- + 11000 ('Luka_Doncic',_'PG',_'DAL')_G_36873060
- + 11000 ('Luka_Doncic',_'PG',_'DAL')_PG_36873060
- + 11000 ('Luka_Doncic',_'PG',_'DAL')_UTIL_36873060
- + 3300 ('Luke_Kennard',_'SG_SF',_'MEM')_F_36873641
- + 3300 ('Luke_Kennard',_'SG_SF',_'MEM')_G_36873641
- + 3300 ('Luke_Kennard',_'SG_SF',_'MEM')_SF_36873641
- + 3300 ('Luke_Kennard',_'SG_SF',_'MEM')_SG_36873641
- + 3300 ('Luke_Kennard',_'SG_SF',_'MEM')_UTIL_36873641
- + 5900 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_G_36873262
- + 5900 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_PG_36873262
- + 5900 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_SG_36873262
- + 5900 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_UTIL_36873262
- + 6100 ('Malik_Beasley',_'SG_SF',_'DET')_F_36873255
- + 6100 ('Malik_Beasley',_'SG_SF',_'DET')_G_36873255
- + 6100 ('Malik_Beasley',_'SG_SF',_'DET')_SF_36873255
- + 6100 ('Malik_Beasley',_'SG_SF',_'DET')_SG_36873255
- + 6100 ('Malik_Beasley',_'SG_SF',_'DET')_UTIL_36873255
- + 3500 ('Marcus_Sasser',_'PG',_'DET')_G_36873616
- + 3500 ('Marcus_Sasser',_'PG',_'DET')_PG_36873616
- + 3500 ('Marcus_Sasser',_'PG',_'DET')_UTIL_36873616
- + 4800 ('Marcus_Smart',_'PG_SG',_'MEM')_G_36873373
- + 4800 ('Marcus_Smart',_'PG_SG',_'MEM')_PG_36873373
- + 4800 ('Marcus_Smart',_'PG_SG',_'MEM')_SG_36873373
- + 4800 ('Marcus_Smart',_'PG_SG',_'MEM')_UTIL_36873373
- + 5800 ('Mark_Williams',_'C',_'CHA')_C_36873260
- + 5800 ('Mark_Williams',_'C',_'CHA')_UTIL_36873260
- + 4000 ('Mason_Plumlee',_'C',_'PHX')_C_36873514
- + 4000 ('Mason_Plumlee',_'C',_'PHX')_UTIL_36873514
- + 3600 ('Maxi_Kleber',_'PF_C',_'DAL')_C_36873600
- + 3600 ('Maxi_Kleber',_'PF_C',_'DAL')_F_36873600
- + 3600 ('Maxi_Kleber',_'PF_C',_'DAL')_PF_36873600
- + 3600 ('Maxi_Kleber',_'PF_C',_'DAL')_UTIL_36873600
- + 3000 ('Micah_Potter',_'PF',_'UTA')_F_36873859
- + 3000 ('Micah_Potter',_'PF',_'UTA')_PF_36873859
- + 3000 ('Micah_Potter',_'PF',_'UTA')_UTIL_36873859
- + 5900 ('Mikal_Bridges',_'SG_SF',_'NYK')_F_36873241
- + 5900 ('Mikal_Bridges',_'SG_SF',_'NYK')_G_36873241
- + 5900 ('Mikal_Bridges',_'SG_SF',_'NYK')_SF_36873241
- + 5900 ('Mikal_Bridges',_'SG_SF',_'NYK')_SG_36873241
- + 5900 ('Mikal_Bridges',_'SG_SF',_'NYK')_UTIL_36873241
- + 4200 ('Miles_McBride',_'PG_SG',_'NYK')_G_36873455
- + 4200 ('Miles_McBride',_'PG_SG',_'NYK')_PG_36873455
- + 4200 ('Miles_McBride',_'PG_SG',_'NYK')_SG_36873455
- + 4200 ('Miles_McBride',_'PG_SG',_'NYK')_UTIL_36873455
- + 3200 ('Monte_Morris',_'PG',_'PHX')_G_36873681
- + 3200 ('Monte_Morris',_'PG',_'PHX')_PG_36873681
- + 3200 ('Monte_Morris',_'PG',_'PHX')_UTIL_36873681
- + 4500 ('Moritz_Wagner',_'C',_'ORL')_C_36873395
- + 4500 ('Moritz_Wagner',_'C',_'ORL')_UTIL_36873395
- + 3000 ('Moses_Brown',_'C',_'IND')_C_36873880
- + 3000 ('Moses_Brown',_'C',_'IND')_UTIL_36873880
- + 5000 ('Moussa_Diabate',_'PF_C',_'CHA')_C_36873354
- + 5000 ('Moussa_Diabate',_'PF_C',_'CHA')_F_36873354
- + 5000 ('Moussa_Diabate',_'PF_C',_'CHA')_PF_36873354
- + 5000 ('Moussa_Diabate',_'PF_C',_'CHA')_UTIL_36873354
- + 6700 ('Myles_Turner',_'C',_'IND')_C_36873201
- + 6700 ('Myles_Turner',_'C',_'IND')_UTIL_36873201
- + 3300 ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_F_36873652
- + 3300 ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_G_36873652
- + 3300 ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_SF_36873652
- + 3300 ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_SG_36873652
- + 3300 ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_UTIL_36873652
- + 6400 ('OG_Anunoby',_'SF_PF',_'NYK')_F_36873222
- + 6400 ('OG_Anunoby',_'SF_PF',_'NYK')_PF_36873222
- + 6400 ('OG_Anunoby',_'SF_PF',_'NYK')_SF_36873222
- + 6400 ('OG_Anunoby',_'SF_PF',_'NYK')_UTIL_36873222
- + 3700 ('Obi_Toppin',_'PF_C',_'IND')_C_36873579
- + 3700 ('Obi_Toppin',_'PF_C',_'IND')_F_36873579
- + 3700 ('Obi_Toppin',_'PF_C',_'IND')_PF_36873579
- + 3700 ('Obi_Toppin',_'PF_C',_'IND')_UTIL_36873579
- + 4900 ('Ochai_Agbaji',_'SF_PF',_'TOR')_F_36873369
- + 4900 ('Ochai_Agbaji',_'SF_PF',_'TOR')_PF_36873369
- + 4900 ('Ochai_Agbaji',_'SF_PF',_'TOR')_SF_36873369
- + 4900 ('Ochai_Agbaji',_'SF_PF',_'TOR')_UTIL_36873369
- + 3800 ('Oso_Ighodaro',_'PF_C',_'PHX')_C_36873570
- + 3800 ('Oso_Ighodaro',_'PF_C',_'PHX')_F_36873570
- + 3800 ('Oso_Ighodaro',_'PF_C',_'PHX')_PF_36873570
- + 3800 ('Oso_Ighodaro',_'PF_C',_'PHX')_UTIL_36873570
- + 7000 ('PJ_Washington',_'PF',_'DAL')_F_36873178
- + 7000 ('PJ_Washington',_'PF',_'DAL')_PF_36873178
- + 7000 ('PJ_Washington',_'PF',_'DAL')_UTIL_36873178
- + 7600 ('Pascal_Siakam',_'PF',_'IND')_F_36873151
- + 7600 ('Pascal_Siakam',_'PF',_'IND')_PF_36873151
- + 7600 ('Pascal_Siakam',_'PF',_'IND')_UTIL_36873151
- + 3300 ('Pat_Connaughton',_'SF_PF',_'MIL')_F_36873637
- + 3300 ('Pat_Connaughton',_'SF_PF',_'MIL')_PF_36873637
- + 3300 ('Pat_Connaughton',_'SF_PF',_'MIL')_SF_36873637
- + 3300 ('Pat_Connaughton',_'SF_PF',_'MIL')_UTIL_36873637
- + 7500 ('Paul_George',_'SF_PF',_'PHI')_F_36873154
- + 7500 ('Paul_George',_'SF_PF',_'PHI')_PF_36873154
- + 7500 ('Paul_George',_'SF_PF',_'PHI')_SF_36873154
- + 7500 ('Paul_George',_'SF_PF',_'PHI')_UTIL_36873154
- + 5300 ('Quentin_Grimes',_'SG_SF',_'DAL')_F_36873311
- + 5300 ('Quentin_Grimes',_'SG_SF',_'DAL')_G_36873311
- + 5300 ('Quentin_Grimes',_'SG_SF',_'DAL')_SF_36873311
- + 5300 ('Quentin_Grimes',_'SG_SF',_'DAL')_SG_36873311
- + 5300 ('Quentin_Grimes',_'SG_SF',_'DAL')_UTIL_36873311
- + 3800 ('Quenton_Jackson',_'SG_SF',_'IND')_F_36873551
- + 3800 ('Quenton_Jackson',_'SG_SF',_'IND')_G_36873551
- + 3800 ('Quenton_Jackson',_'SG_SF',_'IND')_SF_36873551
- + 3800 ('Quenton_Jackson',_'SG_SF',_'IND')_SG_36873551
- + 3800 ('Quenton_Jackson',_'SG_SF',_'IND')_UTIL_36873551
- + 7900 ('RJ_Barrett',_'SF_PF',_'TOR')_F_36873131
- + 7900 ('RJ_Barrett',_'SF_PF',_'TOR')_PF_36873131
- + 7900 ('RJ_Barrett',_'SF_PF',_'TOR')_SF_36873131
- + 7900 ('RJ_Barrett',_'SF_PF',_'TOR')_UTIL_36873131
- + 3700 ('Ricky_Council_IV',_'SG_SF',_'PHI')_F_36873583
- + 3700 ('Ricky_Council_IV',_'SG_SF',_'PHI')_G_36873583
- + 3700 ('Ricky_Council_IV',_'SG_SF',_'PHI')_SF_36873583
- + 3700 ('Ricky_Council_IV',_'SG_SF',_'PHI')_SG_36873583
- + 3700 ('Ricky_Council_IV',_'SG_SF',_'PHI')_UTIL_36873583
- + 3500 ('Ryan_Dunn',_'PF',_'PHX')_F_36873619
- + 3500 ('Ryan_Dunn',_'PF',_'PHX')_PF_36873619
- + 3500 ('Ryan_Dunn',_'PF',_'PHX')_UTIL_36873619
- + 3400 ('Sam_Merrill',_'SG',_'CLE')_G_36873624
- + 3400 ('Sam_Merrill',_'SG',_'CLE')_SG_36873624
- + 3400 ('Sam_Merrill',_'SG',_'CLE')_UTIL_36873624
- + 5800 ('Santi_Aldama',_'PF',_'MEM')_F_36873272
- + 5800 ('Santi_Aldama',_'PF',_'MEM')_PF_36873272
- + 5800 ('Santi_Aldama',_'PF',_'MEM')_UTIL_36873272
- + 8300 ('Scottie_Barnes',_'PG_SF',_'TOR')_F_36873115
- + 8300 ('Scottie_Barnes',_'PG_SF',_'TOR')_G_36873115
- + 8300 ('Scottie_Barnes',_'PG_SF',_'TOR')_PG_36873115
- + 8300 ('Scottie_Barnes',_'PG_SF',_'TOR')_SF_36873115
- + 8300 ('Scottie_Barnes',_'PG_SF',_'TOR')_UTIL_36873115
- + 4300 ('Scotty_Pippen_Jr.',_'PG',_'MEM')_G_36873439
- + 4300 ('Scotty_Pippen_Jr.',_'PG',_'MEM')_PG_36873439
- + 4300 ('Scotty_Pippen_Jr.',_'PG',_'MEM')_UTIL_36873439
- + 3100 ('Seth_Curry',_'SG',_'CHA')_G_36873696
- + 3100 ('Seth_Curry',_'SG',_'CHA')_SG_36873696
- + 3100 ('Seth_Curry',_'SG',_'CHA')_UTIL_36873696
- + 10300 ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_G_36873065
- + 10300 ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_PG_36873065
- + 10300 ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_UTIL_36873065
- + 3400 ('Simone_Fontecchio',_'PF',_'DET')_F_36873627
- + 3400 ('Simone_Fontecchio',_'PF',_'DET')_PF_36873627
- + 3400 ('Simone_Fontecchio',_'PF',_'DET')_UTIL_36873627
- + 4900 ('Spencer_Dinwiddie',_'PG',_'DAL')_G_36873358
- + 4900 ('Spencer_Dinwiddie',_'PG',_'DAL')_PG_36873358
- + 4900 ('Spencer_Dinwiddie',_'PG',_'DAL')_UTIL_36873358
- + 5100 ('Stephon_Castle',_'SG',_'SAS')_G_36873330
- + 5100 ('Stephon_Castle',_'SG',_'SAS')_SG_36873330
- + 5100 ('Stephon_Castle',_'SG',_'SAS')_UTIL_36873330
- + 5000 ('T.J._McConnell',_'PG',_'IND')_G_36873345
- + 5000 ('T.J._McConnell',_'PG',_'IND')_PG_36873345
- + 5000 ('T.J._McConnell',_'PG',_'IND')_UTIL_36873345
- + 3000 ('Taj_Gibson',_'C',_'CHA')_C_36873798
- + 3000 ('Taj_Gibson',_'C',_'CHA')_UTIL_36873798
- + 4000 ('Taurean_Prince',_'SF_PF',_'MIL')_F_36873507
- + 4000 ('Taurean_Prince',_'SF_PF',_'MIL')_PF_36873507
- + 4000 ('Taurean_Prince',_'SF_PF',_'MIL')_SF_36873507
- + 4000 ('Taurean_Prince',_'SF_PF',_'MIL')_UTIL_36873507
- + 3800 ('Tidjane_Salaun',_'PF',_'CHA')_F_36873563
- + 3800 ('Tidjane_Salaun',_'PF',_'CHA')_PF_36873563
- + 3800 ('Tidjane_Salaun',_'PF',_'CHA')_UTIL_36873563
- + 4000 ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_F_36873500
- + 4000 ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_G_36873500
- + 4000 ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_SF_36873500
- + 4000 ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_SG_36873500
- + 4000 ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_UTIL_36873500
- + 6300 ('Tobias_Harris',_'PF',_'DET')_F_36873228
- + 6300 ('Tobias_Harris',_'PF',_'DET')_PF_36873228
- + 6300 ('Tobias_Harris',_'PF',_'DET')_UTIL_36873228
- + 3500 ('Tristan_da_Silva',_'SF_PF',_'ORL')_F_36873604
- + 3500 ('Tristan_da_Silva',_'SF_PF',_'ORL')_PF_36873604
- + 3500 ('Tristan_da_Silva',_'SF_PF',_'ORL')_SF_36873604
- + 3500 ('Tristan_da_Silva',_'SF_PF',_'ORL')_UTIL_36873604
- + 8400 ('Tyrese_Haliburton',_'PG',_'IND')_G_36873112
- + 8400 ('Tyrese_Haliburton',_'PG',_'IND')_PG_36873112
- + 8400 ('Tyrese_Haliburton',_'PG',_'IND')_UTIL_36873112
- + 8200 ('Tyrese_Maxey',_'PG',_'PHI')_G_36873120
- + 8200 ('Tyrese_Maxey',_'PG',_'PHI')_PG_36873120
- + 8200 ('Tyrese_Maxey',_'PG',_'PHI')_UTIL_36873120
- + 5800 ('Tyus_Jones',_'PG',_'PHX')_G_36873266
- + 5800 ('Tyus_Jones',_'PG',_'PHX')_PG_36873266
- + 5800 ('Tyus_Jones',_'PG',_'PHX')_UTIL_36873266
- + 4500 ('Vasilije_Micic',_'PG',_'CHA')_G_36873401
- + 4500 ('Vasilije_Micic',_'PG',_'CHA')_PG_36873401
- + 4500 ('Vasilije_Micic',_'PG',_'CHA')_UTIL_36873401
- + 10600 ('Victor_Wembanyama',_'C',_'SAS')_C_36873063
- + 10600 ('Victor_Wembanyama',_'C',_'SAS')_UTIL_36873063
- + 6400 ('Walker_Kessler',_'C',_'UTA')_C_36873217
- + 6400 ('Walker_Kessler',_'C',_'UTA')_UTIL_36873217
- + 5100 ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_C_36873336
- + 5100 ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_F_36873336
- + 5100 ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_PF_36873336
- + 5100 ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_UTIL_36873336
- + 4300 ('Zach_Collins',_'C',_'SAS')_C_36873446
- + 4300 ('Zach_Collins',_'C',_'SAS')_UTIL_36873446 <= 50000
-Min_Salary: 4000 ("Ja'Kobe_Walter",_'SG',_'TOR')_G_36873511
- + 4000 ("Ja'Kobe_Walter",_'SG',_'TOR')_SG_36873511
- + 4000 ("Ja'Kobe_Walter",_'SG',_'TOR')_UTIL_36873511
- + 4500 ("Royce_O'Neale",_'SF_PF',_'PHX')_F_36873391
- + 4500 ("Royce_O'Neale",_'SF_PF',_'PHX')_PF_36873391
- + 4500 ("Royce_O'Neale",_'SF_PF',_'PHX')_SF_36873391
- + 4500 ("Royce_O'Neale",_'SF_PF',_'PHX')_UTIL_36873391
- + 3800 ('AJ_Green',_'PG_SG',_'MIL')_G_36873559
- + 3800 ('AJ_Green',_'PG_SG',_'MIL')_PG_36873559
- + 3800 ('AJ_Green',_'PG_SG',_'MIL')_SG_36873559
- + 3800 ('AJ_Green',_'PG_SG',_'MIL')_UTIL_36873559
- + 4000 ('Aaron_Wiggins',_'SF_PF',_'OKC')_F_36873524
- + 4000 ('Aaron_Wiggins',_'SF_PF',_'OKC')_PF_36873524
- + 4000 ('Aaron_Wiggins',_'SF_PF',_'OKC')_SF_36873524
- + 4000 ('Aaron_Wiggins',_'SF_PF',_'OKC')_UTIL_36873524
- + 3500 ('Adem_Bona',_'C',_'PHI')_C_36873608
- + 3500 ('Adem_Bona',_'C',_'PHI')_UTIL_36873608
- + 3000 ('Ajay_Mitchell',_'PG',_'OKC')_G_36873706
- + 3000 ('Ajay_Mitchell',_'PG',_'OKC')_PG_36873706
- + 3000 ('Ajay_Mitchell',_'PG',_'OKC')_UTIL_36873706
- + 5400 ('Alexandre_Sarr',_'PF_C',_'WAS')_C_36873292
- + 5400 ('Alexandre_Sarr',_'PF_C',_'WAS')_F_36873292
- + 5400 ('Alexandre_Sarr',_'PF_C',_'WAS')_PF_36873292
- + 5400 ('Alexandre_Sarr',_'PF_C',_'WAS')_UTIL_36873292
- + 3600 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_F_36873591
- + 3600 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_G_36873591
- + 3600 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SF_36873591
- + 3600 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SG_36873591
- + 3600 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_UTIL_36873591
- + 4500 ('Andrew_Nembhard',_'PG_SG',_'IND')_G_36873397
- + 4500 ('Andrew_Nembhard',_'PG_SG',_'IND')_PG_36873397
- + 4500 ('Andrew_Nembhard',_'PG_SG',_'IND')_SG_36873397
- + 4500 ('Andrew_Nembhard',_'PG_SG',_'IND')_UTIL_36873397
- + 4200 ('Anthony_Black',_'PG_SG',_'ORL')_G_36873472
- + 4200 ('Anthony_Black',_'PG_SG',_'ORL')_PG_36873472
- + 4200 ('Anthony_Black',_'PG_SG',_'ORL')_SG_36873472
- + 4200 ('Anthony_Black',_'PG_SG',_'ORL')_UTIL_36873472
- + 3000 ('Anthony_Gill',_'PF_C',_'WAS')_C_36873904
- + 3000 ('Anthony_Gill',_'PF_C',_'WAS')_F_36873904
- + 3000 ('Anthony_Gill',_'PF_C',_'WAS')_PF_36873904
- + 3000 ('Anthony_Gill',_'PF_C',_'WAS')_UTIL_36873904
- + 4100 ('Ausar_Thompson',_'SF_PF',_'DET')_F_36873478
- + 4100 ('Ausar_Thompson',_'SF_PF',_'DET')_PF_36873478
- + 4100 ('Ausar_Thompson',_'SF_PF',_'DET')_SF_36873478
- + 4100 ('Ausar_Thompson',_'SF_PF',_'DET')_UTIL_36873478
- + 7000 ('Bennedict_Mathurin',_'SG_SF',_'IND')_F_36873185
- + 7000 ('Bennedict_Mathurin',_'SG_SF',_'IND')_G_36873185
- + 7000 ('Bennedict_Mathurin',_'SG_SF',_'IND')_SF_36873185
- + 7000 ('Bennedict_Mathurin',_'SG_SF',_'IND')_SG_36873185
- + 7000 ('Bennedict_Mathurin',_'SG_SF',_'IND')_UTIL_36873185
- + 5600 ('Bilal_Coulibaly',_'SF',_'WAS')_F_36873287
- + 5600 ('Bilal_Coulibaly',_'SF',_'WAS')_SF_36873287
- + 5600 ('Bilal_Coulibaly',_'SF',_'WAS')_UTIL_36873287
- + 6000 ('Bobby_Portis',_'PF_C',_'MIL')_C_36873248
- + 6000 ('Bobby_Portis',_'PF_C',_'MIL')_F_36873248
- + 6000 ('Bobby_Portis',_'PF_C',_'MIL')_PF_36873248
- + 6000 ('Bobby_Portis',_'PF_C',_'MIL')_UTIL_36873248
- + 7700 ('Bradley_Beal',_'SG_SF',_'PHX')_F_36873146
- + 7700 ('Bradley_Beal',_'SG_SF',_'PHX')_G_36873146
- + 7700 ('Bradley_Beal',_'SG_SF',_'PHX')_SF_36873146
- + 7700 ('Bradley_Beal',_'SG_SF',_'PHX')_SG_36873146
- + 7700 ('Bradley_Beal',_'SG_SF',_'PHX')_UTIL_36873146
- + 4400 ('Brandon_Clarke',_'PF_C',_'MEM')_C_36873424
- + 4400 ('Brandon_Clarke',_'PF_C',_'MEM')_F_36873424
- + 4400 ('Brandon_Clarke',_'PF_C',_'MEM')_PF_36873424
- + 4400 ('Brandon_Clarke',_'PF_C',_'MEM')_UTIL_36873424
- + 8000 ('Brandon_Miller',_'SG_SF',_'CHA')_F_36873126
- + 8000 ('Brandon_Miller',_'SG_SF',_'CHA')_G_36873126
- + 8000 ('Brandon_Miller',_'SG_SF',_'CHA')_SF_36873126
- + 8000 ('Brandon_Miller',_'SG_SF',_'CHA')_SG_36873126
- + 8000 ('Brandon_Miller',_'SG_SF',_'CHA')_UTIL_36873126
- + 3700 ('Brice_Sensabaugh',_'SF',_'UTA')_F_36873588
- + 3700 ('Brice_Sensabaugh',_'SF',_'UTA')_SF_36873588
- + 3700 ('Brice_Sensabaugh',_'SF',_'UTA')_UTIL_36873588
- + 6500 ('Brook_Lopez',_'C',_'MIL')_C_36873212
- + 6500 ('Brook_Lopez',_'C',_'MIL')_UTIL_36873212
- + 3000 ('Bruno_Fernando',_'C',_'TOR')_C_36873748
- + 3000 ('Bruno_Fernando',_'C',_'TOR')_UTIL_36873748
- + 9700 ('Cade_Cunningham',_'PG',_'DET')_G_36873073
- + 9700 ('Cade_Cunningham',_'PG',_'DET')_PG_36873073
- + 9700 ('Cade_Cunningham',_'PG',_'DET')_UTIL_36873073
- + 4700 ('Caleb_Martin',_'PF',_'PHI')_F_36873377
- + 4700 ('Caleb_Martin',_'PF',_'PHI')_PF_36873377
- + 4700 ('Caleb_Martin',_'PF',_'PHI')_UTIL_36873377
- + 3800 ('Cameron_Payne',_'PG_SG',_'NYK')_G_36873547
- + 3800 ('Cameron_Payne',_'PG_SG',_'NYK')_PG_36873547
- + 3800 ('Cameron_Payne',_'PG_SG',_'NYK')_SG_36873547
- + 3800 ('Cameron_Payne',_'PG_SG',_'NYK')_UTIL_36873547
- + 4900 ('Caris_LeVert',_'PG_SG',_'CLE')_G_36873361
- + 4900 ('Caris_LeVert',_'PG_SG',_'CLE')_PG_36873361
- + 4900 ('Caris_LeVert',_'PG_SG',_'CLE')_SG_36873361
- + 4900 ('Caris_LeVert',_'PG_SG',_'CLE')_UTIL_36873361
- + 4600 ('Carlton_Carrington',_'PG_SG',_'WAS')_G_36873404
- + 4600 ('Carlton_Carrington',_'PG_SG',_'WAS')_PG_36873404
- + 4600 ('Carlton_Carrington',_'PG_SG',_'WAS')_SG_36873404
- + 4600 ('Carlton_Carrington',_'PG_SG',_'WAS')_UTIL_36873404
- + 4300 ('Cason_Wallace',_'PG_SG',_'OKC')_G_36873428
- + 4300 ('Cason_Wallace',_'PG_SG',_'OKC')_PG_36873428
- + 4300 ('Cason_Wallace',_'PG_SG',_'OKC')_SG_36873428
- + 4300 ('Cason_Wallace',_'PG_SG',_'OKC')_UTIL_36873428
- + 3800 ('Chris_Boucher',_'PF_C',_'TOR')_C_36873543
- + 3800 ('Chris_Boucher',_'PF_C',_'TOR')_F_36873543
- + 3800 ('Chris_Boucher',_'PF_C',_'TOR')_PF_36873543
- + 3800 ('Chris_Boucher',_'PF_C',_'TOR')_UTIL_36873543
- + 6000 ('Chris_Paul',_'PG',_'SAS')_G_36873238
- + 6000 ('Chris_Paul',_'PG',_'SAS')_PG_36873238
- + 6000 ('Chris_Paul',_'PG',_'SAS')_UTIL_36873238
- + 5000 ('Cody_Martin',_'SF',_'CHA')_F_36873348
- + 5000 ('Cody_Martin',_'SF',_'CHA')_SF_36873348
- + 5000 ('Cody_Martin',_'SF',_'CHA')_UTIL_36873348
- + 3300 ('Cole_Anthony',_'PG_SG',_'ORL')_G_36873646
- + 3300 ('Cole_Anthony',_'PG_SG',_'ORL')_PG_36873646
- + 3300 ('Cole_Anthony',_'PG_SG',_'ORL')_SG_36873646
- + 3300 ('Cole_Anthony',_'PG_SG',_'ORL')_UTIL_36873646
- + 6500 ('Collin_Sexton',_'PG_SG',_'UTA')_G_36873208
- + 6500 ('Collin_Sexton',_'PG_SG',_'UTA')_PG_36873208
- + 6500 ('Collin_Sexton',_'PG_SG',_'UTA')_SG_36873208
- + 6500 ('Collin_Sexton',_'PG_SG',_'UTA')_UTIL_36873208
- + 4500 ('Corey_Kispert',_'SG_SF',_'WAS')_F_36873408
- + 4500 ('Corey_Kispert',_'SG_SF',_'WAS')_G_36873408
- + 4500 ('Corey_Kispert',_'SG_SF',_'WAS')_SF_36873408
- + 4500 ('Corey_Kispert',_'SG_SF',_'WAS')_SG_36873408
- + 4500 ('Corey_Kispert',_'SG_SF',_'WAS')_UTIL_36873408
- + 9500 ('Damian_Lillard',_'PG',_'MIL')_G_36873080
- + 9500 ('Damian_Lillard',_'PG',_'MIL')_PG_36873080
- + 9500 ('Damian_Lillard',_'PG',_'MIL')_UTIL_36873080
- + 5900 ('Daniel_Gafford',_'C',_'DAL')_C_36873246
- + 5900 ('Daniel_Gafford',_'C',_'DAL')_UTIL_36873246
- + 7500 ('Darius_Garland',_'PG',_'CLE')_G_36873158
- + 7500 ('Darius_Garland',_'PG',_'CLE')_PG_36873158
- + 7500 ('Darius_Garland',_'PG',_'CLE')_UTIL_36873158
- + 3800 ('Davion_Mitchell',_'PG_SG',_'TOR')_G_36873566
- + 3800 ('Davion_Mitchell',_'PG_SG',_'TOR')_PG_36873566
- + 3800 ('Davion_Mitchell',_'PG_SG',_'TOR')_SG_36873566
- + 3800 ('Davion_Mitchell',_'PG_SG',_'TOR')_UTIL_36873566
- + 3600 ('Dean_Wade',_'SF_PF',_'CLE')_F_36873596
- + 3600 ('Dean_Wade',_'SF_PF',_'CLE')_PF_36873596
- + 3600 ('Dean_Wade',_'SF_PF',_'CLE')_SF_36873596
- + 3600 ('Dean_Wade',_'SF_PF',_'CLE')_UTIL_36873596
- + 3100 ('Delon_Wright',_'PG',_'MIL')_G_36873688
- + 3100 ('Delon_Wright',_'PG',_'MIL')_PG_36873688
- + 3100 ('Delon_Wright',_'PG',_'MIL')_UTIL_36873688
- + 5500 ('Dereck_Lively_II',_'C',_'DAL')_C_36873290
- + 5500 ('Dereck_Lively_II',_'C',_'DAL')_UTIL_36873290
- + 7300 ('Desmond_Bane',_'SG_SF',_'MEM')_F_36873167
- + 7300 ('Desmond_Bane',_'SG_SF',_'MEM')_G_36873167
- + 7300 ('Desmond_Bane',_'SG_SF',_'MEM')_SF_36873167
- + 7300 ('Desmond_Bane',_'SG_SF',_'MEM')_SG_36873167
- + 7300 ('Desmond_Bane',_'SG_SF',_'MEM')_UTIL_36873167
- + 8900 ('Devin_Booker',_'PG_SG',_'PHX')_G_36873095
- + 8900 ('Devin_Booker',_'PG_SG',_'PHX')_PG_36873095
- + 8900 ('Devin_Booker',_'PG_SG',_'PHX')_SG_36873095
- + 8900 ('Devin_Booker',_'PG_SG',_'PHX')_UTIL_36873095
- + 5100 ('Devin_Vassell',_'SG',_'SAS')_G_36873340
- + 5100 ('Devin_Vassell',_'SG',_'SAS')_SG_36873340
- + 5100 ('Devin_Vassell',_'SG',_'SAS')_UTIL_36873340
- + 3100 ('Dillon_Jones',_'PF',_'OKC')_F_36873699
- + 3100 ('Dillon_Jones',_'PF',_'OKC')_PF_36873699
- + 3100 ('Dillon_Jones',_'PF',_'OKC')_UTIL_36873699
- + 9100 ('Donovan_Mitchell',_'PG_SG',_'CLE')_G_36873087
- + 9100 ('Donovan_Mitchell',_'PG_SG',_'CLE')_PG_36873087
- + 9100 ('Donovan_Mitchell',_'PG_SG',_'CLE')_SG_36873087
- + 9100 ('Donovan_Mitchell',_'PG_SG',_'CLE')_UTIL_36873087
- + 3100 ('Drew_Eubanks',_'C',_'UTA')_C_36873691
- + 3100 ('Drew_Eubanks',_'C',_'UTA')_UTIL_36873691
- + 7800 ('Evan_Mobley',_'PF_C',_'CLE')_C_36873135
- + 7800 ('Evan_Mobley',_'PF_C',_'CLE')_F_36873135
- + 7800 ('Evan_Mobley',_'PF_C',_'CLE')_PF_36873135
- + 7800 ('Evan_Mobley',_'PF_C',_'CLE')_UTIL_36873135
- + 9600 ('Franz_Wagner',_'SF_PF',_'ORL')_F_36873076
- + 9600 ('Franz_Wagner',_'SF_PF',_'ORL')_PF_36873076
- + 9600 ('Franz_Wagner',_'SF_PF',_'ORL')_SF_36873076
- + 9600 ('Franz_Wagner',_'SF_PF',_'ORL')_UTIL_36873076
- + 3900 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_F_36873532
- + 3900 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_G_36873532
- + 3900 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SF_36873532
- + 3900 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SG_36873532
- + 3900 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_UTIL_36873532
- + 4300 ('Georges_Niang',_'SF_PF',_'CLE')_F_36873435
- + 4300 ('Georges_Niang',_'SF_PF',_'CLE')_PF_36873435
- + 4300 ('Georges_Niang',_'SF_PF',_'CLE')_SF_36873435
- + 4300 ('Georges_Niang',_'SF_PF',_'CLE')_UTIL_36873435
- + 12000 ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_C_36873056
- + 12000 ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_F_36873056
- + 12000 ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_PF_36873056
- + 12000 ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_UTIL_36873056
- + 5300 ('Goga_Bitadze',_'C',_'ORL')_C_36873304
- + 5300 ('Goga_Bitadze',_'C',_'ORL')_UTIL_36873304
- + 5000 ('Grayson_Allen',_'SG',_'PHX')_G_36873351
- + 5000 ('Grayson_Allen',_'SG',_'PHX')_SG_36873351
- + 5000 ('Grayson_Allen',_'SG',_'PHX')_UTIL_36873351
- + 5700 ('Guerschon_Yabusele',_'PF_C',_'PHI')_C_36873275
- + 5700 ('Guerschon_Yabusele',_'PF_C',_'PHI')_F_36873275
- + 5700 ('Guerschon_Yabusele',_'PF_C',_'PHI')_PF_36873275
- + 5700 ('Guerschon_Yabusele',_'PF_C',_'PHI')_UTIL_36873275
- + 4400 ('Harrison_Barnes',_'SF_PF',_'SAS')_F_36873413
- + 4400 ('Harrison_Barnes',_'SF_PF',_'SAS')_PF_36873413
- + 4400 ('Harrison_Barnes',_'SF_PF',_'SAS')_SF_36873413
- + 4400 ('Harrison_Barnes',_'SF_PF',_'SAS')_UTIL_36873413
- + 4000 ('Isaac_Okoro',_'SG_SF',_'CLE')_F_36873516
- + 4000 ('Isaac_Okoro',_'SG_SF',_'CLE')_G_36873516
- + 4000 ('Isaac_Okoro',_'SG_SF',_'CLE')_SF_36873516
- + 4000 ('Isaac_Okoro',_'SG_SF',_'CLE')_SG_36873516
- + 4000 ('Isaac_Okoro',_'SG_SF',_'CLE')_UTIL_36873516
- + 3000 ('Isaiah_Collier',_'PG',_'UTA')_G_36873862
- + 3000 ('Isaiah_Collier',_'PG',_'UTA')_PG_36873862
- + 3000 ('Isaiah_Collier',_'PG',_'UTA')_UTIL_36873862
- + 7300 ('Isaiah_Hartenstein',_'C',_'OKC')_C_36873165
- + 7300 ('Isaiah_Hartenstein',_'C',_'OKC')_UTIL_36873165
- + 3700 ('Isaiah_Joe',_'SG_SF',_'OKC')_F_36873574
- + 3700 ('Isaiah_Joe',_'SG_SF',_'OKC')_G_36873574
- + 3700 ('Isaiah_Joe',_'SG_SF',_'OKC')_SF_36873574
- + 3700 ('Isaiah_Joe',_'SG_SF',_'OKC')_SG_36873574
- + 3700 ('Isaiah_Joe',_'SG_SF',_'OKC')_UTIL_36873574
- + 4100 ('Isaiah_Stewart',_'C',_'DET')_C_36873476
- + 4100 ('Isaiah_Stewart',_'C',_'DET')_UTIL_36873476
- + 8700 ('Ja_Morant',_'PG',_'MEM')_G_36873102
- + 8700 ('Ja_Morant',_'PG',_'MEM')_PG_36873102
- + 8700 ('Ja_Morant',_'PG',_'MEM')_UTIL_36873102
- + 4400 ('Jaden_Hardy',_'PG_SG',_'DAL')_G_36873420
- + 4400 ('Jaden_Hardy',_'PG_SG',_'DAL')_PG_36873420
- + 4400 ('Jaden_Hardy',_'PG_SG',_'DAL')_SG_36873420
- + 4400 ('Jaden_Hardy',_'PG_SG',_'DAL')_UTIL_36873420
- + 7800 ('Jaden_Ivey',_'PG_SG',_'DET')_G_36873139
- + 7800 ('Jaden_Ivey',_'PG_SG',_'DET')_PG_36873139
- + 7800 ('Jaden_Ivey',_'PG_SG',_'DET')_SG_36873139
- + 7800 ('Jaden_Ivey',_'PG_SG',_'DET')_UTIL_36873139
- + 4300 ('Jake_LaRavia',_'SF_PF',_'MEM')_F_36873463
- + 4300 ('Jake_LaRavia',_'SF_PF',_'MEM')_PF_36873463
- + 4300 ('Jake_LaRavia',_'SF_PF',_'MEM')_SF_36873463
- + 4300 ('Jake_LaRavia',_'SF_PF',_'MEM')_UTIL_36873463
- + 7200 ('Jakob_Poeltl',_'C',_'TOR')_C_36873176
- + 7200 ('Jakob_Poeltl',_'C',_'TOR')_UTIL_36873176
- + 8500 ('Jalen_Brunson',_'PG',_'NYK')_G_36873109
- + 8500 ('Jalen_Brunson',_'PG',_'NYK')_PG_36873109
- + 8500 ('Jalen_Brunson',_'PG',_'NYK')_UTIL_36873109
- + 6100 ('Jalen_Duren',_'C',_'DET')_C_36873236
- + 6100 ('Jalen_Duren',_'C',_'DET')_UTIL_36873236
- + 6400 ('Jalen_Suggs',_'PG',_'ORL')_G_36873219
- + 6400 ('Jalen_Suggs',_'PG',_'ORL')_PG_36873219
- + 6400 ('Jalen_Suggs',_'PG',_'ORL')_UTIL_36873219
- + 8800 ('Jalen_Williams',_'PF',_'OKC')_F_36873099
- + 8800 ('Jalen_Williams',_'PF',_'OKC')_PF_36873099
- + 8800 ('Jalen_Williams',_'PF',_'OKC')_UTIL_36873099
- + 3000 ('Jamal_Shead',_'PG',_'TOR')_G_36873745
- + 3000 ('Jamal_Shead',_'PG',_'TOR')_PG_36873745
- + 3000 ('Jamal_Shead',_'PG',_'TOR')_UTIL_36873745
- + 3200 ('Jamison_Battle',_'SF',_'TOR')_F_36873674
- + 3200 ('Jamison_Battle',_'SF',_'TOR')_SF_36873674
- + 3200 ('Jamison_Battle',_'SF',_'TOR')_UTIL_36873674
- + 3900 ('Jarace_Walker',_'SF_PF',_'IND')_F_36873528
- + 3900 ('Jarace_Walker',_'SF_PF',_'IND')_PF_36873528
- + 3900 ('Jarace_Walker',_'SF_PF',_'IND')_SF_36873528
- + 3900 ('Jarace_Walker',_'SF_PF',_'IND')_UTIL_36873528
- + 3000 ('Jared_Butler',_'PG',_'WAS')_G_36873891
- + 3000 ('Jared_Butler',_'PG',_'WAS')_PG_36873891
- + 3000 ('Jared_Butler',_'PG',_'WAS')_UTIL_36873891
- + 6800 ('Jared_McCain',_'PG_SG',_'PHI')_G_36873190
- + 6800 ('Jared_McCain',_'PG_SG',_'PHI')_PG_36873190
- + 6800 ('Jared_McCain',_'PG_SG',_'PHI')_SG_36873190
- + 6800 ('Jared_McCain',_'PG_SG',_'PHI')_UTIL_36873190
- + 7700 ('Jaren_Jackson_Jr.',_'PF',_'MEM')_F_36873143
- + 7700 ('Jaren_Jackson_Jr.',_'PF',_'MEM')_PF_36873143
- + 7700 ('Jaren_Jackson_Jr.',_'PF',_'MEM')_UTIL_36873143
- + 6600 ('Jarrett_Allen',_'C',_'CLE')_C_36873206
- + 6600 ('Jarrett_Allen',_'C',_'CLE')_UTIL_36873206
- + 3400 ('Jay_Huff',_'C',_'MEM')_C_36873622
- + 3400 ('Jay_Huff',_'C',_'MEM')_UTIL_36873622
- + 4100 ('Jaylen_Wells',_'SG_SF',_'MEM')_F_36873486
- + 4100 ('Jaylen_Wells',_'SG_SF',_'MEM')_G_36873486
- + 4100 ('Jaylen_Wells',_'SG_SF',_'MEM')_SF_36873486
- + 4100 ('Jaylen_Wells',_'SG_SF',_'MEM')_SG_36873486
- + 4100 ('Jaylen_Wells',_'SG_SF',_'MEM')_UTIL_36873486
- + 6300 ('Jeremy_Sochan',_'C',_'SAS')_C_36873226
- + 6300 ('Jeremy_Sochan',_'C',_'SAS')_UTIL_36873226
- + 3500 ('Jericho_Sims',_'PF_C',_'NYK')_C_36873610
- + 3500 ('Jericho_Sims',_'PF_C',_'NYK')_F_36873610
- + 3500 ('Jericho_Sims',_'PF_C',_'NYK')_PF_36873610
- + 3500 ('Jericho_Sims',_'PF_C',_'NYK')_UTIL_36873610
- + 7400 ('John_Collins',_'PF_C',_'UTA')_C_36873161
- + 7400 ('John_Collins',_'PF_C',_'UTA')_F_36873161
- + 7400 ('John_Collins',_'PF_C',_'UTA')_PF_36873161
- + 7400 ('John_Collins',_'PF_C',_'UTA')_UTIL_36873161
- + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_F_36873663
- + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_G_36873663
- + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_SF_36873663
- + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_SG_36873663
- + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_UTIL_36873663
- + 5200 ('Jonas_Valanciunas',_'C',_'WAS')_C_36873324
- + 5200 ('Jonas_Valanciunas',_'C',_'WAS')_UTIL_36873324
- + 4100 ('Jonathan_Isaac',_'PF_C',_'ORL')_C_36873496
- + 4100 ('Jonathan_Isaac',_'PF_C',_'ORL')_F_36873496
- + 4100 ('Jonathan_Isaac',_'PF_C',_'ORL')_PF_36873496
- + 4100 ('Jonathan_Isaac',_'PF_C',_'ORL')_UTIL_36873496
- + 3300 ('Jonathan_Mogbo',_'C',_'TOR')_C_36873630
- + 3300 ('Jonathan_Mogbo',_'C',_'TOR')_UTIL_36873630
- + 6900 ('Jordan_Poole',_'PG_SG',_'WAS')_G_36873181
- + 6900 ('Jordan_Poole',_'PG_SG',_'WAS')_PG_36873181
- + 6900 ('Jordan_Poole',_'PG_SG',_'WAS')_SG_36873181
- + 6900 ('Jordan_Poole',_'PG_SG',_'WAS')_UTIL_36873181
- + 4800 ('Josh_Green',_'SF_PF',_'CHA')_F_36873380
- + 4800 ('Josh_Green',_'SF_PF',_'CHA')_PF_36873380
- + 4800 ('Josh_Green',_'SF_PF',_'CHA')_SF_36873380
- + 4800 ('Josh_Green',_'SF_PF',_'CHA')_UTIL_36873380
- + 6700 ('Josh_Hart',_'SF_PF',_'NYK')_F_36873197
- + 6700 ('Josh_Hart',_'SF_PF',_'NYK')_PF_36873197
- + 6700 ('Josh_Hart',_'SF_PF',_'NYK')_SF_36873197
- + 6700 ('Josh_Hart',_'SF_PF',_'NYK')_UTIL_36873197
- + 4200 ('Josh_Okogie',_'SF',_'PHX')_F_36873452
- + 4200 ('Josh_Okogie',_'SF',_'PHX')_SF_36873452
- + 4200 ('Josh_Okogie',_'SF',_'PHX')_UTIL_36873452
- + 5200 ('Julian_Champagnie',_'SF_PF',_'SAS')_F_36873326
- + 5200 ('Julian_Champagnie',_'SF_PF',_'SAS')_PF_36873326
- + 5200 ('Julian_Champagnie',_'SF_PF',_'SAS')_SF_36873326
- + 5200 ('Julian_Champagnie',_'SF_PF',_'SAS')_UTIL_36873326
- + 3900 ('KJ_Martin',_'SF_PF',_'PHI')_F_36873537
- + 3900 ('KJ_Martin',_'SF_PF',_'PHI')_PF_36873537
- + 3900 ('KJ_Martin',_'SF_PF',_'PHI')_SF_36873537
- + 3900 ('KJ_Martin',_'SF_PF',_'PHI')_UTIL_36873537
- + 9200 ('Karl#Anthony_Towns',_'C',_'NYK')_C_36873085
- + 9200 ('Karl#Anthony_Towns',_'C',_'NYK')_UTIL_36873085
- + 4900 ('Keldon_Johnson',_'SF_PF',_'SAS')_F_36873365
- + 4900 ('Keldon_Johnson',_'SF_PF',_'SAS')_PF_36873365
- + 4900 ('Keldon_Johnson',_'SF_PF',_'SAS')_SF_36873365
- + 4900 ('Keldon_Johnson',_'SF_PF',_'SAS')_UTIL_36873365
- + 5300 ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_F_36873316
- + 5300 ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_G_36873316
- + 5300 ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_SF_36873316
- + 5300 ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_SG_36873316
- + 5300 ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_UTIL_36873316
- + 3200 ('Kenrich_Williams',_'PF_C',_'OKC')_C_36873684
- + 3200 ('Kenrich_Williams',_'PF_C',_'OKC')_F_36873684
- + 3200 ('Kenrich_Williams',_'PF_C',_'OKC')_PF_36873684
- + 3200 ('Kenrich_Williams',_'PF_C',_'OKC')_UTIL_36873684
- + 4300 ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_G_36873432
- + 4300 ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_SG_36873432
- + 4300 ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_UTIL_36873432
- + 8600 ('Kevin_Durant',_'PF_C',_'PHX')_C_36873105
- + 8600 ('Kevin_Durant',_'PF_C',_'PHX')_F_36873105
- + 8600 ('Kevin_Durant',_'PF_C',_'PHX')_PF_36873105
- + 8600 ('Kevin_Durant',_'PF_C',_'PHX')_UTIL_36873105
- + 6200 ('Keyonte_George',_'PG',_'UTA')_G_36873252
- + 6200 ('Keyonte_George',_'PG',_'UTA')_PG_36873252
- + 6200 ('Keyonte_George',_'PG',_'UTA')_UTIL_36873252
- + 5400 ('Klay_Thompson',_'SG_SF',_'DAL')_F_36873296
- + 5400 ('Klay_Thompson',_'SG_SF',_'DAL')_G_36873296
- + 5400 ('Klay_Thompson',_'SG_SF',_'DAL')_SF_36873296
- + 5400 ('Klay_Thompson',_'SG_SF',_'DAL')_SG_36873296
- + 5400 ('Klay_Thompson',_'SG_SF',_'DAL')_UTIL_36873296
- + 3800 ('Kyle_Lowry',_'PG',_'PHI')_G_36873556
- + 3800 ('Kyle_Lowry',_'PG',_'PHI')_PG_36873556
- + 3800 ('Kyle_Lowry',_'PG',_'PHI')_UTIL_36873556
- + 9000 ('Kyrie_Irving',_'PG_SG',_'DAL')_G_36873091
- + 9000 ('Kyrie_Irving',_'PG_SG',_'DAL')_PG_36873091
- + 9000 ('Kyrie_Irving',_'PG_SG',_'DAL')_SG_36873091
- + 9000 ('Kyrie_Irving',_'PG_SG',_'DAL')_UTIL_36873091
- + 4200 ('Kyshawn_George',_'SF_PF',_'WAS')_F_36873448
- + 4200 ('Kyshawn_George',_'SF_PF',_'WAS')_PF_36873448
- + 4200 ('Kyshawn_George',_'SF_PF',_'WAS')_SF_36873448
- + 4200 ('Kyshawn_George',_'SF_PF',_'WAS')_UTIL_36873448
- + 7200 ('Lauri_Markkanen',_'SF_PF',_'UTA')_F_36873172
- + 7200 ('Lauri_Markkanen',_'SF_PF',_'UTA')_PF_36873172
- + 7200 ('Lauri_Markkanen',_'SF_PF',_'UTA')_SF_36873172
- + 7200 ('Lauri_Markkanen',_'SF_PF',_'UTA')_UTIL_36873172
- + 5200 ('Luguentz_Dort',_'SG_SF',_'OKC')_F_36873306
- + 5200 ('Luguentz_Dort',_'SG_SF',_'OKC')_G_36873306
- + 5200 ('Luguentz_Dort',_'SG_SF',_'OKC')_SF_36873306
- + 5200 ('Luguentz_Dort',_'SG_SF',_'OKC')_SG_36873306
- + 5200 ('Luguentz_Dort',_'SG_SF',_'OKC')_UTIL_36873306
- + 11000 ('Luka_Doncic',_'PG',_'DAL')_G_36873060
- + 11000 ('Luka_Doncic',_'PG',_'DAL')_PG_36873060
- + 11000 ('Luka_Doncic',_'PG',_'DAL')_UTIL_36873060
- + 3300 ('Luke_Kennard',_'SG_SF',_'MEM')_F_36873641
- + 3300 ('Luke_Kennard',_'SG_SF',_'MEM')_G_36873641
- + 3300 ('Luke_Kennard',_'SG_SF',_'MEM')_SF_36873641
- + 3300 ('Luke_Kennard',_'SG_SF',_'MEM')_SG_36873641
- + 3300 ('Luke_Kennard',_'SG_SF',_'MEM')_UTIL_36873641
- + 5900 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_G_36873262
- + 5900 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_PG_36873262
- + 5900 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_SG_36873262
- + 5900 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_UTIL_36873262
- + 6100 ('Malik_Beasley',_'SG_SF',_'DET')_F_36873255
- + 6100 ('Malik_Beasley',_'SG_SF',_'DET')_G_36873255
- + 6100 ('Malik_Beasley',_'SG_SF',_'DET')_SF_36873255
- + 6100 ('Malik_Beasley',_'SG_SF',_'DET')_SG_36873255
- + 6100 ('Malik_Beasley',_'SG_SF',_'DET')_UTIL_36873255
- + 3500 ('Marcus_Sasser',_'PG',_'DET')_G_36873616
- + 3500 ('Marcus_Sasser',_'PG',_'DET')_PG_36873616
- + 3500 ('Marcus_Sasser',_'PG',_'DET')_UTIL_36873616
- + 4800 ('Marcus_Smart',_'PG_SG',_'MEM')_G_36873373
- + 4800 ('Marcus_Smart',_'PG_SG',_'MEM')_PG_36873373
- + 4800 ('Marcus_Smart',_'PG_SG',_'MEM')_SG_36873373
- + 4800 ('Marcus_Smart',_'PG_SG',_'MEM')_UTIL_36873373
- + 5800 ('Mark_Williams',_'C',_'CHA')_C_36873260
- + 5800 ('Mark_Williams',_'C',_'CHA')_UTIL_36873260
- + 4000 ('Mason_Plumlee',_'C',_'PHX')_C_36873514
- + 4000 ('Mason_Plumlee',_'C',_'PHX')_UTIL_36873514
- + 3600 ('Maxi_Kleber',_'PF_C',_'DAL')_C_36873600
- + 3600 ('Maxi_Kleber',_'PF_C',_'DAL')_F_36873600
- + 3600 ('Maxi_Kleber',_'PF_C',_'DAL')_PF_36873600
- + 3600 ('Maxi_Kleber',_'PF_C',_'DAL')_UTIL_36873600
- + 3000 ('Micah_Potter',_'PF',_'UTA')_F_36873859
- + 3000 ('Micah_Potter',_'PF',_'UTA')_PF_36873859
- + 3000 ('Micah_Potter',_'PF',_'UTA')_UTIL_36873859
- + 5900 ('Mikal_Bridges',_'SG_SF',_'NYK')_F_36873241
- + 5900 ('Mikal_Bridges',_'SG_SF',_'NYK')_G_36873241
- + 5900 ('Mikal_Bridges',_'SG_SF',_'NYK')_SF_36873241
- + 5900 ('Mikal_Bridges',_'SG_SF',_'NYK')_SG_36873241
- + 5900 ('Mikal_Bridges',_'SG_SF',_'NYK')_UTIL_36873241
- + 4200 ('Miles_McBride',_'PG_SG',_'NYK')_G_36873455
- + 4200 ('Miles_McBride',_'PG_SG',_'NYK')_PG_36873455
- + 4200 ('Miles_McBride',_'PG_SG',_'NYK')_SG_36873455
- + 4200 ('Miles_McBride',_'PG_SG',_'NYK')_UTIL_36873455
- + 3200 ('Monte_Morris',_'PG',_'PHX')_G_36873681
- + 3200 ('Monte_Morris',_'PG',_'PHX')_PG_36873681
- + 3200 ('Monte_Morris',_'PG',_'PHX')_UTIL_36873681
- + 4500 ('Moritz_Wagner',_'C',_'ORL')_C_36873395
- + 4500 ('Moritz_Wagner',_'C',_'ORL')_UTIL_36873395
- + 3000 ('Moses_Brown',_'C',_'IND')_C_36873880
- + 3000 ('Moses_Brown',_'C',_'IND')_UTIL_36873880
- + 5000 ('Moussa_Diabate',_'PF_C',_'CHA')_C_36873354
- + 5000 ('Moussa_Diabate',_'PF_C',_'CHA')_F_36873354
- + 5000 ('Moussa_Diabate',_'PF_C',_'CHA')_PF_36873354
- + 5000 ('Moussa_Diabate',_'PF_C',_'CHA')_UTIL_36873354
- + 6700 ('Myles_Turner',_'C',_'IND')_C_36873201
- + 6700 ('Myles_Turner',_'C',_'IND')_UTIL_36873201
- + 3300 ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_F_36873652
- + 3300 ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_G_36873652
- + 3300 ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_SF_36873652
- + 3300 ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_SG_36873652
- + 3300 ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_UTIL_36873652
- + 6400 ('OG_Anunoby',_'SF_PF',_'NYK')_F_36873222
- + 6400 ('OG_Anunoby',_'SF_PF',_'NYK')_PF_36873222
- + 6400 ('OG_Anunoby',_'SF_PF',_'NYK')_SF_36873222
- + 6400 ('OG_Anunoby',_'SF_PF',_'NYK')_UTIL_36873222
- + 3700 ('Obi_Toppin',_'PF_C',_'IND')_C_36873579
- + 3700 ('Obi_Toppin',_'PF_C',_'IND')_F_36873579
- + 3700 ('Obi_Toppin',_'PF_C',_'IND')_PF_36873579
- + 3700 ('Obi_Toppin',_'PF_C',_'IND')_UTIL_36873579
- + 4900 ('Ochai_Agbaji',_'SF_PF',_'TOR')_F_36873369
- + 4900 ('Ochai_Agbaji',_'SF_PF',_'TOR')_PF_36873369
- + 4900 ('Ochai_Agbaji',_'SF_PF',_'TOR')_SF_36873369
- + 4900 ('Ochai_Agbaji',_'SF_PF',_'TOR')_UTIL_36873369
- + 3800 ('Oso_Ighodaro',_'PF_C',_'PHX')_C_36873570
- + 3800 ('Oso_Ighodaro',_'PF_C',_'PHX')_F_36873570
- + 3800 ('Oso_Ighodaro',_'PF_C',_'PHX')_PF_36873570
- + 3800 ('Oso_Ighodaro',_'PF_C',_'PHX')_UTIL_36873570
- + 7000 ('PJ_Washington',_'PF',_'DAL')_F_36873178
- + 7000 ('PJ_Washington',_'PF',_'DAL')_PF_36873178
- + 7000 ('PJ_Washington',_'PF',_'DAL')_UTIL_36873178
- + 7600 ('Pascal_Siakam',_'PF',_'IND')_F_36873151
- + 7600 ('Pascal_Siakam',_'PF',_'IND')_PF_36873151
- + 7600 ('Pascal_Siakam',_'PF',_'IND')_UTIL_36873151
- + 3300 ('Pat_Connaughton',_'SF_PF',_'MIL')_F_36873637
- + 3300 ('Pat_Connaughton',_'SF_PF',_'MIL')_PF_36873637
- + 3300 ('Pat_Connaughton',_'SF_PF',_'MIL')_SF_36873637
- + 3300 ('Pat_Connaughton',_'SF_PF',_'MIL')_UTIL_36873637
- + 7500 ('Paul_George',_'SF_PF',_'PHI')_F_36873154
- + 7500 ('Paul_George',_'SF_PF',_'PHI')_PF_36873154
- + 7500 ('Paul_George',_'SF_PF',_'PHI')_SF_36873154
- + 7500 ('Paul_George',_'SF_PF',_'PHI')_UTIL_36873154
- + 5300 ('Quentin_Grimes',_'SG_SF',_'DAL')_F_36873311
- + 5300 ('Quentin_Grimes',_'SG_SF',_'DAL')_G_36873311
- + 5300 ('Quentin_Grimes',_'SG_SF',_'DAL')_SF_36873311
- + 5300 ('Quentin_Grimes',_'SG_SF',_'DAL')_SG_36873311
- + 5300 ('Quentin_Grimes',_'SG_SF',_'DAL')_UTIL_36873311
- + 3800 ('Quenton_Jackson',_'SG_SF',_'IND')_F_36873551
- + 3800 ('Quenton_Jackson',_'SG_SF',_'IND')_G_36873551
- + 3800 ('Quenton_Jackson',_'SG_SF',_'IND')_SF_36873551
- + 3800 ('Quenton_Jackson',_'SG_SF',_'IND')_SG_36873551
- + 3800 ('Quenton_Jackson',_'SG_SF',_'IND')_UTIL_36873551
- + 7900 ('RJ_Barrett',_'SF_PF',_'TOR')_F_36873131
- + 7900 ('RJ_Barrett',_'SF_PF',_'TOR')_PF_36873131
- + 7900 ('RJ_Barrett',_'SF_PF',_'TOR')_SF_36873131
- + 7900 ('RJ_Barrett',_'SF_PF',_'TOR')_UTIL_36873131
- + 3700 ('Ricky_Council_IV',_'SG_SF',_'PHI')_F_36873583
- + 3700 ('Ricky_Council_IV',_'SG_SF',_'PHI')_G_36873583
- + 3700 ('Ricky_Council_IV',_'SG_SF',_'PHI')_SF_36873583
- + 3700 ('Ricky_Council_IV',_'SG_SF',_'PHI')_SG_36873583
- + 3700 ('Ricky_Council_IV',_'SG_SF',_'PHI')_UTIL_36873583
- + 3500 ('Ryan_Dunn',_'PF',_'PHX')_F_36873619
- + 3500 ('Ryan_Dunn',_'PF',_'PHX')_PF_36873619
- + 3500 ('Ryan_Dunn',_'PF',_'PHX')_UTIL_36873619
- + 3400 ('Sam_Merrill',_'SG',_'CLE')_G_36873624
- + 3400 ('Sam_Merrill',_'SG',_'CLE')_SG_36873624
- + 3400 ('Sam_Merrill',_'SG',_'CLE')_UTIL_36873624
- + 5800 ('Santi_Aldama',_'PF',_'MEM')_F_36873272
- + 5800 ('Santi_Aldama',_'PF',_'MEM')_PF_36873272
- + 5800 ('Santi_Aldama',_'PF',_'MEM')_UTIL_36873272
- + 8300 ('Scottie_Barnes',_'PG_SF',_'TOR')_F_36873115
- + 8300 ('Scottie_Barnes',_'PG_SF',_'TOR')_G_36873115
- + 8300 ('Scottie_Barnes',_'PG_SF',_'TOR')_PG_36873115
- + 8300 ('Scottie_Barnes',_'PG_SF',_'TOR')_SF_36873115
- + 8300 ('Scottie_Barnes',_'PG_SF',_'TOR')_UTIL_36873115
- + 4300 ('Scotty_Pippen_Jr.',_'PG',_'MEM')_G_36873439
- + 4300 ('Scotty_Pippen_Jr.',_'PG',_'MEM')_PG_36873439
- + 4300 ('Scotty_Pippen_Jr.',_'PG',_'MEM')_UTIL_36873439
- + 3100 ('Seth_Curry',_'SG',_'CHA')_G_36873696
- + 3100 ('Seth_Curry',_'SG',_'CHA')_SG_36873696
- + 3100 ('Seth_Curry',_'SG',_'CHA')_UTIL_36873696
- + 10300 ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_G_36873065
- + 10300 ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_PG_36873065
- + 10300 ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_UTIL_36873065
- + 3400 ('Simone_Fontecchio',_'PF',_'DET')_F_36873627
- + 3400 ('Simone_Fontecchio',_'PF',_'DET')_PF_36873627
- + 3400 ('Simone_Fontecchio',_'PF',_'DET')_UTIL_36873627
- + 4900 ('Spencer_Dinwiddie',_'PG',_'DAL')_G_36873358
- + 4900 ('Spencer_Dinwiddie',_'PG',_'DAL')_PG_36873358
- + 4900 ('Spencer_Dinwiddie',_'PG',_'DAL')_UTIL_36873358
- + 5100 ('Stephon_Castle',_'SG',_'SAS')_G_36873330
- + 5100 ('Stephon_Castle',_'SG',_'SAS')_SG_36873330
- + 5100 ('Stephon_Castle',_'SG',_'SAS')_UTIL_36873330
- + 5000 ('T.J._McConnell',_'PG',_'IND')_G_36873345
- + 5000 ('T.J._McConnell',_'PG',_'IND')_PG_36873345
- + 5000 ('T.J._McConnell',_'PG',_'IND')_UTIL_36873345
- + 3000 ('Taj_Gibson',_'C',_'CHA')_C_36873798
- + 3000 ('Taj_Gibson',_'C',_'CHA')_UTIL_36873798
- + 4000 ('Taurean_Prince',_'SF_PF',_'MIL')_F_36873507
- + 4000 ('Taurean_Prince',_'SF_PF',_'MIL')_PF_36873507
- + 4000 ('Taurean_Prince',_'SF_PF',_'MIL')_SF_36873507
- + 4000 ('Taurean_Prince',_'SF_PF',_'MIL')_UTIL_36873507
- + 3800 ('Tidjane_Salaun',_'PF',_'CHA')_F_36873563
- + 3800 ('Tidjane_Salaun',_'PF',_'CHA')_PF_36873563
- + 3800 ('Tidjane_Salaun',_'PF',_'CHA')_UTIL_36873563
- + 4000 ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_F_36873500
- + 4000 ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_G_36873500
- + 4000 ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_SF_36873500
- + 4000 ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_SG_36873500
- + 4000 ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_UTIL_36873500
- + 6300 ('Tobias_Harris',_'PF',_'DET')_F_36873228
- + 6300 ('Tobias_Harris',_'PF',_'DET')_PF_36873228
- + 6300 ('Tobias_Harris',_'PF',_'DET')_UTIL_36873228
- + 3500 ('Tristan_da_Silva',_'SF_PF',_'ORL')_F_36873604
- + 3500 ('Tristan_da_Silva',_'SF_PF',_'ORL')_PF_36873604
- + 3500 ('Tristan_da_Silva',_'SF_PF',_'ORL')_SF_36873604
- + 3500 ('Tristan_da_Silva',_'SF_PF',_'ORL')_UTIL_36873604
- + 8400 ('Tyrese_Haliburton',_'PG',_'IND')_G_36873112
- + 8400 ('Tyrese_Haliburton',_'PG',_'IND')_PG_36873112
- + 8400 ('Tyrese_Haliburton',_'PG',_'IND')_UTIL_36873112
- + 8200 ('Tyrese_Maxey',_'PG',_'PHI')_G_36873120
- + 8200 ('Tyrese_Maxey',_'PG',_'PHI')_PG_36873120
- + 8200 ('Tyrese_Maxey',_'PG',_'PHI')_UTIL_36873120
- + 5800 ('Tyus_Jones',_'PG',_'PHX')_G_36873266
- + 5800 ('Tyus_Jones',_'PG',_'PHX')_PG_36873266
- + 5800 ('Tyus_Jones',_'PG',_'PHX')_UTIL_36873266
- + 4500 ('Vasilije_Micic',_'PG',_'CHA')_G_36873401
- + 4500 ('Vasilije_Micic',_'PG',_'CHA')_PG_36873401
- + 4500 ('Vasilije_Micic',_'PG',_'CHA')_UTIL_36873401
- + 10600 ('Victor_Wembanyama',_'C',_'SAS')_C_36873063
- + 10600 ('Victor_Wembanyama',_'C',_'SAS')_UTIL_36873063
- + 6400 ('Walker_Kessler',_'C',_'UTA')_C_36873217
- + 6400 ('Walker_Kessler',_'C',_'UTA')_UTIL_36873217
- + 5100 ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_C_36873336
- + 5100 ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_F_36873336
- + 5100 ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_PF_36873336
- + 5100 ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_UTIL_36873336
- + 4300 ('Zach_Collins',_'C',_'SAS')_C_36873446
- + 4300 ('Zach_Collins',_'C',_'SAS')_UTIL_36873446 >= 49000
-Must_have_1_C: ('Adem_Bona',_'C',_'PHI')_C_36873608
- + ('Alexandre_Sarr',_'PF_C',_'WAS')_C_36873292
- + ('Anthony_Gill',_'PF_C',_'WAS')_C_36873904
- + ('Bobby_Portis',_'PF_C',_'MIL')_C_36873248
- + ('Brandon_Clarke',_'PF_C',_'MEM')_C_36873424
- + ('Brook_Lopez',_'C',_'MIL')_C_36873212
- + ('Bruno_Fernando',_'C',_'TOR')_C_36873748
- + ('Chris_Boucher',_'PF_C',_'TOR')_C_36873543
- + ('Daniel_Gafford',_'C',_'DAL')_C_36873246
- + ('Dereck_Lively_II',_'C',_'DAL')_C_36873290
- + ('Drew_Eubanks',_'C',_'UTA')_C_36873691
- + ('Evan_Mobley',_'PF_C',_'CLE')_C_36873135
- + ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_C_36873056
- + ('Goga_Bitadze',_'C',_'ORL')_C_36873304
- + ('Guerschon_Yabusele',_'PF_C',_'PHI')_C_36873275
- + ('Isaiah_Hartenstein',_'C',_'OKC')_C_36873165
- + ('Isaiah_Stewart',_'C',_'DET')_C_36873476
- + ('Jakob_Poeltl',_'C',_'TOR')_C_36873176
- + ('Jalen_Duren',_'C',_'DET')_C_36873236
- + ('Jarrett_Allen',_'C',_'CLE')_C_36873206
- + ('Jay_Huff',_'C',_'MEM')_C_36873622
- + ('Jeremy_Sochan',_'C',_'SAS')_C_36873226
- + ('Jericho_Sims',_'PF_C',_'NYK')_C_36873610
- + ('John_Collins',_'PF_C',_'UTA')_C_36873161
- + ('Jonas_Valanciunas',_'C',_'WAS')_C_36873324
- + ('Jonathan_Isaac',_'PF_C',_'ORL')_C_36873496
- + ('Jonathan_Mogbo',_'C',_'TOR')_C_36873630
- + ('Karl#Anthony_Towns',_'C',_'NYK')_C_36873085
- + ('Kenrich_Williams',_'PF_C',_'OKC')_C_36873684
- + ('Kevin_Durant',_'PF_C',_'PHX')_C_36873105
- + ('Mark_Williams',_'C',_'CHA')_C_36873260
- + ('Mason_Plumlee',_'C',_'PHX')_C_36873514
- + ('Maxi_Kleber',_'PF_C',_'DAL')_C_36873600
- + ('Moritz_Wagner',_'C',_'ORL')_C_36873395
- + ('Moses_Brown',_'C',_'IND')_C_36873880
- + ('Moussa_Diabate',_'PF_C',_'CHA')_C_36873354
- + ('Myles_Turner',_'C',_'IND')_C_36873201
- + ('Obi_Toppin',_'PF_C',_'IND')_C_36873579
- + ('Oso_Ighodaro',_'PF_C',_'PHX')_C_36873570
- + ('Taj_Gibson',_'C',_'CHA')_C_36873798
- + ('Victor_Wembanyama',_'C',_'SAS')_C_36873063
- + ('Walker_Kessler',_'C',_'UTA')_C_36873217
- + ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_C_36873336
- + ('Zach_Collins',_'C',_'SAS')_C_36873446 = 1
-Must_have_1_F: ("Royce_O'Neale",_'SF_PF',_'PHX')_F_36873391
- + ('Aaron_Wiggins',_'SF_PF',_'OKC')_F_36873524
- + ('Alexandre_Sarr',_'PF_C',_'WAS')_F_36873292
- + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_F_36873591
- + ('Anthony_Gill',_'PF_C',_'WAS')_F_36873904
- + ('Ausar_Thompson',_'SF_PF',_'DET')_F_36873478
- + ('Bennedict_Mathurin',_'SG_SF',_'IND')_F_36873185
- + ('Bilal_Coulibaly',_'SF',_'WAS')_F_36873287
- + ('Bobby_Portis',_'PF_C',_'MIL')_F_36873248
- + ('Bradley_Beal',_'SG_SF',_'PHX')_F_36873146
- + ('Brandon_Clarke',_'PF_C',_'MEM')_F_36873424
- + ('Brandon_Miller',_'SG_SF',_'CHA')_F_36873126
- + ('Brice_Sensabaugh',_'SF',_'UTA')_F_36873588
- + ('Caleb_Martin',_'PF',_'PHI')_F_36873377
- + ('Chris_Boucher',_'PF_C',_'TOR')_F_36873543
- + ('Cody_Martin',_'SF',_'CHA')_F_36873348
- + ('Corey_Kispert',_'SG_SF',_'WAS')_F_36873408
- + ('Dean_Wade',_'SF_PF',_'CLE')_F_36873596
- + ('Desmond_Bane',_'SG_SF',_'MEM')_F_36873167
- + ('Dillon_Jones',_'PF',_'OKC')_F_36873699
- + ('Evan_Mobley',_'PF_C',_'CLE')_F_36873135
- + ('Franz_Wagner',_'SF_PF',_'ORL')_F_36873076
- + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_F_36873532
- + ('Georges_Niang',_'SF_PF',_'CLE')_F_36873435
- + ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_F_36873056
- + ('Guerschon_Yabusele',_'PF_C',_'PHI')_F_36873275
- + ('Harrison_Barnes',_'SF_PF',_'SAS')_F_36873413
- + ('Isaac_Okoro',_'SG_SF',_'CLE')_F_36873516
- + ('Isaiah_Joe',_'SG_SF',_'OKC')_F_36873574
- + ('Jake_LaRavia',_'SF_PF',_'MEM')_F_36873463
- + ('Jalen_Williams',_'PF',_'OKC')_F_36873099
- + ('Jamison_Battle',_'SF',_'TOR')_F_36873674
- + ('Jarace_Walker',_'SF_PF',_'IND')_F_36873528
- + ('Jaren_Jackson_Jr.',_'PF',_'MEM')_F_36873143
- + ('Jaylen_Wells',_'SG_SF',_'MEM')_F_36873486
- + ('Jericho_Sims',_'PF_C',_'NYK')_F_36873610
- + ('John_Collins',_'PF_C',_'UTA')_F_36873161
- + ('Johnny_Juzang',_'SG_SF',_'UTA')_F_36873663
- + ('Jonathan_Isaac',_'PF_C',_'ORL')_F_36873496
- + ('Josh_Green',_'SF_PF',_'CHA')_F_36873380
- + ('Josh_Hart',_'SF_PF',_'NYK')_F_36873197
- + ('Josh_Okogie',_'SF',_'PHX')_F_36873452
- + ('Julian_Champagnie',_'SF_PF',_'SAS')_F_36873326
- + ('KJ_Martin',_'SF_PF',_'PHI')_F_36873537
- + ('Keldon_Johnson',_'SF_PF',_'SAS')_F_36873365
- + ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_F_36873316
- + ('Kenrich_Williams',_'PF_C',_'OKC')_F_36873684
- + ('Kevin_Durant',_'PF_C',_'PHX')_F_36873105
- + ('Klay_Thompson',_'SG_SF',_'DAL')_F_36873296
- + ('Kyshawn_George',_'SF_PF',_'WAS')_F_36873448
- + ('Lauri_Markkanen',_'SF_PF',_'UTA')_F_36873172
- + ('Luguentz_Dort',_'SG_SF',_'OKC')_F_36873306
- + ('Luke_Kennard',_'SG_SF',_'MEM')_F_36873641
- + ('Malik_Beasley',_'SG_SF',_'DET')_F_36873255
- + ('Maxi_Kleber',_'PF_C',_'DAL')_F_36873600
- + ('Micah_Potter',_'PF',_'UTA')_F_36873859
- + ('Mikal_Bridges',_'SG_SF',_'NYK')_F_36873241
- + ('Moussa_Diabate',_'PF_C',_'CHA')_F_36873354
- + ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_F_36873652
- + ('OG_Anunoby',_'SF_PF',_'NYK')_F_36873222
- + ('Obi_Toppin',_'PF_C',_'IND')_F_36873579
- + ('Ochai_Agbaji',_'SF_PF',_'TOR')_F_36873369
- + ('Oso_Ighodaro',_'PF_C',_'PHX')_F_36873570
- + ('PJ_Washington',_'PF',_'DAL')_F_36873178
- + ('Pascal_Siakam',_'PF',_'IND')_F_36873151
- + ('Pat_Connaughton',_'SF_PF',_'MIL')_F_36873637
- + ('Paul_George',_'SF_PF',_'PHI')_F_36873154
- + ('Quentin_Grimes',_'SG_SF',_'DAL')_F_36873311
- + ('Quenton_Jackson',_'SG_SF',_'IND')_F_36873551
- + ('RJ_Barrett',_'SF_PF',_'TOR')_F_36873131
- + ('Ricky_Council_IV',_'SG_SF',_'PHI')_F_36873583
- + ('Ryan_Dunn',_'PF',_'PHX')_F_36873619
- + ('Santi_Aldama',_'PF',_'MEM')_F_36873272
- + ('Scottie_Barnes',_'PG_SF',_'TOR')_F_36873115
- + ('Simone_Fontecchio',_'PF',_'DET')_F_36873627
- + ('Taurean_Prince',_'SF_PF',_'MIL')_F_36873507
- + ('Tidjane_Salaun',_'PF',_'CHA')_F_36873563
- + ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_F_36873500
- + ('Tobias_Harris',_'PF',_'DET')_F_36873228
- + ('Tristan_da_Silva',_'SF_PF',_'ORL')_F_36873604
- + ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_F_36873336 = 1
-Must_have_1_G: ("Ja'Kobe_Walter",_'SG',_'TOR')_G_36873511
- + ('AJ_Green',_'PG_SG',_'MIL')_G_36873559
- + ('Ajay_Mitchell',_'PG',_'OKC')_G_36873706
- + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_G_36873591
- + ('Andrew_Nembhard',_'PG_SG',_'IND')_G_36873397
- + ('Anthony_Black',_'PG_SG',_'ORL')_G_36873472
- + ('Bennedict_Mathurin',_'SG_SF',_'IND')_G_36873185
- + ('Bradley_Beal',_'SG_SF',_'PHX')_G_36873146
- + ('Brandon_Miller',_'SG_SF',_'CHA')_G_36873126
- + ('Cade_Cunningham',_'PG',_'DET')_G_36873073
- + ('Cameron_Payne',_'PG_SG',_'NYK')_G_36873547
- + ('Caris_LeVert',_'PG_SG',_'CLE')_G_36873361
- + ('Carlton_Carrington',_'PG_SG',_'WAS')_G_36873404
- + ('Cason_Wallace',_'PG_SG',_'OKC')_G_36873428
- + ('Chris_Paul',_'PG',_'SAS')_G_36873238
- + ('Cole_Anthony',_'PG_SG',_'ORL')_G_36873646
- + ('Collin_Sexton',_'PG_SG',_'UTA')_G_36873208
- + ('Corey_Kispert',_'SG_SF',_'WAS')_G_36873408
- + ('Damian_Lillard',_'PG',_'MIL')_G_36873080
- + ('Darius_Garland',_'PG',_'CLE')_G_36873158
- + ('Davion_Mitchell',_'PG_SG',_'TOR')_G_36873566
- + ('Delon_Wright',_'PG',_'MIL')_G_36873688
- + ('Desmond_Bane',_'SG_SF',_'MEM')_G_36873167
- + ('Devin_Booker',_'PG_SG',_'PHX')_G_36873095
- + ('Devin_Vassell',_'SG',_'SAS')_G_36873340
- + ('Donovan_Mitchell',_'PG_SG',_'CLE')_G_36873087
- + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_G_36873532
- + ('Grayson_Allen',_'SG',_'PHX')_G_36873351
- + ('Isaac_Okoro',_'SG_SF',_'CLE')_G_36873516
- + ('Isaiah_Collier',_'PG',_'UTA')_G_36873862
- + ('Isaiah_Joe',_'SG_SF',_'OKC')_G_36873574
- + ('Ja_Morant',_'PG',_'MEM')_G_36873102
- + ('Jaden_Hardy',_'PG_SG',_'DAL')_G_36873420
- + ('Jaden_Ivey',_'PG_SG',_'DET')_G_36873139
- + ('Jalen_Brunson',_'PG',_'NYK')_G_36873109
- + ('Jalen_Suggs',_'PG',_'ORL')_G_36873219
- + ('Jamal_Shead',_'PG',_'TOR')_G_36873745
- + ('Jared_Butler',_'PG',_'WAS')_G_36873891
- + ('Jared_McCain',_'PG_SG',_'PHI')_G_36873190
- + ('Jaylen_Wells',_'SG_SF',_'MEM')_G_36873486
- + ('Johnny_Juzang',_'SG_SF',_'UTA')_G_36873663
- + ('Jordan_Poole',_'PG_SG',_'WAS')_G_36873181
- + ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_G_36873316
- + ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_G_36873432
- + ('Keyonte_George',_'PG',_'UTA')_G_36873252
- + ('Klay_Thompson',_'SG_SF',_'DAL')_G_36873296
- + ('Kyle_Lowry',_'PG',_'PHI')_G_36873556
- + ('Kyrie_Irving',_'PG_SG',_'DAL')_G_36873091
- + ('Luguentz_Dort',_'SG_SF',_'OKC')_G_36873306
- + ('Luka_Doncic',_'PG',_'DAL')_G_36873060
- + ('Luke_Kennard',_'SG_SF',_'MEM')_G_36873641
- + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_G_36873262
- + ('Malik_Beasley',_'SG_SF',_'DET')_G_36873255
- + ('Marcus_Sasser',_'PG',_'DET')_G_36873616
- + ('Marcus_Smart',_'PG_SG',_'MEM')_G_36873373
- + ('Mikal_Bridges',_'SG_SF',_'NYK')_G_36873241
- + ('Miles_McBride',_'PG_SG',_'NYK')_G_36873455
- + ('Monte_Morris',_'PG',_'PHX')_G_36873681
- + ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_G_36873652
- + ('Quentin_Grimes',_'SG_SF',_'DAL')_G_36873311
- + ('Quenton_Jackson',_'SG_SF',_'IND')_G_36873551
- + ('Ricky_Council_IV',_'SG_SF',_'PHI')_G_36873583
- + ('Sam_Merrill',_'SG',_'CLE')_G_36873624
- + ('Scottie_Barnes',_'PG_SF',_'TOR')_G_36873115
- + ('Scotty_Pippen_Jr.',_'PG',_'MEM')_G_36873439
- + ('Seth_Curry',_'SG',_'CHA')_G_36873696
- + ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_G_36873065
- + ('Spencer_Dinwiddie',_'PG',_'DAL')_G_36873358
- + ('Stephon_Castle',_'SG',_'SAS')_G_36873330
- + ('T.J._McConnell',_'PG',_'IND')_G_36873345
- + ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_G_36873500
- + ('Tyrese_Haliburton',_'PG',_'IND')_G_36873112
- + ('Tyrese_Maxey',_'PG',_'PHI')_G_36873120
- + ('Tyus_Jones',_'PG',_'PHX')_G_36873266
- + ('Vasilije_Micic',_'PG',_'CHA')_G_36873401 = 1
-Must_have_1_PF: ("Royce_O'Neale",_'SF_PF',_'PHX')_PF_36873391
- + ('Aaron_Wiggins',_'SF_PF',_'OKC')_PF_36873524
- + ('Alexandre_Sarr',_'PF_C',_'WAS')_PF_36873292
- + ('Anthony_Gill',_'PF_C',_'WAS')_PF_36873904
- + ('Ausar_Thompson',_'SF_PF',_'DET')_PF_36873478
- + ('Bobby_Portis',_'PF_C',_'MIL')_PF_36873248
- + ('Brandon_Clarke',_'PF_C',_'MEM')_PF_36873424
- + ('Caleb_Martin',_'PF',_'PHI')_PF_36873377
- + ('Chris_Boucher',_'PF_C',_'TOR')_PF_36873543
- + ('Dean_Wade',_'SF_PF',_'CLE')_PF_36873596
- + ('Dillon_Jones',_'PF',_'OKC')_PF_36873699
- + ('Evan_Mobley',_'PF_C',_'CLE')_PF_36873135
- + ('Franz_Wagner',_'SF_PF',_'ORL')_PF_36873076
- + ('Georges_Niang',_'SF_PF',_'CLE')_PF_36873435
- + ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_PF_36873056
- + ('Guerschon_Yabusele',_'PF_C',_'PHI')_PF_36873275
- + ('Harrison_Barnes',_'SF_PF',_'SAS')_PF_36873413
- + ('Jake_LaRavia',_'SF_PF',_'MEM')_PF_36873463
- + ('Jalen_Williams',_'PF',_'OKC')_PF_36873099
- + ('Jarace_Walker',_'SF_PF',_'IND')_PF_36873528
- + ('Jaren_Jackson_Jr.',_'PF',_'MEM')_PF_36873143
- + ('Jericho_Sims',_'PF_C',_'NYK')_PF_36873610
- + ('John_Collins',_'PF_C',_'UTA')_PF_36873161
- + ('Jonathan_Isaac',_'PF_C',_'ORL')_PF_36873496
- + ('Josh_Green',_'SF_PF',_'CHA')_PF_36873380
- + ('Josh_Hart',_'SF_PF',_'NYK')_PF_36873197
- + ('Julian_Champagnie',_'SF_PF',_'SAS')_PF_36873326
- + ('KJ_Martin',_'SF_PF',_'PHI')_PF_36873537
- + ('Keldon_Johnson',_'SF_PF',_'SAS')_PF_36873365
- + ('Kenrich_Williams',_'PF_C',_'OKC')_PF_36873684
- + ('Kevin_Durant',_'PF_C',_'PHX')_PF_36873105
- + ('Kyshawn_George',_'SF_PF',_'WAS')_PF_36873448
- + ('Lauri_Markkanen',_'SF_PF',_'UTA')_PF_36873172
- + ('Maxi_Kleber',_'PF_C',_'DAL')_PF_36873600
- + ('Micah_Potter',_'PF',_'UTA')_PF_36873859
- + ('Moussa_Diabate',_'PF_C',_'CHA')_PF_36873354
- + ('OG_Anunoby',_'SF_PF',_'NYK')_PF_36873222
- + ('Obi_Toppin',_'PF_C',_'IND')_PF_36873579
- + ('Ochai_Agbaji',_'SF_PF',_'TOR')_PF_36873369
- + ('Oso_Ighodaro',_'PF_C',_'PHX')_PF_36873570
- + ('PJ_Washington',_'PF',_'DAL')_PF_36873178
- + ('Pascal_Siakam',_'PF',_'IND')_PF_36873151
- + ('Pat_Connaughton',_'SF_PF',_'MIL')_PF_36873637
- + ('Paul_George',_'SF_PF',_'PHI')_PF_36873154
- + ('RJ_Barrett',_'SF_PF',_'TOR')_PF_36873131
- + ('Ryan_Dunn',_'PF',_'PHX')_PF_36873619
- + ('Santi_Aldama',_'PF',_'MEM')_PF_36873272
- + ('Simone_Fontecchio',_'PF',_'DET')_PF_36873627
- + ('Taurean_Prince',_'SF_PF',_'MIL')_PF_36873507
- + ('Tidjane_Salaun',_'PF',_'CHA')_PF_36873563
- + ('Tobias_Harris',_'PF',_'DET')_PF_36873228
- + ('Tristan_da_Silva',_'SF_PF',_'ORL')_PF_36873604
- + ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_PF_36873336 = 1
-Must_have_1_PG: ('AJ_Green',_'PG_SG',_'MIL')_PG_36873559
- + ('Ajay_Mitchell',_'PG',_'OKC')_PG_36873706
- + ('Andrew_Nembhard',_'PG_SG',_'IND')_PG_36873397
- + ('Anthony_Black',_'PG_SG',_'ORL')_PG_36873472
- + ('Cade_Cunningham',_'PG',_'DET')_PG_36873073
- + ('Cameron_Payne',_'PG_SG',_'NYK')_PG_36873547
- + ('Caris_LeVert',_'PG_SG',_'CLE')_PG_36873361
- + ('Carlton_Carrington',_'PG_SG',_'WAS')_PG_36873404
- + ('Cason_Wallace',_'PG_SG',_'OKC')_PG_36873428
- + ('Chris_Paul',_'PG',_'SAS')_PG_36873238
- + ('Cole_Anthony',_'PG_SG',_'ORL')_PG_36873646
- + ('Collin_Sexton',_'PG_SG',_'UTA')_PG_36873208
- + ('Damian_Lillard',_'PG',_'MIL')_PG_36873080
- + ('Darius_Garland',_'PG',_'CLE')_PG_36873158
- + ('Davion_Mitchell',_'PG_SG',_'TOR')_PG_36873566
- + ('Delon_Wright',_'PG',_'MIL')_PG_36873688
- + ('Devin_Booker',_'PG_SG',_'PHX')_PG_36873095
- + ('Donovan_Mitchell',_'PG_SG',_'CLE')_PG_36873087
- + ('Isaiah_Collier',_'PG',_'UTA')_PG_36873862
- + ('Ja_Morant',_'PG',_'MEM')_PG_36873102
- + ('Jaden_Hardy',_'PG_SG',_'DAL')_PG_36873420
- + ('Jaden_Ivey',_'PG_SG',_'DET')_PG_36873139
- + ('Jalen_Brunson',_'PG',_'NYK')_PG_36873109
- + ('Jalen_Suggs',_'PG',_'ORL')_PG_36873219
- + ('Jamal_Shead',_'PG',_'TOR')_PG_36873745
- + ('Jared_Butler',_'PG',_'WAS')_PG_36873891
- + ('Jared_McCain',_'PG_SG',_'PHI')_PG_36873190
- + ('Jordan_Poole',_'PG_SG',_'WAS')_PG_36873181
- + ('Keyonte_George',_'PG',_'UTA')_PG_36873252
- + ('Kyle_Lowry',_'PG',_'PHI')_PG_36873556
- + ('Kyrie_Irving',_'PG_SG',_'DAL')_PG_36873091
- + ('Luka_Doncic',_'PG',_'DAL')_PG_36873060
- + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_PG_36873262
- + ('Marcus_Sasser',_'PG',_'DET')_PG_36873616
- + ('Marcus_Smart',_'PG_SG',_'MEM')_PG_36873373
- + ('Miles_McBride',_'PG_SG',_'NYK')_PG_36873455
- + ('Monte_Morris',_'PG',_'PHX')_PG_36873681
- + ('Scottie_Barnes',_'PG_SF',_'TOR')_PG_36873115
- + ('Scotty_Pippen_Jr.',_'PG',_'MEM')_PG_36873439
- + ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_PG_36873065
- + ('Spencer_Dinwiddie',_'PG',_'DAL')_PG_36873358
- + ('T.J._McConnell',_'PG',_'IND')_PG_36873345
- + ('Tyrese_Haliburton',_'PG',_'IND')_PG_36873112
- + ('Tyrese_Maxey',_'PG',_'PHI')_PG_36873120
- + ('Tyus_Jones',_'PG',_'PHX')_PG_36873266
- + ('Vasilije_Micic',_'PG',_'CHA')_PG_36873401 = 1
-Must_have_1_SF: ("Royce_O'Neale",_'SF_PF',_'PHX')_SF_36873391
- + ('Aaron_Wiggins',_'SF_PF',_'OKC')_SF_36873524
- + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SF_36873591
- + ('Ausar_Thompson',_'SF_PF',_'DET')_SF_36873478
- + ('Bennedict_Mathurin',_'SG_SF',_'IND')_SF_36873185
- + ('Bilal_Coulibaly',_'SF',_'WAS')_SF_36873287
- + ('Bradley_Beal',_'SG_SF',_'PHX')_SF_36873146
- + ('Brandon_Miller',_'SG_SF',_'CHA')_SF_36873126
- + ('Brice_Sensabaugh',_'SF',_'UTA')_SF_36873588
- + ('Cody_Martin',_'SF',_'CHA')_SF_36873348
- + ('Corey_Kispert',_'SG_SF',_'WAS')_SF_36873408
- + ('Dean_Wade',_'SF_PF',_'CLE')_SF_36873596
- + ('Desmond_Bane',_'SG_SF',_'MEM')_SF_36873167
- + ('Franz_Wagner',_'SF_PF',_'ORL')_SF_36873076
- + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SF_36873532
- + ('Georges_Niang',_'SF_PF',_'CLE')_SF_36873435
- + ('Harrison_Barnes',_'SF_PF',_'SAS')_SF_36873413
- + ('Isaac_Okoro',_'SG_SF',_'CLE')_SF_36873516
- + ('Isaiah_Joe',_'SG_SF',_'OKC')_SF_36873574
- + ('Jake_LaRavia',_'SF_PF',_'MEM')_SF_36873463
- + ('Jamison_Battle',_'SF',_'TOR')_SF_36873674
- + ('Jarace_Walker',_'SF_PF',_'IND')_SF_36873528
- + ('Jaylen_Wells',_'SG_SF',_'MEM')_SF_36873486
- + ('Johnny_Juzang',_'SG_SF',_'UTA')_SF_36873663
- + ('Josh_Green',_'SF_PF',_'CHA')_SF_36873380
- + ('Josh_Hart',_'SF_PF',_'NYK')_SF_36873197
- + ('Josh_Okogie',_'SF',_'PHX')_SF_36873452
- + ('Julian_Champagnie',_'SF_PF',_'SAS')_SF_36873326
- + ('KJ_Martin',_'SF_PF',_'PHI')_SF_36873537
- + ('Keldon_Johnson',_'SF_PF',_'SAS')_SF_36873365
- + ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_SF_36873316
- + ('Klay_Thompson',_'SG_SF',_'DAL')_SF_36873296
- + ('Kyshawn_George',_'SF_PF',_'WAS')_SF_36873448
- + ('Lauri_Markkanen',_'SF_PF',_'UTA')_SF_36873172
- + ('Luguentz_Dort',_'SG_SF',_'OKC')_SF_36873306
- + ('Luke_Kennard',_'SG_SF',_'MEM')_SF_36873641
- + ('Malik_Beasley',_'SG_SF',_'DET')_SF_36873255
- + ('Mikal_Bridges',_'SG_SF',_'NYK')_SF_36873241
- + ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_SF_36873652
- + ('OG_Anunoby',_'SF_PF',_'NYK')_SF_36873222
- + ('Ochai_Agbaji',_'SF_PF',_'TOR')_SF_36873369
- + ('Pat_Connaughton',_'SF_PF',_'MIL')_SF_36873637
- + ('Paul_George',_'SF_PF',_'PHI')_SF_36873154
- + ('Quentin_Grimes',_'SG_SF',_'DAL')_SF_36873311
- + ('Quenton_Jackson',_'SG_SF',_'IND')_SF_36873551
- + ('RJ_Barrett',_'SF_PF',_'TOR')_SF_36873131
- + ('Ricky_Council_IV',_'SG_SF',_'PHI')_SF_36873583
- + ('Scottie_Barnes',_'PG_SF',_'TOR')_SF_36873115
- + ('Taurean_Prince',_'SF_PF',_'MIL')_SF_36873507
- + ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_SF_36873500
- + ('Tristan_da_Silva',_'SF_PF',_'ORL')_SF_36873604 = 1
-Must_have_1_SG: ("Ja'Kobe_Walter",_'SG',_'TOR')_SG_36873511
- + ('AJ_Green',_'PG_SG',_'MIL')_SG_36873559
- + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SG_36873591
- + ('Andrew_Nembhard',_'PG_SG',_'IND')_SG_36873397
- + ('Anthony_Black',_'PG_SG',_'ORL')_SG_36873472
- + ('Bennedict_Mathurin',_'SG_SF',_'IND')_SG_36873185
- + ('Bradley_Beal',_'SG_SF',_'PHX')_SG_36873146
- + ('Brandon_Miller',_'SG_SF',_'CHA')_SG_36873126
- + ('Cameron_Payne',_'PG_SG',_'NYK')_SG_36873547
- + ('Caris_LeVert',_'PG_SG',_'CLE')_SG_36873361
- + ('Carlton_Carrington',_'PG_SG',_'WAS')_SG_36873404
- + ('Cason_Wallace',_'PG_SG',_'OKC')_SG_36873428
- + ('Cole_Anthony',_'PG_SG',_'ORL')_SG_36873646
- + ('Collin_Sexton',_'PG_SG',_'UTA')_SG_36873208
- + ('Corey_Kispert',_'SG_SF',_'WAS')_SG_36873408
- + ('Davion_Mitchell',_'PG_SG',_'TOR')_SG_36873566
- + ('Desmond_Bane',_'SG_SF',_'MEM')_SG_36873167
- + ('Devin_Booker',_'PG_SG',_'PHX')_SG_36873095
- + ('Devin_Vassell',_'SG',_'SAS')_SG_36873340
- + ('Donovan_Mitchell',_'PG_SG',_'CLE')_SG_36873087
- + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SG_36873532
- + ('Grayson_Allen',_'SG',_'PHX')_SG_36873351
- + ('Isaac_Okoro',_'SG_SF',_'CLE')_SG_36873516
- + ('Isaiah_Joe',_'SG_SF',_'OKC')_SG_36873574
- + ('Jaden_Hardy',_'PG_SG',_'DAL')_SG_36873420
- + ('Jaden_Ivey',_'PG_SG',_'DET')_SG_36873139
- + ('Jared_McCain',_'PG_SG',_'PHI')_SG_36873190
- + ('Jaylen_Wells',_'SG_SF',_'MEM')_SG_36873486
- + ('Johnny_Juzang',_'SG_SF',_'UTA')_SG_36873663
- + ('Jordan_Poole',_'PG_SG',_'WAS')_SG_36873181
- + ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_SG_36873316
- + ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_SG_36873432
- + ('Klay_Thompson',_'SG_SF',_'DAL')_SG_36873296
- + ('Kyrie_Irving',_'PG_SG',_'DAL')_SG_36873091
- + ('Luguentz_Dort',_'SG_SF',_'OKC')_SG_36873306
- + ('Luke_Kennard',_'SG_SF',_'MEM')_SG_36873641
- + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_SG_36873262
- + ('Malik_Beasley',_'SG_SF',_'DET')_SG_36873255
- + ('Marcus_Smart',_'PG_SG',_'MEM')_SG_36873373
- + ('Mikal_Bridges',_'SG_SF',_'NYK')_SG_36873241
- + ('Miles_McBride',_'PG_SG',_'NYK')_SG_36873455
- + ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_SG_36873652
- + ('Quentin_Grimes',_'SG_SF',_'DAL')_SG_36873311
- + ('Quenton_Jackson',_'SG_SF',_'IND')_SG_36873551
- + ('Ricky_Council_IV',_'SG_SF',_'PHI')_SG_36873583
- + ('Sam_Merrill',_'SG',_'CLE')_SG_36873624
- + ('Seth_Curry',_'SG',_'CHA')_SG_36873696
- + ('Stephon_Castle',_'SG',_'SAS')_SG_36873330
- + ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_SG_36873500 = 1
-Must_have_1_UTIL: ("Ja'Kobe_Walter",_'SG',_'TOR')_UTIL_36873511
- + ("Royce_O'Neale",_'SF_PF',_'PHX')_UTIL_36873391
- + ('AJ_Green',_'PG_SG',_'MIL')_UTIL_36873559
- + ('Aaron_Wiggins',_'SF_PF',_'OKC')_UTIL_36873524
- + ('Adem_Bona',_'C',_'PHI')_UTIL_36873608
- + ('Ajay_Mitchell',_'PG',_'OKC')_UTIL_36873706
- + ('Alexandre_Sarr',_'PF_C',_'WAS')_UTIL_36873292
- + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_UTIL_36873591
- + ('Andrew_Nembhard',_'PG_SG',_'IND')_UTIL_36873397
- + ('Anthony_Black',_'PG_SG',_'ORL')_UTIL_36873472
- + ('Anthony_Gill',_'PF_C',_'WAS')_UTIL_36873904
- + ('Ausar_Thompson',_'SF_PF',_'DET')_UTIL_36873478
- + ('Bennedict_Mathurin',_'SG_SF',_'IND')_UTIL_36873185
- + ('Bilal_Coulibaly',_'SF',_'WAS')_UTIL_36873287
- + ('Bobby_Portis',_'PF_C',_'MIL')_UTIL_36873248
- + ('Bradley_Beal',_'SG_SF',_'PHX')_UTIL_36873146
- + ('Brandon_Clarke',_'PF_C',_'MEM')_UTIL_36873424
- + ('Brandon_Miller',_'SG_SF',_'CHA')_UTIL_36873126
- + ('Brice_Sensabaugh',_'SF',_'UTA')_UTIL_36873588
- + ('Brook_Lopez',_'C',_'MIL')_UTIL_36873212
- + ('Bruno_Fernando',_'C',_'TOR')_UTIL_36873748
- + ('Cade_Cunningham',_'PG',_'DET')_UTIL_36873073
- + ('Caleb_Martin',_'PF',_'PHI')_UTIL_36873377
- + ('Cameron_Payne',_'PG_SG',_'NYK')_UTIL_36873547
- + ('Caris_LeVert',_'PG_SG',_'CLE')_UTIL_36873361
- + ('Carlton_Carrington',_'PG_SG',_'WAS')_UTIL_36873404
- + ('Cason_Wallace',_'PG_SG',_'OKC')_UTIL_36873428
- + ('Chris_Boucher',_'PF_C',_'TOR')_UTIL_36873543
- + ('Chris_Paul',_'PG',_'SAS')_UTIL_36873238
- + ('Cody_Martin',_'SF',_'CHA')_UTIL_36873348
- + ('Cole_Anthony',_'PG_SG',_'ORL')_UTIL_36873646
- + ('Collin_Sexton',_'PG_SG',_'UTA')_UTIL_36873208
- + ('Corey_Kispert',_'SG_SF',_'WAS')_UTIL_36873408
- + ('Damian_Lillard',_'PG',_'MIL')_UTIL_36873080
- + ('Daniel_Gafford',_'C',_'DAL')_UTIL_36873246
- + ('Darius_Garland',_'PG',_'CLE')_UTIL_36873158
- + ('Davion_Mitchell',_'PG_SG',_'TOR')_UTIL_36873566
- + ('Dean_Wade',_'SF_PF',_'CLE')_UTIL_36873596
- + ('Delon_Wright',_'PG',_'MIL')_UTIL_36873688
- + ('Dereck_Lively_II',_'C',_'DAL')_UTIL_36873290
- + ('Desmond_Bane',_'SG_SF',_'MEM')_UTIL_36873167
- + ('Devin_Booker',_'PG_SG',_'PHX')_UTIL_36873095
- + ('Devin_Vassell',_'SG',_'SAS')_UTIL_36873340
- + ('Dillon_Jones',_'PF',_'OKC')_UTIL_36873699
- + ('Donovan_Mitchell',_'PG_SG',_'CLE')_UTIL_36873087
- + ('Drew_Eubanks',_'C',_'UTA')_UTIL_36873691
- + ('Evan_Mobley',_'PF_C',_'CLE')_UTIL_36873135
- + ('Franz_Wagner',_'SF_PF',_'ORL')_UTIL_36873076
- + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_UTIL_36873532
- + ('Georges_Niang',_'SF_PF',_'CLE')_UTIL_36873435
- + ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_UTIL_36873056
- + ('Goga_Bitadze',_'C',_'ORL')_UTIL_36873304
- + ('Grayson_Allen',_'SG',_'PHX')_UTIL_36873351
- + ('Guerschon_Yabusele',_'PF_C',_'PHI')_UTIL_36873275
- + ('Harrison_Barnes',_'SF_PF',_'SAS')_UTIL_36873413
- + ('Isaac_Okoro',_'SG_SF',_'CLE')_UTIL_36873516
- + ('Isaiah_Collier',_'PG',_'UTA')_UTIL_36873862
- + ('Isaiah_Hartenstein',_'C',_'OKC')_UTIL_36873165
- + ('Isaiah_Joe',_'SG_SF',_'OKC')_UTIL_36873574
- + ('Isaiah_Stewart',_'C',_'DET')_UTIL_36873476
- + ('Ja_Morant',_'PG',_'MEM')_UTIL_36873102
- + ('Jaden_Hardy',_'PG_SG',_'DAL')_UTIL_36873420
- + ('Jaden_Ivey',_'PG_SG',_'DET')_UTIL_36873139
- + ('Jake_LaRavia',_'SF_PF',_'MEM')_UTIL_36873463
- + ('Jakob_Poeltl',_'C',_'TOR')_UTIL_36873176
- + ('Jalen_Brunson',_'PG',_'NYK')_UTIL_36873109
- + ('Jalen_Duren',_'C',_'DET')_UTIL_36873236
- + ('Jalen_Suggs',_'PG',_'ORL')_UTIL_36873219
- + ('Jalen_Williams',_'PF',_'OKC')_UTIL_36873099
- + ('Jamal_Shead',_'PG',_'TOR')_UTIL_36873745
- + ('Jamison_Battle',_'SF',_'TOR')_UTIL_36873674
- + ('Jarace_Walker',_'SF_PF',_'IND')_UTIL_36873528
- + ('Jared_Butler',_'PG',_'WAS')_UTIL_36873891
- + ('Jared_McCain',_'PG_SG',_'PHI')_UTIL_36873190
- + ('Jaren_Jackson_Jr.',_'PF',_'MEM')_UTIL_36873143
- + ('Jarrett_Allen',_'C',_'CLE')_UTIL_36873206
- + ('Jay_Huff',_'C',_'MEM')_UTIL_36873622
- + ('Jaylen_Wells',_'SG_SF',_'MEM')_UTIL_36873486
- + ('Jeremy_Sochan',_'C',_'SAS')_UTIL_36873226
- + ('Jericho_Sims',_'PF_C',_'NYK')_UTIL_36873610
- + ('John_Collins',_'PF_C',_'UTA')_UTIL_36873161
- + ('Johnny_Juzang',_'SG_SF',_'UTA')_UTIL_36873663
- + ('Jonas_Valanciunas',_'C',_'WAS')_UTIL_36873324
- + ('Jonathan_Isaac',_'PF_C',_'ORL')_UTIL_36873496
- + ('Jonathan_Mogbo',_'C',_'TOR')_UTIL_36873630
- + ('Jordan_Poole',_'PG_SG',_'WAS')_UTIL_36873181
- + ('Josh_Green',_'SF_PF',_'CHA')_UTIL_36873380
- + ('Josh_Hart',_'SF_PF',_'NYK')_UTIL_36873197
- + ('Josh_Okogie',_'SF',_'PHX')_UTIL_36873452
- + ('Julian_Champagnie',_'SF_PF',_'SAS')_UTIL_36873326
- + ('KJ_Martin',_'SF_PF',_'PHI')_UTIL_36873537
- + ('Karl#Anthony_Towns',_'C',_'NYK')_UTIL_36873085
- + ('Keldon_Johnson',_'SF_PF',_'SAS')_UTIL_36873365
- + ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_UTIL_36873316
- + ('Kenrich_Williams',_'PF_C',_'OKC')_UTIL_36873684
- + ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_UTIL_36873432
- + ('Kevin_Durant',_'PF_C',_'PHX')_UTIL_36873105
- + ('Keyonte_George',_'PG',_'UTA')_UTIL_36873252
- + ('Klay_Thompson',_'SG_SF',_'DAL')_UTIL_36873296
- + ('Kyle_Lowry',_'PG',_'PHI')_UTIL_36873556
- + ('Kyrie_Irving',_'PG_SG',_'DAL')_UTIL_36873091
- + ('Kyshawn_George',_'SF_PF',_'WAS')_UTIL_36873448
- + ('Lauri_Markkanen',_'SF_PF',_'UTA')_UTIL_36873172
- + ('Luguentz_Dort',_'SG_SF',_'OKC')_UTIL_36873306
- + ('Luka_Doncic',_'PG',_'DAL')_UTIL_36873060
- + ('Luke_Kennard',_'SG_SF',_'MEM')_UTIL_36873641
- + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_UTIL_36873262
- + ('Malik_Beasley',_'SG_SF',_'DET')_UTIL_36873255
- + ('Marcus_Sasser',_'PG',_'DET')_UTIL_36873616
- + ('Marcus_Smart',_'PG_SG',_'MEM')_UTIL_36873373
- + ('Mark_Williams',_'C',_'CHA')_UTIL_36873260
- + ('Mason_Plumlee',_'C',_'PHX')_UTIL_36873514
- + ('Maxi_Kleber',_'PF_C',_'DAL')_UTIL_36873600
- + ('Micah_Potter',_'PF',_'UTA')_UTIL_36873859
- + ('Mikal_Bridges',_'SG_SF',_'NYK')_UTIL_36873241
- + ('Miles_McBride',_'PG_SG',_'NYK')_UTIL_36873455
- + ('Monte_Morris',_'PG',_'PHX')_UTIL_36873681
- + ('Moritz_Wagner',_'C',_'ORL')_UTIL_36873395
- + ('Moses_Brown',_'C',_'IND')_UTIL_36873880
- + ('Moussa_Diabate',_'PF_C',_'CHA')_UTIL_36873354
- + ('Myles_Turner',_'C',_'IND')_UTIL_36873201
- + ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_UTIL_36873652
- + ('OG_Anunoby',_'SF_PF',_'NYK')_UTIL_36873222
- + ('Obi_Toppin',_'PF_C',_'IND')_UTIL_36873579
- + ('Ochai_Agbaji',_'SF_PF',_'TOR')_UTIL_36873369
- + ('Oso_Ighodaro',_'PF_C',_'PHX')_UTIL_36873570
- + ('PJ_Washington',_'PF',_'DAL')_UTIL_36873178
- + ('Pascal_Siakam',_'PF',_'IND')_UTIL_36873151
- + ('Pat_Connaughton',_'SF_PF',_'MIL')_UTIL_36873637
- + ('Paul_George',_'SF_PF',_'PHI')_UTIL_36873154
- + ('Quentin_Grimes',_'SG_SF',_'DAL')_UTIL_36873311
- + ('Quenton_Jackson',_'SG_SF',_'IND')_UTIL_36873551
- + ('RJ_Barrett',_'SF_PF',_'TOR')_UTIL_36873131
- + ('Ricky_Council_IV',_'SG_SF',_'PHI')_UTIL_36873583
- + ('Ryan_Dunn',_'PF',_'PHX')_UTIL_36873619
- + ('Sam_Merrill',_'SG',_'CLE')_UTIL_36873624
- + ('Santi_Aldama',_'PF',_'MEM')_UTIL_36873272
- + ('Scottie_Barnes',_'PG_SF',_'TOR')_UTIL_36873115
- + ('Scotty_Pippen_Jr.',_'PG',_'MEM')_UTIL_36873439
- + ('Seth_Curry',_'SG',_'CHA')_UTIL_36873696
- + ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_UTIL_36873065
- + ('Simone_Fontecchio',_'PF',_'DET')_UTIL_36873627
- + ('Spencer_Dinwiddie',_'PG',_'DAL')_UTIL_36873358
- + ('Stephon_Castle',_'SG',_'SAS')_UTIL_36873330
- + ('T.J._McConnell',_'PG',_'IND')_UTIL_36873345
- + ('Taj_Gibson',_'C',_'CHA')_UTIL_36873798
- + ('Taurean_Prince',_'SF_PF',_'MIL')_UTIL_36873507
- + ('Tidjane_Salaun',_'PF',_'CHA')_UTIL_36873563
- + ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_UTIL_36873500
- + ('Tobias_Harris',_'PF',_'DET')_UTIL_36873228
- + ('Tristan_da_Silva',_'SF_PF',_'ORL')_UTIL_36873604
- + ('Tyrese_Haliburton',_'PG',_'IND')_UTIL_36873112
- + ('Tyrese_Maxey',_'PG',_'PHI')_UTIL_36873120
- + ('Tyus_Jones',_'PG',_'PHX')_UTIL_36873266
- + ('Vasilije_Micic',_'PG',_'CHA')_UTIL_36873401
- + ('Victor_Wembanyama',_'C',_'SAS')_UTIL_36873063
- + ('Walker_Kessler',_'C',_'UTA')_UTIL_36873217
- + ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_UTIL_36873336
- + ('Zach_Collins',_'C',_'SAS')_UTIL_36873446 = 1
-Must_not_play_all_8_players_from_match_IND@TOR:
- ("Ja'Kobe_Walter",_'SG',_'TOR')_G_36873511
- + ("Ja'Kobe_Walter",_'SG',_'TOR')_SG_36873511
- + ("Ja'Kobe_Walter",_'SG',_'TOR')_UTIL_36873511
- + ('Andrew_Nembhard',_'PG_SG',_'IND')_G_36873397
- + ('Andrew_Nembhard',_'PG_SG',_'IND')_PG_36873397
- + ('Andrew_Nembhard',_'PG_SG',_'IND')_SG_36873397
- + ('Andrew_Nembhard',_'PG_SG',_'IND')_UTIL_36873397
- + ('Bennedict_Mathurin',_'SG_SF',_'IND')_F_36873185
- + ('Bennedict_Mathurin',_'SG_SF',_'IND')_G_36873185
- + ('Bennedict_Mathurin',_'SG_SF',_'IND')_SF_36873185
- + ('Bennedict_Mathurin',_'SG_SF',_'IND')_SG_36873185
- + ('Bennedict_Mathurin',_'SG_SF',_'IND')_UTIL_36873185
- + ('Bruno_Fernando',_'C',_'TOR')_C_36873748
- + ('Bruno_Fernando',_'C',_'TOR')_UTIL_36873748
- + ('Chris_Boucher',_'PF_C',_'TOR')_C_36873543
- + ('Chris_Boucher',_'PF_C',_'TOR')_F_36873543
- + ('Chris_Boucher',_'PF_C',_'TOR')_PF_36873543
- + ('Chris_Boucher',_'PF_C',_'TOR')_UTIL_36873543
- + ('Davion_Mitchell',_'PG_SG',_'TOR')_G_36873566
- + ('Davion_Mitchell',_'PG_SG',_'TOR')_PG_36873566
- + ('Davion_Mitchell',_'PG_SG',_'TOR')_SG_36873566
- + ('Davion_Mitchell',_'PG_SG',_'TOR')_UTIL_36873566
- + ('Jakob_Poeltl',_'C',_'TOR')_C_36873176
- + ('Jakob_Poeltl',_'C',_'TOR')_UTIL_36873176
- + ('Jamal_Shead',_'PG',_'TOR')_G_36873745
- + ('Jamal_Shead',_'PG',_'TOR')_PG_36873745
- + ('Jamal_Shead',_'PG',_'TOR')_UTIL_36873745
- + ('Jamison_Battle',_'SF',_'TOR')_F_36873674
- + ('Jamison_Battle',_'SF',_'TOR')_SF_36873674
- + ('Jamison_Battle',_'SF',_'TOR')_UTIL_36873674
- + ('Jarace_Walker',_'SF_PF',_'IND')_F_36873528
- + ('Jarace_Walker',_'SF_PF',_'IND')_PF_36873528
- + ('Jarace_Walker',_'SF_PF',_'IND')_SF_36873528
- + ('Jarace_Walker',_'SF_PF',_'IND')_UTIL_36873528
- + ('Jonathan_Mogbo',_'C',_'TOR')_C_36873630
- + ('Jonathan_Mogbo',_'C',_'TOR')_UTIL_36873630
- + ('Moses_Brown',_'C',_'IND')_C_36873880
- + ('Moses_Brown',_'C',_'IND')_UTIL_36873880
- + ('Myles_Turner',_'C',_'IND')_C_36873201
- + ('Myles_Turner',_'C',_'IND')_UTIL_36873201
- + ('Obi_Toppin',_'PF_C',_'IND')_C_36873579
- + ('Obi_Toppin',_'PF_C',_'IND')_F_36873579
- + ('Obi_Toppin',_'PF_C',_'IND')_PF_36873579
- + ('Obi_Toppin',_'PF_C',_'IND')_UTIL_36873579
- + ('Ochai_Agbaji',_'SF_PF',_'TOR')_F_36873369
- + ('Ochai_Agbaji',_'SF_PF',_'TOR')_PF_36873369
- + ('Ochai_Agbaji',_'SF_PF',_'TOR')_SF_36873369
- + ('Ochai_Agbaji',_'SF_PF',_'TOR')_UTIL_36873369
- + ('Pascal_Siakam',_'PF',_'IND')_F_36873151
- + ('Pascal_Siakam',_'PF',_'IND')_PF_36873151
- + ('Pascal_Siakam',_'PF',_'IND')_UTIL_36873151
- + ('Quenton_Jackson',_'SG_SF',_'IND')_F_36873551
- + ('Quenton_Jackson',_'SG_SF',_'IND')_G_36873551
- + ('Quenton_Jackson',_'SG_SF',_'IND')_SF_36873551
- + ('Quenton_Jackson',_'SG_SF',_'IND')_SG_36873551
- + ('Quenton_Jackson',_'SG_SF',_'IND')_UTIL_36873551
- + ('RJ_Barrett',_'SF_PF',_'TOR')_F_36873131
- + ('RJ_Barrett',_'SF_PF',_'TOR')_PF_36873131
- + ('RJ_Barrett',_'SF_PF',_'TOR')_SF_36873131
- + ('RJ_Barrett',_'SF_PF',_'TOR')_UTIL_36873131
- + ('Scottie_Barnes',_'PG_SF',_'TOR')_F_36873115
- + ('Scottie_Barnes',_'PG_SF',_'TOR')_G_36873115
- + ('Scottie_Barnes',_'PG_SF',_'TOR')_PG_36873115
- + ('Scottie_Barnes',_'PG_SF',_'TOR')_SF_36873115
- + ('Scottie_Barnes',_'PG_SF',_'TOR')_UTIL_36873115
- + ('T.J._McConnell',_'PG',_'IND')_G_36873345
- + ('T.J._McConnell',_'PG',_'IND')_PG_36873345
- + ('T.J._McConnell',_'PG',_'IND')_UTIL_36873345
- + ('Tyrese_Haliburton',_'PG',_'IND')_G_36873112
- + ('Tyrese_Haliburton',_'PG',_'IND')_PG_36873112
- + ('Tyrese_Haliburton',_'PG',_'IND')_UTIL_36873112 <= 8
-Must_not_play_all_8_players_from_match_MEM@DAL:
- ('Brandon_Clarke',_'PF_C',_'MEM')_C_36873424
- + ('Brandon_Clarke',_'PF_C',_'MEM')_F_36873424
- + ('Brandon_Clarke',_'PF_C',_'MEM')_PF_36873424
- + ('Brandon_Clarke',_'PF_C',_'MEM')_UTIL_36873424
- + ('Daniel_Gafford',_'C',_'DAL')_C_36873246
- + ('Daniel_Gafford',_'C',_'DAL')_UTIL_36873246
- + ('Dereck_Lively_II',_'C',_'DAL')_C_36873290
- + ('Dereck_Lively_II',_'C',_'DAL')_UTIL_36873290
- + ('Desmond_Bane',_'SG_SF',_'MEM')_F_36873167
- + ('Desmond_Bane',_'SG_SF',_'MEM')_G_36873167
- + ('Desmond_Bane',_'SG_SF',_'MEM')_SF_36873167
- + ('Desmond_Bane',_'SG_SF',_'MEM')_SG_36873167
- + ('Desmond_Bane',_'SG_SF',_'MEM')_UTIL_36873167
- + ('Ja_Morant',_'PG',_'MEM')_G_36873102
- + ('Ja_Morant',_'PG',_'MEM')_PG_36873102
- + ('Ja_Morant',_'PG',_'MEM')_UTIL_36873102
- + ('Jaden_Hardy',_'PG_SG',_'DAL')_G_36873420
- + ('Jaden_Hardy',_'PG_SG',_'DAL')_PG_36873420
- + ('Jaden_Hardy',_'PG_SG',_'DAL')_SG_36873420
- + ('Jaden_Hardy',_'PG_SG',_'DAL')_UTIL_36873420
- + ('Jake_LaRavia',_'SF_PF',_'MEM')_F_36873463
- + ('Jake_LaRavia',_'SF_PF',_'MEM')_PF_36873463
- + ('Jake_LaRavia',_'SF_PF',_'MEM')_SF_36873463
- + ('Jake_LaRavia',_'SF_PF',_'MEM')_UTIL_36873463
- + ('Jaren_Jackson_Jr.',_'PF',_'MEM')_F_36873143
- + ('Jaren_Jackson_Jr.',_'PF',_'MEM')_PF_36873143
- + ('Jaren_Jackson_Jr.',_'PF',_'MEM')_UTIL_36873143
- + ('Jay_Huff',_'C',_'MEM')_C_36873622
- + ('Jay_Huff',_'C',_'MEM')_UTIL_36873622
- + ('Jaylen_Wells',_'SG_SF',_'MEM')_F_36873486
- + ('Jaylen_Wells',_'SG_SF',_'MEM')_G_36873486
- + ('Jaylen_Wells',_'SG_SF',_'MEM')_SF_36873486
- + ('Jaylen_Wells',_'SG_SF',_'MEM')_SG_36873486
- + ('Jaylen_Wells',_'SG_SF',_'MEM')_UTIL_36873486
- + ('Klay_Thompson',_'SG_SF',_'DAL')_F_36873296
- + ('Klay_Thompson',_'SG_SF',_'DAL')_G_36873296
- + ('Klay_Thompson',_'SG_SF',_'DAL')_SF_36873296
- + ('Klay_Thompson',_'SG_SF',_'DAL')_SG_36873296
- + ('Klay_Thompson',_'SG_SF',_'DAL')_UTIL_36873296
- + ('Kyrie_Irving',_'PG_SG',_'DAL')_G_36873091
- + ('Kyrie_Irving',_'PG_SG',_'DAL')_PG_36873091
- + ('Kyrie_Irving',_'PG_SG',_'DAL')_SG_36873091
- + ('Kyrie_Irving',_'PG_SG',_'DAL')_UTIL_36873091
- + ('Luka_Doncic',_'PG',_'DAL')_G_36873060
- + ('Luka_Doncic',_'PG',_'DAL')_PG_36873060
- + ('Luka_Doncic',_'PG',_'DAL')_UTIL_36873060
- + ('Luke_Kennard',_'SG_SF',_'MEM')_F_36873641
- + ('Luke_Kennard',_'SG_SF',_'MEM')_G_36873641
- + ('Luke_Kennard',_'SG_SF',_'MEM')_SF_36873641
- + ('Luke_Kennard',_'SG_SF',_'MEM')_SG_36873641
- + ('Luke_Kennard',_'SG_SF',_'MEM')_UTIL_36873641
- + ('Marcus_Smart',_'PG_SG',_'MEM')_G_36873373
- + ('Marcus_Smart',_'PG_SG',_'MEM')_PG_36873373
- + ('Marcus_Smart',_'PG_SG',_'MEM')_SG_36873373
- + ('Marcus_Smart',_'PG_SG',_'MEM')_UTIL_36873373
- + ('Maxi_Kleber',_'PF_C',_'DAL')_C_36873600
- + ('Maxi_Kleber',_'PF_C',_'DAL')_F_36873600
- + ('Maxi_Kleber',_'PF_C',_'DAL')_PF_36873600
- + ('Maxi_Kleber',_'PF_C',_'DAL')_UTIL_36873600
- + ('PJ_Washington',_'PF',_'DAL')_F_36873178
- + ('PJ_Washington',_'PF',_'DAL')_PF_36873178
- + ('PJ_Washington',_'PF',_'DAL')_UTIL_36873178
- + ('Quentin_Grimes',_'SG_SF',_'DAL')_F_36873311
- + ('Quentin_Grimes',_'SG_SF',_'DAL')_G_36873311
- + ('Quentin_Grimes',_'SG_SF',_'DAL')_SF_36873311
- + ('Quentin_Grimes',_'SG_SF',_'DAL')_SG_36873311
- + ('Quentin_Grimes',_'SG_SF',_'DAL')_UTIL_36873311
- + ('Santi_Aldama',_'PF',_'MEM')_F_36873272
- + ('Santi_Aldama',_'PF',_'MEM')_PF_36873272
- + ('Santi_Aldama',_'PF',_'MEM')_UTIL_36873272
- + ('Scotty_Pippen_Jr.',_'PG',_'MEM')_G_36873439
- + ('Scotty_Pippen_Jr.',_'PG',_'MEM')_PG_36873439
- + ('Scotty_Pippen_Jr.',_'PG',_'MEM')_UTIL_36873439
- + ('Spencer_Dinwiddie',_'PG',_'DAL')_G_36873358
- + ('Spencer_Dinwiddie',_'PG',_'DAL')_PG_36873358
- + ('Spencer_Dinwiddie',_'PG',_'DAL')_UTIL_36873358 <= 8
-Must_not_play_all_8_players_from_match_MIL@DET:
- ('AJ_Green',_'PG_SG',_'MIL')_G_36873559
- + ('AJ_Green',_'PG_SG',_'MIL')_PG_36873559
- + ('AJ_Green',_'PG_SG',_'MIL')_SG_36873559
- + ('AJ_Green',_'PG_SG',_'MIL')_UTIL_36873559
- + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_F_36873591
- + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_G_36873591
- + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SF_36873591
- + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SG_36873591
- + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_UTIL_36873591
- + ('Ausar_Thompson',_'SF_PF',_'DET')_F_36873478
- + ('Ausar_Thompson',_'SF_PF',_'DET')_PF_36873478
- + ('Ausar_Thompson',_'SF_PF',_'DET')_SF_36873478
- + ('Ausar_Thompson',_'SF_PF',_'DET')_UTIL_36873478
- + ('Bobby_Portis',_'PF_C',_'MIL')_C_36873248
- + ('Bobby_Portis',_'PF_C',_'MIL')_F_36873248
- + ('Bobby_Portis',_'PF_C',_'MIL')_PF_36873248
- + ('Bobby_Portis',_'PF_C',_'MIL')_UTIL_36873248
- + ('Brook_Lopez',_'C',_'MIL')_C_36873212
- + ('Brook_Lopez',_'C',_'MIL')_UTIL_36873212
- + ('Cade_Cunningham',_'PG',_'DET')_G_36873073
- + ('Cade_Cunningham',_'PG',_'DET')_PG_36873073
- + ('Cade_Cunningham',_'PG',_'DET')_UTIL_36873073
- + ('Damian_Lillard',_'PG',_'MIL')_G_36873080
- + ('Damian_Lillard',_'PG',_'MIL')_PG_36873080
- + ('Damian_Lillard',_'PG',_'MIL')_UTIL_36873080
- + ('Delon_Wright',_'PG',_'MIL')_G_36873688
- + ('Delon_Wright',_'PG',_'MIL')_PG_36873688
- + ('Delon_Wright',_'PG',_'MIL')_UTIL_36873688
- + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_F_36873532
- + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_G_36873532
- + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SF_36873532
- + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SG_36873532
- + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_UTIL_36873532
- + ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_C_36873056
- + ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_F_36873056
- + ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_PF_36873056
- + ('Giannis_Antetokounmpo',_'PF_C',_'MIL')_UTIL_36873056
- + ('Isaiah_Stewart',_'C',_'DET')_C_36873476
- + ('Isaiah_Stewart',_'C',_'DET')_UTIL_36873476
- + ('Jaden_Ivey',_'PG_SG',_'DET')_G_36873139
- + ('Jaden_Ivey',_'PG_SG',_'DET')_PG_36873139
- + ('Jaden_Ivey',_'PG_SG',_'DET')_SG_36873139
- + ('Jaden_Ivey',_'PG_SG',_'DET')_UTIL_36873139
- + ('Jalen_Duren',_'C',_'DET')_C_36873236
- + ('Jalen_Duren',_'C',_'DET')_UTIL_36873236
- + ('Malik_Beasley',_'SG_SF',_'DET')_F_36873255
- + ('Malik_Beasley',_'SG_SF',_'DET')_G_36873255
- + ('Malik_Beasley',_'SG_SF',_'DET')_SF_36873255
- + ('Malik_Beasley',_'SG_SF',_'DET')_SG_36873255
- + ('Malik_Beasley',_'SG_SF',_'DET')_UTIL_36873255
- + ('Marcus_Sasser',_'PG',_'DET')_G_36873616
- + ('Marcus_Sasser',_'PG',_'DET')_PG_36873616
- + ('Marcus_Sasser',_'PG',_'DET')_UTIL_36873616
- + ('Pat_Connaughton',_'SF_PF',_'MIL')_F_36873637
- + ('Pat_Connaughton',_'SF_PF',_'MIL')_PF_36873637
- + ('Pat_Connaughton',_'SF_PF',_'MIL')_SF_36873637
- + ('Pat_Connaughton',_'SF_PF',_'MIL')_UTIL_36873637
- + ('Simone_Fontecchio',_'PF',_'DET')_F_36873627
- + ('Simone_Fontecchio',_'PF',_'DET')_PF_36873627
- + ('Simone_Fontecchio',_'PF',_'DET')_UTIL_36873627
- + ('Taurean_Prince',_'SF_PF',_'MIL')_F_36873507
- + ('Taurean_Prince',_'SF_PF',_'MIL')_PF_36873507
- + ('Taurean_Prince',_'SF_PF',_'MIL')_SF_36873507
- + ('Taurean_Prince',_'SF_PF',_'MIL')_UTIL_36873507
- + ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_F_36873500
- + ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_G_36873500
- + ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_SF_36873500
- + ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_SG_36873500
- + ('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_UTIL_36873500
- + ('Tobias_Harris',_'PF',_'DET')_F_36873228
- + ('Tobias_Harris',_'PF',_'DET')_PF_36873228
- + ('Tobias_Harris',_'PF',_'DET')_UTIL_36873228 <= 8
-Must_not_play_all_8_players_from_match_ORL@NYK:
- ('Anthony_Black',_'PG_SG',_'ORL')_G_36873472
- + ('Anthony_Black',_'PG_SG',_'ORL')_PG_36873472
- + ('Anthony_Black',_'PG_SG',_'ORL')_SG_36873472
- + ('Anthony_Black',_'PG_SG',_'ORL')_UTIL_36873472
- + ('Cameron_Payne',_'PG_SG',_'NYK')_G_36873547
- + ('Cameron_Payne',_'PG_SG',_'NYK')_PG_36873547
- + ('Cameron_Payne',_'PG_SG',_'NYK')_SG_36873547
- + ('Cameron_Payne',_'PG_SG',_'NYK')_UTIL_36873547
- + ('Cole_Anthony',_'PG_SG',_'ORL')_G_36873646
- + ('Cole_Anthony',_'PG_SG',_'ORL')_PG_36873646
- + ('Cole_Anthony',_'PG_SG',_'ORL')_SG_36873646
- + ('Cole_Anthony',_'PG_SG',_'ORL')_UTIL_36873646
- + ('Franz_Wagner',_'SF_PF',_'ORL')_F_36873076
- + ('Franz_Wagner',_'SF_PF',_'ORL')_PF_36873076
- + ('Franz_Wagner',_'SF_PF',_'ORL')_SF_36873076
- + ('Franz_Wagner',_'SF_PF',_'ORL')_UTIL_36873076
- + ('Goga_Bitadze',_'C',_'ORL')_C_36873304
- + ('Goga_Bitadze',_'C',_'ORL')_UTIL_36873304
- + ('Jalen_Brunson',_'PG',_'NYK')_G_36873109
- + ('Jalen_Brunson',_'PG',_'NYK')_PG_36873109
- + ('Jalen_Brunson',_'PG',_'NYK')_UTIL_36873109
- + ('Jalen_Suggs',_'PG',_'ORL')_G_36873219
- + ('Jalen_Suggs',_'PG',_'ORL')_PG_36873219
- + ('Jalen_Suggs',_'PG',_'ORL')_UTIL_36873219
- + ('Jericho_Sims',_'PF_C',_'NYK')_C_36873610
- + ('Jericho_Sims',_'PF_C',_'NYK')_F_36873610
- + ('Jericho_Sims',_'PF_C',_'NYK')_PF_36873610
- + ('Jericho_Sims',_'PF_C',_'NYK')_UTIL_36873610
- + ('Jonathan_Isaac',_'PF_C',_'ORL')_C_36873496
- + ('Jonathan_Isaac',_'PF_C',_'ORL')_F_36873496
- + ('Jonathan_Isaac',_'PF_C',_'ORL')_PF_36873496
- + ('Jonathan_Isaac',_'PF_C',_'ORL')_UTIL_36873496
- + ('Josh_Hart',_'SF_PF',_'NYK')_F_36873197
- + ('Josh_Hart',_'SF_PF',_'NYK')_PF_36873197
- + ('Josh_Hart',_'SF_PF',_'NYK')_SF_36873197
- + ('Josh_Hart',_'SF_PF',_'NYK')_UTIL_36873197
- + ('Karl#Anthony_Towns',_'C',_'NYK')_C_36873085
- + ('Karl#Anthony_Towns',_'C',_'NYK')_UTIL_36873085
- + ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_G_36873432
- + ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_SG_36873432
- + ('Kentavious_Caldwell#Pope',_'SG',_'ORL')_UTIL_36873432
- + ('Mikal_Bridges',_'SG_SF',_'NYK')_F_36873241
- + ('Mikal_Bridges',_'SG_SF',_'NYK')_G_36873241
- + ('Mikal_Bridges',_'SG_SF',_'NYK')_SF_36873241
- + ('Mikal_Bridges',_'SG_SF',_'NYK')_SG_36873241
- + ('Mikal_Bridges',_'SG_SF',_'NYK')_UTIL_36873241
- + ('Miles_McBride',_'PG_SG',_'NYK')_G_36873455
- + ('Miles_McBride',_'PG_SG',_'NYK')_PG_36873455
- + ('Miles_McBride',_'PG_SG',_'NYK')_SG_36873455
- + ('Miles_McBride',_'PG_SG',_'NYK')_UTIL_36873455
- + ('Moritz_Wagner',_'C',_'ORL')_C_36873395
- + ('Moritz_Wagner',_'C',_'ORL')_UTIL_36873395
- + ('OG_Anunoby',_'SF_PF',_'NYK')_F_36873222
- + ('OG_Anunoby',_'SF_PF',_'NYK')_PF_36873222
- + ('OG_Anunoby',_'SF_PF',_'NYK')_SF_36873222
- + ('OG_Anunoby',_'SF_PF',_'NYK')_UTIL_36873222
- + ('Tristan_da_Silva',_'SF_PF',_'ORL')_F_36873604
- + ('Tristan_da_Silva',_'SF_PF',_'ORL')_PF_36873604
- + ('Tristan_da_Silva',_'SF_PF',_'ORL')_SF_36873604
- + ('Tristan_da_Silva',_'SF_PF',_'ORL')_UTIL_36873604
- + ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_C_36873336
- + ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_F_36873336
- + ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_PF_36873336
- + ('Wendell_Carter_Jr.',_'PF_C',_'ORL')_UTIL_36873336 <= 8
-Must_not_play_all_8_players_from_match_PHI@CHA:
- ('Adem_Bona',_'C',_'PHI')_C_36873608
- + ('Adem_Bona',_'C',_'PHI')_UTIL_36873608
- + ('Brandon_Miller',_'SG_SF',_'CHA')_F_36873126
- + ('Brandon_Miller',_'SG_SF',_'CHA')_G_36873126
- + ('Brandon_Miller',_'SG_SF',_'CHA')_SF_36873126
- + ('Brandon_Miller',_'SG_SF',_'CHA')_SG_36873126
- + ('Brandon_Miller',_'SG_SF',_'CHA')_UTIL_36873126
- + ('Caleb_Martin',_'PF',_'PHI')_F_36873377
- + ('Caleb_Martin',_'PF',_'PHI')_PF_36873377
- + ('Caleb_Martin',_'PF',_'PHI')_UTIL_36873377
- + ('Cody_Martin',_'SF',_'CHA')_F_36873348
- + ('Cody_Martin',_'SF',_'CHA')_SF_36873348
- + ('Cody_Martin',_'SF',_'CHA')_UTIL_36873348
- + ('Guerschon_Yabusele',_'PF_C',_'PHI')_C_36873275
- + ('Guerschon_Yabusele',_'PF_C',_'PHI')_F_36873275
- + ('Guerschon_Yabusele',_'PF_C',_'PHI')_PF_36873275
- + ('Guerschon_Yabusele',_'PF_C',_'PHI')_UTIL_36873275
- + ('Jared_McCain',_'PG_SG',_'PHI')_G_36873190
- + ('Jared_McCain',_'PG_SG',_'PHI')_PG_36873190
- + ('Jared_McCain',_'PG_SG',_'PHI')_SG_36873190
- + ('Jared_McCain',_'PG_SG',_'PHI')_UTIL_36873190
- + ('Josh_Green',_'SF_PF',_'CHA')_F_36873380
- + ('Josh_Green',_'SF_PF',_'CHA')_PF_36873380
- + ('Josh_Green',_'SF_PF',_'CHA')_SF_36873380
- + ('Josh_Green',_'SF_PF',_'CHA')_UTIL_36873380
- + ('KJ_Martin',_'SF_PF',_'PHI')_F_36873537
- + ('KJ_Martin',_'SF_PF',_'PHI')_PF_36873537
- + ('KJ_Martin',_'SF_PF',_'PHI')_SF_36873537
- + ('KJ_Martin',_'SF_PF',_'PHI')_UTIL_36873537
- + ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_F_36873316
- + ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_G_36873316
- + ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_SF_36873316
- + ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_SG_36873316
- + ('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_UTIL_36873316
- + ('Kyle_Lowry',_'PG',_'PHI')_G_36873556
- + ('Kyle_Lowry',_'PG',_'PHI')_PG_36873556
- + ('Kyle_Lowry',_'PG',_'PHI')_UTIL_36873556
- + ('Mark_Williams',_'C',_'CHA')_C_36873260
- + ('Mark_Williams',_'C',_'CHA')_UTIL_36873260
- + ('Moussa_Diabate',_'PF_C',_'CHA')_C_36873354
- + ('Moussa_Diabate',_'PF_C',_'CHA')_F_36873354
- + ('Moussa_Diabate',_'PF_C',_'CHA')_PF_36873354
- + ('Moussa_Diabate',_'PF_C',_'CHA')_UTIL_36873354
- + ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_F_36873652
- + ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_G_36873652
- + ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_SF_36873652
- + ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_SG_36873652
- + ('Nick_Smith_Jr.',_'SG_SF',_'CHA')_UTIL_36873652
- + ('Paul_George',_'SF_PF',_'PHI')_F_36873154
- + ('Paul_George',_'SF_PF',_'PHI')_PF_36873154
- + ('Paul_George',_'SF_PF',_'PHI')_SF_36873154
- + ('Paul_George',_'SF_PF',_'PHI')_UTIL_36873154
- + ('Ricky_Council_IV',_'SG_SF',_'PHI')_F_36873583
- + ('Ricky_Council_IV',_'SG_SF',_'PHI')_G_36873583
- + ('Ricky_Council_IV',_'SG_SF',_'PHI')_SF_36873583
- + ('Ricky_Council_IV',_'SG_SF',_'PHI')_SG_36873583
- + ('Ricky_Council_IV',_'SG_SF',_'PHI')_UTIL_36873583
- + ('Seth_Curry',_'SG',_'CHA')_G_36873696
- + ('Seth_Curry',_'SG',_'CHA')_SG_36873696
- + ('Seth_Curry',_'SG',_'CHA')_UTIL_36873696
- + ('Taj_Gibson',_'C',_'CHA')_C_36873798
- + ('Taj_Gibson',_'C',_'CHA')_UTIL_36873798
- + ('Tidjane_Salaun',_'PF',_'CHA')_F_36873563
- + ('Tidjane_Salaun',_'PF',_'CHA')_PF_36873563
- + ('Tidjane_Salaun',_'PF',_'CHA')_UTIL_36873563
- + ('Tyrese_Maxey',_'PG',_'PHI')_G_36873120
- + ('Tyrese_Maxey',_'PG',_'PHI')_PG_36873120
- + ('Tyrese_Maxey',_'PG',_'PHI')_UTIL_36873120
- + ('Vasilije_Micic',_'PG',_'CHA')_G_36873401
- + ('Vasilije_Micic',_'PG',_'CHA')_PG_36873401
- + ('Vasilije_Micic',_'PG',_'CHA')_UTIL_36873401 <= 8
-Must_not_play_all_8_players_from_match_SAS@PHX:
- ("Royce_O'Neale",_'SF_PF',_'PHX')_F_36873391
- + ("Royce_O'Neale",_'SF_PF',_'PHX')_PF_36873391
- + ("Royce_O'Neale",_'SF_PF',_'PHX')_SF_36873391
- + ("Royce_O'Neale",_'SF_PF',_'PHX')_UTIL_36873391
- + ('Bradley_Beal',_'SG_SF',_'PHX')_F_36873146
- + ('Bradley_Beal',_'SG_SF',_'PHX')_G_36873146
- + ('Bradley_Beal',_'SG_SF',_'PHX')_SF_36873146
- + ('Bradley_Beal',_'SG_SF',_'PHX')_SG_36873146
- + ('Bradley_Beal',_'SG_SF',_'PHX')_UTIL_36873146
- + ('Chris_Paul',_'PG',_'SAS')_G_36873238
- + ('Chris_Paul',_'PG',_'SAS')_PG_36873238
- + ('Chris_Paul',_'PG',_'SAS')_UTIL_36873238
- + ('Devin_Booker',_'PG_SG',_'PHX')_G_36873095
- + ('Devin_Booker',_'PG_SG',_'PHX')_PG_36873095
- + ('Devin_Booker',_'PG_SG',_'PHX')_SG_36873095
- + ('Devin_Booker',_'PG_SG',_'PHX')_UTIL_36873095
- + ('Devin_Vassell',_'SG',_'SAS')_G_36873340
- + ('Devin_Vassell',_'SG',_'SAS')_SG_36873340
- + ('Devin_Vassell',_'SG',_'SAS')_UTIL_36873340
- + ('Grayson_Allen',_'SG',_'PHX')_G_36873351
- + ('Grayson_Allen',_'SG',_'PHX')_SG_36873351
- + ('Grayson_Allen',_'SG',_'PHX')_UTIL_36873351
- + ('Harrison_Barnes',_'SF_PF',_'SAS')_F_36873413
- + ('Harrison_Barnes',_'SF_PF',_'SAS')_PF_36873413
- + ('Harrison_Barnes',_'SF_PF',_'SAS')_SF_36873413
- + ('Harrison_Barnes',_'SF_PF',_'SAS')_UTIL_36873413
- + ('Jeremy_Sochan',_'C',_'SAS')_C_36873226
- + ('Jeremy_Sochan',_'C',_'SAS')_UTIL_36873226
- + ('Josh_Okogie',_'SF',_'PHX')_F_36873452
- + ('Josh_Okogie',_'SF',_'PHX')_SF_36873452
- + ('Josh_Okogie',_'SF',_'PHX')_UTIL_36873452
- + ('Julian_Champagnie',_'SF_PF',_'SAS')_F_36873326
- + ('Julian_Champagnie',_'SF_PF',_'SAS')_PF_36873326
- + ('Julian_Champagnie',_'SF_PF',_'SAS')_SF_36873326
- + ('Julian_Champagnie',_'SF_PF',_'SAS')_UTIL_36873326
- + ('Keldon_Johnson',_'SF_PF',_'SAS')_F_36873365
- + ('Keldon_Johnson',_'SF_PF',_'SAS')_PF_36873365
- + ('Keldon_Johnson',_'SF_PF',_'SAS')_SF_36873365
- + ('Keldon_Johnson',_'SF_PF',_'SAS')_UTIL_36873365
- + ('Kevin_Durant',_'PF_C',_'PHX')_C_36873105
- + ('Kevin_Durant',_'PF_C',_'PHX')_F_36873105
- + ('Kevin_Durant',_'PF_C',_'PHX')_PF_36873105
- + ('Kevin_Durant',_'PF_C',_'PHX')_UTIL_36873105
- + ('Mason_Plumlee',_'C',_'PHX')_C_36873514
- + ('Mason_Plumlee',_'C',_'PHX')_UTIL_36873514
- + ('Monte_Morris',_'PG',_'PHX')_G_36873681
- + ('Monte_Morris',_'PG',_'PHX')_PG_36873681
- + ('Monte_Morris',_'PG',_'PHX')_UTIL_36873681
- + ('Oso_Ighodaro',_'PF_C',_'PHX')_C_36873570
- + ('Oso_Ighodaro',_'PF_C',_'PHX')_F_36873570
- + ('Oso_Ighodaro',_'PF_C',_'PHX')_PF_36873570
- + ('Oso_Ighodaro',_'PF_C',_'PHX')_UTIL_36873570
- + ('Ryan_Dunn',_'PF',_'PHX')_F_36873619
- + ('Ryan_Dunn',_'PF',_'PHX')_PF_36873619
- + ('Ryan_Dunn',_'PF',_'PHX')_UTIL_36873619
- + ('Stephon_Castle',_'SG',_'SAS')_G_36873330
- + ('Stephon_Castle',_'SG',_'SAS')_SG_36873330
- + ('Stephon_Castle',_'SG',_'SAS')_UTIL_36873330
- + ('Tyus_Jones',_'PG',_'PHX')_G_36873266
- + ('Tyus_Jones',_'PG',_'PHX')_PG_36873266
- + ('Tyus_Jones',_'PG',_'PHX')_UTIL_36873266
- + ('Victor_Wembanyama',_'C',_'SAS')_C_36873063
- + ('Victor_Wembanyama',_'C',_'SAS')_UTIL_36873063
- + ('Zach_Collins',_'C',_'SAS')_C_36873446
- + ('Zach_Collins',_'C',_'SAS')_UTIL_36873446 <= 8
-Must_not_play_all_8_players_from_match_UTA@OKC:
- ('Aaron_Wiggins',_'SF_PF',_'OKC')_F_36873524
- + ('Aaron_Wiggins',_'SF_PF',_'OKC')_PF_36873524
- + ('Aaron_Wiggins',_'SF_PF',_'OKC')_SF_36873524
- + ('Aaron_Wiggins',_'SF_PF',_'OKC')_UTIL_36873524
- + ('Ajay_Mitchell',_'PG',_'OKC')_G_36873706
- + ('Ajay_Mitchell',_'PG',_'OKC')_PG_36873706
- + ('Ajay_Mitchell',_'PG',_'OKC')_UTIL_36873706
- + ('Brice_Sensabaugh',_'SF',_'UTA')_F_36873588
- + ('Brice_Sensabaugh',_'SF',_'UTA')_SF_36873588
- + ('Brice_Sensabaugh',_'SF',_'UTA')_UTIL_36873588
- + ('Cason_Wallace',_'PG_SG',_'OKC')_G_36873428
- + ('Cason_Wallace',_'PG_SG',_'OKC')_PG_36873428
- + ('Cason_Wallace',_'PG_SG',_'OKC')_SG_36873428
- + ('Cason_Wallace',_'PG_SG',_'OKC')_UTIL_36873428
- + ('Collin_Sexton',_'PG_SG',_'UTA')_G_36873208
- + ('Collin_Sexton',_'PG_SG',_'UTA')_PG_36873208
- + ('Collin_Sexton',_'PG_SG',_'UTA')_SG_36873208
- + ('Collin_Sexton',_'PG_SG',_'UTA')_UTIL_36873208
- + ('Dillon_Jones',_'PF',_'OKC')_F_36873699
- + ('Dillon_Jones',_'PF',_'OKC')_PF_36873699
- + ('Dillon_Jones',_'PF',_'OKC')_UTIL_36873699
- + ('Drew_Eubanks',_'C',_'UTA')_C_36873691
- + ('Drew_Eubanks',_'C',_'UTA')_UTIL_36873691
- + ('Isaiah_Collier',_'PG',_'UTA')_G_36873862
- + ('Isaiah_Collier',_'PG',_'UTA')_PG_36873862
- + ('Isaiah_Collier',_'PG',_'UTA')_UTIL_36873862
- + ('Isaiah_Hartenstein',_'C',_'OKC')_C_36873165
- + ('Isaiah_Hartenstein',_'C',_'OKC')_UTIL_36873165
- + ('Isaiah_Joe',_'SG_SF',_'OKC')_F_36873574
- + ('Isaiah_Joe',_'SG_SF',_'OKC')_G_36873574
- + ('Isaiah_Joe',_'SG_SF',_'OKC')_SF_36873574
- + ('Isaiah_Joe',_'SG_SF',_'OKC')_SG_36873574
- + ('Isaiah_Joe',_'SG_SF',_'OKC')_UTIL_36873574
- + ('Jalen_Williams',_'PF',_'OKC')_F_36873099
- + ('Jalen_Williams',_'PF',_'OKC')_PF_36873099
- + ('Jalen_Williams',_'PF',_'OKC')_UTIL_36873099
- + ('John_Collins',_'PF_C',_'UTA')_C_36873161
- + ('John_Collins',_'PF_C',_'UTA')_F_36873161
- + ('John_Collins',_'PF_C',_'UTA')_PF_36873161
- + ('John_Collins',_'PF_C',_'UTA')_UTIL_36873161
- + ('Johnny_Juzang',_'SG_SF',_'UTA')_F_36873663
- + ('Johnny_Juzang',_'SG_SF',_'UTA')_G_36873663
- + ('Johnny_Juzang',_'SG_SF',_'UTA')_SF_36873663
- + ('Johnny_Juzang',_'SG_SF',_'UTA')_SG_36873663
- + ('Johnny_Juzang',_'SG_SF',_'UTA')_UTIL_36873663
- + ('Kenrich_Williams',_'PF_C',_'OKC')_C_36873684
- + ('Kenrich_Williams',_'PF_C',_'OKC')_F_36873684
- + ('Kenrich_Williams',_'PF_C',_'OKC')_PF_36873684
- + ('Kenrich_Williams',_'PF_C',_'OKC')_UTIL_36873684
- + ('Keyonte_George',_'PG',_'UTA')_G_36873252
- + ('Keyonte_George',_'PG',_'UTA')_PG_36873252
- + ('Keyonte_George',_'PG',_'UTA')_UTIL_36873252
- + ('Lauri_Markkanen',_'SF_PF',_'UTA')_F_36873172
- + ('Lauri_Markkanen',_'SF_PF',_'UTA')_PF_36873172
- + ('Lauri_Markkanen',_'SF_PF',_'UTA')_SF_36873172
- + ('Lauri_Markkanen',_'SF_PF',_'UTA')_UTIL_36873172
- + ('Luguentz_Dort',_'SG_SF',_'OKC')_F_36873306
- + ('Luguentz_Dort',_'SG_SF',_'OKC')_G_36873306
- + ('Luguentz_Dort',_'SG_SF',_'OKC')_SF_36873306
- + ('Luguentz_Dort',_'SG_SF',_'OKC')_SG_36873306
- + ('Luguentz_Dort',_'SG_SF',_'OKC')_UTIL_36873306
- + ('Micah_Potter',_'PF',_'UTA')_F_36873859
- + ('Micah_Potter',_'PF',_'UTA')_PF_36873859
- + ('Micah_Potter',_'PF',_'UTA')_UTIL_36873859
- + ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_G_36873065
- + ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_PG_36873065
- + ('Shai_Gilgeous#Alexander',_'PG',_'OKC')_UTIL_36873065
- + ('Walker_Kessler',_'C',_'UTA')_C_36873217
- + ('Walker_Kessler',_'C',_'UTA')_UTIL_36873217 <= 8
-Must_not_play_all_8_players_from_match_WAS@CLE:
- ('Alexandre_Sarr',_'PF_C',_'WAS')_C_36873292
- + ('Alexandre_Sarr',_'PF_C',_'WAS')_F_36873292
- + ('Alexandre_Sarr',_'PF_C',_'WAS')_PF_36873292
- + ('Alexandre_Sarr',_'PF_C',_'WAS')_UTIL_36873292
- + ('Anthony_Gill',_'PF_C',_'WAS')_C_36873904
- + ('Anthony_Gill',_'PF_C',_'WAS')_F_36873904
- + ('Anthony_Gill',_'PF_C',_'WAS')_PF_36873904
- + ('Anthony_Gill',_'PF_C',_'WAS')_UTIL_36873904
- + ('Bilal_Coulibaly',_'SF',_'WAS')_F_36873287
- + ('Bilal_Coulibaly',_'SF',_'WAS')_SF_36873287
- + ('Bilal_Coulibaly',_'SF',_'WAS')_UTIL_36873287
- + ('Caris_LeVert',_'PG_SG',_'CLE')_G_36873361
- + ('Caris_LeVert',_'PG_SG',_'CLE')_PG_36873361
- + ('Caris_LeVert',_'PG_SG',_'CLE')_SG_36873361
- + ('Caris_LeVert',_'PG_SG',_'CLE')_UTIL_36873361
- + ('Carlton_Carrington',_'PG_SG',_'WAS')_G_36873404
- + ('Carlton_Carrington',_'PG_SG',_'WAS')_PG_36873404
- + ('Carlton_Carrington',_'PG_SG',_'WAS')_SG_36873404
- + ('Carlton_Carrington',_'PG_SG',_'WAS')_UTIL_36873404
- + ('Corey_Kispert',_'SG_SF',_'WAS')_F_36873408
- + ('Corey_Kispert',_'SG_SF',_'WAS')_G_36873408
- + ('Corey_Kispert',_'SG_SF',_'WAS')_SF_36873408
- + ('Corey_Kispert',_'SG_SF',_'WAS')_SG_36873408
- + ('Corey_Kispert',_'SG_SF',_'WAS')_UTIL_36873408
- + ('Darius_Garland',_'PG',_'CLE')_G_36873158
- + ('Darius_Garland',_'PG',_'CLE')_PG_36873158
- + ('Darius_Garland',_'PG',_'CLE')_UTIL_36873158
- + ('Dean_Wade',_'SF_PF',_'CLE')_F_36873596
- + ('Dean_Wade',_'SF_PF',_'CLE')_PF_36873596
- + ('Dean_Wade',_'SF_PF',_'CLE')_SF_36873596
- + ('Dean_Wade',_'SF_PF',_'CLE')_UTIL_36873596
- + ('Donovan_Mitchell',_'PG_SG',_'CLE')_G_36873087
- + ('Donovan_Mitchell',_'PG_SG',_'CLE')_PG_36873087
- + ('Donovan_Mitchell',_'PG_SG',_'CLE')_SG_36873087
- + ('Donovan_Mitchell',_'PG_SG',_'CLE')_UTIL_36873087
- + ('Evan_Mobley',_'PF_C',_'CLE')_C_36873135
- + ('Evan_Mobley',_'PF_C',_'CLE')_F_36873135
- + ('Evan_Mobley',_'PF_C',_'CLE')_PF_36873135
- + ('Evan_Mobley',_'PF_C',_'CLE')_UTIL_36873135
- + ('Georges_Niang',_'SF_PF',_'CLE')_F_36873435
- + ('Georges_Niang',_'SF_PF',_'CLE')_PF_36873435
- + ('Georges_Niang',_'SF_PF',_'CLE')_SF_36873435
- + ('Georges_Niang',_'SF_PF',_'CLE')_UTIL_36873435
- + ('Isaac_Okoro',_'SG_SF',_'CLE')_F_36873516
- + ('Isaac_Okoro',_'SG_SF',_'CLE')_G_36873516
- + ('Isaac_Okoro',_'SG_SF',_'CLE')_SF_36873516
- + ('Isaac_Okoro',_'SG_SF',_'CLE')_SG_36873516
- + ('Isaac_Okoro',_'SG_SF',_'CLE')_UTIL_36873516
- + ('Jared_Butler',_'PG',_'WAS')_G_36873891
- + ('Jared_Butler',_'PG',_'WAS')_PG_36873891
- + ('Jared_Butler',_'PG',_'WAS')_UTIL_36873891
- + ('Jarrett_Allen',_'C',_'CLE')_C_36873206
- + ('Jarrett_Allen',_'C',_'CLE')_UTIL_36873206
- + ('Jonas_Valanciunas',_'C',_'WAS')_C_36873324
- + ('Jonas_Valanciunas',_'C',_'WAS')_UTIL_36873324
- + ('Jordan_Poole',_'PG_SG',_'WAS')_G_36873181
- + ('Jordan_Poole',_'PG_SG',_'WAS')_PG_36873181
- + ('Jordan_Poole',_'PG_SG',_'WAS')_SG_36873181
- + ('Jordan_Poole',_'PG_SG',_'WAS')_UTIL_36873181
- + ('Kyshawn_George',_'SF_PF',_'WAS')_F_36873448
- + ('Kyshawn_George',_'SF_PF',_'WAS')_PF_36873448
- + ('Kyshawn_George',_'SF_PF',_'WAS')_SF_36873448
- + ('Kyshawn_George',_'SF_PF',_'WAS')_UTIL_36873448
- + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_G_36873262
- + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_PG_36873262
- + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_SG_36873262
- + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_UTIL_36873262
- + ('Sam_Merrill',_'SG',_'CLE')_G_36873624
- + ('Sam_Merrill',_'SG',_'CLE')_SG_36873624
- + ('Sam_Merrill',_'SG',_'CLE')_UTIL_36873624 <= 8
+ ('Alexandre_Sarr',_'PF_C',_'WAS')_C_36791220
+ + ('Alexandre_Sarr',_'PF_C',_'WAS')_F_36791220
+ + ('Alexandre_Sarr',_'PF_C',_'WAS')_PF_36791220
+ + ('Alexandre_Sarr',_'PF_C',_'WAS')_UTIL_36791220
+ + ('Bilal_Coulibaly',_'SF',_'WAS')_F_36791159
+ + ('Bilal_Coulibaly',_'SF',_'WAS')_SF_36791159
+ + ('Bilal_Coulibaly',_'SF',_'WAS')_UTIL_36791159
+ + ('Carlton_Carrington',_'PG_SG',_'WAS')_G_36791212
+ + ('Carlton_Carrington',_'PG_SG',_'WAS')_PG_36791212
+ + ('Carlton_Carrington',_'PG_SG',_'WAS')_SG_36791212
+ + ('Carlton_Carrington',_'PG_SG',_'WAS')_UTIL_36791212
+ + ('Corey_Kispert',_'SG_SF',_'WAS')_F_36791268
+ + ('Corey_Kispert',_'SG_SF',_'WAS')_G_36791268
+ + ('Corey_Kispert',_'SG_SF',_'WAS')_SF_36791268
+ + ('Corey_Kispert',_'SG_SF',_'WAS')_SG_36791268
+ + ('Corey_Kispert',_'SG_SF',_'WAS')_UTIL_36791268
+ + ('Jonas_Valanciunas',_'C',_'WAS')_C_36791237
+ + ('Jonas_Valanciunas',_'C',_'WAS')_UTIL_36791237
+ + ('Kyle_Kuzma',_'PF',_'WAS')_F_36791136
+ + ('Kyle_Kuzma',_'PF',_'WAS')_PF_36791136
+ + ('Kyle_Kuzma',_'PF',_'WAS')_UTIL_36791136
+ + ('Kyshawn_George',_'SF_PF',_'WAS')_F_36791286
+ + ('Kyshawn_George',_'SF_PF',_'WAS')_PF_36791286
+ + ('Kyshawn_George',_'SF_PF',_'WAS')_SF_36791286
+ + ('Kyshawn_George',_'SF_PF',_'WAS')_UTIL_36791286
+ + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_G_36791162
+ + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_PG_36791162
+ + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_SG_36791162
+ + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_UTIL_36791162
+ + ('Marvin_Bagley_III',_'C',_'WAS')_C_36791510
+ + ('Marvin_Bagley_III',_'C',_'WAS')_UTIL_36791510 <= 4
+Max_Salary: 4500 ("D'Angelo_Russell",_'PG',_'LAL')_G_36791258
+ + 4500 ("D'Angelo_Russell",_'PG',_'LAL')_PG_36791258
+ + 4500 ("D'Angelo_Russell",_'PG',_'LAL')_UTIL_36791258
+ + 4700 ("Royce_O'Neale",_'SF_PF',_'PHX')_F_36791239
+ + 4700 ("Royce_O'Neale",_'SF_PF',_'PHX')_PF_36791239
+ + 4700 ("Royce_O'Neale",_'SF_PF',_'PHX')_SF_36791239
+ + 4700 ("Royce_O'Neale",_'SF_PF',_'PHX')_UTIL_36791239
+ + 4200 ('AJ_Green',_'PG_SG',_'MIL')_G_36791297
+ + 4200 ('AJ_Green',_'PG_SG',_'MIL')_PG_36791297
+ + 4200 ('AJ_Green',_'PG_SG',_'MIL')_SG_36791297
+ + 4200 ('AJ_Green',_'PG_SG',_'MIL')_UTIL_36791297
+ + 3000 ('Aaron_Holiday',_'PG',_'HOU')_G_36791537
+ + 3000 ('Aaron_Holiday',_'PG',_'HOU')_PG_36791537
+ + 3000 ('Aaron_Holiday',_'PG',_'HOU')_UTIL_36791537
+ + 3600 ('Alec_Burks',_'PG_SG',_'MIA')_G_36791345
+ + 3600 ('Alec_Burks',_'PG_SG',_'MIA')_PG_36791345
+ + 3600 ('Alec_Burks',_'PG_SG',_'MIA')_SG_36791345
+ + 3600 ('Alec_Burks',_'PG_SG',_'MIA')_UTIL_36791345
+ + 5000 ('Alexandre_Sarr',_'PF_C',_'WAS')_C_36791220
+ + 5000 ('Alexandre_Sarr',_'PF_C',_'WAS')_F_36791220
+ + 5000 ('Alexandre_Sarr',_'PF_C',_'WAS')_PF_36791220
+ + 5000 ('Alexandre_Sarr',_'PF_C',_'WAS')_UTIL_36791220
+ + 8600 ('Alperen_Sengun',_'C',_'HOU')_C_36791065
+ + 8600 ('Alperen_Sengun',_'C',_'HOU')_UTIL_36791065
+ + 5000 ('Amen_Thompson',_'SG_SF',_'HOU')_F_36791207
+ + 5000 ('Amen_Thompson',_'SG_SF',_'HOU')_G_36791207
+ + 5000 ('Amen_Thompson',_'SG_SF',_'HOU')_SF_36791207
+ + 5000 ('Amen_Thompson',_'SG_SF',_'HOU')_SG_36791207
+ + 5000 ('Amen_Thompson',_'SG_SF',_'HOU')_UTIL_36791207
+ + 3900 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_F_36791323
+ + 3900 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_G_36791323
+ + 3900 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SF_36791323
+ + 3900 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SG_36791323
+ + 3900 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_UTIL_36791323
+ + 10500 ('Anthony_Davis',_'C',_'LAL')_C_36791048
+ + 10500 ('Anthony_Davis',_'C',_'LAL')_UTIL_36791048
+ + 9500 ('Anthony_Edwards',_'PG_SG',_'MIN')_G_36791054
+ + 9500 ('Anthony_Edwards',_'PG_SG',_'MIN')_PG_36791054
+ + 9500 ('Anthony_Edwards',_'PG_SG',_'MIN')_SG_36791054
+ + 9500 ('Anthony_Edwards',_'PG_SG',_'MIN')_UTIL_36791054
+ + 6600 ('Austin_Reaves',_'PG_SG',_'LAL')_G_36791116
+ + 6600 ('Austin_Reaves',_'PG_SG',_'LAL')_PG_36791116
+ + 6600 ('Austin_Reaves',_'PG_SG',_'LAL')_SG_36791116
+ + 6600 ('Austin_Reaves',_'PG_SG',_'LAL')_UTIL_36791116
+ + 5500 ('Ayo_Dosunmu',_'PG_SG',_'CHI')_G_36791173
+ + 5500 ('Ayo_Dosunmu',_'PG_SG',_'CHI')_PG_36791173
+ + 5500 ('Ayo_Dosunmu',_'PG_SG',_'CHI')_SG_36791173
+ + 5500 ('Ayo_Dosunmu',_'PG_SG',_'CHI')_UTIL_36791173
+ + 8500 ('Bam_Adebayo',_'C',_'MIA')_C_36791067
+ + 8500 ('Bam_Adebayo',_'C',_'MIA')_UTIL_36791067
+ + 5700 ('Bilal_Coulibaly',_'SF',_'WAS')_F_36791159
+ + 5700 ('Bilal_Coulibaly',_'SF',_'WAS')_SF_36791159
+ + 5700 ('Bilal_Coulibaly',_'SF',_'WAS')_UTIL_36791159
+ + 3000 ('Blake_Wesley',_'PG',_'SAS')_G_36791620
+ + 3000 ('Blake_Wesley',_'PG',_'SAS')_PG_36791620
+ + 3000 ('Blake_Wesley',_'PG',_'SAS')_UTIL_36791620
+ + 5500 ('Bobby_Portis',_'PF_C',_'MIL')_C_36791169
+ + 5500 ('Bobby_Portis',_'PF_C',_'MIL')_F_36791169
+ + 5500 ('Bobby_Portis',_'PF_C',_'MIL')_PF_36791169
+ + 5500 ('Bobby_Portis',_'PF_C',_'MIL')_UTIL_36791169
+ + 7600 ('Bradley_Beal',_'SG_SF',_'PHX')_F_36791092
+ + 7600 ('Bradley_Beal',_'SG_SF',_'PHX')_G_36791092
+ + 7600 ('Bradley_Beal',_'SG_SF',_'PHX')_SF_36791092
+ + 7600 ('Bradley_Beal',_'SG_SF',_'PHX')_SG_36791092
+ + 7600 ('Bradley_Beal',_'SG_SF',_'PHX')_UTIL_36791092
+ + 3000 ('Brice_Sensabaugh',_'SF_PF',_'UTA')_F_36791447
+ + 3000 ('Brice_Sensabaugh',_'SF_PF',_'UTA')_PF_36791447
+ + 3000 ('Brice_Sensabaugh',_'SF_PF',_'UTA')_SF_36791447
+ + 3000 ('Brice_Sensabaugh',_'SF_PF',_'UTA')_UTIL_36791447
+ + 6000 ('Brook_Lopez',_'C',_'MIL')_C_36791144
+ + 6000 ('Brook_Lopez',_'C',_'MIL')_UTIL_36791144
+ + 3600 ('Cam_Reddish',_'SG',_'LAL')_G_36791349
+ + 3600 ('Cam_Reddish',_'SG',_'LAL')_SG_36791349
+ + 3600 ('Cam_Reddish',_'SG',_'LAL')_UTIL_36791349
+ + 5000 ('Carlton_Carrington',_'PG_SG',_'WAS')_G_36791212
+ + 5000 ('Carlton_Carrington',_'PG_SG',_'WAS')_PG_36791212
+ + 5000 ('Carlton_Carrington',_'PG_SG',_'WAS')_SG_36791212
+ + 5000 ('Carlton_Carrington',_'PG_SG',_'WAS')_UTIL_36791212
+ + 6300 ('Chris_Paul',_'PG',_'SAS')_G_36791133
+ + 6300 ('Chris_Paul',_'PG',_'SAS')_PG_36791133
+ + 6300 ('Chris_Paul',_'PG',_'SAS')_UTIL_36791133
+ + 3200 ('Christian_Koloko',_'C',_'LAL')_C_36791393
+ + 3200 ('Christian_Koloko',_'C',_'LAL')_UTIL_36791393
+ + 7000 ('Coby_White',_'PG_SG',_'CHI')_G_36791108
+ + 7000 ('Coby_White',_'PG_SG',_'CHI')_PG_36791108
+ + 7000 ('Coby_White',_'PG_SG',_'CHI')_SG_36791108
+ + 7000 ('Coby_White',_'PG_SG',_'CHI')_UTIL_36791108
+ + 3100 ('Cody_Williams',_'SF',_'UTA')_F_36791411
+ + 3100 ('Cody_Williams',_'SF',_'UTA')_SF_36791411
+ + 3100 ('Cody_Williams',_'SF',_'UTA')_UTIL_36791411
+ + 5800 ('Collin_Sexton',_'PG_SG',_'UTA')_G_36791150
+ + 5800 ('Collin_Sexton',_'PG_SG',_'UTA')_PG_36791150
+ + 5800 ('Collin_Sexton',_'PG_SG',_'UTA')_SG_36791150
+ + 5800 ('Collin_Sexton',_'PG_SG',_'UTA')_UTIL_36791150
+ + 4400 ('Corey_Kispert',_'SG_SF',_'WAS')_F_36791268
+ + 4400 ('Corey_Kispert',_'SG_SF',_'WAS')_G_36791268
+ + 4400 ('Corey_Kispert',_'SG_SF',_'WAS')_SF_36791268
+ + 4400 ('Corey_Kispert',_'SG_SF',_'WAS')_SG_36791268
+ + 4400 ('Corey_Kispert',_'SG_SF',_'WAS')_UTIL_36791268
+ + 3000 ('Daishen_Nix',_'PG',_'MIN')_G_36791458
+ + 3000 ('Daishen_Nix',_'PG',_'MIN')_PG_36791458
+ + 3000 ('Daishen_Nix',_'PG',_'MIN')_UTIL_36791458
+ + 3200 ('Dalen_Terry',_'SG_SF',_'CHI')_F_36791383
+ + 3200 ('Dalen_Terry',_'SG_SF',_'CHI')_G_36791383
+ + 3200 ('Dalen_Terry',_'SG_SF',_'CHI')_SF_36791383
+ + 3200 ('Dalen_Terry',_'SG_SF',_'CHI')_SG_36791383
+ + 3200 ('Dalen_Terry',_'SG_SF',_'CHI')_UTIL_36791383
+ + 5100 ('Dalton_Knecht',_'SG_SF',_'LAL')_F_36791199
+ + 5100 ('Dalton_Knecht',_'SG_SF',_'LAL')_G_36791199
+ + 5100 ('Dalton_Knecht',_'SG_SF',_'LAL')_SF_36791199
+ + 5100 ('Dalton_Knecht',_'SG_SF',_'LAL')_SG_36791199
+ + 5100 ('Dalton_Knecht',_'SG_SF',_'LAL')_UTIL_36791199
+ + 8900 ('Damian_Lillard',_'PG',_'MIL')_G_36791062
+ + 8900 ('Damian_Lillard',_'PG',_'MIL')_PG_36791062
+ + 8900 ('Damian_Lillard',_'PG',_'MIL')_UTIL_36791062
+ + 3500 ('Delon_Wright',_'PG',_'MIL')_G_36791358
+ + 3500 ('Delon_Wright',_'PG',_'MIL')_PG_36791358
+ + 3500 ('Delon_Wright',_'PG',_'MIL')_UTIL_36791358
+ + 9000 ('Devin_Booker',_'PG_SG',_'PHX')_G_36791058
+ + 9000 ('Devin_Booker',_'PG_SG',_'PHX')_PG_36791058
+ + 9000 ('Devin_Booker',_'PG_SG',_'PHX')_SG_36791058
+ + 9000 ('Devin_Booker',_'PG_SG',_'PHX')_UTIL_36791058
+ + 4200 ('Dillon_Brooks',_'SF',_'HOU')_F_36791290
+ + 4200 ('Dillon_Brooks',_'SF',_'HOU')_SF_36791290
+ + 4200 ('Dillon_Brooks',_'SF',_'HOU')_UTIL_36791290
+ + 5200 ('Donte_DiVincenzo',_'PG_SG',_'MIN')_G_36791189
+ + 5200 ('Donte_DiVincenzo',_'PG_SG',_'MIN')_PG_36791189
+ + 5200 ('Donte_DiVincenzo',_'PG_SG',_'MIN')_SG_36791189
+ + 5200 ('Donte_DiVincenzo',_'PG_SG',_'MIN')_UTIL_36791189
+ + 3500 ('Drew_Eubanks',_'C',_'UTA')_C_36791361
+ + 3500 ('Drew_Eubanks',_'C',_'UTA')_UTIL_36791361
+ + 4400 ('Duncan_Robinson',_'SG',_'MIA')_G_36791265
+ + 4400 ('Duncan_Robinson',_'SG',_'MIA')_SG_36791265
+ + 4400 ('Duncan_Robinson',_'SG',_'MIA')_UTIL_36791265
+ + 7100 ('Fred_VanVleet',_'PG',_'HOU')_G_36791105
+ + 7100 ('Fred_VanVleet',_'PG',_'HOU')_PG_36791105
+ + 7100 ('Fred_VanVleet',_'PG',_'HOU')_UTIL_36791105
+ + 3000 ('Gabe_Vincent',_'PG_SG',_'LAL')_G_36791564
+ + 3000 ('Gabe_Vincent',_'PG_SG',_'LAL')_PG_36791564
+ + 3000 ('Gabe_Vincent',_'PG_SG',_'LAL')_SG_36791564
+ + 3000 ('Gabe_Vincent',_'PG_SG',_'LAL')_UTIL_36791564
+ + 4100 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_F_36791306
+ + 4100 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_G_36791306
+ + 4100 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SF_36791306
+ + 4100 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SG_36791306
+ + 4100 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_UTIL_36791306
+ + 4100 ('Grayson_Allen',_'SG',_'PHX')_G_36791301
+ + 4100 ('Grayson_Allen',_'SG',_'PHX')_SG_36791301
+ + 4100 ('Grayson_Allen',_'SG',_'PHX')_UTIL_36791301
+ + 4500 ('Harrison_Barnes',_'SF_PF',_'SAS')_F_36791254
+ + 4500 ('Harrison_Barnes',_'SF_PF',_'SAS')_PF_36791254
+ + 4500 ('Harrison_Barnes',_'SF_PF',_'SAS')_SF_36791254
+ + 4500 ('Harrison_Barnes',_'SF_PF',_'SAS')_UTIL_36791254
+ + 4300 ('Haywood_Highsmith',_'SF_PF',_'MIA')_F_36791277
+ + 4300 ('Haywood_Highsmith',_'SF_PF',_'MIA')_PF_36791277
+ + 4300 ('Haywood_Highsmith',_'SF_PF',_'MIA')_SF_36791277
+ + 4300 ('Haywood_Highsmith',_'SF_PF',_'MIA')_UTIL_36791277
+ + 3400 ('Isaiah_Collier',_'PG',_'UTA')_G_36791363
+ + 3400 ('Isaiah_Collier',_'PG',_'UTA')_PG_36791363
+ + 3400 ('Isaiah_Collier',_'PG',_'UTA')_UTIL_36791363
+ + 4500 ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_C_36791261
+ + 4500 ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_F_36791261
+ + 4500 ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_PF_36791261
+ + 4500 ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_UTIL_36791261
+ + 5200 ('Jaden_McDaniels',_'SF',_'MIN')_F_36791204
+ + 5200 ('Jaden_McDaniels',_'SF',_'MIN')_SF_36791204
+ + 5200 ('Jaden_McDaniels',_'SF',_'MIN')_UTIL_36791204
+ + 5000 ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_F_36791224
+ + 5000 ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_PF_36791224
+ + 5000 ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_SF_36791224
+ + 5000 ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_UTIL_36791224
+ + 6400 ('Jalen_Green',_'SG',_'HOU')_G_36791130
+ + 6400 ('Jalen_Green',_'SG',_'HOU')_SG_36791130
+ + 6400 ('Jalen_Green',_'SG',_'HOU')_UTIL_36791130
+ + 3600 ('Jalen_Smith',_'C',_'CHI')_C_36791343
+ + 3600 ('Jalen_Smith',_'C',_'CHI')_UTIL_36791343
+ + 7800 ('Jimmy_Butler',_'SF_PF',_'MIA')_F_36791088
+ + 7800 ('Jimmy_Butler',_'SF_PF',_'MIA')_PF_36791088
+ + 7800 ('Jimmy_Butler',_'SF_PF',_'MIA')_SF_36791088
+ + 7800 ('Jimmy_Butler',_'SF_PF',_'MIA')_UTIL_36791088
+ + 3100 ('Jock_Landale',_'C',_'HOU')_C_36791418
+ + 3100 ('Jock_Landale',_'C',_'HOU')_UTIL_36791418
+ + 3000 ('Joe_Ingles',_'PF',_'MIN')_F_36791444
+ + 3000 ('Joe_Ingles',_'PF',_'MIN')_PF_36791444
+ + 3000 ('Joe_Ingles',_'PF',_'MIN')_UTIL_36791444
+ + 7300 ('John_Collins',_'PF_C',_'UTA')_C_36791101
+ + 7300 ('John_Collins',_'PF_C',_'UTA')_F_36791101
+ + 7300 ('John_Collins',_'PF_C',_'UTA')_PF_36791101
+ + 7300 ('John_Collins',_'PF_C',_'UTA')_UTIL_36791101
+ + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_F_36791398
+ + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_G_36791398
+ + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_SF_36791398
+ + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_SG_36791398
+ + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_UTIL_36791398
+ + 4800 ('Jonas_Valanciunas',_'C',_'WAS')_C_36791237
+ + 4800 ('Jonas_Valanciunas',_'C',_'WAS')_UTIL_36791237
+ + 6400 ('Josh_Giddey',_'PG',_'CHI')_G_36791127
+ + 6400 ('Josh_Giddey',_'PG',_'CHI')_PG_36791127
+ + 6400 ('Josh_Giddey',_'PG',_'CHI')_UTIL_36791127
+ + 4600 ('Josh_Okogie',_'SF',_'PHX')_F_36791246
+ + 4600 ('Josh_Okogie',_'SF',_'PHX')_SF_36791246
+ + 4600 ('Josh_Okogie',_'SF',_'PHX')_UTIL_36791246
+ + 3300 ('Josh_Richardson',_'PG_SG',_'MIA')_G_36791376
+ + 3300 ('Josh_Richardson',_'PG_SG',_'MIA')_PG_36791376
+ + 3300 ('Josh_Richardson',_'PG_SG',_'MIA')_SG_36791376
+ + 3300 ('Josh_Richardson',_'PG_SG',_'MIA')_UTIL_36791376
+ + 4900 ('Julian_Champagnie',_'SG_SF',_'SAS')_F_36791228
+ + 4900 ('Julian_Champagnie',_'SG_SF',_'SAS')_G_36791228
+ + 4900 ('Julian_Champagnie',_'SG_SF',_'SAS')_SF_36791228
+ + 4900 ('Julian_Champagnie',_'SG_SF',_'SAS')_SG_36791228
+ + 4900 ('Julian_Champagnie',_'SG_SF',_'SAS')_UTIL_36791228
+ + 8100 ('Julius_Randle',_'PF_C',_'MIN')_C_36791075
+ + 8100 ('Julius_Randle',_'PF_C',_'MIN')_F_36791075
+ + 8100 ('Julius_Randle',_'PF_C',_'MIN')_PF_36791075
+ + 8100 ('Julius_Randle',_'PF_C',_'MIN')_UTIL_36791075
+ + 6200 ('Jusuf_Nurkic',_'C',_'PHX')_C_36791139
+ + 6200 ('Jusuf_Nurkic',_'C',_'PHX')_UTIL_36791139
+ + 5400 ('Keldon_Johnson',_'SF_PF',_'SAS')_F_36791180
+ + 5400 ('Keldon_Johnson',_'SF_PF',_'SAS')_PF_36791180
+ + 5400 ('Keldon_Johnson',_'SF_PF',_'SAS')_SF_36791180
+ + 5400 ('Keldon_Johnson',_'SF_PF',_'SAS')_UTIL_36791180
+ + 4000 ('Kevin_Love',_'C',_'MIA')_C_36791315
+ + 4000 ('Kevin_Love',_'C',_'MIA')_UTIL_36791315
+ + 5500 ('Keyonte_George',_'PG',_'UTA')_G_36791166
+ + 5500 ('Keyonte_George',_'PG',_'UTA')_PG_36791166
+ + 5500 ('Keyonte_George',_'PG',_'UTA')_UTIL_36791166
+ + 6300 ('Kyle_Kuzma',_'PF',_'WAS')_F_36791136
+ + 6300 ('Kyle_Kuzma',_'PF',_'WAS')_PF_36791136
+ + 6300 ('Kyle_Kuzma',_'PF',_'WAS')_UTIL_36791136
+ + 4200 ('Kyshawn_George',_'SF_PF',_'WAS')_F_36791286
+ + 4200 ('Kyshawn_George',_'SF_PF',_'WAS')_PF_36791286
+ + 4200 ('Kyshawn_George',_'SF_PF',_'WAS')_SF_36791286
+ + 4200 ('Kyshawn_George',_'SF_PF',_'WAS')_UTIL_36791286
+ + 7400 ('Lauri_Markkanen',_'SF_PF',_'UTA')_F_36791097
+ + 7400 ('Lauri_Markkanen',_'SF_PF',_'UTA')_PF_36791097
+ + 7400 ('Lauri_Markkanen',_'SF_PF',_'UTA')_SF_36791097
+ + 7400 ('Lauri_Markkanen',_'SF_PF',_'UTA')_UTIL_36791097
+ + 10000 ('LeBron_James',_'PF_C',_'LAL')_C_36791050
+ + 10000 ('LeBron_James',_'PF_C',_'LAL')_F_36791050
+ + 10000 ('LeBron_James',_'PF_C',_'LAL')_PF_36791050
+ + 10000 ('LeBron_James',_'PF_C',_'LAL')_UTIL_36791050
+ + 3000 ('Malaki_Branham',_'SG_SF',_'SAS')_F_36791451
+ + 3000 ('Malaki_Branham',_'SG_SF',_'SAS')_G_36791451
+ + 3000 ('Malaki_Branham',_'SG_SF',_'SAS')_SF_36791451
+ + 3000 ('Malaki_Branham',_'SG_SF',_'SAS')_SG_36791451
+ + 3000 ('Malaki_Branham',_'SG_SF',_'SAS')_UTIL_36791451
+ + 5600 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_G_36791162
+ + 5600 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_PG_36791162
+ + 5600 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_SG_36791162
+ + 5600 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_UTIL_36791162
+ + 3000 ('Marvin_Bagley_III',_'C',_'WAS')_C_36791510
+ + 3000 ('Marvin_Bagley_III',_'C',_'WAS')_UTIL_36791510
+ + 4000 ('Mason_Plumlee',_'C',_'PHX')_C_36791311
+ + 4000 ('Mason_Plumlee',_'C',_'PHX')_UTIL_36791311
+ + 4000 ('Matas_Buzelis',_'SF_PF',_'CHI')_F_36791317
+ + 4000 ('Matas_Buzelis',_'SF_PF',_'CHI')_PF_36791317
+ + 4000 ('Matas_Buzelis',_'SF_PF',_'CHI')_SF_36791317
+ + 4000 ('Matas_Buzelis',_'SF_PF',_'CHI')_UTIL_36791317
+ + 3400 ('Max_Christie',_'SF',_'LAL')_F_36791370
+ + 3400 ('Max_Christie',_'SF',_'LAL')_SF_36791370
+ + 3400 ('Max_Christie',_'SF',_'LAL')_UTIL_36791370
+ + 3200 ('Monte_Morris',_'PG',_'PHX')_G_36791388
+ + 3200 ('Monte_Morris',_'PG',_'PHX')_PG_36791388
+ + 3200 ('Monte_Morris',_'PG',_'PHX')_UTIL_36791388
+ + 5000 ('Naz_Reid',_'PF_C',_'MIN')_C_36791216
+ + 5000 ('Naz_Reid',_'PF_C',_'MIN')_F_36791216
+ + 5000 ('Naz_Reid',_'PF_C',_'MIN')_PF_36791216
+ + 5000 ('Naz_Reid',_'PF_C',_'MIN')_UTIL_36791216
+ + 4200 ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_F_36791281
+ + 4200 ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_G_36791281
+ + 4200 ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_SF_36791281
+ + 4200 ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_SG_36791281
+ + 4200 ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_UTIL_36791281
+ + 3500 ('Nikola_Jovic',_'PF',_'MIA')_F_36791352
+ + 3500 ('Nikola_Jovic',_'PF',_'MIA')_PF_36791352
+ + 3500 ('Nikola_Jovic',_'PF',_'MIA')_UTIL_36791352
+ + 8200 ('Nikola_Vucevic',_'C',_'CHI')_C_36791073
+ + 8200 ('Nikola_Vucevic',_'C',_'CHI')_UTIL_36791073
+ + 3700 ('Oso_Ighodaro',_'PF_C',_'PHX')_C_36791334
+ + 3700 ('Oso_Ighodaro',_'PF_C',_'PHX')_F_36791334
+ + 3700 ('Oso_Ighodaro',_'PF_C',_'PHX')_PF_36791334
+ + 3700 ('Oso_Ighodaro',_'PF_C',_'PHX')_UTIL_36791334
+ + 3400 ('Pat_Connaughton',_'SF_PF',_'MIL')_F_36791366
+ + 3400 ('Pat_Connaughton',_'SF_PF',_'MIL')_PF_36791366
+ + 3400 ('Pat_Connaughton',_'SF_PF',_'MIL')_SF_36791366
+ + 3400 ('Pat_Connaughton',_'SF_PF',_'MIL')_UTIL_36791366
+ + 3100 ('Reed_Sheppard',_'PG_SG',_'HOU')_G_36791414
+ + 3100 ('Reed_Sheppard',_'PG_SG',_'HOU')_PG_36791414
+ + 3100 ('Reed_Sheppard',_'PG_SG',_'HOU')_SG_36791414
+ + 3100 ('Reed_Sheppard',_'PG_SG',_'HOU')_UTIL_36791414
+ + 6600 ('Rudy_Gobert',_'C',_'MIN')_C_36791120
+ + 6600 ('Rudy_Gobert',_'C',_'MIN')_UTIL_36791120
+ + 4900 ('Rui_Hachimura',_'SF_PF',_'LAL')_F_36791233
+ + 4900 ('Rui_Hachimura',_'SF_PF',_'LAL')_PF_36791233
+ + 4900 ('Rui_Hachimura',_'SF_PF',_'LAL')_SF_36791233
+ + 4900 ('Rui_Hachimura',_'SF_PF',_'LAL')_UTIL_36791233
+ + 3500 ('Ryan_Dunn',_'PF',_'PHX')_F_36791355
+ + 3500 ('Ryan_Dunn',_'PF',_'PHX')_PF_36791355
+ + 3500 ('Ryan_Dunn',_'PF',_'PHX')_UTIL_36791355
+ + 3100 ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_C_36791432
+ + 3100 ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_F_36791432
+ + 3100 ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_PF_36791432
+ + 3100 ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_UTIL_36791432
+ + 5200 ('Stephon_Castle',_'SG',_'SAS')_G_36791196
+ + 5200 ('Stephon_Castle',_'SG',_'SAS')_SG_36791196
+ + 5200 ('Stephon_Castle',_'SG',_'SAS')_UTIL_36791196
+ + 5800 ('Tari_Eason',_'SF_PF',_'HOU')_F_36791146
+ + 5800 ('Tari_Eason',_'SF_PF',_'HOU')_PF_36791146
+ + 5800 ('Tari_Eason',_'SF_PF',_'HOU')_SF_36791146
+ + 5800 ('Tari_Eason',_'SF_PF',_'HOU')_UTIL_36791146
+ + 4200 ('Taurean_Prince',_'SF_PF',_'MIL')_F_36791293
+ + 4200 ('Taurean_Prince',_'SF_PF',_'MIL')_PF_36791293
+ + 4200 ('Taurean_Prince',_'SF_PF',_'MIL')_SF_36791293
+ + 4200 ('Taurean_Prince',_'SF_PF',_'MIL')_UTIL_36791293
+ + 3800 ('Torrey_Craig',_'PF',_'CHI')_F_36791331
+ + 3800 ('Torrey_Craig',_'PF',_'CHI')_PF_36791331
+ + 3800 ('Torrey_Craig',_'PF',_'CHI')_UTIL_36791331
+ + 3400 ('Tre_Jones',_'PG',_'SAS')_G_36791373
+ + 3400 ('Tre_Jones',_'PG',_'SAS')_PG_36791373
+ + 3400 ('Tre_Jones',_'PG',_'SAS')_UTIL_36791373
+ + 8000 ('Tyler_Herro',_'PG_SG',_'MIA')_G_36791079
+ + 8000 ('Tyler_Herro',_'PG_SG',_'MIA')_PG_36791079
+ + 8000 ('Tyler_Herro',_'PG_SG',_'MIA')_SG_36791079
+ + 8000 ('Tyler_Herro',_'PG_SG',_'MIA')_UTIL_36791079
+ + 5700 ('Tyus_Jones',_'PG',_'PHX')_G_36791156
+ + 5700 ('Tyus_Jones',_'PG',_'PHX')_PG_36791156
+ + 5700 ('Tyus_Jones',_'PG',_'PHX')_UTIL_36791156
+ + 10800 ('Victor_Wembanyama',_'C',_'SAS')_C_36791046
+ + 10800 ('Victor_Wembanyama',_'C',_'SAS')_UTIL_36791046
+ + 5800 ('Walker_Kessler',_'C',_'UTA')_C_36791154
+ + 5800 ('Walker_Kessler',_'C',_'UTA')_UTIL_36791154
+ + 5200 ('Zach_Collins',_'C',_'SAS')_C_36791187
+ + 5200 ('Zach_Collins',_'C',_'SAS')_UTIL_36791187
+ + 7800 ('Zach_LaVine',_'SG_SF',_'CHI')_F_36791083
+ + 7800 ('Zach_LaVine',_'SG_SF',_'CHI')_G_36791083
+ + 7800 ('Zach_LaVine',_'SG_SF',_'CHI')_SF_36791083
+ + 7800 ('Zach_LaVine',_'SG_SF',_'CHI')_SG_36791083
+ + 7800 ('Zach_LaVine',_'SG_SF',_'CHI')_UTIL_36791083 <= 50000
+Min_Salary: 4500 ("D'Angelo_Russell",_'PG',_'LAL')_G_36791258
+ + 4500 ("D'Angelo_Russell",_'PG',_'LAL')_PG_36791258
+ + 4500 ("D'Angelo_Russell",_'PG',_'LAL')_UTIL_36791258
+ + 4700 ("Royce_O'Neale",_'SF_PF',_'PHX')_F_36791239
+ + 4700 ("Royce_O'Neale",_'SF_PF',_'PHX')_PF_36791239
+ + 4700 ("Royce_O'Neale",_'SF_PF',_'PHX')_SF_36791239
+ + 4700 ("Royce_O'Neale",_'SF_PF',_'PHX')_UTIL_36791239
+ + 4200 ('AJ_Green',_'PG_SG',_'MIL')_G_36791297
+ + 4200 ('AJ_Green',_'PG_SG',_'MIL')_PG_36791297
+ + 4200 ('AJ_Green',_'PG_SG',_'MIL')_SG_36791297
+ + 4200 ('AJ_Green',_'PG_SG',_'MIL')_UTIL_36791297
+ + 3000 ('Aaron_Holiday',_'PG',_'HOU')_G_36791537
+ + 3000 ('Aaron_Holiday',_'PG',_'HOU')_PG_36791537
+ + 3000 ('Aaron_Holiday',_'PG',_'HOU')_UTIL_36791537
+ + 3600 ('Alec_Burks',_'PG_SG',_'MIA')_G_36791345
+ + 3600 ('Alec_Burks',_'PG_SG',_'MIA')_PG_36791345
+ + 3600 ('Alec_Burks',_'PG_SG',_'MIA')_SG_36791345
+ + 3600 ('Alec_Burks',_'PG_SG',_'MIA')_UTIL_36791345
+ + 5000 ('Alexandre_Sarr',_'PF_C',_'WAS')_C_36791220
+ + 5000 ('Alexandre_Sarr',_'PF_C',_'WAS')_F_36791220
+ + 5000 ('Alexandre_Sarr',_'PF_C',_'WAS')_PF_36791220
+ + 5000 ('Alexandre_Sarr',_'PF_C',_'WAS')_UTIL_36791220
+ + 8600 ('Alperen_Sengun',_'C',_'HOU')_C_36791065
+ + 8600 ('Alperen_Sengun',_'C',_'HOU')_UTIL_36791065
+ + 5000 ('Amen_Thompson',_'SG_SF',_'HOU')_F_36791207
+ + 5000 ('Amen_Thompson',_'SG_SF',_'HOU')_G_36791207
+ + 5000 ('Amen_Thompson',_'SG_SF',_'HOU')_SF_36791207
+ + 5000 ('Amen_Thompson',_'SG_SF',_'HOU')_SG_36791207
+ + 5000 ('Amen_Thompson',_'SG_SF',_'HOU')_UTIL_36791207
+ + 3900 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_F_36791323
+ + 3900 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_G_36791323
+ + 3900 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SF_36791323
+ + 3900 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SG_36791323
+ + 3900 ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_UTIL_36791323
+ + 10500 ('Anthony_Davis',_'C',_'LAL')_C_36791048
+ + 10500 ('Anthony_Davis',_'C',_'LAL')_UTIL_36791048
+ + 9500 ('Anthony_Edwards',_'PG_SG',_'MIN')_G_36791054
+ + 9500 ('Anthony_Edwards',_'PG_SG',_'MIN')_PG_36791054
+ + 9500 ('Anthony_Edwards',_'PG_SG',_'MIN')_SG_36791054
+ + 9500 ('Anthony_Edwards',_'PG_SG',_'MIN')_UTIL_36791054
+ + 6600 ('Austin_Reaves',_'PG_SG',_'LAL')_G_36791116
+ + 6600 ('Austin_Reaves',_'PG_SG',_'LAL')_PG_36791116
+ + 6600 ('Austin_Reaves',_'PG_SG',_'LAL')_SG_36791116
+ + 6600 ('Austin_Reaves',_'PG_SG',_'LAL')_UTIL_36791116
+ + 5500 ('Ayo_Dosunmu',_'PG_SG',_'CHI')_G_36791173
+ + 5500 ('Ayo_Dosunmu',_'PG_SG',_'CHI')_PG_36791173
+ + 5500 ('Ayo_Dosunmu',_'PG_SG',_'CHI')_SG_36791173
+ + 5500 ('Ayo_Dosunmu',_'PG_SG',_'CHI')_UTIL_36791173
+ + 8500 ('Bam_Adebayo',_'C',_'MIA')_C_36791067
+ + 8500 ('Bam_Adebayo',_'C',_'MIA')_UTIL_36791067
+ + 5700 ('Bilal_Coulibaly',_'SF',_'WAS')_F_36791159
+ + 5700 ('Bilal_Coulibaly',_'SF',_'WAS')_SF_36791159
+ + 5700 ('Bilal_Coulibaly',_'SF',_'WAS')_UTIL_36791159
+ + 3000 ('Blake_Wesley',_'PG',_'SAS')_G_36791620
+ + 3000 ('Blake_Wesley',_'PG',_'SAS')_PG_36791620
+ + 3000 ('Blake_Wesley',_'PG',_'SAS')_UTIL_36791620
+ + 5500 ('Bobby_Portis',_'PF_C',_'MIL')_C_36791169
+ + 5500 ('Bobby_Portis',_'PF_C',_'MIL')_F_36791169
+ + 5500 ('Bobby_Portis',_'PF_C',_'MIL')_PF_36791169
+ + 5500 ('Bobby_Portis',_'PF_C',_'MIL')_UTIL_36791169
+ + 7600 ('Bradley_Beal',_'SG_SF',_'PHX')_F_36791092
+ + 7600 ('Bradley_Beal',_'SG_SF',_'PHX')_G_36791092
+ + 7600 ('Bradley_Beal',_'SG_SF',_'PHX')_SF_36791092
+ + 7600 ('Bradley_Beal',_'SG_SF',_'PHX')_SG_36791092
+ + 7600 ('Bradley_Beal',_'SG_SF',_'PHX')_UTIL_36791092
+ + 3000 ('Brice_Sensabaugh',_'SF_PF',_'UTA')_F_36791447
+ + 3000 ('Brice_Sensabaugh',_'SF_PF',_'UTA')_PF_36791447
+ + 3000 ('Brice_Sensabaugh',_'SF_PF',_'UTA')_SF_36791447
+ + 3000 ('Brice_Sensabaugh',_'SF_PF',_'UTA')_UTIL_36791447
+ + 6000 ('Brook_Lopez',_'C',_'MIL')_C_36791144
+ + 6000 ('Brook_Lopez',_'C',_'MIL')_UTIL_36791144
+ + 3600 ('Cam_Reddish',_'SG',_'LAL')_G_36791349
+ + 3600 ('Cam_Reddish',_'SG',_'LAL')_SG_36791349
+ + 3600 ('Cam_Reddish',_'SG',_'LAL')_UTIL_36791349
+ + 5000 ('Carlton_Carrington',_'PG_SG',_'WAS')_G_36791212
+ + 5000 ('Carlton_Carrington',_'PG_SG',_'WAS')_PG_36791212
+ + 5000 ('Carlton_Carrington',_'PG_SG',_'WAS')_SG_36791212
+ + 5000 ('Carlton_Carrington',_'PG_SG',_'WAS')_UTIL_36791212
+ + 6300 ('Chris_Paul',_'PG',_'SAS')_G_36791133
+ + 6300 ('Chris_Paul',_'PG',_'SAS')_PG_36791133
+ + 6300 ('Chris_Paul',_'PG',_'SAS')_UTIL_36791133
+ + 3200 ('Christian_Koloko',_'C',_'LAL')_C_36791393
+ + 3200 ('Christian_Koloko',_'C',_'LAL')_UTIL_36791393
+ + 7000 ('Coby_White',_'PG_SG',_'CHI')_G_36791108
+ + 7000 ('Coby_White',_'PG_SG',_'CHI')_PG_36791108
+ + 7000 ('Coby_White',_'PG_SG',_'CHI')_SG_36791108
+ + 7000 ('Coby_White',_'PG_SG',_'CHI')_UTIL_36791108
+ + 3100 ('Cody_Williams',_'SF',_'UTA')_F_36791411
+ + 3100 ('Cody_Williams',_'SF',_'UTA')_SF_36791411
+ + 3100 ('Cody_Williams',_'SF',_'UTA')_UTIL_36791411
+ + 5800 ('Collin_Sexton',_'PG_SG',_'UTA')_G_36791150
+ + 5800 ('Collin_Sexton',_'PG_SG',_'UTA')_PG_36791150
+ + 5800 ('Collin_Sexton',_'PG_SG',_'UTA')_SG_36791150
+ + 5800 ('Collin_Sexton',_'PG_SG',_'UTA')_UTIL_36791150
+ + 4400 ('Corey_Kispert',_'SG_SF',_'WAS')_F_36791268
+ + 4400 ('Corey_Kispert',_'SG_SF',_'WAS')_G_36791268
+ + 4400 ('Corey_Kispert',_'SG_SF',_'WAS')_SF_36791268
+ + 4400 ('Corey_Kispert',_'SG_SF',_'WAS')_SG_36791268
+ + 4400 ('Corey_Kispert',_'SG_SF',_'WAS')_UTIL_36791268
+ + 3000 ('Daishen_Nix',_'PG',_'MIN')_G_36791458
+ + 3000 ('Daishen_Nix',_'PG',_'MIN')_PG_36791458
+ + 3000 ('Daishen_Nix',_'PG',_'MIN')_UTIL_36791458
+ + 3200 ('Dalen_Terry',_'SG_SF',_'CHI')_F_36791383
+ + 3200 ('Dalen_Terry',_'SG_SF',_'CHI')_G_36791383
+ + 3200 ('Dalen_Terry',_'SG_SF',_'CHI')_SF_36791383
+ + 3200 ('Dalen_Terry',_'SG_SF',_'CHI')_SG_36791383
+ + 3200 ('Dalen_Terry',_'SG_SF',_'CHI')_UTIL_36791383
+ + 5100 ('Dalton_Knecht',_'SG_SF',_'LAL')_F_36791199
+ + 5100 ('Dalton_Knecht',_'SG_SF',_'LAL')_G_36791199
+ + 5100 ('Dalton_Knecht',_'SG_SF',_'LAL')_SF_36791199
+ + 5100 ('Dalton_Knecht',_'SG_SF',_'LAL')_SG_36791199
+ + 5100 ('Dalton_Knecht',_'SG_SF',_'LAL')_UTIL_36791199
+ + 8900 ('Damian_Lillard',_'PG',_'MIL')_G_36791062
+ + 8900 ('Damian_Lillard',_'PG',_'MIL')_PG_36791062
+ + 8900 ('Damian_Lillard',_'PG',_'MIL')_UTIL_36791062
+ + 3500 ('Delon_Wright',_'PG',_'MIL')_G_36791358
+ + 3500 ('Delon_Wright',_'PG',_'MIL')_PG_36791358
+ + 3500 ('Delon_Wright',_'PG',_'MIL')_UTIL_36791358
+ + 9000 ('Devin_Booker',_'PG_SG',_'PHX')_G_36791058
+ + 9000 ('Devin_Booker',_'PG_SG',_'PHX')_PG_36791058
+ + 9000 ('Devin_Booker',_'PG_SG',_'PHX')_SG_36791058
+ + 9000 ('Devin_Booker',_'PG_SG',_'PHX')_UTIL_36791058
+ + 4200 ('Dillon_Brooks',_'SF',_'HOU')_F_36791290
+ + 4200 ('Dillon_Brooks',_'SF',_'HOU')_SF_36791290
+ + 4200 ('Dillon_Brooks',_'SF',_'HOU')_UTIL_36791290
+ + 5200 ('Donte_DiVincenzo',_'PG_SG',_'MIN')_G_36791189
+ + 5200 ('Donte_DiVincenzo',_'PG_SG',_'MIN')_PG_36791189
+ + 5200 ('Donte_DiVincenzo',_'PG_SG',_'MIN')_SG_36791189
+ + 5200 ('Donte_DiVincenzo',_'PG_SG',_'MIN')_UTIL_36791189
+ + 3500 ('Drew_Eubanks',_'C',_'UTA')_C_36791361
+ + 3500 ('Drew_Eubanks',_'C',_'UTA')_UTIL_36791361
+ + 4400 ('Duncan_Robinson',_'SG',_'MIA')_G_36791265
+ + 4400 ('Duncan_Robinson',_'SG',_'MIA')_SG_36791265
+ + 4400 ('Duncan_Robinson',_'SG',_'MIA')_UTIL_36791265
+ + 7100 ('Fred_VanVleet',_'PG',_'HOU')_G_36791105
+ + 7100 ('Fred_VanVleet',_'PG',_'HOU')_PG_36791105
+ + 7100 ('Fred_VanVleet',_'PG',_'HOU')_UTIL_36791105
+ + 3000 ('Gabe_Vincent',_'PG_SG',_'LAL')_G_36791564
+ + 3000 ('Gabe_Vincent',_'PG_SG',_'LAL')_PG_36791564
+ + 3000 ('Gabe_Vincent',_'PG_SG',_'LAL')_SG_36791564
+ + 3000 ('Gabe_Vincent',_'PG_SG',_'LAL')_UTIL_36791564
+ + 4100 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_F_36791306
+ + 4100 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_G_36791306
+ + 4100 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SF_36791306
+ + 4100 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SG_36791306
+ + 4100 ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_UTIL_36791306
+ + 4100 ('Grayson_Allen',_'SG',_'PHX')_G_36791301
+ + 4100 ('Grayson_Allen',_'SG',_'PHX')_SG_36791301
+ + 4100 ('Grayson_Allen',_'SG',_'PHX')_UTIL_36791301
+ + 4500 ('Harrison_Barnes',_'SF_PF',_'SAS')_F_36791254
+ + 4500 ('Harrison_Barnes',_'SF_PF',_'SAS')_PF_36791254
+ + 4500 ('Harrison_Barnes',_'SF_PF',_'SAS')_SF_36791254
+ + 4500 ('Harrison_Barnes',_'SF_PF',_'SAS')_UTIL_36791254
+ + 4300 ('Haywood_Highsmith',_'SF_PF',_'MIA')_F_36791277
+ + 4300 ('Haywood_Highsmith',_'SF_PF',_'MIA')_PF_36791277
+ + 4300 ('Haywood_Highsmith',_'SF_PF',_'MIA')_SF_36791277
+ + 4300 ('Haywood_Highsmith',_'SF_PF',_'MIA')_UTIL_36791277
+ + 3400 ('Isaiah_Collier',_'PG',_'UTA')_G_36791363
+ + 3400 ('Isaiah_Collier',_'PG',_'UTA')_PG_36791363
+ + 3400 ('Isaiah_Collier',_'PG',_'UTA')_UTIL_36791363
+ + 4500 ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_C_36791261
+ + 4500 ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_F_36791261
+ + 4500 ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_PF_36791261
+ + 4500 ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_UTIL_36791261
+ + 5200 ('Jaden_McDaniels',_'SF',_'MIN')_F_36791204
+ + 5200 ('Jaden_McDaniels',_'SF',_'MIN')_SF_36791204
+ + 5200 ('Jaden_McDaniels',_'SF',_'MIN')_UTIL_36791204
+ + 5000 ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_F_36791224
+ + 5000 ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_PF_36791224
+ + 5000 ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_SF_36791224
+ + 5000 ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_UTIL_36791224
+ + 6400 ('Jalen_Green',_'SG',_'HOU')_G_36791130
+ + 6400 ('Jalen_Green',_'SG',_'HOU')_SG_36791130
+ + 6400 ('Jalen_Green',_'SG',_'HOU')_UTIL_36791130
+ + 3600 ('Jalen_Smith',_'C',_'CHI')_C_36791343
+ + 3600 ('Jalen_Smith',_'C',_'CHI')_UTIL_36791343
+ + 7800 ('Jimmy_Butler',_'SF_PF',_'MIA')_F_36791088
+ + 7800 ('Jimmy_Butler',_'SF_PF',_'MIA')_PF_36791088
+ + 7800 ('Jimmy_Butler',_'SF_PF',_'MIA')_SF_36791088
+ + 7800 ('Jimmy_Butler',_'SF_PF',_'MIA')_UTIL_36791088
+ + 3100 ('Jock_Landale',_'C',_'HOU')_C_36791418
+ + 3100 ('Jock_Landale',_'C',_'HOU')_UTIL_36791418
+ + 3000 ('Joe_Ingles',_'PF',_'MIN')_F_36791444
+ + 3000 ('Joe_Ingles',_'PF',_'MIN')_PF_36791444
+ + 3000 ('Joe_Ingles',_'PF',_'MIN')_UTIL_36791444
+ + 7300 ('John_Collins',_'PF_C',_'UTA')_C_36791101
+ + 7300 ('John_Collins',_'PF_C',_'UTA')_F_36791101
+ + 7300 ('John_Collins',_'PF_C',_'UTA')_PF_36791101
+ + 7300 ('John_Collins',_'PF_C',_'UTA')_UTIL_36791101
+ + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_F_36791398
+ + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_G_36791398
+ + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_SF_36791398
+ + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_SG_36791398
+ + 3200 ('Johnny_Juzang',_'SG_SF',_'UTA')_UTIL_36791398
+ + 4800 ('Jonas_Valanciunas',_'C',_'WAS')_C_36791237
+ + 4800 ('Jonas_Valanciunas',_'C',_'WAS')_UTIL_36791237
+ + 6400 ('Josh_Giddey',_'PG',_'CHI')_G_36791127
+ + 6400 ('Josh_Giddey',_'PG',_'CHI')_PG_36791127
+ + 6400 ('Josh_Giddey',_'PG',_'CHI')_UTIL_36791127
+ + 4600 ('Josh_Okogie',_'SF',_'PHX')_F_36791246
+ + 4600 ('Josh_Okogie',_'SF',_'PHX')_SF_36791246
+ + 4600 ('Josh_Okogie',_'SF',_'PHX')_UTIL_36791246
+ + 3300 ('Josh_Richardson',_'PG_SG',_'MIA')_G_36791376
+ + 3300 ('Josh_Richardson',_'PG_SG',_'MIA')_PG_36791376
+ + 3300 ('Josh_Richardson',_'PG_SG',_'MIA')_SG_36791376
+ + 3300 ('Josh_Richardson',_'PG_SG',_'MIA')_UTIL_36791376
+ + 4900 ('Julian_Champagnie',_'SG_SF',_'SAS')_F_36791228
+ + 4900 ('Julian_Champagnie',_'SG_SF',_'SAS')_G_36791228
+ + 4900 ('Julian_Champagnie',_'SG_SF',_'SAS')_SF_36791228
+ + 4900 ('Julian_Champagnie',_'SG_SF',_'SAS')_SG_36791228
+ + 4900 ('Julian_Champagnie',_'SG_SF',_'SAS')_UTIL_36791228
+ + 8100 ('Julius_Randle',_'PF_C',_'MIN')_C_36791075
+ + 8100 ('Julius_Randle',_'PF_C',_'MIN')_F_36791075
+ + 8100 ('Julius_Randle',_'PF_C',_'MIN')_PF_36791075
+ + 8100 ('Julius_Randle',_'PF_C',_'MIN')_UTIL_36791075
+ + 6200 ('Jusuf_Nurkic',_'C',_'PHX')_C_36791139
+ + 6200 ('Jusuf_Nurkic',_'C',_'PHX')_UTIL_36791139
+ + 5400 ('Keldon_Johnson',_'SF_PF',_'SAS')_F_36791180
+ + 5400 ('Keldon_Johnson',_'SF_PF',_'SAS')_PF_36791180
+ + 5400 ('Keldon_Johnson',_'SF_PF',_'SAS')_SF_36791180
+ + 5400 ('Keldon_Johnson',_'SF_PF',_'SAS')_UTIL_36791180
+ + 4000 ('Kevin_Love',_'C',_'MIA')_C_36791315
+ + 4000 ('Kevin_Love',_'C',_'MIA')_UTIL_36791315
+ + 5500 ('Keyonte_George',_'PG',_'UTA')_G_36791166
+ + 5500 ('Keyonte_George',_'PG',_'UTA')_PG_36791166
+ + 5500 ('Keyonte_George',_'PG',_'UTA')_UTIL_36791166
+ + 6300 ('Kyle_Kuzma',_'PF',_'WAS')_F_36791136
+ + 6300 ('Kyle_Kuzma',_'PF',_'WAS')_PF_36791136
+ + 6300 ('Kyle_Kuzma',_'PF',_'WAS')_UTIL_36791136
+ + 4200 ('Kyshawn_George',_'SF_PF',_'WAS')_F_36791286
+ + 4200 ('Kyshawn_George',_'SF_PF',_'WAS')_PF_36791286
+ + 4200 ('Kyshawn_George',_'SF_PF',_'WAS')_SF_36791286
+ + 4200 ('Kyshawn_George',_'SF_PF',_'WAS')_UTIL_36791286
+ + 7400 ('Lauri_Markkanen',_'SF_PF',_'UTA')_F_36791097
+ + 7400 ('Lauri_Markkanen',_'SF_PF',_'UTA')_PF_36791097
+ + 7400 ('Lauri_Markkanen',_'SF_PF',_'UTA')_SF_36791097
+ + 7400 ('Lauri_Markkanen',_'SF_PF',_'UTA')_UTIL_36791097
+ + 10000 ('LeBron_James',_'PF_C',_'LAL')_C_36791050
+ + 10000 ('LeBron_James',_'PF_C',_'LAL')_F_36791050
+ + 10000 ('LeBron_James',_'PF_C',_'LAL')_PF_36791050
+ + 10000 ('LeBron_James',_'PF_C',_'LAL')_UTIL_36791050
+ + 3000 ('Malaki_Branham',_'SG_SF',_'SAS')_F_36791451
+ + 3000 ('Malaki_Branham',_'SG_SF',_'SAS')_G_36791451
+ + 3000 ('Malaki_Branham',_'SG_SF',_'SAS')_SF_36791451
+ + 3000 ('Malaki_Branham',_'SG_SF',_'SAS')_SG_36791451
+ + 3000 ('Malaki_Branham',_'SG_SF',_'SAS')_UTIL_36791451
+ + 5600 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_G_36791162
+ + 5600 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_PG_36791162
+ + 5600 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_SG_36791162
+ + 5600 ('Malcolm_Brogdon',_'PG_SG',_'WAS')_UTIL_36791162
+ + 3000 ('Marvin_Bagley_III',_'C',_'WAS')_C_36791510
+ + 3000 ('Marvin_Bagley_III',_'C',_'WAS')_UTIL_36791510
+ + 4000 ('Mason_Plumlee',_'C',_'PHX')_C_36791311
+ + 4000 ('Mason_Plumlee',_'C',_'PHX')_UTIL_36791311
+ + 4000 ('Matas_Buzelis',_'SF_PF',_'CHI')_F_36791317
+ + 4000 ('Matas_Buzelis',_'SF_PF',_'CHI')_PF_36791317
+ + 4000 ('Matas_Buzelis',_'SF_PF',_'CHI')_SF_36791317
+ + 4000 ('Matas_Buzelis',_'SF_PF',_'CHI')_UTIL_36791317
+ + 3400 ('Max_Christie',_'SF',_'LAL')_F_36791370
+ + 3400 ('Max_Christie',_'SF',_'LAL')_SF_36791370
+ + 3400 ('Max_Christie',_'SF',_'LAL')_UTIL_36791370
+ + 3200 ('Monte_Morris',_'PG',_'PHX')_G_36791388
+ + 3200 ('Monte_Morris',_'PG',_'PHX')_PG_36791388
+ + 3200 ('Monte_Morris',_'PG',_'PHX')_UTIL_36791388
+ + 5000 ('Naz_Reid',_'PF_C',_'MIN')_C_36791216
+ + 5000 ('Naz_Reid',_'PF_C',_'MIN')_F_36791216
+ + 5000 ('Naz_Reid',_'PF_C',_'MIN')_PF_36791216
+ + 5000 ('Naz_Reid',_'PF_C',_'MIN')_UTIL_36791216
+ + 4200 ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_F_36791281
+ + 4200 ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_G_36791281
+ + 4200 ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_SF_36791281
+ + 4200 ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_SG_36791281
+ + 4200 ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_UTIL_36791281
+ + 3500 ('Nikola_Jovic',_'PF',_'MIA')_F_36791352
+ + 3500 ('Nikola_Jovic',_'PF',_'MIA')_PF_36791352
+ + 3500 ('Nikola_Jovic',_'PF',_'MIA')_UTIL_36791352
+ + 8200 ('Nikola_Vucevic',_'C',_'CHI')_C_36791073
+ + 8200 ('Nikola_Vucevic',_'C',_'CHI')_UTIL_36791073
+ + 3700 ('Oso_Ighodaro',_'PF_C',_'PHX')_C_36791334
+ + 3700 ('Oso_Ighodaro',_'PF_C',_'PHX')_F_36791334
+ + 3700 ('Oso_Ighodaro',_'PF_C',_'PHX')_PF_36791334
+ + 3700 ('Oso_Ighodaro',_'PF_C',_'PHX')_UTIL_36791334
+ + 3400 ('Pat_Connaughton',_'SF_PF',_'MIL')_F_36791366
+ + 3400 ('Pat_Connaughton',_'SF_PF',_'MIL')_PF_36791366
+ + 3400 ('Pat_Connaughton',_'SF_PF',_'MIL')_SF_36791366
+ + 3400 ('Pat_Connaughton',_'SF_PF',_'MIL')_UTIL_36791366
+ + 3100 ('Reed_Sheppard',_'PG_SG',_'HOU')_G_36791414
+ + 3100 ('Reed_Sheppard',_'PG_SG',_'HOU')_PG_36791414
+ + 3100 ('Reed_Sheppard',_'PG_SG',_'HOU')_SG_36791414
+ + 3100 ('Reed_Sheppard',_'PG_SG',_'HOU')_UTIL_36791414
+ + 6600 ('Rudy_Gobert',_'C',_'MIN')_C_36791120
+ + 6600 ('Rudy_Gobert',_'C',_'MIN')_UTIL_36791120
+ + 4900 ('Rui_Hachimura',_'SF_PF',_'LAL')_F_36791233
+ + 4900 ('Rui_Hachimura',_'SF_PF',_'LAL')_PF_36791233
+ + 4900 ('Rui_Hachimura',_'SF_PF',_'LAL')_SF_36791233
+ + 4900 ('Rui_Hachimura',_'SF_PF',_'LAL')_UTIL_36791233
+ + 3500 ('Ryan_Dunn',_'PF',_'PHX')_F_36791355
+ + 3500 ('Ryan_Dunn',_'PF',_'PHX')_PF_36791355
+ + 3500 ('Ryan_Dunn',_'PF',_'PHX')_UTIL_36791355
+ + 3100 ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_C_36791432
+ + 3100 ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_F_36791432
+ + 3100 ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_PF_36791432
+ + 3100 ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_UTIL_36791432
+ + 5200 ('Stephon_Castle',_'SG',_'SAS')_G_36791196
+ + 5200 ('Stephon_Castle',_'SG',_'SAS')_SG_36791196
+ + 5200 ('Stephon_Castle',_'SG',_'SAS')_UTIL_36791196
+ + 5800 ('Tari_Eason',_'SF_PF',_'HOU')_F_36791146
+ + 5800 ('Tari_Eason',_'SF_PF',_'HOU')_PF_36791146
+ + 5800 ('Tari_Eason',_'SF_PF',_'HOU')_SF_36791146
+ + 5800 ('Tari_Eason',_'SF_PF',_'HOU')_UTIL_36791146
+ + 4200 ('Taurean_Prince',_'SF_PF',_'MIL')_F_36791293
+ + 4200 ('Taurean_Prince',_'SF_PF',_'MIL')_PF_36791293
+ + 4200 ('Taurean_Prince',_'SF_PF',_'MIL')_SF_36791293
+ + 4200 ('Taurean_Prince',_'SF_PF',_'MIL')_UTIL_36791293
+ + 3800 ('Torrey_Craig',_'PF',_'CHI')_F_36791331
+ + 3800 ('Torrey_Craig',_'PF',_'CHI')_PF_36791331
+ + 3800 ('Torrey_Craig',_'PF',_'CHI')_UTIL_36791331
+ + 3400 ('Tre_Jones',_'PG',_'SAS')_G_36791373
+ + 3400 ('Tre_Jones',_'PG',_'SAS')_PG_36791373
+ + 3400 ('Tre_Jones',_'PG',_'SAS')_UTIL_36791373
+ + 8000 ('Tyler_Herro',_'PG_SG',_'MIA')_G_36791079
+ + 8000 ('Tyler_Herro',_'PG_SG',_'MIA')_PG_36791079
+ + 8000 ('Tyler_Herro',_'PG_SG',_'MIA')_SG_36791079
+ + 8000 ('Tyler_Herro',_'PG_SG',_'MIA')_UTIL_36791079
+ + 5700 ('Tyus_Jones',_'PG',_'PHX')_G_36791156
+ + 5700 ('Tyus_Jones',_'PG',_'PHX')_PG_36791156
+ + 5700 ('Tyus_Jones',_'PG',_'PHX')_UTIL_36791156
+ + 10800 ('Victor_Wembanyama',_'C',_'SAS')_C_36791046
+ + 10800 ('Victor_Wembanyama',_'C',_'SAS')_UTIL_36791046
+ + 5800 ('Walker_Kessler',_'C',_'UTA')_C_36791154
+ + 5800 ('Walker_Kessler',_'C',_'UTA')_UTIL_36791154
+ + 5200 ('Zach_Collins',_'C',_'SAS')_C_36791187
+ + 5200 ('Zach_Collins',_'C',_'SAS')_UTIL_36791187
+ + 7800 ('Zach_LaVine',_'SG_SF',_'CHI')_F_36791083
+ + 7800 ('Zach_LaVine',_'SG_SF',_'CHI')_G_36791083
+ + 7800 ('Zach_LaVine',_'SG_SF',_'CHI')_SF_36791083
+ + 7800 ('Zach_LaVine',_'SG_SF',_'CHI')_SG_36791083
+ + 7800 ('Zach_LaVine',_'SG_SF',_'CHI')_UTIL_36791083 >= 49000
+Must_have_1_C: ('Alexandre_Sarr',_'PF_C',_'WAS')_C_36791220
+ + ('Alperen_Sengun',_'C',_'HOU')_C_36791065
+ + ('Anthony_Davis',_'C',_'LAL')_C_36791048
+ + ('Bam_Adebayo',_'C',_'MIA')_C_36791067
+ + ('Bobby_Portis',_'PF_C',_'MIL')_C_36791169
+ + ('Brook_Lopez',_'C',_'MIL')_C_36791144
+ + ('Christian_Koloko',_'C',_'LAL')_C_36791393
+ + ('Drew_Eubanks',_'C',_'UTA')_C_36791361
+ + ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_C_36791261
+ + ('Jalen_Smith',_'C',_'CHI')_C_36791343
+ + ('Jock_Landale',_'C',_'HOU')_C_36791418
+ + ('John_Collins',_'PF_C',_'UTA')_C_36791101
+ + ('Jonas_Valanciunas',_'C',_'WAS')_C_36791237
+ + ('Julius_Randle',_'PF_C',_'MIN')_C_36791075
+ + ('Jusuf_Nurkic',_'C',_'PHX')_C_36791139
+ + ('Kevin_Love',_'C',_'MIA')_C_36791315
+ + ('LeBron_James',_'PF_C',_'LAL')_C_36791050
+ + ('Marvin_Bagley_III',_'C',_'WAS')_C_36791510
+ + ('Mason_Plumlee',_'C',_'PHX')_C_36791311
+ + ('Naz_Reid',_'PF_C',_'MIN')_C_36791216
+ + ('Nikola_Vucevic',_'C',_'CHI')_C_36791073
+ + ('Oso_Ighodaro',_'PF_C',_'PHX')_C_36791334
+ + ('Rudy_Gobert',_'C',_'MIN')_C_36791120
+ + ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_C_36791432
+ + ('Victor_Wembanyama',_'C',_'SAS')_C_36791046
+ + ('Walker_Kessler',_'C',_'UTA')_C_36791154
+ + ('Zach_Collins',_'C',_'SAS')_C_36791187 = 1
+Must_have_1_F: ("Royce_O'Neale",_'SF_PF',_'PHX')_F_36791239
+ + ('Alexandre_Sarr',_'PF_C',_'WAS')_F_36791220
+ + ('Amen_Thompson',_'SG_SF',_'HOU')_F_36791207
+ + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_F_36791323
+ + ('Bilal_Coulibaly',_'SF',_'WAS')_F_36791159
+ + ('Bobby_Portis',_'PF_C',_'MIL')_F_36791169
+ + ('Bradley_Beal',_'SG_SF',_'PHX')_F_36791092
+ + ('Brice_Sensabaugh',_'SF_PF',_'UTA')_F_36791447
+ + ('Cody_Williams',_'SF',_'UTA')_F_36791411
+ + ('Corey_Kispert',_'SG_SF',_'WAS')_F_36791268
+ + ('Dalen_Terry',_'SG_SF',_'CHI')_F_36791383
+ + ('Dalton_Knecht',_'SG_SF',_'LAL')_F_36791199
+ + ('Dillon_Brooks',_'SF',_'HOU')_F_36791290
+ + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_F_36791306
+ + ('Harrison_Barnes',_'SF_PF',_'SAS')_F_36791254
+ + ('Haywood_Highsmith',_'SF_PF',_'MIA')_F_36791277
+ + ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_F_36791261
+ + ('Jaden_McDaniels',_'SF',_'MIN')_F_36791204
+ + ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_F_36791224
+ + ('Jimmy_Butler',_'SF_PF',_'MIA')_F_36791088
+ + ('Joe_Ingles',_'PF',_'MIN')_F_36791444
+ + ('John_Collins',_'PF_C',_'UTA')_F_36791101
+ + ('Johnny_Juzang',_'SG_SF',_'UTA')_F_36791398
+ + ('Josh_Okogie',_'SF',_'PHX')_F_36791246
+ + ('Julian_Champagnie',_'SG_SF',_'SAS')_F_36791228
+ + ('Julius_Randle',_'PF_C',_'MIN')_F_36791075
+ + ('Keldon_Johnson',_'SF_PF',_'SAS')_F_36791180
+ + ('Kyle_Kuzma',_'PF',_'WAS')_F_36791136
+ + ('Kyshawn_George',_'SF_PF',_'WAS')_F_36791286
+ + ('Lauri_Markkanen',_'SF_PF',_'UTA')_F_36791097
+ + ('LeBron_James',_'PF_C',_'LAL')_F_36791050
+ + ('Malaki_Branham',_'SG_SF',_'SAS')_F_36791451
+ + ('Matas_Buzelis',_'SF_PF',_'CHI')_F_36791317
+ + ('Max_Christie',_'SF',_'LAL')_F_36791370
+ + ('Naz_Reid',_'PF_C',_'MIN')_F_36791216
+ + ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_F_36791281
+ + ('Nikola_Jovic',_'PF',_'MIA')_F_36791352
+ + ('Oso_Ighodaro',_'PF_C',_'PHX')_F_36791334
+ + ('Pat_Connaughton',_'SF_PF',_'MIL')_F_36791366
+ + ('Rui_Hachimura',_'SF_PF',_'LAL')_F_36791233
+ + ('Ryan_Dunn',_'PF',_'PHX')_F_36791355
+ + ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_F_36791432
+ + ('Tari_Eason',_'SF_PF',_'HOU')_F_36791146
+ + ('Taurean_Prince',_'SF_PF',_'MIL')_F_36791293
+ + ('Torrey_Craig',_'PF',_'CHI')_F_36791331
+ + ('Zach_LaVine',_'SG_SF',_'CHI')_F_36791083 = 1
+Must_have_1_G: ("D'Angelo_Russell",_'PG',_'LAL')_G_36791258
+ + ('AJ_Green',_'PG_SG',_'MIL')_G_36791297
+ + ('Aaron_Holiday',_'PG',_'HOU')_G_36791537
+ + ('Alec_Burks',_'PG_SG',_'MIA')_G_36791345
+ + ('Amen_Thompson',_'SG_SF',_'HOU')_G_36791207
+ + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_G_36791323
+ + ('Anthony_Edwards',_'PG_SG',_'MIN')_G_36791054
+ + ('Austin_Reaves',_'PG_SG',_'LAL')_G_36791116
+ + ('Ayo_Dosunmu',_'PG_SG',_'CHI')_G_36791173
+ + ('Blake_Wesley',_'PG',_'SAS')_G_36791620
+ + ('Bradley_Beal',_'SG_SF',_'PHX')_G_36791092
+ + ('Cam_Reddish',_'SG',_'LAL')_G_36791349
+ + ('Carlton_Carrington',_'PG_SG',_'WAS')_G_36791212
+ + ('Chris_Paul',_'PG',_'SAS')_G_36791133
+ + ('Coby_White',_'PG_SG',_'CHI')_G_36791108
+ + ('Collin_Sexton',_'PG_SG',_'UTA')_G_36791150
+ + ('Corey_Kispert',_'SG_SF',_'WAS')_G_36791268
+ + ('Daishen_Nix',_'PG',_'MIN')_G_36791458
+ + ('Dalen_Terry',_'SG_SF',_'CHI')_G_36791383
+ + ('Dalton_Knecht',_'SG_SF',_'LAL')_G_36791199
+ + ('Damian_Lillard',_'PG',_'MIL')_G_36791062
+ + ('Delon_Wright',_'PG',_'MIL')_G_36791358
+ + ('Devin_Booker',_'PG_SG',_'PHX')_G_36791058
+ + ('Donte_DiVincenzo',_'PG_SG',_'MIN')_G_36791189
+ + ('Duncan_Robinson',_'SG',_'MIA')_G_36791265
+ + ('Fred_VanVleet',_'PG',_'HOU')_G_36791105
+ + ('Gabe_Vincent',_'PG_SG',_'LAL')_G_36791564
+ + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_G_36791306
+ + ('Grayson_Allen',_'SG',_'PHX')_G_36791301
+ + ('Isaiah_Collier',_'PG',_'UTA')_G_36791363
+ + ('Jalen_Green',_'SG',_'HOU')_G_36791130
+ + ('Johnny_Juzang',_'SG_SF',_'UTA')_G_36791398
+ + ('Josh_Giddey',_'PG',_'CHI')_G_36791127
+ + ('Josh_Richardson',_'PG_SG',_'MIA')_G_36791376
+ + ('Julian_Champagnie',_'SG_SF',_'SAS')_G_36791228
+ + ('Keyonte_George',_'PG',_'UTA')_G_36791166
+ + ('Malaki_Branham',_'SG_SF',_'SAS')_G_36791451
+ + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_G_36791162
+ + ('Monte_Morris',_'PG',_'PHX')_G_36791388
+ + ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_G_36791281
+ + ('Reed_Sheppard',_'PG_SG',_'HOU')_G_36791414
+ + ('Stephon_Castle',_'SG',_'SAS')_G_36791196
+ + ('Tre_Jones',_'PG',_'SAS')_G_36791373
+ + ('Tyler_Herro',_'PG_SG',_'MIA')_G_36791079
+ + ('Tyus_Jones',_'PG',_'PHX')_G_36791156
+ + ('Zach_LaVine',_'SG_SF',_'CHI')_G_36791083 = 1
+Must_have_1_PF: ("Royce_O'Neale",_'SF_PF',_'PHX')_PF_36791239
+ + ('Alexandre_Sarr',_'PF_C',_'WAS')_PF_36791220
+ + ('Bobby_Portis',_'PF_C',_'MIL')_PF_36791169
+ + ('Brice_Sensabaugh',_'SF_PF',_'UTA')_PF_36791447
+ + ('Harrison_Barnes',_'SF_PF',_'SAS')_PF_36791254
+ + ('Haywood_Highsmith',_'SF_PF',_'MIA')_PF_36791277
+ + ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_PF_36791261
+ + ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_PF_36791224
+ + ('Jimmy_Butler',_'SF_PF',_'MIA')_PF_36791088
+ + ('Joe_Ingles',_'PF',_'MIN')_PF_36791444
+ + ('John_Collins',_'PF_C',_'UTA')_PF_36791101
+ + ('Julius_Randle',_'PF_C',_'MIN')_PF_36791075
+ + ('Keldon_Johnson',_'SF_PF',_'SAS')_PF_36791180
+ + ('Kyle_Kuzma',_'PF',_'WAS')_PF_36791136
+ + ('Kyshawn_George',_'SF_PF',_'WAS')_PF_36791286
+ + ('Lauri_Markkanen',_'SF_PF',_'UTA')_PF_36791097
+ + ('LeBron_James',_'PF_C',_'LAL')_PF_36791050
+ + ('Matas_Buzelis',_'SF_PF',_'CHI')_PF_36791317
+ + ('Naz_Reid',_'PF_C',_'MIN')_PF_36791216
+ + ('Nikola_Jovic',_'PF',_'MIA')_PF_36791352
+ + ('Oso_Ighodaro',_'PF_C',_'PHX')_PF_36791334
+ + ('Pat_Connaughton',_'SF_PF',_'MIL')_PF_36791366
+ + ('Rui_Hachimura',_'SF_PF',_'LAL')_PF_36791233
+ + ('Ryan_Dunn',_'PF',_'PHX')_PF_36791355
+ + ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_PF_36791432
+ + ('Tari_Eason',_'SF_PF',_'HOU')_PF_36791146
+ + ('Taurean_Prince',_'SF_PF',_'MIL')_PF_36791293
+ + ('Torrey_Craig',_'PF',_'CHI')_PF_36791331 = 1
+Must_have_1_PG: ("D'Angelo_Russell",_'PG',_'LAL')_PG_36791258
+ + ('AJ_Green',_'PG_SG',_'MIL')_PG_36791297
+ + ('Aaron_Holiday',_'PG',_'HOU')_PG_36791537
+ + ('Alec_Burks',_'PG_SG',_'MIA')_PG_36791345
+ + ('Anthony_Edwards',_'PG_SG',_'MIN')_PG_36791054
+ + ('Austin_Reaves',_'PG_SG',_'LAL')_PG_36791116
+ + ('Ayo_Dosunmu',_'PG_SG',_'CHI')_PG_36791173
+ + ('Blake_Wesley',_'PG',_'SAS')_PG_36791620
+ + ('Carlton_Carrington',_'PG_SG',_'WAS')_PG_36791212
+ + ('Chris_Paul',_'PG',_'SAS')_PG_36791133
+ + ('Coby_White',_'PG_SG',_'CHI')_PG_36791108
+ + ('Collin_Sexton',_'PG_SG',_'UTA')_PG_36791150
+ + ('Daishen_Nix',_'PG',_'MIN')_PG_36791458
+ + ('Damian_Lillard',_'PG',_'MIL')_PG_36791062
+ + ('Delon_Wright',_'PG',_'MIL')_PG_36791358
+ + ('Devin_Booker',_'PG_SG',_'PHX')_PG_36791058
+ + ('Donte_DiVincenzo',_'PG_SG',_'MIN')_PG_36791189
+ + ('Fred_VanVleet',_'PG',_'HOU')_PG_36791105
+ + ('Gabe_Vincent',_'PG_SG',_'LAL')_PG_36791564
+ + ('Isaiah_Collier',_'PG',_'UTA')_PG_36791363
+ + ('Josh_Giddey',_'PG',_'CHI')_PG_36791127
+ + ('Josh_Richardson',_'PG_SG',_'MIA')_PG_36791376
+ + ('Keyonte_George',_'PG',_'UTA')_PG_36791166
+ + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_PG_36791162
+ + ('Monte_Morris',_'PG',_'PHX')_PG_36791388
+ + ('Reed_Sheppard',_'PG_SG',_'HOU')_PG_36791414
+ + ('Tre_Jones',_'PG',_'SAS')_PG_36791373
+ + ('Tyler_Herro',_'PG_SG',_'MIA')_PG_36791079
+ + ('Tyus_Jones',_'PG',_'PHX')_PG_36791156 = 1
+Must_have_1_SF: ("Royce_O'Neale",_'SF_PF',_'PHX')_SF_36791239
+ + ('Amen_Thompson',_'SG_SF',_'HOU')_SF_36791207
+ + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SF_36791323
+ + ('Bilal_Coulibaly',_'SF',_'WAS')_SF_36791159
+ + ('Bradley_Beal',_'SG_SF',_'PHX')_SF_36791092
+ + ('Brice_Sensabaugh',_'SF_PF',_'UTA')_SF_36791447
+ + ('Cody_Williams',_'SF',_'UTA')_SF_36791411
+ + ('Corey_Kispert',_'SG_SF',_'WAS')_SF_36791268
+ + ('Dalen_Terry',_'SG_SF',_'CHI')_SF_36791383
+ + ('Dalton_Knecht',_'SG_SF',_'LAL')_SF_36791199
+ + ('Dillon_Brooks',_'SF',_'HOU')_SF_36791290
+ + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SF_36791306
+ + ('Harrison_Barnes',_'SF_PF',_'SAS')_SF_36791254
+ + ('Haywood_Highsmith',_'SF_PF',_'MIA')_SF_36791277
+ + ('Jaden_McDaniels',_'SF',_'MIN')_SF_36791204
+ + ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_SF_36791224
+ + ('Jimmy_Butler',_'SF_PF',_'MIA')_SF_36791088
+ + ('Johnny_Juzang',_'SG_SF',_'UTA')_SF_36791398
+ + ('Josh_Okogie',_'SF',_'PHX')_SF_36791246
+ + ('Julian_Champagnie',_'SG_SF',_'SAS')_SF_36791228
+ + ('Keldon_Johnson',_'SF_PF',_'SAS')_SF_36791180
+ + ('Kyshawn_George',_'SF_PF',_'WAS')_SF_36791286
+ + ('Lauri_Markkanen',_'SF_PF',_'UTA')_SF_36791097
+ + ('Malaki_Branham',_'SG_SF',_'SAS')_SF_36791451
+ + ('Matas_Buzelis',_'SF_PF',_'CHI')_SF_36791317
+ + ('Max_Christie',_'SF',_'LAL')_SF_36791370
+ + ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_SF_36791281
+ + ('Pat_Connaughton',_'SF_PF',_'MIL')_SF_36791366
+ + ('Rui_Hachimura',_'SF_PF',_'LAL')_SF_36791233
+ + ('Tari_Eason',_'SF_PF',_'HOU')_SF_36791146
+ + ('Taurean_Prince',_'SF_PF',_'MIL')_SF_36791293
+ + ('Zach_LaVine',_'SG_SF',_'CHI')_SF_36791083 = 1
+Must_have_1_SG: ('AJ_Green',_'PG_SG',_'MIL')_SG_36791297
+ + ('Alec_Burks',_'PG_SG',_'MIA')_SG_36791345
+ + ('Amen_Thompson',_'SG_SF',_'HOU')_SG_36791207
+ + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SG_36791323
+ + ('Anthony_Edwards',_'PG_SG',_'MIN')_SG_36791054
+ + ('Austin_Reaves',_'PG_SG',_'LAL')_SG_36791116
+ + ('Ayo_Dosunmu',_'PG_SG',_'CHI')_SG_36791173
+ + ('Bradley_Beal',_'SG_SF',_'PHX')_SG_36791092
+ + ('Cam_Reddish',_'SG',_'LAL')_SG_36791349
+ + ('Carlton_Carrington',_'PG_SG',_'WAS')_SG_36791212
+ + ('Coby_White',_'PG_SG',_'CHI')_SG_36791108
+ + ('Collin_Sexton',_'PG_SG',_'UTA')_SG_36791150
+ + ('Corey_Kispert',_'SG_SF',_'WAS')_SG_36791268
+ + ('Dalen_Terry',_'SG_SF',_'CHI')_SG_36791383
+ + ('Dalton_Knecht',_'SG_SF',_'LAL')_SG_36791199
+ + ('Devin_Booker',_'PG_SG',_'PHX')_SG_36791058
+ + ('Donte_DiVincenzo',_'PG_SG',_'MIN')_SG_36791189
+ + ('Duncan_Robinson',_'SG',_'MIA')_SG_36791265
+ + ('Gabe_Vincent',_'PG_SG',_'LAL')_SG_36791564
+ + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SG_36791306
+ + ('Grayson_Allen',_'SG',_'PHX')_SG_36791301
+ + ('Jalen_Green',_'SG',_'HOU')_SG_36791130
+ + ('Johnny_Juzang',_'SG_SF',_'UTA')_SG_36791398
+ + ('Josh_Richardson',_'PG_SG',_'MIA')_SG_36791376
+ + ('Julian_Champagnie',_'SG_SF',_'SAS')_SG_36791228
+ + ('Malaki_Branham',_'SG_SF',_'SAS')_SG_36791451
+ + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_SG_36791162
+ + ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_SG_36791281
+ + ('Reed_Sheppard',_'PG_SG',_'HOU')_SG_36791414
+ + ('Stephon_Castle',_'SG',_'SAS')_SG_36791196
+ + ('Tyler_Herro',_'PG_SG',_'MIA')_SG_36791079
+ + ('Zach_LaVine',_'SG_SF',_'CHI')_SG_36791083 = 1
+Must_have_1_UTIL: ("D'Angelo_Russell",_'PG',_'LAL')_UTIL_36791258
+ + ("Royce_O'Neale",_'SF_PF',_'PHX')_UTIL_36791239
+ + ('AJ_Green',_'PG_SG',_'MIL')_UTIL_36791297
+ + ('Aaron_Holiday',_'PG',_'HOU')_UTIL_36791537
+ + ('Alec_Burks',_'PG_SG',_'MIA')_UTIL_36791345
+ + ('Alexandre_Sarr',_'PF_C',_'WAS')_UTIL_36791220
+ + ('Alperen_Sengun',_'C',_'HOU')_UTIL_36791065
+ + ('Amen_Thompson',_'SG_SF',_'HOU')_UTIL_36791207
+ + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_UTIL_36791323
+ + ('Anthony_Davis',_'C',_'LAL')_UTIL_36791048
+ + ('Anthony_Edwards',_'PG_SG',_'MIN')_UTIL_36791054
+ + ('Austin_Reaves',_'PG_SG',_'LAL')_UTIL_36791116
+ + ('Ayo_Dosunmu',_'PG_SG',_'CHI')_UTIL_36791173
+ + ('Bam_Adebayo',_'C',_'MIA')_UTIL_36791067
+ + ('Bilal_Coulibaly',_'SF',_'WAS')_UTIL_36791159
+ + ('Blake_Wesley',_'PG',_'SAS')_UTIL_36791620
+ + ('Bobby_Portis',_'PF_C',_'MIL')_UTIL_36791169
+ + ('Bradley_Beal',_'SG_SF',_'PHX')_UTIL_36791092
+ + ('Brice_Sensabaugh',_'SF_PF',_'UTA')_UTIL_36791447
+ + ('Brook_Lopez',_'C',_'MIL')_UTIL_36791144
+ + ('Cam_Reddish',_'SG',_'LAL')_UTIL_36791349
+ + ('Carlton_Carrington',_'PG_SG',_'WAS')_UTIL_36791212
+ + ('Chris_Paul',_'PG',_'SAS')_UTIL_36791133
+ + ('Christian_Koloko',_'C',_'LAL')_UTIL_36791393
+ + ('Coby_White',_'PG_SG',_'CHI')_UTIL_36791108
+ + ('Cody_Williams',_'SF',_'UTA')_UTIL_36791411
+ + ('Collin_Sexton',_'PG_SG',_'UTA')_UTIL_36791150
+ + ('Corey_Kispert',_'SG_SF',_'WAS')_UTIL_36791268
+ + ('Daishen_Nix',_'PG',_'MIN')_UTIL_36791458
+ + ('Dalen_Terry',_'SG_SF',_'CHI')_UTIL_36791383
+ + ('Dalton_Knecht',_'SG_SF',_'LAL')_UTIL_36791199
+ + ('Damian_Lillard',_'PG',_'MIL')_UTIL_36791062
+ + ('Delon_Wright',_'PG',_'MIL')_UTIL_36791358
+ + ('Devin_Booker',_'PG_SG',_'PHX')_UTIL_36791058
+ + ('Dillon_Brooks',_'SF',_'HOU')_UTIL_36791290
+ + ('Donte_DiVincenzo',_'PG_SG',_'MIN')_UTIL_36791189
+ + ('Drew_Eubanks',_'C',_'UTA')_UTIL_36791361
+ + ('Duncan_Robinson',_'SG',_'MIA')_UTIL_36791265
+ + ('Fred_VanVleet',_'PG',_'HOU')_UTIL_36791105
+ + ('Gabe_Vincent',_'PG_SG',_'LAL')_UTIL_36791564
+ + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_UTIL_36791306
+ + ('Grayson_Allen',_'SG',_'PHX')_UTIL_36791301
+ + ('Harrison_Barnes',_'SF_PF',_'SAS')_UTIL_36791254
+ + ('Haywood_Highsmith',_'SF_PF',_'MIA')_UTIL_36791277
+ + ('Isaiah_Collier',_'PG',_'UTA')_UTIL_36791363
+ + ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_UTIL_36791261
+ + ('Jaden_McDaniels',_'SF',_'MIN')_UTIL_36791204
+ + ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_UTIL_36791224
+ + ('Jalen_Green',_'SG',_'HOU')_UTIL_36791130
+ + ('Jalen_Smith',_'C',_'CHI')_UTIL_36791343
+ + ('Jimmy_Butler',_'SF_PF',_'MIA')_UTIL_36791088
+ + ('Jock_Landale',_'C',_'HOU')_UTIL_36791418
+ + ('Joe_Ingles',_'PF',_'MIN')_UTIL_36791444
+ + ('John_Collins',_'PF_C',_'UTA')_UTIL_36791101
+ + ('Johnny_Juzang',_'SG_SF',_'UTA')_UTIL_36791398
+ + ('Jonas_Valanciunas',_'C',_'WAS')_UTIL_36791237
+ + ('Josh_Giddey',_'PG',_'CHI')_UTIL_36791127
+ + ('Josh_Okogie',_'SF',_'PHX')_UTIL_36791246
+ + ('Josh_Richardson',_'PG_SG',_'MIA')_UTIL_36791376
+ + ('Julian_Champagnie',_'SG_SF',_'SAS')_UTIL_36791228
+ + ('Julius_Randle',_'PF_C',_'MIN')_UTIL_36791075
+ + ('Jusuf_Nurkic',_'C',_'PHX')_UTIL_36791139
+ + ('Keldon_Johnson',_'SF_PF',_'SAS')_UTIL_36791180
+ + ('Kevin_Love',_'C',_'MIA')_UTIL_36791315
+ + ('Keyonte_George',_'PG',_'UTA')_UTIL_36791166
+ + ('Kyle_Kuzma',_'PF',_'WAS')_UTIL_36791136
+ + ('Kyshawn_George',_'SF_PF',_'WAS')_UTIL_36791286
+ + ('Lauri_Markkanen',_'SF_PF',_'UTA')_UTIL_36791097
+ + ('LeBron_James',_'PF_C',_'LAL')_UTIL_36791050
+ + ('Malaki_Branham',_'SG_SF',_'SAS')_UTIL_36791451
+ + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_UTIL_36791162
+ + ('Marvin_Bagley_III',_'C',_'WAS')_UTIL_36791510
+ + ('Mason_Plumlee',_'C',_'PHX')_UTIL_36791311
+ + ('Matas_Buzelis',_'SF_PF',_'CHI')_UTIL_36791317
+ + ('Max_Christie',_'SF',_'LAL')_UTIL_36791370
+ + ('Monte_Morris',_'PG',_'PHX')_UTIL_36791388
+ + ('Naz_Reid',_'PF_C',_'MIN')_UTIL_36791216
+ + ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_UTIL_36791281
+ + ('Nikola_Jovic',_'PF',_'MIA')_UTIL_36791352
+ + ('Nikola_Vucevic',_'C',_'CHI')_UTIL_36791073
+ + ('Oso_Ighodaro',_'PF_C',_'PHX')_UTIL_36791334
+ + ('Pat_Connaughton',_'SF_PF',_'MIL')_UTIL_36791366
+ + ('Reed_Sheppard',_'PG_SG',_'HOU')_UTIL_36791414
+ + ('Rudy_Gobert',_'C',_'MIN')_UTIL_36791120
+ + ('Rui_Hachimura',_'SF_PF',_'LAL')_UTIL_36791233
+ + ('Ryan_Dunn',_'PF',_'PHX')_UTIL_36791355
+ + ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_UTIL_36791432
+ + ('Stephon_Castle',_'SG',_'SAS')_UTIL_36791196
+ + ('Tari_Eason',_'SF_PF',_'HOU')_UTIL_36791146
+ + ('Taurean_Prince',_'SF_PF',_'MIL')_UTIL_36791293
+ + ('Torrey_Craig',_'PF',_'CHI')_UTIL_36791331
+ + ('Tre_Jones',_'PG',_'SAS')_UTIL_36791373
+ + ('Tyler_Herro',_'PG_SG',_'MIA')_UTIL_36791079
+ + ('Tyus_Jones',_'PG',_'PHX')_UTIL_36791156
+ + ('Victor_Wembanyama',_'C',_'SAS')_UTIL_36791046
+ + ('Walker_Kessler',_'C',_'UTA')_UTIL_36791154
+ + ('Zach_Collins',_'C',_'SAS')_UTIL_36791187
+ + ('Zach_LaVine',_'SG_SF',_'CHI')_UTIL_36791083 = 1
+Must_not_play_all_8_players_from_match_CHI@WAS:
+ ('Alexandre_Sarr',_'PF_C',_'WAS')_C_36791220
+ + ('Alexandre_Sarr',_'PF_C',_'WAS')_F_36791220
+ + ('Alexandre_Sarr',_'PF_C',_'WAS')_PF_36791220
+ + ('Alexandre_Sarr',_'PF_C',_'WAS')_UTIL_36791220
+ + ('Ayo_Dosunmu',_'PG_SG',_'CHI')_G_36791173
+ + ('Ayo_Dosunmu',_'PG_SG',_'CHI')_PG_36791173
+ + ('Ayo_Dosunmu',_'PG_SG',_'CHI')_SG_36791173
+ + ('Ayo_Dosunmu',_'PG_SG',_'CHI')_UTIL_36791173
+ + ('Bilal_Coulibaly',_'SF',_'WAS')_F_36791159
+ + ('Bilal_Coulibaly',_'SF',_'WAS')_SF_36791159
+ + ('Bilal_Coulibaly',_'SF',_'WAS')_UTIL_36791159
+ + ('Carlton_Carrington',_'PG_SG',_'WAS')_G_36791212
+ + ('Carlton_Carrington',_'PG_SG',_'WAS')_PG_36791212
+ + ('Carlton_Carrington',_'PG_SG',_'WAS')_SG_36791212
+ + ('Carlton_Carrington',_'PG_SG',_'WAS')_UTIL_36791212
+ + ('Coby_White',_'PG_SG',_'CHI')_G_36791108
+ + ('Coby_White',_'PG_SG',_'CHI')_PG_36791108
+ + ('Coby_White',_'PG_SG',_'CHI')_SG_36791108
+ + ('Coby_White',_'PG_SG',_'CHI')_UTIL_36791108
+ + ('Corey_Kispert',_'SG_SF',_'WAS')_F_36791268
+ + ('Corey_Kispert',_'SG_SF',_'WAS')_G_36791268
+ + ('Corey_Kispert',_'SG_SF',_'WAS')_SF_36791268
+ + ('Corey_Kispert',_'SG_SF',_'WAS')_SG_36791268
+ + ('Corey_Kispert',_'SG_SF',_'WAS')_UTIL_36791268
+ + ('Dalen_Terry',_'SG_SF',_'CHI')_F_36791383
+ + ('Dalen_Terry',_'SG_SF',_'CHI')_G_36791383
+ + ('Dalen_Terry',_'SG_SF',_'CHI')_SF_36791383
+ + ('Dalen_Terry',_'SG_SF',_'CHI')_SG_36791383
+ + ('Dalen_Terry',_'SG_SF',_'CHI')_UTIL_36791383
+ + ('Jalen_Smith',_'C',_'CHI')_C_36791343
+ + ('Jalen_Smith',_'C',_'CHI')_UTIL_36791343
+ + ('Jonas_Valanciunas',_'C',_'WAS')_C_36791237
+ + ('Jonas_Valanciunas',_'C',_'WAS')_UTIL_36791237
+ + ('Josh_Giddey',_'PG',_'CHI')_G_36791127
+ + ('Josh_Giddey',_'PG',_'CHI')_PG_36791127
+ + ('Josh_Giddey',_'PG',_'CHI')_UTIL_36791127
+ + ('Kyle_Kuzma',_'PF',_'WAS')_F_36791136
+ + ('Kyle_Kuzma',_'PF',_'WAS')_PF_36791136
+ + ('Kyle_Kuzma',_'PF',_'WAS')_UTIL_36791136
+ + ('Kyshawn_George',_'SF_PF',_'WAS')_F_36791286
+ + ('Kyshawn_George',_'SF_PF',_'WAS')_PF_36791286
+ + ('Kyshawn_George',_'SF_PF',_'WAS')_SF_36791286
+ + ('Kyshawn_George',_'SF_PF',_'WAS')_UTIL_36791286
+ + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_G_36791162
+ + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_PG_36791162
+ + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_SG_36791162
+ + ('Malcolm_Brogdon',_'PG_SG',_'WAS')_UTIL_36791162
+ + ('Marvin_Bagley_III',_'C',_'WAS')_C_36791510
+ + ('Marvin_Bagley_III',_'C',_'WAS')_UTIL_36791510
+ + ('Matas_Buzelis',_'SF_PF',_'CHI')_F_36791317
+ + ('Matas_Buzelis',_'SF_PF',_'CHI')_PF_36791317
+ + ('Matas_Buzelis',_'SF_PF',_'CHI')_SF_36791317
+ + ('Matas_Buzelis',_'SF_PF',_'CHI')_UTIL_36791317
+ + ('Nikola_Vucevic',_'C',_'CHI')_C_36791073
+ + ('Nikola_Vucevic',_'C',_'CHI')_UTIL_36791073
+ + ('Torrey_Craig',_'PF',_'CHI')_F_36791331
+ + ('Torrey_Craig',_'PF',_'CHI')_PF_36791331
+ + ('Torrey_Craig',_'PF',_'CHI')_UTIL_36791331
+ + ('Zach_LaVine',_'SG_SF',_'CHI')_F_36791083
+ + ('Zach_LaVine',_'SG_SF',_'CHI')_G_36791083
+ + ('Zach_LaVine',_'SG_SF',_'CHI')_SF_36791083
+ + ('Zach_LaVine',_'SG_SF',_'CHI')_SG_36791083
+ + ('Zach_LaVine',_'SG_SF',_'CHI')_UTIL_36791083 <= 8
+Must_not_play_all_8_players_from_match_HOU@MIN:
+ ('Aaron_Holiday',_'PG',_'HOU')_G_36791537
+ + ('Aaron_Holiday',_'PG',_'HOU')_PG_36791537
+ + ('Aaron_Holiday',_'PG',_'HOU')_UTIL_36791537
+ + ('Alperen_Sengun',_'C',_'HOU')_C_36791065
+ + ('Alperen_Sengun',_'C',_'HOU')_UTIL_36791065
+ + ('Amen_Thompson',_'SG_SF',_'HOU')_F_36791207
+ + ('Amen_Thompson',_'SG_SF',_'HOU')_G_36791207
+ + ('Amen_Thompson',_'SG_SF',_'HOU')_SF_36791207
+ + ('Amen_Thompson',_'SG_SF',_'HOU')_SG_36791207
+ + ('Amen_Thompson',_'SG_SF',_'HOU')_UTIL_36791207
+ + ('Anthony_Edwards',_'PG_SG',_'MIN')_G_36791054
+ + ('Anthony_Edwards',_'PG_SG',_'MIN')_PG_36791054
+ + ('Anthony_Edwards',_'PG_SG',_'MIN')_SG_36791054
+ + ('Anthony_Edwards',_'PG_SG',_'MIN')_UTIL_36791054
+ + ('Daishen_Nix',_'PG',_'MIN')_G_36791458
+ + ('Daishen_Nix',_'PG',_'MIN')_PG_36791458
+ + ('Daishen_Nix',_'PG',_'MIN')_UTIL_36791458
+ + ('Dillon_Brooks',_'SF',_'HOU')_F_36791290
+ + ('Dillon_Brooks',_'SF',_'HOU')_SF_36791290
+ + ('Dillon_Brooks',_'SF',_'HOU')_UTIL_36791290
+ + ('Donte_DiVincenzo',_'PG_SG',_'MIN')_G_36791189
+ + ('Donte_DiVincenzo',_'PG_SG',_'MIN')_PG_36791189
+ + ('Donte_DiVincenzo',_'PG_SG',_'MIN')_SG_36791189
+ + ('Donte_DiVincenzo',_'PG_SG',_'MIN')_UTIL_36791189
+ + ('Fred_VanVleet',_'PG',_'HOU')_G_36791105
+ + ('Fred_VanVleet',_'PG',_'HOU')_PG_36791105
+ + ('Fred_VanVleet',_'PG',_'HOU')_UTIL_36791105
+ + ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_C_36791261
+ + ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_F_36791261
+ + ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_PF_36791261
+ + ('Jabari_Smith_Jr.',_'PF_C',_'HOU')_UTIL_36791261
+ + ('Jaden_McDaniels',_'SF',_'MIN')_F_36791204
+ + ('Jaden_McDaniels',_'SF',_'MIN')_SF_36791204
+ + ('Jaden_McDaniels',_'SF',_'MIN')_UTIL_36791204
+ + ('Jalen_Green',_'SG',_'HOU')_G_36791130
+ + ('Jalen_Green',_'SG',_'HOU')_SG_36791130
+ + ('Jalen_Green',_'SG',_'HOU')_UTIL_36791130
+ + ('Jock_Landale',_'C',_'HOU')_C_36791418
+ + ('Jock_Landale',_'C',_'HOU')_UTIL_36791418
+ + ('Joe_Ingles',_'PF',_'MIN')_F_36791444
+ + ('Joe_Ingles',_'PF',_'MIN')_PF_36791444
+ + ('Joe_Ingles',_'PF',_'MIN')_UTIL_36791444
+ + ('Julius_Randle',_'PF_C',_'MIN')_C_36791075
+ + ('Julius_Randle',_'PF_C',_'MIN')_F_36791075
+ + ('Julius_Randle',_'PF_C',_'MIN')_PF_36791075
+ + ('Julius_Randle',_'PF_C',_'MIN')_UTIL_36791075
+ + ('Naz_Reid',_'PF_C',_'MIN')_C_36791216
+ + ('Naz_Reid',_'PF_C',_'MIN')_F_36791216
+ + ('Naz_Reid',_'PF_C',_'MIN')_PF_36791216
+ + ('Naz_Reid',_'PF_C',_'MIN')_UTIL_36791216
+ + ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_F_36791281
+ + ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_G_36791281
+ + ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_SF_36791281
+ + ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_SG_36791281
+ + ('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_UTIL_36791281
+ + ('Reed_Sheppard',_'PG_SG',_'HOU')_G_36791414
+ + ('Reed_Sheppard',_'PG_SG',_'HOU')_PG_36791414
+ + ('Reed_Sheppard',_'PG_SG',_'HOU')_SG_36791414
+ + ('Reed_Sheppard',_'PG_SG',_'HOU')_UTIL_36791414
+ + ('Rudy_Gobert',_'C',_'MIN')_C_36791120
+ + ('Rudy_Gobert',_'C',_'MIN')_UTIL_36791120
+ + ('Tari_Eason',_'SF_PF',_'HOU')_F_36791146
+ + ('Tari_Eason',_'SF_PF',_'HOU')_PF_36791146
+ + ('Tari_Eason',_'SF_PF',_'HOU')_SF_36791146
+ + ('Tari_Eason',_'SF_PF',_'HOU')_UTIL_36791146 <= 8
+Must_not_play_all_8_players_from_match_LAL@PHX:
+ ("D'Angelo_Russell",_'PG',_'LAL')_G_36791258
+ + ("D'Angelo_Russell",_'PG',_'LAL')_PG_36791258
+ + ("D'Angelo_Russell",_'PG',_'LAL')_UTIL_36791258
+ + ("Royce_O'Neale",_'SF_PF',_'PHX')_F_36791239
+ + ("Royce_O'Neale",_'SF_PF',_'PHX')_PF_36791239
+ + ("Royce_O'Neale",_'SF_PF',_'PHX')_SF_36791239
+ + ("Royce_O'Neale",_'SF_PF',_'PHX')_UTIL_36791239
+ + ('Anthony_Davis',_'C',_'LAL')_C_36791048
+ + ('Anthony_Davis',_'C',_'LAL')_UTIL_36791048
+ + ('Austin_Reaves',_'PG_SG',_'LAL')_G_36791116
+ + ('Austin_Reaves',_'PG_SG',_'LAL')_PG_36791116
+ + ('Austin_Reaves',_'PG_SG',_'LAL')_SG_36791116
+ + ('Austin_Reaves',_'PG_SG',_'LAL')_UTIL_36791116
+ + ('Bradley_Beal',_'SG_SF',_'PHX')_F_36791092
+ + ('Bradley_Beal',_'SG_SF',_'PHX')_G_36791092
+ + ('Bradley_Beal',_'SG_SF',_'PHX')_SF_36791092
+ + ('Bradley_Beal',_'SG_SF',_'PHX')_SG_36791092
+ + ('Bradley_Beal',_'SG_SF',_'PHX')_UTIL_36791092
+ + ('Cam_Reddish',_'SG',_'LAL')_G_36791349
+ + ('Cam_Reddish',_'SG',_'LAL')_SG_36791349
+ + ('Cam_Reddish',_'SG',_'LAL')_UTIL_36791349
+ + ('Christian_Koloko',_'C',_'LAL')_C_36791393
+ + ('Christian_Koloko',_'C',_'LAL')_UTIL_36791393
+ + ('Dalton_Knecht',_'SG_SF',_'LAL')_F_36791199
+ + ('Dalton_Knecht',_'SG_SF',_'LAL')_G_36791199
+ + ('Dalton_Knecht',_'SG_SF',_'LAL')_SF_36791199
+ + ('Dalton_Knecht',_'SG_SF',_'LAL')_SG_36791199
+ + ('Dalton_Knecht',_'SG_SF',_'LAL')_UTIL_36791199
+ + ('Devin_Booker',_'PG_SG',_'PHX')_G_36791058
+ + ('Devin_Booker',_'PG_SG',_'PHX')_PG_36791058
+ + ('Devin_Booker',_'PG_SG',_'PHX')_SG_36791058
+ + ('Devin_Booker',_'PG_SG',_'PHX')_UTIL_36791058
+ + ('Gabe_Vincent',_'PG_SG',_'LAL')_G_36791564
+ + ('Gabe_Vincent',_'PG_SG',_'LAL')_PG_36791564
+ + ('Gabe_Vincent',_'PG_SG',_'LAL')_SG_36791564
+ + ('Gabe_Vincent',_'PG_SG',_'LAL')_UTIL_36791564
+ + ('Grayson_Allen',_'SG',_'PHX')_G_36791301
+ + ('Grayson_Allen',_'SG',_'PHX')_SG_36791301
+ + ('Grayson_Allen',_'SG',_'PHX')_UTIL_36791301
+ + ('Josh_Okogie',_'SF',_'PHX')_F_36791246
+ + ('Josh_Okogie',_'SF',_'PHX')_SF_36791246
+ + ('Josh_Okogie',_'SF',_'PHX')_UTIL_36791246
+ + ('Jusuf_Nurkic',_'C',_'PHX')_C_36791139
+ + ('Jusuf_Nurkic',_'C',_'PHX')_UTIL_36791139
+ + ('LeBron_James',_'PF_C',_'LAL')_C_36791050
+ + ('LeBron_James',_'PF_C',_'LAL')_F_36791050
+ + ('LeBron_James',_'PF_C',_'LAL')_PF_36791050
+ + ('LeBron_James',_'PF_C',_'LAL')_UTIL_36791050
+ + ('Mason_Plumlee',_'C',_'PHX')_C_36791311
+ + ('Mason_Plumlee',_'C',_'PHX')_UTIL_36791311
+ + ('Max_Christie',_'SF',_'LAL')_F_36791370
+ + ('Max_Christie',_'SF',_'LAL')_SF_36791370
+ + ('Max_Christie',_'SF',_'LAL')_UTIL_36791370
+ + ('Monte_Morris',_'PG',_'PHX')_G_36791388
+ + ('Monte_Morris',_'PG',_'PHX')_PG_36791388
+ + ('Monte_Morris',_'PG',_'PHX')_UTIL_36791388
+ + ('Oso_Ighodaro',_'PF_C',_'PHX')_C_36791334
+ + ('Oso_Ighodaro',_'PF_C',_'PHX')_F_36791334
+ + ('Oso_Ighodaro',_'PF_C',_'PHX')_PF_36791334
+ + ('Oso_Ighodaro',_'PF_C',_'PHX')_UTIL_36791334
+ + ('Rui_Hachimura',_'SF_PF',_'LAL')_F_36791233
+ + ('Rui_Hachimura',_'SF_PF',_'LAL')_PF_36791233
+ + ('Rui_Hachimura',_'SF_PF',_'LAL')_SF_36791233
+ + ('Rui_Hachimura',_'SF_PF',_'LAL')_UTIL_36791233
+ + ('Ryan_Dunn',_'PF',_'PHX')_F_36791355
+ + ('Ryan_Dunn',_'PF',_'PHX')_PF_36791355
+ + ('Ryan_Dunn',_'PF',_'PHX')_UTIL_36791355
+ + ('Tyus_Jones',_'PG',_'PHX')_G_36791156
+ + ('Tyus_Jones',_'PG',_'PHX')_PG_36791156
+ + ('Tyus_Jones',_'PG',_'PHX')_UTIL_36791156 <= 8
+Must_not_play_all_8_players_from_match_MIL@MIA:
+ ('AJ_Green',_'PG_SG',_'MIL')_G_36791297
+ + ('AJ_Green',_'PG_SG',_'MIL')_PG_36791297
+ + ('AJ_Green',_'PG_SG',_'MIL')_SG_36791297
+ + ('AJ_Green',_'PG_SG',_'MIL')_UTIL_36791297
+ + ('Alec_Burks',_'PG_SG',_'MIA')_G_36791345
+ + ('Alec_Burks',_'PG_SG',_'MIA')_PG_36791345
+ + ('Alec_Burks',_'PG_SG',_'MIA')_SG_36791345
+ + ('Alec_Burks',_'PG_SG',_'MIA')_UTIL_36791345
+ + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_F_36791323
+ + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_G_36791323
+ + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SF_36791323
+ + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SG_36791323
+ + ('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_UTIL_36791323
+ + ('Bam_Adebayo',_'C',_'MIA')_C_36791067
+ + ('Bam_Adebayo',_'C',_'MIA')_UTIL_36791067
+ + ('Bobby_Portis',_'PF_C',_'MIL')_C_36791169
+ + ('Bobby_Portis',_'PF_C',_'MIL')_F_36791169
+ + ('Bobby_Portis',_'PF_C',_'MIL')_PF_36791169
+ + ('Bobby_Portis',_'PF_C',_'MIL')_UTIL_36791169
+ + ('Brook_Lopez',_'C',_'MIL')_C_36791144
+ + ('Brook_Lopez',_'C',_'MIL')_UTIL_36791144
+ + ('Damian_Lillard',_'PG',_'MIL')_G_36791062
+ + ('Damian_Lillard',_'PG',_'MIL')_PG_36791062
+ + ('Damian_Lillard',_'PG',_'MIL')_UTIL_36791062
+ + ('Delon_Wright',_'PG',_'MIL')_G_36791358
+ + ('Delon_Wright',_'PG',_'MIL')_PG_36791358
+ + ('Delon_Wright',_'PG',_'MIL')_UTIL_36791358
+ + ('Duncan_Robinson',_'SG',_'MIA')_G_36791265
+ + ('Duncan_Robinson',_'SG',_'MIA')_SG_36791265
+ + ('Duncan_Robinson',_'SG',_'MIA')_UTIL_36791265
+ + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_F_36791306
+ + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_G_36791306
+ + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SF_36791306
+ + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SG_36791306
+ + ('Gary_Trent_Jr.',_'SG_SF',_'MIL')_UTIL_36791306
+ + ('Haywood_Highsmith',_'SF_PF',_'MIA')_F_36791277
+ + ('Haywood_Highsmith',_'SF_PF',_'MIA')_PF_36791277
+ + ('Haywood_Highsmith',_'SF_PF',_'MIA')_SF_36791277
+ + ('Haywood_Highsmith',_'SF_PF',_'MIA')_UTIL_36791277
+ + ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_F_36791224
+ + ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_PF_36791224
+ + ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_SF_36791224
+ + ('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_UTIL_36791224
+ + ('Jimmy_Butler',_'SF_PF',_'MIA')_F_36791088
+ + ('Jimmy_Butler',_'SF_PF',_'MIA')_PF_36791088
+ + ('Jimmy_Butler',_'SF_PF',_'MIA')_SF_36791088
+ + ('Jimmy_Butler',_'SF_PF',_'MIA')_UTIL_36791088
+ + ('Josh_Richardson',_'PG_SG',_'MIA')_G_36791376
+ + ('Josh_Richardson',_'PG_SG',_'MIA')_PG_36791376
+ + ('Josh_Richardson',_'PG_SG',_'MIA')_SG_36791376
+ + ('Josh_Richardson',_'PG_SG',_'MIA')_UTIL_36791376
+ + ('Kevin_Love',_'C',_'MIA')_C_36791315
+ + ('Kevin_Love',_'C',_'MIA')_UTIL_36791315
+ + ('Nikola_Jovic',_'PF',_'MIA')_F_36791352
+ + ('Nikola_Jovic',_'PF',_'MIA')_PF_36791352
+ + ('Nikola_Jovic',_'PF',_'MIA')_UTIL_36791352
+ + ('Pat_Connaughton',_'SF_PF',_'MIL')_F_36791366
+ + ('Pat_Connaughton',_'SF_PF',_'MIL')_PF_36791366
+ + ('Pat_Connaughton',_'SF_PF',_'MIL')_SF_36791366
+ + ('Pat_Connaughton',_'SF_PF',_'MIL')_UTIL_36791366
+ + ('Taurean_Prince',_'SF_PF',_'MIL')_F_36791293
+ + ('Taurean_Prince',_'SF_PF',_'MIL')_PF_36791293
+ + ('Taurean_Prince',_'SF_PF',_'MIL')_SF_36791293
+ + ('Taurean_Prince',_'SF_PF',_'MIL')_UTIL_36791293
+ + ('Tyler_Herro',_'PG_SG',_'MIA')_G_36791079
+ + ('Tyler_Herro',_'PG_SG',_'MIA')_PG_36791079
+ + ('Tyler_Herro',_'PG_SG',_'MIA')_SG_36791079
+ + ('Tyler_Herro',_'PG_SG',_'MIA')_UTIL_36791079 <= 8
+Must_not_play_all_8_players_from_match_SAS@UTA:
+ ('Blake_Wesley',_'PG',_'SAS')_G_36791620
+ + ('Blake_Wesley',_'PG',_'SAS')_PG_36791620
+ + ('Blake_Wesley',_'PG',_'SAS')_UTIL_36791620
+ + ('Brice_Sensabaugh',_'SF_PF',_'UTA')_F_36791447
+ + ('Brice_Sensabaugh',_'SF_PF',_'UTA')_PF_36791447
+ + ('Brice_Sensabaugh',_'SF_PF',_'UTA')_SF_36791447
+ + ('Brice_Sensabaugh',_'SF_PF',_'UTA')_UTIL_36791447
+ + ('Chris_Paul',_'PG',_'SAS')_G_36791133
+ + ('Chris_Paul',_'PG',_'SAS')_PG_36791133
+ + ('Chris_Paul',_'PG',_'SAS')_UTIL_36791133
+ + ('Cody_Williams',_'SF',_'UTA')_F_36791411
+ + ('Cody_Williams',_'SF',_'UTA')_SF_36791411
+ + ('Cody_Williams',_'SF',_'UTA')_UTIL_36791411
+ + ('Collin_Sexton',_'PG_SG',_'UTA')_G_36791150
+ + ('Collin_Sexton',_'PG_SG',_'UTA')_PG_36791150
+ + ('Collin_Sexton',_'PG_SG',_'UTA')_SG_36791150
+ + ('Collin_Sexton',_'PG_SG',_'UTA')_UTIL_36791150
+ + ('Drew_Eubanks',_'C',_'UTA')_C_36791361
+ + ('Drew_Eubanks',_'C',_'UTA')_UTIL_36791361
+ + ('Harrison_Barnes',_'SF_PF',_'SAS')_F_36791254
+ + ('Harrison_Barnes',_'SF_PF',_'SAS')_PF_36791254
+ + ('Harrison_Barnes',_'SF_PF',_'SAS')_SF_36791254
+ + ('Harrison_Barnes',_'SF_PF',_'SAS')_UTIL_36791254
+ + ('Isaiah_Collier',_'PG',_'UTA')_G_36791363
+ + ('Isaiah_Collier',_'PG',_'UTA')_PG_36791363
+ + ('Isaiah_Collier',_'PG',_'UTA')_UTIL_36791363
+ + ('John_Collins',_'PF_C',_'UTA')_C_36791101
+ + ('John_Collins',_'PF_C',_'UTA')_F_36791101
+ + ('John_Collins',_'PF_C',_'UTA')_PF_36791101
+ + ('John_Collins',_'PF_C',_'UTA')_UTIL_36791101
+ + ('Johnny_Juzang',_'SG_SF',_'UTA')_F_36791398
+ + ('Johnny_Juzang',_'SG_SF',_'UTA')_G_36791398
+ + ('Johnny_Juzang',_'SG_SF',_'UTA')_SF_36791398
+ + ('Johnny_Juzang',_'SG_SF',_'UTA')_SG_36791398
+ + ('Johnny_Juzang',_'SG_SF',_'UTA')_UTIL_36791398
+ + ('Julian_Champagnie',_'SG_SF',_'SAS')_F_36791228
+ + ('Julian_Champagnie',_'SG_SF',_'SAS')_G_36791228
+ + ('Julian_Champagnie',_'SG_SF',_'SAS')_SF_36791228
+ + ('Julian_Champagnie',_'SG_SF',_'SAS')_SG_36791228
+ + ('Julian_Champagnie',_'SG_SF',_'SAS')_UTIL_36791228
+ + ('Keldon_Johnson',_'SF_PF',_'SAS')_F_36791180
+ + ('Keldon_Johnson',_'SF_PF',_'SAS')_PF_36791180
+ + ('Keldon_Johnson',_'SF_PF',_'SAS')_SF_36791180
+ + ('Keldon_Johnson',_'SF_PF',_'SAS')_UTIL_36791180
+ + ('Keyonte_George',_'PG',_'UTA')_G_36791166
+ + ('Keyonte_George',_'PG',_'UTA')_PG_36791166
+ + ('Keyonte_George',_'PG',_'UTA')_UTIL_36791166
+ + ('Lauri_Markkanen',_'SF_PF',_'UTA')_F_36791097
+ + ('Lauri_Markkanen',_'SF_PF',_'UTA')_PF_36791097
+ + ('Lauri_Markkanen',_'SF_PF',_'UTA')_SF_36791097
+ + ('Lauri_Markkanen',_'SF_PF',_'UTA')_UTIL_36791097
+ + ('Malaki_Branham',_'SG_SF',_'SAS')_F_36791451
+ + ('Malaki_Branham',_'SG_SF',_'SAS')_G_36791451
+ + ('Malaki_Branham',_'SG_SF',_'SAS')_SF_36791451
+ + ('Malaki_Branham',_'SG_SF',_'SAS')_SG_36791451
+ + ('Malaki_Branham',_'SG_SF',_'SAS')_UTIL_36791451
+ + ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_C_36791432
+ + ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_F_36791432
+ + ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_PF_36791432
+ + ('Sandro_Mamukelashvili',_'PF_C',_'SAS')_UTIL_36791432
+ + ('Stephon_Castle',_'SG',_'SAS')_G_36791196
+ + ('Stephon_Castle',_'SG',_'SAS')_SG_36791196
+ + ('Stephon_Castle',_'SG',_'SAS')_UTIL_36791196
+ + ('Tre_Jones',_'PG',_'SAS')_G_36791373
+ + ('Tre_Jones',_'PG',_'SAS')_PG_36791373
+ + ('Tre_Jones',_'PG',_'SAS')_UTIL_36791373
+ + ('Victor_Wembanyama',_'C',_'SAS')_C_36791046
+ + ('Victor_Wembanyama',_'C',_'SAS')_UTIL_36791046
+ + ('Walker_Kessler',_'C',_'UTA')_C_36791154
+ + ('Walker_Kessler',_'C',_'UTA')_UTIL_36791154
+ + ('Zach_Collins',_'C',_'SAS')_C_36791187
+ + ('Zach_Collins',_'C',_'SAS')_UTIL_36791187 <= 8
 Binaries
-("Ja'Kobe_Walter",_'SG',_'TOR')_G_36873511
-("Ja'Kobe_Walter",_'SG',_'TOR')_SG_36873511
-("Ja'Kobe_Walter",_'SG',_'TOR')_UTIL_36873511
-("Royce_O'Neale",_'SF_PF',_'PHX')_F_36873391
-("Royce_O'Neale",_'SF_PF',_'PHX')_PF_36873391
-("Royce_O'Neale",_'SF_PF',_'PHX')_SF_36873391
-("Royce_O'Neale",_'SF_PF',_'PHX')_UTIL_36873391
-('AJ_Green',_'PG_SG',_'MIL')_G_36873559
-('AJ_Green',_'PG_SG',_'MIL')_PG_36873559
-('AJ_Green',_'PG_SG',_'MIL')_SG_36873559
-('AJ_Green',_'PG_SG',_'MIL')_UTIL_36873559
-('Aaron_Wiggins',_'SF_PF',_'OKC')_F_36873524
-('Aaron_Wiggins',_'SF_PF',_'OKC')_PF_36873524
-('Aaron_Wiggins',_'SF_PF',_'OKC')_SF_36873524
-('Aaron_Wiggins',_'SF_PF',_'OKC')_UTIL_36873524
-('Adem_Bona',_'C',_'PHI')_C_36873608
-('Adem_Bona',_'C',_'PHI')_UTIL_36873608
-('Ajay_Mitchell',_'PG',_'OKC')_G_36873706
-('Ajay_Mitchell',_'PG',_'OKC')_PG_36873706
-('Ajay_Mitchell',_'PG',_'OKC')_UTIL_36873706
-('Alexandre_Sarr',_'PF_C',_'WAS')_C_36873292
-('Alexandre_Sarr',_'PF_C',_'WAS')_F_36873292
-('Alexandre_Sarr',_'PF_C',_'WAS')_PF_36873292
-('Alexandre_Sarr',_'PF_C',_'WAS')_UTIL_36873292
-('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_F_36873591
-('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_G_36873591
-('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SF_36873591
-('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SG_36873591
-('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_UTIL_36873591
-('Andrew_Nembhard',_'PG_SG',_'IND')_G_36873397
-('Andrew_Nembhard',_'PG_SG',_'IND')_PG_36873397
-('Andrew_Nembhard',_'PG_SG',_'IND')_SG_36873397
-('Andrew_Nembhard',_'PG_SG',_'IND')_UTIL_36873397
-('Anthony_Black',_'PG_SG',_'ORL')_G_36873472
-('Anthony_Black',_'PG_SG',_'ORL')_PG_36873472
-('Anthony_Black',_'PG_SG',_'ORL')_SG_36873472
-('Anthony_Black',_'PG_SG',_'ORL')_UTIL_36873472
-('Anthony_Gill',_'PF_C',_'WAS')_C_36873904
-('Anthony_Gill',_'PF_C',_'WAS')_F_36873904
-('Anthony_Gill',_'PF_C',_'WAS')_PF_36873904
-('Anthony_Gill',_'PF_C',_'WAS')_UTIL_36873904
-('Ausar_Thompson',_'SF_PF',_'DET')_F_36873478
-('Ausar_Thompson',_'SF_PF',_'DET')_PF_36873478
-('Ausar_Thompson',_'SF_PF',_'DET')_SF_36873478
-('Ausar_Thompson',_'SF_PF',_'DET')_UTIL_36873478
-('Bennedict_Mathurin',_'SG_SF',_'IND')_F_36873185
-('Bennedict_Mathurin',_'SG_SF',_'IND')_G_36873185
-('Bennedict_Mathurin',_'SG_SF',_'IND')_SF_36873185
-('Bennedict_Mathurin',_'SG_SF',_'IND')_SG_36873185
-('Bennedict_Mathurin',_'SG_SF',_'IND')_UTIL_36873185
-('Bilal_Coulibaly',_'SF',_'WAS')_F_36873287
-('Bilal_Coulibaly',_'SF',_'WAS')_SF_36873287
-('Bilal_Coulibaly',_'SF',_'WAS')_UTIL_36873287
-('Bobby_Portis',_'PF_C',_'MIL')_C_36873248
-('Bobby_Portis',_'PF_C',_'MIL')_F_36873248
-('Bobby_Portis',_'PF_C',_'MIL')_PF_36873248
-('Bobby_Portis',_'PF_C',_'MIL')_UTIL_36873248
-('Bradley_Beal',_'SG_SF',_'PHX')_F_36873146
-('Bradley_Beal',_'SG_SF',_'PHX')_G_36873146
-('Bradley_Beal',_'SG_SF',_'PHX')_SF_36873146
-('Bradley_Beal',_'SG_SF',_'PHX')_SG_36873146
-('Bradley_Beal',_'SG_SF',_'PHX')_UTIL_36873146
-('Brandon_Clarke',_'PF_C',_'MEM')_C_36873424
-('Brandon_Clarke',_'PF_C',_'MEM')_F_36873424
-('Brandon_Clarke',_'PF_C',_'MEM')_PF_36873424
-('Brandon_Clarke',_'PF_C',_'MEM')_UTIL_36873424
-('Brandon_Miller',_'SG_SF',_'CHA')_F_36873126
-('Brandon_Miller',_'SG_SF',_'CHA')_G_36873126
-('Brandon_Miller',_'SG_SF',_'CHA')_SF_36873126
-('Brandon_Miller',_'SG_SF',_'CHA')_SG_36873126
-('Brandon_Miller',_'SG_SF',_'CHA')_UTIL_36873126
-('Brice_Sensabaugh',_'SF',_'UTA')_F_36873588
-('Brice_Sensabaugh',_'SF',_'UTA')_SF_36873588
-('Brice_Sensabaugh',_'SF',_'UTA')_UTIL_36873588
-('Brook_Lopez',_'C',_'MIL')_C_36873212
-('Brook_Lopez',_'C',_'MIL')_UTIL_36873212
-('Bruno_Fernando',_'C',_'TOR')_C_36873748
-('Bruno_Fernando',_'C',_'TOR')_UTIL_36873748
-('Cade_Cunningham',_'PG',_'DET')_G_36873073
-('Cade_Cunningham',_'PG',_'DET')_PG_36873073
-('Cade_Cunningham',_'PG',_'DET')_UTIL_36873073
-('Caleb_Martin',_'PF',_'PHI')_F_36873377
-('Caleb_Martin',_'PF',_'PHI')_PF_36873377
-('Caleb_Martin',_'PF',_'PHI')_UTIL_36873377
-('Cameron_Payne',_'PG_SG',_'NYK')_G_36873547
-('Cameron_Payne',_'PG_SG',_'NYK')_PG_36873547
-('Cameron_Payne',_'PG_SG',_'NYK')_SG_36873547
-('Cameron_Payne',_'PG_SG',_'NYK')_UTIL_36873547
-('Caris_LeVert',_'PG_SG',_'CLE')_G_36873361
-('Caris_LeVert',_'PG_SG',_'CLE')_PG_36873361
-('Caris_LeVert',_'PG_SG',_'CLE')_SG_36873361
-('Caris_LeVert',_'PG_SG',_'CLE')_UTIL_36873361
-('Carlton_Carrington',_'PG_SG',_'WAS')_G_36873404
-('Carlton_Carrington',_'PG_SG',_'WAS')_PG_36873404
-('Carlton_Carrington',_'PG_SG',_'WAS')_SG_36873404
-('Carlton_Carrington',_'PG_SG',_'WAS')_UTIL_36873404
-('Cason_Wallace',_'PG_SG',_'OKC')_G_36873428
-('Cason_Wallace',_'PG_SG',_'OKC')_PG_36873428
-('Cason_Wallace',_'PG_SG',_'OKC')_SG_36873428
-('Cason_Wallace',_'PG_SG',_'OKC')_UTIL_36873428
-('Chris_Boucher',_'PF_C',_'TOR')_C_36873543
-('Chris_Boucher',_'PF_C',_'TOR')_F_36873543
-('Chris_Boucher',_'PF_C',_'TOR')_PF_36873543
-('Chris_Boucher',_'PF_C',_'TOR')_UTIL_36873543
-('Chris_Paul',_'PG',_'SAS')_G_36873238
-('Chris_Paul',_'PG',_'SAS')_PG_36873238
-('Chris_Paul',_'PG',_'SAS')_UTIL_36873238
-('Cody_Martin',_'SF',_'CHA')_F_36873348
-('Cody_Martin',_'SF',_'CHA')_SF_36873348
-('Cody_Martin',_'SF',_'CHA')_UTIL_36873348
-('Cole_Anthony',_'PG_SG',_'ORL')_G_36873646
-('Cole_Anthony',_'PG_SG',_'ORL')_PG_36873646
-('Cole_Anthony',_'PG_SG',_'ORL')_SG_36873646
-('Cole_Anthony',_'PG_SG',_'ORL')_UTIL_36873646
-('Collin_Sexton',_'PG_SG',_'UTA')_G_36873208
-('Collin_Sexton',_'PG_SG',_'UTA')_PG_36873208
-('Collin_Sexton',_'PG_SG',_'UTA')_SG_36873208
-('Collin_Sexton',_'PG_SG',_'UTA')_UTIL_36873208
-('Corey_Kispert',_'SG_SF',_'WAS')_F_36873408
-('Corey_Kispert',_'SG_SF',_'WAS')_G_36873408
-('Corey_Kispert',_'SG_SF',_'WAS')_SF_36873408
-('Corey_Kispert',_'SG_SF',_'WAS')_SG_36873408
-('Corey_Kispert',_'SG_SF',_'WAS')_UTIL_36873408
-('Damian_Lillard',_'PG',_'MIL')_G_36873080
-('Damian_Lillard',_'PG',_'MIL')_PG_36873080
-('Damian_Lillard',_'PG',_'MIL')_UTIL_36873080
-('Daniel_Gafford',_'C',_'DAL')_C_36873246
-('Daniel_Gafford',_'C',_'DAL')_UTIL_36873246
-('Darius_Garland',_'PG',_'CLE')_G_36873158
-('Darius_Garland',_'PG',_'CLE')_PG_36873158
-('Darius_Garland',_'PG',_'CLE')_UTIL_36873158
-('Davion_Mitchell',_'PG_SG',_'TOR')_G_36873566
-('Davion_Mitchell',_'PG_SG',_'TOR')_PG_36873566
-('Davion_Mitchell',_'PG_SG',_'TOR')_SG_36873566
-('Davion_Mitchell',_'PG_SG',_'TOR')_UTIL_36873566
-('Dean_Wade',_'SF_PF',_'CLE')_F_36873596
-('Dean_Wade',_'SF_PF',_'CLE')_PF_36873596
-('Dean_Wade',_'SF_PF',_'CLE')_SF_36873596
-('Dean_Wade',_'SF_PF',_'CLE')_UTIL_36873596
-('Delon_Wright',_'PG',_'MIL')_G_36873688
-('Delon_Wright',_'PG',_'MIL')_PG_36873688
-('Delon_Wright',_'PG',_'MIL')_UTIL_36873688
-('Dereck_Lively_II',_'C',_'DAL')_C_36873290
-('Dereck_Lively_II',_'C',_'DAL')_UTIL_36873290
-('Desmond_Bane',_'SG_SF',_'MEM')_F_36873167
-('Desmond_Bane',_'SG_SF',_'MEM')_G_36873167
-('Desmond_Bane',_'SG_SF',_'MEM')_SF_36873167
-('Desmond_Bane',_'SG_SF',_'MEM')_SG_36873167
-('Desmond_Bane',_'SG_SF',_'MEM')_UTIL_36873167
-('Devin_Booker',_'PG_SG',_'PHX')_G_36873095
-('Devin_Booker',_'PG_SG',_'PHX')_PG_36873095
-('Devin_Booker',_'PG_SG',_'PHX')_SG_36873095
-('Devin_Booker',_'PG_SG',_'PHX')_UTIL_36873095
-('Devin_Vassell',_'SG',_'SAS')_G_36873340
-('Devin_Vassell',_'SG',_'SAS')_SG_36873340
-('Devin_Vassell',_'SG',_'SAS')_UTIL_36873340
-('Dillon_Jones',_'PF',_'OKC')_F_36873699
-('Dillon_Jones',_'PF',_'OKC')_PF_36873699
-('Dillon_Jones',_'PF',_'OKC')_UTIL_36873699
-('Donovan_Mitchell',_'PG_SG',_'CLE')_G_36873087
-('Donovan_Mitchell',_'PG_SG',_'CLE')_PG_36873087
-('Donovan_Mitchell',_'PG_SG',_'CLE')_SG_36873087
-('Donovan_Mitchell',_'PG_SG',_'CLE')_UTIL_36873087
-('Drew_Eubanks',_'C',_'UTA')_C_36873691
-('Drew_Eubanks',_'C',_'UTA')_UTIL_36873691
-('Evan_Mobley',_'PF_C',_'CLE')_C_36873135
-('Evan_Mobley',_'PF_C',_'CLE')_F_36873135
-('Evan_Mobley',_'PF_C',_'CLE')_PF_36873135
-('Evan_Mobley',_'PF_C',_'CLE')_UTIL_36873135
-('Franz_Wagner',_'SF_PF',_'ORL')_F_36873076
-('Franz_Wagner',_'SF_PF',_'ORL')_PF_36873076
-('Franz_Wagner',_'SF_PF',_'ORL')_SF_36873076
-('Franz_Wagner',_'SF_PF',_'ORL')_UTIL_36873076
-('Gary_Trent_Jr.',_'SG_SF',_'MIL')_F_36873532
-('Gary_Trent_Jr.',_'SG_SF',_'MIL')_G_36873532
-('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SF_36873532
-('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SG_36873532
-('Gary_Trent_Jr.',_'SG_SF',_'MIL')_UTIL_36873532
-('Georges_Niang',_'SF_PF',_'CLE')_F_36873435
-('Georges_Niang',_'SF_PF',_'CLE')_PF_36873435
-('Georges_Niang',_'SF_PF',_'CLE')_SF_36873435
-('Georges_Niang',_'SF_PF',_'CLE')_UTIL_36873435
-('Giannis_Antetokounmpo',_'PF_C',_'MIL')_C_36873056
-('Giannis_Antetokounmpo',_'PF_C',_'MIL')_F_36873056
-('Giannis_Antetokounmpo',_'PF_C',_'MIL')_PF_36873056
-('Giannis_Antetokounmpo',_'PF_C',_'MIL')_UTIL_36873056
-('Goga_Bitadze',_'C',_'ORL')_C_36873304
-('Goga_Bitadze',_'C',_'ORL')_UTIL_36873304
-('Grayson_Allen',_'SG',_'PHX')_G_36873351
-('Grayson_Allen',_'SG',_'PHX')_SG_36873351
-('Grayson_Allen',_'SG',_'PHX')_UTIL_36873351
-('Guerschon_Yabusele',_'PF_C',_'PHI')_C_36873275
-('Guerschon_Yabusele',_'PF_C',_'PHI')_F_36873275
-('Guerschon_Yabusele',_'PF_C',_'PHI')_PF_36873275
-('Guerschon_Yabusele',_'PF_C',_'PHI')_UTIL_36873275
-('Harrison_Barnes',_'SF_PF',_'SAS')_F_36873413
-('Harrison_Barnes',_'SF_PF',_'SAS')_PF_36873413
-('Harrison_Barnes',_'SF_PF',_'SAS')_SF_36873413
-('Harrison_Barnes',_'SF_PF',_'SAS')_UTIL_36873413
-('Isaac_Okoro',_'SG_SF',_'CLE')_F_36873516
-('Isaac_Okoro',_'SG_SF',_'CLE')_G_36873516
-('Isaac_Okoro',_'SG_SF',_'CLE')_SF_36873516
-('Isaac_Okoro',_'SG_SF',_'CLE')_SG_36873516
-('Isaac_Okoro',_'SG_SF',_'CLE')_UTIL_36873516
-('Isaiah_Collier',_'PG',_'UTA')_G_36873862
-('Isaiah_Collier',_'PG',_'UTA')_PG_36873862
-('Isaiah_Collier',_'PG',_'UTA')_UTIL_36873862
-('Isaiah_Hartenstein',_'C',_'OKC')_C_36873165
-('Isaiah_Hartenstein',_'C',_'OKC')_UTIL_36873165
-('Isaiah_Joe',_'SG_SF',_'OKC')_F_36873574
-('Isaiah_Joe',_'SG_SF',_'OKC')_G_36873574
-('Isaiah_Joe',_'SG_SF',_'OKC')_SF_36873574
-('Isaiah_Joe',_'SG_SF',_'OKC')_SG_36873574
-('Isaiah_Joe',_'SG_SF',_'OKC')_UTIL_36873574
-('Isaiah_Stewart',_'C',_'DET')_C_36873476
-('Isaiah_Stewart',_'C',_'DET')_UTIL_36873476
-('Ja_Morant',_'PG',_'MEM')_G_36873102
-('Ja_Morant',_'PG',_'MEM')_PG_36873102
-('Ja_Morant',_'PG',_'MEM')_UTIL_36873102
-('Jaden_Hardy',_'PG_SG',_'DAL')_G_36873420
-('Jaden_Hardy',_'PG_SG',_'DAL')_PG_36873420
-('Jaden_Hardy',_'PG_SG',_'DAL')_SG_36873420
-('Jaden_Hardy',_'PG_SG',_'DAL')_UTIL_36873420
-('Jaden_Ivey',_'PG_SG',_'DET')_G_36873139
-('Jaden_Ivey',_'PG_SG',_'DET')_PG_36873139
-('Jaden_Ivey',_'PG_SG',_'DET')_SG_36873139
-('Jaden_Ivey',_'PG_SG',_'DET')_UTIL_36873139
-('Jake_LaRavia',_'SF_PF',_'MEM')_F_36873463
-('Jake_LaRavia',_'SF_PF',_'MEM')_PF_36873463
-('Jake_LaRavia',_'SF_PF',_'MEM')_SF_36873463
-('Jake_LaRavia',_'SF_PF',_'MEM')_UTIL_36873463
-('Jakob_Poeltl',_'C',_'TOR')_C_36873176
-('Jakob_Poeltl',_'C',_'TOR')_UTIL_36873176
-('Jalen_Brunson',_'PG',_'NYK')_G_36873109
-('Jalen_Brunson',_'PG',_'NYK')_PG_36873109
-('Jalen_Brunson',_'PG',_'NYK')_UTIL_36873109
-('Jalen_Duren',_'C',_'DET')_C_36873236
-('Jalen_Duren',_'C',_'DET')_UTIL_36873236
-('Jalen_Suggs',_'PG',_'ORL')_G_36873219
-('Jalen_Suggs',_'PG',_'ORL')_PG_36873219
-('Jalen_Suggs',_'PG',_'ORL')_UTIL_36873219
-('Jalen_Williams',_'PF',_'OKC')_F_36873099
-('Jalen_Williams',_'PF',_'OKC')_PF_36873099
-('Jalen_Williams',_'PF',_'OKC')_UTIL_36873099
-('Jamal_Shead',_'PG',_'TOR')_G_36873745
-('Jamal_Shead',_'PG',_'TOR')_PG_36873745
-('Jamal_Shead',_'PG',_'TOR')_UTIL_36873745
-('Jamison_Battle',_'SF',_'TOR')_F_36873674
-('Jamison_Battle',_'SF',_'TOR')_SF_36873674
-('Jamison_Battle',_'SF',_'TOR')_UTIL_36873674
-('Jarace_Walker',_'SF_PF',_'IND')_F_36873528
-('Jarace_Walker',_'SF_PF',_'IND')_PF_36873528
-('Jarace_Walker',_'SF_PF',_'IND')_SF_36873528
-('Jarace_Walker',_'SF_PF',_'IND')_UTIL_36873528
-('Jared_Butler',_'PG',_'WAS')_G_36873891
-('Jared_Butler',_'PG',_'WAS')_PG_36873891
-('Jared_Butler',_'PG',_'WAS')_UTIL_36873891
-('Jared_McCain',_'PG_SG',_'PHI')_G_36873190
-('Jared_McCain',_'PG_SG',_'PHI')_PG_36873190
-('Jared_McCain',_'PG_SG',_'PHI')_SG_36873190
-('Jared_McCain',_'PG_SG',_'PHI')_UTIL_36873190
-('Jaren_Jackson_Jr.',_'PF',_'MEM')_F_36873143
-('Jaren_Jackson_Jr.',_'PF',_'MEM')_PF_36873143
-('Jaren_Jackson_Jr.',_'PF',_'MEM')_UTIL_36873143
-('Jarrett_Allen',_'C',_'CLE')_C_36873206
-('Jarrett_Allen',_'C',_'CLE')_UTIL_36873206
-('Jay_Huff',_'C',_'MEM')_C_36873622
-('Jay_Huff',_'C',_'MEM')_UTIL_36873622
-('Jaylen_Wells',_'SG_SF',_'MEM')_F_36873486
-('Jaylen_Wells',_'SG_SF',_'MEM')_G_36873486
-('Jaylen_Wells',_'SG_SF',_'MEM')_SF_36873486
-('Jaylen_Wells',_'SG_SF',_'MEM')_SG_36873486
-('Jaylen_Wells',_'SG_SF',_'MEM')_UTIL_36873486
-('Jeremy_Sochan',_'C',_'SAS')_C_36873226
-('Jeremy_Sochan',_'C',_'SAS')_UTIL_36873226
-('Jericho_Sims',_'PF_C',_'NYK')_C_36873610
-('Jericho_Sims',_'PF_C',_'NYK')_F_36873610
-('Jericho_Sims',_'PF_C',_'NYK')_PF_36873610
-('Jericho_Sims',_'PF_C',_'NYK')_UTIL_36873610
-('John_Collins',_'PF_C',_'UTA')_C_36873161
-('John_Collins',_'PF_C',_'UTA')_F_36873161
-('John_Collins',_'PF_C',_'UTA')_PF_36873161
-('John_Collins',_'PF_C',_'UTA')_UTIL_36873161
-('Johnny_Juzang',_'SG_SF',_'UTA')_F_36873663
-('Johnny_Juzang',_'SG_SF',_'UTA')_G_36873663
-('Johnny_Juzang',_'SG_SF',_'UTA')_SF_36873663
-('Johnny_Juzang',_'SG_SF',_'UTA')_SG_36873663
-('Johnny_Juzang',_'SG_SF',_'UTA')_UTIL_36873663
-('Jonas_Valanciunas',_'C',_'WAS')_C_36873324
-('Jonas_Valanciunas',_'C',_'WAS')_UTIL_36873324
-('Jonathan_Isaac',_'PF_C',_'ORL')_C_36873496
-('Jonathan_Isaac',_'PF_C',_'ORL')_F_36873496
-('Jonathan_Isaac',_'PF_C',_'ORL')_PF_36873496
-('Jonathan_Isaac',_'PF_C',_'ORL')_UTIL_36873496
-('Jonathan_Mogbo',_'C',_'TOR')_C_36873630
-('Jonathan_Mogbo',_'C',_'TOR')_UTIL_36873630
-('Jordan_Poole',_'PG_SG',_'WAS')_G_36873181
-('Jordan_Poole',_'PG_SG',_'WAS')_PG_36873181
-('Jordan_Poole',_'PG_SG',_'WAS')_SG_36873181
-('Jordan_Poole',_'PG_SG',_'WAS')_UTIL_36873181
-('Josh_Green',_'SF_PF',_'CHA')_F_36873380
-('Josh_Green',_'SF_PF',_'CHA')_PF_36873380
-('Josh_Green',_'SF_PF',_'CHA')_SF_36873380
-('Josh_Green',_'SF_PF',_'CHA')_UTIL_36873380
-('Josh_Hart',_'SF_PF',_'NYK')_F_36873197
-('Josh_Hart',_'SF_PF',_'NYK')_PF_36873197
-('Josh_Hart',_'SF_PF',_'NYK')_SF_36873197
-('Josh_Hart',_'SF_PF',_'NYK')_UTIL_36873197
-('Josh_Okogie',_'SF',_'PHX')_F_36873452
-('Josh_Okogie',_'SF',_'PHX')_SF_36873452
-('Josh_Okogie',_'SF',_'PHX')_UTIL_36873452
-('Julian_Champagnie',_'SF_PF',_'SAS')_F_36873326
-('Julian_Champagnie',_'SF_PF',_'SAS')_PF_36873326
-('Julian_Champagnie',_'SF_PF',_'SAS')_SF_36873326
-('Julian_Champagnie',_'SF_PF',_'SAS')_UTIL_36873326
-('KJ_Martin',_'SF_PF',_'PHI')_F_36873537
-('KJ_Martin',_'SF_PF',_'PHI')_PF_36873537
-('KJ_Martin',_'SF_PF',_'PHI')_SF_36873537
-('KJ_Martin',_'SF_PF',_'PHI')_UTIL_36873537
-('Karl#Anthony_Towns',_'C',_'NYK')_C_36873085
-('Karl#Anthony_Towns',_'C',_'NYK')_UTIL_36873085
-('Keldon_Johnson',_'SF_PF',_'SAS')_F_36873365
-('Keldon_Johnson',_'SF_PF',_'SAS')_PF_36873365
-('Keldon_Johnson',_'SF_PF',_'SAS')_SF_36873365
-('Keldon_Johnson',_'SF_PF',_'SAS')_UTIL_36873365
-('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_F_36873316
-('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_G_36873316
-('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_SF_36873316
-('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_SG_36873316
-('Kelly_Oubre_Jr.',_'SG_SF',_'PHI')_UTIL_36873316
-('Kenrich_Williams',_'PF_C',_'OKC')_C_36873684
-('Kenrich_Williams',_'PF_C',_'OKC')_F_36873684
-('Kenrich_Williams',_'PF_C',_'OKC')_PF_36873684
-('Kenrich_Williams',_'PF_C',_'OKC')_UTIL_36873684
-('Kentavious_Caldwell#Pope',_'SG',_'ORL')_G_36873432
-('Kentavious_Caldwell#Pope',_'SG',_'ORL')_SG_36873432
-('Kentavious_Caldwell#Pope',_'SG',_'ORL')_UTIL_36873432
-('Kevin_Durant',_'PF_C',_'PHX')_C_36873105
-('Kevin_Durant',_'PF_C',_'PHX')_F_36873105
-('Kevin_Durant',_'PF_C',_'PHX')_PF_36873105
-('Kevin_Durant',_'PF_C',_'PHX')_UTIL_36873105
-('Keyonte_George',_'PG',_'UTA')_G_36873252
-('Keyonte_George',_'PG',_'UTA')_PG_36873252
-('Keyonte_George',_'PG',_'UTA')_UTIL_36873252
-('Klay_Thompson',_'SG_SF',_'DAL')_F_36873296
-('Klay_Thompson',_'SG_SF',_'DAL')_G_36873296
-('Klay_Thompson',_'SG_SF',_'DAL')_SF_36873296
-('Klay_Thompson',_'SG_SF',_'DAL')_SG_36873296
-('Klay_Thompson',_'SG_SF',_'DAL')_UTIL_36873296
-('Kyle_Lowry',_'PG',_'PHI')_G_36873556
-('Kyle_Lowry',_'PG',_'PHI')_PG_36873556
-('Kyle_Lowry',_'PG',_'PHI')_UTIL_36873556
-('Kyrie_Irving',_'PG_SG',_'DAL')_G_36873091
-('Kyrie_Irving',_'PG_SG',_'DAL')_PG_36873091
-('Kyrie_Irving',_'PG_SG',_'DAL')_SG_36873091
-('Kyrie_Irving',_'PG_SG',_'DAL')_UTIL_36873091
-('Kyshawn_George',_'SF_PF',_'WAS')_F_36873448
-('Kyshawn_George',_'SF_PF',_'WAS')_PF_36873448
-('Kyshawn_George',_'SF_PF',_'WAS')_SF_36873448
-('Kyshawn_George',_'SF_PF',_'WAS')_UTIL_36873448
-('Lauri_Markkanen',_'SF_PF',_'UTA')_F_36873172
-('Lauri_Markkanen',_'SF_PF',_'UTA')_PF_36873172
-('Lauri_Markkanen',_'SF_PF',_'UTA')_SF_36873172
-('Lauri_Markkanen',_'SF_PF',_'UTA')_UTIL_36873172
-('Luguentz_Dort',_'SG_SF',_'OKC')_F_36873306
-('Luguentz_Dort',_'SG_SF',_'OKC')_G_36873306
-('Luguentz_Dort',_'SG_SF',_'OKC')_SF_36873306
-('Luguentz_Dort',_'SG_SF',_'OKC')_SG_36873306
-('Luguentz_Dort',_'SG_SF',_'OKC')_UTIL_36873306
-('Luka_Doncic',_'PG',_'DAL')_G_36873060
-('Luka_Doncic',_'PG',_'DAL')_PG_36873060
-('Luka_Doncic',_'PG',_'DAL')_UTIL_36873060
-('Luke_Kennard',_'SG_SF',_'MEM')_F_36873641
-('Luke_Kennard',_'SG_SF',_'MEM')_G_36873641
-('Luke_Kennard',_'SG_SF',_'MEM')_SF_36873641
-('Luke_Kennard',_'SG_SF',_'MEM')_SG_36873641
-('Luke_Kennard',_'SG_SF',_'MEM')_UTIL_36873641
-('Malcolm_Brogdon',_'PG_SG',_'WAS')_G_36873262
-('Malcolm_Brogdon',_'PG_SG',_'WAS')_PG_36873262
-('Malcolm_Brogdon',_'PG_SG',_'WAS')_SG_36873262
-('Malcolm_Brogdon',_'PG_SG',_'WAS')_UTIL_36873262
-('Malik_Beasley',_'SG_SF',_'DET')_F_36873255
-('Malik_Beasley',_'SG_SF',_'DET')_G_36873255
-('Malik_Beasley',_'SG_SF',_'DET')_SF_36873255
-('Malik_Beasley',_'SG_SF',_'DET')_SG_36873255
-('Malik_Beasley',_'SG_SF',_'DET')_UTIL_36873255
-('Marcus_Sasser',_'PG',_'DET')_G_36873616
-('Marcus_Sasser',_'PG',_'DET')_PG_36873616
-('Marcus_Sasser',_'PG',_'DET')_UTIL_36873616
-('Marcus_Smart',_'PG_SG',_'MEM')_G_36873373
-('Marcus_Smart',_'PG_SG',_'MEM')_PG_36873373
-('Marcus_Smart',_'PG_SG',_'MEM')_SG_36873373
-('Marcus_Smart',_'PG_SG',_'MEM')_UTIL_36873373
-('Mark_Williams',_'C',_'CHA')_C_36873260
-('Mark_Williams',_'C',_'CHA')_UTIL_36873260
-('Mason_Plumlee',_'C',_'PHX')_C_36873514
-('Mason_Plumlee',_'C',_'PHX')_UTIL_36873514
-('Maxi_Kleber',_'PF_C',_'DAL')_C_36873600
-('Maxi_Kleber',_'PF_C',_'DAL')_F_36873600
-('Maxi_Kleber',_'PF_C',_'DAL')_PF_36873600
-('Maxi_Kleber',_'PF_C',_'DAL')_UTIL_36873600
-('Micah_Potter',_'PF',_'UTA')_F_36873859
-('Micah_Potter',_'PF',_'UTA')_PF_36873859
-('Micah_Potter',_'PF',_'UTA')_UTIL_36873859
-('Mikal_Bridges',_'SG_SF',_'NYK')_F_36873241
-('Mikal_Bridges',_'SG_SF',_'NYK')_G_36873241
-('Mikal_Bridges',_'SG_SF',_'NYK')_SF_36873241
-('Mikal_Bridges',_'SG_SF',_'NYK')_SG_36873241
-('Mikal_Bridges',_'SG_SF',_'NYK')_UTIL_36873241
-('Miles_McBride',_'PG_SG',_'NYK')_G_36873455
-('Miles_McBride',_'PG_SG',_'NYK')_PG_36873455
-('Miles_McBride',_'PG_SG',_'NYK')_SG_36873455
-('Miles_McBride',_'PG_SG',_'NYK')_UTIL_36873455
-('Monte_Morris',_'PG',_'PHX')_G_36873681
-('Monte_Morris',_'PG',_'PHX')_PG_36873681
-('Monte_Morris',_'PG',_'PHX')_UTIL_36873681
-('Moritz_Wagner',_'C',_'ORL')_C_36873395
-('Moritz_Wagner',_'C',_'ORL')_UTIL_36873395
-('Moses_Brown',_'C',_'IND')_C_36873880
-('Moses_Brown',_'C',_'IND')_UTIL_36873880
-('Moussa_Diabate',_'PF_C',_'CHA')_C_36873354
-('Moussa_Diabate',_'PF_C',_'CHA')_F_36873354
-('Moussa_Diabate',_'PF_C',_'CHA')_PF_36873354
-('Moussa_Diabate',_'PF_C',_'CHA')_UTIL_36873354
-('Myles_Turner',_'C',_'IND')_C_36873201
-('Myles_Turner',_'C',_'IND')_UTIL_36873201
-('Nick_Smith_Jr.',_'SG_SF',_'CHA')_F_36873652
-('Nick_Smith_Jr.',_'SG_SF',_'CHA')_G_36873652
-('Nick_Smith_Jr.',_'SG_SF',_'CHA')_SF_36873652
-('Nick_Smith_Jr.',_'SG_SF',_'CHA')_SG_36873652
-('Nick_Smith_Jr.',_'SG_SF',_'CHA')_UTIL_36873652
-('OG_Anunoby',_'SF_PF',_'NYK')_F_36873222
-('OG_Anunoby',_'SF_PF',_'NYK')_PF_36873222
-('OG_Anunoby',_'SF_PF',_'NYK')_SF_36873222
-('OG_Anunoby',_'SF_PF',_'NYK')_UTIL_36873222
-('Obi_Toppin',_'PF_C',_'IND')_C_36873579
-('Obi_Toppin',_'PF_C',_'IND')_F_36873579
-('Obi_Toppin',_'PF_C',_'IND')_PF_36873579
-('Obi_Toppin',_'PF_C',_'IND')_UTIL_36873579
-('Ochai_Agbaji',_'SF_PF',_'TOR')_F_36873369
-('Ochai_Agbaji',_'SF_PF',_'TOR')_PF_36873369
-('Ochai_Agbaji',_'SF_PF',_'TOR')_SF_36873369
-('Ochai_Agbaji',_'SF_PF',_'TOR')_UTIL_36873369
-('Oso_Ighodaro',_'PF_C',_'PHX')_C_36873570
-('Oso_Ighodaro',_'PF_C',_'PHX')_F_36873570
-('Oso_Ighodaro',_'PF_C',_'PHX')_PF_36873570
-('Oso_Ighodaro',_'PF_C',_'PHX')_UTIL_36873570
-('PJ_Washington',_'PF',_'DAL')_F_36873178
-('PJ_Washington',_'PF',_'DAL')_PF_36873178
-('PJ_Washington',_'PF',_'DAL')_UTIL_36873178
-('Pascal_Siakam',_'PF',_'IND')_F_36873151
-('Pascal_Siakam',_'PF',_'IND')_PF_36873151
-('Pascal_Siakam',_'PF',_'IND')_UTIL_36873151
-('Pat_Connaughton',_'SF_PF',_'MIL')_F_36873637
-('Pat_Connaughton',_'SF_PF',_'MIL')_PF_36873637
-('Pat_Connaughton',_'SF_PF',_'MIL')_SF_36873637
-('Pat_Connaughton',_'SF_PF',_'MIL')_UTIL_36873637
-('Paul_George',_'SF_PF',_'PHI')_F_36873154
-('Paul_George',_'SF_PF',_'PHI')_PF_36873154
-('Paul_George',_'SF_PF',_'PHI')_SF_36873154
-('Paul_George',_'SF_PF',_'PHI')_UTIL_36873154
-('Quentin_Grimes',_'SG_SF',_'DAL')_F_36873311
-('Quentin_Grimes',_'SG_SF',_'DAL')_G_36873311
-('Quentin_Grimes',_'SG_SF',_'DAL')_SF_36873311
-('Quentin_Grimes',_'SG_SF',_'DAL')_SG_36873311
-('Quentin_Grimes',_'SG_SF',_'DAL')_UTIL_36873311
-('Quenton_Jackson',_'SG_SF',_'IND')_F_36873551
-('Quenton_Jackson',_'SG_SF',_'IND')_G_36873551
-('Quenton_Jackson',_'SG_SF',_'IND')_SF_36873551
-('Quenton_Jackson',_'SG_SF',_'IND')_SG_36873551
-('Quenton_Jackson',_'SG_SF',_'IND')_UTIL_36873551
-('RJ_Barrett',_'SF_PF',_'TOR')_F_36873131
-('RJ_Barrett',_'SF_PF',_'TOR')_PF_36873131
-('RJ_Barrett',_'SF_PF',_'TOR')_SF_36873131
-('RJ_Barrett',_'SF_PF',_'TOR')_UTIL_36873131
-('Ricky_Council_IV',_'SG_SF',_'PHI')_F_36873583
-('Ricky_Council_IV',_'SG_SF',_'PHI')_G_36873583
-('Ricky_Council_IV',_'SG_SF',_'PHI')_SF_36873583
-('Ricky_Council_IV',_'SG_SF',_'PHI')_SG_36873583
-('Ricky_Council_IV',_'SG_SF',_'PHI')_UTIL_36873583
-('Ryan_Dunn',_'PF',_'PHX')_F_36873619
-('Ryan_Dunn',_'PF',_'PHX')_PF_36873619
-('Ryan_Dunn',_'PF',_'PHX')_UTIL_36873619
-('Sam_Merrill',_'SG',_'CLE')_G_36873624
-('Sam_Merrill',_'SG',_'CLE')_SG_36873624
-('Sam_Merrill',_'SG',_'CLE')_UTIL_36873624
-('Santi_Aldama',_'PF',_'MEM')_F_36873272
-('Santi_Aldama',_'PF',_'MEM')_PF_36873272
-('Santi_Aldama',_'PF',_'MEM')_UTIL_36873272
-('Scottie_Barnes',_'PG_SF',_'TOR')_F_36873115
-('Scottie_Barnes',_'PG_SF',_'TOR')_G_36873115
-('Scottie_Barnes',_'PG_SF',_'TOR')_PG_36873115
-('Scottie_Barnes',_'PG_SF',_'TOR')_SF_36873115
-('Scottie_Barnes',_'PG_SF',_'TOR')_UTIL_36873115
-('Scotty_Pippen_Jr.',_'PG',_'MEM')_G_36873439
-('Scotty_Pippen_Jr.',_'PG',_'MEM')_PG_36873439
-('Scotty_Pippen_Jr.',_'PG',_'MEM')_UTIL_36873439
-('Seth_Curry',_'SG',_'CHA')_G_36873696
-('Seth_Curry',_'SG',_'CHA')_SG_36873696
-('Seth_Curry',_'SG',_'CHA')_UTIL_36873696
-('Shai_Gilgeous#Alexander',_'PG',_'OKC')_G_36873065
-('Shai_Gilgeous#Alexander',_'PG',_'OKC')_PG_36873065
-('Shai_Gilgeous#Alexander',_'PG',_'OKC')_UTIL_36873065
-('Simone_Fontecchio',_'PF',_'DET')_F_36873627
-('Simone_Fontecchio',_'PF',_'DET')_PF_36873627
-('Simone_Fontecchio',_'PF',_'DET')_UTIL_36873627
-('Spencer_Dinwiddie',_'PG',_'DAL')_G_36873358
-('Spencer_Dinwiddie',_'PG',_'DAL')_PG_36873358
-('Spencer_Dinwiddie',_'PG',_'DAL')_UTIL_36873358
-('Stephon_Castle',_'SG',_'SAS')_G_36873330
-('Stephon_Castle',_'SG',_'SAS')_SG_36873330
-('Stephon_Castle',_'SG',_'SAS')_UTIL_36873330
-('T.J._McConnell',_'PG',_'IND')_G_36873345
-('T.J._McConnell',_'PG',_'IND')_PG_36873345
-('T.J._McConnell',_'PG',_'IND')_UTIL_36873345
-('Taj_Gibson',_'C',_'CHA')_C_36873798
-('Taj_Gibson',_'C',_'CHA')_UTIL_36873798
-('Taurean_Prince',_'SF_PF',_'MIL')_F_36873507
-('Taurean_Prince',_'SF_PF',_'MIL')_PF_36873507
-('Taurean_Prince',_'SF_PF',_'MIL')_SF_36873507
-('Taurean_Prince',_'SF_PF',_'MIL')_UTIL_36873507
-('Tidjane_Salaun',_'PF',_'CHA')_F_36873563
-('Tidjane_Salaun',_'PF',_'CHA')_PF_36873563
-('Tidjane_Salaun',_'PF',_'CHA')_UTIL_36873563
-('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_F_36873500
-('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_G_36873500
-('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_SF_36873500
-('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_SG_36873500
-('Tim_Hardaway_Jr.',_'SG_SF',_'DET')_UTIL_36873500
-('Tobias_Harris',_'PF',_'DET')_F_36873228
-('Tobias_Harris',_'PF',_'DET')_PF_36873228
-('Tobias_Harris',_'PF',_'DET')_UTIL_36873228
-('Tristan_da_Silva',_'SF_PF',_'ORL')_F_36873604
-('Tristan_da_Silva',_'SF_PF',_'ORL')_PF_36873604
-('Tristan_da_Silva',_'SF_PF',_'ORL')_SF_36873604
-('Tristan_da_Silva',_'SF_PF',_'ORL')_UTIL_36873604
-('Tyrese_Haliburton',_'PG',_'IND')_G_36873112
-('Tyrese_Haliburton',_'PG',_'IND')_PG_36873112
-('Tyrese_Haliburton',_'PG',_'IND')_UTIL_36873112
-('Tyrese_Maxey',_'PG',_'PHI')_G_36873120
-('Tyrese_Maxey',_'PG',_'PHI')_PG_36873120
-('Tyrese_Maxey',_'PG',_'PHI')_UTIL_36873120
-('Tyus_Jones',_'PG',_'PHX')_G_36873266
-('Tyus_Jones',_'PG',_'PHX')_PG_36873266
-('Tyus_Jones',_'PG',_'PHX')_UTIL_36873266
-('Vasilije_Micic',_'PG',_'CHA')_G_36873401
-('Vasilije_Micic',_'PG',_'CHA')_PG_36873401
-('Vasilije_Micic',_'PG',_'CHA')_UTIL_36873401
-('Victor_Wembanyama',_'C',_'SAS')_C_36873063
-('Victor_Wembanyama',_'C',_'SAS')_UTIL_36873063
-('Walker_Kessler',_'C',_'UTA')_C_36873217
-('Walker_Kessler',_'C',_'UTA')_UTIL_36873217
-('Wendell_Carter_Jr.',_'PF_C',_'ORL')_C_36873336
-('Wendell_Carter_Jr.',_'PF_C',_'ORL')_F_36873336
-('Wendell_Carter_Jr.',_'PF_C',_'ORL')_PF_36873336
-('Wendell_Carter_Jr.',_'PF_C',_'ORL')_UTIL_36873336
-('Zach_Collins',_'C',_'SAS')_C_36873446
-('Zach_Collins',_'C',_'SAS')_UTIL_36873446
+("D'Angelo_Russell",_'PG',_'LAL')_G_36791258
+("D'Angelo_Russell",_'PG',_'LAL')_PG_36791258
+("D'Angelo_Russell",_'PG',_'LAL')_UTIL_36791258
+("Royce_O'Neale",_'SF_PF',_'PHX')_F_36791239
+("Royce_O'Neale",_'SF_PF',_'PHX')_PF_36791239
+("Royce_O'Neale",_'SF_PF',_'PHX')_SF_36791239
+("Royce_O'Neale",_'SF_PF',_'PHX')_UTIL_36791239
+('AJ_Green',_'PG_SG',_'MIL')_G_36791297
+('AJ_Green',_'PG_SG',_'MIL')_PG_36791297
+('AJ_Green',_'PG_SG',_'MIL')_SG_36791297
+('AJ_Green',_'PG_SG',_'MIL')_UTIL_36791297
+('Aaron_Holiday',_'PG',_'HOU')_G_36791537
+('Aaron_Holiday',_'PG',_'HOU')_PG_36791537
+('Aaron_Holiday',_'PG',_'HOU')_UTIL_36791537
+('Alec_Burks',_'PG_SG',_'MIA')_G_36791345
+('Alec_Burks',_'PG_SG',_'MIA')_PG_36791345
+('Alec_Burks',_'PG_SG',_'MIA')_SG_36791345
+('Alec_Burks',_'PG_SG',_'MIA')_UTIL_36791345
+('Alexandre_Sarr',_'PF_C',_'WAS')_C_36791220
+('Alexandre_Sarr',_'PF_C',_'WAS')_F_36791220
+('Alexandre_Sarr',_'PF_C',_'WAS')_PF_36791220
+('Alexandre_Sarr',_'PF_C',_'WAS')_UTIL_36791220
+('Alperen_Sengun',_'C',_'HOU')_C_36791065
+('Alperen_Sengun',_'C',_'HOU')_UTIL_36791065
+('Amen_Thompson',_'SG_SF',_'HOU')_F_36791207
+('Amen_Thompson',_'SG_SF',_'HOU')_G_36791207
+('Amen_Thompson',_'SG_SF',_'HOU')_SF_36791207
+('Amen_Thompson',_'SG_SF',_'HOU')_SG_36791207
+('Amen_Thompson',_'SG_SF',_'HOU')_UTIL_36791207
+('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_F_36791323
+('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_G_36791323
+('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SF_36791323
+('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_SG_36791323
+('Andre_Jackson_Jr.',_'SG_SF',_'MIL')_UTIL_36791323
+('Anthony_Davis',_'C',_'LAL')_C_36791048
+('Anthony_Davis',_'C',_'LAL')_UTIL_36791048
+('Anthony_Edwards',_'PG_SG',_'MIN')_G_36791054
+('Anthony_Edwards',_'PG_SG',_'MIN')_PG_36791054
+('Anthony_Edwards',_'PG_SG',_'MIN')_SG_36791054
+('Anthony_Edwards',_'PG_SG',_'MIN')_UTIL_36791054
+('Austin_Reaves',_'PG_SG',_'LAL')_G_36791116
+('Austin_Reaves',_'PG_SG',_'LAL')_PG_36791116
+('Austin_Reaves',_'PG_SG',_'LAL')_SG_36791116
+('Austin_Reaves',_'PG_SG',_'LAL')_UTIL_36791116
+('Ayo_Dosunmu',_'PG_SG',_'CHI')_G_36791173
+('Ayo_Dosunmu',_'PG_SG',_'CHI')_PG_36791173
+('Ayo_Dosunmu',_'PG_SG',_'CHI')_SG_36791173
+('Ayo_Dosunmu',_'PG_SG',_'CHI')_UTIL_36791173
+('Bam_Adebayo',_'C',_'MIA')_C_36791067
+('Bam_Adebayo',_'C',_'MIA')_UTIL_36791067
+('Bilal_Coulibaly',_'SF',_'WAS')_F_36791159
+('Bilal_Coulibaly',_'SF',_'WAS')_SF_36791159
+('Bilal_Coulibaly',_'SF',_'WAS')_UTIL_36791159
+('Blake_Wesley',_'PG',_'SAS')_G_36791620
+('Blake_Wesley',_'PG',_'SAS')_PG_36791620
+('Blake_Wesley',_'PG',_'SAS')_UTIL_36791620
+('Bobby_Portis',_'PF_C',_'MIL')_C_36791169
+('Bobby_Portis',_'PF_C',_'MIL')_F_36791169
+('Bobby_Portis',_'PF_C',_'MIL')_PF_36791169
+('Bobby_Portis',_'PF_C',_'MIL')_UTIL_36791169
+('Bradley_Beal',_'SG_SF',_'PHX')_F_36791092
+('Bradley_Beal',_'SG_SF',_'PHX')_G_36791092
+('Bradley_Beal',_'SG_SF',_'PHX')_SF_36791092
+('Bradley_Beal',_'SG_SF',_'PHX')_SG_36791092
+('Bradley_Beal',_'SG_SF',_'PHX')_UTIL_36791092
+('Brice_Sensabaugh',_'SF_PF',_'UTA')_F_36791447
+('Brice_Sensabaugh',_'SF_PF',_'UTA')_PF_36791447
+('Brice_Sensabaugh',_'SF_PF',_'UTA')_SF_36791447
+('Brice_Sensabaugh',_'SF_PF',_'UTA')_UTIL_36791447
+('Brook_Lopez',_'C',_'MIL')_C_36791144
+('Brook_Lopez',_'C',_'MIL')_UTIL_36791144
+('Cam_Reddish',_'SG',_'LAL')_G_36791349
+('Cam_Reddish',_'SG',_'LAL')_SG_36791349
+('Cam_Reddish',_'SG',_'LAL')_UTIL_36791349
+('Carlton_Carrington',_'PG_SG',_'WAS')_G_36791212
+('Carlton_Carrington',_'PG_SG',_'WAS')_PG_36791212
+('Carlton_Carrington',_'PG_SG',_'WAS')_SG_36791212
+('Carlton_Carrington',_'PG_SG',_'WAS')_UTIL_36791212
+('Chris_Paul',_'PG',_'SAS')_G_36791133
+('Chris_Paul',_'PG',_'SAS')_PG_36791133
+('Chris_Paul',_'PG',_'SAS')_UTIL_36791133
+('Christian_Koloko',_'C',_'LAL')_C_36791393
+('Christian_Koloko',_'C',_'LAL')_UTIL_36791393
+('Coby_White',_'PG_SG',_'CHI')_G_36791108
+('Coby_White',_'PG_SG',_'CHI')_PG_36791108
+('Coby_White',_'PG_SG',_'CHI')_SG_36791108
+('Coby_White',_'PG_SG',_'CHI')_UTIL_36791108
+('Cody_Williams',_'SF',_'UTA')_F_36791411
+('Cody_Williams',_'SF',_'UTA')_SF_36791411
+('Cody_Williams',_'SF',_'UTA')_UTIL_36791411
+('Collin_Sexton',_'PG_SG',_'UTA')_G_36791150
+('Collin_Sexton',_'PG_SG',_'UTA')_PG_36791150
+('Collin_Sexton',_'PG_SG',_'UTA')_SG_36791150
+('Collin_Sexton',_'PG_SG',_'UTA')_UTIL_36791150
+('Corey_Kispert',_'SG_SF',_'WAS')_F_36791268
+('Corey_Kispert',_'SG_SF',_'WAS')_G_36791268
+('Corey_Kispert',_'SG_SF',_'WAS')_SF_36791268
+('Corey_Kispert',_'SG_SF',_'WAS')_SG_36791268
+('Corey_Kispert',_'SG_SF',_'WAS')_UTIL_36791268
+('Daishen_Nix',_'PG',_'MIN')_G_36791458
+('Daishen_Nix',_'PG',_'MIN')_PG_36791458
+('Daishen_Nix',_'PG',_'MIN')_UTIL_36791458
+('Dalen_Terry',_'SG_SF',_'CHI')_F_36791383
+('Dalen_Terry',_'SG_SF',_'CHI')_G_36791383
+('Dalen_Terry',_'SG_SF',_'CHI')_SF_36791383
+('Dalen_Terry',_'SG_SF',_'CHI')_SG_36791383
+('Dalen_Terry',_'SG_SF',_'CHI')_UTIL_36791383
+('Dalton_Knecht',_'SG_SF',_'LAL')_F_36791199
+('Dalton_Knecht',_'SG_SF',_'LAL')_G_36791199
+('Dalton_Knecht',_'SG_SF',_'LAL')_SF_36791199
+('Dalton_Knecht',_'SG_SF',_'LAL')_SG_36791199
+('Dalton_Knecht',_'SG_SF',_'LAL')_UTIL_36791199
+('Damian_Lillard',_'PG',_'MIL')_G_36791062
+('Damian_Lillard',_'PG',_'MIL')_PG_36791062
+('Damian_Lillard',_'PG',_'MIL')_UTIL_36791062
+('Delon_Wright',_'PG',_'MIL')_G_36791358
+('Delon_Wright',_'PG',_'MIL')_PG_36791358
+('Delon_Wright',_'PG',_'MIL')_UTIL_36791358
+('Devin_Booker',_'PG_SG',_'PHX')_G_36791058
+('Devin_Booker',_'PG_SG',_'PHX')_PG_36791058
+('Devin_Booker',_'PG_SG',_'PHX')_SG_36791058
+('Devin_Booker',_'PG_SG',_'PHX')_UTIL_36791058
+('Dillon_Brooks',_'SF',_'HOU')_F_36791290
+('Dillon_Brooks',_'SF',_'HOU')_SF_36791290
+('Dillon_Brooks',_'SF',_'HOU')_UTIL_36791290
+('Donte_DiVincenzo',_'PG_SG',_'MIN')_G_36791189
+('Donte_DiVincenzo',_'PG_SG',_'MIN')_PG_36791189
+('Donte_DiVincenzo',_'PG_SG',_'MIN')_SG_36791189
+('Donte_DiVincenzo',_'PG_SG',_'MIN')_UTIL_36791189
+('Drew_Eubanks',_'C',_'UTA')_C_36791361
+('Drew_Eubanks',_'C',_'UTA')_UTIL_36791361
+('Duncan_Robinson',_'SG',_'MIA')_G_36791265
+('Duncan_Robinson',_'SG',_'MIA')_SG_36791265
+('Duncan_Robinson',_'SG',_'MIA')_UTIL_36791265
+('Fred_VanVleet',_'PG',_'HOU')_G_36791105
+('Fred_VanVleet',_'PG',_'HOU')_PG_36791105
+('Fred_VanVleet',_'PG',_'HOU')_UTIL_36791105
+('Gabe_Vincent',_'PG_SG',_'LAL')_G_36791564
+('Gabe_Vincent',_'PG_SG',_'LAL')_PG_36791564
+('Gabe_Vincent',_'PG_SG',_'LAL')_SG_36791564
+('Gabe_Vincent',_'PG_SG',_'LAL')_UTIL_36791564
+('Gary_Trent_Jr.',_'SG_SF',_'MIL')_F_36791306
+('Gary_Trent_Jr.',_'SG_SF',_'MIL')_G_36791306
+('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SF_36791306
+('Gary_Trent_Jr.',_'SG_SF',_'MIL')_SG_36791306
+('Gary_Trent_Jr.',_'SG_SF',_'MIL')_UTIL_36791306
+('Grayson_Allen',_'SG',_'PHX')_G_36791301
+('Grayson_Allen',_'SG',_'PHX')_SG_36791301
+('Grayson_Allen',_'SG',_'PHX')_UTIL_36791301
+('Harrison_Barnes',_'SF_PF',_'SAS')_F_36791254
+('Harrison_Barnes',_'SF_PF',_'SAS')_PF_36791254
+('Harrison_Barnes',_'SF_PF',_'SAS')_SF_36791254
+('Harrison_Barnes',_'SF_PF',_'SAS')_UTIL_36791254
+('Haywood_Highsmith',_'SF_PF',_'MIA')_F_36791277
+('Haywood_Highsmith',_'SF_PF',_'MIA')_PF_36791277
+('Haywood_Highsmith',_'SF_PF',_'MIA')_SF_36791277
+('Haywood_Highsmith',_'SF_PF',_'MIA')_UTIL_36791277
+('Isaiah_Collier',_'PG',_'UTA')_G_36791363
+('Isaiah_Collier',_'PG',_'UTA')_PG_36791363
+('Isaiah_Collier',_'PG',_'UTA')_UTIL_36791363
+('Jabari_Smith_Jr.',_'PF_C',_'HOU')_C_36791261
+('Jabari_Smith_Jr.',_'PF_C',_'HOU')_F_36791261
+('Jabari_Smith_Jr.',_'PF_C',_'HOU')_PF_36791261
+('Jabari_Smith_Jr.',_'PF_C',_'HOU')_UTIL_36791261
+('Jaden_McDaniels',_'SF',_'MIN')_F_36791204
+('Jaden_McDaniels',_'SF',_'MIN')_SF_36791204
+('Jaden_McDaniels',_'SF',_'MIN')_UTIL_36791204
+('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_F_36791224
+('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_PF_36791224
+('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_SF_36791224
+('Jaime_Jaquez_Jr.',_'SF_PF',_'MIA')_UTIL_36791224
+('Jalen_Green',_'SG',_'HOU')_G_36791130
+('Jalen_Green',_'SG',_'HOU')_SG_36791130
+('Jalen_Green',_'SG',_'HOU')_UTIL_36791130
+('Jalen_Smith',_'C',_'CHI')_C_36791343
+('Jalen_Smith',_'C',_'CHI')_UTIL_36791343
+('Jimmy_Butler',_'SF_PF',_'MIA')_F_36791088
+('Jimmy_Butler',_'SF_PF',_'MIA')_PF_36791088
+('Jimmy_Butler',_'SF_PF',_'MIA')_SF_36791088
+('Jimmy_Butler',_'SF_PF',_'MIA')_UTIL_36791088
+('Jock_Landale',_'C',_'HOU')_C_36791418
+('Jock_Landale',_'C',_'HOU')_UTIL_36791418
+('Joe_Ingles',_'PF',_'MIN')_F_36791444
+('Joe_Ingles',_'PF',_'MIN')_PF_36791444
+('Joe_Ingles',_'PF',_'MIN')_UTIL_36791444
+('John_Collins',_'PF_C',_'UTA')_C_36791101
+('John_Collins',_'PF_C',_'UTA')_F_36791101
+('John_Collins',_'PF_C',_'UTA')_PF_36791101
+('John_Collins',_'PF_C',_'UTA')_UTIL_36791101
+('Johnny_Juzang',_'SG_SF',_'UTA')_F_36791398
+('Johnny_Juzang',_'SG_SF',_'UTA')_G_36791398
+('Johnny_Juzang',_'SG_SF',_'UTA')_SF_36791398
+('Johnny_Juzang',_'SG_SF',_'UTA')_SG_36791398
+('Johnny_Juzang',_'SG_SF',_'UTA')_UTIL_36791398
+('Jonas_Valanciunas',_'C',_'WAS')_C_36791237
+('Jonas_Valanciunas',_'C',_'WAS')_UTIL_36791237
+('Josh_Giddey',_'PG',_'CHI')_G_36791127
+('Josh_Giddey',_'PG',_'CHI')_PG_36791127
+('Josh_Giddey',_'PG',_'CHI')_UTIL_36791127
+('Josh_Okogie',_'SF',_'PHX')_F_36791246
+('Josh_Okogie',_'SF',_'PHX')_SF_36791246
+('Josh_Okogie',_'SF',_'PHX')_UTIL_36791246
+('Josh_Richardson',_'PG_SG',_'MIA')_G_36791376
+('Josh_Richardson',_'PG_SG',_'MIA')_PG_36791376
+('Josh_Richardson',_'PG_SG',_'MIA')_SG_36791376
+('Josh_Richardson',_'PG_SG',_'MIA')_UTIL_36791376
+('Julian_Champagnie',_'SG_SF',_'SAS')_F_36791228
+('Julian_Champagnie',_'SG_SF',_'SAS')_G_36791228
+('Julian_Champagnie',_'SG_SF',_'SAS')_SF_36791228
+('Julian_Champagnie',_'SG_SF',_'SAS')_SG_36791228
+('Julian_Champagnie',_'SG_SF',_'SAS')_UTIL_36791228
+('Julius_Randle',_'PF_C',_'MIN')_C_36791075
+('Julius_Randle',_'PF_C',_'MIN')_F_36791075
+('Julius_Randle',_'PF_C',_'MIN')_PF_36791075
+('Julius_Randle',_'PF_C',_'MIN')_UTIL_36791075
+('Jusuf_Nurkic',_'C',_'PHX')_C_36791139
+('Jusuf_Nurkic',_'C',_'PHX')_UTIL_36791139
+('Keldon_Johnson',_'SF_PF',_'SAS')_F_36791180
+('Keldon_Johnson',_'SF_PF',_'SAS')_PF_36791180
+('Keldon_Johnson',_'SF_PF',_'SAS')_SF_36791180
+('Keldon_Johnson',_'SF_PF',_'SAS')_UTIL_36791180
+('Kevin_Love',_'C',_'MIA')_C_36791315
+('Kevin_Love',_'C',_'MIA')_UTIL_36791315
+('Keyonte_George',_'PG',_'UTA')_G_36791166
+('Keyonte_George',_'PG',_'UTA')_PG_36791166
+('Keyonte_George',_'PG',_'UTA')_UTIL_36791166
+('Kyle_Kuzma',_'PF',_'WAS')_F_36791136
+('Kyle_Kuzma',_'PF',_'WAS')_PF_36791136
+('Kyle_Kuzma',_'PF',_'WAS')_UTIL_36791136
+('Kyshawn_George',_'SF_PF',_'WAS')_F_36791286
+('Kyshawn_George',_'SF_PF',_'WAS')_PF_36791286
+('Kyshawn_George',_'SF_PF',_'WAS')_SF_36791286
+('Kyshawn_George',_'SF_PF',_'WAS')_UTIL_36791286
+('Lauri_Markkanen',_'SF_PF',_'UTA')_F_36791097
+('Lauri_Markkanen',_'SF_PF',_'UTA')_PF_36791097
+('Lauri_Markkanen',_'SF_PF',_'UTA')_SF_36791097
+('Lauri_Markkanen',_'SF_PF',_'UTA')_UTIL_36791097
+('LeBron_James',_'PF_C',_'LAL')_C_36791050
+('LeBron_James',_'PF_C',_'LAL')_F_36791050
+('LeBron_James',_'PF_C',_'LAL')_PF_36791050
+('LeBron_James',_'PF_C',_'LAL')_UTIL_36791050
+('Malaki_Branham',_'SG_SF',_'SAS')_F_36791451
+('Malaki_Branham',_'SG_SF',_'SAS')_G_36791451
+('Malaki_Branham',_'SG_SF',_'SAS')_SF_36791451
+('Malaki_Branham',_'SG_SF',_'SAS')_SG_36791451
+('Malaki_Branham',_'SG_SF',_'SAS')_UTIL_36791451
+('Malcolm_Brogdon',_'PG_SG',_'WAS')_G_36791162
+('Malcolm_Brogdon',_'PG_SG',_'WAS')_PG_36791162
+('Malcolm_Brogdon',_'PG_SG',_'WAS')_SG_36791162
+('Malcolm_Brogdon',_'PG_SG',_'WAS')_UTIL_36791162
+('Marvin_Bagley_III',_'C',_'WAS')_C_36791510
+('Marvin_Bagley_III',_'C',_'WAS')_UTIL_36791510
+('Mason_Plumlee',_'C',_'PHX')_C_36791311
+('Mason_Plumlee',_'C',_'PHX')_UTIL_36791311
+('Matas_Buzelis',_'SF_PF',_'CHI')_F_36791317
+('Matas_Buzelis',_'SF_PF',_'CHI')_PF_36791317
+('Matas_Buzelis',_'SF_PF',_'CHI')_SF_36791317
+('Matas_Buzelis',_'SF_PF',_'CHI')_UTIL_36791317
+('Max_Christie',_'SF',_'LAL')_F_36791370
+('Max_Christie',_'SF',_'LAL')_SF_36791370
+('Max_Christie',_'SF',_'LAL')_UTIL_36791370
+('Monte_Morris',_'PG',_'PHX')_G_36791388
+('Monte_Morris',_'PG',_'PHX')_PG_36791388
+('Monte_Morris',_'PG',_'PHX')_UTIL_36791388
+('Naz_Reid',_'PF_C',_'MIN')_C_36791216
+('Naz_Reid',_'PF_C',_'MIN')_F_36791216
+('Naz_Reid',_'PF_C',_'MIN')_PF_36791216
+('Naz_Reid',_'PF_C',_'MIN')_UTIL_36791216
+('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_F_36791281
+('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_G_36791281
+('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_SF_36791281
+('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_SG_36791281
+('Nickeil_Alexander#Walker',_'SG_SF',_'MIN')_UTIL_36791281
+('Nikola_Jovic',_'PF',_'MIA')_F_36791352
+('Nikola_Jovic',_'PF',_'MIA')_PF_36791352
+('Nikola_Jovic',_'PF',_'MIA')_UTIL_36791352
+('Nikola_Vucevic',_'C',_'CHI')_C_36791073
+('Nikola_Vucevic',_'C',_'CHI')_UTIL_36791073
+('Oso_Ighodaro',_'PF_C',_'PHX')_C_36791334
+('Oso_Ighodaro',_'PF_C',_'PHX')_F_36791334
+('Oso_Ighodaro',_'PF_C',_'PHX')_PF_36791334
+('Oso_Ighodaro',_'PF_C',_'PHX')_UTIL_36791334
+('Pat_Connaughton',_'SF_PF',_'MIL')_F_36791366
+('Pat_Connaughton',_'SF_PF',_'MIL')_PF_36791366
+('Pat_Connaughton',_'SF_PF',_'MIL')_SF_36791366
+('Pat_Connaughton',_'SF_PF',_'MIL')_UTIL_36791366
+('Reed_Sheppard',_'PG_SG',_'HOU')_G_36791414
+('Reed_Sheppard',_'PG_SG',_'HOU')_PG_36791414
+('Reed_Sheppard',_'PG_SG',_'HOU')_SG_36791414
+('Reed_Sheppard',_'PG_SG',_'HOU')_UTIL_36791414
+('Rudy_Gobert',_'C',_'MIN')_C_36791120
+('Rudy_Gobert',_'C',_'MIN')_UTIL_36791120
+('Rui_Hachimura',_'SF_PF',_'LAL')_F_36791233
+('Rui_Hachimura',_'SF_PF',_'LAL')_PF_36791233
+('Rui_Hachimura',_'SF_PF',_'LAL')_SF_36791233
+('Rui_Hachimura',_'SF_PF',_'LAL')_UTIL_36791233
+('Ryan_Dunn',_'PF',_'PHX')_F_36791355
+('Ryan_Dunn',_'PF',_'PHX')_PF_36791355
+('Ryan_Dunn',_'PF',_'PHX')_UTIL_36791355
+('Sandro_Mamukelashvili',_'PF_C',_'SAS')_C_36791432
+('Sandro_Mamukelashvili',_'PF_C',_'SAS')_F_36791432
+('Sandro_Mamukelashvili',_'PF_C',_'SAS')_PF_36791432
+('Sandro_Mamukelashvili',_'PF_C',_'SAS')_UTIL_36791432
+('Stephon_Castle',_'SG',_'SAS')_G_36791196
+('Stephon_Castle',_'SG',_'SAS')_SG_36791196
+('Stephon_Castle',_'SG',_'SAS')_UTIL_36791196
+('Tari_Eason',_'SF_PF',_'HOU')_F_36791146
+('Tari_Eason',_'SF_PF',_'HOU')_PF_36791146
+('Tari_Eason',_'SF_PF',_'HOU')_SF_36791146
+('Tari_Eason',_'SF_PF',_'HOU')_UTIL_36791146
+('Taurean_Prince',_'SF_PF',_'MIL')_F_36791293
+('Taurean_Prince',_'SF_PF',_'MIL')_PF_36791293
+('Taurean_Prince',_'SF_PF',_'MIL')_SF_36791293
+('Taurean_Prince',_'SF_PF',_'MIL')_UTIL_36791293
+('Torrey_Craig',_'PF',_'CHI')_F_36791331
+('Torrey_Craig',_'PF',_'CHI')_PF_36791331
+('Torrey_Craig',_'PF',_'CHI')_UTIL_36791331
+('Tre_Jones',_'PG',_'SAS')_G_36791373
+('Tre_Jones',_'PG',_'SAS')_PG_36791373
+('Tre_Jones',_'PG',_'SAS')_UTIL_36791373
+('Tyler_Herro',_'PG_SG',_'MIA')_G_36791079
+('Tyler_Herro',_'PG_SG',_'MIA')_PG_36791079
+('Tyler_Herro',_'PG_SG',_'MIA')_SG_36791079
+('Tyler_Herro',_'PG_SG',_'MIA')_UTIL_36791079
+('Tyus_Jones',_'PG',_'PHX')_G_36791156
+('Tyus_Jones',_'PG',_'PHX')_PG_36791156
+('Tyus_Jones',_'PG',_'PHX')_UTIL_36791156
+('Victor_Wembanyama',_'C',_'SAS')_C_36791046
+('Victor_Wembanyama',_'C',_'SAS')_UTIL_36791046
+('Walker_Kessler',_'C',_'UTA')_C_36791154
+('Walker_Kessler',_'C',_'UTA')_UTIL_36791154
+('Zach_Collins',_'C',_'SAS')_C_36791187
+('Zach_Collins',_'C',_'SAS')_UTIL_36791187
+('Zach_LaVine',_'SG_SF',_'CHI')_F_36791083
+('Zach_LaVine',_'SG_SF',_'CHI')_G_36791083
+('Zach_LaVine',_'SG_SF',_'CHI')_SF_36791083
+('Zach_LaVine',_'SG_SF',_'CHI')_SG_36791083
+('Zach_LaVine',_'SG_SF',_'CHI')_UTIL_36791083
 End
