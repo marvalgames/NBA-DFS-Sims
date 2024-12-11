@@ -248,14 +248,10 @@ class ImportTool(QMainWindow):
                 wb = app.books.open(excel_file)  # Open the Excel workbook
                 ws = wb.sheets[sheet_name]  # Select the target sheet
 
-                # Define the target range for writing data (10 columns starting from column B)
-                #target_range = ws.range("B2").resize(data.shape[0], 10)
-
-                # Overwrite only the necessary range
-                #target_range.value = data.values
-
-                # Clear the range in the sheet before writing
-                #ws.range("B2").expand().clear()  # Clear existing data starting from column N, row 2
+                # Step 4: Clear all rows up to the 10th column
+                max_rows = ws.used_range.rows.count  # Find the total number of used rows
+                max_rows = 360
+                ws.range(f"B2:J{max_rows}").clear_contents()  # Clear the range B2 to K (10th column)
 
                 # Write the data to the sheet
                 ws.range("B2").resize(data.shape[0], 10)

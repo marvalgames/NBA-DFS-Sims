@@ -122,7 +122,7 @@ class MainApp(QMainWindow):
 
         # Default Parameters
         self.site = "dk"
-        self.num_lineups = 20
+        self.num_lineups = 5
         self.num_uniques = 1
         self.min_salary = int(self.config.get("min_lineup_salary", 49000))
         self.global_team_limit = int(self.config.get("global_team_limit", 4))
@@ -323,11 +323,9 @@ class MainApp(QMainWindow):
             return
 
         # Set up QProcess
-        test_dir = os.path.dirname(run_swap_sim_path)
-        print(f"Test Directory: {test_dir}")
-
+        working_dir = os.path.dirname(run_swap_sim_path)
         self.process = QProcess(self)
-        self.process.setWorkingDirectory(test_dir)
+        self.process.setWorkingDirectory(working_dir)
         self.process.readyReadStandardOutput.connect(self.handle_stdout)
         self.process.readyReadStandardError.connect(self.handle_stderr)
         self.process.finished.connect(self.on_process_finished)
@@ -337,13 +335,16 @@ class MainApp(QMainWindow):
         python_executable = sys.executable  # System Python in PATH
 
         # Build the command
-        command = [
+        command = (
             python_executable,  # Python interpreter
             run_swap_sim_path,  # Script path
             str(self.num_iterations),  # num_iterations argument
             self.site,  # site argument
-            str(self.num_uniques)  # num_uniques argument
-        ]
+            str(self.num_uniques),  # num_uniques argument
+            str(self.num_lineups),
+            str(self.min_salary),
+            str(self.projection_minimum)
+        )
 
         # Debugging: Print the command
         print("Command to execute:", command)

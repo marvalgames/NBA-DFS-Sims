@@ -1,0 +1,132 @@
+self.load_projections(projection_path)
+self.load_player_ids(player_path)
+self.get_optimal()
+self.load_contest_data(contest_path) #payout structure
+self.extract_player_points(live_contest_path)
+self.load_live_contest(live_contest_path)
+self.load_player_lineups(late_swap_path)
+-----------------------------------------------------------
+sim_to.swaptimize()
+sim_to.compute_best_guesses_parallel()
+sim_to.run_tournament_simulation()
+sim_to.output()
+------------------------------------------------------------
+
+
+ def load_live_contest(self, path):
+        match = re.search(r'contest-standings-(\d+).csv', path)
+        positions_order = ["C", "F", "G", "PF", "PG", "SF", "SG", "UTIL"]
+        total_minutes_for_full_lineup = len(self.roster_construction) * self.num_minutes_per_player
+
+        if match:
+            self.contest_id = match.group(1)
+        else:
+            print('Unable to find contest id for loading live lineups for contest simulation')
+        players_not_found = []
+        with open(path, encoding="utf-8-sig") as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                name = self.get_username(row['EntryName'])
+                lineup_updated_proj = 0
+                lineup_updated_var = 0
+                if name in self.contest_entries.keys():
+                    self.contest_entries[name]['Entries'] += 1
+                else:
+                    self.contest_entries[name] = {'Entries': 1, 'ROI': 0, 'Top1': 0, 'Cashes': 0, 'Wins': 0}
+                lineup_dict = {
+                    "contest_id": self.contest_id,
+                    "EntryId": row['EntryId'],
+                    'User': name,
+                    "Type": 'opp'
+                }
+
+
+
+self.contest_lineups[str(row["EntryId"])] = lineup_dict  # key is entry id
+
+
+self.contest_lineups = {lineup['EntryId']: lineup for lineup in results}
+
+
+
+
+C:\Python\pyVirtual\.venv\Scripts\python.exe "C:\Users\Ramos\My Drive (blbramos@gmail.com)\STATS\DFS 2024\NBA-DFS-Tools\src\main_app.py" 
+Script Directory: C:\Users\Ramos\My Drive (blbramos@gmail.com)\STATS\DFS 2024\NBA-DFS-Tools\src
+Run Swap Sim Path: C:\Users\Ramos\My Drive (blbramos@gmail.com)\STATS\DFS 2024\NBA-DFS-Tools\src\run_swap_sim.py
+Test Directory: C:\Users\Ramos\My Drive (blbramos@gmail.com)\STATS\DFS 2024\NBA-DFS-Tools\src
+Command to execute: ['C:\\Python\\pyVirtual\\.venv\\Scripts\\python.exe', 'C:\\Users\\Ramos\\My Drive (blbramos@gmail.com)\\STATS\\DFS 2024\\NBA-DFS-Tools\\src\\run_swap_sim.py', '100', 'dk', '1']
+STDOUT: run_swap_sim.py has started.
+Arguments received: num_iterations=100, site=dk, num_uniques=1
+Swap Sim Module Started
+Arguments: num_iterations=100, site=dk, num_uniques=1
+STDOUT: [['2024-12-10T00:00:00', 1, '0022401201', 2, '1st Qtr             ', '20241210/ORLMIL', 1610612749, 1610612753, '2024', 1, '6:50 ', 'TNT', 'FDSNWI', 'FDSNFL', 'Q1 6:50  - TNT', 'Fiserv Forum', 0, 0], ['2024-12-10T00:00:00', 2, '0022401203', 1, '9:30 pm ET', '20241210/DALOKC', 1610612760, 1610612742, '2024', 0, '     ', 'TNT', 'FDSNOK', 'KFAA', 'Q0       - TNT', 'Paycom Center', 0, 0]]
+STDOUT: ['2024-12-10T00:00:00', 1, '0022401201', 2, '1st Qtr             ', '20241210/ORLMIL', 1610612749, 1610612753, '2024', 1, '6:50 ', 'TNT', 'FDSNWI', 'FDSNFL', 'Q1 6:50  - TNT', 'Fiserv Forum', 0, 0]
+['2024-12-10T00:00:00', 2, '0022401203', 1, '9:30 pm ET', '20241210/DALOKC', 1610612760, 1610612742, '2024', 0, '     ', 'TNT', 'FDSNOK', 'KFAA', 'Q0       - TNT', 'Paycom Center', 0, 0]
+STDOUT: Selected Players:
+optimal score
+271.78
+STDOUT: Contest payout structure loaded.
+STDOUT: Found contest file: C:\Users\Ramos\My Drive (blbramos@gmail.com)\STATS\DFS 2024\NBA-DFS-Tools\src\../dk_data/contest-standings-171577006.csv
+Live contest path set to file: C:\Users\Ramos\My Drive (blbramos@gmail.com)\STATS\DFS 2024\NBA-DFS-Tools\src\../dk_data/contest-standings-171577006.csv
+STDOUT: contest lineup keys
+20808
+Live contest loaded.
+STDOUT: Successfully loaded 5 lineups for late swap.
+Total lineups in contest_lineups: 20808
+Swaptimizing lineup 4557623658 in contest 171577006
+STDOUT: Swapped lineup: ([(('Shai Gilgeous-Alexander', "['PG', 'G', 'UTIL']", 'OKC'), 'G', '36959810'), (('Jalen Williams', "['PF', 'F', 'UTIL']", 'OKC'), 'UTIL', '36959821'), (('Jalen Suggs', "['PG', 'G', 'UTIL']", 'ORL'), 'PG', '36959831'), (('Bobby Portis', "['C', 'PF', 'F', 'UTIL']", 'MIL'), 'PF', '36959848'), (('Goga Bitadze', "['C', 'UTIL']", 'ORL'), 'C', '36959854'), (('Luguentz Dort', "['SF', 'SG', 'G', 'F', 'UTIL']", 'OKC'), 'F', '36959871'), (('Cole Anthony', "['PG', 'SG', 'G', 'UTIL']", 'ORL'), 'SG', '36959883'), (('Alex Caruso', "['SF', 'SG', 'G', 'F', 'UTIL']", 'OKC'), 'SF', '36959916')], {'contest_id': '171577006', 'EntryId': '4557623658', 'User': 'marvalshot', 'Type': 'user', 'C_is_locked': True, 'C': '36959854', 'F_is_locked': False, 'F': '36959871', 'G_is_locked': False, 'G': '36959810', 'PF_is_locked': True, 'PF': '36959848', 'PG_is_locked': True, 'PG': '36959831', 'SF_is_locked': False, 'SF': '36959916', 'SG_is_locked': True, 'SG': '36959883', 'UTIL_is_locked': False, 'UTIL': '36959821', 'Points': 15.25, 'TimeRemaining': 360, 'ProjectedFpts': 122.09, 'ProjectedStdDev': 0, 'OriginalLineup': {'C': 'Goga Bitadze', 'F': 'LOCKED', 'G': 'LOCKED', 'PF': 'Bobby Portis', 'PG': 'Jalen Suggs', 'SF': 'LOCKED', 'SG': 'Cole Anthony', 'UTIL': 'LOCKED'}, 'BayesianProjectedFpts': 122.06890625000001, 'BayesianProjectedVar': 497.9170981350698, 'Salary': 22500, 'TotalMinutesForLineup': 384, 'LockedSalary': 22500, 'SalaryRemaining': 27500, 'ProjectedFieldFpts': 122.09, 'LockedPlayerMinutes': 192, 'UsedPlayerMinutes': 24, 'UnlockedPlayers': 4, 'LockedPlayers': 4, 'EmptyLu': False, 'UserLu': True})
+Swapped lineup : 1
+
+Swaptimizing lineup 4557623659 in contest 171577006
+STDOUT: Swapped lineup: ([(('Giannis Antetokounmpo', "['C', 'PF', 'F', 'UTIL']", 'MIL'), 'PF', '36959806'), (('Jalen Williams', "['PF', 'F', 'UTIL']", 'OKC'), 'F', '36959821'), (('Jalen Suggs', "['PG', 'G', 'UTIL']", 'ORL'), 'PG', '36959831'), (('Goga Bitadze', "['C', 'UTIL']", 'ORL'), 'C', '36959854'), (('Dereck Lively II', "['C', 'UTIL']", 'DAL'), 'UTIL', '36959860'), (('Klay Thompson', "['SF', 'SG', 'G', 'F', 'UTIL']", 'DAL'), 'SF', '36959866'), (('Cole Anthony', "['PG', 'SG', 'G', 'UTIL']", 'ORL'), 'SG', '36959883'), (('Isaiah Joe', "['SF', 'SG', 'G', 'F', 'UTIL']", 'OKC'), 'G', '36959940')], {'contest_id': '171577006', 'EntryId': '4557623659', 'User': 'marvalshot', 'Type': 'user', 'C_is_locked': True, 'C': '36959854', 'F_is_locked': False, 'F': '36959821', 'G_is_locked': False, 'G': '36959940', 'PF_is_locked': True, 'PF': '36959806', 'PG_is_locked': True, 'PG': '36959831', 'SF_is_locked': False, 'SF': '36959866', 'SG_is_locked': True, 'SG': '36959883', 'UTIL_is_locked': False, 'UTIL': '36959860', 'Points': 16.25, 'TimeRemaining': 360, 'ProjectedFpts': 154.85, 'ProjectedStdDev': 0, 'OriginalLineup': {'C': 'Goga Bitadze', 'F': 'LOCKED', 'G': 'LOCKED', 'PF': 'Giannis Antetokounmpo', 'PG': 'Jalen Suggs', 'SF': 'LOCKED', 'SG': 'Cole Anthony', 'UTIL': 'LOCKED'}, 'BayesianProjectedFpts': 149.02578125, 'BayesianProjectedVar': 768.2776666434659, 'Salary': 28000, 'TotalMinutesForLineup': 384, 'LockedSalary': 28000, 'SalaryRemaining': 22000, 'ProjectedFieldFpts': 154.85, 'LockedPlayerMinutes': 192, 'UsedPlayerMinutes': 24, 'UnlockedPlayers': 4, 'LockedPlayers': 4, 'EmptyLu': False, 'UserLu': True})
+Swapped lineup : 2
+
+Swaptimizing lineup 4557623660 in contest 171577006
+STDOUT: Swapped lineup: ([(('Luka Doncic', "['PG', 'G', 'UTIL']", 'DAL'), 'G', '36959803'), (('Giannis Antetokounmpo', "['C', 'PF', 'F', 'UTIL']", 'MIL'), 'F', '36959806'), (('Bobby Portis', "['C', 'PF', 'F', 'UTIL']", 'MIL'), 'PF', '36959848'), (('Goga Bitadze', "['C', 'UTIL']", 'ORL'), 'C', '36959854'), (('Kentavious Caldwell-Pope', "['SG', 'G', 'UTIL']", 'ORL'), 'SG', '36959876'), (('Cole Anthony', "['PG', 'SG', 'G', 'UTIL']", 'ORL'), 'PG', '36959883'), (('Spencer Dinwiddie', "['PG', 'G', 'UTIL']", 'DAL'), 'UTIL', '36959887'), (('Alex Caruso', "['SF', 'SG', 'G', 'F', 'UTIL']", 'OKC'), 'SF', '36959916')], {'contest_id': '171577006', 'EntryId': '4557623660', 'User': 'marvalshot', 'Type': 'user', 'C_is_locked': True, 'C': '36959854', 'F_is_locked': True, 'F': '36959806', 'G_is_locked': False, 'G': '36959803', 'PF_is_locked': True, 'PF': '36959848', 'PG_is_locked': True, 'PG': '36959883', 'SF_is_locked': False, 'SF': '36959916', 'SG_is_locked': True, 'SG': '36959876', 'UTIL_is_locked': False, 'UTIL': '36959887', 'Points': 11.25, 'TimeRemaining': 354, 'ProjectedFpts': 163.44000000000003, 'ProjectedStdDev': 0, 'OriginalLineup': {'C': 'Goga Bitadze', 'F': 'Giannis Antetokounmpo', 'G': 'LOCKED', 'PF': 'Bobby Portis', 'PG': 'Cole Anthony', 'SF': 'LOCKED', 'SG': 'Kentavious Caldwell-Pope', 'UTIL': 'LOCKED'}, 'BayesianProjectedFpts': 146.2275, 'BayesianProjectedVar': 799.1061357478998, 'Salary': 30700, 'TotalMinutesForLineup': 384, 'LockedSalary': 30700, 'SalaryRemaining': 19300, 'ProjectedFieldFpts': 163.44000000000003, 'LockedPlayerMinutes': 144, 'UsedPlayerMinutes': 30, 'UnlockedPlayers': 3, 'LockedPlayers': 5, 'EmptyLu': False, 'UserLu': True})
+Swapped lineup : 3
+
+Swaptimizing lineup 4557623661 in contest 171577006
+STDOUT: Swapped lineup: ([(('Shai Gilgeous-Alexander', "['PG', 'G', 'UTIL']", 'OKC'), 'G', '36959810'), (('Jalen Williams', "['PF', 'F', 'UTIL']", 'OKC'), 'F', '36959821'), (('PJ Washington', "['PF', 'F', 'UTIL']", 'DAL'), 'UTIL', '36959836'), (('Bobby Portis', "['C', 'PF', 'F', 'UTIL']", 'MIL'), 'PF', '36959848'), (('Goga Bitadze', "['C', 'UTIL']", 'ORL'), 'C', '36959854'), (('Luguentz Dort', "['SF', 'SG', 'G', 'F', 'UTIL']", 'OKC'), 'SF', '36959871'), (('Kentavious Caldwell-Pope', "['SG', 'G', 'UTIL']", 'ORL'), 'SG', '36959876'), (('Cole Anthony', "['PG', 'SG', 'G', 'UTIL']", 'ORL'), 'PG', '36959883')], {'contest_id': '171577006', 'EntryId': '4557623661', 'User': 'marvalshot', 'Type': 'user', 'C_is_locked': True, 'C': '36959854', 'F_is_locked': False, 'F': '36959821', 'G_is_locked': False, 'G': '36959810', 'PF_is_locked': True, 'PF': '36959848', 'PG_is_locked': True, 'PG': '36959883', 'SF_is_locked': False, 'SF': '36959871', 'SG_is_locked': True, 'SG': '36959876', 'UTIL_is_locked': False, 'UTIL': '36959836', 'Points': 10.25, 'TimeRemaining': 360, 'ProjectedFpts': 107.06, 'ProjectedStdDev': 0, 'OriginalLineup': {'C': 'Goga Bitadze', 'F': 'LOCKED', 'G': 'LOCKED', 'PF': 'Bobby Portis', 'PG': 'Cole Anthony', 'SF': 'LOCKED', 'SG': 'Kentavious Caldwell-Pope', 'UTIL': 'LOCKED'}, 'BayesianProjectedFpts': 101.18656250000001, 'BayesianProjectedVar': 413.7800973775331, 'Salary': 19600, 'TotalMinutesForLineup': 384, 'LockedSalary': 19600, 'SalaryRemaining': 30400, 'ProjectedFieldFpts': 107.06, 'LockedPlayerMinutes': 192, 'UsedPlayerMinutes': 24, 'UnlockedPlayers': 4, 'LockedPlayers': 4, 'EmptyLu': False, 'UserLu': True})
+Swapped lineup : 4
+
+Swaptimizing lineup 4557623662 in contest 171577006
+STDOUT: Swapped lineup: ([(('Giannis Antetokounmpo', "['C', 'PF', 'F', 'UTIL']", 'MIL'), 'PF', '36959806'), (('Jalen Williams', "['PF', 'F', 'UTIL']", 'OKC'), 'F', '36959821'), (('Jalen Suggs', "['PG', 'G', 'UTIL']", 'ORL'), 'PG', '36959831'), (('Goga Bitadze', "['C', 'UTIL']", 'ORL'), 'C', '36959854'), (('Klay Thompson', "['SF', 'SG', 'G', 'F', 'UTIL']", 'DAL'), 'G', '36959866'), (('Luguentz Dort', "['SF', 'SG', 'G', 'F', 'UTIL']", 'OKC'), 'UTIL', '36959871'), (('Cole Anthony', "['PG', 'SG', 'G', 'UTIL']", 'ORL'), 'SG', '36959883'), (('Quentin Grimes', "['SF', 'SG', 'G', 'F', 'UTIL']", 'DAL'), 'SF', '36959890')], {'contest_id': '171577006', 'EntryId': '4557623662', 'User': 'marvalshot', 'Type': 'user', 'C_is_locked': True, 'C': '36959854', 'F_is_locked': False, 'F': '36959821', 'G_is_locked': False, 'G': '36959866', 'PF_is_locked': True, 'PF': '36959806', 'PG_is_locked': True, 'PG': '36959831', 'SF_is_locked': False, 'SF': '36959890', 'SG_is_locked': True, 'SG': '36959883', 'UTIL_is_locked': False, 'UTIL': '36959871', 'Points': 16.25, 'TimeRemaining': 360, 'ProjectedFpts': 154.85, 'ProjectedStdDev': 0, 'OriginalLineup': {'C': 'Goga Bitadze', 'F': 'LOCKED', 'G': 'LOCKED', 'PF': 'Giannis Antetokounmpo', 'PG': 'Jalen Suggs', 'SF': 'LOCKED', 'SG': 'Cole Anthony', 'UTIL': 'LOCKED'}, 'BayesianProjectedFpts': 149.02578125, 'BayesianProjectedVar': 768.2776666434659, 'Salary': 28000, 'TotalMinutesForLineup': 384, 'LockedSalary': 28000, 'SalaryRemaining': 22000, 'ProjectedFieldFpts': 154.85, 'LockedPlayerMinutes': 192, 'UsedPlayerMinutes': 24, 'UnlockedPlayers': 4, 'LockedPlayers': 4, 'EmptyLu': False, 'UserLu': True})
+Swapped lineup : 5
+
+Output Lineups:
+STDOUT: lineup after loading:
+Total initial contest lineups: 20808
+STDOUT: First few contest lineup keys: ['4558080155', '4557872873', '4557872877', '4557838895', '4558172017']
+STDOUT: Number of valid players: 36
+Number of projections: 36, salaries: 36
+STDOUT: Optimal score: 271.78
+STDOUT: -----------------------before solve---------------------
+20808
+STDOUT: Total results received: 20808
+STDOUT: Processed keys: []
+STDOUT: bad lineups: 0, good lineups: 20808
+lineup before iterate:
+20808
+STDOUT: lineup after iterate:
+20808
+lineup after guessing:
+STDOUT: -----------------------after extract---------------------
+STDOUT: 20808
+guessing contest lines took 4.370993614196777 seconds
+STDOUT: player lineups after guesses loaded
+Running 100 simulations
+Number of unique field lineups: 14517
+{('DAL', 'OKC'), ('ORL', 'MIL')}
+STDERR: Traceback (most recent call last):
+  File "C:\Users\Ramos\My Drive (blbramos@gmail.com)\STATS\DFS 2024\NBA-DFS-Tools\src\run_swap_sim.py", line 39, in <module>
+STDERR: main()
+  File "C:\Users\Ramos\My Drive (blbramos@gmail.com)\STATS\DFS 2024\NBA-DFS-Tools\src\run_swap_sim.py", line 34, in main
+STDERR: sim_to.run_tournament_simulation()
+STDERR: File "C:\Users\Ramos\My Drive (blbramos@gmail.com)\STATS\DFS 2024\NBA-DFS-Tools\src\nba_swap_sims.py", line 2086, in run_tournament_simulation
+STDERR: fpts_sim = sum([temp_fpts_dict[player] for player in values["Lineup"]])
+                    ~~~~~~~~~~~~~~^^^^^^^^
+KeyError: ''
+Process finished with exit code 1 and status ExitStatus.NormalExit
+
+Process finished with exit code 0
+
