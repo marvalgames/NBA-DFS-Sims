@@ -18,6 +18,7 @@ import pulp as plp
 import pytz
 from PyQt6.sip import assign
 from numba import jit
+from numpy.ma.extras import unique
 from scipy.stats import multivariate_normal
 import zipfile
 import uuid  # For generating unique keys
@@ -725,9 +726,6 @@ class NBA_Swaptimizer_Sims:
 
                                 transformed_player_name = player_name
 
-                                # Print the comparison for debugging
-                                #print(f"Comparing {v['Name']} with {transformed_player_name} and {pos} with {v['Position']}")
-
                                 if v['Name'] == transformed_player_name and pos in v['Position']:
                                     lineup_proj_fpts += v['Fpts']
                                     lineup_salary += v['Salary']
@@ -1176,7 +1174,7 @@ class NBA_Swaptimizer_Sims:
                         # Create duplicates with different Type values
                         # self.contest_lineups[row['entry id']] = lu; # set already in load live
                         for i in range(1, self.lineup_sets):  # Create 4 duplicates
-                            new_entry_id = f"{row['entry id']}_dup{i}"  # Ensure this ID is unique
+                            new_entry_id = f"{row['entry id']}_{i}"  # Ensure this ID is unique
 
                             lineup = lu.copy()  # Copy the original lineup to avoid overwriting
                             lineup['EntryId'] = new_entry_id
@@ -1450,9 +1448,9 @@ class NBA_Swaptimizer_Sims:
                 )
                 break
 
-            for name, constraint in problem.constraints.items():
-                if not (constraint.pi >= 0 and constraint.slack >= 0):
-                    print(f"Constraint {name} violated: {constraint}")
+            #for name, constraint in problem.constraints.items():
+                #if not (constraint.pi >= 0 and constraint.slack >= 0):
+                    #print(f"Constraint {name} violated: {constraint}")
 
             ## Check for infeasibility
             print(f"Problem Status: {plp.LpStatus[problem.status]}")
@@ -1588,19 +1586,12 @@ class NBA_Swaptimizer_Sims:
         # Safely process results
         try:
             processed_keys = [result[0] for result in results if isinstance(result, tuple)]
-            print(f"Processed keys: {processed_keys}")
         except Exception as e:
             print(f"Error processing results: {e}")
-            processed_keys = []
 
-        # Verify missing keys
-        #missing_keys = set(self.contest_lineups.keys()) - set(processed_keys)
-        #if missing_keys:
-        #print(f"Warning: Missing keys after processing: {missing_keys}")
 
         # New function to get names from IDs in a lineup
         def get_names_from_ids(lineup):
-            #print(lineup)
             new_pos_dict = {}
             for pos in self.roster_construction:
                 new_pos_dict[pos] = self.player_dict[lineup[pos]]['Name']
@@ -1632,15 +1623,8 @@ class NBA_Swaptimizer_Sims:
         #print()
         end = time.time()
         # Assuming results is a list of tuples like the one you provided
-        print('lineup before iterate:')
-        print(len(self.contest_lineups))
         self.contest_lineups = {lineup['EntryId']: lineup for lineup in results}
-        print('lineup after iterate:')
-        print(len(self.contest_lineups))
-        print('lineup after guessing:')
         self.count_lineups_and_extract_fields()
-        print("-----------------------after extract---------------------")
-        print(len(self.contest_lineups))
         print('guessing contest lines took {} seconds'.format(end - start))
 
     @staticmethod
@@ -1665,14 +1649,6 @@ class NBA_Swaptimizer_Sims:
             pos_index_dict,
             player_salary_floor
     ):
-        #print(f"ids shape: {ids.shape}")
-        #print(f"pos_matrix shape: {pos_matrix.shape}")
-        #print(f"ownership shape: {ownership.shape}")
-        #print(f"salaries shape: {salaries.shape}")
-        #print(f"projections shape: {projections.shape}")
-        #entry = lineup['EntryId']
-        #print(entry)
-        #print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 
         rng = np.random.default_rng()  # Use default_rng for a more modern RNG
         lineup_copy = lineup.copy()
@@ -2352,13 +2328,36 @@ class NBA_Swaptimizer_Sims:
                     )
                 )
 
+        entryid_to_output = {}
+        for lineup_data, lineup_obj in self.output_lineups:
+            entry_id = lineup_obj["EntryId"]
+            entryid_to_output[entry_id] = (lineup_data, lineup_obj)
+
+        new_output_lineups = []
+        for _, lineup_str in rearranged_unique:
+            # The Entry ID should be the last column in lineup_str
+            cols = lineup_str.split(",")
+            entry_id = cols[-1].strip()
+
+            if entry_id in entryid_to_output:
+                new_output_lineups.append(entryid_to_output[entry_id])
+                print(entryid_to_output[entry_id])
+                print('------------------------------------------------------')
+            else:
+                print(f"Warning: Entry ID {entry_id} not found in output_lineups mapping.")
+
+
+
+
+
         #late swap updating and saving
+
         sorted_lineups = []
-        for lineup, old_lineup in self.output_lineups:
+        for lineup, old_lineup in new_output_lineups:
             if "contest_id" not in old_lineup or "EntryId" not in old_lineup:
                 raise KeyError(f"Missing required keys in old_lineup: {old_lineup}")
 
-        for lineup, old_lineup in self.output_lineups:
+        for lineup, old_lineup in new_output_lineups:
             sorted_lineup = self.sort_lineup(lineup)
             sorted_lineup = self.adjust_roster_for_late_swap(sorted_lineup, old_lineup)
             sorted_lineups.append((sorted_lineup, old_lineup))
@@ -2370,14 +2369,17 @@ class NBA_Swaptimizer_Sims:
             for new_lineup, old_lineup in sorted_lineups
         }
 
+        num_entries = int(len(unique) / num_sets)
+        if num_sets > 30:
+            num_sets = 30
+
         if 'late_swap_path' in self.config.keys():
             late_swap_path = os.path.join(
                 os.path.dirname(__file__),
                 "../{}_data/{}".format(self.site, self.config["late_swap_path"]),
             )
-
-            # Read the existing data first
-            fieldnames = []
+            count = 0
+            # Read the existing data
             with open(late_swap_path, "r", encoding="utf-8-sig") as file:
                 reader = csv.DictReader(file)
                 fieldnames = reader.fieldnames[:12]
@@ -2386,86 +2388,83 @@ class NBA_Swaptimizer_Sims:
             PLACEHOLDER = "PLACEHOLDER_FOR_NONE"
             # If any row has a None key, ensure the placeholder is in the fieldnames
             for row in rows:
-                #print(row)
                 if None in row and PLACEHOLDER not in fieldnames:
                     fieldnames.append(PLACEHOLDER)
 
-            updated_rows = []
-            #print("Keys in self.player_dict:", list(self.player_dict.keys()))  # Debugging
+            # Extract the first four columns' data from the first file
+            first_file_rows = rows[:num_entries]
+            first_file_columns = [{key: row[key] for key in fieldnames[:4]} for row in first_file_rows]
 
-            for row in rows:
-                # Retain only the first 11 keys for each row
-                trimmed_row = {key: row.get(key, "") for key in fieldnames}
+            # Write multiple files for num_sets
+            for set_index in range(num_sets):
+                start_idx = set_index * num_entries
+                end_idx = start_idx + num_entries
 
-                if row["Entry ID"] != "":
-                    contest_id = row["Contest ID"]
-                    entry_id = row["Entry ID"]
-                    key = (contest_id, entry_id)
+                # Slice rows and sorted_lineups for this set
+                rows_slice = rows[start_idx:end_idx]
+                lineups_slice = sorted_lineups[start_idx:end_idx]
 
-                    print(f'Contest ID: {row["Contest ID"]}, Entry ID: {row["Entry ID"]}')
+                updated_rows = []
+                for row, (new_lineup, old_lineup) in zip(rows_slice, lineups_slice):
+                    trimmed_row = {key: row.get(key, "") for key in fieldnames}
 
-                    # Retrieve the matching lineup
-                    matching_lineup = late_swap_lineups_contest_entry_dict.get(key)
-                    print(matching_lineup)
+                    # Truncate Entry ID to the first 10 characters
+                    if "Entry ID" in trimmed_row and trimmed_row["Entry ID"]:
+                        trimmed_row["Entry ID"] = trimmed_row["Entry ID"][:10]
 
-                    if matching_lineup:
-                        print("Matching lineup found.")
+                    # Populate player positions using new_lineup
+                    for i, position in enumerate(["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]):
+                        player_entry = new_lineup[i]
 
-                        for i, position in enumerate(["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]):
-                            # Retrieve the player entry from the lineup
-                            player_entry = matching_lineup[i]
-                            #print(f"Processing player entry: {player_entry}")
+                        # Extract player ID
+                        if isinstance(player_entry, tuple):
+                            player_id = player_entry[-1]
+                        else:
+                            player_id = player_entry
 
-                            # Extract the player ID from the entry
-                            if isinstance(player_entry, tuple):
-                                player_id = player_entry[-1]  # Extract the ID from the tuple
-                                #print(f"Extracted Player ID: {player_id}")
-                            else:
-                                player_id = player_entry  # Assume it's already an ID
-                                #print(f"Player ID is directly: {player_id}")
+                        # Lookup in player_dict
+                        if player_id in self.player_dict:
+                            player_data = self.player_dict[player_id]
+                            trimmed_row[position] = f"{player_data['Name']} ({player_data['ID']})"
+                        else:
+                            print(f"Player ID not found in player_dict: {player_id}")
+                            trimmed_row[position] = "Unknown Player"
 
-                            # Access player_dict using the player ID
-                            if player_id in self.player_dict:
-                                player_data = self.player_dict[player_id]
-                                trimmed_row[position] = f"{player_data['Name']} ({player_data['ID']})"
-                            else:
-                                print(f"Player ID not found in player_dict: {player_id}")
-                                trimmed_row[position] = "Unknown Player"
+                    # Replace the first four columns with data from the first file for other sets
+                    if set_index > 0:  # Not the first file
+                        for idx, key in enumerate(fieldnames[:4]):
+                            trimmed_row[key] = first_file_columns[count % num_entries][key]
 
-                        #print()
-                        print("Updated Row:")
-                        print(trimmed_row)
-                        #print()
+                    updated_rows.append(trimmed_row)
+                    count += 1
 
-                updated_rows.append(trimmed_row)
-
-            new_late_swap_path = os.path.join(
-                os.path.dirname(__file__),
-                "../output/late_swap_{}.csv".format(
-                    datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-                ),
-            )
-
-            with open(new_late_swap_path, "w", encoding="utf-8-sig", newline="") as file:
-                writer = csv.DictWriter(
-                    file, fieldnames=[PLACEHOLDER if f is None else f for f in fieldnames]
+                # Write the updated rows to a new CSV file for this set
+                new_late_swap_path = os.path.join(
+                    os.path.dirname(__file__),
+                    f"../output/late_swap_{num_entries}_entries_set_{set_index + 1}_entries.csv"
                 )
-                writer.writeheader()
-                for row in updated_rows:
-                    if None in row:
-                        row[PLACEHOLDER] = row.pop(None)
-                        print(row.get('PLACEHOLDER_FOR_NONE'))
-                        print(row.keys())
-                        print(row.values())
-                    writer.writerow(row)
 
-            with open(new_late_swap_path, "r", encoding="utf-8-sig") as file:
-                content = file.read().replace(PLACEHOLDER, "")
+                with open(new_late_swap_path, "w", encoding="utf-8-sig", newline="") as file:
+                    writer = csv.DictWriter(
+                        file, fieldnames=[PLACEHOLDER if f is None else f for f in fieldnames]
+                    )
+                    writer.writeheader()
+                    for row in updated_rows:
+                        if None in row:
+                            row[PLACEHOLDER] = row.pop(None)
+                        writer.writerow(row)
 
-            with open(new_late_swap_path, "w", encoding="utf-8-sig") as file:
-                file.write(content)
+                # Replace PLACEHOLDER with an empty string in the file
+                with open(new_late_swap_path, "r", encoding="utf-8-sig") as file:
+                    content = file.read().replace(PLACEHOLDER, "")
 
-        print("Output done.")
+                with open(new_late_swap_path, "w", encoding="utf-8-sig") as file:
+                    file.write(content)
+
+        print("All CSV files have been generated.")
+
+
+
 
     def sort_lineup(self, lineup):
         order = ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]
