@@ -1564,13 +1564,11 @@ class NBA_GPP_Simulator:
             counter = collections.Counter(lu_teams)
             stacks = counter.most_common()
 
-            # Find the QB team in stacks and set it as primary stack, remove it from stacks and subtract 1 to make sure qb isn't counted
-            # print(f"stacks: {stacks}")
             primaryStack = str(stacks[0][0]) + " " + str(stacks[0][1])
-            # After removing QB team, the first team in stacks will be the team with most players not in QB stack
             secondaryStack = str(stacks[1][0]) + " " + str(stacks[1][1])
+
             own_s = np.sum(own_p)
-            own_p = np.prod(own_p) / 1000000
+            #own_p = np.prod(own_p) / 1000000
             win_p = round(x["Wins"] / self.num_iterations * 100, 2)
             top10_p = round((x["Top1Percent"] / self.num_iterations) * 100, 2)
             cash_p = round(x["Cashes"] / self.num_iterations * 100, 2)
@@ -1598,7 +1596,7 @@ class NBA_GPP_Simulator:
                         f" ({x['Lineup'][6]}),"
                         f"{lu_names[7].replace('#', '-')}"
                         f" ({x['Lineup'][7]}),"
-                        f"{fpts_p},{fieldFpts_p},{ceil_p},{salary},{win_p}%,{top10_p}%,{roi_p}%,{own_p},{own_s},${roi_round},{primaryStack},{secondaryStack},{lu_type},{simDupes}"
+                        f"{fpts_p},{fieldFpts_p},{ceil_p},{salary},{win_p}%,{top10_p}%,{roi_p}%,{cash_p}%,{own_s},${roi_round},{primaryStack},{secondaryStack},{lu_type},{simDupes}"
                     )
                 else:
                     lineup_str = (
@@ -1644,11 +1642,11 @@ class NBA_GPP_Simulator:
             if self.site == "dk":
                 if self.use_contest_data:
                     f.write(
-                        "PG,SG,SF,PF,C,G,F,UTIL,Fpts Proj,Field Fpts Proj,Ceiling,Salary,Win %,Top 1%,ROI%,Proj. Own. Product,Own. Sum,Avg. Return,Stack1 Type,Stack2 Type,Lineup Type,Sim Dupes\n"
+                        "PG,SG,SF,PF,C,G,F,UTIL,Fpts Proj,Field Fpts Proj,Ceiling,Salary,Win %,Top 10%,ROI%,Cash %,Own. Sum,Avg. Return,Stack1 Type,Stack2 Type,Lineup Type,Sim Dupes\n"
                     )
                 else:
                     f.write(
-                        "PG,SG,SF,PF,C,G,F,UTIL,Fpts Proj,Field Fpts Proj,Ceiling,Salary,Win %,Top 1%,Proj. Own. Product,Own. Sum,Stack1 Type,Stack2 Type,Lineup Type,Sim Dupes\n"
+                        "PG,SG,SF,PF,C,G,F,UTIL,Fpts Proj,Field Fpts Proj,Ceiling,Salary,Win %,Top 10%,Proj. Own. Product,Own. Sum,Stack1 Type,Stack2 Type,Lineup Type,Sim Dupes\n"
                     )
             elif self.site == "fd":
                 if self.use_contest_data:
@@ -1727,16 +1725,6 @@ class NBA_GPP_Simulator:
 
         print(f"Combined data written to {output_csv_path}")
 
-
-
-
-
-
-
-
-
-
-
         out_path = os.path.join(
             os.path.dirname(__file__),
             "../output/{}_gpp_sim_player_exposure_{}_{}.csv".format(
@@ -1745,7 +1733,7 @@ class NBA_GPP_Simulator:
         )
         with open(out_path, "w") as f:
             f.write(
-                "Player,Position,Team,Win%,Top1%,Sim. Own%,Proj. Own%,Avg. Return\n"
+                "Player,Position,Team,Cash%,Win%,Top1%,Sim. Own%,Proj. Own%,Avg. Return\n"
             )
             unique_players = {}
             for val in self.field_lineups.values():
@@ -1753,6 +1741,7 @@ class NBA_GPP_Simulator:
                     if player not in unique_players:
                         unique_players[player] = {
                             "Wins": val["Wins"],
+                            "Cashes": val["Cashes"],
                             "Top1Percent": val["Top1Percent"],
                             "In": val["Count"],
                             "ROI": val["ROI"],
@@ -1760,6 +1749,9 @@ class NBA_GPP_Simulator:
                     else:
                         unique_players[player]["Wins"] = (
                             unique_players[player]["Wins"] + val["Wins"]
+                        )
+                        unique_players[player]["Cashes"] = (
+                            unique_players[player]["Cashes"] + val["Cashes"]
                         )
                         unique_players[player]["Top1Percent"] = (
                             unique_players[player]["Top1Percent"] + val["Top1Percent"]
@@ -1771,9 +1763,20 @@ class NBA_GPP_Simulator:
 
             for player, data in unique_players.items():
                 field_p = round(data["In"] / self.field_size * 100, 2)
-                win_p = round(data["Wins"] / self.num_iterations * 100, 2)
-                top10_p = round(data["Top1Percent"] / self.num_iterations, 2)
+                max_ranked = field_p / 100 * self.field_size * self.num_iterations
+
+                # Avoid divide by zero
+                if max_ranked == 0:
+                    cash_p = 0  # Assign a default value (e.g., 0) when division is not possible
+                    top10_p = 0
+                    win_p = 0
+                else:
+                    cash_p = round(data["Cashes"] / max_ranked * 100, 2)
+                    top10_p = round(data["Top1Percent"] / max_ranked * 100, 2)
+                    win_p = round(data["Wins"] / max_ranked * 100, 2)
+
                 roi_p = round(data["ROI"] / data["In"] / self.num_iterations, 2)
+
                 for k, v in self.player_dict.items():
                     if player == v["ID"]:
                         proj_own = v["Ownership"]
@@ -1782,10 +1785,11 @@ class NBA_GPP_Simulator:
                         team = v.get("Team")
                         break
                 f.write(
-                    "{},{},{},{}%,{}%,{}%,{}%,${}\n".format(
+                    "{},{},{},{}%,{}%,{}%,{}%,{}%,${}\n".format(
                         p_name.replace("#", "-"),
                         position,
                         team,
+                        cash_p,
                         win_p,
                         top10_p,
                         field_p,

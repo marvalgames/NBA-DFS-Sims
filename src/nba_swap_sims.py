@@ -2293,7 +2293,7 @@ class NBA_Swaptimizer_Sims:
                         unique_players[player]["Cashes"] = (
                                 unique_players[player]["Cashes"] + val["Cashes"]
                         )
-                        print(f"Value ROI: ", val["ROI"])
+                        print(f"Value ROI: ", roi_value)
                         unique_players[player]["Top1Percent"] = (
                                 unique_players[player]["Top1Percent"] + val["Top1Percent"]
                         )
