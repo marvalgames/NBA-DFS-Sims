@@ -75,6 +75,7 @@ class NBA_Swaptimizer_Sims:
     lineup_sets = 5
 
     def __init__(self, num_iterations, site=None, num_uniques=1, num_lineup_sets=5, min_salary=49000, projection_minimum=16):
+        self.live_games = False
         self.entry_lineups = None
         self.lineup_sets = num_lineup_sets
         self.site = site
@@ -486,7 +487,7 @@ class NBA_Swaptimizer_Sims:
 
         # Format the date into the string format the NBA API expects ('YYYY-MM-DD')
         # Late Swap Realtime
-        live = False
+        live = self.live_games
         if live:
             formatted_date = game_date.strftime('%Y-%m-%d')
         else:
@@ -1264,7 +1265,6 @@ class NBA_Swaptimizer_Sims:
             )
 
             # Minimum Salary Constraint
-            print(f"min salary: ", min_salary)
             problem += (
                 plp.lpSum(
                     self.player_dict[player]["Salary"]
@@ -2064,14 +2064,9 @@ class NBA_Swaptimizer_Sims:
 
 
         # Convert to DataFrame
-        fpts_df = pd.DataFrame(fpts_array)
-        ranks_df = pd.DataFrame(ranks)
-        cash_counts_df = pd.DataFrame(cash_counts)
-
+        # fpts_df = pd.DataFrame(fpts_array)
         # Save as CSV with specified formatting
-        fpts_df.to_csv("fpts_array.csv", index=False, float_format="%.2f")
-        ranks_df.to_csv("ranks.csv", index=False)
-        cash_counts_df.to_csv("cashes.csv", index=False)
+        # fpts_df.to_csv("fpts_array.csv", index=False, float_format="%.2f")
 
         # Split the simulation indices into chunks
         self.lineup_to_int = {lineup: index for index, lineup in enumerate(self.field_lineups.keys())}
@@ -2162,6 +2157,7 @@ class NBA_Swaptimizer_Sims:
                 salary = x['Salary']
                 fpts_p = x['BayesianProjectedFpts']
                 std_p = np.sqrt(x['BayesianProjectedVar'])
+                total_salary = 0  # Initialize total salary for the lineup
                 own_p = []
                 lu_names = []
                 lu_teams = []
@@ -2181,6 +2177,7 @@ class NBA_Swaptimizer_Sims:
                             lu_names.append(v["DK Name"])
                             lu_teams.append(v["Team"])
                             own_p.append(v["Ownership"])
+                            total_salary += v["Salary"]  # Add the player's salary
                             if not x[p_str]:
                                 fpts_p += v['Fpts']
                                 std_p += v['StdDev']
@@ -2219,7 +2216,7 @@ class NBA_Swaptimizer_Sims:
                     f" ({x['F']}),"
                     f"{lu_names[7].replace('#', '-')}"
                     f" ({x['UTIL']}),"
-                    f"{fpts_p},{ceil_p},{salary},{cash_p}%,{top10_p},{roi_p}%,{win_p},{own_s},${roi_round},{primaryStack},{secondaryStack},{lu_type},{simDupes},{userName},{lu_idx},{entry}"
+                    f"{fpts_p},{ceil_p},{total_salary},{cash_p}%,{top10_p},{roi_p}%,{win_p},{own_s},${roi_round},{primaryStack},{secondaryStack},{lu_type},{simDupes},{userName},{lu_idx},{entry}"
                 )
                 unique[index] = lineup_str
 
@@ -2275,33 +2272,50 @@ class NBA_Swaptimizer_Sims:
                 "Player,Position,Team,UpdatedProjection,UpdatedStdDev,Cash%,Top1%,Sim. Own%,Proj. Own%,Avg. Return,Game Minutes Remaining\n"
             )
             unique_players = {}
+            player_count = 0
+
             for val in self.field_lineups.values():
+                player_count += 1
+                print(f"-------------------Calculating Exposures---Player: {player_count}  -----------------" )
+
                 for player in val["Lineup"]:
+                    # Ensure ROI is a valid number
+                    roi_value = val["ROI"] / 100 if not (math.isnan(val["ROI"]) or val["ROI"] is None) else 0
+
                     if player not in unique_players:
                         unique_players[player] = {
                             "Cashes": val["Cashes"],
                             "Top1Percent": val["Top1Percent"],
                             "In": val["Count"],
-                            "ROI": val["ROI"],
+                            "ROI": roi_value,
                         }
                     else:
                         unique_players[player]["Cashes"] = (
                                 unique_players[player]["Cashes"] + val["Cashes"]
                         )
+                        print(f"Value ROI: ", val["ROI"])
                         unique_players[player]["Top1Percent"] = (
                                 unique_players[player]["Top1Percent"] + val["Top1Percent"]
                         )
                         unique_players[player]["In"] += val["Count"]
                         unique_players[player]["ROI"] = (
-                                unique_players[player]["ROI"] + val["ROI"]
+                                unique_players[player]["ROI"] + roi_value
                         )
 
             for player, data in unique_players.items():
-                field_p = round(data["In"] / self.field_size, 2)
-                cash_p = round(data["Cashes"] / self.num_iterations, 2)
-                #cash_p = data["Cashes"]
-                top10_p = round(data["Top1Percent"] / self.num_iterations, 2)
-                roi_p = data["ROI"]
+                field_p = round(data["In"] / self.field_size * 100, 2)
+                max_ranked  =  field_p / 100 * self.field_size * self.num_iterations
+
+                # Avoid divide by zero
+                if max_ranked == 0:
+                    cash_p = 0  # Assign a default value (e.g., 0) when division is not possible
+                    top10_p = 0
+                    roi_p = 0
+                else:
+                    cash_p = round(data["Cashes"] / max_ranked * 100, 2)
+                    top10_p = round(data["Top1Percent"] / max_ranked * 100, 2)
+                    roi_p = round(data["ROI"] / max_ranked * 100, 2)
+
                 for k, v in self.player_dict.items():
                     if player == v["ID"]:
                         proj_own = v["Ownership"]
@@ -2312,6 +2326,8 @@ class NBA_Swaptimizer_Sims:
                         stdv = np.sqrt(v.get('BayesianProjectedVar'))
                         min = v.get("Minutes Remaining")
                         break
+
+
                 f.write(
                     "{},{},{},{},{},{}%,{}%,{}%,{}%,${},{}\n".format(
                         p_name.replace("#", "-"),
@@ -2369,16 +2385,17 @@ class NBA_Swaptimizer_Sims:
             for new_lineup, old_lineup in sorted_lineups
         }
 
-        num_entries = int(len(unique) / num_sets)
-        if num_sets > 30:
-            num_sets = 30
+        num_entries = int(len(sorted_lineups) / num_sets)
+        if num_sets > 50:
+            num_sets = 50
 
         if 'late_swap_path' in self.config.keys():
             late_swap_path = os.path.join(
                 os.path.dirname(__file__),
                 "../{}_data/{}".format(self.site, self.config["late_swap_path"]),
             )
-            count = 0
+            count = 0  # Track processed entries across all sets
+
             # Read the existing data
             with open(late_swap_path, "r", encoding="utf-8-sig") as file:
                 reader = csv.DictReader(file)
@@ -2391,26 +2408,31 @@ class NBA_Swaptimizer_Sims:
                 if None in row and PLACEHOLDER not in fieldnames:
                     fieldnames.append(PLACEHOLDER)
 
-            # Extract the first four columns' data from the first file
-            first_file_rows = rows[:num_entries]
-            first_file_columns = [{key: row[key] for key in fieldnames[:4]} for row in first_file_rows]
+            # Extract the first four columns' data from the first valid rows
+            first_file_columns = [
+                {key: row[key] for key in fieldnames[:4]} for row in rows[:num_entries]
+            ]
 
             # Write multiple files for num_sets
             for set_index in range(num_sets):
                 start_idx = set_index * num_entries
+                #end_idx = min(start_idx + num_entries, len(sorted_lineups))
                 end_idx = start_idx + num_entries
 
-                # Slice rows and sorted_lineups for this set
-                rows_slice = rows[start_idx:end_idx]
+                # Slice sorted_lineups for this set
                 lineups_slice = sorted_lineups[start_idx:end_idx]
 
                 updated_rows = []
-                for row, (new_lineup, old_lineup) in zip(rows_slice, lineups_slice):
-                    trimmed_row = {key: row.get(key, "") for key in fieldnames}
+                for idx, (new_lineup, old_lineup) in enumerate(lineups_slice):
+                    trimmed_row = {}
 
-                    # Truncate Entry ID to the first 10 characters
-                    if "Entry ID" in trimmed_row and trimmed_row["Entry ID"]:
-                        trimmed_row["Entry ID"] = trimmed_row["Entry ID"][:10]
+                    # Populate the first four columns with data from the initial rows
+                    if set_index == 0:
+                        # Use original rows for the first set
+                        trimmed_row.update(first_file_columns[idx % num_entries])
+                    else:
+                        # Repeat the first set's first four columns for subsequent sets
+                        trimmed_row.update(first_file_columns[count % num_entries])
 
                     # Populate player positions using new_lineup
                     for i, position in enumerate(["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]):
@@ -2429,11 +2451,6 @@ class NBA_Swaptimizer_Sims:
                         else:
                             print(f"Player ID not found in player_dict: {player_id}")
                             trimmed_row[position] = "Unknown Player"
-
-                    # Replace the first four columns with data from the first file for other sets
-                    if set_index > 0:  # Not the first file
-                        for idx, key in enumerate(fieldnames[:4]):
-                            trimmed_row[key] = first_file_columns[count % num_entries][key]
 
                     updated_rows.append(trimmed_row)
                     count += 1
@@ -2462,6 +2479,8 @@ class NBA_Swaptimizer_Sims:
                     file.write(content)
 
         print("All CSV files have been generated.")
+
+
 
 
 

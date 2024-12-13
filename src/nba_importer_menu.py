@@ -2,6 +2,7 @@ import sys
 from pathlib import Path
 import os
 import pandas as pd
+import requests
 import xlwings as xw
 from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget
 from nba_api.stats.endpoints import leaguedashteamstats
@@ -14,7 +15,7 @@ class ImportTool(QMainWindow):
         super().__init__()
         self.setWindowTitle("Excel Import Tool")
         self.setGeometry(100, 100, 400, 300)
-
+        '''
         # Combine all styles into a single setStyleSheet call
         self.setStyleSheet("""
                            QMainWindow {
@@ -106,7 +107,7 @@ class ImportTool(QMainWindow):
                                font-weight: bold;
                            }
                        """)
-
+        '''
 
         # Define the target folder
         current_folder = Path(__file__).parent  # Current script directory (src)
@@ -121,6 +122,12 @@ class ImportTool(QMainWindow):
         # Layout
         layout = QVBoxLayout()
         # Buttons
+        last10_button = QPushButton("Import last10.csv to L10 Sheet")
+        last10_button.clicked.connect(self.import_last10)
+
+
+        bbm_button = QPushButton("Import bbm.csv to BBM Projections")
+        bbm_button.clicked.connect(self.import_bbm)
 
         fta_button = QPushButton("Import fta.csv to FTA Projections")
         fta_button.clicked.connect(self.import_fta_entries)
@@ -134,28 +141,48 @@ class ImportTool(QMainWindow):
         darko_button = QPushButton("Import darko.csv to DARKO Projections")
         darko_button.clicked.connect(self.import_darko)
 
-        advanced_button = QPushButton("Import advanced.csv to Advanced Team Stats")
+        advanced_button = QPushButton("Import advanced.csv to Advanced Team Stats Sheet")
         advanced_button.clicked.connect(self.import_advanced)
 
-        traditional_button = QPushButton("Import traditional.csv to Traditional Team Stats")
+        traditional_button = QPushButton("Import traditional.csv to Traditional Team Stats Sheet")
         traditional_button.clicked.connect(self.import_traditional)
 
         all_button = QPushButton("Run All Imports")
         all_button.clicked.connect(self.run_all_imports)
 
         # Add buttons to layout
+        layout.addWidget(bbm_button)
         layout.addWidget(fta_button)
         layout.addWidget(dk_button)
         layout.addWidget(sog_button)
         layout.addWidget(darko_button)
         layout.addWidget(advanced_button)
         layout.addWidget(traditional_button)
+        layout.addWidget(last10_button)
         layout.addWidget(all_button)
 
         # Central Widget
         container = QWidget()
         container.setLayout(layout)
         self.setCentralWidget(container)
+
+    def import_bbm(self):
+        print("Importing BBM to bbm...")
+
+        # Specify the columns to read
+        columns_to_read = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,22]  # columns to import
+
+        self.import_csv_to_sheet(
+            csv_file="bbm.csv",
+            sheet_name="bbm",
+            csv_start_row=0,
+            csv_start_col=0,
+            excel_start_row=2,
+            excel_start_col=1,
+            usecols=columns_to_read
+        )
+        print("Done importing BBM to bbm.")
+
 
     def import_fta_entries(self):
         print("Importing NBA-DK-Data to dk_list...")
@@ -267,31 +294,6 @@ class ImportTool(QMainWindow):
             print(f"An error occurred: {e}")
 
 
-        #self.import_csv_to_sheet(
-          #  csv_file="entries.csv",
-          #  sheet_name="dk_list",
-           # csv_start_row=7,
-           # csv_start_col=0,
-           # excel_start_row=2,
-           # excel_start_col=2,
-        #)
-
-
-        print("Done importing DKEntries to dk_list.")
-    '''
-    def import_sog_projections(self):
-        print("Importing DKEntries to sog_projections...")
-        self.import_csv_to_sheet(
-            csv_file="entries.csv",
-            sheet_name="sog_projections",
-            csv_start_row=7,
-            csv_start_col=0,
-            excel_start_row=2,
-            excel_start_col=2,
-        )
-        print("Done importing DKEntries to sog_projections.")
-    '''
-
     def import_darko(self):
         print("Importing DARKO to darko...")
         self.import_csv_to_sheet(
@@ -303,6 +305,75 @@ class ImportTool(QMainWindow):
             excel_start_col=1,
         )
         print("Done importing DARKO to darko.")
+
+
+    def import_last10(self):
+
+        # Example API endpoint (you may need to adjust this based on your inspection)
+        api_url = "https://stats.nba.com/stats/leaguedashplayerstats"
+        params = {
+            "LastNGames": "10",
+            "Season": "2024-25",
+            "SeasonType": "Regular Season",
+            "MeasureType": "Base",
+            "PerMode": "Totals",
+            "PlusMinus": "N",
+            "PaceAdjust": "N",
+            "Rank": "N",
+            "Outcome": "",
+            "Location": "",
+            "Month": "0",
+            "OpponentTeamID": "0",
+            "VsConference": "",
+            "VsDivision": "",
+            "GameSegment": "",
+            "Period": "0",
+            "ShotClockRange": "",
+            "TwoWay": "0",
+            "PlayerExperience": "",
+            "PlayerPosition": "",
+            "StarterBench": "",
+            "DraftYear": "",
+            "DraftPick": "",
+            "College": "",
+            "Country": "",
+            "Height": "",
+            "Weight": "",
+            "TeamID": "0",
+            "Conference": "",
+            "Division": "",
+        }
+
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36",
+            "Referer": "https://www.nba.com/",
+        }
+
+        # Fetch data
+        response = requests.get(api_url, headers=headers, params=params)
+        data = response.json()
+
+        # Extract rows and headers
+        headers = data['resultSets'][0]['headers']
+        rows = data['resultSets'][0]['rowSet']
+        csv_file_path = "last10.csv"
+
+        # Convert to DataFrame
+        df = pd.DataFrame(rows, columns=headers)
+
+        # Save to CSV
+        df.to_csv(csv_file_path, index=False)
+
+        self.import_csv_to_sheet(
+            csv_file=str(csv_file_path),
+            sheet_name="last10",
+            csv_start_row=0,
+            csv_start_col=0,  # No need to filter columns here; `usecols` handles it
+            excel_start_row=2,
+            excel_start_col=1
+        )
+
+        print("Data saved to nba_player_stats_last_10_games.csv")
 
     def import_advanced(self):
         print("Fetching and importing Advanced Team Stats...")
@@ -364,11 +435,6 @@ class ImportTool(QMainWindow):
             # Sort the DataFrame by 'TEAM_NAME'
             df_sorted = df.sort_values(by='TEAM_NAME')
 
-            # Step 2: Save the fetched data to 'traditional.csv' in the output folder
-            #script_dir = Path(__file__).resolve().parent  # Script directory
-            #output_dir = script_dir / "output"  # Define the output folder
-            #output_dir.mkdir(exist_ok=True)  # Create the folder if it doesn't exist
-
             # Define the CSV file path
             #csv_file_path = output_dir / "traditional.csv"
             csv_file_path = "traditional.csv"
@@ -399,12 +465,14 @@ class ImportTool(QMainWindow):
 
     def run_all_imports(self):
         print("Running all imports...")
+        self.import_bbm()
         self.import_fta_entries()
         self.import_dk_entries()
         self.import_sog_projections()
         self.import_darko()
         self.import_advanced()
         self.import_traditional()
+        self.import_last10()
         print("All imports completed.")
 
     from pathlib import Path
