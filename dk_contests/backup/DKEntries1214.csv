@@ -1,0 +1,79 @@
+Entry ID,Contest Name,Contest ID,Entry Fee,PG,SG,SF,PF,C,G,F,UTIL,,Instructions
+4562243317,NBA $30K Four Point Play [20 Entry Max],171720430,$4,Shai Gilgeous-Alexander (37016749),Luguentz Dort (37016815),Gary Trent Jr. (37016837) (LOCKED),Jalen Johnson (37016763) (LOCKED),Clint Capela (37016793) (LOCKED),Cason Wallace (37016828),Jabari Smith Jr. (37016800),Alperen Sengun (37016755),,1. Column A lists all of your contest entries for this draftgroup
+4562243318,NBA $30K Four Point Play [20 Entry Max],171720430,$4,Shai Gilgeous-Alexander (37016749),Cason Wallace (37016828),Dillon Brooks (37016822),Jabari Smith Jr. (37016800),Onyeka Okongwu (37016820) (LOCKED),Luguentz Dort (37016815),Jalen Williams (37016760),Alperen Sengun (37016755),,2. Your current lineup is listed next to each entry (blank for reservations)
+4562243319,NBA $30K Four Point Play [20 Entry Max],171720430,$4,Shai Gilgeous-Alexander (37016749),Gary Trent Jr. (37016837) (LOCKED),Luguentz Dort (37016815),Jalen Johnson (37016763) (LOCKED),Clint Capela (37016793) (LOCKED),Alex Caruso (37016832),Jabari Smith Jr. (37016800),Alperen Sengun (37016755),,3. You can change the lineup for an entry by entering the IDs of the players in the row next to that entry
+4562243320,NBA $30K Four Point Play [20 Entry Max],171720430,$4,Fred VanVleet (37016769),Cason Wallace (37016828),Alex Caruso (37016832),Jalen Johnson (37016763) (LOCKED),Onyeka Okongwu (37016820) (LOCKED),Shai Gilgeous-Alexander (37016749),Jabari Smith Jr. (37016800),Isaiah Hartenstein (37016772),,4. Use data from the Name+ID column or the ID column; you cannot use just the player's name
+4562243321,NBA $30K Four Point Play [20 Entry Max],171720430,$4,Fred VanVleet (37016769),Cason Wallace (37016828),Gary Trent Jr. (37016837) (LOCKED),Jalen Johnson (37016763) (LOCKED),Onyeka Okongwu (37016820) (LOCKED),Shai Gilgeous-Alexander (37016749),Jabari Smith Jr. (37016800),Isaiah Hartenstein (37016772),,5. For faster processing only include entries you are changing in the file you upload
+4562243322,NBA $30K Four Point Play [20 Entry Max],171720430,$4,Shai Gilgeous-Alexander (37016749),Alex Caruso (37016832),Bogdan Bogdanovic (37016810) (LOCKED),Jabari Smith Jr. (37016800),Onyeka Okongwu (37016820) (LOCKED),Luguentz Dort (37016815),Jalen Williams (37016760),Alperen Sengun (37016755),,
+,,,,,,,,,,,,,Position,Name + ID,Name,ID,Roster Position,Salary,Game Info,TeamAbbrev,AvgPointsPerGame
+,,,,,,,,,,,,,PF/C,Giannis Antetokounmpo (37016745) (LOCKED),Giannis Antetokounmpo,37016745,PF/C/F/UTIL,11200,In Progress,MIL,60
+,,,,,,,,,,,,,PG,Shai Gilgeous-Alexander (37016749),Shai Gilgeous-Alexander,37016749,PG/G/UTIL,10200,HOU@OKC 12/14/2024 08:30PM ET,OKC,51.72
+,,,,,,,,,,,,,PG,Trae Young (37016752) (LOCKED),Trae Young,37016752,PG/G/UTIL,9300,In Progress,ATL,47.08
+,,,,,,,,,,,,,C,Alperen Sengun (37016755),Alperen Sengun,37016755,C/UTIL,8900,HOU@OKC 12/14/2024 08:30PM ET,HOU,44.99
+,,,,,,,,,,,,,PG,Damian Lillard (37016757) (LOCKED),Damian Lillard,37016757,PG/G/UTIL,8800,In Progress,MIL,45.54
+,,,,,,,,,,,,,PF,Jalen Williams (37016760),Jalen Williams,37016760,PF/F/UTIL,8600,HOU@OKC 12/14/2024 08:30PM ET,OKC,42.72
+,,,,,,,,,,,,,PF,Jalen Johnson (37016763) (LOCKED),Jalen Johnson,37016763,PF/F/UTIL,8200,In Progress,ATL,45.93
+,,,,,,,,,,,,,PF,Chet Holmgren (37016766),Chet Holmgren,37016766,PF/F/UTIL,7800,HOU@OKC 12/14/2024 08:30PM ET,OKC,37.22
+,,,,,,,,,,,,,PG,Fred VanVleet (37016769),Fred VanVleet,37016769,PG/G/UTIL,7100,HOU@OKC 12/14/2024 08:30PM ET,HOU,34.15
+,,,,,,,,,,,,,C,Isaiah Hartenstein (37016772),Isaiah Hartenstein,37016772,C/UTIL,7000,HOU@OKC 12/14/2024 08:30PM ET,OKC,38.14
+,,,,,,,,,,,,,SG,Dyson Daniels (37016774) (LOCKED),Dyson Daniels,37016774,SG/G/UTIL,6600,In Progress,ATL,32.40
+,,,,,,,,,,,,,SG,Jalen Green (37016777),Jalen Green,37016777,SG/G/UTIL,6400,HOU@OKC 12/14/2024 08:30PM ET,HOU,31.87
+,,,,,,,,,,,,,SG/SF,Amen Thompson (37016780),Amen Thompson,37016780,SG/SF/F/G/UTIL,5700,HOU@OKC 12/14/2024 08:30PM ET,HOU,27.38
+,,,,,,,,,,,,,SF/PF,De'Andre Hunter (37016785) (LOCKED),De'Andre Hunter,37016785,SF/PF/F/UTIL,5600,In Progress,ATL,28.82
+,,,,,,,,,,,,,PF/C,Bobby Portis (37016789) (LOCKED),Bobby Portis,37016789,PF/C/F/UTIL,5500,In Progress,MIL,27.77
+,,,,,,,,,,,,,C,Clint Capela (37016793) (LOCKED),Clint Capela,37016793,C/UTIL,5400,In Progress,ATL,27.10
+,,,,,,,,,,,,,SG/SF,Khris Middleton (37016795) (LOCKED),Khris Middleton,37016795,SG/SF/F/G/UTIL,5300,In Progress,MIL,24.42
+,,,,,,,,,,,,,PF/C,Jabari Smith Jr. (37016800),Jabari Smith Jr.,37016800,PF/C/F/UTIL,5200,HOU@OKC 12/14/2024 08:30PM ET,HOU,24.72
+,,,,,,,,,,,,,C,Brook Lopez (37016804) (LOCKED),Brook Lopez,37016804,C/UTIL,5100,In Progress,MIL,26.46
+,,,,,,,,,,,,,SF/PF,Tari Eason (37016806),Tari Eason,37016806,SF/PF/F/UTIL,5000,HOU@OKC 12/14/2024 08:30PM ET,HOU,27.10
+,,,,,,,,,,,,,SG/SF,Bogdan Bogdanovic (37016810) (LOCKED),Bogdan Bogdanovic,37016810,SG/SF/F/G/UTIL,4600,In Progress,ATL,22.48
+,,,,,,,,,,,,,SG/SF,Luguentz Dort (37016815),Luguentz Dort,37016815,SG/SF/F/G/UTIL,4400,HOU@OKC 12/14/2024 08:30PM ET,OKC,23.26
+,,,,,,,,,,,,,C,Onyeka Okongwu (37016820) (LOCKED),Onyeka Okongwu,37016820,C/UTIL,4300,In Progress,ATL,25.01
+,,,,,,,,,,,,,SF,Dillon Brooks (37016822),Dillon Brooks,37016822,SF/F/UTIL,4200,HOU@OKC 12/14/2024 08:30PM ET,HOU,22.03
+,,,,,,,,,,,,,SF,Zaccharie Risacher (37016825) (LOCKED),Zaccharie Risacher,37016825,SF/F/UTIL,4000,In Progress,ATL,20.58
+,,,,,,,,,,,,,PG/SG,Cason Wallace (37016828),Cason Wallace,37016828,PG/SG/G/UTIL,3900,HOU@OKC 12/14/2024 08:30PM ET,OKC,20.05
+,,,,,,,,,,,,,SG/SF,Alex Caruso (37016832),Alex Caruso,37016832,SG/SF/F/G/UTIL,3800,HOU@OKC 12/14/2024 08:30PM ET,OKC,18.06
+,,,,,,,,,,,,,SG/SF,Gary Trent Jr. (37016837) (LOCKED),Gary Trent Jr.,37016837,SG/SF/F/G/UTIL,3600,In Progress,MIL,15.84
+,,,,,,,,,,,,,PG/SG,AJ Green (37016847) (LOCKED),AJ Green,37016847,PG/SG/G/UTIL,3500,In Progress,MIL,14.30
+,,,,,,,,,,,,,SG/SF,Isaiah Joe (37016842),Isaiah Joe,37016842,SG/SF/F/G/UTIL,3500,HOU@OKC 12/14/2024 08:30PM ET,OKC,17.88
+,,,,,,,,,,,,,PF/C,Larry Nance Jr. (37016851) (LOCKED),Larry Nance Jr.,37016851,PF/C/F/UTIL,3400,In Progress,ATL,17.05
+,,,,,,,,,,,,,PF/C,Kenrich Williams (37016855),Kenrich Williams,37016855,PF/C/F/UTIL,3400,HOU@OKC 12/14/2024 08:30PM ET,OKC,13.18
+,,,,,,,,,,,,,SF/PF,Taurean Prince (37016863) (LOCKED),Taurean Prince,37016863,SF/PF/F/UTIL,3300,In Progress,MIL,18.47
+,,,,,,,,,,,,,SF/PF,Aaron Wiggins (37016859),Aaron Wiggins,37016859,SF/PF/F/UTIL,3300,HOU@OKC 12/14/2024 08:30PM ET,OKC,18.66
+,,,,,,,,,,,,,PG,Aaron Holiday (37016867),Aaron Holiday,37016867,PG/G/UTIL,3300,HOU@OKC 12/14/2024 08:30PM ET,HOU,8.25
+,,,,,,,,,,,,,PG/SG,Vit Krejci (37016872) (LOCKED),Vit Krejci,37016872,PG/SG/G/UTIL,3200,In Progress,ATL,8.21
+,,,,,,,,,,,,,C,Steven Adams (37016870),Steven Adams,37016870,C/UTIL,3200,HOU@OKC 12/14/2024 08:30PM ET,HOU,8.38
+,,,,,,,,,,,,,SG/SF,Andre Jackson Jr. (37016876) (LOCKED),Andre Jackson Jr.,37016876,SG/SF/F/G/UTIL,3100,In Progress,MIL,10.95
+,,,,,,,,,,,,,PG,Ajay Mitchell (37016881),Ajay Mitchell,37016881,PG/G/UTIL,3100,HOU@OKC 12/14/2024 08:30PM ET,OKC,11.85
+,,,,,,,,,,,,,SG,Stanley Umude (37016884) (LOCKED),Stanley Umude,37016884,SG/G/UTIL,3000,In Progress,MIL,1.79
+,,,,,,,,,,,,,PG,Delon Wright (37016887) (LOCKED),Delon Wright,37016887,PG/G/UTIL,3000,In Progress,MIL,9.51
+,,,,,,,,,,,,,SF/PF,Pat Connaughton (37016890) (LOCKED),Pat Connaughton,37016890,SF/PF/F/UTIL,3000,In Progress,MIL,12.42
+,,,,,,,,,,,,,PG,Ryan Rollins (37016894) (LOCKED),Ryan Rollins,37016894,PG/G/UTIL,3000,In Progress,MIL,7.25
+,,,,,,,,,,,,,C,Liam Robbins (37016897) (LOCKED),Liam Robbins,37016897,C/UTIL,3000,In Progress,MIL,1.75
+,,,,,,,,,,,,,SG,AJ Johnson (37016899) (LOCKED),AJ Johnson,37016899,SG/G/UTIL,3000,In Progress,MIL,2.1
+,,,,,,,,,,,,,PF,Tyler Smith (37016902) (LOCKED),Tyler Smith,37016902,PF/F/UTIL,3000,In Progress,MIL,3.75
+,,,,,,,,,,,,,PG/SF,Marjon Beauchamp (37016905) (LOCKED),Marjon Beauchamp,37016905,PG/SF/F/G/UTIL,3000,In Progress,MIL,2.75
+,,,,,,,,,,,,,SF,Chris Livingston (37016910) (LOCKED),Chris Livingston,37016910,SF/F/UTIL,3000,In Progress,MIL,2.5
+,,,,,,,,,,,,,SG/SF,Garrison Mathews (37016931) (LOCKED),Garrison Mathews,37016931,SG/SF/F/G/UTIL,3000,In Progress,ATL,13.75
+,,,,,,,,,,,,,PG,Keaton Wallace (37016936) (LOCKED),Keaton Wallace,37016936,PG/G/UTIL,3000,In Progress,ATL,11.79
+,,,,,,,,,,,,,C,Mouhamed Gueye (37016939) (LOCKED),Mouhamed Gueye,37016939,C/UTIL,3000,In Progress,ATL,2
+,,,,,,,,,,,,,C,Dominick Barlow (37016941) (LOCKED),Dominick Barlow,37016941,C/UTIL,3000,In Progress,ATL,0.5
+,,,,,,,,,,,,,PF,David Roddy (37016943) (LOCKED),David Roddy,37016943,PF/F/UTIL,3000,In Progress,ATL,12.14
+,,,,,,,,,,,,,PG,Kobe Bufkin (37016946) (LOCKED),Kobe Bufkin,37016946,PG/G/UTIL,3000,In Progress,ATL,11.28
+,,,,,,,,,,,,,C,Cody Zeller (37016949) (LOCKED),Cody Zeller,37016949,C/UTIL,3000,In Progress,ATL,0
+,,,,,,,,,,,,,SG,Seth Lundy (37016951) (LOCKED),Seth Lundy,37016951,SG/G/UTIL,3000,In Progress,ATL,0
+,,,,,,,,,,,,,C,Branden Carlson (37016913),Branden Carlson,37016913,C/UTIL,3000,HOU@OKC 12/14/2024 08:30PM ET,OKC,4.2
+,,,,,,,,,,,,,PF,Dillon Jones (37016915),Dillon Jones,37016915,PF/F/UTIL,3000,HOU@OKC 12/14/2024 08:30PM ET,OKC,6.40
+,,,,,,,,,,,,,PG,Adam Flagler (37016918),Adam Flagler,37016918,PG/G/UTIL,3000,HOU@OKC 12/14/2024 08:30PM ET,OKC,2.64
+,,,,,,,,,,,,,SF,Alex Ducas (37016921),Alex Ducas,37016921,SF/F/UTIL,3000,HOU@OKC 12/14/2024 08:30PM ET,OKC,0
+,,,,,,,,,,,,,C,Ousmane Dieng (37016924),Ousmane Dieng,37016924,C/UTIL,3000,HOU@OKC 12/14/2024 08:30PM ET,OKC,10.03
+,,,,,,,,,,,,,PG,Nikola Topic (37016926),Nikola Topic,37016926,PG/G/UTIL,3000,HOU@OKC 12/14/2024 08:30PM ET,OKC,0
+,,,,,,,,,,,,,C,Jaylin Williams (37016929),Jaylin Williams,37016929,C/UTIL,3000,HOU@OKC 12/14/2024 08:30PM ET,OKC,0
+,,,,,,,,,,,,,PG/SF,Nate Williams (37016954),Nate Williams,37016954,PG/SF/F/G/UTIL,3000,HOU@OKC 12/14/2024 08:30PM ET,HOU,4.42
+,,,,,,,,,,,,,PG/SG,Reed Sheppard (37016959),Reed Sheppard,37016959,PG/SG/G/UTIL,3000,HOU@OKC 12/14/2024 08:30PM ET,HOU,8.76
+,,,,,,,,,,,,,SG,Jack McVeigh (37016963),Jack McVeigh,37016963,SG/G/UTIL,3000,HOU@OKC 12/14/2024 08:30PM ET,HOU,2.83
+,,,,,,,,,,,,,PF/C,Jeff Green (37016966),Jeff Green,37016966,PF/C/F/UTIL,3000,HOU@OKC 12/14/2024 08:30PM ET,HOU,4
+,,,,,,,,,,,,,C,Jock Landale (37016970),Jock Landale,37016970,C/UTIL,3000,HOU@OKC 12/14/2024 08:30PM ET,HOU,10.68
+,,,,,,,,,,,,,C,N'Faly Dante (37016972),N'Faly Dante,37016972,C/UTIL,3000,HOU@OKC 12/14/2024 08:30PM ET,HOU,0
+,,,,,,,,,,,,,SF/PF,Cam Whitmore (37016974),Cam Whitmore,37016974,SF/PF/F/UTIL,3000,HOU@OKC 12/14/2024 08:30PM ET,HOU,8.72
+,,,,,,,,,,,,,SF/PF,Jae'Sean Tate (37016978),Jae'Sean Tate,37016978,SF/PF/F/UTIL,3000,HOU@OKC 12/14/2024 08:30PM ET,HOU,6.75

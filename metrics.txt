@@ -1,0 +1,84 @@
+Adjusted Test Mean Squared Error (Original Scale): 29.7385
+Adjusted Test R^2 Score: 0.5726
+Adjusted Ownership Correlation: 0.7575
+
+Adjusted Test Mean Squared Error (Original Scale): 28.0950
+Adjusted Test R^2 Score: 0.5962
+Adjusted Ownership Correlation: 0.7723
+
+Adjusted Test Mean Squared Error (Original Scale): 26.0936
+Adjusted Test R^2 Score: 0.6249
+Adjusted Ownership Correlation: 0.7906
+Model saved to 'xgboost_ownership_model.pkl'.
+Sum of Scaled Ownership Percentages: 800.0000000000001%
+
+Adjusted Test Mean Squared Error (Original Scale): 25.6132
+Adjusted Test R^2 Score: 0.6581
+Adjusted Ownership Correlation: 0.8189
+
+Adjusted Test Mean Squared Error (Original Scale): 22.7261
+Adjusted Test R^2 Score: 0.6955
+Adjusted Ownership Correlation: 0.8358
+
+
+
+
+before saving
+CatBoost Results:
+Test Mean Squared Error: 18.5907
+Test R^2 Score: 0.7518
+Ownership Correlation: 0.8687
+
+Feature Importance:
+                           Feature  Importance
+8                Proj_Salary_Ratio   16.212583
+3                      Feasibility   14.308998
+4                     Games Played   11.692096
+2                            Value    7.787374
+16                 Ownership_Trend    6.916348
+14                     Bonus_Value    6.639183
+5                             Plus    5.668287
+7             Weighted Feasibility    5.534327
+13         Proj_Salary_Interaction    4.767382
+1                      Points Proj    3.058775
+17  Feasibility_Salary_Interaction    2.914765
+15                     Value_Boost    2.765082
+9              Points_Proj_Squared    2.596936
+10          Avg_Position_Ownership    2.338795
+12                Proj_Points_Rank    2.291435
+11                     Salary_Rank    1.637611
+6                       Slot Count    1.512883
+0                           Salary    1.357140
+
+
+negative testing
+---------------------
+
+
+
+CatBoost Results:
+Test Mean Squared Error: 124.2361
+Test R^2 Score: 0.5857
+Ownership Correlation: 0.8748
+
+
+CatBoost Feature Importance:
+Feature Importance:
+                    Feature  Importance
+4              Games Played   13.375098
+3               Feasibility   13.166089
+2                     Value   11.146350
+14              Bonus_Value    7.820374
+5                      Plus    7.292849
+8         Proj_Salary_Ratio    7.273636
+16          Ownership_Trend    6.276388
+12         Proj_Points_Rank    6.266082
+9       Points_Proj_Squared    5.763033
+7      Weighted Feasibility    5.399304
+13  Proj_Salary_Interaction    4.560922
+10   Avg_Position_Ownership    2.883635
+15              Value_Boost    2.423133
+1               Points Proj    2.322777
+6                Slot Count    1.538464
+11              Salary_Rank    1.286162
+0                    Salary    1.205704

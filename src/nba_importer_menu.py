@@ -1,6 +1,12 @@
 import sys
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import os
+
+from numba.np import math
+from tabulate import tabulate
+
+import numpy as np
 import pandas as pd
 import requests
 import xlwings as xw
@@ -15,7 +21,6 @@ class ImportTool(QMainWindow):
         super().__init__()
         self.setWindowTitle("Excel Import Tool")
         self.setGeometry(100, 100, 400, 300)
-        '''
         # Combine all styles into a single setStyleSheet call
         self.setStyleSheet("""
                            QMainWindow {
@@ -27,7 +32,7 @@ class ImportTool(QMainWindow):
                                background-color: #5E81AC;
                                color: white;
                                font-size: 16px;
-                               font-weight: bold;
+                               font-weight: regular;
                                border-radius: 10px;
                                min-height: 30px;
                            }
@@ -107,7 +112,8 @@ class ImportTool(QMainWindow):
                                font-weight: bold;
                            }
                        """)
-        '''
+
+
 
         # Define the target folder
         current_folder = Path(__file__).parent  # Current script directory (src)
@@ -150,6 +156,25 @@ class ImportTool(QMainWindow):
         all_button = QPushButton("Run All Imports")
         all_button.clicked.connect(self.run_all_imports)
 
+
+        odds_button = QPushButton("Export NBA Game Odds to NBA Sheet")
+        odds_button.clicked.connect(self.fetch_and_save_team_data_with_odds)
+
+
+        own_button = QPushButton("Export Ownership Projections to NBA Sheet")
+        own_button.clicked.connect(self.ownership_projections)
+
+
+        export_button = QPushButton("Export Point Projections to NBA Sheet")
+        export_button.clicked.connect(self.export_projections)
+
+
+
+        quit_button = QPushButton("Quit", self)
+        quit_button.clicked.connect(self.close)
+
+
+
         # Add buttons to layout
         layout.addWidget(bbm_button)
         layout.addWidget(fta_button)
@@ -161,10 +186,28 @@ class ImportTool(QMainWindow):
         layout.addWidget(last10_button)
         layout.addWidget(all_button)
 
+        layout.addWidget(odds_button)
+        layout.addWidget(own_button)
+        layout.addWidget(export_button)
+
+        layout.addWidget(quit_button)
+
+
         # Central Widget
         container = QWidget()
         container.setLayout(layout)
         self.setCentralWidget(container)
+
+        #self.ownership_projections()
+        #self.fetch_and_save_team_data_with_odds()
+        #self.import_last10()
+
+    # Post-process predictions to apply the 1% ownership cap for low minutes players
+    def apply_low_minutes_cap(self, predictions, df):
+        capped_predictions = predictions.copy()
+        capped_predictions[df['Low_Minutes_Flag'] == 1] = np.minimum(
+            capped_predictions[df['Low_Minutes_Flag'] == 1], 0.01)
+        return capped_predictions
 
     def import_bbm(self):
         print("Importing BBM to bbm...")
@@ -462,6 +505,127 @@ class ImportTool(QMainWindow):
         except Exception as e:
             print(f"An error occurred: {e}")
 
+    from datetime import datetime, timezone, timedelta
+
+    def fetch_and_save_team_data_with_odds(self):
+        """
+        Fetches in-play and pre-match NBA events for the current day using The Odds API.
+        Combines team data with spread and total odds into a single DataFrame, then saves it to a CSV file.
+        """
+        try:
+            # The Odds API Key and Endpoints
+            api_key = 'd4237a37fb55c03282af5de33235e1d6'
+            events_url = f'https://api.the-odds-api.com/v4/sports/basketball_nba/events?apiKey={api_key}&dateFormat=iso'
+            odds_url = f'https://api.the-odds-api.com/v4/sports/basketball_nba/odds/?apiKey={api_key}&regions=us&markets=spreads,totals'
+
+            # Fetch events data
+            response_events = requests.get(events_url)
+            if response_events.status_code != 200:
+                raise Exception(f"Error fetching events: {response_events.status_code} - {response_events.text}")
+
+            events_data = response_events.json()
+
+            # Fetch odds data
+            response_odds = requests.get(odds_url)
+            if response_odds.status_code != 200:
+                raise Exception(f"Error fetching odds: {response_odds.status_code} - {response_odds.text}")
+
+            odds_data = response_odds.json()
+
+            # Prepare team data from events
+            teams = []
+            for event in events_data:
+                # Parse game start time and convert to EST
+                game_time_utc = datetime.fromisoformat(event["commence_time"].replace("Z", "+00:00"))
+                game_time_est = game_time_utc.astimezone(timezone(timedelta(hours=-5)))  # EST is UTC-5
+
+                # Add each team and game time to the list
+                teams.append({
+                    "Team": event["home_team"],
+                    "Game Time (EST)": game_time_est.strftime("%Y-%m-%d %I:%M %p"),
+                    "Spread": None,
+                    "Total": None
+                })
+                teams.append({
+                    "Team": event["away_team"],
+                    "Game Time (EST)": game_time_est.strftime("%Y-%m-%d %I:%M %p"),
+                    "Spread": None,
+                    "Total": None
+                })
+
+            # Convert teams data to DataFrame
+            teams_df = pd.DataFrame(teams)
+
+            # If the CSV already exists, read its content to preserve existing values
+            csv_path = "odds.csv"
+            if os.path.exists(csv_path):
+                existing_data = pd.read_csv(csv_path)
+                teams_df = pd.merge(teams_df, existing_data, on=["Team", "Game Time (EST)"], how="left",
+                                    suffixes=("", "_existing"))
+
+                # Preserve existing values if new data is not available
+                teams_df["Spread"] = teams_df.apply(
+                    lambda row: row["Spread"] if not pd.isna(row["Spread"]) else row["Spread_existing"], axis=1
+                )
+                teams_df["Total"] = teams_df.apply(
+                    lambda row: row["Total"] if not pd.isna(row["Total"]) else row["Total_existing"], axis=1
+                )
+
+                # Drop the merged columns
+                teams_df = teams_df.drop(columns=["Spread_existing", "Total_existing"])
+
+            # Match teams with odds data and update the DataFrame
+            for odds_event in odds_data:
+                bookmaker = next((b for b in odds_event["bookmakers"] if b["title"] == "DraftKings"), None)
+                if not bookmaker:
+                    continue
+
+                spread_market = None
+                total_market = None
+                for market in bookmaker.get("markets", []):
+                    if market["key"] == "spreads":
+                        spread_market = market
+                    elif market["key"] == "totals":
+                        total_market = market
+
+                # Update Spread values
+                if spread_market:
+                    for outcome in spread_market.get("outcomes", []):
+                        teams_df.loc[teams_df["Team"] == outcome["name"], "Spread"] = outcome.get("point", "N/A")
+
+                # Update Total values
+                if total_market:
+                    total_value = next((outcome.get("point", "N/A") for outcome in total_market.get("outcomes", [])),
+                                       None)
+                    if total_value is not None:
+                        teams_df.loc[teams_df["Team"].isin(
+                            [odds_event["home_team"], odds_event["away_team"]]), "Total"] = total_value
+
+            # Save the updated DataFrame to a CSV file
+            teams_df.to_csv(csv_path, index=False)
+
+            # Print success messages
+            print("Fetched NBA Team Data with Odds:")
+            print(teams_df)
+            print(f"Data successfully saved to {csv_path}")
+
+            # Import to the sheet
+            self.import_csv_to_sheet(
+                csv_file=str(csv_path),
+                sheet_name="odds",
+                csv_start_row=0,
+                csv_start_col=0,  # No need to filter columns here; `usecols` handles it
+                excel_start_row=2,
+                excel_start_col=1
+            )
+            print("Done importing NBA Schedule  to odds.")
+
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+
+
+
 
     def run_all_imports(self):
         print("Running all imports...")
@@ -472,12 +636,9 @@ class ImportTool(QMainWindow):
         self.import_darko()
         self.import_advanced()
         self.import_traditional()
-        self.import_last10()
+        #self.import_last10()
         print("All imports completed.")
 
-    from pathlib import Path
-    import pandas as pd
-    import xlwings as xw
 
     def import_csv_to_sheet(
             self, csv_file, sheet_name, csv_start_row, csv_start_col, excel_start_row, excel_start_col, usecols=None
@@ -519,6 +680,545 @@ class ImportTool(QMainWindow):
         finally:
             wb.close()
             app.quit()
+
+    def ownership_projections(self):
+        import os
+        import pandas as pd
+        import pickle
+        import xlwings as xw
+        import random
+        from scipy.optimize import minimize
+
+        def generate_random_scores(players, num_samples, sd_multiplier=1):
+            random_scores = {}
+            for player in players:
+                proj_points = player['Points Proj']
+                ceiling = player['Ceiling']
+
+                # Assuming ceiling represents `sd_multiplier` standard deviations
+                std_dev = ceiling / sd_multiplier
+
+                # Generate random scores with Gaussian distribution
+                scores = np.random.normal(loc=proj_points, scale=std_dev, size=num_samples)
+                random_scores[player['DK Name']] = scores
+
+            return random_scores
+
+        def simulate_weighted_feasibility_with_progress(data, max_salary=50000, lineup_size=8, num_samples=50000,
+                                                        print_every=10000):
+            """
+            Simulate valid lineups with position-based eligibility using the slot chart.
+            """
+            # Slot chart mapping positions to slots
+            slot_map = {
+                1: ['PG', 'PG/SG', 'PG/SF', 'G'],
+                2: ['SG', 'PG/SG', 'G'],
+                3: ['SF', 'SG/SF', 'PG/SF', 'SF/PF', 'F'],
+                4: ['PF', 'SF/PF', 'PF/C', 'F'],
+                5: ['C', 'PF/C'],
+                6: ['PG', 'SG', 'PG/SG', 'SG/SF', 'PG/SF', 'G'],
+                7: ['SF', 'PF', 'SF/PF', 'SG/SF', 'PG/SF', 'F'],
+                8: ['PG', 'SG', 'SF', 'PF', 'C', 'PG/SG', 'SG/SF', 'SF/PF', 'PG/SF', 'PF/C', 'G', 'F', 'UTIL'],
+            }
+
+            min_salary = 49000
+            min_score = 200
+            min_proj_points = 12
+
+            # Filter eligible players based on minimum projected points
+            eligible_players = data[data['Points Proj'] >= min_proj_points].to_dict(orient='records')
+            weighted_feasibility = {player['DK Name']: 0 for player in eligible_players}  # Initialize feasibility counts
+            tournament_feasibility = {player['DK Name']: 0 for player in eligible_players}  # Initialize feasibility counts
+            count = len(eligible_players)
+
+            print(f"Simulating {num_samples} random lineups...{count} players...")
+            lineups = []  # Store all generated lineups
+            random_scores = generate_random_scores(eligible_players, num_samples)
+
+            i = 1  # Initialize iteration counter
+            while i <= num_samples:  # Use while to control iteration manually
+                lineup = []
+                selected_players = set()  # Track selected players to avoid duplicates
+
+                for slot in range(1, lineup_size + 1):
+                    # Filter players eligible for the current slot
+                    slot_positions = slot_map[slot]
+                    slot_eligible_players = [
+                        player for player in eligible_players
+                        if player['DK Name'] not in selected_players and player['Position'] in slot_positions
+                    ]
+
+                    # Ensure there are eligible players for the slot
+                    if not slot_eligible_players:
+                        break  # Skip this lineup if no eligible players for the slot
+
+                    # Randomly select a player for the slot
+                    selected_player = random.choice(slot_eligible_players)
+                    lineup.append(selected_player)
+                    selected_players.add(selected_player['DK Name'])
+
+                # Validate lineup salary and points
+                if len(lineup) == lineup_size:
+                    total_salary = sum(player['Salary'] for player in lineup)
+                    total_points = sum(random.choice(random_scores[player['DK Name']]) for player in lineup)
+
+                    if min_salary < total_salary <= max_salary and total_points > min_score:
+                        i += 1  # Increment iteration only for valid lineups
+                        for player in lineup:
+                            weighted_feasibility[player['DK Name']] += 1
+                        lineups.append({
+                            'lineup': lineup,
+                            'total_points': total_points
+                        })
+
+                        # Print progress every N samples
+                        if i % print_every == 0:
+                            print(f"Processed {i} / {num_samples} lineups...")
+                            print(f"Salary: {total_salary}  Points: {total_points}")
+
+                # Sort lineups by total_points in descending order
+            lineups.sort(key=lambda x: x['total_points'], reverse=True)
+
+            top_lineups = int(num_samples * 0.20)
+            lineups = lineups[:top_lineups]
+
+            # Assign feasibility scores based on ranking
+            for rank, lineup_info in enumerate(lineups, start=1):
+                lineup = lineup_info['lineup']
+                for player in lineup:
+                    tournament_feasibility[player['DK Name']] += 1 / rank
+
+            # Normalize feasibility scores
+            for player in feasibility:
+                feasibility[player] /= num_samples
+
+            # for player in weighted_feasibility:
+            #    weighted_feasibility[player] /= num_samples / 1000
+
+            print("Tournament Feasibility calculation completed.")
+            return weighted_feasibility, tournament_feasibility
+
+
+        def simulate_feasibility_with_progress(data, max_salary=50000, lineup_size=8, num_samples=1000000,
+                                               print_every=100000):
+            # Simulate valid lineups with random sampling and progress updates.
+            min_salary = 0
+            min_score = 0
+            min_proj_points = 0
+            # players = data[['DK Name', 'Salary', 'Points Proj', 'Ceiling']].to_dict(orient='records')
+            eligible_players = data[data['Points Proj'] >= min_proj_points][
+                ['DK Name', 'Salary', 'Points Proj', 'Ceiling']].to_dict(orient='records')
+            feasibility = {player['DK Name']: 0 for player in eligible_players}  # Initialize feasibility counts
+
+            print(f"Simulating {num_samples} random lineups...")
+
+            i = 1  # Initialize i outside the loop
+            while i <= num_samples:  # Use while instead of for to control incrementing i manually
+                lineup = random.sample(eligible_players, lineup_size)  # Randomly select 8 players
+                total_salary = sum(player['Salary'] for player in lineup)
+                total_points = sum(player['Points Proj'] for player in lineup)
+
+                # Only process lineups with total_salary > 49000
+                if min_salary < total_salary <= max_salary and total_points > min_score:  # Check salary range
+                    for player in lineup:
+                        feasibility[player['DK Name']] += 1
+                    i += 1  # Increment i only if the lineup meets the salary criteria
+
+                # Print progress every N samples
+                if i % print_every == 0:
+                    print(f"Processed {i} / {num_samples} lineups...")
+
+            # Normalize feasibility scores
+            for player in feasibility:
+                feasibility[player] /= num_samples
+
+            print("Feasibility calculation completed.")
+            return feasibility
+
+
+        # Step 1: Load the trained CatBoost model
+        current_dir = os.path.dirname(__file__)
+        model_path = os.path.join(current_dir, '..', 'src', 'final_nba_model.pkl')
+
+        print(f"Loading model from: {model_path}")
+        try:
+            with open(model_path, 'rb') as file:
+                model = pickle.load(file)
+            print("Model loaded successfully!")
+        except FileNotFoundError:
+            print("Model file not found.")
+            return
+
+        # Step 2: Load the Excel sheet
+        file_path = os.path.join('..', 'dk_import', 'nba.xlsm')
+        print(f"Loading workbook: {file_path}")
+        app = xw.App(visible=False)
+        wb = app.books.open(file_path)
+        sheet = wb.sheets["ownership"]
+
+        # Step 3: Read and process data
+        data = sheet.range('A1').expand().value
+        columns = data[0]
+        rows = data[1:]
+        df = pd.DataFrame(rows, columns=columns)
+        df = df[df['DK Name'].notna() & (df['DK Name'] != "0") & (df['DK Name'] != "")]
+        slot_map = {
+            'PG': 3, 'SG': 3, 'SF': 3, 'PF': 3, 'C': 2,
+            'PG/SG': 4, 'SG/SF': 5, 'SF/PF': 4, 'PF/C': 4,
+            'G': 4, 'F': 4, 'UTIL': 1
+        }
+        df['Slot Count'] = df['Position'].map(slot_map).fillna(1).astype(int)
+        df['Contest ID'] = 1
+        df['Player_Pool_Size'] = df.groupby('Contest ID')['DK Name'].transform('count')
+        df['Games Played'] = df['Team'].nunique() // 2
+
+        # Step 4: Calculate Feasibility Scores
+        print("\nCalculating Feasibility Scores...")
+        feasibility = simulate_feasibility_with_progress(
+            df, max_salary=50000, lineup_size=8, num_samples=1000000, print_every=100000)
+        weighted_feasibility, tournament_feasibility = simulate_weighted_feasibility_with_progress(df, max_salary=50000, lineup_size=8, num_samples=10000, print_every=1000)
+
+        df['Feasibility'] = df['DK Name'].map(feasibility) * df['Minutes']
+        df['Weighted Feasibility'] = df['DK Name'].map(weighted_feasibility)
+        df['Tournament Feasibility'] = df['DK Name'].map(tournament_feasibility)
+        df['Proj_Salary_Ratio'] = df['Points Proj'] / df['Salary']
+
+        #new
+        df['Normalized_Value'] = df.groupby('Contest ID')['Value'].transform(lambda x: (x - x.mean()) / x.std())
+        df['Prev_Salary_Mean'] = df.groupby('DK Name')['Salary'].shift(1).rolling(window=3).mean()
+        df['Log_Proj'] = np.log1p(df['Points Proj'])
+
+        # Add interaction features
+        df['Salary_Proj_Interaction'] = df['Salary'] * df['Points Proj']
+        df['Proj_Feasibility_Interaction'] = df['Points Proj'] * df['Feasibility']
+        df['Value_Feasibility_Interaction'] = df['Value'] * df['Feasibility']
+
+        #df['Ceiling'] = (df['Points Proj'] + df['Ceiling'])
+        df['Low_Minutes_Flag'] = (df['Minutes'] <= 12).astype(int)
+        df['Low_Minutes_Penalty'] = df['Low_Minutes_Flag'] * df['Points Proj']
+
+        df['Team_Total_Points_Proj'] = df.groupby('Team')['Points Proj'].transform('sum')
+        df['Player_Points_Percentage'] = df['Points Proj'] / df['Team_Total_Points_Proj']
+
+        df['Value_Plus'] = df['Points Proj'] - df['Salary'] / 1000 * 4
+        df['Ceiling_Plus'] =  (df['Points Proj'] + df['Ceiling']) - df['Salary'] / 1000 * 5
+
+        # Step 5: Define the exact feature list used during training
+        features  = [
+            'Tournament Feasibility',
+            'Player_Points_Percentage',
+            'Salary',
+            'Points Proj',
+            'Proj_Salary_Ratio',
+            'Value',
+            'Feasibility',
+            'Weighted Feasibility',
+            'Prev_Salary_Mean',
+            'Log_Proj',
+            'Salary_Proj_Interaction',
+            'Proj_Feasibility_Interaction',
+            'Value_Feasibility_Interaction',
+            'Normalized_Value',
+            'Ceiling',
+            'Low_Minutes_Penalty',
+            'Value_Plus',
+            'Ceiling_Plus',
+
+
+        ]
+
+        # Function to compute dynamic shift
+        def compute_dynamic_shift(rank, total, shift_start, shift_end):
+            scale = (rank / total) ** drift
+            return shift_start + (shift_end - shift_start) * scale
+
+        def rescale_with_bounds(predictions: pd.Series, target_sd=7.3229, min_bound=0.0):
+            numbers = predictions.values
+            index = predictions.index
+            original_mean = np.mean(numbers)
+
+            # Split into small (<1) and large values but scale both
+            small_mask = (numbers < 1)
+            large_mask = ~small_mask
+
+            # Get reference ranges for maintaining proportions of small values
+            small_values = numbers[small_mask]
+            if len(small_values) > 0:
+                small_min = np.min(small_values)
+                small_max = np.max(small_values)
+
+            def objective(params):
+                # params[0] is scale factor for large values
+                # params[1] is scale factor for small values
+                # params[2] is shift for small values
+
+                result = numbers.copy()
+
+                # Scale large values
+                if np.any(large_mask):
+                    large_centered = numbers[large_mask] - np.mean(numbers[large_mask])
+                    result[large_mask] = large_centered * params[0] + np.mean(numbers[large_mask])
+
+                # Scale small values while preserving order
+                if np.any(small_mask):
+                    small_scaled = (numbers[small_mask] - small_min) / (small_max - small_min)
+                    small_scaled = small_scaled * params[1] + params[2]
+                    result[small_mask] = small_scaled
+
+                current_sd = np.std(result)
+                current_mean = np.mean(result)
+
+                # Penalties
+                sd_penalty = (current_sd - target_sd) ** 2 * 3000
+                mean_penalty = (current_mean - original_mean) ** 2 * 800
+                min_penalty = np.sum(np.maximum(0, min_bound - result) ** 2) * 1000
+
+                # Penalty for small values order violation
+                order_penalty = 0
+                if np.any(small_mask):
+                    small_diffs = np.diff(result[small_mask])
+                    order_penalty = np.sum(np.maximum(0, -small_diffs)) * 2000
+
+                return sd_penalty + mean_penalty + min_penalty + order_penalty
+
+            # Initial guess
+            initial_guess = [
+                target_sd / np.std(numbers),  # large values scale
+                0.5,  # small values scale
+                min_bound  # small values shift
+            ]
+
+            # Optimize
+            result = minimize(objective, initial_guess, method='Nelder-Mead',
+                              options={'maxiter': 2000})
+
+            # Apply final transformation
+            final_result = numbers.copy()
+
+            # Apply to large values
+            if np.any(large_mask):
+                large_centered = numbers[large_mask] - np.mean(numbers[large_mask])
+                final_result[large_mask] = large_centered * result.x[0] + np.mean(numbers[large_mask])
+
+            # Apply to small values
+            if np.any(small_mask):
+                small_scaled = (numbers[small_mask] - small_min) / (small_max - small_min)
+                small_scaled = small_scaled * result.x[1] + result.x[2]
+                final_result[small_mask] = small_scaled
+
+            # Ensure minimum bound
+            final_result = np.maximum(final_result, min_bound)
+
+            # Return as pandas Series with original index
+            return pd.Series(final_result, index=index)
+
+        def adjust_sd(predictions, desired_sd, target_sum, max_iter=100, tolerance=1e-6):
+            current_mean = predictions.mean()
+            current_sd = predictions.std()
+
+            if abs(current_sd - desired_sd) < tolerance:
+                # No adjustment needed
+                scaling_factor = target_sum / predictions.sum()
+                return predictions * scaling_factor
+
+            adjusted_predictions = predictions.copy()
+
+            for _ in range(max_iter):
+                # Adjust SD
+                adjusted_predictions = (adjusted_predictions - current_mean) * (desired_sd / current_sd) + current_mean
+
+                # Scale to match target sum
+                scaling_factor = target_sum / adjusted_predictions.sum()
+                adjusted_predictions *= scaling_factor
+                # print(adjusted_predictions)
+
+                # Recalculate mean and SD
+                current_mean = adjusted_predictions.mean()
+                current_sd = adjusted_predictions.std()
+
+                # Check convergence
+                if abs(current_sd - desired_sd) < tolerance:
+                    break
+
+            return adjusted_predictions
+
+        def predict_sd(players):
+            a = 0.0001  # Coefficient for Players^2
+            b = -0.0770  # Coefficient for Players
+            c = 21.0  # Intercept
+            players = np.array(players)  # Ensure the input is a NumPy array
+            return a * (players ** 2) + b * players + c
+
+        # Set the global option to display all columns
+        pd.set_option('display.max_columns', None)
+        pd.set_option('display.max_rows', None)
+
+        from tabulate import tabulate
+        print("Generating predictions...")
+
+        shift_start = 0.20
+        shift_end = 1.00
+        add = 1.0  # Constant to avoid log issues with zero
+        drift = 1.375
+        players_per_game = 48  # Number of players per game to rank for the shift
+        alpha = 0.99 # Weight for `Tournament Feasibility` in `Custom_Target`
+
+        # Calculate Custom_Target
+        df['Custom_Target'] = alpha * df['Tournament Feasibility'] + (1 - alpha) * df['Own Actual']
+
+        # Rank players by preliminary predictions
+        prediction_df = df[features]
+        preliminary_predictions = model.predict(prediction_df)
+        df['Preliminary_Predictions'] = preliminary_predictions
+        rank_limit = df['Games Played'].iloc[0] * players_per_game
+
+        # Rank players and calculate dynamic shift
+        df['Group_Rank'] = df['Custom_Target'].rank(ascending=False)
+        #df['Group_Rank'] = df['Preliminary_Predictions'].rank(ascending=False)
+        df['Group_Size'] = len(df)  # Total players in the contest
+        df['Dynamic_Shift'] = df.apply(
+            lambda row: compute_dynamic_shift(
+                row['Group_Rank'], rank_limit, shift_start, shift_end
+            ) if row['Group_Rank'] <= rank_limit else shift_start,
+            axis=1
+        )
+
+        # Apply the dynamic shift to predictions
+        predictions = (preliminary_predictions ** (1 / df['Dynamic_Shift'])) - add
+
+        # Scale predictions to sum to 800
+        scaling_factor = 800 / predictions.sum()
+        predictions = predictions * scaling_factor
+
+        # Apply post-processing adjustments
+        df['Predicted Ownership'] = self.apply_low_minutes_cap(predictions, df)
+        threshold = 1e-6  # Values smaller than this will be treated as 0
+        df.loc[df['Points Proj'].abs() < threshold, 'Predicted Ownership'] = (
+                df.loc[df['Points Proj'].abs() < threshold, 'Salary'] / 100000
+        )
+        df['Predicted Ownership'] = df['Predicted Ownership'].clip(lower=0)  # Set the minimum threshold
+        #df['Predicted Ownership'] = predictions
+
+        predictions = df['Predicted Ownership']
+        current_sum = predictions.sum()
+
+        player_pool = len(df)
+        estimated_sd = predict_sd(player_pool)
+        estimated_sd_multiplier = 1.0 * (current_sum / 800.0) # Set your desired SD value
+        target_sd = estimated_sd * estimated_sd_multiplier
+
+        target_sum = 800  # Ensure predictions sum to 800
+        print(f'Players : {player_pool} Sum: {current_sum} ')
+        print(f'Estimated SD: {estimated_sd} Multiplier: {estimated_sd_multiplier} ')
+        print(f'Target SD: {target_sd}')
+
+
+        #adjusted_predictions = adjust_sd(predictions, target_sd, target_sum)
+        adjusted_predictions = rescale_with_bounds(predictions, target_sd=target_sd)
+
+
+        final_predictions = self.apply_low_minutes_cap(adjusted_predictions, df)
+        df['Predicted Ownership'] = final_predictions
+        threshold = 1e-6  # Values smaller than this will be treated as 0
+        df.loc[df['Points Proj'].abs() < threshold, 'Predicted Ownership'] = (
+                df.loc[df['Points Proj'].abs() < threshold, 'Salary'] / 100000
+        )
+        df['Predicted Ownership'] = df['Predicted Ownership'].clip(lower=0)  # Set the minimum threshold
+
+        final_predictions = df['Predicted Ownership']
+        scaling_factor = 800 / final_predictions.sum()
+        final_predictions *= scaling_factor
+        df['Predicted Ownership'] = final_predictions
+
+        # Debugging: Print before scaling and final results
+        print(f"Before Scaling - Mean: {predictions.mean():.4f}, SD: {predictions.std():.4f} Total: {predictions.sum()}")
+        print(f"After Scaling Adjusted - Mean: {adjusted_predictions.mean():.4f}, SD: {adjusted_predictions.std():.4f}, Total: {adjusted_predictions.sum():.4f}")
+        print(f"After Scaling Final - Mean: {final_predictions.mean():.4f}, SD: {final_predictions.std():.4f}, Total: {final_predictions.sum():.4f}")
+
+        print(f"\nPredicted Ownership Total: {df['Predicted Ownership'].sum():.2f}")
+        print(df[['DK Name', 'Predicted Ownership']].sort_values(by='Predicted Ownership', ascending=False).head(25))
+
+        # Define the keys to display
+        keys_to_display = ['DK Name', 'Points Proj', 'Predicted Ownership','Dynamic_Shift']
+        result_df = df[keys_to_display].copy()
+        result_df.loc[:, 'Predicted Ownership'] = result_df['Predicted Ownership'].round(2)
+        result_df.loc[:, 'Dynamic_Shift'] = result_df['Dynamic_Shift'].round(3)
+        formatted_table = tabulate(result_df.head(25), headers='keys', tablefmt='pretty', showindex=False)
+        print(formatted_table)
+
+
+        print("Writing results back to Excel...")
+        predicted_ownership_col_index = columns.index('Own Proj') + 1
+        predicted_values = df['Predicted Ownership'].values.tolist()  # Convert to list for Excel
+        sheet.range(2, predicted_ownership_col_index).value = [[v] for v in predicted_values]
+
+        # Save and close the workbook
+        wb.save()
+        print(f"Ownership Projections successfully exported.")
+        wb.close()
+        app.quit()
+
+
+
+
+
+    def export_projections(self):
+        print("Exporting projections to CSV...")
+
+        # Define the target folders
+        current_folder = Path(__file__).resolve().parent
+        dk_import_folder = current_folder.parent / "dk_import"  # Folder containing the Excel file
+        dk_data_folder = current_folder.parent / "dk_data"  # Sibling folder for saving CSV
+        dk_data_folder.mkdir(exist_ok=True)  # Create the folder if it doesn't exist
+
+        # Define file paths
+        excel_file = dk_import_folder / "nba.xlsm"  # Excel file in dk_import
+        output_csv_file = dk_data_folder / "projections.csv"  # Output CSV file in dk_data
+
+        # Define the sheet name and range
+        sheet_name = "AceMind REPO"  # Replace with the actual sheet name in Excel
+
+
+            # Open the Excel workbook and select the sheet
+        app = xw.App(visible=False)  # Invisible Excel instance
+
+        wb = app.books.open(str(excel_file))  # Open the Excel file
+        ws = wb.sheets[sheet_name]  # Access the specified sheet
+
+        # Read all data from the sheet
+        data = ws.range("A1").expand().value  # Dynamically expand the range
+
+        # Find the first blank row in column A
+        end_index = next(
+            (i for i, row in enumerate(data) if row[0] in [None, "", " "]),
+            len(data)  # Default to len(data) if no blank rows are found
+        )
+
+        # Slice data to include all rows until the first blank row
+        filtered_data = data[:end_index]
+
+        # Write the filtered data to the CSV file
+        with open(output_csv_file, "w", newline="") as file:
+            for row in filtered_data:
+                # Skip entirely blank rows or rows where the first cell is 0
+                if all(cell in [None, "", " "] for cell in row) or row[0] == 0:
+                    continue
+
+                # Format each cell in the row
+                formatted_row = [
+                    int(cell) if col_idx == 4 and isinstance(cell, float) and cell.is_integer() else
+                    f"{cell:.2f}" if isinstance(cell, float) and col_idx != 4 else
+                    cell
+                    if cell not in [None, "", " "] else ""
+                    for col_idx, cell in enumerate(row)
+                ]
+                file.write(",".join(str(cell) for cell in formatted_row) + "\n")
+
+
+        print(f"Projections successfully exported to '{output_csv_file}'.")
+
+        wb.close()
+        app.quit()
 
 
 

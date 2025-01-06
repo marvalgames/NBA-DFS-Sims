@@ -1,0 +1,218 @@
+Entry ID,Contest Name,Contest ID,Entry Fee,PG,SG,SF,PF,C,G,F,UTIL,,Instructions
+4591692046,NBA $70K Four Point Play [20 Entry Max],172517939,$4,Coby White (37195406) (LOCKED),Miles McBride (37195628) (LOCKED),Tristan da Silva (37195555) (LOCKED),Jonathan Isaac (37195695) (LOCKED),Goga Bitadze (37195413) (LOCKED),Fred VanVleet (37195380),OG Anunoby (37195449) (LOCKED),Alperen Sengun (37195317),,1. Column A lists all of your contest entries for this draftgroup
+4591692047,NBA $70K Four Point Play [20 Entry Max],172517939,$4,Dejounte Murray (37195336) (LOCKED),Cameron Payne (37195820) (LOCKED),Tristan da Silva (37195555) (LOCKED),Wendell Carter Jr. (37195514) (LOCKED),Goga Bitadze (37195413) (LOCKED),Miles McBride (37195628) (LOCKED),Mikal Bridges (37195428) (LOCKED),Karl-Anthony Towns (37195304) (LOCKED),,2. Your current lineup is listed next to each entry (blank for reservations)
+4591692048,NBA $70K Four Point Play [20 Entry Max],172517939,$4,Fred VanVleet (37195380),CJ McCollum (37195376) (LOCKED),Tristan da Silva (37195555) (LOCKED),Wendell Carter Jr. (37195514) (LOCKED),Goga Bitadze (37195413) (LOCKED),Miles McBride (37195628) (LOCKED),Josh Hart (37195385) (LOCKED),Walker Kessler (37195433) (LOCKED),,3. You can change the lineup for an entry by entering the IDs of the players in the row next to that entry
+4591692049,NBA $70K Four Point Play [20 Entry Max],172517939,$4,Josh Giddey (37195369) (LOCKED),Jalen Suggs (37195356) (LOCKED),Tim Hardaway Jr. (37195699) (LOCKED),Patrick Williams (37195580) (LOCKED),Goga Bitadze (37195413) (LOCKED),Miles McBride (37195628) (LOCKED),OG Anunoby (37195449) (LOCKED),Bam Adebayo (37195339) (LOCKED),,4. Use data from the Name+ID column or the ID column; you cannot use just the player's name
+4591692050,NBA $70K Four Point Play [20 Entry Max],172517939,$4,Josh Giddey (37195369) (LOCKED),D'Angelo Russell (37195522) (LOCKED),OG Anunoby (37195449) (LOCKED),Patrick Williams (37195580) (LOCKED),Goga Bitadze (37195413) (LOCKED),Miles McBride (37195628) (LOCKED),Alexandre Sarr (37195486) (LOCKED),Alperen Sengun (37195317),,5. For faster processing only include entries you are changing in the file you upload
+4591692051,NBA $70K Four Point Play [20 Entry Max],172517939,$4,Josh Giddey (37195369) (LOCKED),Jalen Suggs (37195356) (LOCKED),Tristan da Silva (37195555) (LOCKED),Wendell Carter Jr. (37195514) (LOCKED),Goga Bitadze (37195413) (LOCKED),Miles McBride (37195628) (LOCKED),Josh Hart (37195385) (LOCKED),Daniel Gafford (37195502),,
+,,,,,,,,,,,,,Position,Name + ID,Name,ID,Roster Position,Salary,Game Info,TeamAbbrev,AvgPointsPerGame
+,,,,,,,,,,,,,PG,Luka Doncic (37195298),Luka Doncic,37195298,PG/G/UTIL,11500,DAL@HOU 01/01/2025 08:00PM ET,DAL,56.17
+,,,,,,,,,,,,,PG,Cade Cunningham (37195301) (LOCKED),Cade Cunningham,37195301,PG/G/UTIL,10600,In Progress,DET,50.71
+,,,,,,,,,,,,,C,Karl-Anthony Towns (37195304) (LOCKED),Karl-Anthony Towns,37195304,C/UTIL,10400,In Progress,NYK,51.11
+,,,,,,,,,,,,,PF,Paolo Banchero (37195306) (LOCKED),Paolo Banchero,37195306,PF/F/UTIL,10200,In Progress,ORL,51.8
+,,,,,,,,,,,,,PG/SF,Scottie Barnes (37195309) (LOCKED),Scottie Barnes,37195309,PG/SF/F/G/UTIL,10100,In Progress,TOR,43.79
+,,,,,,,,,,,,,PF,Franz Wagner (37195314) (LOCKED),Franz Wagner,37195314,PF/F/UTIL,9900,In Progress,ORL,44.24
+,,,,,,,,,,,,,C,Alperen Sengun (37195317),Alperen Sengun,37195317,C/UTIL,9500,DAL@HOU 01/01/2025 08:00PM ET,HOU,44.69
+,,,,,,,,,,,,,PG/SG,Kyrie Irving (37195319),Kyrie Irving,37195319,PG/SG/G/UTIL,9400,DAL@HOU 01/01/2025 08:00PM ET,DAL,41.09
+,,,,,,,,,,,,,PG/SF,RJ Barrett (37195323) (LOCKED),RJ Barrett,37195323,PG/SF/F/G/UTIL,9300,In Progress,TOR,43.19
+,,,,,,,,,,,,,PF,Zion Williamson (37195328) (LOCKED),Zion Williamson,37195328,PF/F/UTIL,9200,In Progress,NOP,43.42
+,,,,,,,,,,,,,C,Nikola Vucevic (37195331) (LOCKED),Nikola Vucevic,37195331,C/UTIL,9100,In Progress,CHI,42.10
+,,,,,,,,,,,,,PG,Jalen Brunson (37195333) (LOCKED),Jalen Brunson,37195333,PG/G/UTIL,8900,In Progress,NYK,42.53
+,,,,,,,,,,,,,PG,Dejounte Murray (37195336) (LOCKED),Dejounte Murray,37195336,PG/G/UTIL,8800,In Progress,NOP,40.88
+,,,,,,,,,,,,,C,Bam Adebayo (37195339) (LOCKED),Bam Adebayo,37195339,C/UTIL,8700,In Progress,MIA,40.42
+,,,,,,,,,,,,,SF/PF,Jimmy Butler (37195341) (LOCKED),Jimmy Butler,37195341,SF/PF/F/UTIL,8600,In Progress,MIA,36.11
+,,,,,,,,,,,,,PG,Brandon Ingram (37195345) (LOCKED),Brandon Ingram,37195345,PG/G/UTIL,8600,In Progress,NOP,39.19
+,,,,,,,,,,,,,PG/SG,Tyler Herro (37195348) (LOCKED),Tyler Herro,37195348,PG/SG/G/UTIL,8500,In Progress,MIA,41.62
+,,,,,,,,,,,,,PG/SG,Jordan Poole (37195352) (LOCKED),Jordan Poole,37195352,PG/SG/G/UTIL,8400,In Progress,WAS,36.47
+,,,,,,,,,,,,,PG/SG,Jalen Suggs (37195356) (LOCKED),Jalen Suggs,37195356,PG/SG/G/UTIL,8300,In Progress,ORL,31.84
+,,,,,,,,,,,,,SG/SF,Zach LaVine (37195360) (LOCKED),Zach LaVine,37195360,SG/SF/F/G/UTIL,8000,In Progress,CHI,36.57
+,,,,,,,,,,,,,SF/PF,Lauri Markkanen (37195365) (LOCKED),Lauri Markkanen,37195365,SF/PF/F/UTIL,7900,In Progress,UTA,32.99
+,,,,,,,,,,,,,PG,Josh Giddey (37195369) (LOCKED),Josh Giddey,37195369,PG/G/UTIL,7700,In Progress,CHI,34.07
+,,,,,,,,,,,,,SF/PF,Cameron Johnson (37195372) (LOCKED),Cameron Johnson,37195372,SF/PF/F/UTIL,7600,In Progress,BKN,32.88
+,,,,,,,,,,,,,PG/SG,CJ McCollum (37195376) (LOCKED),CJ McCollum,37195376,PG/SG/G/UTIL,7600,In Progress,NOP,35.99
+,,,,,,,,,,,,,PG,Fred VanVleet (37195380),Fred VanVleet,37195380,PG/G/UTIL,7500,DAL@HOU 01/01/2025 08:00PM ET,HOU,34.71
+,,,,,,,,,,,,,C,Jakob Poeltl (37195383) (LOCKED),Jakob Poeltl,37195383,C/UTIL,7400,In Progress,TOR,37.41
+,,,,,,,,,,,,,SF/PF,Josh Hart (37195385) (LOCKED),Josh Hart,37195385,SF/PF/F/UTIL,7300,In Progress,NYK,37.79
+,,,,,,,,,,,,,SG/SF,Trey Murphy III (37195393) (LOCKED),Trey Murphy III,37195393,SG/SF/F/G/UTIL,7200,In Progress,NOP,33.88
+,,,,,,,,,,,,,PF/C,John Collins (37195389) (LOCKED),John Collins,37195389,PF/C/F/UTIL,7200,In Progress,UTA,35.52
+,,,,,,,,,,,,,PF,PJ Washington (37195398),PJ Washington,37195398,PF/F/UTIL,7100,DAL@HOU 01/01/2025 08:00PM ET,DAL,30.46
+,,,,,,,,,,,,,SG/SF,Amen Thompson (37195401),Amen Thompson,37195401,SG/SF/F/G/UTIL,7000,DAL@HOU 01/01/2025 08:00PM ET,HOU,28.09
+,,,,,,,,,,,,,PG/SG,Coby White (37195406) (LOCKED),Coby White,37195406,PG/SG/G/UTIL,6900,In Progress,CHI,32.35
+,,,,,,,,,,,,,PG,Immanuel Quickley (37195410) (LOCKED),Immanuel Quickley,37195410,PG/G/UTIL,6900,In Progress,TOR,25.5
+,,,,,,,,,,,,,C,Goga Bitadze (37195413) (LOCKED),Goga Bitadze,37195413,C/UTIL,6900,In Progress,ORL,28.72
+,,,,,,,,,,,,,SG,Cam Thomas (37195415) (LOCKED),Cam Thomas,37195415,SG/G/UTIL,6800,In Progress,BKN,35.62
+,,,,,,,,,,,,,PG,Spencer Dinwiddie (37195418),Spencer Dinwiddie,37195418,PG/G/UTIL,6800,DAL@HOU 01/01/2025 08:00PM ET,DAL,19.48
+,,,,,,,,,,,,,SF,Bilal Coulibaly (37195421) (LOCKED),Bilal Coulibaly,37195421,SF/F/UTIL,6700,In Progress,WAS,29.96
+,,,,,,,,,,,,,PG/SG,Ayo Dosunmu (37195424) (LOCKED),Ayo Dosunmu,37195424,PG/SG/G/UTIL,6700,In Progress,CHI,27.42
+,,,,,,,,,,,,,SG,Jalen Green (37195435),Jalen Green,37195435,SG/G/UTIL,6600,DAL@HOU 01/01/2025 08:00PM ET,HOU,31.34
+,,,,,,,,,,,,,SG/SF,Mikal Bridges (37195428) (LOCKED),Mikal Bridges,37195428,SG/SF/F/G/UTIL,6600,In Progress,NYK,31.09
+,,,,,,,,,,,,,C,Walker Kessler (37195433) (LOCKED),Walker Kessler,37195433,C/UTIL,6600,In Progress,UTA,33.19
+,,,,,,,,,,,,,PG/SG,Collin Sexton (37195438) (LOCKED),Collin Sexton,37195438,PG/SG/G/UTIL,6500,In Progress,UTA,27.85
+,,,,,,,,,,,,,PF,Kyle Kuzma (37195442) (LOCKED),Kyle Kuzma,37195442,PF/F/UTIL,6400,In Progress,WAS,25.86
+,,,,,,,,,,,,,PG/SG,Jaden Ivey (37195445) (LOCKED),Jaden Ivey,37195445,PG/SG/G/UTIL,6300,In Progress,DET,30.87
+,,,,,,,,,,,,,C,Jalen Duren (37195464) (LOCKED),Jalen Duren,37195464,C/UTIL,6300,In Progress,DET,27.01
+,,,,,,,,,,,,,PG/SG,Malcolm Brogdon (37195453) (LOCKED),Malcolm Brogdon,37195453,PG/SG/G/UTIL,6200,In Progress,WAS,27.05
+,,,,,,,,,,,,,C,Nic Claxton (37195462) (LOCKED),Nic Claxton,37195462,C/UTIL,6200,In Progress,BKN,25.43
+,,,,,,,,,,,,,SF/PF,OG Anunoby (37195449) (LOCKED),OG Anunoby,37195449,SF/PF/F/UTIL,6200,In Progress,NYK,30.89
+,,,,,,,,,,,,,PF/C,Jabari Smith Jr. (37195466),Jabari Smith Jr.,37195466,PF/C/F/UTIL,6100,DAL@HOU 01/01/2025 08:00PM ET,HOU,24.99
+,,,,,,,,,,,,,SG/SF,Quentin Grimes (37195470),Quentin Grimes,37195470,SG/SF/F/G/UTIL,6100,DAL@HOU 01/01/2025 08:00PM ET,DAL,18.82
+,,,,,,,,,,,,,SG,Jordan Clarkson (37195459) (LOCKED),Jordan Clarkson,37195459,SG/G/UTIL,6100,In Progress,UTA,28.78
+,,,,,,,,,,,,,PG,Ben Simmons (37195475) (LOCKED),Ben Simmons,37195475,PG/G/UTIL,6000,In Progress,BKN,24.38
+,,,,,,,,,,,,,C,Yves Missi (37195457) (LOCKED),Yves Missi,37195457,C/UTIL,6000,In Progress,NOP,26.04
+,,,,,,,,,,,,,SG/SF,Klay Thompson (37195478),Klay Thompson,37195478,SG/SF/F/G/UTIL,6000,DAL@HOU 01/01/2025 08:00PM ET,DAL,24.82
+,,,,,,,,,,,,,PG,Jose Alvarado (37195483) (LOCKED),Jose Alvarado,37195483,PG/G/UTIL,5900,In Progress,NOP,24.23
+,,,,,,,,,,,,,PF/C,Alexandre Sarr (37195486) (LOCKED),Alexandre Sarr,37195486,PF/C/F/UTIL,5800,In Progress,WAS,27.54
+,,,,,,,,,,,,,SG,Gradey Dick (37195490) (LOCKED),Gradey Dick,37195490,SG/G/UTIL,5700,In Progress,TOR,27.90
+,,,,,,,,,,,,,PG,Keyonte George (37195493) (LOCKED),Keyonte George,37195493,PG/G/UTIL,5600,In Progress,UTA,30.20
+,,,,,,,,,,,,,C,Dereck Lively II (37195496),Dereck Lively II,37195496,C/UTIL,5500,DAL@HOU 01/01/2025 08:00PM ET,DAL,26.24
+,,,,,,,,,,,,,SF/PF,Herbert Jones (37195498) (LOCKED),Herbert Jones,37195498,SF/PF/F/UTIL,5400,In Progress,NOP,25.68
+,,,,,,,,,,,,,C,Daniel Gafford (37195502),Daniel Gafford,37195502,C/UTIL,5400,DAL@HOU 01/01/2025 08:00PM ET,DAL,24.97
+,,,,,,,,,,,,,SG/SF,Malik Beasley (37195504) (LOCKED),Malik Beasley,37195504,SG/SF/F/G/UTIL,5300,In Progress,DET,26.44
+,,,,,,,,,,,,,SF/PF,Justin Champagnie (37195518) (LOCKED),Justin Champagnie,37195518,SF/PF/F/UTIL,5200,In Progress,WAS,25.56
+,,,,,,,,,,,,,PF/C,Wendell Carter Jr. (37195514) (LOCKED),Wendell Carter Jr.,37195514,PF/C/F/UTIL,5200,In Progress,ORL,22.05
+,,,,,,,,,,,,,SG/SF,Dillon Brooks (37195509),Dillon Brooks,37195509,SG/SF/F/G/UTIL,5200,DAL@HOU 01/01/2025 08:00PM ET,HOU,23.82
+,,,,,,,,,,,,,PG/SG,Carlton Carrington (37195526) (LOCKED),Carlton Carrington,37195526,PG/SG/G/UTIL,5100,In Progress,WAS,22.12
+,,,,,,,,,,,,,PG/SG,D'Angelo Russell (37195522) (LOCKED),D'Angelo Russell,37195522,PG/SG/G/UTIL,5100,In Progress,BKN,24.88
+,,,,,,,,,,,,,SG/SF,Ziaire Williams (37195534) (LOCKED),Ziaire Williams,37195534,SG/SF/F/G/UTIL,5100,In Progress,BKN,18.43
+,,,,,,,,,,,,,SG,Cole Anthony (37195539) (LOCKED),Cole Anthony,37195539,SG/G/UTIL,5100,In Progress,ORL,13.02
+,,,,,,,,,,,,,PF,Tobias Harris (37195552) (LOCKED),Tobias Harris,37195552,PF/F/UTIL,5100,In Progress,DET,27.64
+,,,,,,,,,,,,,PG/SG,Terry Rozier (37195530) (LOCKED),Terry Rozier,37195530,PG/SG/G/UTIL,5100,In Progress,MIA,23.53
+,,,,,,,,,,,,,C,Jonas Valanciunas (37195542) (LOCKED),Jonas Valanciunas,37195542,C/UTIL,5000,In Progress,WAS,27.53
+,,,,,,,,,,,,,PG/SG,Keon Johnson (37195544) (LOCKED),Keon Johnson,37195544,PG/SG/G/UTIL,5000,In Progress,BKN,15.05
+,,,,,,,,,,,,,SF/PF,Jaime Jaquez Jr. (37195548) (LOCKED),Jaime Jaquez Jr.,37195548,SF/PF/F/UTIL,5000,In Progress,MIA,19.64
+,,,,,,,,,,,,,PF/C,Noah Clowney (37195559) (LOCKED),Noah Clowney,37195559,PF/C/F/UTIL,4900,In Progress,BKN,16.74
+,,,,,,,,,,,,,SF/PF,Tristan da Silva (37195555) (LOCKED),Tristan da Silva,37195555,SF/PF/F/UTIL,4900,In Progress,ORL,17.15
+,,,,,,,,,,,,,SF,Saddiq Bey (37195570) (LOCKED),Saddiq Bey,37195570,SF/F/UTIL,4800,In Progress,WAS,0
+,,,,,,,,,,,,,SF,Jalen Wilson (37195567) (LOCKED),Jalen Wilson,37195567,SF/F/UTIL,4800,In Progress,BKN,17.47
+,,,,,,,,,,,,,SF/PF,Tari Eason (37195563),Tari Eason,37195563,SF/PF/F/UTIL,4800,DAL@HOU 01/01/2025 08:00PM ET,HOU,26.70
+,,,,,,,,,,,,,PG,Anthony Black (37195577) (LOCKED),Anthony Black,37195577,PG/G/UTIL,4700,In Progress,ORL,19.57
+,,,,,,,,,,,,,SF/PF,Naji Marshall (37195573),Naji Marshall,37195573,SF/PF/F/UTIL,4700,DAL@HOU 01/01/2025 08:00PM ET,DAL,19.82
+,,,,,,,,,,,,,PF,Patrick Williams (37195580) (LOCKED),Patrick Williams,37195580,PF/F/UTIL,4600,In Progress,CHI,22.17
+,,,,,,,,,,,,,C,Kelly Olynyk (37195583) (LOCKED),Kelly Olynyk,37195583,C/UTIL,4600,In Progress,TOR,18.12
+,,,,,,,,,,,,,SG/SF,Kentavious Caldwell-Pope (37195585) (LOCKED),Kentavious Caldwell-Pope,37195585,SG/SF/F/G/UTIL,4500,In Progress,ORL,19.08
+,,,,,,,,,,,,,SG,Duncan Robinson (37195590) (LOCKED),Duncan Robinson,37195590,SG/G/UTIL,4500,In Progress,MIA,19.93
+,,,,,,,,,,,,,PG/SG,Jaden Hardy (37195593),Jaden Hardy,37195593,PG/SG/G/UTIL,4500,DAL@HOU 01/01/2025 08:00PM ET,DAL,11.21
+,,,,,,,,,,,,,SG/SF,Corey Kispert (37195600) (LOCKED),Corey Kispert,37195600,SG/SF/F/G/UTIL,4300,In Progress,WAS,19.69
+,,,,,,,,,,,,,PF,Trendon Watford (37195597) (LOCKED),Trendon Watford,37195597,PF/F/UTIL,4300,In Progress,BKN,15.79
+,,,,,,,,,,,,,SF/PF,Kyshawn George (37195609) (LOCKED),Kyshawn George,37195609,SF/PF/F/UTIL,4200,In Progress,WAS,18.62
+,,,,,,,,,,,,,PF/C,Nikola Jovic (37195605) (LOCKED),Nikola Jovic,37195605,PF/C/F/UTIL,4200,In Progress,MIA,17.77
+,,,,,,,,,,,,,PF/C,Maxi Kleber (37195613),Maxi Kleber,37195613,PF/C/F/UTIL,4200,DAL@HOU 01/01/2025 08:00PM ET,DAL,8.83
+,,,,,,,,,,,,,PF,Ochai Agbaji (37195621) (LOCKED),Ochai Agbaji,37195621,PF/F/UTIL,4100,In Progress,TOR,21.74
+,,,,,,,,,,,,,PG/SG,Trevelin Queen (37195617) (LOCKED),Trevelin Queen,37195617,PG/SG/G/UTIL,4100,In Progress,ORL,11.25
+,,,,,,,,,,,,,SF/PF,Haywood Highsmith (37195624) (LOCKED),Haywood Highsmith,37195624,SF/PF/F/UTIL,4100,In Progress,MIA,16.37
+,,,,,,,,,,,,,SG/SF,Bruce Brown (37195632) (LOCKED),Bruce Brown,37195632,SG/SF/F/G/UTIL,4000,In Progress,TOR,15.62
+,,,,,,,,,,,,,C,Bruno Fernando (37195637) (LOCKED),Bruno Fernando,37195637,C/UTIL,4000,In Progress,TOR,9.87
+,,,,,,,,,,,,,PG/SG,Jordan Hawkins (37195643) (LOCKED),Jordan Hawkins,37195643,PG/SG/G/UTIL,4000,In Progress,NOP,19.38
+,,,,,,,,,,,,,SF/PF,Cam Whitmore (37195639),Cam Whitmore,37195639,SF/PF/F/UTIL,4000,DAL@HOU 01/01/2025 08:00PM ET,HOU,13.21
+,,,,,,,,,,,,,PG/SG,Miles McBride (37195628) (LOCKED),Miles McBride,37195628,PG/SG/G/UTIL,4000,In Progress,NYK,20.27
+,,,,,,,,,,,,,PF/C,Jonathan Mogbo (37195647) (LOCKED),Jonathan Mogbo,37195647,PF/C/F/UTIL,3900,In Progress,TOR,15.57
+,,,,,,,,,,,,,PG,Lonzo Ball (37195661) (LOCKED),Lonzo Ball,37195661,PG/G/UTIL,3800,In Progress,CHI,18.23
+,,,,,,,,,,,,,SG/SF,Tyrese Martin (37195651) (LOCKED),Tyrese Martin,37195651,SG/SF/F/G/UTIL,3800,In Progress,BKN,14.94
+,,,,,,,,,,,,,SG/SF,Ja'Kobe Walter (37195656) (LOCKED),Ja'Kobe Walter,37195656,SG/SF/F/G/UTIL,3800,In Progress,TOR,16
+,,,,,,,,,,,,,C,Mitchell Robinson (37195664) (LOCKED),Mitchell Robinson,37195664,C/UTIL,3800,In Progress,NYK,0
+,,,,,,,,,,,,,C,Jalen Smith (37195672) (LOCKED),Jalen Smith,37195672,C/UTIL,3700,In Progress,CHI,18.48
+,,,,,,,,,,,,,C,Day'Ron Sharpe (37195666) (LOCKED),Day'Ron Sharpe,37195666,C/UTIL,3700,In Progress,BKN,16.89
+,,,,,,,,,,,,,SG,Bojan Bogdanovic (37195682) (LOCKED),Bojan Bogdanovic,37195682,SG/G/UTIL,3700,In Progress,BKN,0
+,,,,,,,,,,,,,SF/PF,Ausar Thompson (37195668) (LOCKED),Ausar Thompson,37195668,SF/PF/F/UTIL,3700,In Progress,DET,17.54
+,,,,,,,,,,,,,C,Dwight Powell (37195685),Dwight Powell,37195685,C/UTIL,3700,DAL@HOU 01/01/2025 08:00PM ET,DAL,6.65
+,,,,,,,,,,,,,PF/C,Precious Achiuwa (37195674) (LOCKED),Precious Achiuwa,37195674,PF/C/F/UTIL,3700,In Progress,NYK,18.06
+,,,,,,,,,,,,,SF/PF,Brice Sensabaugh (37195678) (LOCKED),Brice Sensabaugh,37195678,SF/PF/F/UTIL,3700,In Progress,UTA,14.62
+,,,,,,,,,,,,,SG/SF,Talen Horton-Tucker (37195690) (LOCKED),Talen Horton-Tucker,37195690,SG/SF/F/G/UTIL,3600,In Progress,CHI,12.79
+,,,,,,,,,,,,,PF,Chris Boucher (37195687) (LOCKED),Chris Boucher,37195687,PF/F/UTIL,3600,In Progress,TOR,19.46
+,,,,,,,,,,,,,PF/C,Jonathan Isaac (37195695) (LOCKED),Jonathan Isaac,37195695,PF/C/F/UTIL,3600,In Progress,ORL,16.44
+,,,,,,,,,,,,,SG/SF,Tim Hardaway Jr. (37195699) (LOCKED),Tim Hardaway Jr.,37195699,SG/SF/F/G/UTIL,3600,In Progress,DET,16.16
+,,,,,,,,,,,,,PG,Jamal Shead (37195707) (LOCKED),Jamal Shead,37195707,PG/G/UTIL,3500,In Progress,TOR,12.56
+,,,,,,,,,,,,,C,Isaiah Stewart (37195710) (LOCKED),Isaiah Stewart,37195710,C/UTIL,3500,In Progress,DET,18.99
+,,,,,,,,,,,,,PG/SF,Brandon Boston Jr. (37195712) (LOCKED),Brandon Boston Jr.,37195712,PG/SF/F/G/UTIL,3500,In Progress,NOP,23.03
+,,,,,,,,,,,,,PG,Isaiah Collier (37195704) (LOCKED),Isaiah Collier,37195704,PG/G/UTIL,3500,In Progress,UTA,11.89
+,,,,,,,,,,,,,C,Marvin Bagley III (37195728) (LOCKED),Marvin Bagley III,37195728,C/UTIL,3400,In Progress,WAS,10.16
+,,,,,,,,,,,,,SF,Dalen Terry (37195733) (LOCKED),Dalen Terry,37195733,SF/F/UTIL,3400,In Progress,CHI,8.97
+,,,,,,,,,,,,,C,Paul Reed (37195726) (LOCKED),Paul Reed,37195726,C/UTIL,3400,In Progress,DET,13.96
+,,,,,,,,,,,,,SF,Gary Harris (37195730) (LOCKED),Gary Harris,37195730,SF/F/UTIL,3400,In Progress,ORL,8.22
+,,,,,,,,,,,,,PG/SG,Alec Burks (37195722) (LOCKED),Alec Burks,37195722,PG/SG/G/UTIL,3400,In Progress,MIA,13.36
+,,,,,,,,,,,,,SG/SF,Svi Mykhailiuk (37195717) (LOCKED),Svi Mykhailiuk,37195717,SG/SF/F/G/UTIL,3400,In Progress,UTA,15.17
+,,,,,,,,,,,,,SF/PF,Matas Buzelis (37195744) (LOCKED),Matas Buzelis,37195744,SF/PF/F/UTIL,3300,In Progress,CHI,11.40
+,,,,,,,,,,,,,PG/SG,Davion Mitchell (37195738) (LOCKED),Davion Mitchell,37195738,PG/SG/G/UTIL,3300,In Progress,TOR,18.29
+,,,,,,,,,,,,,C,Daniel Theis (37195736) (LOCKED),Daniel Theis,37195736,C/UTIL,3300,In Progress,NOP,12.51
+,,,,,,,,,,,,,C,Kyle Filipowski (37195742) (LOCKED),Kyle Filipowski,37195742,C/UTIL,3300,In Progress,UTA,15.14
+,,,,,,,,,,,,,PG/SG,Jevon Carter (37195761) (LOCKED),Jevon Carter,37195761,PG/SG/G/UTIL,3200,In Progress,CHI,6.87
+,,,,,,,,,,,,,SF/PF,Olivier-Maxence Prosper (37195753),Olivier-Maxence Prosper,37195753,SF/PF/F/UTIL,3200,DAL@HOU 01/01/2025 08:00PM ET,DAL,5.73
+,,,,,,,,,,,,,SF/PF,Jae'Sean Tate (37195757),Jae'Sean Tate,37195757,SF/PF/F/UTIL,3200,DAL@HOU 01/01/2025 08:00PM ET,HOU,8.25
+,,,,,,,,,,,,,PG/SG,Brandon Williams (37195765),Brandon Williams,37195765,PG/SG/G/UTIL,3200,DAL@HOU 01/01/2025 08:00PM ET,DAL,4.71
+,,,,,,,,,,,,,SG/SF,Johnny Juzang (37195748) (LOCKED),Johnny Juzang,37195748,SG/SF/F/G/UTIL,3200,In Progress,UTA,13.03
+,,,,,,,,,,,,,PF,Torrey Craig (37195769) (LOCKED),Torrey Craig,37195769,PF/F/UTIL,3100,In Progress,CHI,12.69
+,,,,,,,,,,,,,SF,Jamison Battle (37195772) (LOCKED),Jamison Battle,37195772,SF/F/UTIL,3100,In Progress,TOR,11.22
+,,,,,,,,,,,,,C,Kevin Love (37195775) (LOCKED),Kevin Love,37195775,C/UTIL,3100,In Progress,MIA,15.38
+,,,,,,,,,,,,,PF/C,Jeremiah Robinson-Earl (37195781) (LOCKED),Jeremiah Robinson-Earl,37195781,PF/C/F/UTIL,3100,In Progress,NOP,16.41
+,,,,,,,,,,,,,SF/PF,Cody Williams (37195777) (LOCKED),Cody Williams,37195777,SF/PF/F/UTIL,3100,In Progress,UTA,9.40
+,,,,,,,,,,,,,PG,Jared Butler (37195879) (LOCKED),Jared Butler,37195879,PG/G/UTIL,3000,In Progress,WAS,11.05
+,,,,,,,,,,,,,SG/SF,Johnny Davis (37195882) (LOCKED),Johnny Davis,37195882,SG/SF/F/G/UTIL,3000,In Progress,WAS,7.5
+,,,,,,,,,,,,,PF,Patrick Baldwin Jr. (37195887) (LOCKED),Patrick Baldwin Jr.,37195887,PF/F/UTIL,3000,In Progress,WAS,3.79
+,,,,,,,,,,,,,C,Richaun Holmes (37195890) (LOCKED),Richaun Holmes,37195890,C/UTIL,3000,In Progress,WAS,5.94
+,,,,,,,,,,,,,C,Tristan Vukcevic (37195892) (LOCKED),Tristan Vukcevic,37195892,C/UTIL,3000,In Progress,WAS,1
+,,,,,,,,,,,,,C,Anthony Gill (37195894) (LOCKED),Anthony Gill,37195894,C/UTIL,3000,In Progress,WAS,5.21
+,,,,,,,,,,,,,PF,Emanuel Miller (37195979) (LOCKED),Emanuel Miller,37195979,PF/F/UTIL,3000,In Progress,CHI,0
+,,,,,,,,,,,,,SG/SF,Chris Duarte (37195982) (LOCKED),Chris Duarte,37195982,SG/SF/F/G/UTIL,3000,In Progress,CHI,4.65
+,,,,,,,,,,,,,PF,Julian Phillips (37195987) (LOCKED),Julian Phillips,37195987,PF/F/UTIL,3000,In Progress,CHI,9.69
+,,,,,,,,,,,,,C,Adama Sanogo (37195990) (LOCKED),Adama Sanogo,37195990,C/UTIL,3000,In Progress,CHI,4.12
+,,,,,,,,,,,,,C,E.J. Liddell (37195992) (LOCKED),E.J. Liddell,37195992,C/UTIL,3000,In Progress,CHI,5.04
+,,,,,,,,,,,,,SG,Garrett Temple (37195829) (LOCKED),Garrett Temple,37195829,SG/G/UTIL,3000,In Progress,TOR,3.20
+,,,,,,,,,,,,,C,Ulrich Chomche (37195832) (LOCKED),Ulrich Chomche,37195832,C/UTIL,3000,In Progress,TOR,2.38
+,,,,,,,,,,,,,PG,AJ Lawson (37195834) (LOCKED),AJ Lawson,37195834,PG/G/UTIL,3000,In Progress,TOR,4.58
+,,,,,,,,,,,,,SG,Dariq Whitehead (37195931) (LOCKED),Dariq Whitehead,37195931,SG/G/UTIL,3000,In Progress,BKN,8.19
+,,,,,,,,,,,,,PG,Reece Beekman (37195934) (LOCKED),Reece Beekman,37195934,PG/G/UTIL,3000,In Progress,BKN,1.21
+,,,,,,,,,,,,,SF,Jaylen Martin (37195937) (LOCKED),Jaylen Martin,37195937,SF/F/UTIL,3000,In Progress,BKN,1.17
+,,,,,,,,,,,,,SF/PF,Maxwell Lewis (37195940) (LOCKED),Maxwell Lewis,37195940,SF/PF/F/UTIL,3000,In Progress,BKN,1.5
+,,,,,,,,,,,,,PG,De'Anthony Melton (37195944) (LOCKED),De'Anthony Melton,37195944,PG/G/UTIL,3000,In Progress,BKN,22.25
+,,,,,,,,,,,,,PG/SG,Wendell Moore Jr. (37195789) (LOCKED),Wendell Moore Jr.,37195789,PG/SG/G/UTIL,3000,In Progress,DET,12.08
+,,,,,,,,,,,,,C,Cole Swider (37195896) (LOCKED),Cole Swider,37195896,C/UTIL,3000,In Progress,DET,2
+,,,,,,,,,,,,,PG/SG,Alondes Williams (37195898) (LOCKED),Alondes Williams,37195898,PG/SG/G/UTIL,3000,In Progress,DET,7
+,,,,,,,,,,,,,PG,Daniss Jenkins (37195902) (LOCKED),Daniss Jenkins,37195902,PG/G/UTIL,3000,In Progress,DET,0
+,,,,,,,,,,,,,PG,Marcus Sasser (37195905) (LOCKED),Marcus Sasser,37195905,PG/G/UTIL,3000,In Progress,DET,12.17
+,,,,,,,,,,,,,PF,Simone Fontecchio (37195908) (LOCKED),Simone Fontecchio,37195908,PF/F/UTIL,3000,In Progress,DET,12.49
+,,,,,,,,,,,,,PF,Bobi Klintman (37195911) (LOCKED),Bobi Klintman,37195911,PF/F/UTIL,3000,In Progress,DET,0
+,,,,,,,,,,,,,SF/PF,Ronald Holland II (37195914) (LOCKED),Ronald Holland II,37195914,SF/PF/F/UTIL,3000,In Progress,DET,12.09
+,,,,,,,,,,,,,SF/PF,Jett Howard (37195994) (LOCKED),Jett Howard,37195994,SF/PF/F/UTIL,3000,In Progress,ORL,6.82
+,,,,,,,,,,,,,SF/PF,Caleb Houstan (37195998) (LOCKED),Caleb Houstan,37195998,SF/PF/F/UTIL,3000,In Progress,ORL,3.01
+,,,,,,,,,,,,,PG,Cory Joseph (37196002) (LOCKED),Cory Joseph,37196002,PG/G/UTIL,3000,In Progress,ORL,4.78
+,,,,,,,,,,,,,PG,Mac McClung (37196005) (LOCKED),Mac McClung,37196005,PG/G/UTIL,3000,In Progress,ORL,4.25
+,,,,,,,,,,,,,C,Moritz Wagner (37196008) (LOCKED),Moritz Wagner,37196008,C/UTIL,3000,In Progress,ORL,23.22
+,,,,,,,,,,,,,C,Kel'el Ware (37195785) (LOCKED),Kel'el Ware,37195785,C/UTIL,3000,In Progress,MIA,9.03
+,,,,,,,,,,,,,PG,Isaiah Stevens (37195837) (LOCKED),Isaiah Stevens,37195837,PG/G/UTIL,3000,In Progress,MIA,0
+,,,,,,,,,,,,,SF/PF,Keshad Johnson (37195840) (LOCKED),Keshad Johnson,37195840,SF/PF/F/UTIL,3000,In Progress,MIA,1.92
+,,,,,,,,,,,,,PG,Josh Christopher (37195844) (LOCKED),Josh Christopher,37195844,PG/G/UTIL,3000,In Progress,MIA,-0.5
+,,,,,,,,,,,,,SF,Pelle Larsson (37195847) (LOCKED),Pelle Larsson,37195847,SF/F/UTIL,3000,In Progress,MIA,10.90
+,,,,,,,,,,,,,PG,Dru Smith (37195850) (LOCKED),Dru Smith,37195850,PG/G/UTIL,3000,In Progress,MIA,15.79
+,,,,,,,,,,,,,PG,Josh Richardson (37195853) (LOCKED),Josh Richardson,37195853,PG/G/UTIL,3000,In Progress,MIA,10.25
+,,,,,,,,,,,,,C,Trey Jemison (37195947) (LOCKED),Trey Jemison,37195947,C/UTIL,3000,In Progress,NOP,8.06
+,,,,,,,,,,,,,SG/SF,Antonio Reeves (37195949) (LOCKED),Antonio Reeves,37195949,SG/SF/F/G/UTIL,3000,In Progress,NOP,7.53
+,,,,,,,,,,,,,SF,Jamal Cain (37195954) (LOCKED),Jamal Cain,37195954,SF/F/UTIL,3000,In Progress,NOP,10.70
+,,,,,,,,,,,,,SF/PF,Javonte Green (37195957) (LOCKED),Javonte Green,37195957,SF/PF/F/UTIL,3000,In Progress,NOP,14.29
+,,,,,,,,,,,,,PF/C,Karlo Matkovic (37195961) (LOCKED),Karlo Matkovic,37195961,PF/C/F/UTIL,3000,In Progress,NOP,5.3
+,,,,,,,,,,,,,C,Steven Adams (37195787),Steven Adams,37195787,C/UTIL,3000,DAL@HOU 01/01/2025 08:00PM ET,HOU,9.59
+,,,,,,,,,,,,,PG,Aaron Holiday (37195856),Aaron Holiday,37195856,PG/G/UTIL,3000,DAL@HOU 01/01/2025 08:00PM ET,HOU,7.69
+,,,,,,,,,,,,,PG/SF,Nate Williams (37195859),Nate Williams,37195859,PG/SF/F/G/UTIL,3000,DAL@HOU 01/01/2025 08:00PM ET,HOU,4.42
+,,,,,,,,,,,,,PG/SG,Reed Sheppard (37195864),Reed Sheppard,37195864,PG/SG/G/UTIL,3000,DAL@HOU 01/01/2025 08:00PM ET,HOU,8.66
+,,,,,,,,,,,,,SG,Jack McVeigh (37195868),Jack McVeigh,37195868,SG/G/UTIL,3000,DAL@HOU 01/01/2025 08:00PM ET,HOU,2.83
+,,,,,,,,,,,,,PF/C,Jeff Green (37195871),Jeff Green,37195871,PF/C/F/UTIL,3000,DAL@HOU 01/01/2025 08:00PM ET,HOU,4.25
+,,,,,,,,,,,,,C,Jock Landale (37195875),Jock Landale,37195875,C/UTIL,3000,DAL@HOU 01/01/2025 08:00PM ET,HOU,8.47
+,,,,,,,,,,,,,C,N'Faly Dante (37195877),N'Faly Dante,37195877,C/UTIL,3000,DAL@HOU 01/01/2025 08:00PM ET,HOU,0
+,,,,,,,,,,,,,PF/C,Markieff Morris (37195965),Markieff Morris,37195965,PF/C/F/UTIL,3000,DAL@HOU 01/01/2025 08:00PM ET,DAL,3.94
+,,,,,,,,,,,,,PG,Jazian Gortman (37195969),Jazian Gortman,37195969,PG/G/UTIL,3000,DAL@HOU 01/01/2025 08:00PM ET,DAL,3.06
+,,,,,,,,,,,,,SF/PF,Kessler Edwards (37195972),Kessler Edwards,37195972,SF/PF/F/UTIL,3000,DAL@HOU 01/01/2025 08:00PM ET,DAL,0.46
+,,,,,,,,,,,,,SF,Dante Exum (37195976),Dante Exum,37195976,SF/F/UTIL,3000,DAL@HOU 01/01/2025 08:00PM ET,DAL,0
+,,,,,,,,,,,,,C,Drew Eubanks (37195793) (LOCKED),Drew Eubanks,37195793,C/UTIL,3000,In Progress,UTA,12.54
+,,,,,,,,,,,,,PF/C,Micah Potter (37195795) (LOCKED),Micah Potter,37195795,PF/C/F/UTIL,3000,In Progress,UTA,13.94
+,,,,,,,,,,,,,SG,Landry Shamet (37195799) (LOCKED),Landry Shamet,37195799,SG/G/UTIL,3000,In Progress,NYK,7
+,,,,,,,,,,,,,SG/SF,Matt Ryan (37195802) (LOCKED),Matt Ryan,37195802,SG/SF/F/G/UTIL,3000,In Progress,NYK,1.95
+,,,,,,,,,,,,,C,Jericho Sims (37195807) (LOCKED),Jericho Sims,37195807,C/UTIL,3000,In Progress,NYK,7.89
+,,,,,,,,,,,,,SG/SF,Pacome Dadiet (37195809) (LOCKED),Pacome Dadiet,37195809,SG/SF/F/G/UTIL,3000,In Progress,NYK,4.23
+,,,,,,,,,,,,,PF,Jacob Toppin (37195814) (LOCKED),Jacob Toppin,37195814,PF/F/UTIL,3000,In Progress,NYK,1.39
+,,,,,,,,,,,,,PG,Tyler Kolek (37195817) (LOCKED),Tyler Kolek,37195817,PG/G/UTIL,3000,In Progress,NYK,4.90
+,,,,,,,,,,,,,PG/SG,Cameron Payne (37195820) (LOCKED),Cameron Payne,37195820,PG/SG/G/UTIL,3000,In Progress,NYK,15.09
+,,,,,,,,,,,,,C,Ariel Hukporti (37195824) (LOCKED),Ariel Hukporti,37195824,C/UTIL,3000,In Progress,NYK,5.79
+,,,,,,,,,,,,,SF,Kevin McCullar Jr. (37195826) (LOCKED),Kevin McCullar Jr.,37195826,SF/F/UTIL,3000,In Progress,NYK,0
+,,,,,,,,,,,,,PG,Patty Mills (37195918) (LOCKED),Patty Mills,37195918,PG/G/UTIL,3000,In Progress,UTA,8.56
+,,,,,,,,,,,,,SG/SF,David Jones Garcia (37195921) (LOCKED),David Jones Garcia,37195921,SG/SF/F/G/UTIL,3000,In Progress,UTA,0
+,,,,,,,,,,,,,C,Oscar Tshiebwe (37195926) (LOCKED),Oscar Tshiebwe,37195926,C/UTIL,3000,In Progress,UTA,17.75
+,,,,,,,,,,,,,PF,Taylor Hendricks (37195928) (LOCKED),Taylor Hendricks,37195928,PF/F/UTIL,3000,In Progress,UTA,18.08

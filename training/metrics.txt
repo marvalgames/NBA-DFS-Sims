@@ -1,0 +1,287 @@
+D:\BLBRAMOS\PyVirtualAcer\.venv\Scripts\python.exe "D:\BLBRAMOS\STATS\DFS 2024\NBA-DFS-Tools\src\cat_boost_multi_trainer.py" 
+Features updated with Superstar and Supervalue boosts: ['Games Played', 'Salary', 'Points Proj', 'Proj_Salary_Ratio', 'Value', 'Feasibility', 'Weighted Feasibility', 'Prev_Salary_Mean', 'Log_Proj', 'Team_Proj_Avg', 'Value_Salary_Ratio', 'Team_Salary_Share', 'Salary_Proj_Interaction', 'Proj_Feasibility_Interaction', 'Value_Feasibility_Interaction', 'Bonus_Value', 'Value_Boost', 'Points_Proj_Squared', 'Normalized_Value', 'Superstar_Boost', 'Supervalue_Boost', 'Minutes_Boost', 'Ceiling', 'Ceiling_Value', 'Ceiling_Boost']
+
+Processing Contest ID: 1
+Feasibility Total: 8.00
+Scaled Ownership Total: 800.00
+Predicted Ownership Total: 631.68
+
+             Name  Predicted Ownership
+0   Devin Vassell            58.578333
+1    Zach Collins            43.139303
+2  Scottie Barnes            11.003945
+Results saved to '..\training\all_players_results_1.csv'.
+
+Total Predicted Ownership by Contest:
++---+------------+---------------------------+
+|   | Contest ID | Total Predicted Ownership |
++---+------------+---------------------------+
+| 0 |    1.0     |           800.0           |
++---+------------+---------------------------+
+
+Processing Contest ID: 2
+Feasibility Total: 8.00
+Scaled Ownership Total: 800.00
+Predicted Ownership Total: 475.81
+
+                  Name  Predicted Ownership
+147     Keldon Johnson            59.512218
+148     Stephon Castle            30.023098
+149  Tyrese Haliburton            24.319489
+Results saved to '..\training\all_players_results_2.csv'.
+
+Total Predicted Ownership by Contest:
++---+------------+---------------------------+
+|   | Contest ID | Total Predicted Ownership |
++---+------------+---------------------------+
+| 0 |    2.0     |           800.0           |
++---+------------+---------------------------+
+
+Processing Contest ID: 3
+Feasibility Total: 8.00
+Scaled Ownership Total: 800.00
+Predicted Ownership Total: 670.21
+
+                  Name  Predicted Ownership
+301       Nikola Jokic            57.585545
+302  Russell Westbrook            10.488388
+303  Justin Champagnie            32.582169
+Results saved to '..\training\all_players_results_3.csv'.
+
+Total Predicted Ownership by Contest:
++---+------------+---------------------------+
+|   | Contest ID | Total Predicted Ownership |
++---+------------+---------------------------+
+| 0 |    3.0     |           800.0           |
++---+------------+---------------------------+
+
+Processing Contest ID: 4
+Feasibility Total: 8.00
+Scaled Ownership Total: 800.00
+Predicted Ownership Total: 586.82
+
+                  Name  Predicted Ownership
+432  Justin Champagnie            44.718754
+433  Scotty Pippen Jr.            24.197352
+434  Jonas Valanciunas            36.137650
+Results saved to '..\training\all_players_results_4.csv'.
+
+Total Predicted Ownership by Contest:
++---+------------+---------------------------+
+|   | Contest ID | Total Predicted Ownership |
++---+------------+---------------------------+
+| 0 |    4.0     |           800.0           |
++---+------------+---------------------------+
+
+Processing Contest ID: 5
+Feasibility Total: 8.00
+Scaled Ownership Total: 800.00
+Predicted Ownership Total: 596.77
+
+                        Name  Predicted Ownership
+546  Shai Gilgeous-Alexander            71.375763
+547             Cole Anthony            72.342665
+548            Luguentz Dort            19.765026
+Results saved to '..\training\all_players_results_5.csv'.
+
+Total Predicted Ownership by Contest:
++---+------------+---------------------------+
+|   | Contest ID | Total Predicted Ownership |
++---+------------+---------------------------+
+| 0 |    5.0     |           800.0           |
++---+------------+---------------------------+
+
+Processing Contest ID: 6
+Feasibility Total: 8.00
+Scaled Ownership Total: 800.00
+Predicted Ownership Total: 672.28
+
+                   Name  Predicted Ownership
+589    Jonathan Kuminga            60.162653
+590  Karl-Anthony Towns            41.093978
+591       Jalen Brunson            30.394077
+Results saved to '..\training\all_players_results_6.csv'.
+
+Total Predicted Ownership by Contest:
++---+------------+---------------------------+
+|   | Contest ID | Total Predicted Ownership |
++---+------------+---------------------------+
+| 0 |    6.0     |           800.0           |
++---+------------+---------------------------+
+
+Processing Contest ID: 7
+Feasibility Total: 8.00
+Scaled Ownership Total: 800.00
+Predicted Ownership Total: 742.21
+
+                   Name  Predicted Ownership
+634        Jaylen Brown            41.988448
+635  Kristaps Porzingis            39.029723
+636        Jrue Holiday            32.763198
+Results saved to '..\training\all_players_results_7.csv'.
+
+Total Predicted Ownership by Contest:
++---+------------+---------------------------+
+|   | Contest ID | Total Predicted Ownership |
++---+------------+---------------------------+
+| 0 |    7.0     |           800.0           |
++---+------------+---------------------------+
+
+Processing Contest ID: 8
+Feasibility Total: 8.00
+Scaled Ownership Total: 800.00
+Predicted Ownership Total: 776.27
+
+                  Name  Predicted Ownership
+705        Jalen Smith            70.749572
+706     Vasilije Micic            47.284094
+707  Justin Champagnie            30.305822
+Results saved to '..\training\all_players_results_8.csv'.
+
+Total Predicted Ownership by Contest:
++---+------------+---------------------------+
+|   | Contest ID | Total Predicted Ownership |
++---+------------+---------------------------+
+| 0 |    8.0     |           800.0           |
++---+------------+---------------------------+
+
+Processing Contest ID: 9
+Feasibility Total: 8.00
+Scaled Ownership Total: 800.01
+Predicted Ownership Total: 929.09
+
+                      Name  Predicted Ownership
+839          Cason Wallace            69.175758
+840  Giannis Antetokounmpo            54.044444
+841           Bobby Portis            36.651856
+Results saved to '..\training\all_players_results_9.csv'.
+
+Total Predicted Ownership by Contest:
++---+------------+---------------------------+
+|   | Contest ID | Total Predicted Ownership |
++---+------------+---------------------------+
+| 0 |    9.0     |          800.01           |
++---+------------+---------------------------+
+
+Processing Contest ID: 10
+Feasibility Total: 8.00
+Scaled Ownership Total: 800.03
+Predicted Ownership Total: 690.47
+
+                  Name  Predicted Ownership
+910   Jonathan Kuminga            73.744325
+911  Justin Champagnie            27.253712
+912        Buddy Hield             7.693953
+Results saved to '..\training\all_players_results_10.csv'.
+
+Total Predicted Ownership by Contest:
++---+------------+---------------------------+
+|   | Contest ID | Total Predicted Ownership |
++---+------------+---------------------------+
+| 0 |    10.0    |          800.03           |
++---+------------+---------------------------+
+
+Processing Contest ID: 11
+Feasibility Total: 8.00
+Scaled Ownership Total: 800.38
+Predicted Ownership Total: 623.65
+
+                Name  Predicted Ownership
+1121  Jonathan Mogbo            41.994410
+1122    Jakob Poeltl            25.521095
+1123      Coby White            32.991684
+Results saved to '..\training\all_players_results_11.csv'.
+
+Total Predicted Ownership by Contest:
++---+------------+---------------------------+
+|   | Contest ID | Total Predicted Ownership |
++---+------------+---------------------------+
+| 0 |    11.0    |          800.38           |
++---+------------+---------------------------+
+
+Processing Contest ID: 12
+Feasibility Total: 8.00
+Scaled Ownership Total: 803.48
+Predicted Ownership Total: 508.61
+
+                   Name  Predicted Ownership
+1331  Spencer Dinwiddie            35.811740
+1332    Cade Cunningham            17.401627
+1333     Quentin Grimes            19.888241
+Results saved to '..\training\all_players_results_12.csv'.
+
+Total Predicted Ownership by Contest:
++---+------------+---------------------------+
+|   | Contest ID | Total Predicted Ownership |
++---+------------+---------------------------+
+| 0 |    12.0    |          803.48           |
++---+------------+---------------------------+
+
+Processing Contest ID: 13
+Feasibility Total: 8.00
+Scaled Ownership Total: 800.00
+Predicted Ownership Total: 648.71
+
+                       Name  Predicted Ownership
+1718         Vasilije Micic            77.673219
+1719  Giannis Antetokounmpo            64.558266
+1720          Miles Bridges            57.820595
+Results saved to '..\training\all_players_results_13.csv'.
+
+Total Predicted Ownership by Contest:
++---+------------+---------------------------+
+|   | Contest ID | Total Predicted Ownership |
++---+------------+---------------------------+
+| 0 |    13.0    |           800.0           |
++---+------------+---------------------------+
+
+Summary of Results:
++----+------------+-------------+----------+----------+-----------------------+
+|    | Contest ID | Player Pool | Test MSE | Test R^2 | Ownership Correlation |
++----+------------+-------------+----------+----------+-----------------------+
+| 0  |     1      |    147.0    |  25.855  |  0.655   |         0.82          |
+| 1  |     2      |    154.0    |  30.621  |  0.542   |         0.815         |
+| 2  |     3      |    131.0    |  56.359  |  0.525   |         0.733         |
+| 3  |     4      |    114.0    | 120.153  |  0.404   |         0.702         |
+| 4  |     5      |    43.0     |  82.741  |  0.724   |         0.898         |
+| 5  |     6      |    45.0     | 103.837  |  0.712   |         0.873         |
+| 6  |     7      |    71.0     |  60.712  |   0.73   |         0.859         |
+| 7  |     8      |    134.0    |  40.535  |  0.663   |         0.817         |
+| 8  |     9      |    71.0     |  54.437  |  0.802   |         0.932         |
+| 9  |     10     |    211.0    |  25.906  |  0.628   |         0.795         |
+| 10 |     11     |    210.0    |  23.566  |  0.685   |         0.86          |
+| 11 |     12     |    387.0    |  17.935  |  0.482   |         0.838         |
+| 12 |     13     |    104.0    |  18.179  |  0.893   |         0.953         |
+| 13 |  Average   |    140.2    |  50.834  |   0.65   |         0.838         |
++----+------------+-------------+----------+----------+-----------------------+
+Results saved to 'all_contests_results.csv'.
+Model saved to final_catboost_model.pkl.
+CatBoost Feature Importance:
+                          feature  importance
+14  Value_Feasibility_Interaction   13.409798
+6            Weighted Feasibility   10.025388
+5                     Feasibility    9.118323
+7                Prev_Salary_Mean    7.872499
+11              Team_Salary_Share    6.887484
+23                  Ceiling_Value    5.250376
+13   Proj_Feasibility_Interaction    5.217218
+4                           Value    4.887342
+3               Proj_Salary_Ratio    4.279132
+9                   Team_Proj_Avg    4.072095
+0                    Games Played    3.752767
+18               Normalized_Value    3.547496
+15                    Bonus_Value    3.363370
+12        Salary_Proj_Interaction    3.130490
+10             Value_Salary_Ratio    2.918637
+16                    Value_Boost    2.654198
+22                        Ceiling    2.087103
+17            Points_Proj_Squared    1.836972
+2                     Points Proj    1.692713
+8                        Log_Proj    1.383335
+1                          Salary    1.304389
+21                  Minutes_Boost    0.811315
+24                  Ceiling_Boost    0.444658
+19                Superstar_Boost    0.052899
+20               Supervalue_Boost    0.000000
+
+Process finished with exit code 0

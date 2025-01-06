@@ -1,0 +1,112 @@
+Entry ID,Contest Name,Contest ID,Entry Fee,PG,SG,SF,PF,C,G,F,UTIL,,Instructions
+4570933758,NBA $60K Four Point Play [20 Entry Max],171983717,$4,Vasilije Micic (37081789) (LOCKED),Gary Trent Jr. (37081826) (LOCKED),Khris Middleton (37081727) (LOCKED),Jimmy Butler (37081692),Nick Richards (37081739) (LOCKED),Tyler Herro (37081703),Bobby Portis (37081723) (LOCKED),Giannis Antetokounmpo (37081656) (LOCKED),,1. Column A lists all of your contest entries for this draftgroup
+4570933759,NBA $60K Four Point Play [20 Entry Max],171983717,$4,Vasilije Micic (37081789) (LOCKED),Donovan Mitchell (37081679) (LOCKED),Luguentz Dort (37081756),Aaron Wiggins (37081871),Giannis Antetokounmpo (37081656) (LOCKED),AJ Green (37081834) (LOCKED),Jimmy Butler (37081692),Jarrett Allen (37081711) (LOCKED),,2. Your current lineup is listed next to each entry (blank for reservations)
+4570933760,NBA $60K Four Point Play [20 Entry Max],171983717,$4,Vasilije Micic (37081789) (LOCKED),Duncan Robinson (37081775),Alex Caruso (37081792),Jalen Williams (37081687),Giannis Antetokounmpo (37081656) (LOCKED),Shai Gilgeous-Alexander (37081660),Luguentz Dort (37081756),Aaron Wiggins (37081871),,3. You can change the lineup for an entry by entering the IDs of the players in the row next to that entry
+4570933761,NBA $60K Four Point Play [20 Entry Max],171983717,$4,Tyler Herro (37081703),Gary Trent Jr. (37081826) (LOCKED),Andre Jackson Jr. (37081858) (LOCKED),Giannis Antetokounmpo (37081656) (LOCKED),Nick Richards (37081739) (LOCKED),AJ Green (37081834) (LOCKED),Bobby Portis (37081723) (LOCKED),Shai Gilgeous-Alexander (37081660),,4. Use data from the Name+ID column or the ID column; you cannot use just the player's name
+4570933762,NBA $60K Four Point Play [20 Entry Max],171983717,$4,Donovan Mitchell (37081679) (LOCKED),Khris Middleton (37081727) (LOCKED),Aaron Wiggins (37081871),Miles Bridges (37081713) (LOCKED),Nick Richards (37081739) (LOCKED),Luguentz Dort (37081756),Bobby Portis (37081723) (LOCKED),Giannis Antetokounmpo (37081656) (LOCKED),,5. For faster processing only include entries you are changing in the file you upload
+4570933763,NBA $60K Four Point Play [20 Entry Max],171983717,$4,Cason Wallace (37081768),Khris Middleton (37081727) (LOCKED),Luguentz Dort (37081756),Miles Bridges (37081713) (LOCKED),Nick Richards (37081739) (LOCKED),Tyler Herro (37081703),Giannis Antetokounmpo (37081656) (LOCKED),Bobby Portis (37081723) (LOCKED),,
+,,,,,,,,,,,,,Position,Name + ID,Name,ID,Roster Position,Salary,Game Info,TeamAbbrev,AvgPointsPerGame
+,,,,,,,,,,,,,PF/C,Giannis Antetokounmpo (37081656) (LOCKED),Giannis Antetokounmpo,37081656,PF/C/F/UTIL,11300,In Progress,MIL,61.30
+,,,,,,,,,,,,,PG,Shai Gilgeous-Alexander (37081660),Shai Gilgeous-Alexander,37081660,PG/G/UTIL,10300,OKC@MIA 12/20/2024 08:00PM ET,OKC,51.73
+,,,,,,,,,,,,,PG,LaMelo Ball (37081663) (LOCKED),LaMelo Ball,37081663,PG/G/UTIL,9800,In Progress,CHA,51.98
+,,,,,,,,,,,,,C,Joel Embiid (37081666) (LOCKED),Joel Embiid,37081666,C/UTIL,9500,In Progress,PHI,37.5
+,,,,,,,,,,,,,PG,Tyrese Maxey (37081668) (LOCKED),Tyrese Maxey,37081668,PG/G/UTIL,9000,In Progress,PHI,42.58
+,,,,,,,,,,,,,SG/SF,Brandon Miller (37081671) (LOCKED),Brandon Miller,37081671,SG/SF/F/G/UTIL,8900,In Progress,CHA,37.54
+,,,,,,,,,,,,,PG,Damian Lillard (37081676) (LOCKED),Damian Lillard,37081676,PG/G/UTIL,8800,In Progress,MIL,45.36
+,,,,,,,,,,,,,PG/SG,Donovan Mitchell (37081679) (LOCKED),Donovan Mitchell,37081679,PG/SG/G/UTIL,8700,In Progress,CLE,40.72
+,,,,,,,,,,,,,SF/PF,Paul George (37081683) (LOCKED),Paul George,37081683,SF/PF/F/UTIL,8500,In Progress,PHI,36.04
+,,,,,,,,,,,,,PF,Jalen Williams (37081687),Jalen Williams,37081687,PF/F/UTIL,8300,OKC@MIA 12/20/2024 08:00PM ET,OKC,41.45
+,,,,,,,,,,,,,C,Bam Adebayo (37081690),Bam Adebayo,37081690,C/UTIL,8100,OKC@MIA 12/20/2024 08:00PM ET,MIA,41.58
+,,,,,,,,,,,,,SF/PF,Jimmy Butler (37081692),Jimmy Butler,37081692,SF/PF/F/UTIL,7900,OKC@MIA 12/20/2024 08:00PM ET,MIA,37.86
+,,,,,,,,,,,,,PF,Chet Holmgren (37081696),Chet Holmgren,37081696,PF/F/UTIL,7800,OKC@MIA 12/20/2024 08:00PM ET,OKC,37.22
+,,,,,,,,,,,,,PF/C,Evan Mobley (37081699) (LOCKED),Evan Mobley,37081699,PF/C/F/UTIL,7700,In Progress,CLE,38.63
+,,,,,,,,,,,,,PG,Tyler Herro (37081703),Tyler Herro,37081703,PG/G/UTIL,7400,OKC@MIA 12/20/2024 08:00PM ET,MIA,40.56
+,,,,,,,,,,,,,PG,Darius Garland (37081706) (LOCKED),Darius Garland,37081706,PG/G/UTIL,7200,In Progress,CLE,35.95
+,,,,,,,,,,,,,C,Isaiah Hartenstein (37081709),Isaiah Hartenstein,37081709,C/UTIL,7000,OKC@MIA 12/20/2024 08:00PM ET,OKC,38.19
+,,,,,,,,,,,,,C,Jarrett Allen (37081711) (LOCKED),Jarrett Allen,37081711,C/UTIL,6700,In Progress,CLE,33.30
+,,,,,,,,,,,,,PF,Miles Bridges (37081713) (LOCKED),Miles Bridges,37081713,PF/F/UTIL,6300,In Progress,CHA,31.70
+,,,,,,,,,,,,,SG,Kelly Oubre Jr. (37081716) (LOCKED),Kelly Oubre Jr.,37081716,SG/G/UTIL,6100,In Progress,PHI,26.28
+,,,,,,,,,,,,,C,Andre Drummond (37081719) (LOCKED),Andre Drummond,37081719,C/UTIL,6000,In Progress,PHI,22.29
+,,,,,,,,,,,,,C,Brook Lopez (37081721) (LOCKED),Brook Lopez,37081721,C/UTIL,5600,In Progress,MIL,26.60
+,,,,,,,,,,,,,PF/C,Bobby Portis (37081723) (LOCKED),Bobby Portis,37081723,PF/C/F/UTIL,5400,In Progress,MIL,27.39
+,,,,,,,,,,,,,SG/SF,Khris Middleton (37081727) (LOCKED),Khris Middleton,37081727,SG/SF/F/G/UTIL,5300,In Progress,MIL,23
+,,,,,,,,,,,,,PG/SG,Caris LeVert (37081732) (LOCKED),Caris LeVert,37081732,PG/SG/G/UTIL,5200,In Progress,CLE,25.42
+,,,,,,,,,,,,,SF,Cody Martin (37081736) (LOCKED),Cody Martin,37081736,SF/F/UTIL,5200,In Progress,CHA,21.65
+,,,,,,,,,,,,,C,Nick Richards (37081739) (LOCKED),Nick Richards,37081739,C/UTIL,5100,In Progress,CHA,28.23
+,,,,,,,,,,,,,SG/SF,Max Strus (37081741) (LOCKED),Max Strus,37081741,SG/SF/F/G/UTIL,5000,In Progress,CLE,0
+,,,,,,,,,,,,,PF/C,Guerschon Yabusele (37081750) (LOCKED),Guerschon Yabusele,37081750,PF/C/F/UTIL,5000,In Progress,PHI,20.83
+,,,,,,,,,,,,,C,Mark Williams (37081754) (LOCKED),Mark Williams,37081754,C/UTIL,4900,In Progress,CHA,21.54
+,,,,,,,,,,,,,SF/PF,Josh Green (37081746) (LOCKED),Josh Green,37081746,SF/PF/F/UTIL,4800,In Progress,CHA,16.12
+,,,,,,,,,,,,,SG/SF,Luguentz Dort (37081756),Luguentz Dort,37081756,SG/SF/F/G/UTIL,4700,OKC@MIA 12/20/2024 08:00PM ET,OKC,23.28
+,,,,,,,,,,,,,PG/SG,Terry Rozier (37081761),Terry Rozier,37081761,PG/SG/G/UTIL,4600,OKC@MIA 12/20/2024 08:00PM ET,MIA,23.41
+,,,,,,,,,,,,,PF,Tidjane Salaun (37081765) (LOCKED),Tidjane Salaun,37081765,PF/F/UTIL,4500,In Progress,CHA,12.86
+,,,,,,,,,,,,,PG/SG,Cason Wallace (37081768),Cason Wallace,37081768,PG/SG/G/UTIL,4400,OKC@MIA 12/20/2024 08:00PM ET,OKC,19.34
+,,,,,,,,,,,,,PG,Dru Smith (37081772),Dru Smith,37081772,PG/G/UTIL,4300,OKC@MIA 12/20/2024 08:00PM ET,MIA,15.16
+,,,,,,,,,,,,,SF/PF,Georges Niang (37081778) (LOCKED),Georges Niang,37081778,SF/PF/F/UTIL,4200,In Progress,CLE,17.15
+,,,,,,,,,,,,,SG,Duncan Robinson (37081775),Duncan Robinson,37081775,SG/G/UTIL,4200,OKC@MIA 12/20/2024 08:00PM ET,MIA,19.29
+,,,,,,,,,,,,,PF,KJ Martin (37081782) (LOCKED),KJ Martin,37081782,PF/F/UTIL,4100,In Progress,PHI,13.31
+,,,,,,,,,,,,,PG/SG,Tre Mann (37081785) (LOCKED),Tre Mann,37081785,PG/SG/G/UTIL,4100,In Progress,CHA,23.88
+,,,,,,,,,,,,,SF/PF,Isaac Okoro (37081801) (LOCKED),Isaac Okoro,37081801,SF/PF/F/UTIL,4000,In Progress,CLE,14.80
+,,,,,,,,,,,,,SG/SF,Alex Caruso (37081792),Alex Caruso,37081792,SG/SF/F/G/UTIL,4000,OKC@MIA 12/20/2024 08:00PM ET,OKC,17.45
+,,,,,,,,,,,,,PG,Vasilije Micic (37081789) (LOCKED),Vasilije Micic,37081789,PG/G/UTIL,4000,In Progress,CHA,17.08
+,,,,,,,,,,,,,SF/PF,Caleb Martin (37081797) (LOCKED),Caleb Martin,37081797,SF/PF/F/UTIL,4000,In Progress,PHI,20.18
+,,,,,,,,,,,,,SF/PF,Jaime Jaquez Jr. (37081810),Jaime Jaquez Jr.,37081810,SF/PF/F/UTIL,3900,OKC@MIA 12/20/2024 08:00PM ET,MIA,20.05
+,,,,,,,,,,,,,SG/SF,Ricky Council IV (37081805) (LOCKED),Ricky Council IV,37081805,SG/SF/F/G/UTIL,3900,In Progress,PHI,9.68
+,,,,,,,,,,,,,SF/PF,Haywood Highsmith (37081814),Haywood Highsmith,37081814,SF/PF/F/UTIL,3800,OKC@MIA 12/20/2024 08:00PM ET,MIA,16.68
+,,,,,,,,,,,,,PG/SG,Kyle Lowry (37081818) (LOCKED),Kyle Lowry,37081818,PG/SG/G/UTIL,3800,In Progress,PHI,14.76
+,,,,,,,,,,,,,SF/PF,Dean Wade (37081822) (LOCKED),Dean Wade,37081822,SF/PF/F/UTIL,3700,In Progress,CLE,16.60
+,,,,,,,,,,,,,SG/SF,Gary Trent Jr. (37081826) (LOCKED),Gary Trent Jr.,37081826,SG/SF/F/G/UTIL,3600,In Progress,MIL,15.52
+,,,,,,,,,,,,,SG,Sam Merrill (37081831) (LOCKED),Sam Merrill,37081831,SG/G/UTIL,3600,In Progress,CLE,14.53
+,,,,,,,,,,,,,PG/SG,AJ Green (37081834) (LOCKED),AJ Green,37081834,PG/SG/G/UTIL,3600,In Progress,MIL,14.26
+,,,,,,,,,,,,,PG,Ty Jerome (37081838) (LOCKED),Ty Jerome,37081838,PG/G/UTIL,3500,In Progress,CLE,21.05
+,,,,,,,,,,,,,SF/PF,Taurean Prince (37081841) (LOCKED),Taurean Prince,37081841,SF/PF/F/UTIL,3500,In Progress,MIL,17.98
+,,,,,,,,,,,,,SG/SF,Isaiah Joe (37081848),Isaiah Joe,37081848,SG/SF/F/G/UTIL,3400,OKC@MIA 12/20/2024 08:00PM ET,OKC,17.06
+,,,,,,,,,,,,,PG,Isaiah Wong (37081845) (LOCKED),Isaiah Wong,37081845,PG/G/UTIL,3400,In Progress,CHA,15.1
+,,,,,,,,,,,,,SG/SF,Andre Jackson Jr. (37081858) (LOCKED),Andre Jackson Jr.,37081858,SG/SF/F/G/UTIL,3300,In Progress,MIL,11.27
+,,,,,,,,,,,,,C,Kevin Love (37081863),Kevin Love,37081863,C/UTIL,3300,OKC@MIA 12/20/2024 08:00PM ET,MIA,16.64
+,,,,,,,,,,,,,PF/C,Kenrich Williams (37081865),Kenrich Williams,37081865,PF/C/F/UTIL,3200,OKC@MIA 12/20/2024 08:00PM ET,OKC,12.34
+,,,,,,,,,,,,,SG/SF,Eric Gordon (37081853) (LOCKED),Eric Gordon,37081853,SG/SF/F/G/UTIL,3200,In Progress,PHI,10.03
+,,,,,,,,,,,,,C,Moussa Diabate (37081869) (LOCKED),Moussa Diabate,37081869,C/UTIL,3200,In Progress,CHA,16.34
+,,,,,,,,,,,,,SF/PF,Aaron Wiggins (37081871),Aaron Wiggins,37081871,SF/PF/F/UTIL,3100,OKC@MIA 12/20/2024 08:00PM ET,OKC,17.54
+,,,,,,,,,,,,,PF/C,Nikola Jovic (37081875),Nikola Jovic,37081875,PF/C/F/UTIL,3100,OKC@MIA 12/20/2024 08:00PM ET,MIA,17.1
+,,,,,,,,,,,,,PG,Ajay Mitchell (37081879),Ajay Mitchell,37081879,PG/G/UTIL,3100,OKC@MIA 12/20/2024 08:00PM ET,OKC,11.49
+,,,,,,,,,,,,,PF,DaQuan Jeffries (37081882) (LOCKED),DaQuan Jeffries,37081882,PF/F/UTIL,3100,In Progress,CHA,19.08
+,,,,,,,,,,,,,C,Tristan Thompson (37081912) (LOCKED),Tristan Thompson,37081912,C/UTIL,3000,In Progress,CLE,6.85
+,,,,,,,,,,,,,PF,JT Thor (37081914) (LOCKED),JT Thor,37081914,PF/F/UTIL,3000,In Progress,CLE,9.31
+,,,,,,,,,,,,,PG,Emoni Bates (37081917) (LOCKED),Emoni Bates,37081917,PG/G/UTIL,3000,In Progress,CLE,0
+,,,,,,,,,,,,,SG/SF,Jaylon Tyson (37081920) (LOCKED),Jaylon Tyson,37081920,SG/SF/F/G/UTIL,3000,In Progress,CLE,6.04
+,,,,,,,,,,,,,PG,Craig Porter Jr. (37081925) (LOCKED),Craig Porter Jr.,37081925,PG/G/UTIL,3000,In Progress,CLE,7.16
+,,,,,,,,,,,,,SF,Luke Travers (37081928) (LOCKED),Luke Travers,37081928,SF/F/UTIL,3000,In Progress,CLE,4.33
+,,,,,,,,,,,,,SG,Stanley Umude (37081962) (LOCKED),Stanley Umude,37081962,SG/G/UTIL,3000,In Progress,MIL,1.79
+,,,,,,,,,,,,,PG,Delon Wright (37081965) (LOCKED),Delon Wright,37081965,PG/G/UTIL,3000,In Progress,MIL,9.51
+,,,,,,,,,,,,,SF/PF,Pat Connaughton (37081968) (LOCKED),Pat Connaughton,37081968,SF/PF/F/UTIL,3000,In Progress,MIL,11.73
+,,,,,,,,,,,,,PG,Ryan Rollins (37081972) (LOCKED),Ryan Rollins,37081972,PG/G/UTIL,3000,In Progress,MIL,7.25
+,,,,,,,,,,,,,SG,AJ Johnson (37081975) (LOCKED),AJ Johnson,37081975,SG/G/UTIL,3000,In Progress,MIL,1.96
+,,,,,,,,,,,,,PF,Tyler Smith (37081978) (LOCKED),Tyler Smith,37081978,PF/F/UTIL,3000,In Progress,MIL,3.41
+,,,,,,,,,,,,,SF,Chris Livingston (37081981) (LOCKED),Chris Livingston,37081981,SF/F/UTIL,3000,In Progress,MIL,2.19
+,,,,,,,,,,,,,PG/SF,Marjon Beauchamp (37081984) (LOCKED),Marjon Beauchamp,37081984,PG/SF/F/G/UTIL,3000,In Progress,MIL,2.52
+,,,,,,,,,,,,,C,Liam Robbins (37081989) (LOCKED),Liam Robbins,37081989,C/UTIL,3000,In Progress,MIL,1.75
+,,,,,,,,,,,,,C,Branden Carlson (37081885),Branden Carlson,37081885,C/UTIL,3000,OKC@MIA 12/20/2024 08:00PM ET,OKC,3.71
+,,,,,,,,,,,,,SF,Keshad Johnson (37081893),Keshad Johnson,37081893,SF/F/UTIL,3000,OKC@MIA 12/20/2024 08:00PM ET,MIA,2.25
+,,,,,,,,,,,,,PG/SG,Alec Burks (37081896),Alec Burks,37081896,PG/SG/G/UTIL,3000,OKC@MIA 12/20/2024 08:00PM ET,MIA,11.69
+,,,,,,,,,,,,,PG,Josh Christopher (37081900),Josh Christopher,37081900,PG/G/UTIL,3000,OKC@MIA 12/20/2024 08:00PM ET,MIA,0
+,,,,,,,,,,,,,C,Kel'el Ware (37081903),Kel'el Ware,37081903,C/UTIL,3000,OKC@MIA 12/20/2024 08:00PM ET,MIA,6.05
+,,,,,,,,,,,,,PG/SG,Josh Richardson (37081905),Josh Richardson,37081905,PG/SG/G/UTIL,3000,OKC@MIA 12/20/2024 08:00PM ET,MIA,10.25
+,,,,,,,,,,,,,SF,Pelle Larsson (37081909),Pelle Larsson,37081909,SF/F/UTIL,3000,OKC@MIA 12/20/2024 08:00PM ET,MIA,12
+,,,,,,,,,,,,,PF,Dillon Jones (37081946),Dillon Jones,37081946,PF/F/UTIL,3000,OKC@MIA 12/20/2024 08:00PM ET,OKC,6.11
+,,,,,,,,,,,,,C,Ousmane Dieng (37081949),Ousmane Dieng,37081949,C/UTIL,3000,OKC@MIA 12/20/2024 08:00PM ET,OKC,10.03
+,,,,,,,,,,,,,PG,Adam Flagler (37081951),Adam Flagler,37081951,PG/G/UTIL,3000,OKC@MIA 12/20/2024 08:00PM ET,OKC,2.64
+,,,,,,,,,,,,,SF,Alex Ducas (37081954),Alex Ducas,37081954,SF/F/UTIL,3000,OKC@MIA 12/20/2024 08:00PM ET,OKC,0
+,,,,,,,,,,,,,PG,Nikola Topic (37081957),Nikola Topic,37081957,PG/G/UTIL,3000,OKC@MIA 12/20/2024 08:00PM ET,OKC,0
+,,,,,,,,,,,,,C,Jaylin Williams (37081960),Jaylin Williams,37081960,C/UTIL,3000,OKC@MIA 12/20/2024 08:00PM ET,OKC,0
+,,,,,,,,,,,,,PG,KJ Simpson (37081887) (LOCKED),KJ Simpson,37081887,PG/G/UTIL,3000,In Progress,CHA,10.19
+,,,,,,,,,,,,,PG,Reggie Jackson (37081890) (LOCKED),Reggie Jackson,37081890,PG/G/UTIL,3000,In Progress,PHI,10.07
+,,,,,,,,,,,,,PF/C,Pete Nance (37081931) (LOCKED),Pete Nance,37081931,PF/C/F/UTIL,3000,In Progress,PHI,0
+,,,,,,,,,,,,,SF,Justin Edwards (37081935) (LOCKED),Justin Edwards,37081935,SF/F/UTIL,3000,In Progress,PHI,4
+,,,,,,,,,,,,,PG,Jeff Dowtin (37081938) (LOCKED),Jeff Dowtin,37081938,PG/G/UTIL,3000,In Progress,PHI,5.69
+,,,,,,,,,,,,,PG,Jared McCain (37081941) (LOCKED),Jared McCain,37081941,PG/G/UTIL,3000,In Progress,PHI,23.94
+,,,,,,,,,,,,,C,Adem Bona (37081944) (LOCKED),Adem Bona,37081944,C/UTIL,3000,In Progress,PHI,4.29
+,,,,,,,,,,,,,C,Taj Gibson (37081991) (LOCKED),Taj Gibson,37081991,C/UTIL,3000,In Progress,CHA,8.41
+,,,,,,,,,,,,,SG/SF,Nick Smith Jr. (37081993) (LOCKED),Nick Smith Jr.,37081993,SG/SF/F/G/UTIL,3000,In Progress,CHA,6.25
+,,,,,,,,,,,,,SG,Seth Curry (37081998) (LOCKED),Seth Curry,37081998,SG/G/UTIL,3000,In Progress,CHA,8.83
+,,,,,,,,,,,,,C,Grant Williams (37082001) (LOCKED),Grant Williams,37082001,C/UTIL,3000,In Progress,CHA,24.09

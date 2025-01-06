@@ -75,7 +75,7 @@ class NBA_Swaptimizer_Sims:
     lineup_sets = 5
 
     def __init__(self, num_iterations, site=None, num_uniques=1, num_lineup_sets=5, min_salary=49000, projection_minimum=16):
-        self.live_games = False
+        self.live_games = True
         self.entry_lineups = None
         self.lineup_sets = num_lineup_sets
         self.site = site
@@ -488,6 +488,7 @@ class NBA_Swaptimizer_Sims:
         # Format the date into the string format the NBA API expects ('YYYY-MM-DD')
         # Late Swap Realtime
         live = self.live_games
+        #live = False
         if live:
             formatted_date = game_date.strftime('%Y-%m-%d')
         else:
@@ -508,7 +509,7 @@ class NBA_Swaptimizer_Sims:
                  1610612741, '2024', 2, '7:47 ', None, 'MNMT', 'CHSN', 'Q2 7:47  - ', 'Capital One Arena', 0, 0],
                 ['2024-11-26T00:00:00', 2, '0022400036', 2, '1st Qtr             ', '20241126/MILMIA', 1610612748,
                  1610612749, '2024', 1, '7:43 ', 'TNT', None, None, 'Q1 7:43  - TNT', 'Kaseya Center', 0, 0],
-                ['2024-11-26T00:00:00', 3, '0022400037', 1, '8:00 pm ET', '20241126/HOUMIN', 1610612750, 1610612745,
+                ['2024-11-26T00:00:00', 3, '0022400037', 1, 'Tipoff', '20241126/HOUMIN', 1610612750, 1610612745,
                  '2024', 0, '     ', None, 'FDSNNO', 'SCHN', 'Q0       - ', 'Target Center', 0, 0],
                 ['2024-11-26T00:00:00', 4, '0022400038', 1, '9:00 pm ET', '20241126/SASUTA', 1610612762, 1610612759,
                  '2024', 0, '     ', None, 'KJZZ', 'FDSNSW', 'Q0       - ', 'Delta Center', 0, 0],
@@ -615,8 +616,23 @@ class NBA_Swaptimizer_Sims:
                 date_part = datetime.datetime.strptime(game[0], '%Y-%m-%dT%H:%M:%S')
                 # Convert '9:00 pm ET' to 24-hour format and handle timezone
                 time_part_str = game[4]
+                # Handle special cases like '1st OT'
+                if "1st OT" in time_part_str:
+                    time_part_str = time_part_str.replace("1st OT", "Q5")
+                    print(f"Replaced invalid time data with: '{time_part_str}'")
+
+                # Remove 'ET' and parse the time
+                try:
+                    # Clean the time string: remove 'ET' and strip extra whitespace
+                    clean_time_str = time_part_str.replace("ET", "").strip()
+                    time_part = datetime.datetime.strptime(clean_time_str, '%I:%M %p')
+                    print(f"Parsed time: {time_part.time()}")
+                except ValueError as e:
+                    print(f"Error parsing time: {e}")
+
                 # Remove 'ET' and strip whitespace, then parse time
-                time_part = datetime.datetime.strptime(time_part_str[:-3].strip(), '%I:%M %p')
+                # time_part = datetime.datetime.strptime(time_part_str[:-3].strip(), '%I:%M %p')
+
 
                 # Combine date and time parts
                 combined_datetime = datetime.datetime.combine(date_part.date(), time_part.time())

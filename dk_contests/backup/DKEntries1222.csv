@@ -1,0 +1,114 @@
+Entry ID,Contest Name,Contest ID,Entry Fee,PG,SG,SF,PF,C,G,F,UTIL,,Instructions
+4574434125,NBA $15K Four Point Play [20 Entry Max],172059101,$4,Andrew Nembhard (37110542) (LOCKED),Jalen Green (37110452) (LOCKED),Trey Murphy III (37110445),Chris Boucher (37110573) (LOCKED),Domantas Sabonis (37110380) (LOCKED),CJ McCollum (37110429),Jonathan Mogbo (37110504) (LOCKED),Dejounte Murray (37110403),,1. Column A lists all of your contest entries for this draftgroup
+4574434126,NBA $15K Four Point Play [20 Entry Max],172059101,$4,De'Aaron Fox (37110397) (LOCKED),Andrew Nembhard (37110542) (LOCKED),Dillon Brooks (37110525) (LOCKED),Chris Boucher (37110573) (LOCKED),Alperen Sengun (37110392) (LOCKED),CJ McCollum (37110429),Herbert Jones (37110492),Tyrese Haliburton (37110400) (LOCKED),,2. Your current lineup is listed next to each entry (blank for reservations)
+4574434127,NBA $15K Four Point Play [20 Entry Max],172059101,$4,Andrew Nembhard (37110542) (LOCKED),CJ McCollum (37110429),Herbert Jones (37110492),Chris Boucher (37110573) (LOCKED),Alperen Sengun (37110392) (LOCKED),Jamal Murray (37110418),Trey Murphy III (37110445),Pascal Siakam (37110409) (LOCKED),,3. You can change the lineup for an entry by entering the IDs of the players in the row next to that entry
+4574434128,NBA $15K Four Point Play [20 Entry Max],172059101,$4,Dejounte Murray (37110403),Jalen Green (37110452) (LOCKED),Amen Thompson (37110473) (LOCKED),Jabari Smith Jr. (37110480) (LOCKED),Domantas Sabonis (37110380) (LOCKED),CJ McCollum (37110429),Dillon Brooks (37110525) (LOCKED),Chris Boucher (37110573) (LOCKED),,4. Use data from the Name+ID column or the ID column; you cannot use just the player's name
+4574434129,NBA $15K Four Point Play [20 Entry Max],172059101,$4,Dejounte Murray (37110403),Andrew Nembhard (37110542) (LOCKED),Dillon Brooks (37110525) (LOCKED),Aaron Gordon (37110463),Alperen Sengun (37110392) (LOCKED),CJ McCollum (37110429),Trey Murphy III (37110445),Herbert Jones (37110492),,5. For faster processing only include entries you are changing in the file you upload
+4574434130,NBA $15K Four Point Play [20 Entry Max],172059101,$4,Fred VanVleet (37110426) (LOCKED),Jalen Green (37110452) (LOCKED),Dillon Brooks (37110525) (LOCKED),Chris Boucher (37110573) (LOCKED),Alperen Sengun (37110392) (LOCKED),Dejounte Murray (37110403),Aaron Gordon (37110463),Yves Missi (37110478),,
+,,,,,,,,,,,,,Position,Name + ID,Name,ID,Roster Position,Salary,Game Info,TeamAbbrev,AvgPointsPerGame
+,,,,,,,,,,,,,C,Nikola Jokic (37110378),Nikola Jokic,37110378,C/UTIL,12100,DEN@NOP 12/22/2024 07:00PM ET,DEN,68.67
+,,,,,,,,,,,,,C,Domantas Sabonis (37110380) (LOCKED),Domantas Sabonis,37110380,C/UTIL,9600,In Progress,SAC,50.43
+,,,,,,,,,,,,,PG/SF,Scottie Barnes (37110382) (LOCKED),Scottie Barnes,37110382,PG/SF/F/G/UTIL,9500,In Progress,TOR,45.42
+,,,,,,,,,,,,,PG/SF,RJ Barrett (37110387) (LOCKED),RJ Barrett,37110387,PG/SF/F/G/UTIL,9200,In Progress,TOR,43.48
+,,,,,,,,,,,,,C,Alperen Sengun (37110392) (LOCKED),Alperen Sengun,37110392,C/UTIL,8900,In Progress,HOU,44.64
+,,,,,,,,,,,,,PF,Zion Williamson (37110394),Zion Williamson,37110394,PF/F/UTIL,8700,DEN@NOP 12/22/2024 07:00PM ET,NOP,43.42
+,,,,,,,,,,,,,PG,De'Aaron Fox (37110397) (LOCKED),De'Aaron Fox,37110397,PG/G/UTIL,8400,In Progress,SAC,45.15
+,,,,,,,,,,,,,PG,Tyrese Haliburton (37110400) (LOCKED),Tyrese Haliburton,37110400,PG/G/UTIL,8300,In Progress,IND,40.19
+,,,,,,,,,,,,,PG,Dejounte Murray (37110403),Dejounte Murray,37110403,PG/G/UTIL,8200,DEN@NOP 12/22/2024 07:00PM ET,NOP,38.73
+,,,,,,,,,,,,,PG,Brandon Ingram (37110406),Brandon Ingram,37110406,PG/G/UTIL,8100,DEN@NOP 12/22/2024 07:00PM ET,NOP,39.19
+,,,,,,,,,,,,,PF,Pascal Siakam (37110409) (LOCKED),Pascal Siakam,37110409,PF/F/UTIL,7700,In Progress,IND,36.87
+,,,,,,,,,,,,,C,Jakob Poeltl (37110412) (LOCKED),Jakob Poeltl,37110412,C/UTIL,7500,In Progress,TOR,37.86
+,,,,,,,,,,,,,SF/PF,DeMar DeRozan (37110414) (LOCKED),DeMar DeRozan,37110414,SF/PF/F/UTIL,7300,In Progress,SAC,36
+,,,,,,,,,,,,,PG/SG,Jamal Murray (37110418),Jamal Murray,37110418,PG/SG/G/UTIL,7200,DEN@NOP 12/22/2024 07:00PM ET,DEN,37.35
+,,,,,,,,,,,,,PG/SG,Malik Monk (37110422) (LOCKED),Malik Monk,37110422,PG/SG/G/UTIL,7000,In Progress,SAC,31.19
+,,,,,,,,,,,,,PG,Fred VanVleet (37110426) (LOCKED),Fred VanVleet,37110426,PG/G/UTIL,6900,In Progress,HOU,34.17
+,,,,,,,,,,,,,PG/SG,CJ McCollum (37110429),CJ McCollum,37110429,PG/SG/G/UTIL,6800,DEN@NOP 12/22/2024 07:00PM ET,NOP,34.66
+,,,,,,,,,,,,,SG/SF,Bennedict Mathurin (37110433) (LOCKED),Bennedict Mathurin,37110433,SG/SF/F/G/UTIL,6700,In Progress,IND,29.76
+,,,,,,,,,,,,,SF/PF,Michael Porter Jr. (37110438),Michael Porter Jr.,37110438,SF/PF/F/UTIL,6600,DEN@NOP 12/22/2024 07:00PM ET,DEN,34.77
+,,,,,,,,,,,,,PG,Immanuel Quickley (37110442) (LOCKED),Immanuel Quickley,37110442,PG/G/UTIL,6500,In Progress,TOR,25.5
+,,,,,,,,,,,,,SG/SF,Trey Murphy III (37110445),Trey Murphy III,37110445,SG/SF/F/G/UTIL,6400,DEN@NOP 12/22/2024 07:00PM ET,NOP,32.44
+,,,,,,,,,,,,,C,Myles Turner (37110450) (LOCKED),Myles Turner,37110450,C/UTIL,6300,In Progress,IND,32.01
+,,,,,,,,,,,,,SG,Jalen Green (37110452) (LOCKED),Jalen Green,37110452,SG/G/UTIL,6200,In Progress,HOU,32.04
+,,,,,,,,,,,,,SG,Gradey Dick (37110455) (LOCKED),Gradey Dick,37110455,SG/G/UTIL,6100,In Progress,TOR,28.36
+,,,,,,,,,,,,,PG,Russell Westbrook (37110458),Russell Westbrook,37110458,PG/G/UTIL,6000,DEN@NOP 12/22/2024 07:00PM ET,DEN,30.72
+,,,,,,,,,,,,,C,Kelly Olynyk (37110461) (LOCKED),Kelly Olynyk,37110461,C/UTIL,5900,In Progress,TOR,17.85
+,,,,,,,,,,,,,PF,Aaron Gordon (37110463),Aaron Gordon,37110463,PF/F/UTIL,5800,DEN@NOP 12/22/2024 07:00PM ET,DEN,27.98
+,,,,,,,,,,,,,PG,Jose Alvarado (37110466),Jose Alvarado,37110466,PG/G/UTIL,5700,DEN@NOP 12/22/2024 07:00PM ET,NOP,24.23
+,,,,,,,,,,,,,SF/PF,Keegan Murray (37110469) (LOCKED),Keegan Murray,37110469,SF/PF/F/UTIL,5600,In Progress,SAC,27.62
+,,,,,,,,,,,,,SG/SF,Amen Thompson (37110473) (LOCKED),Amen Thompson,37110473,SG/SF/F/G/UTIL,5500,In Progress,HOU,27.31
+,,,,,,,,,,,,,C,Yves Missi (37110478),Yves Missi,37110478,C/UTIL,5400,DEN@NOP 12/22/2024 07:00PM ET,NOP,25.23
+,,,,,,,,,,,,,PF/C,Jabari Smith Jr. (37110480) (LOCKED),Jabari Smith Jr.,37110480,PF/C/F/UTIL,5300,In Progress,HOU,25.04
+,,,,,,,,,,,,,SG/SF,Christian Braun (37110484),Christian Braun,37110484,SG/SF/F/G/UTIL,5200,DEN@NOP 12/22/2024 07:00PM ET,DEN,27.58
+,,,,,,,,,,,,,PF,Ochai Agbaji (37110489) (LOCKED),Ochai Agbaji,37110489,PF/F/UTIL,5100,In Progress,TOR,23.27
+,,,,,,,,,,,,,SF/PF,Herbert Jones (37110492),Herbert Jones,37110492,SF/PF/F/UTIL,5000,DEN@NOP 12/22/2024 07:00PM ET,NOP,24.27
+,,,,,,,,,,,,,PG/SG,Keon Ellis (37110496) (LOCKED),Keon Ellis,37110496,PG/SG/G/UTIL,4900,In Progress,SAC,15.41
+,,,,,,,,,,,,,SF/PF,Tari Eason (37110500) (LOCKED),Tari Eason,37110500,SF/PF/F/UTIL,4800,In Progress,HOU,26.70
+,,,,,,,,,,,,,PF/C,Jonathan Mogbo (37110504) (LOCKED),Jonathan Mogbo,37110504,PF/C/F/UTIL,4800,In Progress,TOR,16.38
+,,,,,,,,,,,,,PG,T.J. McConnell (37110508) (LOCKED),T.J. McConnell,37110508,PG/G/UTIL,4700,In Progress,IND,23.18
+,,,,,,,,,,,,,PF/C,Obi Toppin (37110511) (LOCKED),Obi Toppin,37110511,PF/C/F/UTIL,4600,In Progress,IND,21.39
+,,,,,,,,,,,,,SG/SF,Kevin Huerter (37110515) (LOCKED),Kevin Huerter,37110515,SG/SF/F/G/UTIL,4600,In Progress,SAC,20.5
+,,,,,,,,,,,,,SG/SF,Bruce Brown (37110520) (LOCKED),Bruce Brown,37110520,SG/SF/F/G/UTIL,4500,In Progress,TOR,0
+,,,,,,,,,,,,,SF,Dillon Brooks (37110525) (LOCKED),Dillon Brooks,37110525,SF/F/UTIL,4500,In Progress,HOU,22.90
+,,,,,,,,,,,,,PG/SF,Brandon Boston Jr. (37110528),Brandon Boston Jr.,37110528,PG/SF/F/G/UTIL,4500,DEN@NOP 12/22/2024 07:00PM ET,NOP,24.40
+,,,,,,,,,,,,,SG/SF,Ja'Kobe Walter (37110537) (LOCKED),Ja'Kobe Walter,37110537,SG/SF/F/G/UTIL,4400,In Progress,TOR,15.20
+,,,,,,,,,,,,,PF/C,Trey Lyles (37110533) (LOCKED),Trey Lyles,37110533,PF/C/F/UTIL,4400,In Progress,SAC,14.26
+,,,,,,,,,,,,,PG/SG,Andrew Nembhard (37110542) (LOCKED),Andrew Nembhard,37110542,PG/SG/G/UTIL,4300,In Progress,IND,20.66
+,,,,,,,,,,,,,PG/SG,Jordan Hawkins (37110546),Jordan Hawkins,37110546,PG/SG/G/UTIL,4200,DEN@NOP 12/22/2024 07:00PM ET,NOP,19.90
+,,,,,,,,,,,,,SG/SF,Julian Strawther (37110550),Julian Strawther,37110550,SG/SF/F/G/UTIL,4100,DEN@NOP 12/22/2024 07:00PM ET,DEN,16.34
+,,,,,,,,,,,,,C,Bruno Fernando (37110555) (LOCKED),Bruno Fernando,37110555,C/UTIL,4000,In Progress,TOR,10.41
+,,,,,,,,,,,,,PG/SG,Davion Mitchell (37110557) (LOCKED),Davion Mitchell,37110557,PG/SG/G/UTIL,4000,In Progress,TOR,18.75
+,,,,,,,,,,,,,SF/PF,Aaron Nesmith (37110561) (LOCKED),Aaron Nesmith,37110561,SF/PF/F/UTIL,4000,In Progress,IND,17.75
+,,,,,,,,,,,,,PF,Peyton Watson (37110565),Peyton Watson,37110565,PF/F/UTIL,3900,DEN@NOP 12/22/2024 07:00PM ET,DEN,18.43
+,,,,,,,,,,,,,SG/SF,Ben Sheppard (37110568) (LOCKED),Ben Sheppard,37110568,SG/SF/F/G/UTIL,3800,In Progress,IND,12.16
+,,,,,,,,,,,,,PF,Chris Boucher (37110573) (LOCKED),Chris Boucher,37110573,PF/F/UTIL,3700,In Progress,TOR,19.22
+,,,,,,,,,,,,,PG,Jamal Shead (37110576) (LOCKED),Jamal Shead,37110576,PG/G/UTIL,3600,In Progress,TOR,11.23
+,,,,,,,,,,,,,SF,Jamison Battle (37110579) (LOCKED),Jamison Battle,37110579,SF/F/UTIL,3500,In Progress,TOR,10.8
+,,,,,,,,,,,,,SF/PF,Jarace Walker (37110586) (LOCKED),Jarace Walker,37110586,SF/PF/F/UTIL,3400,In Progress,IND,14.74
+,,,,,,,,,,,,,PF/C,Jeremiah Robinson-Earl (37110582),Jeremiah Robinson-Earl,37110582,PF/C/F/UTIL,3400,DEN@NOP 12/22/2024 07:00PM ET,NOP,16.31
+,,,,,,,,,,,,,PG,Aaron Holiday (37110593) (LOCKED),Aaron Holiday,37110593,PG/G/UTIL,3300,In Progress,HOU,8.24
+,,,,,,,,,,,,,SG,Doug McDermott (37110590) (LOCKED),Doug McDermott,37110590,SG/G/UTIL,3300,In Progress,SAC,5.80
+,,,,,,,,,,,,,PG/SG,Reed Sheppard (37110602) (LOCKED),Reed Sheppard,37110602,PG/SG/G/UTIL,3200,In Progress,HOU,8.78
+,,,,,,,,,,,,,SF/PF,Javonte Green (37110596),Javonte Green,37110596,SF/PF/F/UTIL,3200,DEN@NOP 12/22/2024 07:00PM ET,NOP,15.08
+,,,,,,,,,,,,,C,DeAndre Jordan (37110600),DeAndre Jordan,37110600,C/UTIL,3200,DEN@NOP 12/22/2024 07:00PM ET,DEN,9.83
+,,,,,,,,,,,,,C,Steven Adams (37110612) (LOCKED),Steven Adams,37110612,C/UTIL,3100,In Progress,HOU,8.63
+,,,,,,,,,,,,,C,Daniel Theis (37110606),Daniel Theis,37110606,C/UTIL,3100,DEN@NOP 12/22/2024 07:00PM ET,NOP,11.45
+,,,,,,,,,,,,,SF/PF,Hunter Tyson (37110608),Hunter Tyson,37110608,SF/PF/F/UTIL,3100,DEN@NOP 12/22/2024 07:00PM ET,DEN,6.54
+,,,,,,,,,,,,,SG,Garrett Temple (37110658) (LOCKED),Garrett Temple,37110658,SG/G/UTIL,3000,In Progress,TOR,3
+,,,,,,,,,,,,,PG,AJ Lawson (37110661) (LOCKED),AJ Lawson,37110661,PG/G/UTIL,3000,In Progress,TOR,0
+,,,,,,,,,,,,,C,Ulrich Chomche (37110664) (LOCKED),Ulrich Chomche,37110664,C/UTIL,3000,In Progress,TOR,3.25
+,,,,,,,,,,,,,PG/SF,Nate Williams (37110713) (LOCKED),Nate Williams,37110713,PG/SF/F/G/UTIL,3000,In Progress,HOU,4.42
+,,,,,,,,,,,,,SG,Jack McVeigh (37110718) (LOCKED),Jack McVeigh,37110718,SG/G/UTIL,3000,In Progress,HOU,2.83
+,,,,,,,,,,,,,PF/C,Jeff Green (37110721) (LOCKED),Jeff Green,37110721,PF/C/F/UTIL,3000,In Progress,HOU,4
+,,,,,,,,,,,,,C,Jock Landale (37110725) (LOCKED),Jock Landale,37110725,C/UTIL,3000,In Progress,HOU,10.05
+,,,,,,,,,,,,,C,N'Faly Dante (37110727) (LOCKED),N'Faly Dante,37110727,C/UTIL,3000,In Progress,HOU,0
+,,,,,,,,,,,,,SF/PF,Cam Whitmore (37110729) (LOCKED),Cam Whitmore,37110729,SF/PF/F/UTIL,3000,In Progress,HOU,8.33
+,,,,,,,,,,,,,SF/PF,Jae'Sean Tate (37110733) (LOCKED),Jae'Sean Tate,37110733,SF/PF/F/UTIL,3000,In Progress,HOU,6.27
+,,,,,,,,,,,,,C,Orlando Robinson (37110616) (LOCKED),Orlando Robinson,37110616,C/UTIL,3000,In Progress,SAC,6.64
+,,,,,,,,,,,,,PF/C,Isaac Jones (37110618) (LOCKED),Isaac Jones,37110618,PF/C/F/UTIL,3000,In Progress,SAC,7.14
+,,,,,,,,,,,,,C,Alex Len (37110625) (LOCKED),Alex Len,37110625,C/UTIL,3000,In Progress,SAC,5.96
+,,,,,,,,,,,,,SG/SF,Colby Jones (37110627) (LOCKED),Colby Jones,37110627,SG/SF/F/G/UTIL,3000,In Progress,SAC,3.75
+,,,,,,,,,,,,,PG,Jordan McLaughlin (37110632) (LOCKED),Jordan McLaughlin,37110632,PG/G/UTIL,3000,In Progress,SAC,5.54
+,,,,,,,,,,,,,PF,Jae Crowder (37110635) (LOCKED),Jae Crowder,37110635,PF/F/UTIL,3000,In Progress,SAC,8.79
+,,,,,,,,,,,,,SG,Mason Jones (37110638) (LOCKED),Mason Jones,37110638,SG/G/UTIL,3000,In Progress,SAC,5.17
+,,,,,,,,,,,,,PF,Isaiah Crawford (37110641) (LOCKED),Isaiah Crawford,37110641,PF/F/UTIL,3000,In Progress,SAC,1.25
+,,,,,,,,,,,,,PG,Devin Carter (37110644) (LOCKED),Devin Carter,37110644,PG/G/UTIL,3000,In Progress,SAC,0
+,,,,,,,,,,,,,C,Thomas Bryant (37110666) (LOCKED),Thomas Bryant,37110666,C/UTIL,3000,In Progress,IND,10.62
+,,,,,,,,,,,,,PF/C,James Johnson (37110668) (LOCKED),James Johnson,37110668,PF/C/F/UTIL,3000,In Progress,IND,3.33
+,,,,,,,,,,,,,PG/SG,Quenton Jackson (37110672) (LOCKED),Quenton Jackson,37110672,PG/SG/G/UTIL,3000,In Progress,IND,13.45
+,,,,,,,,,,,,,PG,Tristen Newton (37110676) (LOCKED),Tristen Newton,37110676,PG/G/UTIL,3000,In Progress,IND,0.8
+,,,,,,,,,,,,,PF/C,Enrique Freeman (37110679) (LOCKED),Enrique Freeman,37110679,PF/C/F/UTIL,3000,In Progress,IND,3.41
+,,,,,,,,,,,,,SG/SF,Johnny Furphy (37110683) (LOCKED),Johnny Furphy,37110683,SG/SF/F/G/UTIL,3000,In Progress,IND,7.03
+,,,,,,,,,,,,,C,Isaiah Jackson (37110688) (LOCKED),Isaiah Jackson,37110688,C/UTIL,3000,In Progress,IND,19.4
+,,,,,,,,,,,,,C,James Wiseman (37110690) (LOCKED),James Wiseman,37110690,C/UTIL,3000,In Progress,IND,7.25
+,,,,,,,,,,,,,C,Dario Saric (37110614),Dario Saric,37110614,C/UTIL,3000,DEN@NOP 12/22/2024 07:00PM ET,DEN,10.48
+,,,,,,,,,,,,,SF,Jamal Cain (37110622),Jamal Cain,37110622,SF/F/UTIL,3000,DEN@NOP 12/22/2024 07:00PM ET,NOP,10.70
+,,,,,,,,,,,,,C,Trey Jemison (37110647),Trey Jemison,37110647,C/UTIL,3000,DEN@NOP 12/22/2024 07:00PM ET,NOP,8.06
+,,,,,,,,,,,,,SG/SF,Antonio Reeves (37110649),Antonio Reeves,37110649,SG/SF/F/G/UTIL,3000,DEN@NOP 12/22/2024 07:00PM ET,NOP,7.42
+,,,,,,,,,,,,,PF/C,Karlo Matkovic (37110654),Karlo Matkovic,37110654,PF/C/F/UTIL,3000,DEN@NOP 12/22/2024 07:00PM ET,NOP,5.3
+,,,,,,,,,,,,,SG/SF,Spencer Jones (37110692),Spencer Jones,37110692,SG/SF/F/G/UTIL,3000,DEN@NOP 12/22/2024 07:00PM ET,DEN,2.62
+,,,,,,,,,,,,,PG/SG,Trey Alexander (37110697),Trey Alexander,37110697,PG/SG/G/UTIL,3000,DEN@NOP 12/22/2024 07:00PM ET,DEN,1.69
+,,,,,,,,,,,,,C,Zeke Nnaji (37110701),Zeke Nnaji,37110701,C/UTIL,3000,DEN@NOP 12/22/2024 07:00PM ET,DEN,2.55
+,,,,,,,,,,,,,C,PJ Hall (37110703),PJ Hall,37110703,C/UTIL,3000,DEN@NOP 12/22/2024 07:00PM ET,DEN,1.05
+,,,,,,,,,,,,,PG/SG,Jalen Pickett (37110705),Jalen Pickett,37110705,PG/SG/G/UTIL,3000,DEN@NOP 12/22/2024 07:00PM ET,DEN,5.65
+,,,,,,,,,,,,,C,Vlatko Cancar (37110709),Vlatko Cancar,37110709,C/UTIL,3000,DEN@NOP 12/22/2024 07:00PM ET,DEN,5.12
+,,,,,,,,,,,,,C,DaRon Holmes II (37110711),DaRon Holmes II,37110711,C/UTIL,3000,DEN@NOP 12/22/2024 07:00PM ET,DEN,0

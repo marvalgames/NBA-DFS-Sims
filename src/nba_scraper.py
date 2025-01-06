@@ -1,97 +1,82 @@
-import openpyxl
 import requests
-from bs4 import BeautifulSoup
 import pandas as pd
-import xlwings as xw
-# URL for the player stats page (example: 2023-24 season stats)
-url = 'https://www.basketball-reference.com/leagues/NBA_2024_totals.html'
+import os
 
-# Request the page content
-response = requests.get(url)
-soup = BeautifulSoup(response.content, 'html.parser')
-
-# Find the table and parse
-table = soup.find('table', {'id': 'totals_stats'})
-rows = table.find_all('tr')
-
-# Extract column headers
-headers = [th.text for th in rows[0].find_all('th')][1:]  # Skip the 'Rank' header
-
-# Extract player data
-data = []
-for row in rows[1:]:
-    cols = [td.text for td in row.find_all('td')]
-    if cols:  # Skip empty rows
-        data.append(cols)
-
-# Create DataFrame
-
-df = pd.DataFrame(data, columns=headers)
-
-# Display first few rows
-print(df.head())
-
-# Export DataFrame to CSV
-df.to_csv('../output/nba_stats.csv', index=False)
-#  '../dk_data/projections.csv'
-print("NBA stats exported to 'nba_stats.csv'")
+# The Odds API Key and URL
+api_key = 'd4237a37fb55c03282af5de33235e1d6'
+url = f'https://api.the-odds-api.com/v4/sports/basketball_nba/odds/?apiKey={api_key}&regions=us&markets=spreads,totals'
 
 
-# Define Excel file and sheet name
+# Fetch data from The Odds API
+def fetch_odds_data():
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        games = []
+        for event in data:
+            if "bookmakers" in event and event["bookmakers"]:
+                for bookmaker in event["bookmakers"]:
+                    # Only process DraftKings data
+                    if bookmaker["title"] != "DraftKings":
+                        continue
 
-xlsm_file_path = '../output/nba_dfs.xlsm'
-sheet_name = 'Totals'
+                    spread_market = None
+                    total_market = None
+                    for market in bookmaker.get("markets", []):
+                        if market["key"] == "spreads":
+                            spread_market = market
+                        elif market["key"] == "totals":
+                            total_market = market
 
-# Open the workbook and overwrite the sheet
-with xw.App(visible=False) as app:  # Use 'visible=True' if you want to see the process in Excel
-    wb = app.books.open(xlsm_file_path)
-    if sheet_name in [s.name for s in wb.sheets]:
-        wb.sheets[sheet_name].clear()  # Clear existing sheet content if sheet exists
+                    # Extract spreads and totals
+                    spread_data = {}
+                    if spread_market:
+                        for outcome in spread_market.get("outcomes", []):
+                            spread_data[outcome["name"]] = outcome.get("point", "N/A")
+
+                    # Extract game totals
+                    total = None
+                    if total_market:
+                        for outcome in total_market.get("outcomes", []):
+                            total = outcome.get("point", "N/A")
+
+                    # Create rows with only required columns
+                    for team, spread in spread_data.items():
+                        games.append({
+                            "Team": team,
+                            "Spread": spread,
+                            "Total": total
+                        })
+        return pd.DataFrame(games)
     else:
-        wb.sheets.add(sheet_name)  # Add sheet if it doesn't exist
-    sheet = wb.sheets[sheet_name]
+        raise Exception(f"Error fetching data: {response.status_code} - {response.text}")
 
-    # Write headers and data
-    sheet.range("A1").value = [headers] + data
 
-    # Save and close
-    wb.save()
-    wb.close()
+# Save to CSV
+def save_to_csv(dataframe):
+    # Set the path to save the CSV in the same folder as the script
+    csv_path = os.path.join(os.path.dirname(__file__), "odds_data.csv")
 
-print(f"Data successfully written to '{sheet_name}' sheet in '{xlsm_file_path}'")
+    # Save the DataFrame to a CSV file
+    dataframe.to_csv(csv_path, index=False)
+    print(f"Data successfully saved to {csv_path}")
 
-'''
-# Define the path to the .xlsm file and the sheet and table names
-xlsm_file_path = '../output/nba_dfs.xlsm'
-sheet_name = 'Totals'
-table_name = 'Totals'  # Replace with the actual table name in Excel
 
-# Open the workbook and access the sheet with xlwings
-with xw.App(visible=True) as app:  # Use 'visible=True' to see the updates in real-time
-    wb = app.books.open(xlsm_file_path)
-    sheet = wb.sheets[sheet_name]
+# Main function
+def main():
+    try:
+        # Fetch data
+        odds_data = fetch_odds_data()
 
-    # Access the Excel table
-    excel_table = sheet.api.ListObjects(table_name)
+        # Print the DataFrame to the console
+        print("Fetched Odds Data from DraftKings:")
+        print(odds_data)
 
-    # Clear current table data (excluding headers)
-    excel_table.DataBodyRange.ClearContents()
+        # Save to CSV
+        save_to_csv(odds_data)
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
-    # Write headers (if they need updating)
-    for col_num, header in enumerate(headers, start=1):
-        excel_table.HeaderRowRange.Cells(1, col_num).Value = header
 
-    # Write data to the table
-    #for row_num, row_data in enumerate(data, start=1):
-    #    for col_num, cell_value in enumerate(row_data, start=1):
-    #        excel_table.DataBodyRange.Cells(row_num, col_num).Value = cell_value
-
-    excel_table.DataBodyRange.Resize(len(data), len(data[0])).Value = data
-
-    # Save and close the workbook
-    wb.save()
-    wb.close()
-
-print(f"Data successfully written to '{table_name}' table in '{sheet_name}' sheet of '{xlsm_file_path}'")
-'''
-
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,27 @@
+C:\Python\pyVirtual\.venv\Scripts\python.exe "C:\Users\Ramos\My Drive (blbramos@gmail.com)\STATS\DFS 2024\NBA-DFS-Tools\src\main_app.py" 
+Script Directory: C:\Users\Ramos\My Drive (blbramos@gmail.com)\STATS\DFS 2024\NBA-DFS-Tools\src
+Run Swap Sim Path: C:\Users\Ramos\My Drive (blbramos@gmail.com)\STATS\DFS 2024\NBA-DFS-Tools\src\run_swap_sim.py
+Command to execute: ('C:\\Python\\pyVirtual\\.venv\\Scripts\\python.exe', 'C:\\Users\\Ramos\\My Drive (blbramos@gmail.com)\\STATS\\DFS 2024\\NBA-DFS-Tools\\src\\run_swap_sim.py', '5000', 'dk', '1', '10', '49000', '16')
+STDOUT: run_swap_sim.py has started.
+Arguments received: num_iterations=5000, site=dk, num_uniques=1
+Swap Sim Module Started
+Arguments: num_iterations=5000, site=dk, num_uniques=1, num_lineups_sets=10
+STDOUT: [['2024-12-16T00:00:00', 1, '0022401221', 2, '1st OT              ', '20241216/MIADET', 1610612765, 1610612748, '2024', 5, '0:15 ', None, 'FDSNDT', 'FDSNSU', 'Q5 0:15  - ', 'Little Caesars Arena', 0, 0], ['2024-12-16T00:00:00', 2, '0022401222', 3, 'Final               ', '20241216/PHICHA', 1610612766, 1610612755, '2024', 4, '     ', None, 'FDSNSE-CHA', 'NBCSP', 'Q4       - ', 'Spectrum Center', 0, 0], ['2024-12-16T00:00:00', 5, '0022401223', 2, '4th Qtr             ', '20241216/CHITOR', 1610612761, 1610612741, '2024', 4, '8:59 ', None, 'TSN', 'CHSN', 'Q4 8:59  - ', 'Scotiabank Arena', 0, 0], ['2024-12-16T00:00:00', 6, '0022401224', 2, '4th Qtr             ', '20241216/CLEBKN', 1610612751, 1610612739, '2024', 4, '8:00 ', None, 'YES', 'FDSNOH', 'Q4 8:00  - ', 'Barclays Center', 0, 0], ['2024-12-16T00:00:00', 9, '0022401225', 1, '10:00 pm ET', '20241216/DENSAC', 1610612758, 1610612743, '2024', 0, '     ', None, 'NBCSCA', 'ALT2', 'Q0       - ', 'Golden 1 Center', 0, 0], ['2024-12-16T00:00:00', 11, '0022401226', 1, '10:30 pm ET', '20241216/UTALAC', 1610612746, 1610612762, '2024', 0, '     ', None, 'FDSNSC', 'KJZZ', 'Q0       - ', 'Intuit Dome', 0, 0]]
+STDOUT: ['2024-12-16T00:00:00', 1, '0022401221', 2, '1st OT              ', '20241216/MIADET', 1610612765, 1610612748, '2024', 5, '0:15 ', None, 'FDSNDT', 'FDSNSU', 'Q5 0:15  - ', 'Little Caesars Arena', 0, 0]
+STDOUT: Error parsing start time for game 0022401221, ['2024-12-16T00:00:00', 1, '0022401221', 2, '1st OT              ', '20241216/MIADET', 1610612765, 1610612748, '2024', 5, '0:15 ', None, 'FDSNDT', 'FDSNSU', 'Q5 0:15  - ', 'Little Caesars Arena', 0, 0]
+STDERR: Traceback (most recent call last):
+  File "C:\Users\Ramos\My Drive (blbramos@gmail.com)\STATS\DFS 2024\NBA-DFS-Tools\src\run_swap_sim.py", line 40, in <module>
+STDERR: main()
+STDERR: File "C:\Users\Ramos\My Drive (blbramos@gmail.com)\STATS\DFS 2024\NBA-DFS-Tools\src\run_swap_sim.py", line 30, in main
+STDERR: sim_to = nba_swap_sims.NBA_Swaptimizer_Sims(num_iterations, site, num_uniques, num_lineup_sets, min_salary, projection_minimum)
+STDERR: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ramos\My Drive (blbramos@gmail.com)\STATS\DFS 2024\NBA-DFS-Tools\src\nba_swap_sims.py", line 90, in __init__
+STDERR: self.get_live_scores()
+STDERR: File "C:\Users\Ramos\My Drive (blbramos@gmail.com)\STATS\DFS 2024\NBA-DFS-Tools\src\nba_swap_sims.py", line 624, in get_live_scores
+STDERR: time_obj = datetime.strptime(time_str, "%I:%M %p")
+STDERR: ^^^^^^^^^^^^^^^^^
+AttributeError: module 'datetime' has no attribute 'strptime'
+STDERR: 
+Process finished with exit code 1 and status ExitStatus.NormalExit
+
+Process finished with exit code 0
