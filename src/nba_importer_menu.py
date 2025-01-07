@@ -861,13 +861,15 @@ class ImportTool(QMainWindow):
         columns = data[0]
         rows = data[1:]
         df = pd.DataFrame(rows, columns=columns)
-        df = df[df['DK Name'].notna() & (df['DK Name'] != "0") & (df['DK Name'] != "")]
-        slot_map = {
-            'PG': 3, 'SG': 3, 'SF': 3, 'PF': 3, 'C': 2,
-            'PG/SG': 4, 'SG/SF': 5, 'SF/PF': 4, 'PF/C': 4,
-            'G': 4, 'F': 4, 'UTIL': 1
-        }
-        df['Slot Count'] = df['Position'].map(slot_map).fillna(1).astype(int)
+
+        # Drop rows where 'DK Name' is empty or invalid
+        df = df[df['DK Name'].notna() & (df['DK Name'] != "0") & (df['DK Name'].str.strip() != "")]
+
+        # Ensure 'Salary' column is numeric and drop rows with invalid salaries
+        df['Salary'] = pd.to_numeric(df['Salary'], errors='coerce')  # Convert to numeric, setting invalid values to NaN
+        df = df.dropna(subset=['Salary'])  # Drop rows where 'Salary' is NaN
+        df['Salary'] = df['Salary'].astype(int)  # Convert to integers
+
         df['Contest ID'] = 1
         df['Player_Pool_Size'] = df.groupby('Contest ID')['DK Name'].transform('count')
         df['Games Played'] = df['Team'].nunique() // 2
@@ -1012,35 +1014,7 @@ class ImportTool(QMainWindow):
             # Return as pandas Series with original index
             return pd.Series(final_result, index=index)
 
-        def adjust_sd(predictions, desired_sd, target_sum, max_iter=100, tolerance=1e-6):
-            current_mean = predictions.mean()
-            current_sd = predictions.std()
 
-            if abs(current_sd - desired_sd) < tolerance:
-                # No adjustment needed
-                scaling_factor = target_sum / predictions.sum()
-                return predictions * scaling_factor
-
-            adjusted_predictions = predictions.copy()
-
-            for _ in range(max_iter):
-                # Adjust SD
-                adjusted_predictions = (adjusted_predictions - current_mean) * (desired_sd / current_sd) + current_mean
-
-                # Scale to match target sum
-                scaling_factor = target_sum / adjusted_predictions.sum()
-                adjusted_predictions *= scaling_factor
-                # print(adjusted_predictions)
-
-                # Recalculate mean and SD
-                current_mean = adjusted_predictions.mean()
-                current_sd = adjusted_predictions.std()
-
-                # Check convergence
-                if abs(current_sd - desired_sd) < tolerance:
-                    break
-
-            return adjusted_predictions
 
         def predict_sd(players):
             a = 0.0001  # Coefficient for Players^2
@@ -1056,10 +1030,10 @@ class ImportTool(QMainWindow):
         from tabulate import tabulate
         print("Generating predictions...")
 
-        shift_start = 0.20
-        shift_end = 1.00
+        shift_start = .10
+        shift_end = 1.0
         add = 1.0  # Constant to avoid log issues with zero
-        drift = 1.375
+        drift = 1.00
         players_per_game = 48  # Number of players per game to rank for the shift
         alpha = 0.99 # Weight for `Tournament Feasibility` in `Custom_Target`
 
@@ -1104,10 +1078,9 @@ class ImportTool(QMainWindow):
 
         player_pool = len(df)
         estimated_sd = predict_sd(player_pool)
-        estimated_sd_multiplier = 1.0 * (current_sum / 800.0) # Set your desired SD value
+        estimated_sd_multiplier = 1.000 * (current_sum / 800.0) # Set your desired SD value
         target_sd = estimated_sd * estimated_sd_multiplier
 
-        target_sum = 800  # Ensure predictions sum to 800
         print(f'Players : {player_pool} Sum: {current_sum} ')
         print(f'Estimated SD: {estimated_sd} Multiplier: {estimated_sd_multiplier} ')
         print(f'Target SD: {target_sd}')
@@ -1143,7 +1116,7 @@ class ImportTool(QMainWindow):
         result_df = df[keys_to_display].copy()
         result_df.loc[:, 'Predicted Ownership'] = result_df['Predicted Ownership'].round(2)
         result_df.loc[:, 'Dynamic_Shift'] = result_df['Dynamic_Shift'].round(3)
-        formatted_table = tabulate(result_df.head(25), headers='keys', tablefmt='pretty', showindex=False)
+        formatted_table = tabulate(result_df.head(50), headers='keys', tablefmt='pretty', showindex=False)
         print(formatted_table)
 
 

@@ -70,7 +70,7 @@ data['Value_Plus'] = points - salary / 1000 * 4
 data['Ceiling_Plus'] = max_points - salary / 1000 * 5
 
 
-shift_start = .40
+shift_start = 0.4
 shift_end = 1.0
 add = 1.0  # Constant to avoid log issues with zero
 drift = 1.35
@@ -137,28 +137,11 @@ results = []
 sd_comparison = []  # To store SD results for debugging
 alpha =  .99# Weight for tournament_feasibility
 data['Custom_Target'] = alpha * data['Tournament Feasibility'] + (1 - alpha) * data['Own Actual']
-#data['Custom_Target'].fillna(0, inplace=True)  # Ensure no NaN values
-
-
-
 
 for test_contest_id in data['Contest ID'].unique():
     print(f"\nProcessing Contest ID: {test_contest_id}")
 
-
     def rescale_with_bounds(predictions: pd.Series, target_sd=7.3229, min_bound=0.0):
-        """
-        Rescale numbers to target SD while maintaining relative ordering for small values.
-
-        Args:
-            predictions: pandas Series containing the predictions to scale
-            target_sd: target standard deviation (default 7.3229)
-            min_bound: minimum allowed value (default 0.0)
-
-        Returns:
-            pandas Series with scaled values, maintaining the same index as input
-        """
-        # Convert to numpy array but keep index for return
         numbers = predictions.values
         index = predictions.index
         original_mean = np.mean(numbers)
@@ -174,9 +157,6 @@ for test_contest_id in data['Contest ID'].unique():
             small_max = np.max(small_values)
 
         def objective(params):
-            # params[0] is scale factor for large values
-            # params[1] is scale factor for small values
-            # params[2] is shift for small values
 
             result = numbers.copy()
 
@@ -240,37 +220,6 @@ for test_contest_id in data['Contest ID'].unique():
 
 
 
-    def adjust_sd(predictions, desired_sd, target_sum, max_iter=100, tolerance=1e-6):
-        current_mean = predictions.mean()
-        current_sd = predictions.std()
-
-        if abs(current_sd - desired_sd) < tolerance:
-            # No adjustment needed
-            scaling_factor = target_sum / predictions.sum()
-            return predictions * scaling_factor
-
-        adjusted_predictions = predictions.copy()
-
-        for _ in range(max_iter):
-            # Adjust SD
-            adjusted_predictions = (adjusted_predictions - current_mean) * (desired_sd / current_sd) + current_mean
-
-            # Scale to match target sum
-            scaling_factor = target_sum / adjusted_predictions.sum()
-            adjusted_predictions *= scaling_factor
-            # print(adjusted_predictions)
-
-            # Recalculate mean and SD
-            current_mean = adjusted_predictions.mean()
-            current_sd = adjusted_predictions.std()
-
-            # Check convergence
-            if abs(current_sd - desired_sd) < tolerance:
-                break
-
-        return adjusted_predictions
-
-
     def predict_sd(players):
         # SD = 0.0006 × Players^2 −0.1509 × Players + 19.3296
         a = 0.0001  # Coefficient for Players^2
@@ -306,9 +255,9 @@ for test_contest_id in data['Contest ID'].unique():
     # Train CatBoost model
     cat_model = CatBoostRegressor(
         iterations=250,
-        learning_rate=0.10,
+        learning_rate=0.05,
         depth=6,
-        l2_leaf_reg=3,
+        l2_leaf_reg=12,
         loss_function='RMSE',
         random_state=42,
         verbose=0,
@@ -357,7 +306,7 @@ for test_contest_id in data['Contest ID'].unique():
 
     player_pool = len(test_data)
     estimated_sd = predict_sd(player_pool)
-    estimated_sd_multiplier = 0.950 * (current_sum / 800.0)  # Set your desired SD value
+    estimated_sd_multiplier = 0.935 * (current_sum / 800.0)  # Set your desired SD value
     target_sd = estimated_sd * estimated_sd_multiplier
 
     target_sum = 800  # Ensure predictions sum to 800
@@ -367,12 +316,10 @@ for test_contest_id in data['Contest ID'].unique():
 
     #adjusted_predictions = adjust_sd(predictions, target_sd, target_sum)
     adjusted_predictions = rescale_with_bounds(predictions, target_sd=target_sd)
-
-
-
     final_predictions = apply_low_minutes_cap(adjusted_predictions, test_data)
     test_data['Predicted Ownership'] = final_predictions
-    test_data.loc[test_data['Points Proj'] == 0.0, 'Predicted Ownership'] = (test_data.loc[test_data['Points Proj'] == 0, 'Salary'] / 1000000)
+    threshold = 1e-6
+    test_data.loc[test_data['Points Proj'] < threshold, 'Predicted Ownership'] = (test_data.loc[test_data['Points Proj'] == 0, 'Salary'] / 1000000)
     test_data['Predicted Ownership'] = test_data['Predicted Ownership'].clip(lower=0)
 
     final_predictions = test_data['Predicted Ownership']
@@ -404,6 +351,7 @@ for test_contest_id in data['Contest ID'].unique():
 
     # Reverse transformation on y_test for evaluation
     reverse_y_test = (y_test ** (1 / test_data['Dynamic_Shift'])) - add
+    #reverse_y_test = y_test
 
     # Evaluate metrics on the original scale
     cat_mse = mean_squared_error(reverse_y_test, final_predictions)
