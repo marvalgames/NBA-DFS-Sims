@@ -139,10 +139,10 @@ def custom_metric(y_true, y_pred):
     return np.mean(diff**2 + penalty**2)
 
 # Define CatBoost parameter configurations to test
-depth_values = [5, 6, 7]
-learning_rate_values = [0.05, 0.1]
+depth_values = [4, 5, 6, 7]
+learning_rate_values = [0.05, 0.1, 0.2]
 l2_leaf_reg_values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-iterations_values = [250]
+iterations_values = [250, 500, 750]
 
 # Store results
 configuration_results = []
@@ -155,7 +155,7 @@ for depth, learning_rate, l2_leaf_reg, iterations in product(depth_values, learn
     # Iterate through each contest as a test set
     results = []
     sd_comparison = []  # To store SD results for debugging
-    alpha =  .99# Weight for tournament_feasibility
+    alpha =  .999# Weight for tournament_feasibility
     data['Custom_Target'] = alpha * data['Tournament Feasibility'] + (1 - alpha) * data['Own Actual']
 
 
@@ -283,8 +283,9 @@ for depth, learning_rate, l2_leaf_reg, iterations in product(depth_values, learn
             players = np.array(players)  # Ensure the input is a NumPy array
             return a * (players ** 2) + b * players + c
 
+            # Split the data
 
-        # Split the data
+
         train_data = data[data['Contest ID'] != test_contest_id].copy()
         unfiltered_test_data = data[data['Contest ID'] == test_contest_id].copy()  # Keep unfiltered data for saving
         test_data = unfiltered_test_data.copy()  # Create a copy for filtering
@@ -300,12 +301,7 @@ for depth, learning_rate, l2_leaf_reg, iterations in product(depth_values, learn
         test_data = test_data[test_data['Rank'] <= rank_limit_test]
 
         X_train = train_data[features]
-        X_test = test_data[features]
-
-
         y_train = (train_data['Custom_Target'] + add) ** shift_start
-        #y_train = (train_data['Own Actual'] + add) ** shift_start
-        y_test = (test_data['Own Actual'] + add) ** shift_start
 
         # Train CatBoost model with current configuration
         cat_model = CatBoostRegressor(
@@ -320,6 +316,7 @@ for depth, learning_rate, l2_leaf_reg, iterations in product(depth_values, learn
 
         cat_model.fit(X_train, y_train)
 
+        X_test = test_data[features]
         # Generate preliminary predictions for ranking
         preliminary_predictions = cat_model.predict(X_test)
         test_data['Preliminary_Predictions'] = (preliminary_predictions ** (1 / shift_start)) - add
@@ -330,16 +327,22 @@ for depth, learning_rate, l2_leaf_reg, iterations in product(depth_values, learn
 
         rank_limit = test_data['Games Played'].iloc[0] * players_per_game
         test_data['Group_Rank'] = test_data['Scaled_Predictions'].rank(ascending=False)
+        test_data['Dynamic_Shift'] = test_data.apply(
+            lambda row: compute_dynamic_shift(row['Group_Rank'], rank_limit, shift_start, shift_end)
+            if row['Group_Rank'] <= rank_limit else shift_end, axis=1)
 
-        test_data['Dynamic_Shift'] = test_data.apply(lambda row: compute_dynamic_shift(row['Group_Rank'], rank_limit, shift_start, shift_end)
+        train_data['Group_Rank'] = test_data['Scaled_Predictions'].rank(ascending=False)
+        train_data['Dynamic_Shift'] = train_data.apply(
+            lambda row: compute_dynamic_shift(row['Group_Rank'], rank_limit, shift_start, shift_end)
             if row['Group_Rank'] <= rank_limit else shift_end, axis=1)
 
         y_test_dynamic = (test_data['Own Actual'] + add) ** test_data['Dynamic_Shift']
-        y_train_dynamic = (train_data['Custom_Target'] + add) ** shift_start
-        #y_train_dynamic = (train_data['Own Actual'] + add) ** shift_start
+        y_train_dynamic = (train_data['Custom_Target'] + add) ** train_data['Dynamic_Shift']
+        # y_train_dynamic = (train_data['Own Actual'] + add) ** shift_start
         cat_model.fit(X_train, y_train_dynamic)
 
         # Final predictions
+
         log_predictions = cat_model.predict(X_test)
         predictions = (log_predictions ** (1 / test_data['Dynamic_Shift'])) - add
 
@@ -361,7 +364,7 @@ for depth, learning_rate, l2_leaf_reg, iterations in product(depth_values, learn
 
         player_pool = len(test_data)
         estimated_sd = predict_sd(player_pool)
-        estimated_sd_multiplier = .935 * (current_sum / 800.0)  # Set your desired SD value
+        estimated_sd_multiplier = 0.935 * (current_sum / 800.0)  # Set your desired SD value
         target_sd = estimated_sd * estimated_sd_multiplier
 
         target_sum = 800  # Ensure predictions sum to 800
@@ -369,14 +372,13 @@ for depth, learning_rate, l2_leaf_reg, iterations in product(depth_values, learn
         print(f'Estimated SD: {estimated_sd} Multiplier: {estimated_sd_multiplier} ')
         print(f'Target SD: {target_sd}')
 
-        #adjusted_predictions = adjust_sd(predictions, target_sd, target_sum)
+        # adjusted_predictions = adjust_sd(predictions, target_sd, target_sum)
         adjusted_predictions = rescale_with_bounds(predictions, target_sd=target_sd)
-
-
-
         final_predictions = apply_low_minutes_cap(adjusted_predictions, test_data)
         test_data['Predicted Ownership'] = final_predictions
-        test_data.loc[test_data['Points Proj'] == 0.0, 'Predicted Ownership'] = (test_data.loc[test_data['Points Proj'] == 0, 'Salary'] / 1000000)
+        threshold = 1e-6
+        test_data.loc[test_data['Points Proj'] < threshold, 'Predicted Ownership'] = (
+                    test_data.loc[test_data['Points Proj'] == 0, 'Salary'] / 1000000)
         test_data['Predicted Ownership'] = test_data['Predicted Ownership'].clip(lower=0)
 
         final_predictions = test_data['Predicted Ownership']
@@ -385,15 +387,16 @@ for depth, learning_rate, l2_leaf_reg, iterations in product(depth_values, learn
         test_data['Predicted Ownership'] = final_predictions
 
         # Debugging: Print before scaling and final results
-        print(f"Before Scaling - Mean: {predictions.mean():.4f}, SD: {predictions.std():.4f} Total: {predictions.sum()}")
-        print(f"After Scaling Adjusted - Mean: {adjusted_predictions.mean():.4f}, SD: {adjusted_predictions.std():.4f}, Total: {adjusted_predictions.sum():.4f}")
-        print(f"After Scaling Final - Mean: {final_predictions.mean():.4f}, SD: {final_predictions.std():.4f}, Total: {final_predictions.sum():.4f}")
-
+        print(
+            f"Before Scaling - Mean: {predictions.mean():.4f}, SD: {predictions.std():.4f} Total: {predictions.sum()}")
+        print(
+            f"After Scaling Adjusted - Mean: {adjusted_predictions.mean():.4f}, SD: {adjusted_predictions.std():.4f}, Total: {adjusted_predictions.sum():.4f}")
+        print(
+            f"After Scaling Final - Mean: {final_predictions.mean():.4f}, SD: {final_predictions.std():.4f}, Total: {final_predictions.sum():.4f}")
 
         output_file = os.path.join('..', 'training', f'all_players_results_{test_contest_id}.csv')
         test_data.to_csv(output_file, index=False)
         print(f"Results saved to '{output_file}'.")
-
 
         # Calculate SDs
         own_actual_sd = test_data['Own Actual'].std()
@@ -407,7 +410,10 @@ for depth, learning_rate, l2_leaf_reg, iterations in product(depth_values, learn
         })
 
         # Reverse transformation on y_test for evaluation
-        reverse_y_test = (y_test ** (1 / test_data['Dynamic_Shift'])) - add
+        # y_test = test_data['Own Actual']
+
+        reverse_y_test = (y_test_dynamic ** (1 / test_data['Dynamic_Shift'])) - add
+        # reverse_y_test = y_test
 
         # Evaluate metrics on the original scale
         cat_mse = mean_squared_error(reverse_y_test, final_predictions)
@@ -438,23 +444,42 @@ for depth, learning_rate, l2_leaf_reg, iterations in product(depth_values, learn
             'Ownership Correlation': round(cat_corr, 3)
         })
 
+        # Group by 'Contest ID' and calculate the total 'Predicted Ownership' for each contest
+        predicted_ownership_totals = test_data.groupby('Contest ID')['Predicted Ownership'].sum().reset_index()
 
+        # Rename columns for clarity
+        predicted_ownership_totals.columns = ['Contest ID', 'Total Predicted Ownership']
 
+        # Round the totals to two decimal places for neatness
+        predicted_ownership_totals['Total Predicted Ownership'] = predicted_ownership_totals[
+            'Total Predicted Ownership'].round(2)
+
+        # Print the results as a table
+        print("\nTotal Predicted Ownership by Contest:")
+        print(tabulate(predicted_ownership_totals, headers='keys', tablefmt='pretty', floatfmt=".2f"))
+
+    # Display SD comparison
+    sd_comparison_df = pd.DataFrame(sd_comparison)
+    print("\nStandard Deviation Comparison by Contest:")
+    print(tabulate(sd_comparison_df, headers='keys', tablefmt='pretty', floatfmt=".3f"))
 
     # Create a summary DataFrame
     results_df = pd.DataFrame(results)
 
-# Calculate averages
+    # Calculate averages
     averages = {
         'Contest ID': 'Average',
         'Player Pool': round(results_df['Player Pool'].mean(), 1),
         'Test MSE': round(results_df['Test MSE'].mean(), 3),
         'Test R^2': round(results_df['Test R^2'].mean(), 3),
-        'Ownership Correlation': round(results_df['Ownership Correlation'].mean(),3)
+        'Ownership Correlation': round(results_df['Ownership Correlation'].mean(), 3)
     }
 
     # Append averages row to the DataFrame
     results_df = pd.concat([results_df, pd.DataFrame([averages])], ignore_index=True)
+
+
+
     results_df['Configuration'] = f"depth={depth}, learning_rate={learning_rate}, l2_leaf_reg={l2_leaf_reg}, iterations={iterations}"
 
     # Append configuration results to the master list

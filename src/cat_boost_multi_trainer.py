@@ -20,20 +20,9 @@ def apply_low_minutes_cap(predictions, data):
 file_path = 'dataset_with_feasibility_weighted.csv'
 data = pd.read_csv(file_path)
 
-# Step 2: Add Slot Count for Position Eligibility
-slot_map = {
-    'PG': 3, 'SG': 3, 'SF': 3, 'PF': 3, 'C': 2,
-    'PG/SG': 4, 'SG/SF': 5, 'SF/PF': 4, 'PF/C': 4, 'PG/SF': 5,
-    'G': 4, 'F': 4, 'UTIL': 1
-}
-
 top_n = 40  # Change this value as needed
 metric_field = 'Points Proj'  # Change to your desired metric field
 data['Team_Contest_Rank'] = data.groupby(['Contest ID', 'Team'])[metric_field].rank(ascending=False, method='dense')
-#data.loc[data['Team_Contest_Rank'] >= top_n, 'Points Proj'] = 0
-#data.loc[data['Team_Contest_Rank'] >= top_n, 'Value'] = 0
-
-
 
 salary = data['Salary']
 minutes = data['Minutes']
@@ -44,24 +33,21 @@ max_points = points + ceiling
 feasibility = data['Feasibility']
 games_played = data['Games Played']
 ceiling_value = ceiling / salary
-#feasibility = 1
 
-
-data['Slot Count'] = data['Position'].map(slot_map).fillna(1).astype(int)
 data['Player_Pool_Size'] = data.groupby('Contest ID')['DK Name'].transform('nunique')
 data['Feasibility'] = feasibility * minutes
-#data['Weighted Feasibility'] = data['Feasibility'] * (data['Slot Count'])
 data['Proj_Salary_Ratio'] = points / salary
+
 data['Normalized_Value'] = data.groupby('Contest ID')['Value'].transform(lambda x: (x - x.mean()) / x.std())
 data['Log_Proj'] = np.log1p(data['Points Proj'])
 data['Prev_Salary_Mean'] = data.groupby('DK Name')['Salary'].shift(1).rolling(window=3).mean()
-#data['Ceiling'] = (data['Points Proj'] + data['Ceiling'])
+
 data['Salary_Proj_Interaction'] = data['Salary'] * data['Points Proj']
 data['Value_Feasibility_Interaction'] = data['Value'] * data['Feasibility']
 data['Proj_Feasibility_Interaction'] = data['Points Proj'] * data['Feasibility']
+
 data['Low_Minutes_Flag'] = (data['Minutes'] <= 12).astype(int)
 data['Low_Minutes_Penalty'] = data['Low_Minutes_Flag'] * data['Points Proj']
-data['High_Points_Boost'] = ((data['Points Proj'] >= 50) & (data['Value'] >= 5.5)).astype(int)
 
 data['Team_Total_Points_Proj'] = data.groupby('Team')['Points Proj'].transform('sum')
 data['Player_Points_Percentage'] = data['Points Proj'] / data['Team_Total_Points_Proj']
@@ -70,13 +56,14 @@ data['Value_Plus'] = points - salary / 1000 * 4
 data['Ceiling_Plus'] = max_points - salary / 1000 * 5
 
 
-shift_start = 0.4
-shift_end = 1.0
+shift_start = 0.45
+shift_end = 0.50
 add = 1.0  # Constant to avoid log issues with zero
 drift = 1.35
 players_per_game = 48  # Number of players per game to rank for the shift
 
 features = [
+        'Minutes',
         'Tournament Feasibility',
         'Player_Points_Percentage',
         'Salary',
@@ -141,12 +128,22 @@ data['Custom_Target'] = alpha * data['Tournament Feasibility'] + (1 - alpha) * d
 for test_contest_id in data['Contest ID'].unique():
     print(f"\nProcessing Contest ID: {test_contest_id}")
 
-    def rescale_with_bounds(predictions: pd.Series, target_sd=7.3229, min_bound=0.0):
+
+    def rescale_with_bounds(predictions: pd.Series, target_sd=7.0, min_bound=0.0, top_boost=1.15):
+        """
+        Rescale numbers to target SD while maintaining relative ordering and boosting top values.
+
+        Args:
+            predictions: pandas Series containing the predictions to scale
+            target_sd: target standard deviation (default 7.0)
+            min_bound: minimum allowed value (default 0.0)
+            top_boost: factor to boost top values (default 1.15)
+        """
         numbers = predictions.values
         index = predictions.index
         original_mean = np.mean(numbers)
 
-        # Split into small (<1) and large values but scale both
+        # Split into small (<1) and large values
         small_mask = (numbers < 1)
         large_mask = ~small_mask
 
@@ -157,7 +154,6 @@ for test_contest_id in data['Contest ID'].unique():
             small_max = np.max(small_values)
 
         def objective(params):
-
             result = numbers.copy()
 
             # Scale large values
@@ -174,9 +170,11 @@ for test_contest_id in data['Contest ID'].unique():
             current_sd = np.std(result)
             current_mean = np.mean(result)
 
+            # Allow mean to go higher but not lower
+            mean_penalty = (np.maximum(0, original_mean - current_mean)) ** 2 * 800
+
             # Penalties
             sd_penalty = (current_sd - target_sd) ** 2 * 3000
-            mean_penalty = (current_mean - original_mean) ** 2 * 800
             min_penalty = np.sum(np.maximum(0, min_bound - result) ** 2) * 1000
 
             # Penalty for small values order violation
@@ -187,9 +185,9 @@ for test_contest_id in data['Contest ID'].unique():
 
             return sd_penalty + mean_penalty + min_penalty + order_penalty
 
-        # Initial guess
+        # Initial guess with higher scaling factor
         initial_guess = [
-            target_sd / np.std(numbers),  # large values scale
+            (target_sd / np.std(numbers)) * 1.1,  # increased initial scale for large values
             0.5,  # small values scale
             min_bound  # small values shift
         ]
@@ -212,10 +210,22 @@ for test_contest_id in data['Contest ID'].unique():
             small_scaled = small_scaled * result.x[1] + result.x[2]
             final_result[small_mask] = small_scaled
 
+        # Boost top values
+        if np.any(large_mask):
+            # Find top 10% threshold
+            top_threshold = np.percentile(final_result, 90)
+            top_mask = final_result >= top_threshold
+
+            # Apply progressive boost (more boost for higher values)
+            if np.any(top_mask):
+                boost_range = final_result[top_mask] - top_threshold
+                max_boost = boost_range / (np.max(final_result) - top_threshold)
+                boost_factor = 1 + (max_boost * (top_boost - 1))
+                final_result[top_mask] *= boost_factor
+
         # Ensure minimum bound
         final_result = np.maximum(final_result, min_bound)
 
-        # Return as pandas Series with original index
         return pd.Series(final_result, index=index)
 
 
@@ -245,26 +255,23 @@ for test_contest_id in data['Contest ID'].unique():
     test_data = test_data[test_data['Rank'] <= rank_limit_test]
 
     X_train = train_data[features]
-    X_test = test_data[features]
-
-
     y_train = (train_data['Custom_Target'] + add) ** shift_start
-    #y_train = (train_data['Own Actual'] + add) ** shift_start
-    y_test = (test_data['Own Actual'] + add) ** shift_start
 
     # Train CatBoost model
     cat_model = CatBoostRegressor(
         iterations=250,
         learning_rate=0.05,
-        depth=6,
-        l2_leaf_reg=12,
+        depth=7,
+        l2_leaf_reg=10,
         loss_function='RMSE',
         random_state=42,
         verbose=0,
-        feature_weights=[1 if col == 'Tournament Feasibility' else 1 for col in features]
+        feature_weights=[1.0 if col == 'Tournament Feasibility' else 1 for col in features]
     )
     cat_model.fit(X_train, y_train)
 
+
+    X_test = test_data[features]
     # Generate preliminary predictions for ranking
     preliminary_predictions = cat_model.predict(X_test)
     test_data['Preliminary_Predictions'] = (preliminary_predictions ** (1 / shift_start)) - add
@@ -275,16 +282,22 @@ for test_contest_id in data['Contest ID'].unique():
 
     rank_limit = test_data['Games Played'].iloc[0] * players_per_game
     test_data['Group_Rank'] = test_data['Scaled_Predictions'].rank(ascending=False)
-
     test_data['Dynamic_Shift'] = test_data.apply(lambda row: compute_dynamic_shift(row['Group_Rank'], rank_limit, shift_start, shift_end)
         if row['Group_Rank'] <= rank_limit else shift_end, axis=1)
 
+    train_data['Group_Rank'] = test_data['Scaled_Predictions'].rank(ascending=False)
+    train_data['Dynamic_Shift'] = train_data.apply(lambda row: compute_dynamic_shift(row['Group_Rank'], rank_limit, shift_start, shift_end)
+        if row['Group_Rank'] <= rank_limit else shift_end, axis=1)
+
+
+
     y_test_dynamic = (test_data['Own Actual'] + add) ** test_data['Dynamic_Shift']
-    y_train_dynamic = (train_data['Custom_Target'] + add) ** shift_start
+    y_train_dynamic = (train_data['Custom_Target'] + add) ** train_data['Dynamic_Shift']
     #y_train_dynamic = (train_data['Own Actual'] + add) ** shift_start
     cat_model.fit(X_train, y_train_dynamic)
 
     # Final predictions
+
     log_predictions = cat_model.predict(X_test)
     predictions = (log_predictions ** (1 / test_data['Dynamic_Shift'])) - add
 
@@ -350,7 +363,9 @@ for test_contest_id in data['Contest ID'].unique():
     })
 
     # Reverse transformation on y_test for evaluation
-    reverse_y_test = (y_test ** (1 / test_data['Dynamic_Shift'])) - add
+    #y_test = test_data['Own Actual']
+
+    reverse_y_test = (y_test_dynamic ** (1 / test_data['Dynamic_Shift'])) - add
     #reverse_y_test = y_test
 
     # Evaluate metrics on the original scale

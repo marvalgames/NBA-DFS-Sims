@@ -198,7 +198,7 @@ class ImportTool(QMainWindow):
         container.setLayout(layout)
         self.setCentralWidget(container)
 
-        #self.ownership_projections()
+        self.ownership_projections()
         #self.fetch_and_save_team_data_with_odds()
         #self.import_last10()
 
@@ -907,6 +907,7 @@ class ImportTool(QMainWindow):
 
         # Step 5: Define the exact feature list used during training
         features  = [
+            'Minutes',
             'Tournament Feasibility',
             'Player_Points_Percentage',
             'Salary',
@@ -934,12 +935,21 @@ class ImportTool(QMainWindow):
             scale = (rank / total) ** drift
             return shift_start + (shift_end - shift_start) * scale
 
-        def rescale_with_bounds(predictions: pd.Series, target_sd=7.3229, min_bound=0.0):
+        def rescale_with_bounds(predictions: pd.Series, target_sd=7.0, min_bound=0.0, top_boost=1.15):
+            """
+            Rescale numbers to target SD while maintaining relative ordering and boosting top values.
+
+            Args:
+                predictions: pandas Series containing the predictions to scale
+                target_sd: target standard deviation (default 7.0)
+                min_bound: minimum allowed value (default 0.0)
+                top_boost: factor to boost top values (default 1.15)
+            """
             numbers = predictions.values
             index = predictions.index
             original_mean = np.mean(numbers)
 
-            # Split into small (<1) and large values but scale both
+            # Split into small (<1) and large values
             small_mask = (numbers < 1)
             large_mask = ~small_mask
 
@@ -950,10 +960,6 @@ class ImportTool(QMainWindow):
                 small_max = np.max(small_values)
 
             def objective(params):
-                # params[0] is scale factor for large values
-                # params[1] is scale factor for small values
-                # params[2] is shift for small values
-
                 result = numbers.copy()
 
                 # Scale large values
@@ -970,9 +976,11 @@ class ImportTool(QMainWindow):
                 current_sd = np.std(result)
                 current_mean = np.mean(result)
 
+                # Allow mean to go higher but not lower
+                mean_penalty = (np.maximum(0, original_mean - current_mean)) ** 2 * 800
+
                 # Penalties
                 sd_penalty = (current_sd - target_sd) ** 2 * 3000
-                mean_penalty = (current_mean - original_mean) ** 2 * 800
                 min_penalty = np.sum(np.maximum(0, min_bound - result) ** 2) * 1000
 
                 # Penalty for small values order violation
@@ -983,9 +991,9 @@ class ImportTool(QMainWindow):
 
                 return sd_penalty + mean_penalty + min_penalty + order_penalty
 
-            # Initial guess
+            # Initial guess with higher scaling factor
             initial_guess = [
-                target_sd / np.std(numbers),  # large values scale
+                (target_sd / np.std(numbers)) * 1.1,  # increased initial scale for large values
                 0.5,  # small values scale
                 min_bound  # small values shift
             ]
@@ -1008,12 +1016,23 @@ class ImportTool(QMainWindow):
                 small_scaled = small_scaled * result.x[1] + result.x[2]
                 final_result[small_mask] = small_scaled
 
+            # Boost top values
+            if np.any(large_mask):
+                # Find top 10% threshold
+                top_threshold = np.percentile(final_result, 90)
+                top_mask = final_result >= top_threshold
+
+                # Apply progressive boost (more boost for higher values)
+                if np.any(top_mask):
+                    boost_range = final_result[top_mask] - top_threshold
+                    max_boost = boost_range / (np.max(final_result) - top_threshold)
+                    boost_factor = 1 + (max_boost * (top_boost - 1))
+                    final_result[top_mask] *= boost_factor
+
             # Ensure minimum bound
             final_result = np.maximum(final_result, min_bound)
 
-            # Return as pandas Series with original index
             return pd.Series(final_result, index=index)
-
 
 
         def predict_sd(players):
@@ -1030,10 +1049,10 @@ class ImportTool(QMainWindow):
         from tabulate import tabulate
         print("Generating predictions...")
 
-        shift_start = .10
-        shift_end = 1.0
+        shift_start = .35
+        shift_end = .50
         add = 1.0  # Constant to avoid log issues with zero
-        drift = 1.00
+        drift = 1.35
         players_per_game = 48  # Number of players per game to rank for the shift
         alpha = 0.99 # Weight for `Tournament Feasibility` in `Custom_Target`
 
@@ -1078,7 +1097,7 @@ class ImportTool(QMainWindow):
 
         player_pool = len(df)
         estimated_sd = predict_sd(player_pool)
-        estimated_sd_multiplier = 1.000 * (current_sum / 800.0) # Set your desired SD value
+        estimated_sd_multiplier = 1.00* (current_sum / 800.0) # Set your desired SD value
         target_sd = estimated_sd * estimated_sd_multiplier
 
         print(f'Players : {player_pool} Sum: {current_sum} ')
@@ -1087,7 +1106,7 @@ class ImportTool(QMainWindow):
 
 
         #adjusted_predictions = adjust_sd(predictions, target_sd, target_sum)
-        adjusted_predictions = rescale_with_bounds(predictions, target_sd=target_sd)
+        adjusted_predictions = rescale_with_bounds(predictions, target_sd=target_sd, top_boost=2.00)
 
 
         final_predictions = self.apply_low_minutes_cap(adjusted_predictions, df)
@@ -1118,8 +1137,6 @@ class ImportTool(QMainWindow):
         result_df.loc[:, 'Dynamic_Shift'] = result_df['Dynamic_Shift'].round(3)
         formatted_table = tabulate(result_df.head(50), headers='keys', tablefmt='pretty', showindex=False)
         print(formatted_table)
-
-
         print("Writing results back to Excel...")
         predicted_ownership_col_index = columns.index('Own Proj') + 1
         predicted_values = df['Predicted Ownership'].values.tolist()  # Convert to list for Excel
@@ -1130,8 +1147,6 @@ class ImportTool(QMainWindow):
         print(f"Ownership Projections successfully exported.")
         wb.close()
         app.quit()
-
-
 
 
 
