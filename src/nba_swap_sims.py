@@ -837,7 +837,6 @@ class NBA_Swaptimizer_Sims:
         random_keys = random.sample(list(self.contest_lineups.keys()), 5)
         print("contest lineup keys")
         print(len(self.contest_lineups.keys()))
-        #print('-------------------------------------------------------')
         self.num_lineups = len(self.contest_lineups)
         if len(players_not_found) > 0:
             print(f'Players not found: {set(players_not_found)}')
@@ -1945,134 +1944,162 @@ class NBA_Swaptimizer_Sims:
                 payout_index += lineup_count
         return combined_result_array
 
+    def print(self, *args, **kwargs):
+        """Override to allow progress capturing"""
+        print(*args, **kwargs)
+
     def run_tournament_simulation(self):
-        print(f"Running {self.num_iterations} simulations")
-        print(f"Number of unique field lineups: {len(self.field_lineups.keys())}")
-        print(self.matchups)
+        self.print(f"Running {self.num_iterations} simulations")
+        self.print(f"Number of unique field lineups: {len(self.field_lineups.keys())}")
+        self.print(f"Matchups: {self.matchups}")
+
+        # Initialize lineup_to_int mapping at the start
+        self.lineup_to_int = {lineup: index for index, lineup in enumerate(self.field_lineups.keys())}
 
         start_time = time.time()
         temp_fpts_dict = {}
-        size = self.num_iterations
-        game_simulation_params = []
 
         if len(self.matchups) > 0:
+            total_games = len(self.matchups)
+            self.print(f"Processing {total_games} games...")
+            game_simulation_params = []
+
             for m in self.matchups:
                 game_simulation_params.append(
-                    (
-                        m[0],
-                        self.teams_dict[m[0]],
-                        m[1],
-                        self.teams_dict[m[1]],
-                        self.num_iterations,
-                        self.roster_construction,
-                        self.time_remaining_dict
-                    )
+                    (m[0], self.teams_dict[m[0]], m[1], self.teams_dict[m[1]],
+                     self.num_iterations, self.roster_construction, self.time_remaining_dict)
                 )
+
             with multiprocessing.Pool() as pool:
-                results = pool.starmap(self.run_simulation_for_game, game_simulation_params)
+                async_results = [pool.apply_async(self.run_simulation_for_game, args)
+                                 for args in game_simulation_params]
 
-            for res in results:
-                temp_fpts_dict.update(res)
+                completed = 0
+                for result in async_results:
+                    temp_fpts_dict.update(result.get())
+                    completed += 1
+                    self.print(f"Completed game simulations: {completed}/{total_games}")
 
+        self.print("Processing field lineups...")
         field_lineups_count = np.array(
             [self.field_lineups[idx]["Count"] for idx in self.field_lineups.keys()]
         )
 
+        self.print("Calculating fantasy points...")
         fpts_array = np.zeros((len(self.field_lineups), self.num_iterations))
-        kcelite_idx = None
+        total_lineups = len(self.field_lineups)
 
         for index, (keys, values) in enumerate(self.field_lineups.items()):
-            # Skip empty or invalid player IDs
-            fpts_sim = sum([temp_fpts_dict[player] for player in values["Lineup"] if player in temp_fpts_dict])
+            if index % max(1, total_lineups // 20) == 0:
+                self.print(f"Processing lineup {index + 1}/{total_lineups}")
+            fpts_sim = sum([temp_fpts_dict[player] for player in values["Lineup"]
+                            if player in temp_fpts_dict])
             fpts_array[index] = fpts_sim
 
+        self.print("Starting ranking computations...")
+        self.print("Converting array to float16...")
         fpts_array = fpts_array.astype(np.float16)
-        ranks = np.argsort(-fpts_array, axis=0).astype(np.uint32)
 
-        # count wins, top 10s vectorized
+        self.print(f"Computing rankings for {self.num_iterations} iterations...")
+        # Break this into chunks for progress reporting
+        chunk_size = 1000  # Process 1000 iterations at a time
+        total_chunks = (self.num_iterations + chunk_size - 1) // chunk_size
+        ranks_list = []
+
+        for i in range(0, self.num_iterations, chunk_size):
+            end_idx = min(i + chunk_size, self.num_iterations)
+            chunk_ranks = np.argsort(-fpts_array[:, i:end_idx], axis=0).astype(np.uint32)
+            ranks_list.append(chunk_ranks)
+            self.print(f"Processed rankings chunk {(i // chunk_size) + 1}/{total_chunks}")
+
+        self.print("Combining ranking results...")
+        ranks = np.concatenate(ranks_list, axis=1)
+
+        self.print("Calculating win statistics...")
         wins, win_counts = np.unique(ranks[0, :], return_counts=True)
 
-        top1pct, top1pct_counts = np.unique(
-            ranks[0: math.ceil(0.01 * len(self.field_lineups)), :], return_counts=True
+        self.print("Calculating cash statistics...")
+        cashes, cash_counts = np.unique(
+            ranks[0:len(list(self.payout_structure.values()))], return_counts=True
         )
 
+        self.print("Calculating top 1% statistics...")
+        top1pct_cutoff = math.ceil(0.01 * len(self.field_lineups))
+        top1pct, top1pct_counts = np.unique(
+            ranks[0:top1pct_cutoff, :], return_counts=True
+        )
+
+        self.print("Setting up payout structure...")
         payout_array = np.array(list(self.payout_structure.values()))
-        # subtract entry fee
         payout_array = payout_array - self.entry_fee
         l_array = np.full(
             shape=self.field_size - len(payout_array), fill_value=-self.entry_fee
         )
         payout_array = np.concatenate((payout_array, l_array))
 
-        cashes, cash_counts = np.unique(ranks[0:len(list(self.payout_structure.values()))], return_counts=True)
-
-
-        # Convert to DataFrame
-        # fpts_df = pd.DataFrame(fpts_array)
-        # Save as CSV with specified formatting
-        # fpts_df.to_csv("fpts_array.csv", index=False, float_format="%.2f")
-
-        # Split the simulation indices into chunks
-        self.lineup_to_int = {lineup: index for index, lineup in enumerate(self.field_lineups.keys())}
+        self.print("Starting ROI calculations...")
         field_lineups_keys_array = np.array([self.lineup_to_int[lineup] for lineup in self.field_lineups.keys()])
+        chunk_size = max(1000, self.num_iterations // 16)  # Ensure reasonable chunk size
 
-        chunk_size = self.num_iterations // 16  # Adjust chunk size as needed
-        simulation_chunks = [
-            (
-                ranks[:, i: min(i + chunk_size, self.num_iterations)].copy(),
-                payout_array,
-                self.entry_fee,
-                field_lineups_keys_array,
-                self.use_contest_data,
-                field_lineups_count,
-            )  # Adding field_lineups_count here
-            for i in range(0, self.num_iterations, chunk_size)
-        ]
+        simulation_chunks = []
+        for i in range(0, self.num_iterations, chunk_size):
+            end_idx = min(i + chunk_size, self.num_iterations)
+            simulation_chunks.append(
+                (
+                    ranks[:, i:end_idx].copy(),
+                    payout_array,
+                    self.entry_fee,
+                    field_lineups_keys_array,
+                    self.use_contest_data,
+                    field_lineups_count,
+                )
+            )
 
-        # Use the pool to process the chunks in parallel
+        self.print(f"Processing {len(simulation_chunks)} ROI chunks...")
         with multiprocessing.Pool() as pool:
-            results = pool.map(self.calculate_payouts, simulation_chunks)
+            async_results = [pool.apply_async(self.calculate_payouts, (chunk,))
+                             for chunk in simulation_chunks]
 
+            completed = 0
+            results = []
+            for result in async_results:
+                results.append(result.get())
+                completed += 1
+                self.print(f"Processed ROI chunk: {completed}/{len(simulation_chunks)}")
+
+        self.print("Finalizing results...")
         combined_result_array = np.sum(results, axis=0)
 
         total_sum = 0
         index_to_key = list(self.field_lineups.keys())
+
+        self.print("Updating final statistics...")
         for idx, roi in enumerate(combined_result_array):
-            lineup_int_key = self.lineup_to_int[index_to_key[idx]]  # Convert lineup string to integer key
-            lineup_count = self.field_lineups[index_to_key[idx]]["Count"]  # Access using the original lineup string
+            lineup_key = index_to_key[idx]
+            lineup_count = self.field_lineups[lineup_key]["Count"]
             total_sum += roi * lineup_count
-            self.field_lineups[index_to_key[idx]]["ROI"] += roi  # Access using the original lineup string
+            self.field_lineups[lineup_key]["ROI"] += roi
 
-        # Second loop for wins and top1pct
-        # Assuming wins and top1pct are arrays or lists of integers that correspond to the mapped lineup integers
-
-        for lineup_key in self.field_lineups.keys():  # loop through lineup strings
-            lineup_int_key = self.lineup_to_int[lineup_key]  # Convert lineup string to integer key
+        for lineup_key in self.field_lineups.keys():
+            lineup_int_key = self.lineup_to_int[lineup_key]
 
             if lineup_int_key in wins:
-                # Find the index where lineup_int_key is found in wins array
                 win_index = np.where(wins == lineup_int_key)[0][0]
                 self.field_lineups[lineup_key]["Wins"] += win_counts[win_index]
 
             if lineup_int_key in top1pct:
-                # Find the index where lineup_int_key is found in top1pct array
                 top1pct_index = np.where(top1pct == lineup_int_key)[0][0]
                 self.field_lineups[lineup_key]["Top1Percent"] += top1pct_counts[top1pct_index]
 
             if lineup_int_key in cashes:
-                # Find the index where lineup_int_key is found in cashes array
                 cash_index = np.where(cashes == lineup_int_key)[0][0]
                 self.field_lineups[lineup_key]["Cashes"] += cash_counts[cash_index]
 
         end_time = time.time()
         diff = end_time - start_time
-        print(
-            str(self.num_iterations)
-            + " tournament simulations finished in "
-            + str(diff)
-            + " seconds. Outputting."
+        self.print(
+            f"{self.num_iterations} tournament simulations finished in {diff} seconds. Outputting."
         )
-
 
     def output(self):
 
@@ -2232,7 +2259,6 @@ class NBA_Swaptimizer_Sims:
                         unique_players[player]["Cashes"] = (
                                 unique_players[player]["Cashes"] + val["Cashes"]
                         )
-                        #print(f"Value ROI: ", roi_value)
                         unique_players[player]["Top1Percent"] = (
                                 unique_players[player]["Top1Percent"] + val["Top1Percent"]
                         )
@@ -2297,7 +2323,6 @@ class NBA_Swaptimizer_Sims:
             if entry_id in entryid_to_output:
                 new_output_lineups.append(entryid_to_output[entry_id])
                 print(entryid_to_output[entry_id])
-                print('------------------------------------------------------')
             else:
                 print(f"Warning: Entry ID {entry_id} not found in output_lineups mapping.")
 
@@ -2450,7 +2475,6 @@ class NBA_Swaptimizer_Sims:
         # Ensure locked players remain in their positions
         for i, position in enumerate(POSITIONS):
             if is_locked(i):
-                #print(f"Position {position} is locked. Ensuring locked player stays in position.")
                 lineup[i] = old_lineup[position]  # Force the locked player into their position in the new lineup
 
         # Iterate over non-locked positions for adjustments

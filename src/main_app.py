@@ -13,6 +13,71 @@ from nba_optimizer import NBA_Optimizer
 # In your MainApp class, add these imports at the top:
 from PyQt6.QtCore import QThread, pyqtSignal
 
+
+class SwapSimThread(QThread):
+    progress = pyqtSignal(str)
+    finished = pyqtSignal(bool, str)
+
+    def __init__(self, num_iterations, site, num_uniques, num_lineups, min_salary, projection_minimum):
+        super().__init__()
+        self.num_iterations = num_iterations
+        self.site = site
+        self.num_uniques = num_uniques
+        self.num_lineups = num_lineups
+        self.min_salary = min_salary
+        self.projection_minimum = projection_minimum
+        self.script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    def run(self):
+        try:
+            run_swap_sim_path = os.path.join(self.script_dir, 'run_swap_sim.py')
+
+            if not os.path.exists(run_swap_sim_path):
+                raise FileNotFoundError(f"Swap sim script not found at {run_swap_sim_path}")
+
+            # Create a QProcess within the thread
+            process = QProcess()
+            process.setWorkingDirectory(os.path.dirname(run_swap_sim_path))
+
+            # Connect process signals
+            process.readyReadStandardOutput.connect(
+                lambda: self.handle_output(process.readAllStandardOutput()))
+            process.readyReadStandardError.connect(
+                lambda: self.handle_output(process.readAllStandardError()))
+
+            # Build command
+            command = [
+                sys.executable,
+                run_swap_sim_path,
+                str(self.num_iterations),
+                self.site,
+                str(self.num_uniques),
+                str(self.num_lineups),
+                str(self.min_salary),
+                str(self.projection_minimum)
+            ]
+
+            # Start process and wait for it to finish
+            process.start(command[0], command[1:])
+            process.waitForFinished(-1)  # Wait indefinitely
+
+            if process.exitCode() == 0:
+                self.finished.emit(True, "Swap simulation completed successfully!")
+            else:
+                self.finished.emit(False, f"Process exited with code {process.exitCode()}")
+
+        except Exception as e:
+            self.finished.emit(False, str(e))
+
+    def handle_output(self, output):
+        message = output.data().decode().strip()
+        if message:
+            self.progress.emit(message)
+
+
+
+
+
 class SimulationThread(QThread):
     progress = pyqtSignal(str)
     finished = pyqtSignal(bool, str)
@@ -340,13 +405,24 @@ class NbaSimsMainMenu(QMainWindow):
         try:
             self.update_parameters()
 
-            # Create progress dialog
+            # Create progress dialog with fixed size
             self.progress_dialog = QProgressDialog("Running simulation...", None, 0, 0, self)
             self.progress_dialog.setWindowModality(Qt.WindowModality.WindowModal)
             self.progress_dialog.setMinimumDuration(0)
             self.progress_dialog.setCancelButton(None)
             self.progress_dialog.setAutoClose(False)
             self.progress_dialog.setAutoReset(False)
+
+            # Set fixed size for the dialog
+            self.progress_dialog.setFixedWidth(400)  # Adjust width as needed
+            self.progress_dialog.setMinimumHeight(100)  # Minimum height
+
+            # Make the label inside the dialog wrap text
+            label = self.progress_dialog.findChild(QLabel)
+            if label:
+                label.setWordWrap(True)
+                label.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
+
 
             # Prepare simulation parameters
             sim_params = (self.site, self.field_size, self.num_iterations,
@@ -378,70 +454,122 @@ class NbaSimsMainMenu(QMainWindow):
         else:
             QMessageBox.critical(self, "Error", f"An error occurred: {message}")
 
+    # def run_swap_sim(self):
+    #     self.update_parameters()
+    #
+    #     # Get the directory of the current script
+    #     if getattr(sys, 'frozen', False):  # Running in PyInstaller bundle
+    #         script_dir = sys._MEIPASS
+    #     else:  # Running in development
+    #         script_dir = os.path.dirname(os.path.abspath(__file__))
+    #
+    #     run_swap_sim_path = os.path.join(script_dir, 'run_swap_sim.py')
+    #
+    #     # Debugging: Print the script paths
+    #     print(f"Script Directory: {script_dir}")
+    #     print(f"Run Swap Sim Path: {run_swap_sim_path}")
+    #
+    #     # Ensure the script exists
+    #     if not os.path.exists(run_swap_sim_path):
+    #         print(f"Error: Script not found at {run_swap_sim_path}")
+    #         return
+    #
+    #     # Set up QProcess
+    #     working_dir = os.path.dirname(run_swap_sim_path)
+    #     self.process = QProcess(self)
+    #     self.process.setWorkingDirectory(working_dir)
+    #     self.process.readyReadStandardOutput.connect(self.handle_stdout)
+    #     self.process.readyReadStandardError.connect(self.handle_stderr)
+    #     self.process.finished.connect(self.on_process_finished)
+    #     self.process.errorOccurred.connect(self.handle_process_error)
+    #
+    #     # Use the system Python interpreter
+    #     python_executable = sys.executable  # System Python in PATH
+    #
+    #     # Build the command
+    #     command = (
+    #         python_executable,  # Python interpreter
+    #         run_swap_sim_path,  # Script path
+    #         str(self.num_iterations),  # num_iterations argument
+    #         self.site,  # site argument
+    #         str(self.num_uniques),  # num_uniques argument
+    #         str(self.num_lineups),
+    #         str(self.min_salary),
+    #         str(self.projection_minimum)
+    #     )
+    #
+    #     # Debugging: Print the command
+    #     print("Command to execute:", command)
+    #
+    #     # Start the process with all arguments
+    #     self.process.start(command[0], command[1:])
+    #
+    #
+    # def handle_stdout(self):
+    #     output = self.process.readAllStandardOutput().data().decode().strip()
+    #     print(f"STDOUT: {output}")
+    #
+    # def handle_stderr(self):
+    #     error = self.process.readAllStandardError().data().decode().strip()
+    #     print(f"STDERR: {error}")
+    #
+    # def on_process_finished(self, exit_code, exit_status):
+    #     print(f"Process finished with exit code {exit_code} and status {exit_status}")
+    #
+    # def handle_process_error(self, error):
+    #     print(f"Process error occurred: {error}")
+
     def run_swap_sim(self):
-        self.update_parameters()
+        try:
+            self.update_parameters()
 
-        # Get the directory of the current script
-        if getattr(sys, 'frozen', False):  # Running in PyInstaller bundle
-            script_dir = sys._MEIPASS
-        else:  # Running in development
-            script_dir = os.path.dirname(os.path.abspath(__file__))
+            # Create progress dialog with fixed size
+            self.progress_dialog = QProgressDialog("Running swap simulation...", None, 0, 0, self)
+            self.progress_dialog.setWindowModality(Qt.WindowModality.WindowModal)
+            self.progress_dialog.setMinimumDuration(0)
+            self.progress_dialog.setCancelButton(None)
+            self.progress_dialog.setAutoClose(False)
+            self.progress_dialog.setAutoReset(False)
 
-        run_swap_sim_path = os.path.join(script_dir, 'run_swap_sim.py')
+            # Set fixed size for the dialog
+            self.progress_dialog.setFixedWidth(400)  # Adjust width as needed
+            self.progress_dialog.setMinimumHeight(100)  # Minimum height
+            self.progress_dialog.setMaximumHeight(200)  # Minimum height
 
-        # Debugging: Print the script paths
-        print(f"Script Directory: {script_dir}")
-        print(f"Run Swap Sim Path: {run_swap_sim_path}")
-
-        # Ensure the script exists
-        if not os.path.exists(run_swap_sim_path):
-            print(f"Error: Script not found at {run_swap_sim_path}")
-            return
-
-        # Set up QProcess
-        working_dir = os.path.dirname(run_swap_sim_path)
-        self.process = QProcess(self)
-        self.process.setWorkingDirectory(working_dir)
-        self.process.readyReadStandardOutput.connect(self.handle_stdout)
-        self.process.readyReadStandardError.connect(self.handle_stderr)
-        self.process.finished.connect(self.on_process_finished)
-        self.process.errorOccurred.connect(self.handle_process_error)
-
-        # Use the system Python interpreter
-        python_executable = sys.executable  # System Python in PATH
-
-        # Build the command
-        command = (
-            python_executable,  # Python interpreter
-            run_swap_sim_path,  # Script path
-            str(self.num_iterations),  # num_iterations argument
-            self.site,  # site argument
-            str(self.num_uniques),  # num_uniques argument
-            str(self.num_lineups),
-            str(self.min_salary),
-            str(self.projection_minimum)
-        )
-
-        # Debugging: Print the command
-        print("Command to execute:", command)
-
-        # Start the process with all arguments
-        self.process.start(command[0], command[1:])
+            # Make the label inside the dialog wrap text
+            label = self.progress_dialog.findChild(QLabel)
+            if label:
+                label.setWordWrap(True)
+                label.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
 
 
-    def handle_stdout(self):
-        output = self.process.readAllStandardOutput().data().decode().strip()
-        print(f"STDOUT: {output}")
+            # Create and setup swap simulation thread
+            self.swap_thread = SwapSimThread(
+                self.num_iterations,
+                self.site,
+                self.num_uniques,
+                self.num_lineups,
+                self.min_salary,
+                self.projection_minimum
+            )
 
-    def handle_stderr(self):
-        error = self.process.readAllStandardError().data().decode().strip()
-        print(f"STDERR: {error}")
+            # Connect signals
+            self.swap_thread.progress.connect(self.update_progress)
+            self.swap_thread.finished.connect(self.swap_sim_finished)
 
-    def on_process_finished(self, exit_code, exit_status):
-        print(f"Process finished with exit code {exit_code} and status {exit_status}")
+            # Start simulation
+            self.swap_thread.start()
+            self.progress_dialog.show()
 
-    def handle_process_error(self, error):
-        print(f"Process error occurred: {error}")
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An error occurred: {e}")
+
+    def swap_sim_finished(self, success, message):
+        self.progress_dialog.close()
+        if success:
+            QMessageBox.information(self, "Success", message)
+        else:
+            QMessageBox.critical(self, "Error", f"An error occurred: {message}")
 
 
 if __name__ == "__main__":
