@@ -475,7 +475,7 @@ class NBA_Swaptimizer_Sims:
         # Format the date into the string format the NBA API expects ('YYYY-MM-DD')
         # Late Swap Realtime
         live = self.live_games
-        #live = False
+        live = False
         if live:
             formatted_date = game_date.strftime('%Y-%m-%d')
         else:
@@ -496,7 +496,7 @@ class NBA_Swaptimizer_Sims:
                  1610612741, '2024', 2, '7:47 ', None, 'MNMT', 'CHSN', 'Q2 7:47  - ', 'Capital One Arena', 0, 0],
                 ['2024-11-26T00:00:00', 2, '0022400036', 2, '1st Qtr             ', '20241126/MILMIA', 1610612748,
                  1610612749, '2024', 1, '7:43 ', 'TNT', None, None, 'Q1 7:43  - TNT', 'Kaseya Center', 0, 0],
-                ['2024-11-26T00:00:00', 3, '0022400037', 1, 'Tipoff', '20241126/HOUMIN', 1610612750, 1610612745,
+                ['2024-11-26T00:00:00', 3, '0022400037', 1, '8:00 pm ET', '20241126/HOUMIN', 1610612750, 1610612745,
                  '2024', 0, '     ', None, 'FDSNNO', 'SCHN', 'Q0       - ', 'Target Center', 0, 0],
                 ['2024-11-26T00:00:00', 4, '0022400038', 1, '9:00 pm ET', '20241126/SASUTA', 1610612762, 1610612759,
                  '2024', 0, '     ', None, 'KJZZ', 'FDSNSW', 'Q0       - ', 'Delta Center', 0, 0],
@@ -2217,8 +2217,6 @@ class NBA_Swaptimizer_Sims:
 
             for val in self.field_lineups.values():
                 player_count += 1
-                print(f"-------------------Calculating Exposures---Player: {player_count}  -----------------" )
-
                 for player in val["Lineup"]:
                     # Ensure ROI is a valid number
                     roi_value = val["ROI"] / 100 if not (math.isnan(val["ROI"]) or val["ROI"] is None) else 0

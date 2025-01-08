@@ -220,6 +220,7 @@ class NbaSimsMainMenu(QMainWindow):
         self.use_contest_data_checkbox.setChecked(self.use_contest_data)
         layout.addWidget(self.use_contest_data_checkbox, 0, 3)
 
+
         layout.addWidget(QLabel("Number of Iterations:", self), 2, 0)  # Row 0, Column 0
         self.num_iterations_input = QLineEdit(str(self.num_iterations), self)
         layout.addWidget(self.num_iterations_input, 2, 1)  # Row 0, Column 1
@@ -310,7 +311,8 @@ class NbaSimsMainMenu(QMainWindow):
             self.site = "dk"
             self.num_lineups = int(self.num_lineups_input.text())
             self.num_uniques = int(self.num_uniques_input.text())
-            self.use_contest_data = self.use_contest_data_checkbox.isChecked()
+            #self.use_contest_data = self.use_contest_data_checkbox.isChecked()
+            self.use_contest_data = True
             self.field_size = int(self.field_size_input.text())
             #self.use_file_upload = self.use_file_upload_checkbox.isChecked()
             self.num_iterations = int(self.num_iterations_input.text())

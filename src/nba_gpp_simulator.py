@@ -1324,6 +1324,22 @@ class NBA_GPP_Simulator:
 
         with mp.Pool() as pool:
             results = pool.starmap(self.run_simulation_for_game, game_simulation_params)
+            completed_games = 0
+
+            def update_progress(result):
+                nonlocal completed_games
+                completed_games += 1
+                self.print(f"Completed game simulations: {completed_games}/{total_games}")
+                results.append(result)
+
+            # Start all tasks
+            tasks = [pool.apply_async(self.run_simulation_for_game, args=params, callback=update_progress)
+                     for params in game_simulation_params]
+
+            # Wait for all tasks to complete
+            for task in tasks:
+                task.wait()
+
 
         self.print("Processing simulation results...")
         for res in results:
@@ -1340,15 +1356,6 @@ class NBA_GPP_Simulator:
         total_lineups = len(self.field_lineups)
         processed_lineups = 0
 
-        # for index, values in self.field_lineups.items():
-        #     try:
-        #         fpts_sim = sum([temp_fpts_dict[player] for player in values["Lineup"]])
-        #         fpts_array[index] = fpts_sim
-        #     except KeyError:
-        #         for player in values["Lineup"]:
-        #             if player not in temp_fpts_dict.keys():
-        #                 self.print(f"Missing player: {player}")
-
         for index, values in self.field_lineups.items():
             try:
                 fpts_sim = sum([temp_fpts_dict[player] for player in values["Lineup"]])
@@ -1361,20 +1368,40 @@ class NBA_GPP_Simulator:
                     if player not in temp_fpts_dict.keys():
                         self.print(f"Missing player: {player}")
 
-        self.print("Computing rankings and statistics...")
+        self.print("Starting ranking computations...")
+        self.print("Converting array to float16...")
         fpts_array = fpts_array.astype(np.float16)
-        ranks = np.argsort(-fpts_array, axis=0).astype(np.uint32)
 
-        self.print("Calculating wins and cashes...")
+        self.print(f"Computing rankings for {self.num_iterations} iterations...")
+        # Break this into chunks for progress reporting
+        chunk_size = 1000  # Process 1000 iterations at a time
+        total_chunks = (self.num_iterations + chunk_size - 1) // chunk_size
+        ranks_list = []
+
+        for i in range(0, self.num_iterations, chunk_size):
+            end_idx = min(i + chunk_size, self.num_iterations)
+            chunk_ranks = np.argsort(-fpts_array[:, i:end_idx], axis=0).astype(np.uint32)
+            ranks_list.append(chunk_ranks)
+            self.print(f"Processed rankings chunk {(i // chunk_size) + 1}/{total_chunks}")
+
+        self.print("Combining ranking results...")
+        ranks = np.concatenate(ranks_list, axis=1)
+
+        self.print("Calculating win statistics...")
         wins, win_counts = np.unique(ranks[0, :], return_counts=True)
+
+        self.print("Calculating cash statistics...")
         cashes, cash_counts = np.unique(
             ranks[0: len(list(self.payout_structure.values()))], return_counts=True
         )
+
+        self.print("Calculating top 1% statistics...")
+        top1pct_cutoff = math.ceil(0.01 * len(self.field_lineups))
         top1pct, top1pct_counts = np.unique(
-            ranks[0: math.ceil(0.01 * len(self.field_lineups)), :], return_counts=True
+            ranks[0:top1pct_cutoff, :], return_counts=True
         )
 
-        self.print("Processing payout structure...")
+        self.print("Setting up payout structure...")
         payout_array = np.array(list(self.payout_structure.values()))
         payout_array = payout_array - self.entry_fee
         l_array = np.full(
@@ -1382,41 +1409,101 @@ class NBA_GPP_Simulator:
         )
         payout_array = np.concatenate((payout_array, l_array))
 
-        self.print("Calculating ROI in chunks...")
+        self.print("Starting ROI calculations...")
         field_lineups_keys_array = np.array(list(self.field_lineups.keys()))
-        chunk_size = self.num_iterations // 16
+        chunk_size = max(1000, self.num_iterations // 16)  # Ensure reasonable chunk size
 
-        simulation_chunks = [
-            (
-                ranks[:, i: min(i + chunk_size, self.num_iterations)].copy(),
-                payout_array,
-                self.entry_fee,
-                field_lineups_keys_array,
-                self.use_contest_data,
-                field_lineups_count,
+        simulation_chunks = []
+        for i in range(0, self.num_iterations, chunk_size):
+            end_idx = min(i + chunk_size, self.num_iterations)
+            simulation_chunks.append(
+                (
+                    ranks[:, i:end_idx].copy(),
+                    payout_array,
+                    self.entry_fee,
+                    field_lineups_keys_array,
+                    self.use_contest_data,
+                    field_lineups_count,
+                )
             )
-            for i in range(0, self.num_iterations, chunk_size)
-        ]
 
         total_chunks = len(simulation_chunks)
         completed_chunks = 0
         results = []
 
+        self.print(f"Processing {total_chunks} ROI chunks...")
         with mp.Pool() as pool:
             def chunk_callback(result):
                 nonlocal completed_chunks
                 completed_chunks += 1
-                self.print(f"Processed ROI chunks: {completed_chunks}/{total_chunks}")
+                self.print(f"Processed ROI chunk: {completed_chunks}/{total_chunks}")
                 results.append(result)
 
-            # Start all chunk tasks
             chunk_tasks = [pool.apply_async(self.calculate_payouts, args=(chunk,), callback=chunk_callback)
                            for chunk in simulation_chunks]
 
-            # Wait for all chunks to complete
             for task in chunk_tasks:
                 task.wait()
 
+
+
+
+        # self.print("Computing rankings and statistics...")
+        # fpts_array = fpts_array.astype(np.float16)
+        # ranks = np.argsort(-fpts_array, axis=0).astype(np.uint32)
+        #
+        # self.print("Calculating wins and cashes...")
+        # wins, win_counts = np.unique(ranks[0, :], return_counts=True)
+        # cashes, cash_counts = np.unique(
+        #     ranks[0: len(list(self.payout_structure.values()))], return_counts=True
+        # )
+        # top1pct, top1pct_counts = np.unique(
+        #     ranks[0: math.ceil(0.01 * len(self.field_lineups)), :], return_counts=True
+        # )
+        #
+        # self.print("Processing payout structure...")
+        # payout_array = np.array(list(self.payout_structure.values()))
+        # payout_array = payout_array - self.entry_fee
+        # l_array = np.full(
+        #     shape=self.field_size - len(payout_array), fill_value=-self.entry_fee
+        # )
+        # payout_array = np.concatenate((payout_array, l_array))
+        #
+        # self.print("Calculating ROI in chunks...")
+        # field_lineups_keys_array = np.array(list(self.field_lineups.keys()))
+        # chunk_size = self.num_iterations // 16
+        #
+        # simulation_chunks = [
+        #     (
+        #         ranks[:, i: min(i + chunk_size, self.num_iterations)].copy(),
+        #         payout_array,
+        #         self.entry_fee,
+        #         field_lineups_keys_array,
+        #         self.use_contest_data,
+        #         field_lineups_count,
+        #     )
+        #     for i in range(0, self.num_iterations, chunk_size)
+        # ]
+        #
+        # total_chunks = len(simulation_chunks)
+        # completed_chunks = 0
+        # results = []
+        #
+        # with mp.Pool() as pool:
+        #     def chunk_callback(result):
+        #         nonlocal completed_chunks
+        #         completed_chunks += 1
+        #         self.print(f"Processed ROI chunks: {completed_chunks}/{total_chunks}")
+        #         results.append(result)
+        #
+        #     # Start all chunk tasks
+        #     chunk_tasks = [pool.apply_async(self.calculate_payouts, args=(chunk,), callback=chunk_callback)
+        #                    for chunk in simulation_chunks]
+        #
+        #     # Wait for all chunks to complete
+        #     for task in chunk_tasks:
+        #         task.wait()
+        #
 
         # Use the pool to process the chunks in parallel
         #with mp.Pool() as pool:
