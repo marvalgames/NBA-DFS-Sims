@@ -2,16 +2,56 @@ import json
 import os
 import sys
 
-from PyQt6.QtCore import QProcess
-from PyQt6.QtWidgets import QGridLayout  # Add this import
+from PyQt6.QtCore import QProcess, Qt
+from PyQt6.QtWidgets import QGridLayout, QTextEdit, QProgressDialog  # Add this import
 from PyQt6.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit, QCheckBox, QPushButton, \
     QSpinBox, QMessageBox, QApplication
 
 import nba_gpp_simulator
 from nba_optimizer import NBA_Optimizer
 
+# In your MainApp class, add these imports at the top:
+from PyQt6.QtCore import QThread, pyqtSignal
 
-class MainApp(QMainWindow):
+class SimulationThread(QThread):
+    progress = pyqtSignal(str)
+    finished = pyqtSignal(bool, str)
+
+    def __init__(self, sim_params):
+        super().__init__()
+        self.sim_params = sim_params
+
+    def run(self):
+        try:
+            # Unpack parameters
+            site, field_size, num_iterations, use_contest_data, use_file_upload, min_salary, projection_minimum = self.sim_params
+
+            sim = nba_gpp_simulator.NBA_GPP_Simulator(site, field_size, num_iterations,
+                                                      use_contest_data, use_file_upload,
+                                                      min_salary, projection_minimum)
+
+            # Override print function
+            def progress_print(*args):
+                message = ' '.join(map(str, args))
+                self.progress.emit(message)
+                print(message)  # Keep console output
+
+            sim.print = progress_print
+
+            self.progress.emit("Generating field lineups...")
+            sim.generate_field_lineups()
+
+            self.progress.emit("Running tournament simulation...")
+            sim.run_tournament_simulation()
+
+            self.progress.emit("Outputting results...")
+            sim.output()
+
+            self.finished.emit(True, "Tournament simulation completed!")
+        except Exception as e:
+            self.finished.emit(False, str(e))
+
+class NbaSimsMainMenu(QMainWindow):
     def __init__(self):
         super().__init__()
         self.executor = None
@@ -257,6 +297,11 @@ class MainApp(QMainWindow):
         btn_quit.clicked.connect(self.close)
         layout.addWidget(btn_quit, 13, 0, 1, 3)  # Row 11, spans 2 columns
 
+        # Add progress display
+        self.progress_display = QTextEdit(self)
+        self.progress_display.setReadOnly(True)
+        layout.addWidget(self.progress_display, 14, 0, 1, 3)  # Add below quit button
+
         central_widget.setLayout(layout)
 
     def update_parameters(self):
@@ -292,15 +337,44 @@ class MainApp(QMainWindow):
     def run_sim(self):
         try:
             self.update_parameters()
-            sim = nba_gpp_simulator.NBA_GPP_Simulator(self.site, self.field_size, self.num_iterations,
-                                                      self.use_contest_data, self.use_file_upload, self.min_salary,
-                                                      self.projection_minimum)
-            sim.generate_field_lineups()
-            sim.run_tournament_simulation()
-            sim.output()
-            QMessageBox.information(self, "Success", "Tournament simulation completed!")
+
+            # Create progress dialog
+            self.progress_dialog = QProgressDialog("Running simulation...", None, 0, 0, self)
+            self.progress_dialog.setWindowModality(Qt.WindowModality.WindowModal)
+            self.progress_dialog.setMinimumDuration(0)
+            self.progress_dialog.setCancelButton(None)
+            self.progress_dialog.setAutoClose(False)
+            self.progress_dialog.setAutoReset(False)
+
+            # Prepare simulation parameters
+            sim_params = (self.site, self.field_size, self.num_iterations,
+                          self.use_contest_data, self.use_file_upload,
+                          self.min_salary, self.projection_minimum)
+
+            # Create and setup simulation thread
+            self.sim_thread = SimulationThread(sim_params)
+            self.sim_thread.progress.connect(self.update_progress)
+            self.sim_thread.finished.connect(self.simulation_finished)
+
+            # Start simulation
+            self.sim_thread.start()
+            self.progress_dialog.show()
+
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {e}")
+
+    def update_progress(self, message):
+        # Update both progress dialog and text display
+        self.progress_dialog.setLabelText(message)
+        self.progress_display.append(message)
+        QApplication.processEvents()
+
+    def simulation_finished(self, success, message):
+        self.progress_dialog.close()
+        if success:
+            QMessageBox.information(self, "Success", message)
+        else:
+            QMessageBox.critical(self, "Error", f"An error occurred: {message}")
 
     def run_swap_sim(self):
         self.update_parameters()
@@ -372,7 +446,7 @@ if __name__ == "__main__":
     import multiprocessing
     multiprocessing.freeze_support()  # Necessary for Windows
     app = QApplication(sys.argv)
-    main_window = MainApp()
+    main_window = NbaSimsMainMenu()
     main_window.show()
     sys.exit(app.exec())
 

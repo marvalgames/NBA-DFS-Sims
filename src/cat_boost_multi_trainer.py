@@ -1,13 +1,12 @@
-import os
 import pickle
 import numpy as np
 import pandas as pd
-from catboost import CatBoostRegressor
-from scipy.stats import pearsonr
-from sklearn.metrics import mean_squared_error, r2_score
-from tabulate import tabulate
 from scipy.optimize import minimize
+import pickle
 
+import numpy as np
+import pandas as pd
+from scipy.optimize import minimize
 
 
 # Post-process predictions to apply the 1% ownership cap for low minutes players
@@ -85,7 +84,6 @@ features = [
 ]
 
 
-import numpy as np
 # Parameters for dynamic shift
 
 # Function to compute dynamic shift
@@ -100,8 +98,7 @@ pd.set_option('display.max_rows', None)
 # Variable for the ownership threshold
 min_ownership_threshold = 0.0  # Minimum 1% ownership to include in SD calculation
 
-from catboost import CatBoostRegressor, Pool
-from catboost.utils import eval_metric
+from catboost import CatBoostRegressor
 import numpy as np
 import pandas as pd
 from sklearn.metrics import mean_squared_error, r2_score
@@ -109,14 +106,6 @@ from scipy.stats import pearsonr
 import os
 from tabulate import tabulate
 
-# Function to calculate a custom metric
-def custom_metric(y_true, y_pred):
-    """
-    Example custom metric: Penalize predictions > 100
-    """
-    diff = y_pred - y_true
-    penalty = np.maximum(0, y_pred - 100)  # Penalize predictions over 100
-    return np.mean(diff**2 + penalty**2)
 
 
 # Iterate through each contest as a test set
@@ -130,15 +119,6 @@ for test_contest_id in data['Contest ID'].unique():
 
 
     def rescale_with_bounds(predictions: pd.Series, target_sd=7.0, min_bound=0.0, top_boost=1.15):
-        """
-        Rescale numbers to target SD while maintaining relative ordering and boosting top values.
-
-        Args:
-            predictions: pandas Series containing the predictions to scale
-            target_sd: target standard deviation (default 7.0)
-            min_bound: minimum allowed value (default 0.0)
-            top_boost: factor to boost top values (default 1.15)
-        """
         numbers = predictions.values
         index = predictions.index
         original_mean = np.mean(numbers)

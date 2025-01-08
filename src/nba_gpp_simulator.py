@@ -1299,13 +1299,14 @@ class NBA_GPP_Simulator:
         return combined_result_array
 
     def run_tournament_simulation(self):
-        print(f"Running {self.num_iterations} simulations")
-        print(f"Number of unique field lineups: {len(self.field_lineups.keys())}")
+        self.print(f"Running {self.num_iterations} simulations")
+        self.print(f"Number of unique field lineups: {len(self.field_lineups.keys())}")
 
         start_time = time.time()
         temp_fpts_dict = {}
-        size = self.num_iterations
+
         game_simulation_params = []
+        self.print("Setting up game simulations...")
         for m in self.matchups:
             game_simulation_params.append(
                 (
@@ -1317,70 +1318,109 @@ class NBA_GPP_Simulator:
                     self.roster_construction,
                 )
             )
+
+        total_games = len(game_simulation_params)
+        self.print(f"Starting simulations for {total_games} games...")
+
         with mp.Pool() as pool:
             results = pool.starmap(self.run_simulation_for_game, game_simulation_params)
 
+        self.print("Processing simulation results...")
         for res in results:
             temp_fpts_dict.update(res)
 
         # generate arrays for every sim result for each player in the lineup and sum
+        self.print("Generating fantasy points arrays...")
         fpts_array = np.zeros(shape=(len(self.field_lineups), self.num_iterations))
         # converting payout structure into an np friendly format, could probably just do this in the load contest function
         field_lineups_count = np.array(
             [self.field_lineups[idx]["Count"] for idx in self.field_lineups.keys()]
         )
 
+        total_lineups = len(self.field_lineups)
+        processed_lineups = 0
+
+        # for index, values in self.field_lineups.items():
+        #     try:
+        #         fpts_sim = sum([temp_fpts_dict[player] for player in values["Lineup"]])
+        #         fpts_array[index] = fpts_sim
+        #     except KeyError:
+        #         for player in values["Lineup"]:
+        #             if player not in temp_fpts_dict.keys():
+        #                 self.print(f"Missing player: {player}")
+
         for index, values in self.field_lineups.items():
             try:
                 fpts_sim = sum([temp_fpts_dict[player] for player in values["Lineup"]])
-                # store lineup fpts sum in 2d np array where index (row) corresponds to index of field_lineups and columns are the fpts from each sim
                 fpts_array[index] = fpts_sim
-            except KeyError:
+                processed_lineups += 1
+                if processed_lineups % max(1, total_lineups // 20) == 0:  # Update every 5%
+                    self.print(f"Processed lineups: {processed_lineups}/{total_lineups}")
+            except KeyError as e:
                 for player in values["Lineup"]:
                     if player not in temp_fpts_dict.keys():
-                        print(player)
+                        self.print(f"Missing player: {player}")
 
+        self.print("Computing rankings and statistics...")
         fpts_array = fpts_array.astype(np.float16)
         ranks = np.argsort(-fpts_array, axis=0).astype(np.uint32)
 
-        # count wins, top 10s vectorized
+        self.print("Calculating wins and cashes...")
         wins, win_counts = np.unique(ranks[0, :], return_counts=True)
         cashes, cash_counts = np.unique(
-            ranks[0 : len(list(self.payout_structure.values()))], return_counts=True
+            ranks[0: len(list(self.payout_structure.values()))], return_counts=True
         )
-
         top1pct, top1pct_counts = np.unique(
-            ranks[0 : math.ceil(0.01 * len(self.field_lineups)), :], return_counts=True
+            ranks[0: math.ceil(0.01 * len(self.field_lineups)), :], return_counts=True
         )
 
+        self.print("Processing payout structure...")
         payout_array = np.array(list(self.payout_structure.values()))
-        # subtract entry fee
         payout_array = payout_array - self.entry_fee
         l_array = np.full(
             shape=self.field_size - len(payout_array), fill_value=-self.entry_fee
         )
         payout_array = np.concatenate((payout_array, l_array))
 
-        # Adjusted ROI calculation
-        # Split the simulation indices into chunks
+        self.print("Calculating ROI in chunks...")
         field_lineups_keys_array = np.array(list(self.field_lineups.keys()))
+        chunk_size = self.num_iterations // 16
 
-        chunk_size = self.num_iterations // 16  # Adjust chunk size as needed
         simulation_chunks = [
             (
-                ranks[:, i : min(i + chunk_size, self.num_iterations)].copy(),
+                ranks[:, i: min(i + chunk_size, self.num_iterations)].copy(),
                 payout_array,
                 self.entry_fee,
                 field_lineups_keys_array,
                 self.use_contest_data,
                 field_lineups_count,
-            )  # Adding field_lineups_count here
+            )
             for i in range(0, self.num_iterations, chunk_size)
         ]
 
-        # Use the pool to process the chunks in parallel
+        total_chunks = len(simulation_chunks)
+        completed_chunks = 0
+        results = []
+
         with mp.Pool() as pool:
-            results = pool.map(self.calculate_payouts, simulation_chunks)
+            def chunk_callback(result):
+                nonlocal completed_chunks
+                completed_chunks += 1
+                self.print(f"Processed ROI chunks: {completed_chunks}/{total_chunks}")
+                results.append(result)
+
+            # Start all chunk tasks
+            chunk_tasks = [pool.apply_async(self.calculate_payouts, args=(chunk,), callback=chunk_callback)
+                           for chunk in simulation_chunks]
+
+            # Wait for all chunks to complete
+            for task in chunk_tasks:
+                task.wait()
+
+
+        # Use the pool to process the chunks in parallel
+        #with mp.Pool() as pool:
+            #results = pool.map(self.calculate_payouts, simulation_chunks)
 
         combined_result_array = np.sum(results, axis=0)
 
@@ -1394,6 +1434,7 @@ class NBA_GPP_Simulator:
             total_sum += roi * lineup_count
             self.field_lineups[lineup_key]["ROI"] += roi
 
+        self.print("Updating final statistics...")
         for idx in self.field_lineups.keys():
             if idx in wins:
                 self.field_lineups[idx]["Wins"] += win_counts[np.where(wins == idx)][0]
@@ -1408,11 +1449,8 @@ class NBA_GPP_Simulator:
 
         end_time = time.time()
         diff = end_time - start_time
-        print(
-            str(self.num_iterations)
-            + " tournament simulations finished in "
-            + str(diff)
-            + " seconds. Outputting."
+        self.print(
+            f"{self.num_iterations} tournament simulations finished in {diff} seconds. Outputting."
         )
 
     def output(self):

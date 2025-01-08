@@ -19,6 +19,8 @@ from nba_fetch import fetch_advanced_team_stats
 class ImportTool(QMainWindow):
     def __init__(self):
         super().__init__()
+
+
         self.setWindowTitle("Excel Import Tool")
         self.setGeometry(100, 100, 400, 300)
         # Combine all styles into a single setStyleSheet call
@@ -114,7 +116,6 @@ class ImportTool(QMainWindow):
                        """)
 
 
-
         # Define the target folder
         current_folder = Path(__file__).parent  # Current script directory (src)
         target_folder = current_folder.parent / "dk_import"  # Sibling folder (dk-import)
@@ -198,9 +199,12 @@ class ImportTool(QMainWindow):
         container.setLayout(layout)
         self.setCentralWidget(container)
 
-        self.ownership_projections()
+        #self.ownership_projections()
         #self.fetch_and_save_team_data_with_odds()
         #self.import_last10()
+
+
+
 
     # Post-process predictions to apply the 1% ownership cap for low minutes players
     def apply_low_minutes_cap(self, predictions, df):
@@ -936,15 +940,6 @@ class ImportTool(QMainWindow):
             return shift_start + (shift_end - shift_start) * scale
 
         def rescale_with_bounds(predictions: pd.Series, target_sd=7.0, min_bound=0.0, top_boost=1.15):
-            """
-            Rescale numbers to target SD while maintaining relative ordering and boosting top values.
-
-            Args:
-                predictions: pandas Series containing the predictions to scale
-                target_sd: target standard deviation (default 7.0)
-                min_bound: minimum allowed value (default 0.0)
-                top_boost: factor to boost top values (default 1.15)
-            """
             numbers = predictions.values
             index = predictions.index
             original_mean = np.mean(numbers)
@@ -1104,10 +1099,8 @@ class ImportTool(QMainWindow):
         print(f'Estimated SD: {estimated_sd} Multiplier: {estimated_sd_multiplier} ')
         print(f'Target SD: {target_sd}')
 
-
         #adjusted_predictions = adjust_sd(predictions, target_sd, target_sum)
-        adjusted_predictions = rescale_with_bounds(predictions, target_sd=target_sd, top_boost=2.00)
-
+        adjusted_predictions = rescale_with_bounds(predictions, target_sd=target_sd, top_boost=1.75)
 
         final_predictions = self.apply_low_minutes_cap(adjusted_predictions, df)
         df['Predicted Ownership'] = final_predictions
@@ -1147,8 +1140,6 @@ class ImportTool(QMainWindow):
         print(f"Ownership Projections successfully exported.")
         wb.close()
         app.quit()
-
-
 
     def export_projections(self):
         print("Exporting projections to CSV...")
@@ -1207,8 +1198,6 @@ class ImportTool(QMainWindow):
 
         wb.close()
         app.quit()
-
-
 
 
 if __name__ == "__main__":
