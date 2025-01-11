@@ -1,5 +1,0 @@
-# NBA Optimizer and GPP Utilities
-
-
-After you have the player data, you must import your projections and place them in the relevant site's _data folder. The format for the projection file is `name,team,fpts,stddev,ownership,minutes`
-

@@ -6,3 +6,4 @@ config.json
 sorter.py
 dk_output/*
 output/*
+training/*
