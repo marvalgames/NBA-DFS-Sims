@@ -29,6 +29,7 @@ class SwapSimThread(QThread):
         self.csv_path = csv_path
         self.script_dir = os.path.dirname(os.path.abspath(__file__))
 
+
     def run(self):
         try:
             run_swap_sim_path = os.path.join(self.script_dir, 'run_swap_sim.py')

@@ -1311,10 +1311,6 @@ class NBA_Swaptimizer_Sims:
 
                 # Set the salary constraints
                 max_salary = 50000
-                min_salary = 49000
-
-                if self.min_salary is not None:
-                    min_salary = self.min_salary
 
                 # Maximum Salary Constraint
                 problem += (

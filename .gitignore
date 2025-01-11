@@ -7,3 +7,6 @@ sorter.py
 dk_output/*
 output/*
 training/*
+.venv/*
+build/*
+dist/*
