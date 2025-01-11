@@ -70,7 +70,8 @@ class NBA_GPP_Simulator:
         use_contest_data,
         use_lineup_input,
         min_lineup_salary,
-        projection_min
+        projection_min,
+        contest_path
     ):
         self.projection_min = int(projection_min)
         self.site = site
@@ -80,49 +81,31 @@ class NBA_GPP_Simulator:
 
         projection_path = os.path.join(
             os.path.dirname(__file__),
-            "../{}_data/{}".format(site, self.config["projection_path"]),
+            "../dk_data/{}".format(self.config["projection_path"]),
         )
         self.load_projections(projection_path)
 
         player_path = os.path.join(
             os.path.dirname(__file__),
-            "../{}_data/{}".format(site, self.config["player_path"]),
+            "../dk_data/{}".format(self.config["player_path"]),
         )
 
         print(f"Default solver: {plp.LpSolverDefault}")
 
         self.load_player_ids(player_path)
 
-        if site == "dk":
-            self.roster_construction = ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]
-            self.salary = 50000
+        self.roster_construction = ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]
+        self.salary = 50000
 
-        elif site == "fd":
-            self.roster_construction = [
-                "PG",
-                "PG",
-                "SG",
-                "SG",
-                "SF",
-                "SF",
-                "PF",
-                "PF",
-                "C",
-            ]
-            self.salary = 60000
-
-        self.use_contest_data = use_contest_data
-        if use_contest_data:
-            contest_path = os.path.join(
-                os.path.dirname(__file__),
-                "../{}_data/{}".format(site, self.config["contest_structure_path"]),
-            )
+        # Use the provided contest_path instead of hardcoding it
+        if contest_path and os.path.exists(contest_path):
             self.load_contest_data(contest_path)
-            print("Contest payout structure loaded.")
+            print(f"Contest data loaded from: {contest_path}")
         else:
-            self.field_size = int(field_size)
-            self.payout_structure = {0: 0.0}
-            self.entry_fee = 0
+            print("Warning: Contest path not provided or file does not exist")
+
+        self.load_contest_data(contest_path)
+        print(f"Contest payout structure loaded.")
 
         self.assertPlayerDict()
         self.num_iterations = int(num_iterations)
@@ -132,7 +115,7 @@ class NBA_GPP_Simulator:
             self.load_lineups_from_file()
         self.load_correlation_rules()
 
-    # make column lookups on datafiles case insensitive
+    # make column lookups on datafiles case-insensitive
     def lower_first(self, iterator):
         return itertools.chain([next(iterator).lower()], iterator)
 
@@ -1448,66 +1431,6 @@ class NBA_GPP_Simulator:
 
 
 
-        # self.print("Computing rankings and statistics...")
-        # fpts_array = fpts_array.astype(np.float16)
-        # ranks = np.argsort(-fpts_array, axis=0).astype(np.uint32)
-        #
-        # self.print("Calculating wins and cashes...")
-        # wins, win_counts = np.unique(ranks[0, :], return_counts=True)
-        # cashes, cash_counts = np.unique(
-        #     ranks[0: len(list(self.payout_structure.values()))], return_counts=True
-        # )
-        # top1pct, top1pct_counts = np.unique(
-        #     ranks[0: math.ceil(0.01 * len(self.field_lineups)), :], return_counts=True
-        # )
-        #
-        # self.print("Processing payout structure...")
-        # payout_array = np.array(list(self.payout_structure.values()))
-        # payout_array = payout_array - self.entry_fee
-        # l_array = np.full(
-        #     shape=self.field_size - len(payout_array), fill_value=-self.entry_fee
-        # )
-        # payout_array = np.concatenate((payout_array, l_array))
-        #
-        # self.print("Calculating ROI in chunks...")
-        # field_lineups_keys_array = np.array(list(self.field_lineups.keys()))
-        # chunk_size = self.num_iterations // 16
-        #
-        # simulation_chunks = [
-        #     (
-        #         ranks[:, i: min(i + chunk_size, self.num_iterations)].copy(),
-        #         payout_array,
-        #         self.entry_fee,
-        #         field_lineups_keys_array,
-        #         self.use_contest_data,
-        #         field_lineups_count,
-        #     )
-        #     for i in range(0, self.num_iterations, chunk_size)
-        # ]
-        #
-        # total_chunks = len(simulation_chunks)
-        # completed_chunks = 0
-        # results = []
-        #
-        # with mp.Pool() as pool:
-        #     def chunk_callback(result):
-        #         nonlocal completed_chunks
-        #         completed_chunks += 1
-        #         self.print(f"Processed ROI chunks: {completed_chunks}/{total_chunks}")
-        #         results.append(result)
-        #
-        #     # Start all chunk tasks
-        #     chunk_tasks = [pool.apply_async(self.calculate_payouts, args=(chunk,), callback=chunk_callback)
-        #                    for chunk in simulation_chunks]
-        #
-        #     # Wait for all chunks to complete
-        #     for task in chunk_tasks:
-        #         task.wait()
-        #
-
-        # Use the pool to process the chunks in parallel
-        #with mp.Pool() as pool:
-            #results = pool.map(self.calculate_payouts, simulation_chunks)
 
         combined_result_array = np.sum(results, axis=0)
 
@@ -1608,8 +1531,8 @@ class NBA_GPP_Simulator:
 
         out_path = os.path.join(
             os.path.dirname(__file__),
-            "../output/{}_gpp_sim_lineups_{}_{}.csv".format(
-                self.site, self.field_size, self.num_iterations
+            "../dk_output/dk_gpp_sim_lineups_{}_{}.csv".format(
+                self.field_size, self.num_iterations
             ),
         )
 
@@ -1633,13 +1556,18 @@ class NBA_GPP_Simulator:
             for _, lineup_str in sorted_unique:
                 f.write(f"{lineup_str}\n")
 
+        # input_csv_path = os.path.join(
+        #     os.path.dirname(__file__),
+        #     "../{}_data/{}".format(self.site, self.config["late_swap_path"]),
+
+
         input_csv_path = os.path.join(
             os.path.dirname(__file__),
-            "../{}_data/{}".format(self.site, self.config["late_swap_path"]),
+            "../dk_data/{}".format(self.config["entries_path"]),
         )
         output_csv_path = os.path.join(
             os.path.dirname(__file__),
-            "../output/{}".format(self.site, self.config["late_swap_path"]), "_lineups",
+            "../dk_output/{}".format(self.config["entries_path"]), "_lineups",
         )
         # Read the input CSV file
         print(output_csv_path)
@@ -1653,7 +1581,7 @@ class NBA_GPP_Simulator:
 
         output_csv_path = os.path.join(
             os.path.dirname(__file__),
-            "../output/{}".format(self.config["late_swap_path"]),
+            "../dk_output/{}".format(self.config["entries_path"]),
         )
 
         # Combine data from sorted_unique with the read CSV
@@ -1698,8 +1626,8 @@ class NBA_GPP_Simulator:
 
         out_path = os.path.join(
             os.path.dirname(__file__),
-            "../output/{}_gpp_sim_player_exposure_{}_{}.csv".format(
-                self.site, self.field_size, self.num_iterations
+            "../dk_output/dk_gpp_sim_player_exposure_{}_{}.csv".format(
+                self.field_size, self.num_iterations
             ),
         )
         with open(out_path, "w") as f:

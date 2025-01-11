@@ -11,7 +11,7 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout,
     QTextEdit, QProgressDialog
 from nba_api.stats.endpoints import leaguedashteamstats
 
-from nba_fetch import fetch_advanced_team_stats
+#from nba_fetch import fetch_advanced_team_stats
 
 
 # In your MainApp class, add these imports at the top:
@@ -143,7 +143,8 @@ class ImportTool(QMainWindow):
         self.progress_dialog.setAutoClose(False)
         self.progress_dialog.setAutoReset(False)
         self.progress_dialog.setFixedWidth(400)
-        self.progress_dialog.setMinimumHeight(100)
+        self.progress_dialog.setMinimumHeight(160)
+        self.progress_dialog.setWindowTitle('Running')
 
         label = self.progress_dialog.findChild(QLabel)
         if label:
@@ -176,98 +177,98 @@ class ImportTool(QMainWindow):
             QMessageBox.critical(self, "Error", f"An error occurred: {e}")
 
         self.setWindowTitle("Excel Import Tool")
-        self.setGeometry(100, 100, 400, 300)
+        #self.setGeometry(200, 200, 400, 300)
         # Combine all styles into a single setStyleSheet call
-        self.setStyleSheet("""
-                           QMainWindow {
-                               background-color: #2E3440;  /* Dark background */
-                               color: white;               /* Default text color */
-                           }
-
-                           QPushButton {
-                               background-color: #5E81AC;
-                               color: white;
-                               font-size: 16px;
-                               font-weight: regular;
-                               border-radius: 10px;
-                               min-height: 30px;
-                           }
-                           QPushButton:hover {
-                               background-color: #81A1C1;
-                           }
-
-                           QLineEdit {
-                               background-color: #3B4252;  /* Dark background */
-                               color: white;               /* White text */
-                               border: 1px solid #555555;  /* Border color */
-                               border-radius: 5px;         /* Rounded corners */
-                               padding: 5px;               /* Inner padding */
-                               font-size: 16px;            /* Font size */
-                               font-family: Arial;         /* Font name */
-                               font-weight: bold;          /* Font weight (bold, normal, etc.) */
-                           }
-
-                           QLineEdit:focus {
-                               border: 1px solid #88C0D0;  /* Highlighted border on focus */
-                               background-color: #434C5E;  /* Slightly lighter background */
-                           }
-
-                           QComboBox {
-                               background-color: #3B4252;  /* Dark background */
-                               color: white;               /* White text */
-                               border: 1px solid #555555;  /* Border color */
-                               border-radius: 5px;         /* Rounded corners */
-                               padding: 5px;               /* Inner padding */
-                               font-size: 14px;            /* Font size */
-                           }
-
-                             QSpinBox {
-                               width: 64px;
-                               background-color: #3B4252;  /* Dark background */
-                               color: white;               /* White text */
-                               border: 1px solid #555555;  /* Border color */
-                               border-radius: 5px;         /* Rounded corners */
-                               padding: 5px;               /* Inner padding */
-                               font-size: 14px;            /* Font size */
-                               font-weight: bold;          /* Font weight (bold, normal, etc.) */
-                           }
-
-                           QSpinBox::up-button, QSpinBox::down-button {
-                               width: 32px;  /* Wider button area for arrows */
-                               height: 16px; /* Taller button area for arrows */
-                           }
-
-                            QSpinBox::up-arrow {
-                               width: 32px;  /* Increase arrow width */
-                               height: 16px; /* Increase arrow height */
-                           }
-
-                           QSpinBox::down-arrow {
-                               width: 32px;  /* Increase arrow width */
-                               height: 16px; /* Increase arrow height */
-                           }
-
-                           QComboBox::drop-down {
-                               subcontrol-origin: padding;
-                               subcontrol-position: top right;
-                               width: 40px;
-                               border-left: 1px solid #555555;
-                               background-color: #2E3440;  /* Dropdown arrow background */
-                           }
-
-                           QComboBox QAbstractItemView {
-                               background-color: #3B4252;  /* Dropdown list background */
-                               color: white;               /* Text color */
-                               selection-background-color: #88C0D0; /* Selected item background */
-                               selection-color: black;     /* Selected item text color */
-                           }
-
-                           QLabel {
-                               color: #88C0D0;  /* Default text color */
-                               font-size: 16px;
-                               font-weight: bold;
-                           }
-                       """)
+        # self.setStyleSheet("""
+        #                    QMainWindow {
+        #                        background-color: #2E3440;  /* Dark background */
+        #                        color: white;               /* Default text color */
+        #                    }
+        #
+        #                    QPushButton {
+        #                        background-color: #5E81AC;
+        #                        color: white;
+        #                        font-size: 16px;
+        #                        font-weight: regular;
+        #                        border-radius: 10px;
+        #                        min-height: 30px;
+        #                    }
+        #                    QPushButton:hover {
+        #                        background-color: #81A1C1;
+        #                    }
+        #
+        #                    QLineEdit {
+        #                        background-color: #3B4252;  /* Dark background */
+        #                        color: white;               /* White text */
+        #                        border: 1px solid #555555;  /* Border color */
+        #                        border-radius: 5px;         /* Rounded corners */
+        #                        padding: 5px;               /* Inner padding */
+        #                        font-size: 16px;            /* Font size */
+        #                        font-family: Arial;         /* Font name */
+        #                        font-weight: bold;          /* Font weight (bold, normal, etc.) */
+        #                    }
+        #
+        #                    QLineEdit:focus {
+        #                        border: 1px solid #88C0D0;  /* Highlighted border on focus */
+        #                        background-color: #434C5E;  /* Slightly lighter background */
+        #                    }
+        #
+        #                    QComboBox {
+        #                        background-color: #3B4252;  /* Dark background */
+        #                        color: white;               /* White text */
+        #                        border: 1px solid #555555;  /* Border color */
+        #                        border-radius: 5px;         /* Rounded corners */
+        #                        padding: 5px;               /* Inner padding */
+        #                        font-size: 14px;            /* Font size */
+        #                    }
+        #
+        #                      QSpinBox {
+        #                        width: 64px;
+        #                        background-color: #3B4252;  /* Dark background */
+        #                        color: white;               /* White text */
+        #                        border: 1px solid #555555;  /* Border color */
+        #                        border-radius: 5px;         /* Rounded corners */
+        #                        padding: 5px;               /* Inner padding */
+        #                        font-size: 14px;            /* Font size */
+        #                        font-weight: bold;          /* Font weight (bold, normal, etc.) */
+        #                    }
+        #
+        #                    QSpinBox::up-button, QSpinBox::down-button {
+        #                        width: 32px;  /* Wider button area for arrows */
+        #                        height: 16px; /* Taller button area for arrows */
+        #                    }
+        #
+        #                     QSpinBox::up-arrow {
+        #                        width: 32px;  /* Increase arrow width */
+        #                        height: 16px; /* Increase arrow height */
+        #                    }
+        #
+        #                    QSpinBox::down-arrow {
+        #                        width: 32px;  /* Increase arrow width */
+        #                        height: 16px; /* Increase arrow height */
+        #                    }
+        #
+        #                    QComboBox::drop-down {
+        #                        subcontrol-origin: padding;
+        #                        subcontrol-position: top right;
+        #                        width: 40px;
+        #                        border-left: 1px solid #555555;
+        #                        background-color: #2E3440;  /* Dropdown arrow background */
+        #                    }
+        #
+        #                    QComboBox QAbstractItemView {
+        #                        background-color: #3B4252;  /* Dropdown list background */
+        #                        color: white;               /* Text color */
+        #                        selection-background-color: #88C0D0; /* Selected item background */
+        #                        selection-color: black;     /* Selected item text color */
+        #                    }
+        #
+        #                    QLabel {
+        #                        color: #88C0D0;  /* Default text color */
+        #                        font-size: 16px;
+        #                        font-weight: bold;
+        #                    }
+        #                """)
 
 
         # Define the target folder
@@ -542,13 +543,23 @@ class ImportTool(QMainWindow):
 
         progress_print("Done importing last 10 games data.")
 
+    # Fetch advanced team stats for the regular season
+    def fetch_advanced_team_stats(self, season='2023-24', season_type='Regular Season'):
+        team_stats = leaguedashteamstats.LeagueDashTeamStats(
+            season=season,
+            season_type_all_star=season_type,
+            measure_type_detailed_defense='Advanced'
+        )
+        return team_stats.get_data_frames()[0]
+
+
     def import_advanced(self, progress_print=print):
         progress_print("Fetching and importing Advanced Team Stats...")
         try:
             progress_print("Fetching advanced stats data...")
             season = '2024-25'
             season_type = 'Regular Season'
-            df = fetch_advanced_team_stats(season, season_type)
+            df = self.fetch_advanced_team_stats(season, season_type)
 
             progress_print("Sorting and processing data...")
             df_sorted = df.sort_values(by='TEAM_NAME')
@@ -618,84 +629,127 @@ class ImportTool(QMainWindow):
 
     from datetime import datetime, timezone, timedelta
     def fetch_and_save_team_data_with_odds(self, progress_print=print):
-        progress_print("Fetching NBA game odds data...")
-        try:
-            api_key = 'd4237a37fb55c03282af5de33235e1d6'
 
-            progress_print("Fetching events data...")
+        try:
+            # The Odds API Key and Endpoints
+            api_key = 'd4237a37fb55c03282af5de33235e1d6'
             events_url = f'https://api.the-odds-api.com/v4/sports/basketball_nba/events?apiKey={api_key}&dateFormat=iso'
+            odds_url = f'https://api.the-odds-api.com/v4/sports/basketball_nba/odds/?apiKey={api_key}&regions=us&markets=spreads,totals'
+            progress_print("Fetching events data...")
+            # Fetch events data
             response_events = requests.get(events_url)
             if response_events.status_code != 200:
-                raise Exception(f"Error fetching events: {response_events.status_code}")
+                raise Exception(f"Error fetching events: {response_events.status_code} - {response_events.text}")
+
             events_data = response_events.json()
 
             progress_print("Fetching odds data...")
-            odds_url = f'https://api.the-odds-api.com/v4/sports/basketball_nba/odds/?apiKey={api_key}&regions=us&markets=spreads,totals'
+            # Fetch odds data
             response_odds = requests.get(odds_url)
             if response_odds.status_code != 200:
-                raise Exception(f"Error fetching odds: {response_odds.status_code}")
+                raise Exception(f"Error fetching odds: {response_odds.status_code} - {response_odds.text}")
+
             odds_data = response_odds.json()
 
             progress_print("Processing team data...")
+            # Prepare team data from events
             teams = []
             for event in events_data:
+                # Parse game start time and convert to EST
                 game_time_utc = datetime.fromisoformat(event["commence_time"].replace("Z", "+00:00"))
-                game_time_est = game_time_utc.astimezone(timezone(timedelta(hours=-5)))
-                teams.extend([
-                    {
-                        "Team": event["home_team"],
-                        "Game Time (EST)": game_time_est.strftime("%Y-%m-%d %I:%M %p"),
-                        "Spread": None,
-                        "Total": None
-                    },
-                    {
-                        "Team": event["away_team"],
-                        "Game Time (EST)": game_time_est.strftime("%Y-%m-%d %I:%M %p"),
-                        "Spread": None,
-                        "Total": None
-                    }
-                ])
+                game_time_est = game_time_utc.astimezone(timezone(timedelta(hours=-5)))  # EST is UTC-5
+
+                # Add each team and game time to the list
+                teams.append({
+                    "Team": event["home_team"],
+                    "Game Time (EST)": game_time_est.strftime("%Y-%m-%d %I:%M %p"),
+                    "Spread": None,
+                    "Total": None
+                })
+                teams.append({
+                    "Team": event["away_team"],
+                    "Game Time (EST)": game_time_est.strftime("%Y-%m-%d %I:%M %p"),
+                    "Spread": None,
+                    "Total": None
+                })
 
             progress_print("Creating DataFrame...")
+            # Convert teams data to DataFrame
             teams_df = pd.DataFrame(teams)
 
             progress_print("Processing odds data...")
+            # If the CSV already exists, read its content to preserve existing values
             csv_path = "odds.csv"
             if os.path.exists(csv_path):
-                progress_print("Merging with existing odds data...")
                 existing_data = pd.read_csv(csv_path)
                 teams_df = pd.merge(teams_df, existing_data, on=["Team", "Game Time (EST)"], how="left",
                                     suffixes=("", "_existing"))
+
+                # Preserve existing values if new data is not available
                 teams_df["Spread"] = teams_df.apply(
                     lambda row: row["Spread"] if not pd.isna(row["Spread"]) else row["Spread_existing"], axis=1
                 )
                 teams_df["Total"] = teams_df.apply(
                     lambda row: row["Total"] if not pd.isna(row["Total"]) else row["Total_existing"], axis=1
                 )
+
+                # Drop the merged columns
                 teams_df = teams_df.drop(columns=["Spread_existing", "Total_existing"])
 
             progress_print("Updating odds values...")
+            # Match teams with odds data and update the DataFrame
             for odds_event in odds_data:
                 progress_print(f"Processing odds for game: {odds_event['home_team']} vs {odds_event['away_team']}")
-                # ... rest of your odds processing code ...
+                bookmaker = next((b for b in odds_event["bookmakers"] if b["title"] == "DraftKings"), None)
+                if not bookmaker:
+                    continue
+
+                spread_market = None
+                total_market = None
+                for market in bookmaker.get("markets", []):
+                    if market["key"] == "spreads":
+                        spread_market = market
+                    elif market["key"] == "totals":
+                        total_market = market
+
+                # Update Spread values
+                if spread_market:
+                    for outcome in spread_market.get("outcomes", []):
+                        teams_df.loc[teams_df["Team"] == outcome["name"], "Spread"] = outcome.get("point", "N/A")
+
+                # Update Total values
+                if total_market:
+                    total_value = next((outcome.get("point", "N/A") for outcome in total_market.get("outcomes", [])),
+                                       None)
+                    if total_value is not None:
+                        teams_df.loc[teams_df["Team"].isin(
+                            [odds_event["home_team"], odds_event["away_team"]]), "Total"] = total_value
 
             progress_print("Saving to CSV...")
+            # Save the updated DataFrame to a CSV file
             teams_df.to_csv(csv_path, index=False)
 
+            # Print success messages
+            print("Fetched NBA Team Data with Odds:")
+            print(teams_df)
+            print(f"Data successfully saved to {csv_path}")
+
             progress_print("Importing to Excel...")
+            # Import to the sheet
             self.import_csv_to_sheet(
                 csv_file=str(csv_path),
                 sheet_name="odds",
                 csv_start_row=0,
-                csv_start_col=0,
+                csv_start_col=0,  # No need to filter columns here; `usecols` handles it
                 excel_start_row=2,
-                excel_start_col=1,
-                progress_print=progress_print
+                excel_start_col=1
             )
             progress_print("Done importing NBA Schedule to odds.")
+
         except Exception as e:
             progress_print(f"An error occurred: {e}")
             raise
+
 
     def export_projections(self, progress_print=print):
         progress_print("Exporting projections to CSV...")
@@ -1129,7 +1183,7 @@ class ImportTool(QMainWindow):
             print("Generating predictions...")
 
             shift_start = .35
-            shift_end = .50
+            shift_end = 1.00
             add = 1.0  # Constant to avoid log issues with zero
             drift = 1.35
             players_per_game = 48  # Number of players per game to rank for the shift
