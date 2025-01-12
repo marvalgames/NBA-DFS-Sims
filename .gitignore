@@ -10,3 +10,4 @@ training/*
 .venv/*
 build/*
 dist/*
+app/*

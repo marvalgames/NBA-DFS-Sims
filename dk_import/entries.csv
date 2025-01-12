@@ -1,250 +1,185 @@
 Entry ID,Contest Name,Contest ID,Entry Fee,PG,SG,SF,PF,C,G,F,UTIL,,Instructions
-4602703491,NBA $60K Four Point Play [20 Entry Max],172928925,$4,,,,,,,,,,1. Column A lists all of your contest entries for this draftgroup
-4602703492,NBA $60K Four Point Play [20 Entry Max],172928925,$4,,,,,,,,,,2. Your current lineup is listed next to each entry (blank for reservations)
-4602703493,NBA $60K Four Point Play [20 Entry Max],172928925,$4,,,,,,,,,,3. You can change the lineup for an entry by entering the IDs of the players in the row next to that entry
-4602703494,NBA $60K Four Point Play [20 Entry Max],172928925,$4,,,,,,,,,,4. Use data from the Name+ID column or the ID column; you cannot use just the player's name
-4602703495,NBA $60K Four Point Play [20 Entry Max],172928925,$4,,,,,,,,,,5. For faster processing only include entries you are changing in the file you upload
-4602703496,NBA $60K Four Point Play [20 Entry Max],172928925,$4,,,,,,,,,,
+4604206813,NBA $15K Four Point Play [20 Entry Max],172964177,$4,,,,,,,,,,1. Column A lists all of your contest entries for this draftgroup
+4604206814,NBA $15K Four Point Play [20 Entry Max],172964177,$4,,,,,,,,,,2. Your current lineup is listed next to each entry (blank for reservations)
+4604206815,NBA $15K Four Point Play [20 Entry Max],172964177,$4,,,,,,,,,,3. You can change the lineup for an entry by entering the IDs of the players in the row next to that entry
+4604206816,NBA $15K Four Point Play [20 Entry Max],172964177,$4,,,,,,,,,,4. Use data from the Name+ID column or the ID column; you cannot use just the player's name
+4604206817,NBA $15K Four Point Play [20 Entry Max],172964177,$4,,,,,,,,,,5. For faster processing only include entries you are changing in the file you upload
+4604206818,NBA $15K Four Point Play [20 Entry Max],172964177,$4,,,,,,,,,,
 ,,,,,,,,,,,,,Position,Name + ID,Name,ID,Roster Position,Salary,Game Info,TeamAbbrev,AvgPointsPerGame
-,,,,,,,,,,,,,C,Nikola Jokic (37279862),Nikola Jokic,37279862,C/UTIL,12300,BKN@DEN 01/10/2025 09:00PM ET,DEN,69.10
-,,,,,,,,,,,,,PF/C,Giannis Antetokounmpo (37279864),Giannis Antetokounmpo,37279864,PF/C/F/UTIL,11800,MIL@ORL 01/10/2025 07:00PM ET,MIL,60.36
-,,,,,,,,,,,,,PG,Shai Gilgeous-Alexander (37279868),Shai Gilgeous-Alexander,37279868,PG/G/UTIL,10400,OKC@NYK 01/10/2025 07:30PM ET,OKC,52.97
-,,,,,,,,,,,,,SF/PF,Jayson Tatum (37279871),Jayson Tatum,37279871,SF/PF/F/UTIL,10300,SAC@BOS 01/10/2025 07:30PM ET,BOS,52.87
-,,,,,,,,,,,,,C,Karl-Anthony Towns (37279875),Karl-Anthony Towns,37279875,C/UTIL,10000,OKC@NYK 01/10/2025 07:30PM ET,NYK,52.69
-,,,,,,,,,,,,,C,Joel Embiid (37279877),Joel Embiid,37279877,C/UTIL,9700,NOP@PHI 01/10/2025 07:00PM ET,PHI,43.25
-,,,,,,,,,,,,,PF,Paolo Banchero (37279879),Paolo Banchero,37279879,PF/F/UTIL,9500,MIL@ORL 01/10/2025 07:00PM ET,ORL,51.8
-,,,,,,,,,,,,,C,Domantas Sabonis (37279882),Domantas Sabonis,37279882,C/UTIL,9400,SAC@BOS 01/10/2025 07:30PM ET,SAC,50.68
-,,,,,,,,,,,,,PG,Tyrese Maxey (37279884),Tyrese Maxey,37279884,PG/G/UTIL,9400,NOP@PHI 01/10/2025 07:00PM ET,PHI,43.95
-,,,,,,,,,,,,,PF,Franz Wagner (37279887),Franz Wagner,37279887,PF/F/UTIL,9000,MIL@ORL 01/10/2025 07:00PM ET,ORL,44.24
-,,,,,,,,,,,,,PF/C,Zion Williamson (37279890),Zion Williamson,37279890,PF/C/F/UTIL,9000,NOP@PHI 01/10/2025 07:00PM ET,NOP,43.14
-,,,,,,,,,,,,,PG,Damian Lillard (37279894),Damian Lillard,37279894,PG/G/UTIL,8900,MIL@ORL 01/10/2025 07:00PM ET,MIL,44.40
-,,,,,,,,,,,,,PG,Jalen Brunson (37279897),Jalen Brunson,37279897,PG/G/UTIL,8900,OKC@NYK 01/10/2025 07:30PM ET,NYK,42.16
-,,,,,,,,,,,,,PG,Brandon Ingram (37279900),Brandon Ingram,37279900,PG/G/UTIL,8800,NOP@PHI 01/10/2025 07:00PM ET,NOP,39.19
-,,,,,,,,,,,,,PG,Stephen Curry (37279903),Stephen Curry,37279903,PG/G/UTIL,8700,GSW@IND 01/10/2025 07:00PM ET,GSW,42.28
-,,,,,,,,,,,,,PG,Tyrese Haliburton (37279906),Tyrese Haliburton,37279906,PG/G/UTIL,8600,GSW@IND 01/10/2025 07:00PM ET,IND,41.17
-,,,,,,,,,,,,,SG/SF,Jaylen Brown (37279911),Jaylen Brown,37279911,SG/SF/F/G/UTIL,8500,SAC@BOS 01/10/2025 07:30PM ET,BOS,41.48
-,,,,,,,,,,,,,C,Nikola Vucevic (37279909),Nikola Vucevic,37279909,C/UTIL,8500,WAS@CHI 01/10/2025 08:00PM ET,CHI,41.74
-,,,,,,,,,,,,,PG,Dejounte Murray (37279916),Dejounte Murray,37279916,PG/G/UTIL,8500,NOP@PHI 01/10/2025 07:00PM ET,NOP,40.83
-,,,,,,,,,,,,,PG,De'Aaron Fox (37279922),De'Aaron Fox,37279922,PG/G/UTIL,8300,SAC@BOS 01/10/2025 07:30PM ET,SAC,45.62
-,,,,,,,,,,,,,PG/SG,Jalen Suggs (37279925),Jalen Suggs,37279925,PG/SG/G/UTIL,8300,MIL@ORL 01/10/2025 07:00PM ET,ORL,31.62
-,,,,,,,,,,,,,PF,Jalen Williams (37279919),Jalen Williams,37279919,PF/F/UTIL,8300,OKC@NYK 01/10/2025 07:30PM ET,OKC,40.57
-,,,,,,,,,,,,,PG/SG,Jordan Poole (37279929),Jordan Poole,37279929,PG/SG/G/UTIL,8200,WAS@CHI 01/10/2025 08:00PM ET,WAS,36.96
-,,,,,,,,,,,,,SG/SF,Zach LaVine (37279933),Zach LaVine,37279933,SG/SF/F/G/UTIL,8100,WAS@CHI 01/10/2025 08:00PM ET,CHI,38.30
-,,,,,,,,,,,,,C,Chet Holmgren (37279938),Chet Holmgren,37279938,C/UTIL,8000,OKC@NYK 01/10/2025 07:30PM ET,OKC,37.22
-,,,,,,,,,,,,,SF/PF,Trey Murphy III (37279944),Trey Murphy III,37279944,SF/PF/F/UTIL,7800,NOP@PHI 01/10/2025 07:00PM ET,NOP,34.92
-,,,,,,,,,,,,,PG/SG,CJ McCollum (37279948),CJ McCollum,37279948,PG/SG/G/UTIL,7800,NOP@PHI 01/10/2025 07:00PM ET,NOP,35.85
-,,,,,,,,,,,,,SF/PF,Josh Hart (37279940),Josh Hart,37279940,SF/PF/F/UTIL,7800,OKC@NYK 01/10/2025 07:30PM ET,NYK,38.70
-,,,,,,,,,,,,,PG/SG,Jamal Murray (37279952),Jamal Murray,37279952,PG/SG/G/UTIL,7600,BKN@DEN 01/10/2025 09:00PM ET,DEN,38.7
-,,,,,,,,,,,,,SF/PF,Cameron Johnson (37279961),Cameron Johnson,37279961,SF/PF/F/UTIL,7500,BKN@DEN 01/10/2025 09:00PM ET,BKN,32.84
-,,,,,,,,,,,,,SG/SF,Paul George (37279956),Paul George,37279956,SG/SF/F/G/UTIL,7500,NOP@PHI 01/10/2025 07:00PM ET,PHI,34.33
-,,,,,,,,,,,,,PF,Pascal Siakam (37279965),Pascal Siakam,37279965,PF/F/UTIL,7200,GSW@IND 01/10/2025 07:00PM ET,IND,36.68
-,,,,,,,,,,,,,C,Isaiah Hartenstein (37279968),Isaiah Hartenstein,37279968,C/UTIL,7200,OKC@NYK 01/10/2025 07:30PM ET,OKC,38.03
-,,,,,,,,,,,,,SF,DeMar DeRozan (37279970),DeMar DeRozan,37279970,SF/F/UTIL,7100,SAC@BOS 01/10/2025 07:30PM ET,SAC,34.20
-,,,,,,,,,,,,,PG/SG,Derrick White (37279973),Derrick White,37279973,PG/SG/G/UTIL,7100,SAC@BOS 01/10/2025 07:30PM ET,BOS,34.77
-,,,,,,,,,,,,,PG/SG,Malik Monk (37279977),Malik Monk,37279977,PG/SG/G/UTIL,7000,SAC@BOS 01/10/2025 07:30PM ET,SAC,32.66
-,,,,,,,,,,,,,C,Kristaps Porzingis (37279984),Kristaps Porzingis,37279984,C/UTIL,7000,SAC@BOS 01/10/2025 07:30PM ET,BOS,34.16
-,,,,,,,,,,,,,PG,Josh Giddey (37279981),Josh Giddey,37279981,PG/G/UTIL,7000,WAS@CHI 01/10/2025 08:00PM ET,CHI,33.29
-,,,,,,,,,,,,,PG,Russell Westbrook (37279986),Russell Westbrook,37279986,PG/G/UTIL,6900,BKN@DEN 01/10/2025 09:00PM ET,DEN,32.62
-,,,,,,,,,,,,,SG,Cam Thomas (37279991),Cam Thomas,37279991,SG/G/UTIL,6800,BKN@DEN 01/10/2025 09:00PM ET,BKN,35.87
-,,,,,,,,,,,,,C,Goga Bitadze (37279989),Goga Bitadze,37279989,C/UTIL,6800,MIL@ORL 01/10/2025 07:00PM ET,ORL,29.27
-,,,,,,,,,,,,,PG/SG,Coby White (37279994),Coby White,37279994,PG/SG/G/UTIL,6600,WAS@CHI 01/10/2025 08:00PM ET,CHI,32.72
-,,,,,,,,,,,,,PG/SG,Ayo Dosunmu (37279998),Ayo Dosunmu,37279998,PG/SG/G/UTIL,6600,WAS@CHI 01/10/2025 08:00PM ET,CHI,27.42
-,,,,,,,,,,,,,SF/PF,Michael Porter Jr. (37280005),Michael Porter Jr.,37280005,SF/PF/F/UTIL,6500,BKN@DEN 01/10/2025 09:00PM ET,DEN,34.22
-,,,,,,,,,,,,,PF,Jonathan Kuminga (37280002),Jonathan Kuminga,37280002,PF/F/UTIL,6500,GSW@IND 01/10/2025 07:00PM ET,GSW,29.12
-,,,,,,,,,,,,,PG/SG,Malcolm Brogdon (37280011),Malcolm Brogdon,37280011,PG/SG/G/UTIL,6400,WAS@CHI 01/10/2025 08:00PM ET,WAS,26.21
-,,,,,,,,,,,,,PF,Kyle Kuzma (37280015),Kyle Kuzma,37280015,PF/F/UTIL,6400,WAS@CHI 01/10/2025 08:00PM ET,WAS,26.12
-,,,,,,,,,,,,,C,Myles Turner (37280009),Myles Turner,37280009,C/UTIL,6400,GSW@IND 01/10/2025 07:00PM ET,IND,32.21
-,,,,,,,,,,,,,SF,Bilal Coulibaly (37280029),Bilal Coulibaly,37280029,SF/F/UTIL,6300,WAS@CHI 01/10/2025 08:00PM ET,WAS,28.29
-,,,,,,,,,,,,,C,Nic Claxton (37280027),Nic Claxton,37280027,C/UTIL,6300,BKN@DEN 01/10/2025 09:00PM ET,BKN,26.05
-,,,,,,,,,,,,,PF/C,Bobby Portis (37280018),Bobby Portis,37280018,PF/C/F/UTIL,6300,MIL@ORL 01/10/2025 07:00PM ET,MIL,29.91
-,,,,,,,,,,,,,SG/SF,Mikal Bridges (37280022),Mikal Bridges,37280022,SG/SF/F/G/UTIL,6300,OKC@NYK 01/10/2025 07:30PM ET,NYK,30.82
-,,,,,,,,,,,,,PF/C,Alexandre Sarr (37280032),Alexandre Sarr,37280032,PF/C/F/UTIL,6100,WAS@CHI 01/10/2025 08:00PM ET,WAS,27.98
-,,,,,,,,,,,,,PG,Ben Simmons (37280044),Ben Simmons,37280044,PG/G/UTIL,6000,BKN@DEN 01/10/2025 09:00PM ET,BKN,24.02
-,,,,,,,,,,,,,SF/PF,Andrew Wiggins (37280040),Andrew Wiggins,37280040,SF/PF/F/UTIL,6000,GSW@IND 01/10/2025 07:00PM ET,GSW,29.39
-,,,,,,,,,,,,,SG/SF,Khris Middleton (37280047),Khris Middleton,37280047,SG/SF/F/G/UTIL,6000,MIL@ORL 01/10/2025 07:00PM ET,MIL,26.73
-,,,,,,,,,,,,,SF/PF,OG Anunoby (37280036),OG Anunoby,37280036,SF/PF/F/UTIL,6000,OKC@NYK 01/10/2025 07:30PM ET,NYK,30.64
-,,,,,,,,,,,,,PF/C,Draymond Green (37280052),Draymond Green,37280052,PF/C/F/UTIL,5900,GSW@IND 01/10/2025 07:00PM ET,GSW,28.79
-,,,,,,,,,,,,,C,Jonas Valanciunas (37280056),Jonas Valanciunas,37280056,C/UTIL,5800,WAS@CHI 01/10/2025 08:00PM ET,WAS,27.39
-,,,,,,,,,,,,,PG/SG,Keon Johnson (37280063),Keon Johnson,37280063,PG/SG/G/UTIL,5800,BKN@DEN 01/10/2025 09:00PM ET,BKN,16.68
-,,,,,,,,,,,,,SG/SF,Bennedict Mathurin (37280058),Bennedict Mathurin,37280058,SG/SF/F/G/UTIL,5800,GSW@IND 01/10/2025 07:00PM ET,IND,28.82
-,,,,,,,,,,,,,PG/SG,Payton Pritchard (37280070),Payton Pritchard,37280070,PG/SG/G/UTIL,5700,SAC@BOS 01/10/2025 07:30PM ET,BOS,27.99
-,,,,,,,,,,,,,SG,Kelly Oubre Jr. (37280067),Kelly Oubre Jr.,37280067,SG/G/UTIL,5700,NOP@PHI 01/10/2025 07:00PM ET,PHI,26.88
-,,,,,,,,,,,,,PG/SG,D'Angelo Russell (37280076),D'Angelo Russell,37280076,PG/SG/G/UTIL,5600,BKN@DEN 01/10/2025 09:00PM ET,BKN,25.52
-,,,,,,,,,,,,,C,Yves Missi (37280074),Yves Missi,37280074,C/UTIL,5600,NOP@PHI 01/10/2025 07:00PM ET,NOP,25.70
-,,,,,,,,,,,,,C,Trayce Jackson-Davis (37280088),Trayce Jackson-Davis,37280088,C/UTIL,5500,GSW@IND 01/10/2025 07:00PM ET,GSW,21.81
-,,,,,,,,,,,,,PG/SG,Cole Anthony (37280080),Cole Anthony,37280080,PG/SG/G/UTIL,5500,MIL@ORL 01/10/2025 07:00PM ET,ORL,15.13
-,,,,,,,,,,,,,PF/C,Guerschon Yabusele (37280084),Guerschon Yabusele,37280084,PF/C/F/UTIL,5500,NOP@PHI 01/10/2025 07:00PM ET,PHI,22.11
-,,,,,,,,,,,,,PG,Jrue Holiday (37280090),Jrue Holiday,37280090,PG/G/UTIL,5400,SAC@BOS 01/10/2025 07:30PM ET,BOS,26.52
-,,,,,,,,,,,,,PF,Aaron Gordon (37280093),Aaron Gordon,37280093,PF/F/UTIL,5400,BKN@DEN 01/10/2025 09:00PM ET,DEN,26.94
-,,,,,,,,,,,,,PG/SG,Dennis Schroder (37280096),Dennis Schroder,37280096,PG/SG/G/UTIL,5400,GSW@IND 01/10/2025 07:00PM ET,GSW,30.03
-,,,,,,,,,,,,,C,Brook Lopez (37280100),Brook Lopez,37280100,C/UTIL,5300,MIL@ORL 01/10/2025 07:00PM ET,MIL,27.03
-,,,,,,,,,,,,,SG/SF,Tyrese Martin (37280102),Tyrese Martin,37280102,SG/SF/F/G/UTIL,5200,BKN@DEN 01/10/2025 09:00PM ET,BKN,16.45
-,,,,,,,,,,,,,SF/PF,Caleb Martin (37280107),Caleb Martin,37280107,SF/PF/F/UTIL,5200,NOP@PHI 01/10/2025 07:00PM ET,PHI,21.32
-,,,,,,,,,,,,,SF/PF,Justin Champagnie (37280122),Justin Champagnie,37280122,SF/PF/F/UTIL,5100,WAS@CHI 01/10/2025 08:00PM ET,WAS,23.78
-,,,,,,,,,,,,,SG/SF,Ziaire Williams (37280115),Ziaire Williams,37280115,SG/SF/F/G/UTIL,5100,BKN@DEN 01/10/2025 09:00PM ET,BKN,19.6
-,,,,,,,,,,,,,SF/PF,Herbert Jones (37280111),Herbert Jones,37280111,SF/PF/F/UTIL,5100,NOP@PHI 01/10/2025 07:00PM ET,NOP,24.28
-,,,,,,,,,,,,,C,Andre Drummond (37280120),Andre Drummond,37280120,C/UTIL,5100,NOP@PHI 01/10/2025 07:00PM ET,PHI,20.23
-,,,,,,,,,,,,,PF/C,Noah Clowney (37280126),Noah Clowney,37280126,PF/C/F/UTIL,5000,BKN@DEN 01/10/2025 09:00PM ET,BKN,17.73
-,,,,,,,,,,,,,SF/PF,Tristan da Silva (37280130),Tristan da Silva,37280130,SF/PF/F/UTIL,5000,MIL@ORL 01/10/2025 07:00PM ET,ORL,17.87
-,,,,,,,,,,,,,PF/C,Wendell Carter Jr. (37280134),Wendell Carter Jr.,37280134,PF/C/F/UTIL,4900,MIL@ORL 01/10/2025 07:00PM ET,ORL,22.82
-,,,,,,,,,,,,,PF/C,Al Horford (37280142),Al Horford,37280142,PF/C/F/UTIL,4800,SAC@BOS 01/10/2025 07:30PM ET,BOS,22.70
-,,,,,,,,,,,,,SF,Saddiq Bey (37280146),Saddiq Bey,37280146,SF/F/UTIL,4800,WAS@CHI 01/10/2025 08:00PM ET,WAS,0
-,,,,,,,,,,,,,PG/SG,Andrew Nembhard (37280138),Andrew Nembhard,37280138,PG/SG/G/UTIL,4800,GSW@IND 01/10/2025 07:00PM ET,IND,23.64
-,,,,,,,,,,,,,PF,Keegan Murray (37280149),Keegan Murray,37280149,PF/F/UTIL,4700,SAC@BOS 01/10/2025 07:30PM ET,SAC,26.88
-,,,,,,,,,,,,,SG,Kentavious Caldwell-Pope (37280152),Kentavious Caldwell-Pope,37280152,SG/G/UTIL,4700,MIL@ORL 01/10/2025 07:00PM ET,ORL,19.70
-,,,,,,,,,,,,,PG/SG,Carlton Carrington (37280160),Carlton Carrington,37280160,PG/SG/G/UTIL,4600,WAS@CHI 01/10/2025 08:00PM ET,WAS,22.64
-,,,,,,,,,,,,,SG/SF,Christian Braun (37280155),Christian Braun,37280155,SG/SF/F/G/UTIL,4600,BKN@DEN 01/10/2025 09:00PM ET,DEN,26.48
-,,,,,,,,,,,,,PG,Anthony Black (37280164),Anthony Black,37280164,PG/G/UTIL,4600,MIL@ORL 01/10/2025 07:00PM ET,ORL,19.23
-,,,,,,,,,,,,,SG/SF,Corey Kispert (37280167),Corey Kispert,37280167,SG/SF/F/G/UTIL,4500,WAS@CHI 01/10/2025 08:00PM ET,WAS,20.22
-,,,,,,,,,,,,,SF/PF,Jalen Wilson (37280172),Jalen Wilson,37280172,SF/PF/F/UTIL,4500,BKN@DEN 01/10/2025 09:00PM ET,BKN,17.30
-,,,,,,,,,,,,,C,Day'Ron Sharpe (37280176),Day'Ron Sharpe,37280176,C/UTIL,4400,BKN@DEN 01/10/2025 09:00PM ET,BKN,19.25
-,,,,,,,,,,,,,PF/C,Obi Toppin (37280178),Obi Toppin,37280178,PF/C/F/UTIL,4400,GSW@IND 01/10/2025 07:00PM ET,IND,20.49
-,,,,,,,,,,,,,PF/C,Precious Achiuwa (37280182),Precious Achiuwa,37280182,PF/C/F/UTIL,4400,OKC@NYK 01/10/2025 07:30PM ET,NYK,16.76
-,,,,,,,,,,,,,PF,Patrick Williams (37280186),Patrick Williams,37280186,PF/F/UTIL,4300,WAS@CHI 01/10/2025 08:00PM ET,CHI,21.33
-,,,,,,,,,,,,,PF,Trendon Watford (37280193),Trendon Watford,37280193,PF/F/UTIL,4300,BKN@DEN 01/10/2025 09:00PM ET,BKN,15.79
-,,,,,,,,,,,,,PG/SG,Miles McBride (37280189),Miles McBride,37280189,PG/SG/G/UTIL,4300,OKC@NYK 01/10/2025 07:30PM ET,NYK,20.27
-,,,,,,,,,,,,,C,Thomas Bryant (37280196),Thomas Bryant,37280196,C/UTIL,4200,GSW@IND 01/10/2025 07:00PM ET,IND,12.69
-,,,,,,,,,,,,,SG,Buddy Hield (37280198),Buddy Hield,37280198,SG/G/UTIL,4100,GSW@IND 01/10/2025 07:00PM ET,GSW,21.59
-,,,,,,,,,,,,,SG,Keon Ellis (37280201),Keon Ellis,37280201,SG/G/UTIL,4000,SAC@BOS 01/10/2025 07:30PM ET,SAC,16.57
-,,,,,,,,,,,,,PG/SG,Brandin Podziemski (37280209),Brandin Podziemski,37280209,PG/SG/G/UTIL,4000,GSW@IND 01/10/2025 07:00PM ET,GSW,20.81
-,,,,,,,,,,,,,PG/SG,Trevelin Queen (37280213),Trevelin Queen,37280213,PG/SG/G/UTIL,4000,MIL@ORL 01/10/2025 07:00PM ET,ORL,12.19
-,,,,,,,,,,,,,SG/SF,Luguentz Dort (37280204),Luguentz Dort,37280204,SG/SF/F/G/UTIL,4000,OKC@NYK 01/10/2025 07:30PM ET,OKC,22.31
-,,,,,,,,,,,,,PG,Jared Butler (37280217),Jared Butler,37280217,PG/G/UTIL,3900,WAS@CHI 01/10/2025 08:00PM ET,WAS,12.90
-,,,,,,,,,,,,,PG,Lonzo Ball (37280220),Lonzo Ball,37280220,PG/G/UTIL,3900,WAS@CHI 01/10/2025 08:00PM ET,CHI,19
-,,,,,,,,,,,,,PF/C,Trey Lyles (37280229),Trey Lyles,37280229,PF/C/F/UTIL,3800,SAC@BOS 01/10/2025 07:30PM ET,SAC,16.74
-,,,,,,,,,,,,,PF,Aaron Nesmith (37280226),Aaron Nesmith,37280226,PF/F/UTIL,3800,GSW@IND 01/10/2025 07:00PM ET,IND,17.75
-,,,,,,,,,,,,,PG,Jose Alvarado (37280223),Jose Alvarado,37280223,PG/G/UTIL,3800,NOP@PHI 01/10/2025 07:00PM ET,NOP,22.47
-,,,,,,,,,,,,,C,Mitchell Robinson (37280233),Mitchell Robinson,37280233,C/UTIL,3800,OKC@NYK 01/10/2025 07:30PM ET,NYK,0
-,,,,,,,,,,,,,SG/SF,Alex Caruso (37280235),Alex Caruso,37280235,SG/SF/F/G/UTIL,3800,OKC@NYK 01/10/2025 07:30PM ET,OKC,17.54
-,,,,,,,,,,,,,SF/PF,Sam Hauser (37280246),Sam Hauser,37280246,SF/PF/F/UTIL,3700,SAC@BOS 01/10/2025 07:30PM ET,BOS,15.98
-,,,,,,,,,,,,,PF,Peyton Watson (37280243),Peyton Watson,37280243,PF/F/UTIL,3700,BKN@DEN 01/10/2025 09:00PM ET,DEN,18.98
-,,,,,,,,,,,,,PG,T.J. McConnell (37280240),T.J. McConnell,37280240,PG/G/UTIL,3700,GSW@IND 01/10/2025 07:00PM ET,IND,22.29
-,,,,,,,,,,,,,C,Luke Kornet (37280254),Luke Kornet,37280254,C/UTIL,3600,SAC@BOS 01/10/2025 07:30PM ET,BOS,15.84
-,,,,,,,,,,,,,SG/SF,Kevin Huerter (37280265),Kevin Huerter,37280265,SG/SF/F/G/UTIL,3600,SAC@BOS 01/10/2025 07:30PM ET,SAC,19.52
-,,,,,,,,,,,,,SF,Bojan Bogdanovic (37280262),Bojan Bogdanovic,37280262,SF/F/UTIL,3600,BKN@DEN 01/10/2025 09:00PM ET,BKN,0
-,,,,,,,,,,,,,SG/SF,Moses Moody (37280270),Moses Moody,37280270,SG/SF/F/G/UTIL,3600,GSW@IND 01/10/2025 07:00PM ET,GSW,13.09
-,,,,,,,,,,,,,PF/C,Jonathan Isaac (37280250),Jonathan Isaac,37280250,PF/C/F/UTIL,3600,MIL@ORL 01/10/2025 07:00PM ET,ORL,16.52
-,,,,,,,,,,,,,SF/PF,Taurean Prince (37280258),Taurean Prince,37280258,SF/PF/F/UTIL,3600,MIL@ORL 01/10/2025 07:00PM ET,MIL,17.18
-,,,,,,,,,,,,,C,Jericho Sims (37280256),Jericho Sims,37280256,C/UTIL,3600,OKC@NYK 01/10/2025 07:30PM ET,NYK,7.84
-,,,,,,,,,,,,,PG/SG,Cason Wallace (37280275),Cason Wallace,37280275,PG/SG/G/UTIL,3600,OKC@NYK 01/10/2025 07:30PM ET,OKC,19.38
-,,,,,,,,,,,,,SF/PF,Kyshawn George (37280294),Kyshawn George,37280294,SF/PF/F/UTIL,3500,WAS@CHI 01/10/2025 08:00PM ET,WAS,18.07
-,,,,,,,,,,,,,C,DeAndre Jordan (37280289),DeAndre Jordan,37280289,C/UTIL,3500,BKN@DEN 01/10/2025 09:00PM ET,DEN,11.19
-,,,,,,,,,,,,,SF/PF,Tosan Evbuomwan (37280298),Tosan Evbuomwan,37280298,SF/PF/F/UTIL,3500,BKN@DEN 01/10/2025 09:00PM ET,BKN,16.83
-,,,,,,,,,,,,,PF,Kyle Anderson (37280291),Kyle Anderson,37280291,PF/F/UTIL,3500,GSW@IND 01/10/2025 07:00PM ET,GSW,14.86
-,,,,,,,,,,,,,SG/SF,Gary Trent Jr. (37280279),Gary Trent Jr.,37280279,SG/SF/F/G/UTIL,3500,MIL@ORL 01/10/2025 07:00PM ET,MIL,17.04
-,,,,,,,,,,,,,SG/SF,Brandon Boston Jr. (37280284),Brandon Boston Jr.,37280284,SG/SF/F/G/UTIL,3500,NOP@PHI 01/10/2025 07:00PM ET,NOP,22.23
-,,,,,,,,,,,,,C,Richaun Holmes (37280315),Richaun Holmes,37280315,C/UTIL,3400,WAS@CHI 01/10/2025 08:00PM ET,WAS,7.88
-,,,,,,,,,,,,,SG/SF,Julian Strawther (37280317),Julian Strawther,37280317,SG/SF/F/G/UTIL,3400,BKN@DEN 01/10/2025 09:00PM ET,DEN,16.74
-,,,,,,,,,,,,,PG/SG,AJ Green (37280307),AJ Green,37280307,PG/SG/G/UTIL,3400,MIL@ORL 01/10/2025 07:00PM ET,MIL,15.16
-,,,,,,,,,,,,,SG/SF,Eric Gordon (37280302),Eric Gordon,37280302,SG/SF/F/G/UTIL,3400,NOP@PHI 01/10/2025 07:00PM ET,PHI,10.04
-,,,,,,,,,,,,,PG/SG,Cameron Payne (37280311),Cameron Payne,37280311,PG/SG/G/UTIL,3400,OKC@NYK 01/10/2025 07:30PM ET,NYK,14.67
-,,,,,,,,,,,,,C,Marvin Bagley III (37280322),Marvin Bagley III,37280322,C/UTIL,3300,WAS@CHI 01/10/2025 08:00PM ET,WAS,10.16
-,,,,,,,,,,,,,C,Dario Saric (37280335),Dario Saric,37280335,C/UTIL,3300,BKN@DEN 01/10/2025 09:00PM ET,DEN,11.15
-,,,,,,,,,,,,,SG/SF,Lindy Waters III (37280330),Lindy Waters III,37280330,SG/SF/F/G/UTIL,3300,GSW@IND 01/10/2025 07:00PM ET,GSW,13.31
-,,,,,,,,,,,,,SF,Caleb Houstan (37280324),Caleb Houstan,37280324,SF/F/UTIL,3300,MIL@ORL 01/10/2025 07:00PM ET,ORL,4.92
-,,,,,,,,,,,,,PG,Ryan Rollins (37280327),Ryan Rollins,37280327,PG/G/UTIL,3300,MIL@ORL 01/10/2025 07:00PM ET,MIL,10.74
-,,,,,,,,,,,,,SF/PF,Javonte Green (37280337),Javonte Green,37280337,SF/PF/F/UTIL,3300,NOP@PHI 01/10/2025 07:00PM ET,NOP,14.27
-,,,,,,,,,,,,,SG,Landry Shamet (37280341),Landry Shamet,37280341,SG/G/UTIL,3300,OKC@NYK 01/10/2025 07:30PM ET,NYK,6.92
-,,,,,,,,,,,,,C,Neemias Queta (37280355),Neemias Queta,37280355,C/UTIL,3200,SAC@BOS 01/10/2025 07:30PM ET,BOS,13.89
-,,,,,,,,,,,,,C,Jalen Smith (37280344),Jalen Smith,37280344,C/UTIL,3200,WAS@CHI 01/10/2025 08:00PM ET,CHI,18.71
-,,,,,,,,,,,,,PG,Reece Beekman (37280366),Reece Beekman,37280366,PG/G/UTIL,3200,BKN@DEN 01/10/2025 09:00PM ET,BKN,4.58
-,,,,,,,,,,,,,C,Kevon Looney (37280364),Kevon Looney,37280364,C/UTIL,3200,GSW@IND 01/10/2025 07:00PM ET,GSW,17.96
-,,,,,,,,,,,,,SG/SF,Gary Harris (37280350),Gary Harris,37280350,SG/SF/F/G/UTIL,3200,MIL@ORL 01/10/2025 07:00PM ET,ORL,8.41
-,,,,,,,,,,,,,SG,Jordan Hawkins (37280357),Jordan Hawkins,37280357,SG/G/UTIL,3200,NOP@PHI 01/10/2025 07:00PM ET,NOP,17.62
-,,,,,,,,,,,,,PG/SG,Kyle Lowry (37280360),Kyle Lowry,37280360,PG/SG/G/UTIL,3200,NOP@PHI 01/10/2025 07:00PM ET,PHI,13.26
-,,,,,,,,,,,,,PF/C,Jeremiah Robinson-Earl (37280369),Jeremiah Robinson-Earl,37280369,PF/C/F/UTIL,3200,NOP@PHI 01/10/2025 07:00PM ET,NOP,15.84
-,,,,,,,,,,,,,SF/PF,Aaron Wiggins (37280346),Aaron Wiggins,37280346,SF/PF/F/UTIL,3200,OKC@NYK 01/10/2025 07:30PM ET,OKC,17.49
-,,,,,,,,,,,,,PG/SG,Devin Carter (37280380),Devin Carter,37280380,PG/SG/G/UTIL,3100,SAC@BOS 01/10/2025 07:30PM ET,SAC,18.17
-,,,,,,,,,,,,,SF/PF,Jarace Walker (37280376),Jarace Walker,37280376,SF/PF/F/UTIL,3100,GSW@IND 01/10/2025 07:00PM ET,IND,15.37
-,,,,,,,,,,,,,PG,Cory Joseph (37280373),Cory Joseph,37280373,PG/G/UTIL,3100,MIL@ORL 01/10/2025 07:00PM ET,ORL,5.35
-,,,,,,,,,,,,,SG/SF,Andre Jackson Jr. (37280387),Andre Jackson Jr.,37280387,SG/SF/F/G/UTIL,3100,MIL@ORL 01/10/2025 07:00PM ET,MIL,11.1
-,,,,,,,,,,,,,PG,Reggie Jackson (37280384),Reggie Jackson,37280384,PG/G/UTIL,3100,NOP@PHI 01/10/2025 07:00PM ET,PHI,9.4
-,,,,,,,,,,,,,C,Daniel Theis (37280392),Daniel Theis,37280392,C/UTIL,3100,NOP@PHI 01/10/2025 07:00PM ET,NOP,12.92
-,,,,,,,,,,,,,SG/SF,Isaiah Joe (37280394),Isaiah Joe,37280394,SG/SF/F/G/UTIL,3100,OKC@NYK 01/10/2025 07:30PM ET,OKC,16.26
-,,,,,,,,,,,,,SG,Baylor Scheierman (37280534),Baylor Scheierman,37280534,SG/G/UTIL,3000,SAC@BOS 01/10/2025 07:30PM ET,BOS,3.55
-,,,,,,,,,,,,,PF,Drew Peterson (37280537),Drew Peterson,37280537,PF/F/UTIL,3000,SAC@BOS 01/10/2025 07:30PM ET,BOS,7.70
-,,,,,,,,,,,,,SG/SF,Jaden Springer (37280540),Jaden Springer,37280540,SG/SF/F/G/UTIL,3000,SAC@BOS 01/10/2025 07:30PM ET,BOS,3.47
-,,,,,,,,,,,,,PF/C,Xavier Tillman (37280545),Xavier Tillman,37280545,PF/C/F/UTIL,3000,SAC@BOS 01/10/2025 07:30PM ET,BOS,4.59
-,,,,,,,,,,,,,SF,Anton Watson (37280549),Anton Watson,37280549,SF/F/UTIL,3000,SAC@BOS 01/10/2025 07:30PM ET,BOS,0
-,,,,,,,,,,,,,PG,JD Davison (37280552),JD Davison,37280552,PG/G/UTIL,3000,SAC@BOS 01/10/2025 07:30PM ET,BOS,1.9
-,,,,,,,,,,,,,SG/SF,Jordan Walsh (37280555),Jordan Walsh,37280555,SG/SF/F/G/UTIL,3000,SAC@BOS 01/10/2025 07:30PM ET,BOS,4.95
-,,,,,,,,,,,,,SF/PF,Doug McDermott (37280658),Doug McDermott,37280658,SF/PF/F/UTIL,3000,SAC@BOS 01/10/2025 07:30PM ET,SAC,5.52
-,,,,,,,,,,,,,C,Alex Len (37280662),Alex Len,37280662,C/UTIL,3000,SAC@BOS 01/10/2025 07:30PM ET,SAC,6.80
-,,,,,,,,,,,,,SG/SF,Colby Jones (37280664),Colby Jones,37280664,SG/SF/F/G/UTIL,3000,SAC@BOS 01/10/2025 07:30PM ET,SAC,3.41
-,,,,,,,,,,,,,PG,Jordan McLaughlin (37280669),Jordan McLaughlin,37280669,PG/G/UTIL,3000,SAC@BOS 01/10/2025 07:30PM ET,SAC,5.25
-,,,,,,,,,,,,,PF,Isaiah Crawford (37280672),Isaiah Crawford,37280672,PF/F/UTIL,3000,SAC@BOS 01/10/2025 07:30PM ET,SAC,0.62
-,,,,,,,,,,,,,PF,Jae Crowder (37280675),Jae Crowder,37280675,PF/F/UTIL,3000,SAC@BOS 01/10/2025 07:30PM ET,SAC,8.79
-,,,,,,,,,,,,,SG,Mason Jones (37280678),Mason Jones,37280678,SG/G/UTIL,3000,SAC@BOS 01/10/2025 07:30PM ET,SAC,5.17
-,,,,,,,,,,,,,PF/C,Isaac Jones (37280681),Isaac Jones,37280681,PF/C/F/UTIL,3000,SAC@BOS 01/10/2025 07:30PM ET,SAC,6.46
-,,,,,,,,,,,,,PF,Emanuel Miller (37280406),Emanuel Miller,37280406,PF/F/UTIL,3000,WAS@CHI 01/10/2025 08:00PM ET,CHI,0
-,,,,,,,,,,,,,PG/SG,Jevon Carter (37280409),Jevon Carter,37280409,PG/SG/G/UTIL,3000,WAS@CHI 01/10/2025 08:00PM ET,CHI,6.41
-,,,,,,,,,,,,,SG/SF,Chris Duarte (37280413),Chris Duarte,37280413,SG/SF/F/G/UTIL,3000,WAS@CHI 01/10/2025 08:00PM ET,CHI,5.30
-,,,,,,,,,,,,,SG/SF,Talen Horton-Tucker (37280418),Talen Horton-Tucker,37280418,SG/SF/F/G/UTIL,3000,WAS@CHI 01/10/2025 08:00PM ET,CHI,12.38
-,,,,,,,,,,,,,PF,Julian Phillips (37280423),Julian Phillips,37280423,PF/F/UTIL,3000,WAS@CHI 01/10/2025 08:00PM ET,CHI,9.33
-,,,,,,,,,,,,,C,Adama Sanogo (37280426),Adama Sanogo,37280426,C/UTIL,3000,WAS@CHI 01/10/2025 08:00PM ET,CHI,4.12
-,,,,,,,,,,,,,C,E.J. Liddell (37280428),E.J. Liddell,37280428,C/UTIL,3000,WAS@CHI 01/10/2025 08:00PM ET,CHI,5.04
-,,,,,,,,,,,,,SF/PF,Matas Buzelis (37280430),Matas Buzelis,37280430,SF/PF/F/UTIL,3000,WAS@CHI 01/10/2025 08:00PM ET,CHI,10.96
-,,,,,,,,,,,,,SF,Dalen Terry (37280434),Dalen Terry,37280434,SF/F/UTIL,3000,WAS@CHI 01/10/2025 08:00PM ET,CHI,8.67
-,,,,,,,,,,,,,PF,Torrey Craig (37280437),Torrey Craig,37280437,PF/F/UTIL,3000,WAS@CHI 01/10/2025 08:00PM ET,CHI,12.69
-,,,,,,,,,,,,,PF,Patrick Baldwin Jr. (37280560),Patrick Baldwin Jr.,37280560,PF/F/UTIL,3000,WAS@CHI 01/10/2025 08:00PM ET,WAS,3.92
-,,,,,,,,,,,,,C,Anthony Gill (37280563),Anthony Gill,37280563,C/UTIL,3000,WAS@CHI 01/10/2025 08:00PM ET,WAS,4.55
-,,,,,,,,,,,,,SG/SF,Johnny Davis (37280565),Johnny Davis,37280565,SG/SF/F/G/UTIL,3000,WAS@CHI 01/10/2025 08:00PM ET,WAS,6.56
-,,,,,,,,,,,,,C,Tristan Vukcevic (37280570),Tristan Vukcevic,37280570,C/UTIL,3000,WAS@CHI 01/10/2025 08:00PM ET,WAS,1.75
-,,,,,,,,,,,,,PG/SG,Trey Alexander (37280477),Trey Alexander,37280477,PG/SG/G/UTIL,3000,BKN@DEN 01/10/2025 09:00PM ET,DEN,1.75
-,,,,,,,,,,,,,SF/PF,Hunter Tyson (37280481),Hunter Tyson,37280481,SF/PF/F/UTIL,3000,BKN@DEN 01/10/2025 09:00PM ET,DEN,5.47
-,,,,,,,,,,,,,C,Zeke Nnaji (37280485),Zeke Nnaji,37280485,C/UTIL,3000,BKN@DEN 01/10/2025 09:00PM ET,DEN,2.13
-,,,,,,,,,,,,,C,PJ Hall (37280487),PJ Hall,37280487,C/UTIL,3000,BKN@DEN 01/10/2025 09:00PM ET,DEN,1.62
-,,,,,,,,,,,,,PG/SG,Jalen Pickett (37280489),Jalen Pickett,37280489,PG/SG/G/UTIL,3000,BKN@DEN 01/10/2025 09:00PM ET,DEN,7.70
-,,,,,,,,,,,,,SG/SF,Spencer Jones (37280493),Spencer Jones,37280493,SG/SF/F/G/UTIL,3000,BKN@DEN 01/10/2025 09:00PM ET,DEN,1.85
-,,,,,,,,,,,,,C,Vlatko Cancar (37280498),Vlatko Cancar,37280498,C/UTIL,3000,BKN@DEN 01/10/2025 09:00PM ET,DEN,5.12
-,,,,,,,,,,,,,C,DaRon Holmes II (37280500),DaRon Holmes II,37280500,C/UTIL,3000,BKN@DEN 01/10/2025 09:00PM ET,DEN,0
-,,,,,,,,,,,,,SG,Dariq Whitehead (37280610),Dariq Whitehead,37280610,SG/G/UTIL,3000,BKN@DEN 01/10/2025 09:00PM ET,BKN,7.25
-,,,,,,,,,,,,,SF,Maxwell Lewis (37280613),Maxwell Lewis,37280613,SF/F/UTIL,3000,BKN@DEN 01/10/2025 09:00PM ET,BKN,1.75
-,,,,,,,,,,,,,PG,De'Anthony Melton (37280616),De'Anthony Melton,37280616,PG/G/UTIL,3000,BKN@DEN 01/10/2025 09:00PM ET,BKN,22.25
-,,,,,,,,,,,,,PG,RayJ Dennis (37280448),RayJ Dennis,37280448,PG/G/UTIL,3000,GSW@IND 01/10/2025 07:00PM ET,IND,0
-,,,,,,,,,,,,,PF/C,James Johnson (37280451),James Johnson,37280451,PF/C/F/UTIL,3000,GSW@IND 01/10/2025 07:00PM ET,IND,3.25
-,,,,,,,,,,,,,PG/SG,Quenton Jackson (37280455),Quenton Jackson,37280455,PG/SG/G/UTIL,3000,GSW@IND 01/10/2025 07:00PM ET,IND,11.62
-,,,,,,,,,,,,,PF/C,Enrique Freeman (37280459),Enrique Freeman,37280459,PF/C/F/UTIL,3000,GSW@IND 01/10/2025 07:00PM ET,IND,3.94
-,,,,,,,,,,,,,SG/SF,Johnny Furphy (37280463),Johnny Furphy,37280463,SG/SF/F/G/UTIL,3000,GSW@IND 01/10/2025 07:00PM ET,IND,5.78
-,,,,,,,,,,,,,SG/SF,Ben Sheppard (37280468),Ben Sheppard,37280468,SG/SF/F/G/UTIL,3000,GSW@IND 01/10/2025 07:00PM ET,IND,12.22
-,,,,,,,,,,,,,C,Isaiah Jackson (37280473),Isaiah Jackson,37280473,C/UTIL,3000,GSW@IND 01/10/2025 07:00PM ET,IND,19.4
-,,,,,,,,,,,,,C,James Wiseman (37280475),James Wiseman,37280475,C/UTIL,3000,GSW@IND 01/10/2025 07:00PM ET,IND,7.25
-,,,,,,,,,,,,,SG,Gui Santos (37280599),Gui Santos,37280599,SG/G/UTIL,3000,GSW@IND 01/10/2025 07:00PM ET,GSW,4.98
-,,,,,,,,,,,,,PG,Pat Spencer (37280602),Pat Spencer,37280602,PG/G/UTIL,3000,GSW@IND 01/10/2025 07:00PM ET,GSW,6.38
-,,,,,,,,,,,,,C,Quinten Post (37280605),Quinten Post,37280605,C/UTIL,3000,GSW@IND 01/10/2025 07:00PM ET,GSW,2.38
-,,,,,,,,,,,,,SF,Gary Payton II (37280607),Gary Payton II,37280607,SF/F/UTIL,3000,GSW@IND 01/10/2025 07:00PM ET,GSW,11.93
-,,,,,,,,,,,,,SF,Jett Howard (37280440),Jett Howard,37280440,SF/F/UTIL,3000,MIL@ORL 01/10/2025 07:00PM ET,ORL,8.20
-,,,,,,,,,,,,,PG,Mac McClung (37280443),Mac McClung,37280443,PG/G/UTIL,3000,MIL@ORL 01/10/2025 07:00PM ET,ORL,4.25
-,,,,,,,,,,,,,C,Moritz Wagner (37280446),Moritz Wagner,37280446,C/UTIL,3000,MIL@ORL 01/10/2025 07:00PM ET,ORL,23.22
-,,,,,,,,,,,,,SG,Stanley Umude (37280572),Stanley Umude,37280572,SG/G/UTIL,3000,MIL@ORL 01/10/2025 07:00PM ET,MIL,2.72
-,,,,,,,,,,,,,PG/SG,Delon Wright (37280575),Delon Wright,37280575,PG/SG/G/UTIL,3000,MIL@ORL 01/10/2025 07:00PM ET,MIL,10.04
-,,,,,,,,,,,,,SF/PF,Pat Connaughton (37280579),Pat Connaughton,37280579,SF/PF/F/UTIL,3000,MIL@ORL 01/10/2025 07:00PM ET,MIL,11.04
-,,,,,,,,,,,,,PF,Tyler Smith (37280583),Tyler Smith,37280583,PF/F/UTIL,3000,MIL@ORL 01/10/2025 07:00PM ET,MIL,3.5
-,,,,,,,,,,,,,PG/SF,Marjon Beauchamp (37280586),Marjon Beauchamp,37280586,PG/SF/F/G/UTIL,3000,MIL@ORL 01/10/2025 07:00PM ET,MIL,2.99
-,,,,,,,,,,,,,C,Liam Robbins (37280591),Liam Robbins,37280591,C/UTIL,3000,MIL@ORL 01/10/2025 07:00PM ET,MIL,2.67
-,,,,,,,,,,,,,SF,Chris Livingston (37280593),Chris Livingston,37280593,SF/F/UTIL,3000,MIL@ORL 01/10/2025 07:00PM ET,MIL,2.19
-,,,,,,,,,,,,,SG,AJ Johnson (37280596),AJ Johnson,37280596,SG/G/UTIL,3000,MIL@ORL 01/10/2025 07:00PM ET,MIL,1.96
-,,,,,,,,,,,,,SF/PF,Ricky Council IV (37280399),Ricky Council IV,37280399,SF/PF/F/UTIL,3000,NOP@PHI 01/10/2025 07:00PM ET,PHI,10.22
-,,,,,,,,,,,,,SF,Justin Edwards (37280502),Justin Edwards,37280502,SF/F/UTIL,3000,NOP@PHI 01/10/2025 07:00PM ET,PHI,7.68
-,,,,,,,,,,,,,PG,Jeff Dowtin (37280505),Jeff Dowtin,37280505,PG/G/UTIL,3000,NOP@PHI 01/10/2025 07:00PM ET,PHI,6.36
-,,,,,,,,,,,,,C,Adem Bona (37280508),Adem Bona,37280508,C/UTIL,3000,NOP@PHI 01/10/2025 07:00PM ET,PHI,5.99
-,,,,,,,,,,,,,PF,KJ Martin (37280510),KJ Martin,37280510,PF/F/UTIL,3000,NOP@PHI 01/10/2025 07:00PM ET,PHI,13.52
-,,,,,,,,,,,,,PG,Jared McCain (37280513),Jared McCain,37280513,PG/G/UTIL,3000,NOP@PHI 01/10/2025 07:00PM ET,PHI,23.94
-,,,,,,,,,,,,,C,Trey Jemison (37280619),Trey Jemison,37280619,C/UTIL,3000,NOP@PHI 01/10/2025 07:00PM ET,NOP,8.06
-,,,,,,,,,,,,,SG/SF,Antonio Reeves (37280621),Antonio Reeves,37280621,SG/SF/F/G/UTIL,3000,NOP@PHI 01/10/2025 07:00PM ET,NOP,7.79
-,,,,,,,,,,,,,PF/C,Karlo Matkovic (37280626),Karlo Matkovic,37280626,PF/C/F/UTIL,3000,NOP@PHI 01/10/2025 07:00PM ET,NOP,6.5
-,,,,,,,,,,,,,SF,Jamal Cain (37280630),Jamal Cain,37280630,SF/F/UTIL,3000,NOP@PHI 01/10/2025 07:00PM ET,NOP,10.70
-,,,,,,,,,,,,,PF,Jacob Toppin (37280403),Jacob Toppin,37280403,PF/F/UTIL,3000,OKC@NYK 01/10/2025 07:30PM ET,NYK,1.25
-,,,,,,,,,,,,,SG/SF,Matt Ryan (37280516),Matt Ryan,37280516,SG/SF/F/G/UTIL,3000,OKC@NYK 01/10/2025 07:30PM ET,NYK,1.73
-,,,,,,,,,,,,,SG/SF,Pacome Dadiet (37280521),Pacome Dadiet,37280521,SG/SF/F/G/UTIL,3000,OKC@NYK 01/10/2025 07:30PM ET,NYK,4.23
-,,,,,,,,,,,,,PG,Tyler Kolek (37280526),Tyler Kolek,37280526,PG/G/UTIL,3000,OKC@NYK 01/10/2025 07:30PM ET,NYK,4.62
-,,,,,,,,,,,,,C,Ariel Hukporti (37280529),Ariel Hukporti,37280529,C/UTIL,3000,OKC@NYK 01/10/2025 07:30PM ET,NYK,5.79
-,,,,,,,,,,,,,SF,Kevin McCullar Jr. (37280531),Kevin McCullar Jr.,37280531,SF/F/UTIL,3000,OKC@NYK 01/10/2025 07:30PM ET,NYK,0
-,,,,,,,,,,,,,PF,Dillon Jones (37280633),Dillon Jones,37280633,PF/F/UTIL,3000,OKC@NYK 01/10/2025 07:30PM ET,OKC,5.44
-,,,,,,,,,,,,,PF/C,Kenrich Williams (37280636),Kenrich Williams,37280636,PF/C/F/UTIL,3000,OKC@NYK 01/10/2025 07:30PM ET,OKC,12.88
-,,,,,,,,,,,,,PF/C,Ousmane Dieng (37280640),Ousmane Dieng,37280640,PF/C/F/UTIL,3000,OKC@NYK 01/10/2025 07:30PM ET,OKC,8.69
-,,,,,,,,,,,,,C,Jaylin Williams (37280644),Jaylin Williams,37280644,C/UTIL,3000,OKC@NYK 01/10/2025 07:30PM ET,OKC,12.28
-,,,,,,,,,,,,,PG,Ajay Mitchell (37280646),Ajay Mitchell,37280646,PG/G/UTIL,3000,OKC@NYK 01/10/2025 07:30PM ET,OKC,12.86
-,,,,,,,,,,,,,PG,Adam Flagler (37280649),Adam Flagler,37280649,PG/G/UTIL,3000,OKC@NYK 01/10/2025 07:30PM ET,OKC,2.64
-,,,,,,,,,,,,,SG,Alex Ducas (37280652),Alex Ducas,37280652,SG/G/UTIL,3000,OKC@NYK 01/10/2025 07:30PM ET,OKC,0
-,,,,,,,,,,,,,PG,Nikola Topic (37280655),Nikola Topic,37280655,PG/G/UTIL,3000,OKC@NYK 01/10/2025 07:30PM ET,OKC,0
+,,,,,,,,,,,,,C,Victor Wembanyama (37295115),Victor Wembanyama,37295115,C/UTIL,11600,Postponed,SAS,54.91
+,,,,,,,,,,,,,C,Anthony Davis (37295117),Anthony Davis,37295117,C/UTIL,10700,Postponed,LAL,53.07
+,,,,,,,,,,,,,PG,Cade Cunningham (37295119),Cade Cunningham,37295119,PG/G/UTIL,10400,TOR@DET 01/11/2025 07:00PM ET,DET,50.22
+,,,,,,,,,,,,,PF,LeBron James (37295122),LeBron James,37295122,PF/F/UTIL,9700,Postponed,LAL,50.08
+,,,,,,,,,,,,,PG,LaMelo Ball (37295125),LaMelo Ball,37295125,PG/G/UTIL,9600,Postponed,CHA,51.44
+,,,,,,,,,,,,,PF/C,Jaren Jackson Jr. (37295128),Jaren Jackson Jr.,37295128,PF/C/F/UTIL,9300,MEM@MIN 01/11/2025 08:00PM ET,MEM,40.18
+,,,,,,,,,,,,,PG/SF,Scottie Barnes (37295135),Scottie Barnes,37295135,PG/SF/F/G/UTIL,8900,TOR@DET 01/11/2025 07:00PM ET,TOR,44.3
+,,,,,,,,,,,,,SG,Anthony Edwards (37295132),Anthony Edwards,37295132,SG/G/UTIL,8900,MEM@MIN 01/11/2025 08:00PM ET,MIN,43.08
+,,,,,,,,,,,,,PG,James Harden (37295144),James Harden,37295144,PG/G/UTIL,8800,Postponed,LAC,44.54
+,,,,,,,,,,,,,PG/SG,Tyler Herro (37295140),Tyler Herro,37295140,PG/SG/G/UTIL,8800,MIA@POR 01/11/2025 10:00PM ET,MIA,40.76
+,,,,,,,,,,,,,PG,Ja Morant (37295147),Ja Morant,37295147,PG/G/UTIL,8800,MEM@MIN 01/11/2025 08:00PM ET,MEM,40.84
+,,,,,,,,,,,,,SF,RJ Barrett (37295150),RJ Barrett,37295150,SF/F/UTIL,8400,TOR@DET 01/11/2025 07:00PM ET,TOR,42.6
+,,,,,,,,,,,,,C,Bam Adebayo (37295153),Bam Adebayo,37295153,C/UTIL,8400,MIA@POR 01/11/2025 10:00PM ET,MIA,40.23
+,,,,,,,,,,,,,SG/SF,Brandon Miller (37295155),Brandon Miller,37295155,SG/SF/F/G/UTIL,8300,Postponed,CHA,36.88
+,,,,,,,,,,,,,SF/PF,Jimmy Butler (37295160),Jimmy Butler,37295160,SF/PF/F/UTIL,8000,MIA@POR 01/11/2025 10:00PM ET,MIA,34.60
+,,,,,,,,,,,,,SG/SF,Desmond Bane (37295164),Desmond Bane,37295164,SG/SF/F/G/UTIL,7800,MEM@MIN 01/11/2025 08:00PM ET,MEM,34.89
+,,,,,,,,,,,,,PF,Miles Bridges (37295169),Miles Bridges,37295169,PF/F/UTIL,7700,Postponed,CHA,35.73
+,,,,,,,,,,,,,C,Ivica Zubac (37295172),Ivica Zubac,37295172,C/UTIL,7700,Postponed,LAC,38.09
+,,,,,,,,,,,,,SF/PF,Kawhi Leonard (37295174),Kawhi Leonard,37295174,SF/PF/F/UTIL,7600,Postponed,LAC,17.88
+,,,,,,,,,,,,,PG,Austin Reaves (37295178),Austin Reaves,37295178,PG/G/UTIL,7500,Postponed,LAL,35.27
+,,,,,,,,,,,,,PF/C,Julius Randle (37295181),Julius Randle,37295181,PF/C/F/UTIL,7200,MEM@MIN 01/11/2025 08:00PM ET,MIN,36.28
+,,,,,,,,,,,,,SF/PF,Deni Avdija (37295185),Deni Avdija,37295185,SF/PF/F/UTIL,7100,MIA@POR 01/11/2025 10:00PM ET,POR,29.34
+,,,,,,,,,,,,,SG/SF,Norman Powell (37295189),Norman Powell,37295189,SG/SF/F/G/UTIL,6900,Postponed,LAC,34.92
+,,,,,,,,,,,,,PG,Anfernee Simons (37295194),Anfernee Simons,37295194,PG/G/UTIL,6800,MIA@POR 01/11/2025 10:00PM ET,POR,31.90
+,,,,,,,,,,,,,PG,Immanuel Quickley (37295197),Immanuel Quickley,37295197,PG/G/UTIL,6500,TOR@DET 01/11/2025 07:00PM ET,TOR,29.88
+,,,,,,,,,,,,,C,Jakob Poeltl (37295200),Jakob Poeltl,37295200,C/UTIL,6300,TOR@DET 01/11/2025 07:00PM ET,TOR,36.70
+,,,,,,,,,,,,,PF,Tobias Harris (37295207),Tobias Harris,37295207,PF/F/UTIL,6200,TOR@DET 01/11/2025 07:00PM ET,DET,28.53
+,,,,,,,,,,,,,C,Deandre Ayton (37295210),Deandre Ayton,37295210,C/UTIL,6200,MIA@POR 01/11/2025 10:00PM ET,POR,32.54
+,,,,,,,,,,,,,SG/SF,Devin Vassell (37295202),Devin Vassell,37295202,SG/SF/F/G/UTIL,6200,Postponed,SAS,27.91
+,,,,,,,,,,,,,C,Mark Williams (37295212),Mark Williams,37295212,C/UTIL,6100,Postponed,CHA,27.38
+,,,,,,,,,,,,,PG,Chris Paul (37295214),Chris Paul,37295214,PG/G/UTIL,6000,Postponed,SAS,31.10
+,,,,,,,,,,,,,SF/PF,Jaime Jaquez Jr. (37295217),Jaime Jaquez Jr.,37295217,SF/PF/F/UTIL,5900,MIA@POR 01/11/2025 10:00PM ET,MIA,22.01
+,,,,,,,,,,,,,PG/SG,Shaedon Sharpe (37295221),Shaedon Sharpe,37295221,PG/SG/G/UTIL,5900,MIA@POR 01/11/2025 10:00PM ET,POR,29.34
+,,,,,,,,,,,,,PF/C,Jeremy Sochan (37295225),Jeremy Sochan,37295225,PF/C/F/UTIL,5900,Postponed,SAS,30.15
+,,,,,,,,,,,,,PG,Scotty Pippen Jr. (37295229),Scotty Pippen Jr.,37295229,PG/G/UTIL,5900,MEM@MIN 01/11/2025 08:00PM ET,MEM,25.26
+,,,,,,,,,,,,,SG,Malik Beasley (37295232),Malik Beasley,37295232,SG/G/UTIL,5600,TOR@DET 01/11/2025 07:00PM ET,DET,26.18
+,,,,,,,,,,,,,C,Jalen Duren (37295235),Jalen Duren,37295235,C/UTIL,5500,TOR@DET 01/11/2025 07:00PM ET,DET,28
+,,,,,,,,,,,,,C,Rudy Gobert (37295237),Rudy Gobert,37295237,C/UTIL,5400,MEM@MIN 01/11/2025 08:00PM ET,MIN,29.97
+,,,,,,,,,,,,,PF,Jerami Grant (37295239),Jerami Grant,37295239,PF/F/UTIL,5200,MIA@POR 01/11/2025 10:00PM ET,POR,27.24
+,,,,,,,,,,,,,PG/SG,Terry Rozier (37295247),Terry Rozier,37295247,PG/SG/G/UTIL,5100,MIA@POR 01/11/2025 10:00PM ET,MIA,23.41
+,,,,,,,,,,,,,SG/SF,Jaylen Wells (37295242),Jaylen Wells,37295242,SG/SF/F/G/UTIL,5100,MEM@MIN 01/11/2025 08:00PM ET,MEM,20.24
+,,,,,,,,,,,,,PG/SG,Donte DiVincenzo (37295251),Donte DiVincenzo,37295251,PG/SG/G/UTIL,4900,MEM@MIN 01/11/2025 08:00PM ET,MIN,22.64
+,,,,,,,,,,,,,SF/PF,Ausar Thompson (37295258),Ausar Thompson,37295258,SF/PF/F/UTIL,4800,TOR@DET 01/11/2025 07:00PM ET,DET,18.88
+,,,,,,,,,,,,,PF,Santi Aldama (37295255),Santi Aldama,37295255,PF/F/UTIL,4800,MEM@MIN 01/11/2025 08:00PM ET,MEM,29.96
+,,,,,,,,,,,,,C,Zach Edey (37295262),Zach Edey,37295262,C/UTIL,4800,MEM@MIN 01/11/2025 08:00PM ET,MEM,24.22
+,,,,,,,,,,,,,PF/C,Nikola Jovic (37295268),Nikola Jovic,37295268,PF/C/F/UTIL,4700,MIA@POR 01/11/2025 10:00PM ET,MIA,19.76
+,,,,,,,,,,,,,PF/C,Naz Reid (37295264),Naz Reid,37295264,PF/C/F/UTIL,4700,MEM@MIN 01/11/2025 08:00PM ET,MIN,25.06
+,,,,,,,,,,,,,SF/PF,John Konchar (37295272),John Konchar,37295272,SF/PF/F/UTIL,4700,MEM@MIN 01/11/2025 08:00PM ET,MEM,12.57
+,,,,,,,,,,,,,SG,Gradey Dick (37295276),Gradey Dick,37295276,SG/G/UTIL,4600,TOR@DET 01/11/2025 07:00PM ET,TOR,26.66
+,,,,,,,,,,,,,PG,Vasilije Micic (37295279),Vasilije Micic,37295279,PG/G/UTIL,4600,Postponed,CHA,16.15
+,,,,,,,,,,,,,SF/PF,Rui Hachimura (37295286),Rui Hachimura,37295286,SF/PF/F/UTIL,4600,Postponed,LAL,23.88
+,,,,,,,,,,,,,SF/PF,Jake LaRavia (37295282),Jake LaRavia,37295282,SF/PF/F/UTIL,4600,MEM@MIN 01/11/2025 08:00PM ET,MEM,21.13
+,,,,,,,,,,,,,SF,Toumani Camara (37295290),Toumani Camara,37295290,SF/F/UTIL,4500,MIA@POR 01/11/2025 10:00PM ET,POR,23.12
+,,,,,,,,,,,,,SG/SF,Luke Kennard (37295293),Luke Kennard,37295293,SG/SF/F/G/UTIL,4400,MEM@MIN 01/11/2025 08:00PM ET,MEM,18.9
+,,,,,,,,,,,,,SG/SF,Cody Martin (37295301),Cody Martin,37295301,SG/SF/F/G/UTIL,4300,Postponed,CHA,21.56
+,,,,,,,,,,,,,PG,Scoot Henderson (37295298),Scoot Henderson,37295298,PG/G/UTIL,4300,MIA@POR 01/11/2025 10:00PM ET,POR,24.27
+,,,,,,,,,,,,,PF,Christian Wood (37295306),Christian Wood,37295306,PF/F/UTIL,4300,Postponed,LAL,0
+,,,,,,,,,,,,,PG,Tre Mann (37295309),Tre Mann,37295309,PG/G/UTIL,4200,Postponed,CHA,23.88
+,,,,,,,,,,,,,PF/C,Chris Boucher (37295316),Chris Boucher,37295316,PF/C/F/UTIL,4100,TOR@DET 01/11/2025 07:00PM ET,TOR,19.62
+,,,,,,,,,,,,,SF/PF,Keldon Johnson (37295312),Keldon Johnson,37295312,SF/PF/F/UTIL,4100,Postponed,SAS,23.29
+,,,,,,,,,,,,,SG/SF,Tim Hardaway Jr. (37295326),Tim Hardaway Jr.,37295326,SG/SF/F/G/UTIL,4000,TOR@DET 01/11/2025 07:00PM ET,DET,16.70
+,,,,,,,,,,,,,PG,Kevin Porter Jr. (37295323),Kevin Porter Jr.,37295323,PG/G/UTIL,4000,Postponed,LAC,20.84
+,,,,,,,,,,,,,SG/SF,Dalton Knecht (37295331),Dalton Knecht,37295331,SG/SF/F/G/UTIL,4000,Postponed,LAL,16.86
+,,,,,,,,,,,,,C,Jaxson Hayes (37295363),Jaxson Hayes,37295363,C/UTIL,4000,Postponed,LAL,13.7
+,,,,,,,,,,,,,SF,Jaden McDaniels (37295320),Jaden McDaniels,37295320,SF/F/UTIL,4000,MEM@MIN 01/11/2025 08:00PM ET,MIN,22.13
+,,,,,,,,,,,,,SG,Duncan Robinson (37295348),Duncan Robinson,37295348,SG/G/UTIL,3900,MIA@POR 01/11/2025 10:00PM ET,MIA,19.88
+,,,,,,,,,,,,,SG/SF,Max Christie (37295336),Max Christie,37295336,SG/SF/F/G/UTIL,3900,Postponed,LAL,15.94
+,,,,,,,,,,,,,PF,Jarred Vanderbilt (37295345),Jarred Vanderbilt,37295345,PF/F/UTIL,3900,Postponed,LAL,0
+,,,,,,,,,,,,,PF/C,Brandon Clarke (37295341),Brandon Clarke,37295341,PF/C/F/UTIL,3900,MEM@MIN 01/11/2025 08:00PM ET,MEM,17.61
+,,,,,,,,,,,,,SF/PF,Ochai Agbaji (37295359),Ochai Agbaji,37295359,SF/PF/F/UTIL,3800,TOR@DET 01/11/2025 07:00PM ET,TOR,21.26
+,,,,,,,,,,,,,SF/PF,Josh Green (37295355),Josh Green,37295355,SF/PF/F/UTIL,3800,Postponed,CHA,15.70
+,,,,,,,,,,,,,PG/SG,Marcus Smart (37295351),Marcus Smart,37295351,PG/SG/G/UTIL,3800,MEM@MIN 01/11/2025 08:00PM ET,MEM,20.92
+,,,,,,,,,,,,,PF/C,Dorian Finney-Smith (37295365),Dorian Finney-Smith,37295365,PF/C/F/UTIL,3700,Postponed,LAL,20.71
+,,,,,,,,,,,,,C,Jay Huff (37295369),Jay Huff,37295369,C/UTIL,3700,MEM@MIN 01/11/2025 08:00PM ET,MEM,16.5
+,,,,,,,,,,,,,SF/PF,Harrison Barnes (37295371),Harrison Barnes,37295371,SF/PF/F/UTIL,3600,Postponed,SAS,19.42
+,,,,,,,,,,,,,PG/SG,Shake Milton (37295375),Shake Milton,37295375,PG/SG/G/UTIL,3600,Postponed,LAL,13.85
+,,,,,,,,,,,,,C,Nick Richards (37295382),Nick Richards,37295382,C/UTIL,3500,Postponed,CHA,23.44
+,,,,,,,,,,,,,PG/SG,Kris Dunn (37295384),Kris Dunn,37295384,PG/SG/G/UTIL,3500,Postponed,LAC,18.62
+,,,,,,,,,,,,,SF/PF,Haywood Highsmith (37295388),Haywood Highsmith,37295388,SF/PF/F/UTIL,3500,MIA@POR 01/11/2025 10:00PM ET,MIA,16.24
+,,,,,,,,,,,,,PG/SG,Stephon Castle (37295392),Stephon Castle,37295392,PG/SG/G/UTIL,3500,Postponed,SAS,20.97
+,,,,,,,,,,,,,PG,Mike Conley (37295379),Mike Conley,37295379,PG/G/UTIL,3500,MEM@MIN 01/11/2025 08:00PM ET,MIN,21.48
+,,,,,,,,,,,,,PF,Vince Williams Jr. (37295396),Vince Williams Jr.,37295396,PF/F/UTIL,3500,MEM@MIN 01/11/2025 08:00PM ET,MEM,14.75
+,,,,,,,,,,,,,PF,Derrick Jones Jr. (37295404),Derrick Jones Jr.,37295404,PF/F/UTIL,3400,Postponed,LAC,18.31
+,,,,,,,,,,,,,SG/SF,Julian Champagnie (37295399),Julian Champagnie,37295399,SG/SF/F/G/UTIL,3400,Postponed,SAS,22.99
+,,,,,,,,,,,,,C,Isaiah Stewart (37295409),Isaiah Stewart,37295409,C/UTIL,3300,TOR@DET 01/11/2025 07:00PM ET,DET,19.15
+,,,,,,,,,,,,,SG/SF,Bruce Brown (37295415),Bruce Brown,37295415,SG/SF/F/G/UTIL,3300,TOR@DET 01/11/2025 07:00PM ET,TOR,9.8
+,,,,,,,,,,,,,SF/PF,Amir Coffey (37295411),Amir Coffey,37295411,SF/PF/F/UTIL,3300,Postponed,LAC,17.26
+,,,,,,,,,,,,,PF,Tidjane Salaun (37295422),Tidjane Salaun,37295422,PF/F/UTIL,3300,Postponed,CHA,13.75
+,,,,,,,,,,,,,C,Kel'el Ware (37295407),Kel'el Ware,37295407,C/UTIL,3300,MIA@POR 01/11/2025 10:00PM ET,MIA,12.61
+,,,,,,,,,,,,,PF/C,Robert Williams (37295425),Robert Williams,37295425,PF/C/F/UTIL,3300,MIA@POR 01/11/2025 10:00PM ET,POR,18.83
+,,,,,,,,,,,,,C,Zach Collins (37295420),Zach Collins,37295420,C/UTIL,3300,Postponed,SAS,13.39
+,,,,,,,,,,,,,SF/PF,Ronald Holland II (37295429),Ronald Holland II,37295429,SF/PF/F/UTIL,3200,TOR@DET 01/11/2025 07:00PM ET,DET,12.30
+,,,,,,,,,,,,,C,Kelly Olynyk (37295448),Kelly Olynyk,37295448,C/UTIL,3200,TOR@DET 01/11/2025 07:00PM ET,TOR,15.33
+,,,,,,,,,,,,,SG,Seth Curry (37295438),Seth Curry,37295438,SG/G/UTIL,3200,Postponed,CHA,9.34
+,,,,,,,,,,,,,C,Mo Bamba (37295446),Mo Bamba,37295446,C/UTIL,3200,Postponed,LAC,12.91
+,,,,,,,,,,,,,SG/SF,Kris Murray (37295433),Kris Murray,37295433,SG/SF/F/G/UTIL,3200,MIA@POR 01/11/2025 10:00PM ET,POR,9.46
+,,,,,,,,,,,,,PG,Alec Burks (37295453),Alec Burks,37295453,PG/G/UTIL,3200,MIA@POR 01/11/2025 10:00PM ET,MIA,12.90
+,,,,,,,,,,,,,PG,Tre Jones (37295450),Tre Jones,37295450,PG/G/UTIL,3200,Postponed,SAS,13.80
+,,,,,,,,,,,,,SG/SF,Nickeil Alexander-Walker (37295441),Nickeil Alexander-Walker,37295441,SG/SF/F/G/UTIL,3200,MEM@MIN 01/11/2025 08:00PM ET,MIN,18.21
+,,,,,,,,,,,,,PF,Simone Fontecchio (37295458),Simone Fontecchio,37295458,PF/F/UTIL,3100,TOR@DET 01/11/2025 07:00PM ET,DET,13.11
+,,,,,,,,,,,,,PG,Jamal Shead (37295461),Jamal Shead,37295461,PG/G/UTIL,3100,TOR@DET 01/11/2025 07:00PM ET,TOR,12.96
+,,,,,,,,,,,,,SG/SF,Nick Smith Jr. (37295464),Nick Smith Jr.,37295464,SG/SF/F/G/UTIL,3100,Postponed,CHA,8.41
+,,,,,,,,,,,,,SG/SF,Jordan Miller (37295469),Jordan Miller,37295469,SG/SF/F/G/UTIL,3100,Postponed,LAC,11.54
+,,,,,,,,,,,,,C,Donovan Clingan (37295456),Donovan Clingan,37295456,C/UTIL,3100,MIA@POR 01/11/2025 10:00PM ET,POR,17.70
+,,,,,,,,,,,,,C,Tolu Smith (37295478),Tolu Smith,37295478,C/UTIL,3000,TOR@DET 01/11/2025 07:00PM ET,DET,0
+,,,,,,,,,,,,,PG,Daniss Jenkins (37295480),Daniss Jenkins,37295480,PG/G/UTIL,3000,TOR@DET 01/11/2025 07:00PM ET,DET,-0.17
+,,,,,,,,,,,,,PG/SG,Marcus Sasser (37295483),Marcus Sasser,37295483,PG/SG/G/UTIL,3000,TOR@DET 01/11/2025 07:00PM ET,DET,11.92
+,,,,,,,,,,,,,PF,Ron Harper Jr. (37295487),Ron Harper Jr.,37295487,PF/F/UTIL,3000,TOR@DET 01/11/2025 07:00PM ET,DET,0
+,,,,,,,,,,,,,SG/SF,Wendell Moore Jr. (37295490),Wendell Moore Jr.,37295490,SG/SF/F/G/UTIL,3000,TOR@DET 01/11/2025 07:00PM ET,DET,10.06
+,,,,,,,,,,,,,PF,Bobi Klintman (37295495),Bobi Klintman,37295495,PF/F/UTIL,3000,TOR@DET 01/11/2025 07:00PM ET,DET,2.5
+,,,,,,,,,,,,,C,Paul Reed (37295498),Paul Reed,37295498,C/UTIL,3000,TOR@DET 01/11/2025 07:00PM ET,DET,12.67
+,,,,,,,,,,,,,PG,Jaden Ivey (37295500),Jaden Ivey,37295500,PG/G/UTIL,3000,TOR@DET 01/11/2025 07:00PM ET,DET,30.88
+,,,,,,,,,,,,,C,Eugene Omoruyi (37295602),Eugene Omoruyi,37295602,C/UTIL,3000,TOR@DET 01/11/2025 07:00PM ET,TOR,0
+,,,,,,,,,,,,,SG,Garrett Temple (37295604),Garrett Temple,37295604,SG/G/UTIL,3000,TOR@DET 01/11/2025 07:00PM ET,TOR,3.52
+,,,,,,,,,,,,,PF/C,Jonathan Mogbo (37295607),Jonathan Mogbo,37295607,PF/C/F/UTIL,3000,TOR@DET 01/11/2025 07:00PM ET,TOR,14.87
+,,,,,,,,,,,,,C,Ulrich Chomche (37295611),Ulrich Chomche,37295611,C/UTIL,3000,TOR@DET 01/11/2025 07:00PM ET,TOR,1.9
+,,,,,,,,,,,,,SF,Jamison Battle (37295613),Jamison Battle,37295613,SF/F/UTIL,3000,TOR@DET 01/11/2025 07:00PM ET,TOR,10.86
+,,,,,,,,,,,,,PG,AJ Lawson (37295616),AJ Lawson,37295616,PG/G/UTIL,3000,TOR@DET 01/11/2025 07:00PM ET,TOR,4.58
+,,,,,,,,,,,,,SG,Ja'Kobe Walter (37295619),Ja'Kobe Walter,37295619,SG/G/UTIL,3000,TOR@DET 01/11/2025 07:00PM ET,TOR,14.80
+,,,,,,,,,,,,,PG/SG,Davion Mitchell (37295622),Davion Mitchell,37295622,PG/SG/G/UTIL,3000,TOR@DET 01/11/2025 07:00PM ET,TOR,16.84
+,,,,,,,,,,,,,SG,Cam Christie (37295575),Cam Christie,37295575,SG/G/UTIL,3000,Postponed,LAC,12.75
+,,,,,,,,,,,,,PF/C,Nicolas Batum (37295578),Nicolas Batum,37295578,PF/C/F/UTIL,3000,Postponed,LAC,11.25
+,,,,,,,,,,,,,C,Kai Jones (37295582),Kai Jones,37295582,C/UTIL,3000,Postponed,LAC,6.47
+,,,,,,,,,,,,,PG,Bones Hyland (37295584),Bones Hyland,37295584,PG/G/UTIL,3000,Postponed,LAC,12.53
+,,,,,,,,,,,,,PF/C,Kobe Brown (37295587),Kobe Brown,37295587,PF/C/F/UTIL,3000,Postponed,LAC,7.32
+,,,,,,,,,,,,,SG,Trentyn Flowers (37295591),Trentyn Flowers,37295591,SG/G/UTIL,3000,Postponed,LAC,13.5
+,,,,,,,,,,,,,SG/SF,Terance Mann (37295594),Terance Mann,37295594,SG/SF/F/G/UTIL,3000,Postponed,LAC,14.65
+,,,,,,,,,,,,,PF,P.J. Tucker (37295599),P.J. Tucker,37295599,PF/F/UTIL,3000,Postponed,LAC,0
+,,,,,,,,,,,,,PG/SG,Isaiah Wong (37295689),Isaiah Wong,37295689,PG/SG/G/UTIL,3000,Postponed,CHA,12.45
+,,,,,,,,,,,,,C,Taj Gibson (37295693),Taj Gibson,37295693,C/UTIL,3000,Postponed,CHA,8.05
+,,,,,,,,,,,,,PG,KJ Simpson (37295695),KJ Simpson,37295695,PG/G/UTIL,3000,Postponed,CHA,10.48
+,,,,,,,,,,,,,C,Moussa Diabate (37295698),Moussa Diabate,37295698,C/UTIL,3000,Postponed,CHA,15.31
+,,,,,,,,,,,,,PF,DaQuan Jeffries (37295700),DaQuan Jeffries,37295700,PF/F/UTIL,3000,Postponed,CHA,14.72
+,,,,,,,,,,,,,C,Grant Williams (37295703),Grant Williams,37295703,C/UTIL,3000,Postponed,CHA,24.09
+,,,,,,,,,,,,,PG/SG,Dalano Banton (37295474),Dalano Banton,37295474,PG/SG/G/UTIL,3000,MIA@POR 01/11/2025 10:00PM ET,POR,17.88
+,,,,,,,,,,,,,SG/SF,Rayan Rupert (37295531),Rayan Rupert,37295531,SG/SF/F/G/UTIL,3000,MIA@POR 01/11/2025 10:00PM ET,POR,6.21
+,,,,,,,,,,,,,C,Jabari Walker (37295536),Jabari Walker,37295536,C/UTIL,3000,MIA@POR 01/11/2025 10:00PM ET,POR,8.53
+,,,,,,,,,,,,,PF,Justin Minaya (37295538),Justin Minaya,37295538,PF/F/UTIL,3000,MIA@POR 01/11/2025 10:00PM ET,POR,1.25
+,,,,,,,,,,,,,C,Duop Reath (37295541),Duop Reath,37295541,C/UTIL,3000,MIA@POR 01/11/2025 10:00PM ET,POR,4.69
+,,,,,,,,,,,,,SG,Bryce McGowens (37295543),Bryce McGowens,37295543,SG/G/UTIL,3000,MIA@POR 01/11/2025 10:00PM ET,POR,2.38
+,,,,,,,,,,,,,SG,Taze Moore (37295546),Taze Moore,37295546,SG/G/UTIL,3000,MIA@POR 01/11/2025 10:00PM ET,POR,10.5
+,,,,,,,,,,,,,PF,Matisse Thybulle (37295549),Matisse Thybulle,37295549,PF/F/UTIL,3000,MIA@POR 01/11/2025 10:00PM ET,POR,0
+,,,,,,,,,,,,,PG,Isaiah Stevens (37295638),Isaiah Stevens,37295638,PG/G/UTIL,3000,MIA@POR 01/11/2025 10:00PM ET,MIA,0
+,,,,,,,,,,,,,SF/PF,Keshad Johnson (37295641),Keshad Johnson,37295641,SF/PF/F/UTIL,3000,MIA@POR 01/11/2025 10:00PM ET,MIA,7.12
+,,,,,,,,,,,,,PG,Josh Christopher (37295645),Josh Christopher,37295645,PG/G/UTIL,3000,MIA@POR 01/11/2025 10:00PM ET,MIA,3
+,,,,,,,,,,,,,SG/SF,Pelle Larsson (37295648),Pelle Larsson,37295648,SG/SF/F/G/UTIL,3000,MIA@POR 01/11/2025 10:00PM ET,MIA,9.43
+,,,,,,,,,,,,,PG,Josh Richardson (37295653),Josh Richardson,37295653,PG/G/UTIL,3000,MIA@POR 01/11/2025 10:00PM ET,MIA,10.25
+,,,,,,,,,,,,,C,Kevin Love (37295656),Kevin Love,37295656,C/UTIL,3000,MIA@POR 01/11/2025 10:00PM ET,MIA,15.38
+,,,,,,,,,,,,,PG,Dru Smith (37295658),Dru Smith,37295658,PG/G/UTIL,3000,MIA@POR 01/11/2025 10:00PM ET,MIA,15.79
+,,,,,,,,,,,,,C,Christian Koloko (37295552),Christian Koloko,37295552,C/UTIL,3000,Postponed,LAL,6.96
+,,,,,,,,,,,,,PG,Quincy Olivari (37295554),Quincy Olivari,37295554,PG/G/UTIL,3000,Postponed,LAL,3
+,,,,,,,,,,,,,PG,Bronny James (37295557),Bronny James,37295557,PG/G/UTIL,3000,Postponed,LAL,1.53
+,,,,,,,,,,,,,PF/C,Armel Traore (37295560),Armel Traore,37295560,PF/C/F/UTIL,3000,Postponed,LAL,5.25
+,,,,,,,,,,,,,PG/SG,Gabe Vincent (37295564),Gabe Vincent,37295564,PG/SG/G/UTIL,3000,Postponed,LAL,9.22
+,,,,,,,,,,,,,SF/PF,Cam Reddish (37295568),Cam Reddish,37295568,SF/PF/F/UTIL,3000,Postponed,LAL,9.97
+,,,,,,,,,,,,,PG,Jalen Hood-Schifino (37295572),Jalen Hood-Schifino,37295572,PG/G/UTIL,3000,Postponed,LAL,4.12
+,,,,,,,,,,,,,PG/SG,Blake Wesley (37295661),Blake Wesley,37295661,PG/SG/G/UTIL,3000,Postponed,SAS,8.28
+,,,,,,,,,,,,,PF,Harrison Ingram (37295665),Harrison Ingram,37295665,PF/F/UTIL,3000,Postponed,SAS,1.25
+,,,,,,,,,,,,,SG/SF,Sidy Cissoko (37295668),Sidy Cissoko,37295668,SG/SF/F/G/UTIL,3000,Postponed,SAS,2.69
+,,,,,,,,,,,,,PF/C,Sandro Mamukelashvili (37295673),Sandro Mamukelashvili,37295673,PF/C/F/UTIL,3000,Postponed,SAS,9.51
+,,,,,,,,,,,,,C,Charles Bassey (37295677),Charles Bassey,37295677,C/UTIL,3000,Postponed,SAS,12.41
+,,,,,,,,,,,,,PG/SG,Malaki Branham (37295679),Malaki Branham,37295679,PG/SG/G/UTIL,3000,Postponed,SAS,9.51
+,,,,,,,,,,,,,SG,David Duke Jr. (37295683),David Duke Jr.,37295683,SG/G/UTIL,3000,Postponed,SAS,6
+,,,,,,,,,,,,,PF,Riley Minix (37295686),Riley Minix,37295686,PF/F/UTIL,3000,Postponed,SAS,2.5
+,,,,,,,,,,,,,C,Jesse Edwards (37295503),Jesse Edwards,37295503,C/UTIL,3000,MEM@MIN 01/11/2025 08:00PM ET,MIN,0
+,,,,,,,,,,,,,PF/C,Leonard Miller (37295505),Leonard Miller,37295505,PF/C/F/UTIL,3000,MEM@MIN 01/11/2025 08:00PM ET,MIN,3.25
+,,,,,,,,,,,,,SG/SF,Terrence Shannon Jr. (37295509),Terrence Shannon Jr.,37295509,SG/SF/F/G/UTIL,3000,MEM@MIN 01/11/2025 08:00PM ET,MIN,3
+,,,,,,,,,,,,,SG,Jaylen Clark (37295514),Jaylen Clark,37295514,SG/G/UTIL,3000,MEM@MIN 01/11/2025 08:00PM ET,MIN,0
+,,,,,,,,,,,,,PG,Tristen Newton (37295517),Tristen Newton,37295517,PG/G/UTIL,3000,MEM@MIN 01/11/2025 08:00PM ET,MIN,0.8
+,,,,,,,,,,,,,PF,Joe Ingles (37295520),Joe Ingles,37295520,PF/F/UTIL,3000,MEM@MIN 01/11/2025 08:00PM ET,MIN,1.94
+,,,,,,,,,,,,,SF,Josh Minott (37295523),Josh Minott,37295523,SF/F/UTIL,3000,MEM@MIN 01/11/2025 08:00PM ET,MIN,6.97
+,,,,,,,,,,,,,C,Luka Garza (37295526),Luka Garza,37295526,C/UTIL,3000,MEM@MIN 01/11/2025 08:00PM ET,MIN,5.58
+,,,,,,,,,,,,,PG,Rob Dillingham (37295528),Rob Dillingham,37295528,PG/G/UTIL,3000,MEM@MIN 01/11/2025 08:00PM ET,MIN,7.12
+,,,,,,,,,,,,,C,Colin Castleton (37295626),Colin Castleton,37295626,C/UTIL,3000,MEM@MIN 01/11/2025 08:00PM ET,MEM,2.88
+,,,,,,,,,,,,,PG,Yuki Kawamura (37295628),Yuki Kawamura,37295628,PG/G/UTIL,3000,MEM@MIN 01/11/2025 08:00PM ET,MEM,3.22
+,,,,,,,,,,,,,SG,Cam Spencer (37295631),Cam Spencer,37295631,SG/G/UTIL,3000,MEM@MIN 01/11/2025 08:00PM ET,MEM,9.32
+,,,,,,,,,,,,,PF/C,Gregory Jackson (37295634),Gregory Jackson,37295634,PF/C/F/UTIL,3000,MEM@MIN 01/11/2025 08:00PM ET,MEM,0

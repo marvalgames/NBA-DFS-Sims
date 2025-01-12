@@ -493,7 +493,7 @@ class NBA_Optimizer:
 
         out_path = os.path.join(
             os.path.dirname(__file__),
-            "../output/{}_optimal_lineups_{}.csv".format(
+            "../dk_output/{}_optimal_lineups_{}.csv".format(
                 self.site, datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
             ),
         )

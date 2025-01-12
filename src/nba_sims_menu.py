@@ -14,6 +14,22 @@ from nba_optimizer import NBA_Optimizer
 from PyQt6.QtCore import QThread, pyqtSignal
 
 
+def print_debug_info():
+    import os
+    import sys
+    print("=== Debug Info ===")
+    print(f"Current working directory: {os.getcwd()}")
+    print(f"Script directory: {os.path.dirname(os.path.abspath(__file__))}")
+    print(f"Parent directory: {os.path.dirname(os.path.dirname(os.path.abspath(__file__)))}")
+    if getattr(sys, 'frozen', False):
+        print(f"Running as executable")
+        print(f"Executable path: {sys.executable}")
+        print(f"Executable directory: {os.path.dirname(sys.executable)}")
+        print(f"_MEIPASS: {getattr(sys, '_MEIPASS', 'Not found')}")
+    print(f"Directory contents: {os.listdir(os.path.dirname(sys.executable))}")
+    print("=================")
+
+
 class SwapSimThread(QThread):
     progress = pyqtSignal(str)
     finished = pyqtSignal(bool, str)
@@ -130,13 +146,19 @@ class SimulationThread(QThread):
             self.finished.emit(False, str(e))
 
 class NbaSimsMainMenu(QMainWindow):
+
+
     def __init__(self):
         super().__init__()
+        # Add this at the start of your NbaSimsMainMenu.__init__
+        print_debug_info()  # Add this here
         self.full_filenames = {}  # Dictionary to store {display_name: full_filename}
 
         self.executor = None
         self.setWindowTitle("NBA DFS Tool")
         #self.setGeometry(100, 100, 300, 300)
+
+        # Add this right after your imports
 
 
         # Combine all styles into a single setStyleSheet call
@@ -255,6 +277,7 @@ class NbaSimsMainMenu(QMainWindow):
         self.field_size = 5000
         self.use_file_upload = False
         self.num_iterations = 10000
+
 
         # Initialize the UI
         self.init_ui()
