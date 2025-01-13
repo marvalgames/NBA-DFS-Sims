@@ -1,66 +1,48 @@
-# NBA_GPP_Simulator.spec
-import os
-from PyInstaller.utils.hooks import collect_data_files
+# -*- mode: python ; coding: utf-8 -*-
+from PyInstaller.utils.hooks import collect_submodules
 
-block_cipher = None
+hiddenimports = ['pulp', 'pulp.apis', 'pulp.apis.core', 'pulp.apis.coin_api', 'pulp.solvers.coin']
+hiddenimports += collect_submodules('pulp')
+
 
 a = Analysis(
-    [os.path.join('src', 'nba_sims_menu.py')],
-    pathex=[],
+    ['src\\nba_sims_menu.py'],
+    pathex=['src'],
     binaries=[],
-    datas=[],  # Empty datas - we'll handle in COLLECT
-    hiddenimports=[
-        'PyQt6.QtCore',
-        'PyQt6.QtGui',
-        'PyQt6.QtWidgets',
-        'numpy',
-        'pandas',
-        'csv',
-        'json',
-        'threading',
-        'multiprocessing'
-    ],
+    datas=[('src/nba_gpp_simulator.py', '_internal'), ('src/run_swap_sim.py', '_internal'), ('src/nba_swap_sims.py', '_internal')],
+    hiddenimports=hiddenimports,
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
     excludes=[],
-    win_no_prefer_redirects=False,
-    win_private_assemblies=False,
-    cipher=block_cipher,
     noarchive=False,
+    optimize=0,
 )
-
-pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
+pyz = PYZ(a.pure)
 
 exe = EXE(
     pyz,
     a.scripts,
-    [],  # Empty list for directory build
-    exclude_binaries=True,  # Important for directory build
-    name='NBA GPP Simulator',
-    debug=True,
+    [],
+    exclude_binaries=True,
+    name='NBA_GPP_Simulator',
+    debug=False,
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,
     console=True,
-    icon='icon.ico' if os.path.exists('icon.ico') else None,
+    disable_windowed_traceback=False,
+    argv_emulation=False,
+    target_arch=None,
+    codesign_identity=None,
+    entitlements_file=None,
 )
-
-# Collect all files
 coll = COLLECT(
     exe,
     a.binaries,
-    a.zipfiles,
     a.datas,
-    [
-        ('config.json', 'config.json', 'DATA'),
-        ('dk_data', 'dk_data', 'DATA'),
-        ('dk_import', 'dk_import', 'DATA'),
-        ('dk_contests', 'dk_contests', 'DATA'),
-        ('dk_output', 'dk_output', 'DATA'),
-    ],
     strip=False,
     upx=True,
     upx_exclude=[],
-    name='NBA GPP Simulator',
+    name='NBA_GPP_Simulator',
 )
