@@ -1,9 +1,11 @@
 import json
 import os
+import subprocess
 import sys
 
-from PyQt6.QtCore import QProcess, Qt
-from PyQt6.QtWidgets import QGridLayout, QTextEdit, QProgressDialog, QComboBox  # Add this import
+from PyQt6.QtCore import QProcess, Qt, QTimer
+from PyQt6.QtWidgets import QGridLayout, QTextEdit, QProgressDialog, QComboBox, QTextBrowser, \
+    QVBoxLayout  # Add this import
 from PyQt6.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit, QCheckBox, QPushButton, \
     QSpinBox, QMessageBox, QApplication
 
@@ -58,6 +60,7 @@ def print_debug_info():
     print(f"Directory contents: {os.listdir(os.path.dirname(sys.executable))}")
     print("=================")
 
+
 class SwapSimThread(QThread):
     progress = pyqtSignal(str)
     finished = pyqtSignal(bool, str)
@@ -73,59 +76,79 @@ class SwapSimThread(QThread):
         self.csv_path = csv_path
         self.script_dir = os.path.dirname(os.path.abspath(__file__))
 
-
-
     def run(self):
+        process = None
         try:
-
-            run_swap_sim_path = os.path.join(self.script_dir, 'run_swap_sim.py')
-
-            if not os.path.exists(run_swap_sim_path):
-                raise FileNotFoundError(f"Swap sim script not found at {run_swap_sim_path}")
-
-            # Create a QProcess within the thread
-            process = QProcess()
-            process.setWorkingDirectory(os.path.dirname(run_swap_sim_path))
-
-            # Connect process signals
-            process.readyReadStandardOutput.connect(
-                lambda: self.handle_output(process.readAllStandardOutput()))
-            process.readyReadStandardError.connect(
-                lambda: self.handle_output(process.readAllStandardError()))
-
-            # Build command
-            command = [
+            # Create command with arguments
+            cmd = [
                 sys.executable,
-                run_swap_sim_path,
+                os.path.join(self.script_dir, "run_swap_sim.py"),
                 str(self.num_iterations),
-                self.site,
+                str(self.site),
                 str(self.num_uniques),
                 str(self.num_lineups),
                 str(self.min_salary),
                 str(self.projection_minimum),
-                self.csv_path
+                str(self.csv_path)
             ]
 
-            # Start process and wait for it to finish
-            process.start(command[0], command[1:])
-            process.waitForFinished(-1)  # Wait indefinitely
+            self.progress.emit("Starting swap simulation process...")
 
-            if process.exitCode() == 0:
-                self.finished.emit(True, "Swap simulation completed successfully!")
+            # Start the process with pipe for output
+            process = subprocess.Popen(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                bufsize=1
+            )
+
+            # Read output line by line
+            while True:
+                # Read line from stdout
+                line = process.stdout.readline()
+
+                # Check if process has ended
+                if not line and process.poll() is not None:
+                    break
+
+                if line:
+                    # Clean the line and emit progress
+                    clean_line = line.strip()
+                    if clean_line:  # Only emit non-empty lines
+                        self.progress.emit(clean_line)
+
+                # Give the GUI time to process events
+                self.msleep(10)
+
+            # Get the final return code
+            returncode = process.poll()
+
+            if returncode is not None and returncode != 0:
+                # Process error output if something went wrong
+                stderr_output = process.stderr.read()
+                error_message = f"Process failed with return code {returncode}: {stderr_output}"
+                self.progress.emit(error_message)
+                self.finished.emit(False, error_message)
             else:
-                self.finished.emit(False, f"Process exited with code {process.exitCode()}")
+                self.progress.emit("Simulation completed successfully")
+                self.finished.emit(True, "Simulation completed successfully")
 
         except Exception as e:
-            self.finished.emit(False, str(e))
+            error_message = f"Error in swap simulation: {str(e)}"
+            self.progress.emit(error_message)
+            self.finished.emit(False, error_message)
 
-    def handle_output(self, output):
-        message = output.data().decode().strip()
-        if message:
-            self.progress.emit(message)
-
-
-
-
+        finally:
+            # Clean up process
+            if process is not None:
+                try:
+                    process.stdout.close()
+                    process.stderr.close()
+                    process.terminate()
+                    process.wait(timeout=5)  # Wait up to 5 seconds for process to terminate
+                except:
+                    pass  # Ignore cleanup errors
 
 class SimulationThread(QThread):
     progress = pyqtSignal(str)
@@ -575,10 +598,16 @@ class NbaSimsMainMenu(QMainWindow):
             QMessageBox.critical(self, "Error", f"An error occurred: {e}")
 
     def update_progress(self, message):
-        # Update both progress dialog and text display
-        self.progress_dialog.setLabelText(message)
-        self.progress_display.append(message)
-        QApplication.processEvents()
+        try:
+            # Update progress text
+            self.progress_dialog.setLabelText(message)
+
+            # Process events to keep GUI responsive
+            QApplication.processEvents()
+
+        except Exception as e:
+            print(f"Error updating progress: {e}")
+
 
     def simulation_finished(self, success, message):
         self.progress_dialog.close()
@@ -586,6 +615,61 @@ class NbaSimsMainMenu(QMainWindow):
             QMessageBox.information(self, "Success", message)
         else:
             QMessageBox.critical(self, "Error", f"An error occurred: {message}")
+
+        # def run_swap_sim(self):
+        #     try:
+        #         self.update_parameters()
+        #
+        #         # Get the selected CSV file path
+        #         csv_path = self.get_selected_csv_path()
+        #         if not csv_path:
+        #             QMessageBox.warning(self, "Warning", "Please select a CSV file first!")
+        #             return
+        #
+        #         # Create progress dialog with a text browser for better output display
+        #         self.progress_dialog = QProgressDialog(self)
+        #         self.progress_dialog.setWindowTitle("Swap Simulation")
+        #         self.progress_dialog.setMinimum(0)
+        #         self.progress_dialog.setMaximum(0)
+        #         self.progress_dialog.setCancelButton(None)
+        #         self.progress_dialog.setMinimumWidth(800)  # Wider window
+        #         self.progress_dialog.setMinimumHeight(400)  # Taller window
+        #
+        #         # Create text browser for output
+        #         self.output_browser = QTextBrowser()
+        #         self.output_browser.setMinimumWidth(780)
+        #         self.output_browser.setMinimumHeight(380)
+        #
+        #         # Create layout for progress dialog
+        #         layout = QVBoxLayout()
+        #         layout.addWidget(self.output_browser)
+        #
+        #         # Get the progress dialog's content widget
+        #         content = self.progress_dialog.findChild(QWidget)
+        #         if content:
+        #             content.setLayout(layout)
+        #
+        #         # Create swap simulation thread
+        #         self.swap_thread = SwapSimThread(
+        #             self.num_iterations,
+        #             self.site,
+        #             self.num_uniques,
+        #             self.num_lineups,
+        #             self.min_salary,
+        #             self.projection_minimum,
+        #             csv_path
+        #         )
+        #
+        #         # Connect signals
+        #         self.swap_thread.progress.connect(self.update_swap_progress)
+        #         self.swap_thread.finished.connect(self.swap_sim_finished)
+        #
+        #         # Start simulation
+        #         self.swap_thread.start()
+        #         self.progress_dialog.show()  # Use show() instead of exec_()
+        #
+        #     except Exception as e:
+        #         QMessageBox.critical(self, "Error", f"An error occurred: {e}")
 
     def run_swap_sim(self):
         try:
@@ -597,29 +681,36 @@ class NbaSimsMainMenu(QMainWindow):
                 QMessageBox.warning(self, "Warning", "Please select a CSV file first!")
                 return
 
-            # Create progress dialog with fixed size
-            self.progress_dialog = QProgressDialog("Running swap simulation...", None, 0, 0, self)
-            self.progress_dialog.setWindowModality(Qt.WindowModality.WindowModal)
-            self.progress_dialog.setMinimumDuration(0)
+            # Create progress dialog with a text browser for better output display
+            self.progress_dialog = QProgressDialog(self)
+            self.progress_dialog.setWindowTitle("Swap Simulation")
+            self.progress_dialog.setMinimum(0)
+            self.progress_dialog.setMaximum(0)
             self.progress_dialog.setCancelButton(None)
-            self.progress_dialog.setAutoClose(False)
-            self.progress_dialog.setAutoReset(False)
-            self.progress_dialog.setWindowTitle('Running')
+            self.progress_dialog.setMinimumWidth(800)
+            self.progress_dialog.setMinimumHeight(400)
 
+            # Add a close button
+            self.close_button = QPushButton("Close")
+            self.close_button.clicked.connect(self.progress_dialog.close)
+            self.close_button.hide()  # Hide initially
 
-            # Set fixed size for the dialog
-            self.progress_dialog.setFixedWidth(400)  # Adjust width as needed
-            self.progress_dialog.setMinimumHeight(100)  # Minimum height
-            #self.progress_dialog.setMaximumHeight(200)  # Minimum height
+            # Create text browser for output
+            self.output_browser = QTextBrowser()
+            self.output_browser.setMinimumWidth(780)
+            self.output_browser.setMinimumHeight(380)
 
-            # Make the label inside the dialog wrap text
-            label = self.progress_dialog.findChild(QLabel)
-            if label:
-                label.setWordWrap(True)
-                label.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
+            # Create layout for progress dialog
+            layout = QVBoxLayout()
+            layout.addWidget(self.output_browser)
+            layout.addWidget(self.close_button)  # Add close button to layout
 
+            # Get the progress dialog's content widget
+            content = self.progress_dialog.findChild(QWidget)
+            if content:
+                content.setLayout(layout)
 
-            # Create and setup swap simulation thread
+            # Create swap simulation thread
             self.swap_thread = SwapSimThread(
                 self.num_iterations,
                 self.site,
@@ -631,7 +722,7 @@ class NbaSimsMainMenu(QMainWindow):
             )
 
             # Connect signals
-            self.swap_thread.progress.connect(self.update_progress)
+            self.swap_thread.progress.connect(self.update_swap_progress)
             self.swap_thread.finished.connect(self.swap_sim_finished)
 
             # Start simulation
@@ -641,13 +732,36 @@ class NbaSimsMainMenu(QMainWindow):
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {e}")
 
-    def swap_sim_finished(self, success, message):
-        self.progress_dialog.close()
-        if success:
-            QMessageBox.information(self, "Success", message)
-        else:
-            QMessageBox.critical(self, "Error", f"An error occurred: {message}")
+    def update_swap_progress(self, message):
+        # Print to console
+        print(message)
 
+        # Update GUI
+        if hasattr(self, 'output_browser') and self.output_browser is not None:
+            self.output_browser.append(message)
+            scrollbar = self.output_browser.verticalScrollBar()
+            scrollbar.setValue(scrollbar.maximum())
+            QApplication.processEvents()
+
+
+    def swap_sim_finished(self, success, message):
+        if hasattr(self, 'progress_dialog') and self.progress_dialog is not None:
+            # Show the close button instead of auto-closing
+            if hasattr(self, 'close_button'):
+                self.close_button.show()
+
+            # Update dialog title to show completion
+            self.progress_dialog.setWindowTitle("Swap Simulation - Completed")
+
+        if success:
+            completion_message = "Simulation completed successfully!"
+            print(completion_message)  # Print to console
+            # Show success message but don't close progress dialog
+            QMessageBox.information(self, "Success", completion_message)
+        else:
+            error_message = f"Swap simulation failed: {message}"
+            print(error_message)  # Print to console
+            QMessageBox.critical(self, "Error", error_message)
 
 if __name__ == "__main__":
     import multiprocessing
