@@ -8,6 +8,7 @@ from PyQt6.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit, QCheckBox, 
     QSpinBox, QMessageBox, QApplication
 
 import nba_gpp_simulator
+import nba_swap_sims
 from nba_optimizer import NBA_Optimizer
 
 # In your MainApp class, add these imports at the top:
@@ -73,8 +74,10 @@ class SwapSimThread(QThread):
         self.script_dir = os.path.dirname(os.path.abspath(__file__))
 
 
+
     def run(self):
         try:
+
             run_swap_sim_path = os.path.join(self.script_dir, 'run_swap_sim.py')
 
             if not os.path.exists(run_swap_sim_path):

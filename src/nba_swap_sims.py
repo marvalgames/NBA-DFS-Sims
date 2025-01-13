@@ -71,8 +71,14 @@ class NBA_Swaptimizer_Sims:
     missing_ids = {}
     lineup_sets = 5
 
+    def print(self, *args, **kwargs):
+        """Override to allow progress capturing"""
+        print(*args, **kwargs)  # Default to regular print unless overridden
+
+
     def __init__(self, num_iterations, site=None, num_uniques=1, num_lineup_sets=5, min_salary=49000, projection_minimum=16,
-                 contest_path=None):
+                 contest_path=None, is_subprocess=False):
+        self.is_subprocess = is_subprocess
         self.live_games = True
         self.entry_lineups = None
         self.lineup_sets = num_lineup_sets
@@ -2104,8 +2110,12 @@ class NBA_Swaptimizer_Sims:
 
     def print(self, *args, **kwargs):
         """Override to allow progress capturing"""
-        print(*args, **kwargs)
-
+        if self.is_subprocess:
+            # When running as subprocess, just use regular print
+            print(*args, **kwargs)
+        else:
+            # When running in GUI, use the GUI's print method
+            print(*args, **kwargs)  # Or however you want to handle GUI printing
 
     def run_tournament_simulation(self):
         start_time = time.time()

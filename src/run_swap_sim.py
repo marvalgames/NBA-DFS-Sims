@@ -3,12 +3,12 @@ import nba_swap_sims
 
 
 def main():
-    print(f"run_swap_sim.py has started.")  # Debug line
-    if len(sys.argv) < 7:  # Ensure at least seven arguments are passed
-        print(f"Usage: {sys.argv[0]} <num_iterations> <site> <num_uniques> <num_lineup_sets> <min_salary> <projection_minimum> <contest_path>")
+    print(f"run_swap_sim.py has started.")
+    if len(sys.argv) < 7:
+        print(
+            f"Usage: {sys.argv[0]} <num_iterations> <site> <num_uniques> <num_lineup_sets> <min_salary> <projection_minimum> <contest_path>")
         sys.exit(1)
 
-    # Parse command-line arguments
     try:
         num_iterations = int(sys.argv[1])
         site = sys.argv[2]
@@ -17,31 +17,33 @@ def main():
         min_salary = int(sys.argv[5])
         projection_minimum = int(sys.argv[6])
         contest_path = sys.argv[7]
-    except ValueError:
-        print("Error: num_iterations and num_uniques must be integers")
-        sys.exit(1)
-    except IndexError:
-        print("Error: Not enough arguments provided")
-        sys.exit(1)
 
-    # Run the simulation
-    try:
+        # Create simulation instance with subprocess flag
         sim_to = nba_swap_sims.NBA_Swaptimizer_Sims(
-            num_iterations,
-            site,
-            num_uniques,
-            num_lineup_sets,
-            min_salary,
-            projection_minimum,
-            contest_path
+            num_iterations=num_iterations,
+            site=site,
+            num_uniques=num_uniques,
+            num_lineup_sets=num_lineup_sets,
+            min_salary=min_salary,
+            projection_minimum=projection_minimum,
+            contest_path=contest_path,
+            is_subprocess=True  # Add this flag
         )
+
+        # Run simulation steps
         sim_to.swaptimize()
         sim_to.compute_best_guesses_parallel()
         sim_to.run_tournament_simulation()
         sim_to.output()
+
+        print("Simulation completed successfully")
+        sys.exit(0)
+
     except Exception as e:
-        print(f"Error during simulation: {str(e)}")
+        print(f"Error during simulation: {str(e)}", file=sys.stderr)
         sys.exit(1)
+
 
 if __name__ == '__main__':
     main()
+
