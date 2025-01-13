@@ -184,3 +184,30 @@ Processing sets 6 to 10
 2025-01-13 17:17:47,397 - INFO - Processing set 10
 2025-01-13 17:17:47,398 - INFO - Completed set 10
 2025-01-13 17:17:47,425 - INFO - Late swap processing complete
+2025-01-13 17:19:38,193 - INFO - Starting late swap processing...
+2025-01-13 17:19:38,193 - INFO - Processed 71 lineups
+2025-01-13 17:19:38,194 - INFO - 
+Processing sets 1 to 5
+2025-01-13 17:19:38,194 - INFO - Processing set 1
+2025-01-13 17:19:38,194 - INFO - Completed set 1
+2025-01-13 17:19:38,225 - INFO - Processing set 2
+2025-01-13 17:19:38,226 - INFO - Completed set 2
+2025-01-13 17:19:38,254 - INFO - Processing set 3
+2025-01-13 17:19:38,254 - INFO - Completed set 3
+2025-01-13 17:19:38,288 - INFO - Processing set 4
+2025-01-13 17:19:38,289 - INFO - Completed set 4
+2025-01-13 17:19:38,327 - INFO - Processing set 5
+2025-01-13 17:19:38,327 - INFO - Completed set 5
+2025-01-13 17:19:38,363 - INFO - 
+Processing sets 6 to 10
+2025-01-13 17:19:38,363 - INFO - Processing set 6
+2025-01-13 17:19:38,364 - INFO - Completed set 6
+2025-01-13 17:19:38,394 - INFO - Processing set 7
+2025-01-13 17:19:38,395 - INFO - Completed set 7
+2025-01-13 17:19:38,421 - INFO - Processing set 8
+2025-01-13 17:19:38,422 - INFO - Completed set 8
+2025-01-13 17:19:38,449 - INFO - Processing set 9
+2025-01-13 17:19:38,449 - INFO - Completed set 9
+2025-01-13 17:19:38,478 - INFO - Processing set 10
+2025-01-13 17:19:38,479 - INFO - Completed set 10
+2025-01-13 17:19:38,516 - INFO - Late swap processing complete
