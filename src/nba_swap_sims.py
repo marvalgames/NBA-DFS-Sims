@@ -1579,6 +1579,7 @@ class NBA_Swaptimizer_Sims:
                     print("No valid lineups found at all - stopping process")
                     break
 
+        print("Output Lineups:")
 
     def convert_player_dict_to_pid_keys(self):
         self.player_dict = {v['ID']: v for v in self.player_dict.values()}
@@ -1907,63 +1908,36 @@ class NBA_Swaptimizer_Sims:
         return alpha, beta
 
     def count_lineups_and_extract_fields(self):
+
         for entry_id, lineup_info in self.contest_lineups.items():
+            # Create a list of player IDs to represent the actual lineup
             try:
                 actual_lineup_list = [lineup_info[pos] for pos in self.roster_construction]
             except:
                 print(lineup_info)
 
+            # Create a frozenset of player IDs to represent the lineup uniquely for counting duplicates
             lineup_set = frozenset(actual_lineup_list)
-
-            # If this is the first time we see this lineup, initialize it
+            if 'BayesianProjectedFpts' not in lineup_info:
+                print(lineup_info)
+            # If this is the first time we see this lineup, initialize its info in the dictionary
             if lineup_set not in self.field_lineups:
                 self.field_lineups[lineup_set] = {
-                    'Count': 0,  # Start at 0 since we'll increment below
+                    'Count': 1,
                     'BayesianProjectedFpts': lineup_info['BayesianProjectedFpts'],
                     'BayesianProjectedVar': lineup_info['BayesianProjectedVar'],
-                    'Lineup': actual_lineup_list,
+                    'Lineup': actual_lineup_list,  # The list of player IDs,
                     'EntryIds': [],
                     'ROI': 0,
                     'Wins': 0,
                     'Top1Percent': 0,
                     'Cashes': 0
                 }
-
-            # Always increment count and append entry_id, regardless if it's new or duplicate
-            self.field_lineups[lineup_set]['Count'] += 1
-            self.field_lineups[lineup_set]['EntryIds'].append(entry_id)
-    #
-    # def count_lineups_and_extract_fields(self):
-    #
-    #     for entry_id, lineup_info in self.contest_lineups.items():
-    #         # Create a list of player IDs to represent the actual lineup
-    #         try:
-    #             actual_lineup_list = [lineup_info[pos] for pos in self.roster_construction]
-    #         except:
-    #             print(lineup_info)
-    #
-    #         # Create a frozenset of player IDs to represent the lineup uniquely for counting duplicates
-    #         lineup_set = frozenset(actual_lineup_list)
-    #         if 'BayesianProjectedFpts' not in lineup_info:
-    #             print(lineup_info)
-    #         # If this is the first time we see this lineup, initialize its info in the dictionary
-    #         #if lineup_set not in self.field_lineups:
-    #         self.field_lineups[lineup_set] = {
-    #             'Count': 1,
-    #             'BayesianProjectedFpts': lineup_info['BayesianProjectedFpts'],
-    #             'BayesianProjectedVar': lineup_info['BayesianProjectedVar'],
-    #             'Lineup': actual_lineup_list,  # The list of player IDs,
-    #             'EntryIds': [],
-    #             'ROI': 0,
-    #             'Wins': 0,
-    #             'Top1Percent': 0,
-    #             'Cashes': 0
-    #         }
-    #         self.field_lineups[lineup_set]['EntryIds'].append(entry_id)
-    #         #else:
-    #         #    # Increment the count for this lineup
-    #         #    self.field_lineups[lineup_set]['Count'] += 1
-    #         #    self.field_lineups[lineup_set]['EntryIds'].append(entry_id)
+                self.field_lineups[lineup_set]['EntryIds'].append(entry_id)
+            else:
+                # Increment the count for this lineup
+                self.field_lineups[lineup_set]['Count'] += 1
+                self.field_lineups[lineup_set]['EntryIds'].append(entry_id)
 
     @staticmethod
     def run_simulation_for_game(
@@ -2443,10 +2417,10 @@ class NBA_Swaptimizer_Sims:
         # Combine all components
         output = "\n".join([
             "=" * 60,
-            #"\n".join(header_info),
-            #"-" * 60,
-            #player_table,
-            #"-" * 60,
+            "\n".join(header_info),
+            "-" * 60,
+            player_table,
+            "-" * 60,
             "\n".join(sim_info),
             "=" * 60,
             ""  # Empty line for spacing
@@ -2463,49 +2437,6 @@ class NBA_Swaptimizer_Sims:
                 lineup_data
             )
             self.print(table)
-
-    # def output(self):
-    #     start_time = time.time()
-    #     self.print("\nStarting Output Generation...")
-    #
-    #     # Phase 1: Process Lineup Data
-    #     self.print("\nPhase 1: Processing Lineup Data")
-    #     unique = {}
-    #     total_lineups = len(self.field_lineups)
-    #
-    #     for idx, (index, y) in enumerate(self.field_lineups.items()):
-    #         if (idx + 1) % max(1, total_lineups // 10) == 0:  # Update every 10%
-    #             self.print(
-    #                 f"Processing lineups: {idx + 1:,}/{total_lineups:,} ({((idx + 1) / total_lineups) * 100:.1f}%)")
-    #
-    #         lu_idx = self.lineup_to_int[index]
-    #
-    #         if lu_idx is None:
-    #             self.print(f"Warning: Lineup index {index} not found in lineup_to_int.")
-    #             continue
-    #
-    #         for entry in y['EntryIds']:
-    #             lineup_info = self.contest_lineups[entry]
-    #             if lineup_info["Type"].startswith("user"):
-    #                 # Display formatted table for this lineup
-    #                 self.display_lineup_details(index, lineup_info)
-    #                 # Process lineup for output file
-    #                 lineup_str = self.process_lineup_details(lineup_info, y, lu_idx, entry)
-    #                 if lineup_str:
-    #                     unique[index] = lineup_str
-    #
-    #
-    #     print(f'---------uniques:-------{len(unique)}')
-    #     # Phase 2: Sort and Rearrange Lineups
-    #     self.print("\nPhase 2: Sorting and Rearranging Lineups")
-    #     sorted_unique = sorted(
-    #         unique.items(),
-    #         key=lambda x: (
-    #             -float(x[1].split(",")[13].replace("%", "")),  # Primary sort by ROI (descending)
-    #             -float(x[1].split(",")[9]),  # Secondary sort by Ceiling (descending)
-    #             str(x[1].split(",")[-1])[:10]  # Keep original third sort criteria
-    #         )
-    #     )
 
     def output(self):
         start_time = time.time()
@@ -2535,10 +2466,8 @@ class NBA_Swaptimizer_Sims:
                     # Process lineup for output file
                     lineup_str = self.process_lineup_details(lineup_info, y, lu_idx, entry)
                     if lineup_str:
-                        # Use combination of index and entry as key to preserve duplicates
-                        unique[f"{index}_{entry}"] = lineup_str
+                        unique[index] = lineup_str
 
-        print(f'---------uniques:-------{len(unique)}')
         # Phase 2: Sort and Rearrange Lineups
         self.print("\nPhase 2: Sorting and Rearranging Lineups")
         sorted_unique = sorted(
@@ -2549,9 +2478,6 @@ class NBA_Swaptimizer_Sims:
                 str(x[1].split(",")[-1])[:10]  # Keep original third sort criteria
             )
         )
-
-        # Rest of the code remains the same...
-
 
         num_sets = self.lineup_sets
         rearranged_unique = self.rearrange_lineups(sorted_unique, num_sets)
