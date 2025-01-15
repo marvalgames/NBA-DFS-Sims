@@ -13,6 +13,7 @@ from collections import Counter
 import numpy as np
 import pandas as pd
 import pulp as plp
+from fontTools.ttLib.tables.grUtils import entries
 from numba import jit
 from scipy.stats import multivariate_normal
 
@@ -27,6 +28,7 @@ class NBA_GPP_Simulator:
     config = None
     player_dict = {}
     field_lineups = {}
+    entry_sets = 10
     stacks_dict = {}
     gen_lineup_list = []
     roster_construction = []
@@ -79,6 +81,7 @@ class NBA_GPP_Simulator:
         self.use_lineup_input = use_lineup_input
         self.load_config()
         self.load_rules()
+
 
         projection_path = os.path.join(
             os.path.dirname(__file__),
@@ -1429,10 +1432,6 @@ class NBA_GPP_Simulator:
             for task in chunk_tasks:
                 task.wait()
 
-
-
-
-
         combined_result_array = np.sum(results, axis=0)
 
         total_sum = 0
@@ -1557,74 +1556,90 @@ class NBA_GPP_Simulator:
             for _, lineup_str in sorted_unique:
                 f.write(f"{lineup_str}\n")
 
-        # input_csv_path = os.path.join(
-        #     os.path.dirname(__file__),
-        #     "../{}_data/{}".format(self.site, self.config["late_swap_path"]),
+            # After writing the GPP file, read it back to get entries
+            gpp_path = os.path.join(
+                os.path.dirname(__file__),
+                "../dk_output/dk_gpp_sim_lineups_{}_{}.csv".format(
+                    self.field_size, self.num_iterations
+                ),
+            )
 
+            # Read all GPP entries
+            with open(gpp_path, 'r') as f:
+                gpp_reader = csv.DictReader(f)
+                all_gpp_entries = list(gpp_reader)
 
-        input_csv_path = os.path.join(
-            os.path.dirname(__file__),
-            "../dk_data/{}".format(self.config["entries_path"]),
-        )
-        output_csv_path = os.path.join(
-            os.path.dirname(__file__),
-            "../dk_output/{}".format(self.config["entries_path"]), "_lineups",
-        )
-        # Read the input CSV file
-        print(output_csv_path)
-        with open(input_csv_path, "r") as infile:
-            reader = csv.DictReader(infile)
-            rows = list(reader)
-            print('------------------------------------------------------------------')
-            for row in reader:
-                print(row)
-                print('------------------------------------------------------------------')
+            # Read the entries file for metadata
+            input_csv_path = os.path.join(
+                os.path.dirname(__file__),
+                "../dk_data/{}".format(self.config["entries_path"]),
+            )
 
-        output_csv_path = os.path.join(
-            os.path.dirname(__file__),
-            "../dk_output/{}".format(self.config["entries_path"]),
-        )
+            with open(input_csv_path, "r") as infile:
+                reader = csv.DictReader(infile)
+                rows = list(reader)
+                entries_per_file = len([row for row in rows if row["Entry ID"] and row["Entry ID"] != "0"])
 
-        # Combine data from sorted_unique with the read CSV
-        combined_data = []
-        for i, row in enumerate(rows):
-            if not row["Entry ID"] or row["Entry ID"] == "0":
-                continue
-            combined_row = {
-                "Entry ID": row["Entry ID"],
-                "Contest Name": row["Contest Name"],
-                "Contest ID": row["Contest ID"],
-                "Entry Fee": row["Entry Fee"],
-            }
-            # Split lineup_str from sorted_unique and map to columns
-            _, lineup_str = sorted_unique[i]
-            lineup_data = lineup_str.split(",")
-            combined_row.update({
-                "PG": lineup_data[0],
-                "SG": lineup_data[1],
-                "SF": lineup_data[2],
-                "PF": lineup_data[3],
-                "C": lineup_data[4],
-                "G": lineup_data[5],
-                "F": lineup_data[6],
-                "UTIL": lineup_data[7],
-            })
-            combined_data.append(combined_row)
-            print('------------------------------------')
-            print(combined_row)
+            # Create entry sets files with different sets of entries
+            for file_num in range(self.entry_sets):
+                start_idx = file_num * entries_per_file
+                end_idx = (file_num + 1) * entries_per_file
+                current_gpp_entries = all_gpp_entries[start_idx:end_idx]
 
-        # Write combined data to a new CSV file
-        with open(output_csv_path, "w", newline="") as outfile:
-            fieldnames = [
-                "Entry ID", "Contest Name", "Contest ID", "Entry Fee",
-                "PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"
-            ]
-            writer = csv.DictWriter(outfile, fieldnames=fieldnames)
-            writer.writeheader()
-            writer.writerows(combined_data)
+                # Skip if we've run out of entries
+                if not current_gpp_entries:
+                    break
 
-        print(f"Combined data written to {output_csv_path}")
+                # Create combined data for current set
+                combined_data = []
+                for i, row in enumerate(rows):
+                    if not row["Entry ID"] or row["Entry ID"] == "0":
+                        continue
+                    combined_row = {
+                        "Entry ID": row["Entry ID"],
+                        "Contest Name": row["Contest Name"],
+                        "Contest ID": row["Contest ID"],
+                        "Entry Fee": row["Entry Fee"],
+                    }
 
+                    # Get lineup data from current GPP entries
+                    gpp_entry = current_gpp_entries[i]
+                    combined_row.update({
+                        "PG": gpp_entry["PG"],
+                        "SG": gpp_entry["SG"],
+                        "SF": gpp_entry["SF"],
+                        "PF": gpp_entry["PF"],
+                        "C": gpp_entry["C"],
+                        "G": gpp_entry["G"],
+                        "F": gpp_entry["F"],
+                        "UTIL": gpp_entry["UTIL"],
+                    })
+                    combined_data.append(combined_row)
+
+                # Create filename with suffix for all files after the first one
+                if file_num == 0:
+                    output_filename = self.config["entries_path"]
+                else:
+                    name, ext = os.path.splitext(self.config["entries_path"])
+                    output_filename = f"{name}_{file_num + 1}{ext}"
+
+                output_csv_path = os.path.join(
+                    os.path.dirname(__file__),
+                    "../dk_output/{}".format(output_filename),
+                )
+
+                # Write current combined data to file
+                with open(output_csv_path, "w", newline="") as outfile:
+                    fieldnames = [
+                        "Entry ID", "Contest Name", "Contest ID", "Entry Fee",
+                        "PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"
+                    ]
+                    writer = csv.DictWriter(outfile, fieldnames=fieldnames)
+                    writer.writeheader()
+                    writer.writerows(combined_data)
+
+                print(f"Combined data written to {output_csv_path}")
+        ###############################################
         out_path = os.path.join(
             os.path.dirname(__file__),
             "../dk_output/dk_gpp_sim_player_exposure_{}_{}.csv".format(

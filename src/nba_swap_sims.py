@@ -2579,6 +2579,10 @@ class NBA_Swaptimizer_Sims:
         print("\nPhase 3: Writing Main Output File")
         self.write_main_output(rearranged_unique)
 
+        # Additional phase for all lineups
+        print("\nAdditional Phase: Writing All Lineups Output")
+        self.write_all_lineups_output()
+
         # Phase 4: Process Player Exposure
         print("\nPhase 4: Processing Player Exposure")
         self.write_player_exposure()
@@ -2589,21 +2593,6 @@ class NBA_Swaptimizer_Sims:
 
         total_time = time.time() - start_time
         print(f"\nOutput Generation Complete!")
-
-    #
-    # def rearrange_lineups(self, sorted_unique, num_sets):
-    #     """Rearrange lineups into specified number of sets."""
-    #     print(f"Rearranging lineups into {num_sets} sets...")
-    #     rearranged_unique = []
-    #
-    #     for start_index in range(num_sets):
-    #         i = start_index
-    #         while i < len(sorted_unique):
-    #             rearranged_unique.append(sorted_unique[i])
-    #             i += num_sets
-    #
-    #     print(f"Successfully rearranged {len(rearranged_unique):,} lineups")
-    #     return rearranged_unique
 
     def validate_entry_groups(self, entry_groups, num_sets):
         """Validate that all entry groups have the correct number of sets."""
@@ -2650,6 +2639,7 @@ class NBA_Swaptimizer_Sims:
         self.print(f"Successfully rearranged {len(rearranged_unique):,} lineups")
         return rearranged_unique
 
+
     def write_main_output(self, rearranged_unique):
         """Write main output file with lineup data."""
         out_path = os.path.join(
@@ -2676,6 +2666,69 @@ class NBA_Swaptimizer_Sims:
                     print(f"Writing lineups: {idx:,}/{total_lineups:,} ({(idx / total_lineups) * 100:.1f}%)")
 
         print("Main output file complete")
+
+    def write_all_lineups_output(self):
+        """Write an additional output file with all lineups sorted by ROI and ceiling."""
+        out_path = os.path.join(
+            os.path.dirname(__file__),
+            f"../dk_output/dk_gpp_sim_all_lineups_{self.field_size}_{self.num_iterations}.csv"
+        )
+
+        print(f"Writing all lineups output to: {os.path.basename(out_path)}")
+
+        # Process all lineups
+        all_lineups = []
+        total_lineups = len(self.field_lineups)
+
+        print("\nProcessing all lineups...")
+        for idx, (index, y) in enumerate(self.field_lineups.items()):
+            if (idx + 1) % max(1, total_lineups // 10) == 0:  # Update every 10%
+                print(f"Processing lineups: {idx + 1:,}/{total_lineups:,} ({((idx + 1) / total_lineups) * 100:.1f}%)")
+
+            lu_idx = self.lineup_to_int[index]
+            if lu_idx is None:
+                print(f"Warning: Lineup index {index} not found in lineup_to_int.")
+                continue
+
+            for entry in y['EntryIds']:
+                lineup_info = self.contest_lineups[entry]
+                # Process lineup for output file
+                lineup_str = self.process_lineup_details(lineup_info, y, lu_idx, entry)
+                if lineup_str:
+                    all_lineups.append(lineup_str)
+
+        # Sort all lineups by ROI (descending) and Ceiling (descending)
+        print("\nSorting all lineups...")
+        sorted_lineups = sorted(
+            all_lineups,
+            key=lambda x: (
+                -float(x.split(",")[13].replace("%", "")),  # Primary sort by ROI (descending)
+                -float(x.split(",")[9])  # Secondary sort by Ceiling (descending)
+            )
+        )
+
+        # Write sorted lineups to file
+        print("\nWriting all lineups to file...")
+        total_lineups = len(sorted_lineups)
+
+        with open(out_path, "w") as f:
+            # Write header
+            f.write(
+                "PG,SG,SF,PF,C,G,F,UTIL,Proj,Ceiling,Salary,Cash %,Top 1%,ROI%,"
+                "Wins,Own Sum,Avg Return,Stack1,Stack2,Lineup,Dupes,User,Index,Entry ID\n"
+            )
+
+            # Write lineup data with progress updates
+            for idx, lineup_str in enumerate(sorted_lineups, 1):
+                f.write(f"{lineup_str}\n")
+
+                if idx % max(1, total_lineups // 10) == 0:  # Update every 10%
+                    print(f"Writing lineups: {idx:,}/{total_lineups:,} ({(idx / total_lineups) * 100:.1f}%)")
+
+        print("All lineups output file complete")
+
+
+
 
     def write_player_exposure(self):
         """Process and write player exposure data."""
