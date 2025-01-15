@@ -16,8 +16,6 @@ import pulp as plp
 from numba import jit
 from scipy.stats import multivariate_normal
 
-# In nba_gpp_simulator.py and nba_swap_sims.py
-from utils import resource_path, get_output_path
 
 
 @jit(nopython=True)

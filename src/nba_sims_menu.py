@@ -16,7 +16,7 @@ from nba_optimizer import NBA_Optimizer
 # In your MainApp class, add these imports at the top:
 from PyQt6.QtCore import QThread, pyqtSignal
 
-from utils import resource_path, get_output_path  # Local import from same directory
+from utils import resource_path  # Local import from same directory
 
 
 
@@ -60,7 +60,6 @@ def print_debug_info():
     print(f"Directory contents: {os.listdir(os.path.dirname(sys.executable))}")
     print("=================")
 
-
 class SwapSimThread(QThread):
     progress = pyqtSignal(str)
     finished = pyqtSignal(bool, str)
@@ -77,97 +76,47 @@ class SwapSimThread(QThread):
         self.script_dir = os.path.dirname(os.path.abspath(__file__))
 
     def run(self):
-        process = None
-        #try:
-            # Create command with arguments
-            # cmd = [
-            #     sys.executable,
-            #     os.path.join(self.script_dir, "run_swap_sim.py"),
-            #     str(self.num_iterations),
-            #     str(self.site),
-            #     str(self.num_uniques),
-            #     str(self.num_lineups),
-            #     str(self.min_salary),
-            #     str(self.projection_minimum),
-            #     str(self.csv_path)
-            # ]
+        try:
+            # Create simulation instance
+            sim_to = nba_swap_sims.NBA_Swaptimizer_Sims(
+                num_iterations=self.num_iterations,
+                site=self.site,
+                num_uniques=self.num_uniques,
+                num_lineup_sets=self.num_lineups,
+                min_salary=self.min_salary,
+                projection_minimum=self.projection_minimum,
+                contest_path=self.csv_path,
+                is_subprocess=True
+            )
 
-            # Create simulation instance with subprocess flag
-        sim_to = nba_swap_sims.NBA_Swaptimizer_Sims(
-            num_iterations=self.num_iterations,
-            site=self.site,
-            num_uniques=self.num_uniques,
-            num_lineup_sets=self.num_lineups,
-            min_salary=self.min_salary,
-            projection_minimum=self.projection_minimum,
-            contest_path=self.csv_path,
-            is_subprocess=True  # Add this flag
-        )
+            # Override print function
+            def progress_print(*args):
+                message = ' '.join(map(str, args))
+                self.progress.emit(message)
+                print(message)  # Keep console output
 
-        # Run simulation steps
-        sim_to.swaptimize()
-        sim_to.compute_best_guesses_parallel()
-        sim_to.run_tournament_simulation()
-        sim_to.output()
+            # Replace the print function in your simulation instance
+            sim_to.print = progress_print
 
+            # Run simulation steps
+            self.progress.emit("Starting swaptimization process...")
+            sim_to.swaptimize()
 
-        #     self.progress.emit("Starting swap simulation process...")
-        #
-        #     # Start the process with pipe for output
-        #     process = subprocess.Popen(
-        #         cmd,
-        #         stdout=subprocess.PIPE,
-        #         stderr=subprocess.PIPE,
-        #         text=True,
-        #         bufsize=1
-        #     )
-        #
-        #     # Read output line by line
-        #     while True:
-        #         # Read line from stdout
-        #         line = process.stdout.readline()
-        #
-        #         # Check if process has ended
-        #         if not line and process.poll() is not None:
-        #             break
-        #
-        #         if line:
-        #             # Clean the line and emit progress
-        #             clean_line = line.strip()
-        #             if clean_line:  # Only emit non-empty lines
-        #                 self.progress.emit(clean_line)
-        #
-        #         # Give the GUI time to process events
-        #         self.msleep(10)
-        #
-        #     # Get the final return code
-        #     returncode = process.poll()
-        #
-        #     if returncode is not None and returncode != 0:
-        #         # Process error output if something went wrong
-        #         stderr_output = process.stderr.read()
-        #         error_message = f"Process failed with return code {returncode}: {stderr_output}"
-        #         self.progress.emit(error_message)
-        #         self.finished.emit(False, error_message)
-        #     else:
-        #         self.progress.emit("Simulation completed successfully")
-        #         self.finished.emit(True, "Simulation completed successfully")
-        #
-        # except Exception as e:
-        #     error_message = f"Error in swap simulation: {str(e)}"
-        #     self.progress.emit(error_message)
-        #     self.finished.emit(False, error_message)
-        #
-        # finally:
-        #     # Clean up process
-        #     if process is not None:
-        #         try:
-        #             process.stdout.close()
-        #             process.stderr.close()
-        #             process.terminate()
-        #             process.wait(timeout=5)  # Wait up to 5 seconds for process to terminate
-        #         except:
-        #             pass  # Ignore cleanup errors
+            self.progress.emit("Computing best guesses...")
+            sim_to.compute_best_guesses_parallel()
+
+            self.progress.emit("Running tournament simulation...")
+            sim_to.run_tournament_simulation()
+
+            self.progress.emit("Generating output...")
+            sim_to.output()
+
+            self.finished.emit(True, "Simulation completed successfully")
+
+        except Exception as e:
+            error_message = f"Error in swap simulation: {str(e)}"
+            self.progress.emit(error_message)
+            self.finished.emit(False, error_message)
 
 class SimulationThread(QThread):
     progress = pyqtSignal(str)

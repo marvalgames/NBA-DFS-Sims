@@ -144,36 +144,36 @@ class NBA_Swaptimizer_Sims:
             contest_files = sorted(contest_files, key=os.path.getmtime, reverse=True)
 
             contest_file_path = os.path.join(folder_path, contest_files[0])  # Use the first match
-            self.print(f"Found contest file: {contest_file_path}")
+            print(f"Found contest file: {contest_file_path}")
 
             # Step 3: Check if the file is a .zip and extract it
             if contest_file_path.endswith(".zip"):
                 with zipfile.ZipFile(contest_file_path, 'r') as zip_ref:
                     extracted_files = zip_ref.namelist()
                     zip_ref.extractall(folder_path)
-                    self.print(f"Extracted files: {extracted_files}")
+                    print(f"Extracted files: {extracted_files}")
 
                     if len(extracted_files) != 1:
                         raise ValueError("The .zip file should contain exactly one file.")
 
                     # Set the live_contest_path to the extracted file
                     live_contest_path = os.path.join(folder_path, extracted_files[0])
-                    self.print(f"Live contest path set to extracted file: {live_contest_path}")
+                    print(f"Live contest path set to extracted file: {live_contest_path}")
             else:
                 # If not a zip file, use the file directly
                 live_contest_path = contest_file_path
-                self.print(f"Live contest path set to file: {live_contest_path}")
+                print(f"Live contest path set to file: {live_contest_path}")
 
             # Step 4: Load the contest data
             self.extract_player_points(live_contest_path)
             self.load_live_contest(live_contest_path)
-            self.print("Live contest loaded.")
+            print("Live contest loaded.")
             # Call the function
             #self.inspect_contest_lineups(self.contest_lineups)
             # Run simulation steps
 
         except Exception as e:
-            self.print(f"An error occurred: {e}")
+            print(f"An error occurred: {e}")
 
         if "late_swap_path" in self.config.keys():
             late_swap_path = os.path.join(
@@ -308,7 +308,7 @@ class NBA_Swaptimizer_Sims:
         try:
             problem.solve(plp.PULP_CBC_CMD(msg=0))
         except plp.PulpSolverError:
-            self.print(
+            print(
                 "282 Infeasibility reached - only generated {} lineups out of {}. Continuing with export.".format(
                     len(self.output_lineups), self.lineups
                 )
@@ -316,7 +316,7 @@ class NBA_Swaptimizer_Sims:
 
         ## Check for infeasibility
         if plp.LpStatus[problem.status] != "Optimal":
-            self.print(
+            print(
                 "290 Infeasibility reached - only generated {} lineups out of {}. Continuing with export.".format(
                     len(self.lineups), self.num_lineups
                 )
@@ -337,7 +337,7 @@ class NBA_Swaptimizer_Sims:
 
         fpts_proj = sum(self.player_dict[player]["fieldFpts"] for player in players)
         self.optimal_score = float(fpts_proj)
-        self.print(f"optimal score: {self.optimal_score}")
+        print(f"optimal score: {self.optimal_score}")
 
     def load_contest_data(self, path):
         with open(path, encoding="utf-8-sig") as file:
@@ -614,7 +614,7 @@ class NBA_Swaptimizer_Sims:
 
         # After getting games_info, print the formatted table
         print("\nNBA Games:")
-        print(self.format_games_table(games_info))
+        self.print(self.format_games_table(games_info))
         # NBA regulation game length in minutes
         regulation_game_length = 48
         overtime_period_length = 5  # NBA overtime period length in minutes
@@ -654,7 +654,7 @@ class NBA_Swaptimizer_Sims:
                         game_locked = True
                 except ValueError:
                     # Handle parsing errors
-                    self.print(f"Error parsing start time for game {game_id}, {game}")
+                    print(f"Error parsing start time for game {game_id}, {game}")
             # Calculate the total time remaining
             if live_period <= 4:  # Regulation time
                 total_minutes_remaining = (4 - live_period) * 12  # Time for the remaining quarters
@@ -741,7 +741,7 @@ class NBA_Swaptimizer_Sims:
 
                 except ValueError as e:
                     # Fallback: use current time if parsing fails
-                    self.print(f"Warning: Could not parse time '{time_part_str}'. Using current time as fallback.")
+                    print(f"Warning: Could not parse time '{time_part_str}'. Using current time as fallback.")
                     fallback_time = datetime.datetime.now()
                     self.time_remaining_dict[home_team_abbreviation]['GameTime'] = fallback_time
                     self.time_remaining_dict[visitor_team_abbreviation]['GameTime'] = fallback_time
@@ -753,16 +753,16 @@ class NBA_Swaptimizer_Sims:
                 # # Handle special cases like '1st OT'
                 # if "1st OT" in time_part_str:
                 #     time_part_str = time_part_str.replace("1st OT", "Q5")
-                #     self.print(f"Replaced invalid time data with: '{time_part_str}'")
+                #     print(f"Replaced invalid time data with: '{time_part_str}'")
                 #
                 # # Remove 'ET' and parse the time
                 # try:
                 #     # Clean the time string: remove 'ET' and strip extra whitespace
                 #     clean_time_str = time_part_str.replace("ET", "").strip()
                 #     time_part = datetime.datetime.strptime(clean_time_str, '%I:%M %p')
-                #     self.print(f"Parsed time: {time_part.time()}")
+                #     print(f"Parsed time: {time_part.time()}")
                 # except ValueError as e:
-                #     self.print(f"Error parsing time: {e}")
+                #     print(f"Error parsing time: {e}")
                 #
                 # # Remove 'ET' and strip whitespace, then parse time
                 # # time_part = datetime.datetime.strptime(time_part_str[:-3].strip(), '%I:%M %p')
@@ -807,7 +807,7 @@ class NBA_Swaptimizer_Sims:
         if match:
             self.contest_id = match.group(1)
         else:
-            self.print('Unable to find contest id for loading live lineups for contest simulation')
+            print('Unable to find contest id for loading live lineups for contest simulation')
         players_not_found = []
         with open(path, encoding="utf-8-sig") as file:
             reader = csv.DictReader(file)
@@ -982,12 +982,12 @@ class NBA_Swaptimizer_Sims:
         random_keys = random.sample(list(self.contest_lineups.keys()), 5)
         self.num_lineups = len(self.contest_lineups)
         if len(players_not_found) > 0:
-            self.print(f'Players not found: {set(players_not_found)}')
+            print(f'Players not found: {set(players_not_found)}')
             for p in set(players_not_found):
                 if p not in self.missing_ids.keys():
-                    self.print(f'Missing player: {p}, missing id keys: {self.missing_ids.keys()}')
+                    print(f'Missing player: {p}, missing id keys: {self.missing_ids.keys()}')
                 else:
-                    self.print(f'Found player: {self.missing_ids[p]}')
+                    print(f'Found player: {self.missing_ids[p]}')
 
 
     def inspect_contest_lineups(self):
@@ -1309,8 +1309,8 @@ class NBA_Swaptimizer_Sims:
                         print(f'Lineup {row["entry id"]} not found in contest file.')
 
         self.user_lineups = int(len(self.player_keys) / self.lineup_sets)
-        print(f"Successfully loaded {len(self.player_keys)} lineups for {self.user_lineups} entries in late swap.")
-        print(f"Total lineups in contest_lineups: {len(self.contest_lineups)}")
+        self.print(f"Successfully loaded {len(self.player_keys)} lineups for {self.user_lineups} entries in late swap.")
+        self.print(f"Total lineups in contest_lineups: {len(self.contest_lineups)}")
 
     def swaptimize(self):
         # Initialize a dictionary to hold lineups temporarily for each entry
@@ -1319,7 +1319,7 @@ class NBA_Swaptimizer_Sims:
         for pk in self.player_keys:
             lineup_obj = self.contest_lineups[pk]
             self.print(
-                f"Swaptimizing lineup {pk} in contest {lineup_obj['contest_id']}"
+                f"Swaptimizing lineup {pk}"
             )
 
             # Initialize salary backoff parameters
@@ -1327,8 +1327,21 @@ class NBA_Swaptimizer_Sims:
             temp_min_salary = original_min_salary
             min_salary_floor = original_min_salary * 0.6  # 60% of original as floor
             backoff_factor = 0.95
-            max_attempts = 6  # Maximum number of attempts with salary reduction
+            max_attempts = 4  # Maximum number of attempts with salary reduction
             solution_found = False
+
+            # Before setting the minimum projected points constraint, calculate the total projection
+            total_projection = 0
+            for position in ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]:
+                player_id = lineup_obj[position]
+                # Find the player in player_dict and add their projection
+                for player, attributes in self.player_dict.items():
+                    if str(attributes["ID"]) == str(player_id):
+                        total_projection += attributes["BayesianProjectedFpts"]
+
+            # Set the minimum projected points using the total projection
+            min_projected_points = total_projection * 0.98  # add to config - suggest lower values for contrarian / aggressive
+            print(f"Minimum required projection: {min_projected_points:.2f}")
 
             while not solution_found and max_attempts > 0:
 
@@ -1386,27 +1399,7 @@ class NBA_Swaptimizer_Sims:
                     "Max Salary",
                 )
 
-                # Before setting the minimum projected points constraint, calculate the total projection
-                total_projection = 0
-                for position in ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]:
-                    player_id = lineup_obj[position]
-                    # Find the player in player_dict and add their projection
-                    for player, attributes in self.player_dict.items():
-                        if str(attributes["ID"]) == str(player_id):
-                            total_projection += attributes["BayesianProjectedFpts"]
 
-                # # Add this after calculating total_projection
-                # print("\nPlayer Projections:")
-                # for position in ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]:
-                #     player_id = lineup_obj[position]
-                #     for player, attributes in self.player_dict.items():
-                #         if str(attributes["ID"]) == str(player_id):
-                #             print(f"{position}: {attributes['Name']} - {attributes['BayesianProjectedFpts']:.2f}")
-
-                # Set the minimum projected points using the total projection
-                min_projected_points = total_projection * 0.999 # add to config - suggest lower values for contrarian / aggressive
-                if max_attempts == 1:
-                    print(f"\nMinimum required projection: {min_projected_points:.2f}")
 
 
                 # Minimum Projected Points Constraint
@@ -1652,13 +1645,13 @@ class NBA_Swaptimizer_Sims:
                             total_points += attributes["BayesianProjectedFpts"]  # Add player's points to total
 
                 # Print the results
-                print("\nOptimal Lineup:")
+                self.print(f"\nOptimal Lineup: {i}")
                 for player in optimal_lineup:
                     print(
                         f"{player['Position']}: {player['Name']} (Salary: ${player['Salary']})"
                     )
-                print(f"\nTotal Salary: ${total_salary}")
-                print(f"Total Projected Points: {total_points:.2f}")  # Print total points with 2 decimal places
+                self.print(f"\nTotal Salary: ${total_salary}")
+                self.print(f"Total Projected Points: {total_points:.2f}")  # Print total points with 2 decimal places
             if not solution_found:
                 print(f"Failed to find valid lineup for {pk} after all attempts")
                 # Create a tuple with the original lineup structure
@@ -1672,7 +1665,7 @@ class NBA_Swaptimizer_Sims:
 
                 # Add the original lineup to output_lineups
                 self.output_lineups.append((original_lineup, lineup_obj))
-                print("Retained original lineup")
+                self.print(f"Retained original lineup: {i} ")
 
                 if len(self.output_lineups) == 0:
                     print("No valid lineups found at all - stopping process")
@@ -1759,7 +1752,7 @@ class NBA_Swaptimizer_Sims:
 
 
         total_problems = len(problems)
-        self.print(f"\nStarting parallel processing of {total_problems:,} lineups")
+        print(f"\nStarting parallel processing of {total_problems:,} lineups")
         completed_lineups = 0
         results = []
         backoff_count = 0
@@ -1774,16 +1767,16 @@ class NBA_Swaptimizer_Sims:
 
             results.append(result)
 
-            if completed_lineups % (total_problems // 20) == 0:  # Update every 5%
+            if completed_lineups % (total_problems // 10) == 0:  # Update every 10%
                 elapsed = time.time() - start_time
                 progress_pct = (completed_lineups / total_problems) * 100
                 speed = completed_lineups / elapsed if elapsed > 0 else 0
                 eta = (total_problems - completed_lineups) / speed if speed > 0 else 0
 
                 self.print(f"\nProgress: {completed_lineups:,}/{total_problems:,} lineups ({progress_pct:.1f}%)")
-                self.print(f"Speed: {speed:.1f} lineups/sec, ETA: {int(eta)} seconds")
+                print(f"Speed: {speed:.1f} lineups/sec, ETA: {int(eta)} seconds")
                 if backoff_count > 0:
-                    self.print(f"Backoffs since last update: {backoff_count}")
+                    print(f"Backoffs since last update: {backoff_count}")
                     backoff_count = 0
 
         with multiprocessing.Pool(multiprocessing.cpu_count()) as pool:
@@ -1794,14 +1787,14 @@ class NBA_Swaptimizer_Sims:
             for task in tasks:
                 task.wait()
 
-        self.print(f"\nParallel processing complete. Total results: {len(results)}")
+        print(f"\nParallel processing complete. Total results: {len(results)}")
 
         # Process results
         processed_keys = [result[0] for result in results if isinstance(result, tuple)]
-        self.print(f"Successfully processed {len(processed_keys)} lineup keys")
+        print(f"Successfully processed {len(processed_keys)} lineup keys")
 
         total_time = time.time() - start_time
-        self.print(f"Total processing time: {total_time:.2f} seconds")
+        print(f"Total processing time: {total_time:.2f} seconds")
 
 
         # New function to get names from IDs in a lineup
@@ -2215,11 +2208,11 @@ class NBA_Swaptimizer_Sims:
 
     def run_tournament_simulation(self):
         start_time = time.time()
-        self.print(f"\nStarting Tournament Simulation")
-        self.print(f"Configuration:")
-        self.print(f"- Simulations: {self.num_iterations:,}")
-        self.print(f"- Field lineups: {len(self.field_lineups.keys()):,}")
-        self.print(f"- Matchups: {self.matchups}")
+        print(f"\nStarting Tournament Simulation")
+        print(f"Configuration:")
+        print(f"- Simulations: {self.num_iterations:,}")
+        print(f"- Field lineups: {len(self.field_lineups.keys()):,}")
+        print(f"- Matchups: {self.matchups}")
 
         # Initialize lineup_to_int mapping at the start
         self.lineup_to_int = {lineup: index for index, lineup in enumerate(self.field_lineups.keys())}
@@ -2246,9 +2239,9 @@ class NBA_Swaptimizer_Sims:
                 speed = completed_games / elapsed if elapsed > 0 else 0
                 eta = (total_games - completed_games) / speed if speed > 0 else 0
 
-                self.print(
+                print(
                     f"Games processed: {completed_games}/{total_games} ({(completed_games / total_games) * 100:.1f}%)")
-                self.print(f"Speed: {speed:.1f} games/sec, ETA: {int(eta)} seconds")
+                print(f"Speed: {speed:.1f} games/sec, ETA: {int(eta)} seconds")
                 results.append(result)
 
             with multiprocessing.Pool() as pool:
@@ -2275,13 +2268,13 @@ class NBA_Swaptimizer_Sims:
         process_start = time.time()
 
         for index, (keys, values) in enumerate(self.field_lineups.items()):
-            if index % max(1, total_lineups // 20) == 0:  # Update every 5%
+            if index % max(1, total_lineups // 10) == 0:  # Update every 10%
                 elapsed = time.time() - process_start
                 speed = (index + 1) / elapsed if elapsed > 0 else 0
                 eta = (total_lineups - (index + 1)) / speed if speed > 0 else 0
                 self.print(
                     f"Processing lineups: {index + 1:,}/{total_lineups:,} ({(index + 1) / total_lineups * 100:.1f}%)")
-                self.print(f"Speed: {speed:.1f} lineups/sec, ETA: {int(eta)} seconds")
+                print(f"Speed: {speed:.1f} lineups/sec, ETA: {int(eta)} seconds")
 
             fpts_sim = sum([temp_fpts_dict[player] for player in values["Lineup"]
                             if player in temp_fpts_dict])
@@ -2289,12 +2282,12 @@ class NBA_Swaptimizer_Sims:
 
         # Rankings Computation Phase
         self.print(f"\nPhase 3: Rankings Computation")
-        self.print("Converting array to float16...")
+        print("Converting array to float16...")
         fpts_array = fpts_array.astype(np.float16)
 
         chunk_size = 1000
         total_chunks = (self.num_iterations + chunk_size - 1) // chunk_size
-        self.print(f"Processing {total_chunks} ranking chunks...")
+        print(f"Processing {total_chunks} ranking chunks...")
         ranks_list = []
         chunk_start = time.time()
 
@@ -2309,10 +2302,10 @@ class NBA_Swaptimizer_Sims:
             eta = (total_chunks - chunk_num) / speed if speed > 0 else 0
 
             self.print(f"Ranking chunks: {chunk_num}/{total_chunks} ({(chunk_num / total_chunks) * 100:.1f}%)")
-            self.print(f"Speed: {speed:.1f} chunks/sec, ETA: {int(eta)} seconds")
+            print(f"Speed: {speed:.1f} chunks/sec, ETA: {int(eta)} seconds")
 
         self.print("\nPhase 4: Statistics Calculation")
-        self.print("Combining ranking results...")
+        print("Combining ranking results...")
         ranks = np.concatenate(ranks_list, axis=1)
 
         self.print("Computing win statistics...")
@@ -2355,7 +2348,7 @@ class NBA_Swaptimizer_Sims:
                 )
                 simulation_chunks.append(chunk_data)
             except Exception as e:
-                self.print(f"Error creating chunk {i}-{end_idx}: {e}")
+                print(f"Error creating chunk {i}-{end_idx}: {e}")
                 continue
 
 
@@ -2383,10 +2376,10 @@ class NBA_Swaptimizer_Sims:
                     eta = (total_roi_chunks - i) / speed if speed > 0 else 0
 
                     self.print(f"ROI chunks: {i}/{total_roi_chunks} ({(i / total_roi_chunks) * 100:.1f}%)")
-                    self.print(f"Speed: {speed:.1f} chunks/sec, ETA: {int(eta)} seconds")
+                    print(f"Speed: {speed:.1f} chunks/sec, ETA: {int(eta)} seconds")
 
                 except multiprocessing.TimeoutError:
-                    self.print(f"Warning: Chunk {i} timed out after 300 seconds")
+                    print(f"Warning: Chunk {i} timed out after 300 seconds")
                     failed_chunks.append(i)
                     # Instead of None, create a zero array of the correct shape
                     if results:  # If we have at least one successful result to reference
@@ -2395,7 +2388,7 @@ class NBA_Swaptimizer_Sims:
                         chunk_result = np.zeros(len(field_lineups_keys_array))
                     results.append(chunk_result)
                 except Exception as e:
-                    self.print(f"Error processing chunk {i}: {e}")
+                    print(f"Error processing chunk {i}: {e}")
                     failed_chunks.append(i)
                     # Same as above for error cases
                     if results:
@@ -2405,7 +2398,7 @@ class NBA_Swaptimizer_Sims:
                     results.append(chunk_result)
 
         if failed_chunks:
-            self.print(f"Warning: {len(failed_chunks)} chunks failed: {failed_chunks}")
+            print(f"Warning: {len(failed_chunks)} chunks failed: {failed_chunks}")
             # If too many chunks failed, you might want to raise an error
             if len(failed_chunks) > total_roi_chunks // 2:  # If more than 50% failed
                 raise RuntimeError(f"Too many chunks failed ({len(failed_chunks)} out of {total_roi_chunks})")
@@ -2417,11 +2410,11 @@ class NBA_Swaptimizer_Sims:
         total_sum = 0
         index_to_key = list(self.field_lineups.keys())
 
-        self.print("Updating lineup statistics...")
+        print("Updating lineup statistics...")
         total_lineups = len(self.field_lineups)
         for idx, roi in enumerate(combined_result_array):
             if idx % max(1, total_lineups // 10) == 0:  # Update every 10%
-                self.print(
+                print(
                     f"Processing lineup stats: {idx + 1:,}/{total_lineups:,} ({(idx + 1) / total_lineups * 100:.1f}%)")
 
             lineup_key = index_to_key[idx]
@@ -2431,7 +2424,7 @@ class NBA_Swaptimizer_Sims:
 
         for i, lineup_key in enumerate(self.field_lineups.keys()):
             if i % max(1, total_lineups // 10) == 0:  # Update every 10%
-                self.print(f"Finalizing stats: {i + 1:,}/{total_lineups:,} ({(i + 1) / total_lineups * 100:.1f}%)")
+                print(f"Finalizing stats: {i + 1:,}/{total_lineups:,} ({(i + 1) / total_lineups * 100:.1f}%)")
 
             lineup_int_key = self.lineup_to_int[lineup_key]
 
@@ -2448,9 +2441,9 @@ class NBA_Swaptimizer_Sims:
                 self.field_lineups[lineup_key]["Cashes"] += cash_counts[cash_index]
 
         total_time = time.time() - start_time
-        self.print(f"\nSimulation Complete!")
+        print(f"\nSimulation Complete!")
         self.print(f"Total time: {total_time:.2f} seconds")
-        self.print("Preparing output...")
+        print("Preparing output...")
 
     def format_lineup_table(self, lineup_data, lineup_info):
         """Format lineup information into a readable table"""
@@ -2532,26 +2525,26 @@ class NBA_Swaptimizer_Sims:
                 self.field_lineups[index],
                 lineup_data
             )
-            self.print(table)
+            print(table)
 
     def output(self):
         start_time = time.time()
-        self.print("\nStarting Output Generation...")
+        print("\nStarting Output Generation...")
 
         # Phase 1: Process Lineup Data
-        self.print("\nPhase 1: Processing Lineup Data")
+        print("\nPhase 1: Processing Lineup Data")
         unique = {}
         total_lineups = len(self.field_lineups)
 
         for idx, (index, y) in enumerate(self.field_lineups.items()):
             if (idx + 1) % max(1, total_lineups // 10) == 0:  # Update every 10%
-                self.print(
+                print(
                     f"Processing lineups: {idx + 1:,}/{total_lineups:,} ({((idx + 1) / total_lineups) * 100:.1f}%)")
 
             lu_idx = self.lineup_to_int[index]
 
             if lu_idx is None:
-                self.print(f"Warning: Lineup index {index} not found in lineup_to_int.")
+                print(f"Warning: Lineup index {index} not found in lineup_to_int.")
                 continue
 
             for entry in y['EntryIds']:
@@ -2566,7 +2559,7 @@ class NBA_Swaptimizer_Sims:
                         unique[f"{index}_{entry}"] = lineup_str
 
         # Phase 2: Sort and Rearrange Lineups
-        self.print("\nPhase 2: Sorting and Rearranging Lineups")
+        print("\nPhase 2: Sorting and Rearranging Lineups")
         sorted_unique = sorted(
             unique.items(),
             key=lambda x: (
@@ -2583,24 +2576,24 @@ class NBA_Swaptimizer_Sims:
         rearranged_unique = self.rearrange_lineups(sorted_unique, num_sets)
 
         # Phase 3: Write Main Output File
-        self.print("\nPhase 3: Writing Main Output File")
+        print("\nPhase 3: Writing Main Output File")
         self.write_main_output(rearranged_unique)
 
         # Phase 4: Process Player Exposure
-        self.print("\nPhase 4: Processing Player Exposure")
+        print("\nPhase 4: Processing Player Exposure")
         self.write_player_exposure()
 
         # Phase 5: Process Late Swap Data
-        self.print("\nPhase 5: Processing Late Swap Data")
+        print("\nPhase 5: Processing Late Swap Data")
         self.process_late_swap_data(rearranged_unique, num_sets)
 
         total_time = time.time() - start_time
-        self.print(f"\nOutput Generation Complete! Total time: {total_time:.2f} seconds")
+        print(f"\nOutput Generation Complete!")
 
     #
     # def rearrange_lineups(self, sorted_unique, num_sets):
     #     """Rearrange lineups into specified number of sets."""
-    #     self.print(f"Rearranging lineups into {num_sets} sets...")
+    #     print(f"Rearranging lineups into {num_sets} sets...")
     #     rearranged_unique = []
     #
     #     for start_index in range(num_sets):
@@ -2609,14 +2602,14 @@ class NBA_Swaptimizer_Sims:
     #             rearranged_unique.append(sorted_unique[i])
     #             i += num_sets
     #
-    #     self.print(f"Successfully rearranged {len(rearranged_unique):,} lineups")
+    #     print(f"Successfully rearranged {len(rearranged_unique):,} lineups")
     #     return rearranged_unique
 
     def validate_entry_groups(self, entry_groups, num_sets):
         """Validate that all entry groups have the correct number of sets."""
         for base_entry_id, entries in entry_groups.items():
             if len(entries) != num_sets:
-                self.print(f"Warning: Entry {base_entry_id} has {len(entries)} sets instead of {num_sets}")
+                print(f"Warning: Entry {base_entry_id} has {len(entries)} sets instead of {num_sets}")
 
     def rearrange_lineups(self, sorted_unique, num_sets):
         """Rearrange lineups into specified number of sets with entries grouped by ROI."""
@@ -2665,7 +2658,7 @@ class NBA_Swaptimizer_Sims:
         )
 
 
-        self.print(f"Writing main output to: {os.path.basename(out_path)}")
+        print(f"Writing main output to: {os.path.basename(out_path)}")
         total_lineups = len(rearranged_unique)
 
         with open(out_path, "w") as f:
@@ -2680,9 +2673,9 @@ class NBA_Swaptimizer_Sims:
                 f.write(f"{lineup_str}\n")
 
                 if idx % max(1, total_lineups // 10) == 0:  # Update every 10%
-                    self.print(f"Writing lineups: {idx:,}/{total_lineups:,} ({(idx / total_lineups) * 100:.1f}%)")
+                    print(f"Writing lineups: {idx:,}/{total_lineups:,} ({(idx / total_lineups) * 100:.1f}%)")
 
-        self.print("Main output file complete")
+        print("Main output file complete")
 
     def write_player_exposure(self):
         """Process and write player exposure data."""
@@ -2691,14 +2684,14 @@ class NBA_Swaptimizer_Sims:
             f"../dk_output/dk_lateswap_sim_player_exposure_{self.field_size}_{self.num_iterations}.csv"
         )
 
-        self.print(f"Processing player exposure data...")
+        print(f"Processing player exposure data...")
         unique_players = {}
 
         # Process player data
         total_lineups = len(self.field_lineups)
         for idx, (_, val) in enumerate(self.field_lineups.items(), 1):
             if idx % max(1, total_lineups // 10) == 0:  # Update every 10%
-                self.print(f"Processing exposure data: {idx:,}/{total_lineups:,} ({(idx / total_lineups) * 100:.1f}%)")
+                print(f"Processing exposure data: {idx:,}/{total_lineups:,} ({(idx / total_lineups) * 100:.1f}%)")
 
             roi_value = val["ROI"] / 100 if not (math.isnan(val["ROI"]) or val["ROI"] is None) else 0
 
@@ -2718,7 +2711,7 @@ class NBA_Swaptimizer_Sims:
 
 
         # Write exposure data
-        self.print("Writing player exposure data...")
+        print("Writing player exposure data...")
         total_players = len(unique_players)
         processed = 0
 
@@ -2761,7 +2754,7 @@ class NBA_Swaptimizer_Sims:
         # Sort by ROI in descending order
         player_data_list.sort(key=lambda x: x["roi"], reverse=True)
         # Write sorted exposure data
-        self.print("Writing sorted player exposure data...")
+        print("Writing sorted player exposure data...")
         total_players = len(player_data_list)
 
         with open(out_path, "w") as f:
@@ -2772,7 +2765,7 @@ class NBA_Swaptimizer_Sims:
 
             for idx, player_data in enumerate(player_data_list, 1):
                 if idx % max(1, total_players // 5) == 0:
-                    self.print(
+                    print(
                         f"Writing player data: {idx:,}/{total_players:,} ({(idx / total_players) * 100:.1f}%)")
 
                 details = player_data["details"]
@@ -2796,7 +2789,7 @@ class NBA_Swaptimizer_Sims:
                     f"{roi_str},{player.get('Minutes Remaining')}\n"
                 )
 
-        self.print("Player exposure file complete")
+        print("Player exposure file complete")
 
 
     def process_late_swap_data(self, rearranged_unique, num_sets):
@@ -2819,7 +2812,7 @@ class NBA_Swaptimizer_Sims:
         def log_print(message):
             """Log to both file and print to GUI."""
             #logging.info(message)
-            self.print(message)
+            print(message)
 
         try:
             log_print("Starting late swap processing...")
@@ -2989,7 +2982,7 @@ class NBA_Swaptimizer_Sims:
                 y.get("Count", 0), userName, lu_idx, entry
             )
         except Exception as e:
-            self.print(f"Warning: Error processing lineup {entry}: {str(e)}")
+            print(f"Warning: Error processing lineup {entry}: {str(e)}")
             return None
 
 
@@ -3025,7 +3018,7 @@ class NBA_Swaptimizer_Sims:
                     break
 
             if not player_found:
-                self.print(f"Warning: Player ID {Id} not found in player dictionary")
+                print(f"Warning: Player ID {Id} not found in player dictionary")
                 return None
 
         return lu_names, lu_teams, own_p, total_salary, total_projection, total_variance
@@ -3102,7 +3095,7 @@ class NBA_Swaptimizer_Sims:
 
                 # Ensure the current and primary players are not the same locked player
                 if current_player == old_lineup.get(primary_pos) or primary_player == old_lineup.get(position):
-                    self.print(f"Skipping swap: Locked players involved ({current_player}, {primary_player})")
+                    print(f"Skipping swap: Locked players involved ({current_player}, {primary_player})")
                     continue
 
                 # Check if swapping is valid based on game start times and position overlap
@@ -3111,7 +3104,7 @@ class NBA_Swaptimizer_Sims:
                         and set(primary_player_data.get("Position", [])) & set(current_player_data.get("Position", []))
                 ):
                     # Swap players between positions
-                    self.print(f"Swapping {current_player} with {primary_player}")
+                    print(f"Swapping {current_player} with {primary_player}")
                     lineup[i], lineup[primary_i] = lineup[primary_i], lineup[i]
                     break  # Exit the loop once a swap is made
 
