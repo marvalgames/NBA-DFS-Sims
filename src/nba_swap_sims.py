@@ -564,7 +564,7 @@ class NBA_Swaptimizer_Sims:
         # Format the date into the string format the NBA API expects ('YYYY-MM-DD')
         # Late Swap Realtime
         live = self.live_games
-        live = False
+        #live = False
         if live:
             formatted_date = game_date.strftime('%Y-%m-%d')
         else:
@@ -708,37 +708,75 @@ class NBA_Swaptimizer_Sims:
                 self.time_remaining_dict[visitor_team_abbreviation]['GameTime'] = datetime.datetime.combine(current_day,
                                                                                                             datetime.time(
                                                                                                                 0, 1))
+
+                # Inside the else block where time parsing occurs
             else:
                 date_part = datetime.datetime.strptime(game[0], '%Y-%m-%dT%H:%M:%S')
-                # Convert '9:00 pm ET' to 24-hour format and handle timezone
+
+                # Convert game status to time
                 time_part_str = game[4]
-                # Handle special cases like '1st OT'
-                if "1st OT" in time_part_str:
-                    time_part_str = time_part_str.replace("1st OT", "Q5")
-                    self.print(f"Replaced invalid time data with: '{time_part_str}'")
 
-                # Remove 'ET' and parse the time
                 try:
-                    # Clean the time string: remove 'ET' and strip extra whitespace
-                    clean_time_str = time_part_str.replace("ET", "").strip()
-                    time_part = datetime.datetime.strptime(clean_time_str, '%I:%M %p')
-                    self.print(f"Parsed time: {time_part.time()}")
+                    # First, handle special cases
+                    if time_part_str == "Tipoff" or time_part_str == "Tipoff              ":
+                        # Use a default time for tipoff (e.g., current time)
+                        time_part = datetime.datetime.now()
+                    elif "1st OT" in time_part_str:
+                        time_part_str = time_part_str.replace("1st OT", "Q5")
+                        clean_time_str = time_part_str.replace("ET", "").strip()
+                        time_part = datetime.datetime.strptime(clean_time_str, '%I:%M %p')
+                    else:
+                        # Regular time parsing
+                        clean_time_str = time_part_str.replace("ET", "").strip()
+                        time_part = datetime.datetime.strptime(clean_time_str, '%I:%M %p')
+
+                    # Combine date and time
+                    game_datetime = datetime.datetime.combine(
+                        date_part.date(),
+                        time_part.time()
+                    )
+
+                    self.time_remaining_dict[home_team_abbreviation]['GameTime'] = game_datetime
+                    self.time_remaining_dict[visitor_team_abbreviation]['GameTime'] = game_datetime
+
                 except ValueError as e:
-                    self.print(f"Error parsing time: {e}")
+                    # Fallback: use current time if parsing fails
+                    self.print(f"Warning: Could not parse time '{time_part_str}'. Using current time as fallback.")
+                    fallback_time = datetime.datetime.now()
+                    self.time_remaining_dict[home_team_abbreviation]['GameTime'] = fallback_time
+                    self.time_remaining_dict[visitor_team_abbreviation]['GameTime'] = fallback_time
 
-                # Remove 'ET' and strip whitespace, then parse time
-                # time_part = datetime.datetime.strptime(time_part_str[:-3].strip(), '%I:%M %p')
-
-
-                # Combine date and time parts
-                combined_datetime = datetime.datetime.combine(date_part.date(), time_part.time())
-
-                # Assume the input is for the Eastern Time timezone
-                eastern = pytz.timezone('US/Eastern')
-                localized_datetime = eastern.localize(combined_datetime)
-
-                self.time_remaining_dict[home_team_abbreviation]['GameTime'] = localized_datetime
-                self.time_remaining_dict[visitor_team_abbreviation]['GameTime'] = localized_datetime
+                #
+                # date_part = datetime.datetime.strptime(game[0], '%Y-%m-%dT%H:%M:%S')
+                # # Convert '9:00 pm ET' to 24-hour format and handle timezone
+                # time_part_str = game[4]
+                # # Handle special cases like '1st OT'
+                # if "1st OT" in time_part_str:
+                #     time_part_str = time_part_str.replace("1st OT", "Q5")
+                #     self.print(f"Replaced invalid time data with: '{time_part_str}'")
+                #
+                # # Remove 'ET' and parse the time
+                # try:
+                #     # Clean the time string: remove 'ET' and strip extra whitespace
+                #     clean_time_str = time_part_str.replace("ET", "").strip()
+                #     time_part = datetime.datetime.strptime(clean_time_str, '%I:%M %p')
+                #     self.print(f"Parsed time: {time_part.time()}")
+                # except ValueError as e:
+                #     self.print(f"Error parsing time: {e}")
+                #
+                # # Remove 'ET' and strip whitespace, then parse time
+                # # time_part = datetime.datetime.strptime(time_part_str[:-3].strip(), '%I:%M %p')
+                #
+                #
+                # # Combine date and time parts
+                # combined_datetime = datetime.datetime.combine(date_part.date(), time_part.time())
+                #
+                # # Assume the input is for the Eastern Time timezone
+                # eastern = pytz.timezone('US/Eastern')
+                # localized_datetime = eastern.localize(combined_datetime)
+                #
+                # self.time_remaining_dict[home_team_abbreviation]['GameTime'] = localized_datetime
+                # self.time_remaining_dict[visitor_team_abbreviation]['GameTime'] = localized_datetime
 
     def extract_player_points(self, path):
         with open(path, encoding="utf-8-sig") as file:
@@ -2474,13 +2512,13 @@ class NBA_Swaptimizer_Sims:
 
         # Combine all components
         output = "\n".join([
-            #"=" * 60,
-            #"\n".join(header_info),
+            "=" * 60,
+            "\n".join(header_info),
             #"-" * 60,
             #player_table,
             #"-" * 60,
-            "\n".join(sim_info),
-            "=" * 60,
+            #"\n".join(sim_info),
+            #"=" * 60,
             ""  # Empty line for spacing
         ])
 

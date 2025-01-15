@@ -736,3 +736,807 @@ Processing sets 26 to 30
 2025-01-14 17:12:32,183 - INFO - Processing set 30
 2025-01-14 17:12:32,183 - INFO - Completed set 30
 2025-01-14 17:12:32,211 - INFO - Late swap processing complete
+2025-01-14 17:24:51,749 - INFO - Starting late swap processing...
+2025-01-14 17:24:51,787 - INFO - Processed 800 lineups
+2025-01-14 17:24:51,788 - INFO - 
+Processing sets 1 to 5
+2025-01-14 17:24:51,788 - INFO - Processing set 1
+2025-01-14 17:24:51,789 - INFO - Completed set 1
+2025-01-14 17:24:51,819 - INFO - Processing set 2
+2025-01-14 17:24:51,820 - INFO - Completed set 2
+2025-01-14 17:24:51,851 - INFO - Processing set 3
+2025-01-14 17:24:51,852 - INFO - Completed set 3
+2025-01-14 17:24:51,883 - INFO - Processing set 4
+2025-01-14 17:24:51,883 - INFO - Completed set 4
+2025-01-14 17:24:51,913 - INFO - Processing set 5
+2025-01-14 17:24:51,914 - INFO - Completed set 5
+2025-01-14 17:24:51,945 - INFO - 
+Processing sets 6 to 10
+2025-01-14 17:24:51,945 - INFO - Processing set 6
+2025-01-14 17:24:51,945 - INFO - Completed set 6
+2025-01-14 17:24:51,975 - INFO - Processing set 7
+2025-01-14 17:24:51,976 - INFO - Completed set 7
+2025-01-14 17:24:53,644 - INFO - Processing set 8
+2025-01-14 17:24:53,644 - INFO - Completed set 8
+2025-01-14 17:24:53,675 - INFO - Processing set 9
+2025-01-14 17:24:53,676 - INFO - Completed set 9
+2025-01-14 17:24:53,706 - INFO - Processing set 10
+2025-01-14 17:24:53,706 - INFO - Completed set 10
+2025-01-14 17:24:53,737 - INFO - 
+Processing sets 11 to 15
+2025-01-14 17:24:53,737 - INFO - Processing set 11
+2025-01-14 17:24:53,738 - INFO - Completed set 11
+2025-01-14 17:24:53,768 - INFO - Processing set 12
+2025-01-14 17:24:53,769 - INFO - Completed set 12
+2025-01-14 17:24:53,801 - INFO - Processing set 13
+2025-01-14 17:24:53,802 - INFO - Completed set 13
+2025-01-14 17:24:53,831 - INFO - Processing set 14
+2025-01-14 17:24:53,832 - INFO - Completed set 14
+2025-01-14 17:24:53,861 - INFO - Processing set 15
+2025-01-14 17:24:53,862 - INFO - Completed set 15
+2025-01-14 17:24:53,891 - INFO - 
+Processing sets 16 to 20
+2025-01-14 17:24:53,891 - INFO - Processing set 16
+2025-01-14 17:24:53,892 - INFO - Completed set 16
+2025-01-14 17:24:53,921 - INFO - Processing set 17
+2025-01-14 17:24:53,921 - INFO - Completed set 17
+2025-01-14 17:24:53,952 - INFO - Processing set 18
+2025-01-14 17:24:53,953 - INFO - Completed set 18
+2025-01-14 17:24:53,983 - INFO - Processing set 19
+2025-01-14 17:24:53,984 - INFO - Completed set 19
+2025-01-14 17:24:54,015 - INFO - Processing set 20
+2025-01-14 17:24:54,016 - INFO - Completed set 20
+2025-01-14 17:24:54,046 - INFO - 
+Processing sets 21 to 25
+2025-01-14 17:24:54,046 - INFO - Processing set 21
+2025-01-14 17:24:54,047 - INFO - Completed set 21
+2025-01-14 17:24:54,079 - INFO - Processing set 22
+2025-01-14 17:24:54,079 - INFO - Completed set 22
+2025-01-14 17:24:54,110 - INFO - Processing set 23
+2025-01-14 17:24:54,110 - INFO - Completed set 23
+2025-01-14 17:24:54,141 - INFO - Processing set 24
+2025-01-14 17:24:54,142 - INFO - Completed set 24
+2025-01-14 17:24:54,172 - INFO - Processing set 25
+2025-01-14 17:24:54,173 - INFO - Completed set 25
+2025-01-14 17:24:54,202 - INFO - 
+Processing sets 26 to 30
+2025-01-14 17:24:54,202 - INFO - Processing set 26
+2025-01-14 17:24:54,203 - INFO - Completed set 26
+2025-01-14 17:24:54,234 - INFO - Processing set 27
+2025-01-14 17:24:54,235 - INFO - Completed set 27
+2025-01-14 17:24:54,266 - INFO - Processing set 28
+2025-01-14 17:24:54,267 - INFO - Completed set 28
+2025-01-14 17:24:54,297 - INFO - Processing set 29
+2025-01-14 17:24:54,297 - INFO - Completed set 29
+2025-01-14 17:24:54,327 - INFO - Processing set 30
+2025-01-14 17:24:54,327 - INFO - Completed set 30
+2025-01-14 17:24:54,357 - INFO - 
+Processing sets 31 to 35
+2025-01-14 17:24:54,357 - INFO - Processing set 31
+2025-01-14 17:24:54,358 - INFO - Completed set 31
+2025-01-14 17:24:54,393 - INFO - Processing set 32
+2025-01-14 17:24:54,394 - INFO - Completed set 32
+2025-01-14 17:24:54,427 - INFO - Processing set 33
+2025-01-14 17:24:54,428 - INFO - Completed set 33
+2025-01-14 17:24:54,459 - INFO - Processing set 34
+2025-01-14 17:24:54,460 - INFO - Completed set 34
+2025-01-14 17:24:54,490 - INFO - Processing set 35
+2025-01-14 17:24:54,491 - INFO - Completed set 35
+2025-01-14 17:24:54,523 - INFO - 
+Processing sets 36 to 40
+2025-01-14 17:24:54,523 - INFO - Processing set 36
+2025-01-14 17:24:54,524 - INFO - Completed set 36
+2025-01-14 17:24:54,554 - INFO - Processing set 37
+2025-01-14 17:24:54,555 - INFO - Completed set 37
+2025-01-14 17:24:54,587 - INFO - Processing set 38
+2025-01-14 17:24:54,588 - INFO - Completed set 38
+2025-01-14 17:24:54,618 - INFO - Processing set 39
+2025-01-14 17:24:54,619 - INFO - Completed set 39
+2025-01-14 17:24:54,649 - INFO - Processing set 40
+2025-01-14 17:24:54,649 - INFO - Completed set 40
+2025-01-14 17:24:54,681 - INFO - 
+Processing sets 41 to 45
+2025-01-14 17:24:54,681 - INFO - Processing set 41
+2025-01-14 17:24:54,681 - INFO - Completed set 41
+2025-01-14 17:24:54,711 - INFO - Processing set 42
+2025-01-14 17:24:54,712 - INFO - Completed set 42
+2025-01-14 17:24:54,742 - INFO - Processing set 43
+2025-01-14 17:24:54,743 - INFO - Completed set 43
+2025-01-14 17:24:54,772 - INFO - Processing set 44
+2025-01-14 17:24:54,773 - INFO - Completed set 44
+2025-01-14 17:24:54,803 - INFO - Processing set 45
+2025-01-14 17:24:54,805 - INFO - Completed set 45
+2025-01-14 17:24:54,837 - INFO - 
+Processing sets 46 to 50
+2025-01-14 17:24:54,837 - INFO - Processing set 46
+2025-01-14 17:24:54,838 - INFO - Completed set 46
+2025-01-14 17:24:54,870 - INFO - Processing set 47
+2025-01-14 17:24:54,871 - INFO - Completed set 47
+2025-01-14 17:24:54,901 - INFO - Processing set 48
+2025-01-14 17:24:54,902 - INFO - Completed set 48
+2025-01-14 17:24:54,932 - INFO - Processing set 49
+2025-01-14 17:24:54,933 - INFO - Completed set 49
+2025-01-14 17:24:54,964 - INFO - Processing set 50
+2025-01-14 17:24:54,965 - INFO - Completed set 50
+2025-01-14 17:24:54,997 - INFO - 
+Processing sets 51 to 55
+2025-01-14 17:24:54,997 - INFO - Processing set 51
+2025-01-14 17:24:54,998 - INFO - Completed set 51
+2025-01-14 17:24:55,034 - INFO - Processing set 52
+2025-01-14 17:24:55,035 - INFO - Completed set 52
+2025-01-14 17:24:55,069 - INFO - Processing set 53
+2025-01-14 17:24:55,070 - INFO - Completed set 53
+2025-01-14 17:24:55,104 - INFO - Processing set 54
+2025-01-14 17:24:55,105 - INFO - Completed set 54
+2025-01-14 17:24:55,138 - INFO - Processing set 55
+2025-01-14 17:24:55,139 - INFO - Completed set 55
+2025-01-14 17:24:55,171 - INFO - 
+Processing sets 56 to 60
+2025-01-14 17:24:55,171 - INFO - Processing set 56
+2025-01-14 17:24:55,172 - INFO - Completed set 56
+2025-01-14 17:24:55,204 - INFO - Processing set 57
+2025-01-14 17:24:55,205 - INFO - Completed set 57
+2025-01-14 17:24:55,237 - INFO - Processing set 58
+2025-01-14 17:24:55,238 - INFO - Completed set 58
+2025-01-14 17:24:55,268 - INFO - Processing set 59
+2025-01-14 17:24:55,269 - INFO - Completed set 59
+2025-01-14 17:24:55,301 - INFO - Processing set 60
+2025-01-14 17:24:55,301 - INFO - Completed set 60
+2025-01-14 17:24:55,332 - INFO - 
+Processing sets 61 to 65
+2025-01-14 17:24:55,332 - INFO - Processing set 61
+2025-01-14 17:24:55,333 - INFO - Completed set 61
+2025-01-14 17:24:55,365 - INFO - Processing set 62
+2025-01-14 17:24:55,365 - INFO - Completed set 62
+2025-01-14 17:24:55,397 - INFO - Processing set 63
+2025-01-14 17:24:55,398 - INFO - Completed set 63
+2025-01-14 17:24:55,429 - INFO - Processing set 64
+2025-01-14 17:24:55,431 - INFO - Completed set 64
+2025-01-14 17:24:55,462 - INFO - Processing set 65
+2025-01-14 17:24:55,463 - INFO - Completed set 65
+2025-01-14 17:24:55,497 - INFO - 
+Processing sets 66 to 70
+2025-01-14 17:24:55,497 - INFO - Processing set 66
+2025-01-14 17:24:55,498 - INFO - Completed set 66
+2025-01-14 17:24:55,532 - INFO - Processing set 67
+2025-01-14 17:24:55,532 - INFO - Completed set 67
+2025-01-14 17:24:55,563 - INFO - Processing set 68
+2025-01-14 17:24:55,564 - INFO - Completed set 68
+2025-01-14 17:24:55,597 - INFO - Processing set 69
+2025-01-14 17:24:55,598 - INFO - Completed set 69
+2025-01-14 17:24:55,628 - INFO - Processing set 70
+2025-01-14 17:24:55,629 - INFO - Completed set 70
+2025-01-14 17:24:55,661 - INFO - 
+Processing sets 71 to 75
+2025-01-14 17:24:55,661 - INFO - Processing set 71
+2025-01-14 17:24:55,662 - INFO - Completed set 71
+2025-01-14 17:24:55,692 - INFO - Processing set 72
+2025-01-14 17:24:55,693 - INFO - Completed set 72
+2025-01-14 17:24:55,723 - INFO - Processing set 73
+2025-01-14 17:24:55,724 - INFO - Completed set 73
+2025-01-14 17:24:55,754 - INFO - Processing set 74
+2025-01-14 17:24:55,755 - INFO - Completed set 74
+2025-01-14 17:24:55,786 - INFO - Processing set 75
+2025-01-14 17:24:55,787 - INFO - Completed set 75
+2025-01-14 17:24:55,822 - INFO - 
+Processing sets 76 to 80
+2025-01-14 17:24:55,822 - INFO - Processing set 76
+2025-01-14 17:24:55,823 - INFO - Completed set 76
+2025-01-14 17:24:55,854 - INFO - Processing set 77
+2025-01-14 17:24:55,855 - INFO - Completed set 77
+2025-01-14 17:24:55,885 - INFO - Processing set 78
+2025-01-14 17:24:55,886 - INFO - Completed set 78
+2025-01-14 17:24:55,918 - INFO - Processing set 79
+2025-01-14 17:24:55,919 - INFO - Completed set 79
+2025-01-14 17:24:55,950 - INFO - Processing set 80
+2025-01-14 17:24:55,951 - INFO - Completed set 80
+2025-01-14 17:24:55,982 - INFO - 
+Processing sets 81 to 85
+2025-01-14 17:24:55,982 - INFO - Processing set 81
+2025-01-14 17:24:55,983 - INFO - Completed set 81
+2025-01-14 17:24:56,014 - INFO - Processing set 82
+2025-01-14 17:24:56,015 - INFO - Completed set 82
+2025-01-14 17:24:56,046 - INFO - Processing set 83
+2025-01-14 17:24:56,047 - INFO - Completed set 83
+2025-01-14 17:24:56,078 - INFO - Processing set 84
+2025-01-14 17:24:56,078 - INFO - Completed set 84
+2025-01-14 17:24:56,108 - INFO - Processing set 85
+2025-01-14 17:24:56,109 - INFO - Completed set 85
+2025-01-14 17:24:56,142 - INFO - 
+Processing sets 86 to 90
+2025-01-14 17:24:56,142 - INFO - Processing set 86
+2025-01-14 17:24:56,143 - INFO - Completed set 86
+2025-01-14 17:24:56,175 - INFO - Processing set 87
+2025-01-14 17:24:56,176 - INFO - Completed set 87
+2025-01-14 17:24:56,208 - INFO - Processing set 88
+2025-01-14 17:24:56,209 - INFO - Completed set 88
+2025-01-14 17:24:56,237 - INFO - Processing set 89
+2025-01-14 17:24:56,238 - INFO - Completed set 89
+2025-01-14 17:24:56,269 - INFO - Processing set 90
+2025-01-14 17:24:56,270 - INFO - Completed set 90
+2025-01-14 17:24:56,300 - INFO - 
+Processing sets 91 to 95
+2025-01-14 17:24:56,300 - INFO - Processing set 91
+2025-01-14 17:24:56,301 - INFO - Completed set 91
+2025-01-14 17:24:56,333 - INFO - Processing set 92
+2025-01-14 17:24:56,334 - INFO - Completed set 92
+2025-01-14 17:24:56,365 - INFO - Processing set 93
+2025-01-14 17:24:56,366 - INFO - Completed set 93
+2025-01-14 17:24:56,397 - INFO - Processing set 94
+2025-01-14 17:24:56,398 - INFO - Completed set 94
+2025-01-14 17:24:56,428 - INFO - Processing set 95
+2025-01-14 17:24:56,428 - INFO - Completed set 95
+2025-01-14 17:24:56,469 - INFO - 
+Processing sets 96 to 100
+2025-01-14 17:24:56,469 - INFO - Processing set 96
+2025-01-14 17:24:56,470 - INFO - Completed set 96
+2025-01-14 17:24:56,504 - INFO - Processing set 97
+2025-01-14 17:24:56,505 - INFO - Completed set 97
+2025-01-14 17:24:56,534 - INFO - Processing set 98
+2025-01-14 17:24:56,535 - INFO - Completed set 98
+2025-01-14 17:24:56,569 - INFO - Processing set 99
+2025-01-14 17:24:56,570 - INFO - Completed set 99
+2025-01-14 17:24:56,600 - INFO - Processing set 100
+2025-01-14 17:24:56,601 - INFO - Completed set 100
+2025-01-14 17:24:56,631 - INFO - Late swap processing complete
+2025-01-14 17:56:42,998 - INFO - Starting late swap processing...
+2025-01-14 17:56:43,009 - INFO - Processed 1200 lineups
+2025-01-14 17:56:43,010 - INFO - 
+Processing sets 1 to 5
+2025-01-14 17:56:43,010 - INFO - Processing set 1
+2025-01-14 17:56:44,618 - INFO - Completed set 1
+2025-01-14 17:56:44,657 - INFO - Processing set 2
+2025-01-14 17:56:44,658 - INFO - Completed set 2
+2025-01-14 17:56:44,693 - INFO - Processing set 3
+2025-01-14 17:56:44,694 - INFO - Completed set 3
+2025-01-14 17:56:44,725 - INFO - Processing set 4
+2025-01-14 17:56:44,726 - INFO - Completed set 4
+2025-01-14 17:56:44,758 - INFO - Processing set 5
+2025-01-14 17:56:44,759 - INFO - Completed set 5
+2025-01-14 17:56:44,798 - INFO - 
+Processing sets 6 to 10
+2025-01-14 17:56:44,799 - INFO - Processing set 6
+2025-01-14 17:56:44,799 - INFO - Completed set 6
+2025-01-14 17:56:44,838 - INFO - Processing set 7
+2025-01-14 17:56:44,839 - INFO - Completed set 7
+2025-01-14 17:56:44,876 - INFO - Processing set 8
+2025-01-14 17:56:44,877 - INFO - Completed set 8
+2025-01-14 17:56:44,910 - INFO - Processing set 9
+2025-01-14 17:56:44,911 - INFO - Completed set 9
+2025-01-14 17:56:44,941 - INFO - Processing set 10
+2025-01-14 17:56:44,942 - INFO - Completed set 10
+2025-01-14 17:56:44,979 - INFO - 
+Processing sets 11 to 15
+2025-01-14 17:56:44,979 - INFO - Processing set 11
+2025-01-14 17:56:44,980 - INFO - Completed set 11
+2025-01-14 17:56:45,027 - INFO - Processing set 12
+2025-01-14 17:56:45,029 - INFO - Completed set 12
+2025-01-14 17:56:45,078 - INFO - Processing set 13
+2025-01-14 17:56:45,079 - INFO - Completed set 13
+2025-01-14 17:56:45,114 - INFO - Processing set 14
+2025-01-14 17:56:45,115 - INFO - Completed set 14
+2025-01-14 17:56:45,148 - INFO - Processing set 15
+2025-01-14 17:56:45,148 - INFO - Completed set 15
+2025-01-14 17:56:45,183 - INFO - 
+Processing sets 16 to 20
+2025-01-14 17:56:45,183 - INFO - Processing set 16
+2025-01-14 17:56:45,184 - INFO - Completed set 16
+2025-01-14 17:56:45,223 - INFO - Processing set 17
+2025-01-14 17:56:45,225 - INFO - Completed set 17
+2025-01-14 17:56:45,268 - INFO - Processing set 18
+2025-01-14 17:56:45,269 - INFO - Completed set 18
+2025-01-14 17:56:45,311 - INFO - Processing set 19
+2025-01-14 17:56:45,312 - INFO - Completed set 19
+2025-01-14 17:56:45,345 - INFO - Processing set 20
+2025-01-14 17:56:45,347 - INFO - Completed set 20
+2025-01-14 17:56:45,384 - INFO - 
+Processing sets 21 to 25
+2025-01-14 17:56:45,384 - INFO - Processing set 21
+2025-01-14 17:56:45,385 - INFO - Completed set 21
+2025-01-14 17:56:45,425 - INFO - Processing set 22
+2025-01-14 17:56:45,426 - INFO - Completed set 22
+2025-01-14 17:56:45,465 - INFO - Processing set 23
+2025-01-14 17:56:45,466 - INFO - Completed set 23
+2025-01-14 17:56:45,505 - INFO - Processing set 24
+2025-01-14 17:56:45,506 - INFO - Completed set 24
+2025-01-14 17:56:45,539 - INFO - Processing set 25
+2025-01-14 17:56:45,540 - INFO - Completed set 25
+2025-01-14 17:56:45,572 - INFO - 
+Processing sets 26 to 30
+2025-01-14 17:56:45,572 - INFO - Processing set 26
+2025-01-14 17:56:45,572 - INFO - Completed set 26
+2025-01-14 17:56:45,612 - INFO - Processing set 27
+2025-01-14 17:56:45,614 - INFO - Completed set 27
+2025-01-14 17:56:45,654 - INFO - Processing set 28
+2025-01-14 17:56:45,655 - INFO - Completed set 28
+2025-01-14 17:56:45,694 - INFO - Processing set 29
+2025-01-14 17:56:45,695 - INFO - Completed set 29
+2025-01-14 17:56:45,730 - INFO - Processing set 30
+2025-01-14 17:56:45,731 - INFO - Completed set 30
+2025-01-14 17:56:45,764 - INFO - 
+Processing sets 31 to 35
+2025-01-14 17:56:45,764 - INFO - Processing set 31
+2025-01-14 17:56:45,765 - INFO - Completed set 31
+2025-01-14 17:56:45,799 - INFO - Processing set 32
+2025-01-14 17:56:45,800 - INFO - Completed set 32
+2025-01-14 17:56:45,837 - INFO - Processing set 33
+2025-01-14 17:56:45,838 - INFO - Completed set 33
+2025-01-14 17:56:45,878 - INFO - Processing set 34
+2025-01-14 17:56:45,879 - INFO - Completed set 34
+2025-01-14 17:56:45,916 - INFO - Processing set 35
+2025-01-14 17:56:45,917 - INFO - Completed set 35
+2025-01-14 17:56:45,949 - INFO - 
+Processing sets 36 to 40
+2025-01-14 17:56:45,949 - INFO - Processing set 36
+2025-01-14 17:56:45,950 - INFO - Completed set 36
+2025-01-14 17:56:45,984 - INFO - Processing set 37
+2025-01-14 17:56:45,985 - INFO - Completed set 37
+2025-01-14 17:56:46,041 - INFO - Processing set 38
+2025-01-14 17:56:46,043 - INFO - Completed set 38
+2025-01-14 17:56:46,087 - INFO - Processing set 39
+2025-01-14 17:56:46,089 - INFO - Completed set 39
+2025-01-14 17:56:46,130 - INFO - Processing set 40
+2025-01-14 17:56:46,131 - INFO - Completed set 40
+2025-01-14 17:56:46,173 - INFO - 
+Processing sets 41 to 45
+2025-01-14 17:56:46,173 - INFO - Processing set 41
+2025-01-14 17:56:46,174 - INFO - Completed set 41
+2025-01-14 17:56:46,226 - INFO - Processing set 42
+2025-01-14 17:56:46,227 - INFO - Completed set 42
+2025-01-14 17:56:46,271 - INFO - Processing set 43
+2025-01-14 17:56:46,272 - INFO - Completed set 43
+2025-01-14 17:56:46,317 - INFO - Processing set 44
+2025-01-14 17:56:46,318 - INFO - Completed set 44
+2025-01-14 17:56:46,356 - INFO - Processing set 45
+2025-01-14 17:56:46,357 - INFO - Completed set 45
+2025-01-14 17:56:46,392 - INFO - 
+Processing sets 46 to 50
+2025-01-14 17:56:46,392 - INFO - Processing set 46
+2025-01-14 17:56:46,393 - INFO - Completed set 46
+2025-01-14 17:56:46,425 - INFO - Processing set 47
+2025-01-14 17:56:46,426 - INFO - Completed set 47
+2025-01-14 17:56:46,464 - INFO - Processing set 48
+2025-01-14 17:56:46,465 - INFO - Completed set 48
+2025-01-14 17:56:46,507 - INFO - Processing set 49
+2025-01-14 17:56:46,508 - INFO - Completed set 49
+2025-01-14 17:56:46,546 - INFO - Processing set 50
+2025-01-14 17:56:46,547 - INFO - Completed set 50
+2025-01-14 17:56:46,579 - INFO - 
+Processing sets 51 to 55
+2025-01-14 17:56:46,579 - INFO - Processing set 51
+2025-01-14 17:56:46,580 - INFO - Completed set 51
+2025-01-14 17:56:46,613 - INFO - Processing set 52
+2025-01-14 17:56:46,614 - INFO - Completed set 52
+2025-01-14 17:56:46,651 - INFO - Processing set 53
+2025-01-14 17:56:46,652 - INFO - Completed set 53
+2025-01-14 17:56:46,692 - INFO - Processing set 54
+2025-01-14 17:56:46,693 - INFO - Completed set 54
+2025-01-14 17:56:46,734 - INFO - Processing set 55
+2025-01-14 17:56:46,735 - INFO - Completed set 55
+2025-01-14 17:56:46,767 - INFO - 
+Processing sets 56 to 60
+2025-01-14 17:56:46,767 - INFO - Processing set 56
+2025-01-14 17:56:46,768 - INFO - Completed set 56
+2025-01-14 17:56:46,800 - INFO - Processing set 57
+2025-01-14 17:56:46,801 - INFO - Completed set 57
+2025-01-14 17:56:46,835 - INFO - Processing set 58
+2025-01-14 17:56:46,836 - INFO - Completed set 58
+2025-01-14 17:56:46,874 - INFO - Processing set 59
+2025-01-14 17:56:46,875 - INFO - Completed set 59
+2025-01-14 17:56:46,914 - INFO - Processing set 60
+2025-01-14 17:56:46,915 - INFO - Completed set 60
+2025-01-14 17:56:46,952 - INFO - 
+Processing sets 61 to 65
+2025-01-14 17:56:46,952 - INFO - Processing set 61
+2025-01-14 17:56:46,953 - INFO - Completed set 61
+2025-01-14 17:56:46,987 - INFO - Processing set 62
+2025-01-14 17:56:46,988 - INFO - Completed set 62
+2025-01-14 17:56:47,020 - INFO - Processing set 63
+2025-01-14 17:56:47,021 - INFO - Completed set 63
+2025-01-14 17:56:47,059 - INFO - Processing set 64
+2025-01-14 17:56:47,060 - INFO - Completed set 64
+2025-01-14 17:56:47,101 - INFO - Processing set 65
+2025-01-14 17:56:47,102 - INFO - Completed set 65
+2025-01-14 17:56:47,142 - INFO - 
+Processing sets 66 to 70
+2025-01-14 17:56:47,142 - INFO - Processing set 66
+2025-01-14 17:56:47,143 - INFO - Completed set 66
+2025-01-14 17:56:47,175 - INFO - Processing set 67
+2025-01-14 17:56:47,176 - INFO - Completed set 67
+2025-01-14 17:56:47,209 - INFO - Processing set 68
+2025-01-14 17:56:47,210 - INFO - Completed set 68
+2025-01-14 17:56:47,242 - INFO - Processing set 69
+2025-01-14 17:56:47,243 - INFO - Completed set 69
+2025-01-14 17:56:47,281 - INFO - Processing set 70
+2025-01-14 17:56:47,282 - INFO - Completed set 70
+2025-01-14 17:56:47,320 - INFO - 
+Processing sets 71 to 75
+2025-01-14 17:56:47,320 - INFO - Processing set 71
+2025-01-14 17:56:47,321 - INFO - Completed set 71
+2025-01-14 17:56:47,361 - INFO - Processing set 72
+2025-01-14 17:56:47,362 - INFO - Completed set 72
+2025-01-14 17:56:47,395 - INFO - Processing set 73
+2025-01-14 17:56:47,396 - INFO - Completed set 73
+2025-01-14 17:56:47,429 - INFO - Processing set 74
+2025-01-14 17:56:47,430 - INFO - Completed set 74
+2025-01-14 17:56:47,464 - INFO - Processing set 75
+2025-01-14 17:56:47,465 - INFO - Completed set 75
+2025-01-14 17:56:47,509 - INFO - 
+Processing sets 76 to 80
+2025-01-14 17:56:47,509 - INFO - Processing set 76
+2025-01-14 17:56:47,510 - INFO - Completed set 76
+2025-01-14 17:56:47,551 - INFO - Processing set 77
+2025-01-14 17:56:47,552 - INFO - Completed set 77
+2025-01-14 17:56:47,586 - INFO - Processing set 78
+2025-01-14 17:56:47,587 - INFO - Completed set 78
+2025-01-14 17:56:47,620 - INFO - Processing set 79
+2025-01-14 17:56:47,621 - INFO - Completed set 79
+2025-01-14 17:56:47,654 - INFO - Processing set 80
+2025-01-14 17:56:47,655 - INFO - Completed set 80
+2025-01-14 17:56:47,693 - INFO - 
+Processing sets 81 to 85
+2025-01-14 17:56:47,694 - INFO - Processing set 81
+2025-01-14 17:56:47,694 - INFO - Completed set 81
+2025-01-14 17:56:47,733 - INFO - Processing set 82
+2025-01-14 17:56:47,733 - INFO - Completed set 82
+2025-01-14 17:56:47,775 - INFO - Processing set 83
+2025-01-14 17:56:47,776 - INFO - Completed set 83
+2025-01-14 17:56:47,808 - INFO - Processing set 84
+2025-01-14 17:56:47,809 - INFO - Completed set 84
+2025-01-14 17:56:47,840 - INFO - Processing set 85
+2025-01-14 17:56:47,841 - INFO - Completed set 85
+2025-01-14 17:56:47,874 - INFO - 
+Processing sets 86 to 90
+2025-01-14 17:56:47,874 - INFO - Processing set 86
+2025-01-14 17:56:47,875 - INFO - Completed set 86
+2025-01-14 17:56:47,918 - INFO - Processing set 87
+2025-01-14 17:56:47,919 - INFO - Completed set 87
+2025-01-14 17:56:47,959 - INFO - Processing set 88
+2025-01-14 17:56:47,960 - INFO - Completed set 88
+2025-01-14 17:56:47,998 - INFO - Processing set 89
+2025-01-14 17:56:47,999 - INFO - Completed set 89
+2025-01-14 17:56:48,034 - INFO - Processing set 90
+2025-01-14 17:56:48,035 - INFO - Completed set 90
+2025-01-14 17:56:48,073 - INFO - 
+Processing sets 91 to 95
+2025-01-14 17:56:48,073 - INFO - Processing set 91
+2025-01-14 17:56:48,074 - INFO - Completed set 91
+2025-01-14 17:56:48,115 - INFO - Processing set 92
+2025-01-14 17:56:48,117 - INFO - Completed set 92
+2025-01-14 17:56:48,155 - INFO - Processing set 93
+2025-01-14 17:56:48,156 - INFO - Completed set 93
+2025-01-14 17:56:48,194 - INFO - Processing set 94
+2025-01-14 17:56:48,195 - INFO - Completed set 94
+2025-01-14 17:56:48,226 - INFO - Processing set 95
+2025-01-14 17:56:48,227 - INFO - Completed set 95
+2025-01-14 17:56:48,259 - INFO - 
+Processing sets 96 to 100
+2025-01-14 17:56:48,259 - INFO - Processing set 96
+2025-01-14 17:56:48,260 - INFO - Completed set 96
+2025-01-14 17:56:48,306 - INFO - Processing set 97
+2025-01-14 17:56:48,307 - INFO - Completed set 97
+2025-01-14 17:56:48,346 - INFO - Processing set 98
+2025-01-14 17:56:48,347 - INFO - Completed set 98
+2025-01-14 17:56:48,386 - INFO - Processing set 99
+2025-01-14 17:56:48,387 - INFO - Completed set 99
+2025-01-14 17:56:48,421 - INFO - Processing set 100
+2025-01-14 17:56:48,422 - INFO - Completed set 100
+2025-01-14 17:56:48,455 - INFO - 
+Processing sets 101 to 105
+2025-01-14 17:56:48,455 - INFO - Processing set 101
+2025-01-14 17:56:48,456 - INFO - Completed set 101
+2025-01-14 17:56:48,488 - INFO - Processing set 102
+2025-01-14 17:56:48,489 - INFO - Completed set 102
+2025-01-14 17:56:48,531 - INFO - Processing set 103
+2025-01-14 17:56:48,532 - INFO - Completed set 103
+2025-01-14 17:56:48,572 - INFO - Processing set 104
+2025-01-14 17:56:48,573 - INFO - Completed set 104
+2025-01-14 17:56:48,610 - INFO - Processing set 105
+2025-01-14 17:56:48,611 - INFO - Completed set 105
+2025-01-14 17:56:48,646 - INFO - 
+Processing sets 106 to 110
+2025-01-14 17:56:48,646 - INFO - Processing set 106
+2025-01-14 17:56:48,647 - INFO - Completed set 106
+2025-01-14 17:56:48,679 - INFO - Processing set 107
+2025-01-14 17:56:48,680 - INFO - Completed set 107
+2025-01-14 17:56:48,715 - INFO - Processing set 108
+2025-01-14 17:56:48,716 - INFO - Completed set 108
+2025-01-14 17:56:48,761 - INFO - Processing set 109
+2025-01-14 17:56:48,762 - INFO - Completed set 109
+2025-01-14 17:56:48,802 - INFO - Processing set 110
+2025-01-14 17:56:48,803 - INFO - Completed set 110
+2025-01-14 17:56:48,835 - INFO - 
+Processing sets 111 to 115
+2025-01-14 17:56:48,835 - INFO - Processing set 111
+2025-01-14 17:56:48,836 - INFO - Completed set 111
+2025-01-14 17:56:48,867 - INFO - Processing set 112
+2025-01-14 17:56:48,868 - INFO - Completed set 112
+2025-01-14 17:56:48,901 - INFO - Processing set 113
+2025-01-14 17:56:48,901 - INFO - Completed set 113
+2025-01-14 17:56:48,938 - INFO - Processing set 114
+2025-01-14 17:56:48,939 - INFO - Completed set 114
+2025-01-14 17:56:48,978 - INFO - Processing set 115
+2025-01-14 17:56:48,979 - INFO - Completed set 115
+2025-01-14 17:56:49,021 - INFO - 
+Processing sets 116 to 120
+2025-01-14 17:56:49,021 - INFO - Processing set 116
+2025-01-14 17:56:49,022 - INFO - Completed set 116
+2025-01-14 17:56:49,055 - INFO - Processing set 117
+2025-01-14 17:56:49,057 - INFO - Completed set 117
+2025-01-14 17:56:49,089 - INFO - Processing set 118
+2025-01-14 17:56:49,090 - INFO - Completed set 118
+2025-01-14 17:56:49,125 - INFO - Processing set 119
+2025-01-14 17:56:49,126 - INFO - Completed set 119
+2025-01-14 17:56:49,165 - INFO - Processing set 120
+2025-01-14 17:56:49,166 - INFO - Completed set 120
+2025-01-14 17:56:49,203 - INFO - 
+Processing sets 121 to 125
+2025-01-14 17:56:49,203 - INFO - Processing set 121
+2025-01-14 17:56:49,204 - INFO - Completed set 121
+2025-01-14 17:56:49,242 - INFO - Processing set 122
+2025-01-14 17:56:49,242 - INFO - Completed set 122
+2025-01-14 17:56:49,275 - INFO - Processing set 123
+2025-01-14 17:56:49,275 - INFO - Completed set 123
+2025-01-14 17:56:49,306 - INFO - Processing set 124
+2025-01-14 17:56:49,308 - INFO - Completed set 124
+2025-01-14 17:56:49,342 - INFO - Processing set 125
+2025-01-14 17:56:49,344 - INFO - Completed set 125
+2025-01-14 17:56:49,386 - INFO - 
+Processing sets 126 to 130
+2025-01-14 17:56:49,386 - INFO - Processing set 126
+2025-01-14 17:56:49,387 - INFO - Completed set 126
+2025-01-14 17:56:49,427 - INFO - Processing set 127
+2025-01-14 17:56:49,428 - INFO - Completed set 127
+2025-01-14 17:56:49,462 - INFO - Processing set 128
+2025-01-14 17:56:49,463 - INFO - Completed set 128
+2025-01-14 17:56:49,494 - INFO - Processing set 129
+2025-01-14 17:56:49,495 - INFO - Completed set 129
+2025-01-14 17:56:49,528 - INFO - Processing set 130
+2025-01-14 17:56:49,529 - INFO - Completed set 130
+2025-01-14 17:56:49,563 - INFO - 
+Processing sets 131 to 135
+2025-01-14 17:56:49,563 - INFO - Processing set 131
+2025-01-14 17:56:49,564 - INFO - Completed set 131
+2025-01-14 17:56:49,603 - INFO - Processing set 132
+2025-01-14 17:56:49,604 - INFO - Completed set 132
+2025-01-14 17:56:49,643 - INFO - Processing set 133
+2025-01-14 17:56:49,644 - INFO - Completed set 133
+2025-01-14 17:56:49,678 - INFO - Processing set 134
+2025-01-14 17:56:49,679 - INFO - Completed set 134
+2025-01-14 17:56:49,711 - INFO - Processing set 135
+2025-01-14 17:56:49,712 - INFO - Completed set 135
+2025-01-14 17:56:49,744 - INFO - 
+Processing sets 136 to 140
+2025-01-14 17:56:49,744 - INFO - Processing set 136
+2025-01-14 17:56:49,745 - INFO - Completed set 136
+2025-01-14 17:56:49,777 - INFO - Processing set 137
+2025-01-14 17:56:49,778 - INFO - Completed set 137
+2025-01-14 17:56:49,819 - INFO - Processing set 138
+2025-01-14 17:56:49,820 - INFO - Completed set 138
+2025-01-14 17:56:49,858 - INFO - Processing set 139
+2025-01-14 17:56:49,859 - INFO - Completed set 139
+2025-01-14 17:56:49,896 - INFO - Processing set 140
+2025-01-14 17:56:49,897 - INFO - Completed set 140
+2025-01-14 17:56:49,928 - INFO - 
+Processing sets 141 to 145
+2025-01-14 17:56:49,928 - INFO - Processing set 141
+2025-01-14 17:56:49,929 - INFO - Completed set 141
+2025-01-14 17:56:49,961 - INFO - Processing set 142
+2025-01-14 17:56:49,962 - INFO - Completed set 142
+2025-01-14 17:56:49,998 - INFO - Processing set 143
+2025-01-14 17:56:49,999 - INFO - Completed set 143
+2025-01-14 17:56:50,044 - INFO - Processing set 144
+2025-01-14 17:56:50,045 - INFO - Completed set 144
+2025-01-14 17:56:50,083 - INFO - Processing set 145
+2025-01-14 17:56:50,085 - INFO - Completed set 145
+2025-01-14 17:56:50,120 - INFO - 
+Processing sets 146 to 150
+2025-01-14 17:56:50,120 - INFO - Processing set 146
+2025-01-14 17:56:50,121 - INFO - Completed set 146
+2025-01-14 17:56:50,154 - INFO - Processing set 147
+2025-01-14 17:56:50,155 - INFO - Completed set 147
+2025-01-14 17:56:50,187 - INFO - Processing set 148
+2025-01-14 17:56:50,188 - INFO - Completed set 148
+2025-01-14 17:56:50,226 - INFO - Processing set 149
+2025-01-14 17:56:50,228 - INFO - Completed set 149
+2025-01-14 17:56:50,265 - INFO - Processing set 150
+2025-01-14 17:56:50,266 - INFO - Completed set 150
+2025-01-14 17:56:50,303 - INFO - Late swap processing complete
+2025-01-14 19:33:02,814 - INFO - Starting late swap processing...
+2025-01-14 19:33:02,819 - INFO - Processed 400 lineups
+2025-01-14 19:33:02,820 - INFO - 
+Processing sets 1 to 5
+2025-01-14 19:33:02,820 - INFO - Processing set 1
+2025-01-14 19:33:02,821 - INFO - Completed set 1
+2025-01-14 19:33:02,875 - INFO - Processing set 2
+2025-01-14 19:33:02,876 - INFO - Completed set 2
+2025-01-14 19:33:02,931 - INFO - Processing set 3
+2025-01-14 19:33:02,932 - INFO - Completed set 3
+2025-01-14 19:33:02,991 - INFO - Processing set 4
+2025-01-14 19:33:02,992 - INFO - Completed set 4
+2025-01-14 19:33:03,042 - INFO - Processing set 5
+2025-01-14 19:33:03,043 - INFO - Completed set 5
+2025-01-14 19:33:03,092 - INFO - 
+Processing sets 6 to 10
+2025-01-14 19:33:03,092 - INFO - Processing set 6
+2025-01-14 19:33:03,093 - INFO - Completed set 6
+2025-01-14 19:33:03,151 - INFO - Processing set 7
+2025-01-14 19:33:03,152 - INFO - Completed set 7
+2025-01-14 19:33:03,211 - INFO - Processing set 8
+2025-01-14 19:33:03,212 - INFO - Completed set 8
+2025-01-14 19:33:03,262 - INFO - Processing set 9
+2025-01-14 19:33:03,263 - INFO - Completed set 9
+2025-01-14 19:33:03,313 - INFO - Processing set 10
+2025-01-14 19:33:03,314 - INFO - Completed set 10
+2025-01-14 19:33:03,372 - INFO - 
+Processing sets 11 to 15
+2025-01-14 19:33:03,372 - INFO - Processing set 11
+2025-01-14 19:33:03,373 - INFO - Completed set 11
+2025-01-14 19:33:03,431 - INFO - Processing set 12
+2025-01-14 19:33:03,432 - INFO - Completed set 12
+2025-01-14 19:33:03,481 - INFO - Processing set 13
+2025-01-14 19:33:03,482 - INFO - Completed set 13
+2025-01-14 19:33:03,534 - INFO - Processing set 14
+2025-01-14 19:33:03,535 - INFO - Completed set 14
+2025-01-14 19:33:03,595 - INFO - Processing set 15
+2025-01-14 19:33:03,596 - INFO - Completed set 15
+2025-01-14 19:33:03,652 - INFO - 
+Processing sets 16 to 20
+2025-01-14 19:33:03,652 - INFO - Processing set 16
+2025-01-14 19:33:03,653 - INFO - Completed set 16
+2025-01-14 19:33:04,486 - INFO - Processing set 17
+2025-01-14 19:33:04,487 - INFO - Completed set 17
+2025-01-14 19:33:04,536 - INFO - Processing set 18
+2025-01-14 19:33:04,537 - INFO - Completed set 18
+2025-01-14 19:33:04,589 - INFO - Processing set 19
+2025-01-14 19:33:04,590 - INFO - Completed set 19
+2025-01-14 19:33:04,649 - INFO - Processing set 20
+2025-01-14 19:33:04,650 - INFO - Completed set 20
+2025-01-14 19:33:04,708 - INFO - 
+Processing sets 21 to 25
+2025-01-14 19:33:04,708 - INFO - Processing set 21
+2025-01-14 19:33:04,709 - INFO - Completed set 21
+2025-01-14 19:33:04,762 - INFO - Processing set 22
+2025-01-14 19:33:04,763 - INFO - Completed set 22
+2025-01-14 19:33:04,823 - INFO - Processing set 23
+2025-01-14 19:33:04,824 - INFO - Completed set 23
+2025-01-14 19:33:04,886 - INFO - Processing set 24
+2025-01-14 19:33:04,887 - INFO - Completed set 24
+2025-01-14 19:33:04,937 - INFO - Processing set 25
+2025-01-14 19:33:04,938 - INFO - Completed set 25
+2025-01-14 19:33:04,988 - INFO - 
+Processing sets 26 to 30
+2025-01-14 19:33:04,988 - INFO - Processing set 26
+2025-01-14 19:33:04,989 - INFO - Completed set 26
+2025-01-14 19:33:05,050 - INFO - Processing set 27
+2025-01-14 19:33:05,051 - INFO - Completed set 27
+2025-01-14 19:33:05,107 - INFO - Processing set 28
+2025-01-14 19:33:05,108 - INFO - Completed set 28
+2025-01-14 19:33:05,159 - INFO - Processing set 29
+2025-01-14 19:33:05,160 - INFO - Completed set 29
+2025-01-14 19:33:05,212 - INFO - Processing set 30
+2025-01-14 19:33:05,213 - INFO - Completed set 30
+2025-01-14 19:33:05,273 - INFO - 
+Processing sets 31 to 35
+2025-01-14 19:33:05,274 - INFO - Processing set 31
+2025-01-14 19:33:05,275 - INFO - Completed set 31
+2025-01-14 19:33:05,330 - INFO - Processing set 32
+2025-01-14 19:33:05,331 - INFO - Completed set 32
+2025-01-14 19:33:05,382 - INFO - Processing set 33
+2025-01-14 19:33:05,383 - INFO - Completed set 33
+2025-01-14 19:33:05,435 - INFO - Processing set 34
+2025-01-14 19:33:05,437 - INFO - Completed set 34
+2025-01-14 19:33:05,496 - INFO - Processing set 35
+2025-01-14 19:33:05,497 - INFO - Completed set 35
+2025-01-14 19:33:05,551 - INFO - 
+Processing sets 36 to 40
+2025-01-14 19:33:05,551 - INFO - Processing set 36
+2025-01-14 19:33:05,552 - INFO - Completed set 36
+2025-01-14 19:33:05,601 - INFO - Processing set 37
+2025-01-14 19:33:05,602 - INFO - Completed set 37
+2025-01-14 19:33:05,661 - INFO - Processing set 38
+2025-01-14 19:33:05,662 - INFO - Completed set 38
+2025-01-14 19:33:05,721 - INFO - Processing set 39
+2025-01-14 19:33:05,722 - INFO - Completed set 39
+2025-01-14 19:33:05,773 - INFO - Processing set 40
+2025-01-14 19:33:05,773 - INFO - Completed set 40
+2025-01-14 19:33:05,824 - INFO - 
+Processing sets 41 to 45
+2025-01-14 19:33:05,824 - INFO - Processing set 41
+2025-01-14 19:33:05,826 - INFO - Completed set 41
+2025-01-14 19:33:05,886 - INFO - Processing set 42
+2025-01-14 19:33:05,886 - INFO - Completed set 42
+2025-01-14 19:33:05,943 - INFO - Processing set 43
+2025-01-14 19:33:05,944 - INFO - Completed set 43
+2025-01-14 19:33:05,994 - INFO - Processing set 44
+2025-01-14 19:33:05,994 - INFO - Completed set 44
+2025-01-14 19:33:06,047 - INFO - Processing set 45
+2025-01-14 19:33:06,048 - INFO - Completed set 45
+2025-01-14 19:33:06,106 - INFO - 
+Processing sets 46 to 50
+2025-01-14 19:33:06,106 - INFO - Processing set 46
+2025-01-14 19:33:06,107 - INFO - Completed set 46
+2025-01-14 19:33:06,163 - INFO - Processing set 47
+2025-01-14 19:33:06,164 - INFO - Completed set 47
+2025-01-14 19:33:06,214 - INFO - Processing set 48
+2025-01-14 19:33:06,214 - INFO - Completed set 48
+2025-01-14 19:33:06,272 - INFO - Processing set 49
+2025-01-14 19:33:06,274 - INFO - Completed set 49
+2025-01-14 19:33:06,332 - INFO - Processing set 50
+2025-01-14 19:33:06,333 - INFO - Completed set 50
+2025-01-14 19:33:06,387 - INFO - Late swap processing complete
+2025-01-14 19:45:35,480 - INFO - Starting late swap processing...
+2025-01-14 19:45:35,482 - INFO - Processed 240 lineups
+2025-01-14 19:45:35,483 - INFO - 
+Processing sets 1 to 5
+2025-01-14 19:45:35,483 - INFO - Processing set 1
+2025-01-14 19:45:35,483 - INFO - Completed set 1
+2025-01-14 19:45:35,537 - INFO - Processing set 2
+2025-01-14 19:45:35,537 - INFO - Completed set 2
+2025-01-14 19:45:35,589 - INFO - Processing set 3
+2025-01-14 19:45:35,589 - INFO - Completed set 3
+2025-01-14 19:45:35,649 - INFO - Processing set 4
+2025-01-14 19:45:35,650 - INFO - Completed set 4
+2025-01-14 19:45:35,706 - INFO - Processing set 5
+2025-01-14 19:45:35,707 - INFO - Completed set 5
+2025-01-14 19:45:35,757 - INFO - 
+Processing sets 6 to 10
+2025-01-14 19:45:35,757 - INFO - Processing set 6
+2025-01-14 19:45:35,758 - INFO - Completed set 6
+2025-01-14 19:45:35,811 - INFO - Processing set 7
+2025-01-14 19:45:35,812 - INFO - Completed set 7
+2025-01-14 19:45:35,873 - INFO - Processing set 8
+2025-01-14 19:45:35,874 - INFO - Completed set 8
+2025-01-14 19:45:35,926 - INFO - Processing set 9
+2025-01-14 19:45:35,927 - INFO - Completed set 9
+2025-01-14 19:45:35,978 - INFO - Processing set 10
+2025-01-14 19:45:35,978 - INFO - Completed set 10
+2025-01-14 19:45:36,036 - INFO - 
+Processing sets 11 to 15
+2025-01-14 19:45:36,036 - INFO - Processing set 11
+2025-01-14 19:45:36,037 - INFO - Completed set 11
+2025-01-14 19:45:36,095 - INFO - Processing set 12
+2025-01-14 19:45:36,096 - INFO - Completed set 12
+2025-01-14 19:45:36,145 - INFO - Processing set 13
+2025-01-14 19:45:36,146 - INFO - Completed set 13
+2025-01-14 19:45:36,194 - INFO - Processing set 14
+2025-01-14 19:45:36,195 - INFO - Completed set 14
+2025-01-14 19:45:36,252 - INFO - Processing set 15
+2025-01-14 19:45:36,254 - INFO - Completed set 15
+2025-01-14 19:45:36,311 - INFO - 
+Processing sets 16 to 20
+2025-01-14 19:45:36,311 - INFO - Processing set 16
+2025-01-14 19:45:36,312 - INFO - Completed set 16
+2025-01-14 19:45:36,364 - INFO - Processing set 17
+2025-01-14 19:45:36,365 - INFO - Completed set 17
+2025-01-14 19:45:36,418 - INFO - Processing set 18
+2025-01-14 19:45:36,418 - INFO - Completed set 18
+2025-01-14 19:45:36,486 - INFO - Processing set 19
+2025-01-14 19:45:36,487 - INFO - Completed set 19
+2025-01-14 19:45:36,552 - INFO - Processing set 20
+2025-01-14 19:45:36,553 - INFO - Completed set 20
+2025-01-14 19:45:36,605 - INFO - 
+Processing sets 21 to 25
+2025-01-14 19:45:36,605 - INFO - Processing set 21
+2025-01-14 19:45:36,606 - INFO - Completed set 21
+2025-01-14 19:45:36,660 - INFO - Processing set 22
+2025-01-14 19:45:36,661 - INFO - Completed set 22
+2025-01-14 19:45:36,718 - INFO - Processing set 23
+2025-01-14 19:45:36,719 - INFO - Completed set 23
+2025-01-14 19:45:36,779 - INFO - Processing set 24
+2025-01-14 19:45:36,780 - INFO - Completed set 24
+2025-01-14 19:45:36,830 - INFO - Processing set 25
+2025-01-14 19:45:36,831 - INFO - Completed set 25
+2025-01-14 19:45:36,899 - INFO - 
+Processing sets 26 to 30
+2025-01-14 19:45:36,899 - INFO - Processing set 26
+2025-01-14 19:45:36,899 - INFO - Completed set 26
+2025-01-14 19:45:36,965 - INFO - Processing set 27
+2025-01-14 19:45:36,966 - INFO - Completed set 27
+2025-01-14 19:45:37,019 - INFO - Processing set 28
+2025-01-14 19:45:37,019 - INFO - Completed set 28
+2025-01-14 19:45:37,075 - INFO - Processing set 29
+2025-01-14 19:45:37,076 - INFO - Completed set 29
+2025-01-14 19:45:37,134 - INFO - Processing set 30
+2025-01-14 19:45:37,135 - INFO - Completed set 30
+2025-01-14 19:45:37,187 - INFO - Late swap processing complete
