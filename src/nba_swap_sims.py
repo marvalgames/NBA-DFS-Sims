@@ -170,7 +170,7 @@ class NBA_Swaptimizer_Sims:
             self.print("Live contest loaded.")
             # Call the function
             #self.inspect_contest_lineups(self.contest_lineups)
-
+            # Run simulation steps
 
         except Exception as e:
             self.print(f"An error occurred: {e}")
@@ -564,7 +564,7 @@ class NBA_Swaptimizer_Sims:
         # Format the date into the string format the NBA API expects ('YYYY-MM-DD')
         # Late Swap Realtime
         live = self.live_games
-        #live = False
+        live = False
         if live:
             formatted_date = game_date.strftime('%Y-%m-%d')
         else:
@@ -1404,9 +1404,9 @@ class NBA_Swaptimizer_Sims:
                 #             print(f"{position}: {attributes['Name']} - {attributes['BayesianProjectedFpts']:.2f}")
 
                 # Set the minimum projected points using the total projection
-                min_projected_points = total_projection * 0.99 # add to config - suggest lower values for contrarian / aggressive
-                print(f"\nTotal lineup projection: {total_projection:.2f}")
-                print(f"Minimum required projection: {min_projected_points:.2f}")
+                min_projected_points = total_projection * 0.999 # add to config - suggest lower values for contrarian / aggressive
+                if max_attempts == 1:
+                    print(f"\nMinimum required projection: {min_projected_points:.2f}")
 
 
                 # Minimum Projected Points Constraint
@@ -1615,7 +1615,7 @@ class NBA_Swaptimizer_Sims:
                         # No solution at this salary level, try lower
                         temp_min_salary = temp_min_salary * backoff_factor
                         max_attempts -= 1
-                        print(f"No solution found. Reducing minimum salary to ${temp_min_salary:,.0f}")
+                        #print(f"No solution found. Reducing minimum salary to ${temp_min_salary:,.0f}")
 
                         if temp_min_salary < min_salary_floor:
                             print(f"Hit minimum salary floor (${min_salary_floor:,}). Giving up on this lineup.")
@@ -1655,7 +1655,7 @@ class NBA_Swaptimizer_Sims:
                 print("\nOptimal Lineup:")
                 for player in optimal_lineup:
                     print(
-                        f"{player['Position']}: {player['Name']} (Salary: ${player['Salary']}, Projected: {player['BayesianProjectedFpts']})"
+                        f"{player['Position']}: {player['Name']} (Salary: ${player['Salary']})"
                     )
                 print(f"\nTotal Salary: ${total_salary}")
                 print(f"Total Projected Points: {total_points:.2f}")  # Print total points with 2 decimal places
@@ -2803,8 +2803,6 @@ class NBA_Swaptimizer_Sims:
         """Process late swap data with basic logging and proven functionality."""
         import logging
         import gc
-        import time
-        from datetime import datetime
         import os
 
         # Set up logging in the current working directory
@@ -2820,7 +2818,7 @@ class NBA_Swaptimizer_Sims:
 
         def log_print(message):
             """Log to both file and print to GUI."""
-            logging.info(message)
+            #logging.info(message)
             self.print(message)
 
         try:
