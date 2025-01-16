@@ -515,8 +515,11 @@ class NBA_GPP_Simulator:
                 if "stddev" in row:
                     if row["stddev"] == "" or float(row["stddev"]) == 0:
                         stddev = fpts * self.default_var
+                        print(f"{stddev} default")
                     else:
                         stddev = float(row["stddev"])
+                        print(f"{stddev} {player_name}")
+
                 else:
                     stddev = fpts * self.default_var
                 # check if ceiling exists in row columns
@@ -1238,10 +1241,7 @@ class NBA_GPP_Simulator:
 
         player_samples = []
         for i, player in enumerate(game):
-            if "QB" in player["Position"]:
-                sample = samples[:, i]
-            else:
-                sample = samples[:, i]
+            sample = samples[:, i]
             player_samples.append(sample)
 
         temp_fpts_dict = {}

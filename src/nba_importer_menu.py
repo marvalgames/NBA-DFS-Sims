@@ -486,51 +486,6 @@ class ImportTool(QMainWindow):
 
         progress_print("Done importing SOG projections.")
 
-    # def import_sog_projections(self, progress_print=print):
-    #     progress_print("Importing SOG projections...")
-    #     csv_file = "entries.csv"
-    #     excel_file = "nba.xlsm"
-    #     sheet_name = "sog_projections"
-    #
-    #     try:
-    #         progress_print("Reading CSV data...")
-    #         columns_to_read = list(range(13, 22))
-    #         data = pd.read_csv(
-    #             csv_file,
-    #             skiprows=7,
-    #             usecols=columns_to_read,
-    #             header=0
-    #         )
-    #
-    #         app = xw.App(visible=False)
-    #         try:
-    #             progress_print("Opening Excel workbook...")
-    #             wb = app.books.open(excel_file)
-    #             ws = wb.sheets[sheet_name]
-    #
-    #             progress_print("Clearing existing data...")
-    #             max_rows = 360
-    #             ws.range(f"B2:J{max_rows}").clear_contents()
-    #
-    #             progress_print("Writing new data...")
-    #             ws.range("B2").resize(data.shape[0], 10)
-    #             ws.range("B2").value = data.values
-    #
-    #             progress_print("Saving workbook...")
-    #             wb.save()
-    #         finally:
-    #             wb.close()
-    #             app.quit()
-    #
-    #     except Exception as e:
-    #         progress_print(f"Error occurred: {e}")
-    #         raise
-    #
-    #     progress_print("Done importing SOG projections.")
-
-
-
-
 
     def import_darko(self, progress_print=print):
         progress_print("Importing DARKO to darko...")
