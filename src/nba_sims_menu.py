@@ -131,7 +131,7 @@ class SimulationThread(QThread):
     def run(self):
         try:
             # Unpack parameters
-            site, field_size, num_iterations, use_contest_data, use_file_upload, min_salary, projection_minimum, csv_path = self.sim_params
+            site, field_size, num_iterations, use_contest_data, use_file_upload, min_salary, projection_minimum, num_lineups, csv_path = self.sim_params
 
             sim = nba_gpp_simulator.NBA_GPP_Simulator(
                 site,
@@ -141,7 +141,9 @@ class SimulationThread(QThread):
                 use_file_upload,
                 min_salary,
                 projection_minimum,
-                csv_path  # Pass the new parameter
+                num_lineups,
+                csv_path,
+
             )
 
 
@@ -362,19 +364,9 @@ class NbaSimsMainMenu(QMainWindow):
         layout = QGridLayout()
 
         # Add widgets to the grid layout
-        layout.addWidget(QLabel("Number of Lineups:", self), 0, 0)  # Row 0, Column 0
+        layout.addWidget(QLabel("Number of Lineup Sets:", self), 0, 0)  # Row 0, Column 0
         self.num_lineups_input = QLineEdit(str(self.num_lineups), self)
         layout.addWidget(self.num_lineups_input, 0, 1)  # Row 0, Column 1
-
-        # layout.addWidget(QLabel("Field Size:", self), 1, 0)  # Row 0, Column 2
-        # self.field_size_input = QLineEdit(str(self.field_size), self)
-        # layout.addWidget(self.field_size_input, 1, 1)  # Row 0, Column 3
-
-        # Row 2
-        #layout.addWidget(QLabel("Use Contest Data:", self), 0, 2)
-        #self.use_contest_data_checkbox = QCheckBox(self)
-        #self.use_contest_data_checkbox.setChecked(self.use_contest_data)
-        #layout.addWidget(self.use_contest_data_checkbox, 0, 3)
 
 
         layout.addWidget(QLabel("Number of Iterations:", self), 2, 0)  # Row 0, Column 0
@@ -550,7 +542,8 @@ class NbaSimsMainMenu(QMainWindow):
             sim_params = (self.site, self.field_size, self.num_iterations,
                           self.use_contest_data, self.use_file_upload,
                           self.min_salary, self.projection_minimum,
-                          csv_path  # Add the CSV path to parameters
+                          self.num_lineups,
+                          csv_path,
                           )
 
             # Create and setup simulation thread

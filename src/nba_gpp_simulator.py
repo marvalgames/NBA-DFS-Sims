@@ -18,7 +18,6 @@ from numba import jit
 from scipy.stats import multivariate_normal
 
 
-
 @jit(nopython=True)
 def salary_boost(salary, max_salary):
     return (salary / max_salary) ** 2
@@ -74,8 +73,10 @@ class NBA_GPP_Simulator:
         use_lineup_input,
         min_lineup_salary,
         projection_min,
+        num_lineups,
         contest_path
     ):
+        self.entry_sets = int(num_lineups)
         self.projection_min = int(projection_min)
         self.site = site
         self.use_lineup_input = use_lineup_input
@@ -653,7 +654,7 @@ class NBA_GPP_Simulator:
         i = 0
         path = os.path.join(
             os.path.dirname(__file__),
-            "../{}_data/{}".format(self.site, "tournament_lineups.csv"),
+            "../dk_data/{}".format("tournament_lineups.csv"),
         )
         with open(path) as file:
             reader = pd.read_csv(file)
@@ -1504,9 +1505,9 @@ class NBA_GPP_Simulator:
             simDupes = x["Count"]
 
             roi_p = round(
-                x["ROI"] / self.entry_fee / self.num_iterations * 1, 2
+                x["ROI"] / self.entry_fee / self.num_iterations * 100, 1
             )
-            roi_round = round(x["ROI"] / self.num_iterations, 2)
+            roi_round = round(x["ROI"] / self.num_iterations, 1)
             lineup_str = (
                 f"{lu_names[0].replace('#', '-')}"
                 f" ({x['Lineup'][0]}),"
@@ -1529,12 +1530,17 @@ class NBA_GPP_Simulator:
 
             unique[index] = lineup_str
 
+        from datetime import datetime
+        current_time = datetime.now().strftime("%m%d_%H%M")
+
         out_path = os.path.join(
             os.path.dirname(__file__),
-            "../dk_output/dk_gpp_sim_lineups_{}_{}.csv".format(
-                self.field_size, self.num_iterations
+            "../dk_output/gpp_sim_lineups_{}_{}_{}.csv".format(
+                current_time, self.field_size, self.num_iterations
             ),
         )
+
+
 
         # Sort the `unique` dictionary by a criterion, e.g., ROI
         # Assuming `lineup_str` contains ROI as a percentage at a specific position
@@ -1557,12 +1563,16 @@ class NBA_GPP_Simulator:
                 f.write(f"{lineup_str}\n")
 
             # After writing the GPP file, read it back to get entries
+
+            current_time = datetime.now().strftime("%m%d_%H%M")
+
             gpp_path = os.path.join(
                 os.path.dirname(__file__),
-                "../dk_output/dk_gpp_sim_lineups_{}_{}.csv".format(
-                    self.field_size, self.num_iterations
+                "../dk_output/gpp_sim_lineups_{}_{}_{}.csv".format(
+                    current_time, self.field_size, self.num_iterations
                 ),
             )
+
 
             # Read all GPP entries
             with open(gpp_path, 'r') as f:
@@ -1639,13 +1649,17 @@ class NBA_GPP_Simulator:
                     writer.writerows(combined_data)
 
                 print(f"Combined data written to {output_csv_path}")
-        ###############################################
+
+
+        current_time = datetime.now().strftime("%m%d_%H%M")
+
         out_path = os.path.join(
             os.path.dirname(__file__),
-            "../dk_output/dk_gpp_sim_player_exposure_{}_{}.csv".format(
-                self.field_size, self.num_iterations
+            "../dk_output/gpp_sim_player_exposure_{}_{}_{}.csv".format(
+                current_time, self.field_size, self.num_iterations
             ),
         )
+
         with open(out_path, "w") as f:
             f.write(
                 "Player,Position,Team,Cash%,Win%,Top1%,Sim. Own%,Proj. Own%,Avg. Return\n"
@@ -1724,7 +1738,121 @@ class NBA_GPP_Simulator:
                     )
                 )
 
+            # After creating all entry files, analyze exposures
+            entry_files = []
+            for i in range(10):
+                if i == 0:
+                    filename = self.config["entries_path"]
+                else:
+                    name, ext = os.path.splitext(self.config["entries_path"])
+                    filename = f"{name}_{i + 1}{ext}"
 
+                file_path = os.path.join(
+                    os.path.dirname(__file__),
+                    "../dk_output/{}".format(filename)
+                )
+
+                if os.path.exists(file_path):
+                    entry_files.append(file_path)
+
+            self.analyze_player_exposure(entry_files)
+
+    def analyze_player_exposure(self, all_entry_files):
+        """Analyze player exposure for each entry set and create a summary."""
+        summary_data = []
+
+        # For console output formatting
+        print("\nPlayer Exposure Analysis")
+        print("=" * 50)
+
+        for file_num, entry_file in enumerate(all_entry_files):
+            set_number = file_num + 1
+            player_counts = {}
+            total_entries = 0
+
+            with open(entry_file, 'r') as f:
+                reader = csv.DictReader(f)
+                entries = list(reader)
+                total_entries = len(entries)
+
+                # Count each player's appearances
+                for entry in entries:
+                    players = [
+                        entry['PG'].split(' (')[0],
+                        entry['SG'].split(' (')[0],
+                        entry['SF'].split(' (')[0],
+                        entry['PF'].split(' (')[0],
+                        entry['C'].split(' (')[0],
+                        entry['G'].split(' (')[0],
+                        entry['F'].split(' (')[0],
+                        entry['UTIL'].split(' (')[0]
+                    ]
+
+                    for player in players:
+                        if player not in player_counts:
+                            player_counts[player] = 0
+                        player_counts[player] += 1
+
+            # Calculate exposure percentages
+            exposure_data = {
+                'Set': set_number,
+                'Total Entries': total_entries,
+                'Players': []
+            }
+
+            # Sort players by exposure percentage
+            sorted_players = sorted(
+                [(player, count / total_entries * 100) for player, count in player_counts.items()],
+                key=lambda x: x[1],
+                reverse=True
+            )
+
+            for player, exposure in sorted_players:
+                exposure_data['Players'].append({
+                    'Name': player,
+                    'Count': player_counts[player],
+                    'Exposure': f"{exposure:.2f}%"
+                })
+
+            summary_data.append(exposure_data)
+
+            # Console output for each set
+            print(f"\nSet {set_number} Analysis:")
+            print(f"Total Entries: {total_entries}")
+            print("Top Players by Exposure:")
+            print("{:<30} {:<10} {:<10}".format("Player", "Count", "Exposure"))
+            print("-" * 50)
+            for player in sorted_players[:10]:  # Show top 10 for console
+                print("{:<30} {:<10} {:<10.2f}%".format(
+                    player[0],
+                    player_counts[player[0]],
+                    player[1]
+                ))
+
+        # Write complete summary to CSV
+        summary_path = os.path.join(
+            os.path.dirname(__file__),
+            "../dk_output/gpp_exposure_summary.csv"
+        )
+
+        with open(summary_path, 'w', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow(['Set Analysis'])
+
+            for data in summary_data:
+                writer.writerow([])
+                writer.writerow([f"Set {data['Set']}"])
+                writer.writerow(['Player', 'Count', 'Exposure'])
+                for player in data['Players']:
+                    writer.writerow([
+                        player['Name'],
+                        player['Count'],
+                        player['Exposure']
+                    ])
+                writer.writerow(['Total Entries:', data['Total Entries']])
+                writer.writerow([])  # Empty row for spacing
+
+        print(f"\nComplete exposure summary written to {summary_path}")
 
 
 

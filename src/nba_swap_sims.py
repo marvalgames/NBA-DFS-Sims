@@ -1642,7 +1642,7 @@ class NBA_Swaptimizer_Sims:
                             total_points += attributes["BayesianProjectedFpts"]  # Add player's points to total
 
                 # Print the results
-                self.print(f"\nOptimal Lineup: {i}")
+                self.print(f"\nOptimal Lineup: {i+1}")
                 for player in optimal_lineup:
                     print(
                         f"{player['Position']}: {player['Name']} (Salary: ${player['Salary']})"
@@ -2639,10 +2639,17 @@ class NBA_Swaptimizer_Sims:
 
     def write_main_output(self, rearranged_unique):
         """Write main output file with lineup data."""
+
+        from datetime import datetime
+        current_time = datetime.now().strftime("%m%d_%H%M")
+
         out_path = os.path.join(
             os.path.dirname(__file__),
-            f"../dk_output/dk_gpp_sim_lineups_{self.field_size}_{self.num_iterations}.csv"
+            "../dk_output/swap_sim_lineups_{}_{}_{}.csv".format(
+                current_time, self.field_size, self.num_iterations
+            ),
         )
+
 
 
         print(f"Writing main output to: {os.path.basename(out_path)}")
@@ -2665,11 +2672,18 @@ class NBA_Swaptimizer_Sims:
         print("Main output file complete")
 
     def write_all_lineups_output(self):
-        """Write an additional output file with all lineups sorted by ROI and ceiling."""
+
+        from datetime import datetime
+        current_time = datetime.now().strftime("%m%d_%H%M")
+
         out_path = os.path.join(
             os.path.dirname(__file__),
-            f"../dk_output/dk_gpp_sim_all_lineups_{self.field_size}_{self.num_iterations}.csv"
+            "../dk_output/gpp_sim_all_lineups_{}_{}_{}.csv".format(
+                current_time, self.field_size, self.num_iterations
+            ),
         )
+
+
 
         print(f"Writing all lineups output to: {os.path.basename(out_path)}")
 
@@ -2731,7 +2745,7 @@ class NBA_Swaptimizer_Sims:
         """Process and write player exposure data."""
         out_path = os.path.join(
             os.path.dirname(__file__),
-            f"../dk_output/dk_lateswap_sim_player_exposure_{self.field_size}_{self.num_iterations}.csv"
+            f"../dk_output/lateswap_sim_player_exposure_{self.field_size}_{self.num_iterations}.csv"
         )
 
         print(f"Processing player exposure data...")
@@ -2967,6 +2981,30 @@ class NBA_Swaptimizer_Sims:
                         updated_rows.clear()
                         gc.collect()
 
+                        # Then in your main processing code, after writing all the late swap files:
+                        try:
+                            # Your existing code...
+
+                            # After all sets are processed, collect file paths and analyze exposure
+                            late_swap_files = []
+                            for set_index in range(num_sets):
+                                file_path = os.path.join(
+                                    os.path.dirname(__file__),
+                                    f"../dk_output/late_swap_{num_entries}_entries_set_{set_index + 1}_entries.csv"
+                                )
+                                if os.path.exists(file_path):
+                                    late_swap_files.append(file_path)
+
+                            # Analyze exposure for all sets
+                            self.analyze_player_exposure(late_swap_files, log_print)
+
+                            log_print("Late swap processing and exposure analysis complete")
+
+                        except Exception as e:
+                            log_print(f"Error in late swap processing: {str(e)}")
+                            raise
+
+
                     except Exception as e:
                         log_print(f"Error processing set {set_index + 1}: {str(e)}")
                         raise
@@ -2976,6 +3014,104 @@ class NBA_Swaptimizer_Sims:
         except Exception as e:
             log_print(f"Error in late swap processing: {str(e)}")
             raise
+
+    def analyze_player_exposure(self, file_paths, log_print):
+        """Analyze player exposure for each late swap set."""
+        summary_data = []
+
+        log_print("\nPlayer Exposure Analysis")
+        log_print("=" * 50)
+
+        for file_num, file_path in enumerate(file_paths):
+            set_number = file_num + 1
+            player_counts = {}
+            total_entries = 0
+
+            with open(file_path, 'r', encoding="utf-8-sig") as f:
+                reader = csv.DictReader(f)
+                entries = list(reader)
+                total_entries = len(entries)
+
+                # Count each player's appearances
+                for entry in entries:
+                    players = [
+                        entry['PG'].split(' (')[0],
+                        entry['SG'].split(' (')[0],
+                        entry['SF'].split(' (')[0],
+                        entry['PF'].split(' (')[0],
+                        entry['C'].split(' (')[0],
+                        entry['G'].split(' (')[0],
+                        entry['F'].split(' (')[0],
+                        entry['UTIL'].split(' (')[0]
+                    ]
+
+                    for player in players:
+                        if player not in player_counts:
+                            player_counts[player] = 0
+                        player_counts[player] += 1
+
+            # Calculate exposure percentages
+            exposure_data = {
+                'Set': f'Set {set_number}',
+                'Total Entries': total_entries,
+                'Players': []
+            }
+
+            # Sort players by exposure percentage
+            sorted_players = sorted(
+                [(player, count / total_entries * 100) for player, count in player_counts.items()],
+                key=lambda x: x[1],
+                reverse=True
+            )
+
+            for player, exposure in sorted_players:
+                exposure_data['Players'].append({
+                    'Name': player,
+                    'Count': player_counts[player],
+                    'Exposure': f"{exposure:.2f}%"
+                })
+
+            summary_data.append(exposure_data)
+
+            # Console output for each set
+            log_print(f"\nSet {set_number} Analysis:")
+            log_print(f"Total Entries: {total_entries}")
+            log_print("Top Players by Exposure:")
+            log_print("{:<30} {:<10} {:<10}".format("Player", "Count", "Exposure"))
+            log_print("-" * 50)
+            for player in sorted_players[:10]:  # Show top 10
+                log_print("{:<30} {:<10} {:<10.2f}%".format(
+                    player[0],
+                    player_counts[player[0]],
+                    player[1]
+                ))
+
+        # Write complete summary to CSV
+        summary_path = os.path.join(
+            os.path.dirname(__file__),
+            "../dk_output/late_swap_exposure_summary.csv"
+        )
+
+        with open(summary_path, 'w', newline='', encoding="utf-8-sig") as f:
+            writer = csv.writer(f)
+            writer.writerow(['Late Swap Set Analysis'])
+
+            for data in summary_data:
+                writer.writerow([])
+                writer.writerow([data['Set']])
+                writer.writerow(['Player', 'Count', 'Exposure'])
+                for player in data['Players']:
+                    writer.writerow([
+                        player['Name'],
+                        player['Count'],
+                        player['Exposure']
+                    ])
+                writer.writerow(['Total Entries:', data['Total Entries']])
+                writer.writerow([])
+
+        log_print(f"\nComplete exposure summary written to {summary_path}")
+
+
 
     def process_lineup_details(self, x, y, lu_idx, entry):
         """Process individual lineup details and return formatted string"""
