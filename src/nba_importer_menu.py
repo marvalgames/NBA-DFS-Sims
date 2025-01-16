@@ -416,7 +416,11 @@ class ImportTool(QMainWindow):
         excel_file = "nba.xlsm"
         sheet_name = "sog_projections"
 
+        app = None
+        wb = None
+
         try:
+            # Read CSV data first
             progress_print("Reading CSV data...")
             columns_to_read = list(range(13, 22))
             data = pd.read_csv(
@@ -426,31 +430,103 @@ class ImportTool(QMainWindow):
                 header=0
             )
 
+            # Verify we have data before proceeding
+            if data.empty:
+                raise ValueError("No data was read from the CSV file")
+
+            progress_print("Opening Excel application...")
             app = xw.App(visible=False)
+
+            # Check if Excel app initialized properly
+            if app is None:
+                raise RuntimeError("Failed to initialize Excel application")
+
+            progress_print("Opening Excel workbook...")
+            wb = app.books.open(excel_file)
+
+            # Verify workbook opened successfully
+            if wb is None:
+                raise RuntimeError(f"Failed to open workbook: {excel_file}")
+
+            # Get worksheet and verify it exists
             try:
-                progress_print("Opening Excel workbook...")
-                wb = app.books.open(excel_file)
                 ws = wb.sheets[sheet_name]
+            except Exception as e:
+                raise ValueError(f"Sheet '{sheet_name}' not found in workbook") from e
 
-                progress_print("Clearing existing data...")
-                max_rows = 360
-                ws.range(f"B2:J{max_rows}").clear_contents()
+            progress_print("Clearing existing data...")
+            clear_range = ws.range(f"B2:J{360}")
+            if clear_range:  # Verify range exists before clearing
+                clear_range.clear_contents()
 
-                progress_print("Writing new data...")
-                ws.range("B2").resize(data.shape[0], 10)
-                ws.range("B2").value = data.values
+            progress_print("Writing new data...")
+            # Verify data dimensions before writing
+            target_range = ws.range("B2").resize(data.shape[0], data.shape[1])
+            if target_range:
+                target_range.value = data.values
+            else:
+                raise ValueError("Failed to create target range for data")
 
-                progress_print("Saving workbook...")
-                wb.save()
-            finally:
-                wb.close()
-                app.quit()
+            progress_print("Saving workbook...")
+            wb.save()
 
         except Exception as e:
-            progress_print(f"Error occurred: {e}")
+            progress_print(f"Error occurred: {str(e)}")
             raise
 
+        finally:
+            # Ensure proper cleanup even if errors occur
+            try:
+                if wb:
+                    wb.close()
+                if app:
+                    app.quit()
+            except Exception as cleanup_error:
+                progress_print(f"Warning: Error during cleanup: {str(cleanup_error)}")
+
         progress_print("Done importing SOG projections.")
+
+    # def import_sog_projections(self, progress_print=print):
+    #     progress_print("Importing SOG projections...")
+    #     csv_file = "entries.csv"
+    #     excel_file = "nba.xlsm"
+    #     sheet_name = "sog_projections"
+    #
+    #     try:
+    #         progress_print("Reading CSV data...")
+    #         columns_to_read = list(range(13, 22))
+    #         data = pd.read_csv(
+    #             csv_file,
+    #             skiprows=7,
+    #             usecols=columns_to_read,
+    #             header=0
+    #         )
+    #
+    #         app = xw.App(visible=False)
+    #         try:
+    #             progress_print("Opening Excel workbook...")
+    #             wb = app.books.open(excel_file)
+    #             ws = wb.sheets[sheet_name]
+    #
+    #             progress_print("Clearing existing data...")
+    #             max_rows = 360
+    #             ws.range(f"B2:J{max_rows}").clear_contents()
+    #
+    #             progress_print("Writing new data...")
+    #             ws.range("B2").resize(data.shape[0], 10)
+    #             ws.range("B2").value = data.values
+    #
+    #             progress_print("Saving workbook...")
+    #             wb.save()
+    #         finally:
+    #             wb.close()
+    #             app.quit()
+    #
+    #     except Exception as e:
+    #         progress_print(f"Error occurred: {e}")
+    #         raise
+    #
+    #     progress_print("Done importing SOG projections.")
 
 
 
