@@ -564,7 +564,7 @@ class NBA_Swaptimizer_Sims:
         # Format the date into the string format the NBA API expects ('YYYY-MM-DD')
         # Late Swap Realtime
         live = self.live_games
-        live = False
+        #live = False
         if live:
             formatted_date = game_date.strftime('%Y-%m-%d')
         else:
