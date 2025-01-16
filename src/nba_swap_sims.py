@@ -615,6 +615,7 @@ class NBA_Swaptimizer_Sims:
         # After getting games_info, print the formatted table
         print("\nNBA Games:")
         self.print(self.format_games_table(games_info))
+        print(games_info)
         # NBA regulation game length in minutes
         regulation_game_length = 48
         overtime_period_length = 5  # NBA overtime period length in minutes
