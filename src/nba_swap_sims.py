@@ -2645,7 +2645,7 @@ class NBA_Swaptimizer_Sims:
 
         out_path = os.path.join(
             os.path.dirname(__file__),
-            "../dk_output/swap_sim_lineups_{}_{}_{}.csv".format(
+            "../dk_output/lateswap_sim_lineups_{}_{}_{}.csv".format(
                 current_time, self.field_size, self.num_iterations
             ),
         )
@@ -2678,7 +2678,7 @@ class NBA_Swaptimizer_Sims:
 
         out_path = os.path.join(
             os.path.dirname(__file__),
-            "../dk_output/gpp_sim_all_lineups_{}_{}_{}.csv".format(
+            "../dk_output/lateswap_sim_all_lineups_{}_{}_{}.csv".format(
                 current_time, self.field_size, self.num_iterations
             ),
         )
