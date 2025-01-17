@@ -1213,7 +1213,7 @@ class ImportTool(QMainWindow):
             from tabulate import tabulate
             print("Generating predictions...")
 
-            shift_start = .45
+            shift_start = .35
             shift_end = 1.00
             add = 1.0  # Constant to avoid log issues with zero
             drift = 1.35
@@ -1269,7 +1269,7 @@ class ImportTool(QMainWindow):
             print(f'Target SD: {target_sd}')
 
             # adjusted_predictions = adjust_sd(predictions, target_sd, target_sum)
-            adjusted_predictions = rescale_with_bounds(predictions, target_sd=target_sd, top_boost=1.50)
+            adjusted_predictions = rescale_with_bounds(predictions, target_sd=target_sd, top_boost=1.75)
 
             final_predictions = self.apply_low_minutes_cap(adjusted_predictions, df)
             df['Predicted Ownership'] = final_predictions

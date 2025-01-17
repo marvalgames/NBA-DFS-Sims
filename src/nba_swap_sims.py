@@ -58,7 +58,6 @@ class NBA_Swaptimizer_Sims:
     locked_matchups = {}
     time_remaining_dict = {}
     global_team_limit = None
-    projection_minimum = None
     user_lineups = False
     contest_entries = {}
     max_salary = 49000
