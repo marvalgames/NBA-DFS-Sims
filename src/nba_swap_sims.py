@@ -2095,7 +2095,6 @@ class NBA_Swaptimizer_Sims:
                 matrix += np.eye(len(matrix)) * jitter
             return matrix
 
-
         if time_remaining_dict[team1_id]['Minutes Remaining'] == 0:
             game = team1 + team2
             temp_fpts_dict = {}
