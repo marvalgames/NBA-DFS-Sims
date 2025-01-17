@@ -919,36 +919,36 @@ class NBA_Swaptimizer_Sims:
                                         "GameLocked": True,
                                         "GameTime": None
                                     }
-                                    self.teams_dict[self.missing_ids[transformed_player_name]['Team']].append(
-                                        {
-                                            "Fpts": 0,
-                                            "fieldFpts": 0,
-                                            "Position": self.missing_ids[transformed_player_name]['Position'],
-                                            "Name": player_name,
-                                            "DK Name": player_name,
-                                            "Matchup": self.time_remaining_dict[
-                                                self.missing_ids[transformed_player_name]['Team']]['Matchup'],
-                                            "Team": self.missing_ids[transformed_player_name]['Team'],
-                                            "Opp": self.time_remaining_dict[
-                                                self.missing_ids[transformed_player_name]['Team']]['Opp'],
-                                            "ID": self.missing_ids[transformed_player_name]['ID'],
-                                            "UniqueKey": self.missing_ids[transformed_player_name]['UniqueKey'],
-                                            "Salary": self.missing_ids[transformed_player_name]['Salary'],
-                                            "StdDev": 0,
-                                            "Ceiling": 0,
-                                            "Ownership": 0,
-                                            "Correlations": {},
-                                            "Player Correlations": {},
-                                            "In Lineup": False,
-                                            "Minutes": 0,
-                                            "Minutes Remaining": 0,
-                                            "BayesianProjectedFpts": 0,
-                                            "BayesianProjectedVar": 0,
-                                            "ActualFpts": 0,
-                                            "GameLocked": True,
-                                            "GameTime": None
-                                        }
-                                    )
+                                    # self.teams_dict[self.missing_ids[transformed_player_name]['Team']].append(
+                                    #     {
+                                    #         "Fpts": 0,
+                                    #         "fieldFpts": 0,
+                                    #         "Position": self.missing_ids[transformed_player_name]['Position'],
+                                    #         "Name": player_name,
+                                    #         "DK Name": player_name,
+                                    #         "Matchup": self.time_remaining_dict[
+                                    #             self.missing_ids[transformed_player_name]['Team']]['Matchup'],
+                                    #         "Team": self.missing_ids[transformed_player_name]['Team'],
+                                    #         "Opp": self.time_remaining_dict[
+                                    #             self.missing_ids[transformed_player_name]['Team']]['Opp'],
+                                    #         "ID": self.missing_ids[transformed_player_name]['ID'],
+                                    #         "UniqueKey": self.missing_ids[transformed_player_name]['UniqueKey'],
+                                    #         "Salary": self.missing_ids[transformed_player_name]['Salary'],
+                                    #         "StdDev": 0,
+                                    #         "Ceiling": 0,
+                                    #         "Ownership": 0,
+                                    #         "Correlations": {},
+                                    #         "Player Correlations": {},
+                                    #         "In Lineup": False,
+                                    #         "Minutes": 0,
+                                    #         "Minutes Remaining": 0,
+                                    #         "BayesianProjectedFpts": 0,
+                                    #         "BayesianProjectedVar": 0,
+                                    #         "ActualFpts": 0,
+                                    #         "GameLocked": True,
+                                    #         "GameTime": None
+                                    #     }
+                                    #)
                                 else:
                                     players_not_found.append(player_name)
 
@@ -2034,7 +2034,68 @@ class NBA_Swaptimizer_Sims:
             roster_construction,
             time_remaining_dict
     ):
-        # Define correlations between positions
+        def get_corr_value(player1, player2):
+            # First, check for specific player-to-player correlations
+            if player2["Name"] in player1.get("Player Correlations", {}):
+                return player1["Player Correlations"][player2["Name"]]
+
+            # If no specific correlation is found, proceed with the general logic
+            position_correlations = {
+                "PG": -0.1324,
+                "SG": -0.1324,
+                "SF": -0.0812,
+                "PF": -0.0812,
+                "C": -0.1231,
+            }
+            # Build correlation matrix with detailed output
+            if player1["Team"] == player2["Team"] and player1["Position"][0] in [
+                "PG",
+                "SG",
+                "SF",
+                "PF",
+                "C",
+            ]:
+                primary_position = player1["Position"][0]
+                return position_correlations[primary_position]
+
+            if player1["Team"] != player2["Team"]:
+                player_2_pos = "Opp " + str(player2["Position"][0])
+            else:
+                player_2_pos = player2["Position"][0]
+
+            return player1["Correlations"].get(
+                player_2_pos, 0
+            )  # Default to 0 if no correlation is found
+
+        def build_covariance_matrix(players):
+            N = len(players)
+            matrix = [[0 for _ in range(N)] for _ in range(N)]
+            corr_matrix = [[0 for _ in range(N)] for _ in range(N)]
+
+            for i in range(N):
+                for j in range(N):
+                    if i == j:
+                        matrix[i][j] = (
+                            players[i]["BayesianProjectedVar"]
+                        )  # Variance on the diagonal
+                        corr_matrix[i][j] = 1
+                    else:
+                        matrix[i][j] = (
+                                get_corr_value(players[i], players[j])
+                                * players[i]["StdDev"]
+                                * players[j]["StdDev"]
+                        )
+                        corr_matrix[i][j] = get_corr_value(players[i], players[j])
+            return matrix, corr_matrix
+
+        def ensure_positive_semidefinite(matrix):
+            eigs = np.linalg.eigvals(matrix)
+            if np.any(eigs < 0):
+                jitter = abs(min(eigs)) + 1e-6  # a small value
+                matrix += np.eye(len(matrix)) * jitter
+            return matrix
+
+
         if time_remaining_dict[team1_id]['Minutes Remaining'] == 0:
             game = team1 + team2
             temp_fpts_dict = {}
@@ -2042,71 +2103,7 @@ class NBA_Swaptimizer_Sims:
                 temp_fpts_dict[player["ID"]] = np.full(num_iterations, player["BayesianProjectedFpts"])
                 # If time remaining is zero, we set the player's fantasy points to their BayesianProjectedFpts
         else:
-            def get_corr_value(player1, player2):
-                # First, check for specific player-to-player correlations
-                if player2["Name"] in player1.get("Player Correlations", {}):
-                    return player1["Player Correlations"][player2["Name"]]
-
-                # If no specific correlation is found, proceed with the general logic
-                position_correlations = {
-                    "PG": -0.1324,
-                    "SG": -0.1324,
-                    "SF": -0.0812,
-                    "PF": -0.0812,
-                    "C": -0.1231,
-                }
-
-                if player1["Team"] == player2["Team"] and player1["Position"][0] in [
-                    "PG",
-                    "SG",
-                    "SF",
-                    "PF",
-                    "C",
-                ]:
-                    primary_position = player1["Position"][0]
-                    return position_correlations[primary_position]
-
-                if player1["Team"] != player2["Team"]:
-                    player_2_pos = "Opp " + str(player2["Position"][0])
-                else:
-                    player_2_pos = player2["Position"][0]
-
-                return player1["Correlations"].get(
-                    player_2_pos, 0
-                )  # Default to 0 if no correlation is found
-
-            def build_covariance_matrix(players):
-                N = len(players)
-                matrix = [[0 for _ in range(N)] for _ in range(N)]
-                corr_matrix = [[0 for _ in range(N)] for _ in range(N)]
-
-                for i in range(N):
-                    for j in range(N):
-                        if i == j:
-                            matrix[i][j] = (
-                                players[i]["BayesianProjectedVar"]
-                            )  # Variance on the diagonal
-                            corr_matrix[i][j] = 1
-                        else:
-                            matrix[i][j] = (
-                                    get_corr_value(players[i], players[j])
-                                    * players[i]["StdDev"]
-                                    * players[j]["StdDev"]
-                            )
-                            corr_matrix[i][j] = get_corr_value(players[i], players[j])
-                return matrix, corr_matrix
-
-            def ensure_positive_semidefinite(matrix):
-                eigs = np.linalg.eigvals(matrix)
-                if np.any(eigs < 0):
-                    jitter = abs(min(eigs)) + 1e-6  # a small value
-                    matrix += np.eye(len(matrix)) * jitter
-                return matrix
-
             game = team1 + team2
-            covariance_matrix, corr_matrix = build_covariance_matrix(game)
-            corr_matrix = np.array(corr_matrix)
-
             covariance_matrix, corr_matrix = build_covariance_matrix(game)
             covariance_matrix = np.array(corr_matrix)
 
@@ -2131,14 +2128,13 @@ class NBA_Swaptimizer_Sims:
                     size=num_iterations,
                 )
             except:
-                print(team1_id, team2_id, "bad matrix", covariance_matrix)
+                print(team1_id, team2_id, "bad matrix")
 
-
+            # Build correlation matrix with detailed output
             player_samples = []
             for i, player in enumerate(game):
                 sample = samples[:, i]
                 player_samples.append(sample)
-
             temp_fpts_dict = {}
 
             for i, player in enumerate(game):

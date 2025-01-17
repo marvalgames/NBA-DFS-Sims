@@ -1159,7 +1159,7 @@ class NBA_GPP_Simulator:
         num_iterations,
         roster_construction,
     ):
-        # Define correlations between positions
+
 
         def get_corr_value(player1, player2):
             # First, check for specific player-to-player correlations
@@ -1230,7 +1230,9 @@ class NBA_GPP_Simulator:
 
         # Reconstruct the matrix
         covariance_matrix = eigenvectors.dot(np.diag(eigenvalues)).dot(eigenvectors.T)
-
+        # Build correlation matrix with detailed output
+        print("\nBUILDING CORRELATION MATRIX...")
+        print("-" * 50)
         try:
             samples = multivariate_normal.rvs(
                 mean=[player["Fpts"] for player in game],
@@ -1241,6 +1243,8 @@ class NBA_GPP_Simulator:
             print(team1_id, team2_id, "bad matrix")
 
         player_samples = []
+        # Build correlation matrix with detailed output
+        print("-" * 50)
         for i, player in enumerate(game):
             sample = samples[:, i]
             player_samples.append(sample)
@@ -1331,6 +1335,7 @@ class NBA_GPP_Simulator:
 
         self.print("Processing simulation results...")
         for res in results:
+            print("Results: ", res)
             temp_fpts_dict.update(res)
 
         # generate arrays for every sim result for each player in the lineup and sum
