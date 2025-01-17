@@ -2095,6 +2095,17 @@ class NBA_Swaptimizer_Sims:
                 matrix += np.eye(len(matrix)) * jitter
             return matrix
 
+        if len(team1 + team2) == 0:  # If no players in the game
+            print(f"Simulation skipped for game between {team1_id} and {team2_id} due to no players")
+            return {
+                'fpts_dict': {},  # Empty fantasy points dictionary
+                'game_info': {
+                    'matchup': f"{team1_id} vs {team2_id}",
+                    'skipped': True,
+                    'reason': 'No players in game'
+                }
+            }
+
         if time_remaining_dict[team1_id]['Minutes Remaining'] == 0:
             game = team1 + team2
             temp_fpts_dict = {}
@@ -2134,12 +2145,29 @@ class NBA_Swaptimizer_Sims:
             for i, player in enumerate(game):
                 sample = samples[:, i]
                 player_samples.append(sample)
+
+
             temp_fpts_dict = {}
 
             for i, player in enumerate(game):
                 temp_fpts_dict[player["ID"]] = player_samples[i]
+                mean_pts = np.mean(player_samples)
+                std_dev = np.std(player_samples)
+                min_pts = np.min(player_samples)
+                max_pts = np.max(player_samples)
 
-        return temp_fpts_dict
+        #return temp_fpts_dict
+        return {
+            'fpts_dict': temp_fpts_dict,
+            'game_info': {
+                'matchup': f"{team1_id} vs {team2_id}",
+                'skipped': False,
+                'mean_pts': mean_pts,
+                #'team2_projection': team2_total,
+                #'team1_sim_avg': team1_sim_total,
+                #'team2_sim_avg': team2_sim_total
+            }
+        }
 
     @staticmethod
     @jit(nopython=True)
@@ -2233,7 +2261,26 @@ class NBA_Swaptimizer_Sims:
                 print(
                     f"Games processed: {completed_games}/{total_games} ({(completed_games / total_games) * 100:.1f}%)")
                 print(f"Speed: {speed:.1f} games/sec, ETA: {int(eta)} seconds")
-                results.append(result)
+
+                # Safely handle the result
+                if isinstance(result, dict):
+                    game_info = result.get('game_info', {})
+
+                    if game_info.get('skipped', False):
+                        print(f"Skipped game: {game_info.get('matchup', 'Unknown')}")
+                        print(f"Reason: {game_info.get('reason', 'Unknown')}")
+                    else:
+                        #Only try to print detailed stats if game wasn't skipped
+                        #print(f"\nGame: {game_info.get('matchup', 'Unknown')}")
+                        if 'mean_pts' in game_info:
+                            self.print(f"Mean Points:: {game_info['mean_pts']:.2f}")
+                            #print(f"Team 2 Projection: {game_info['team2_projection']:.2f}")
+
+                    # Only append non-empty fantasy points dictionaries
+                    if result.get('fpts_dict'):
+                        results.append(result['fpts_dict'])
+                else:
+                    print(f"Warning: Unexpected result type: {type(result)}")
 
             with multiprocessing.Pool() as pool:
                 tasks = [pool.apply_async(self.run_simulation_for_game, args=params, callback=update_progress)
@@ -2241,11 +2288,18 @@ class NBA_Swaptimizer_Sims:
 
                 # Wait for all tasks to complete
                 for task in tasks:
-                    task.wait()
+                    task.wait(timeout=60)
+                pool.terminate()
+                pool.join()
+
+
+            print(f"\nCompleted games: {completed_games}")
+            print(f"Results collected: {len(results)}")
 
             # Update temp_fpts_dict with results
             for result in results:
-                temp_fpts_dict.update(result)
+                if result is not None:
+                    temp_fpts_dict.update(result)
 
         # [Rest of the simulation code remains the same...]
         # Lineup Processing Phase
