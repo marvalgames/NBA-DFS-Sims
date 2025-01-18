@@ -411,11 +411,8 @@ class NBA_GPP_Simulator:
                 # multi-position payouts
                 if "-" in row["place"]:
                     indices = row["place"].split("-")
-                    # print(indices)
                     # have to add 1 to range to get it to generate value for everything
                     for i in range(int(indices[0]), int(indices[1]) + 1):
-                        # print(i)
-                        # Where I'm from, we 0 index things. Thus, -1 since Payout starts at 1st place
                         if i >= self.field_size:
                             break
                         self.payout_structure[i - 1] = float(
@@ -1150,111 +1147,221 @@ class NBA_GPP_Simulator:
         beta = sd**2 / mean
         return alpha, beta
 
-    @staticmethod
+    import numpy as np
+    from scipy.stats import beta
+
     def run_simulation_for_game(
-        team1_id,
-        team1,
-        team2_id,
-        team2,
-        num_iterations,
-        roster_construction,
+            team1_id,
+            team1,
+            team2_id,
+            team2,
+            num_iterations,
+            roster_construction,
     ):
+        def calculate_beta_parameters(mean, std):
+            """
+            Calculate alpha and beta parameters for Beta distribution
+            using method of moments estimation
+            """
+            # First scale the mean to [0,1] range
+            # We'll use a reasonable maximum possible score as the scaling factor
+            MAX_POSSIBLE_SCORE = 100  # Adjust this based on your data
+            scaled_mean = mean / MAX_POSSIBLE_SCORE
+            scaled_std = std / MAX_POSSIBLE_SCORE
 
+            # Prevent scaled mean from being exactly 0 or 1
+            scaled_mean = np.clip(scaled_mean, 0.001, 0.999)
 
-        def get_corr_value(player1, player2):
-            # First, check for specific player-to-player correlations
-            if player2["Name"] in player1.get("Player Correlations", {}):
-                return player1["Player Correlations"][player2["Name"]]
+            # Calculate variance
+            variance = scaled_std ** 2
 
-            # If no specific correlation is found, proceed with the general logic
-            position_correlations = {
-                "PG": -0.1324,
-                "SG": -0.1324,
-                "SF": -0.0812,
-                "PF": -0.0812,
-                "C": -0.1231,
-            }
+            # Prevent variance from being too large relative to mean
+            max_var = scaled_mean * (1 - scaled_mean)
+            variance = min(variance, max_var * 0.99)
 
-            if (
-                player1["Team"] == player2["Team"]
-                and player1["Position"][0] == player2["Position"][0]
-            ):
-                primary_position = player1["Position"][0]
-                return position_correlations[primary_position]
+            # Calculate alpha and beta using method of moments
+            alpha = scaled_mean * (((scaled_mean * (1 - scaled_mean)) / variance) - 1)
+            beta_param = (1 - scaled_mean) * (((scaled_mean * (1 - scaled_mean)) / variance) - 1)
 
-            if player1["Team"] != player2["Team"]:
-                player_2_pos = "Opp " + str(player2["Position"][0])
-            else:
-                player_2_pos = player2["Position"][0]
+            # Ensure parameters are valid
+            alpha = max(0.01, alpha)
+            beta_param = max(0.01, beta_param)
 
-            return player1["Correlations"].get(
-                player_2_pos, 0
-            )  # Default to 0 if no correlation is found
+            return alpha, beta_param, MAX_POSSIBLE_SCORE
 
-        def build_covariance_matrix(players):
-            N = len(players)
-            matrix = [[0 for _ in range(N)] for _ in range(N)]
-            corr_matrix = [[0 for _ in range(N)] for _ in range(N)]
+        def generate_correlated_uniform(num_iterations, correlation, size):
+            """
+            Generate correlated uniform random variables using Gaussian copula
+            This is a simplified approach to maintain some correlation structure
+            """
+            if correlation == 0:
+                return np.random.uniform(0, 1, (size, num_iterations))
 
-            for i in range(N):
-                for j in range(N):
-                    if i == j:
-                        matrix[i][j] = (
-                            players[i]["StdDev"] ** 2
-                        )  # Variance on the diagonal
-                        corr_matrix[i][j] = 1
-                    else:
-                        matrix[i][j] = (
-                            get_corr_value(players[i], players[j])
-                            * players[i]["StdDev"]
-                            * players[j]["StdDev"]
-                        )
-                        corr_matrix[i][j] = get_corr_value(players[i], players[j])
-            return matrix, corr_matrix
+            # Generate correlated normal variables
+            mean = np.zeros(size)
+            cov = np.full((size, size), correlation)
+            np.fill_diagonal(cov, 1)
 
-        def ensure_positive_semidefinite(matrix):
-            eigs = np.linalg.eigvals(matrix)
-            if np.any(eigs < 0):
-                jitter = abs(min(eigs)) + 1e-6  # a small value
-                matrix += np.eye(len(matrix)) * jitter
-            return matrix
+            # Ensure the correlation matrix is valid
+            min_eig = np.linalg.eigvals(cov).min()
+            if min_eig < 0:
+                cov += (-min_eig + 1e-6) * np.eye(size)
 
-        game = team1 + team2
-        covariance_matrix, corr_matrix = build_covariance_matrix(game)
+            normal_samples = np.random.multivariate_normal(mean, cov, num_iterations)
 
-        # Given eigenvalues and eigenvectors from previous code
-        eigenvalues, eigenvectors = np.linalg.eigh(covariance_matrix)
+            # Convert to uniform using probability integral transform
+            uniform_samples = norm.cdf(normal_samples)
+            return uniform_samples.T
 
-        # Set negative eigenvalues to zero
-        eigenvalues[eigenvalues < 0] = 0
+        def simulate_team(team, num_iterations, correlation=0.1):
+            """
+            Simulate one team's players using Beta distributions
+            """
+            team_size = len(team)
+            player_params = {}
 
-        # Reconstruct the matrix
-        covariance_matrix = eigenvectors.dot(np.diag(eigenvalues)).dot(eigenvectors.T)
-        # Build correlation matrix with detailed output
-        print("\nBUILDING CORRELATION MATRIX...")
-        print("-" * 50)
-        try:
-            samples = multivariate_normal.rvs(
-                mean=[player["Fpts"] for player in game],
-                cov=covariance_matrix,
-                size=num_iterations,
+            # Calculate beta parameters for each player
+            for player in team:
+                alpha, beta_param, max_score = calculate_beta_parameters(
+                    player["Fpts"],
+                    player["StdDev"]
+                )
+                player_params[player["ID"]] = {
+                    "alpha": alpha,
+                    "beta": beta_param,
+                    "max_score": max_score
+                }
+
+            # Generate correlated uniform random variables
+            uniform_samples = generate_correlated_uniform(
+                num_iterations,
+                correlation,
+                team_size
             )
-        except:
-            print(team1_id, team2_id, "bad matrix")
 
-        player_samples = []
-        # Build correlation matrix with detailed output
-        print("-" * 50)
-        for i, player in enumerate(game):
-            sample = samples[:, i]
-            player_samples.append(sample)
+            # Convert uniform samples to beta distributions
+            player_samples = {}
+            for i, player in enumerate(team):
+                params = player_params[player["ID"]]
+                beta_samples = beta.ppf(
+                    uniform_samples[i],
+                    params["alpha"],
+                    params["beta"]
+                ) * params["max_score"]
+                player_samples[player["ID"]] = beta_samples
 
-        temp_fpts_dict = {}
+            return player_samples
 
-        for i, player in enumerate(game):
-            temp_fpts_dict[player["ID"]] = player_samples[i]
+        # Simulate both teams
+        # Using slightly negative correlation between teams
+        team1_samples = simulate_team(team1, num_iterations, correlation=0.1)
+        team2_samples = simulate_team(team2, num_iterations, correlation=0.1)
 
-        return temp_fpts_dict
+        # Combine results
+        all_samples = {**team1_samples, **team2_samples}
+
+        return all_samples
+    # @staticmethod
+    # def run_simulation_for_game(
+    #     team1_id,
+    #     team1,
+    #     team2_id,
+    #     team2,
+    #     num_iterations,
+    #     roster_construction,
+    # ):
+    #
+    #
+    #     def get_corr_value(player1, player2):
+    #         # First, check for specific player-to-player correlations
+    #         if player2["Name"] in player1.get("Player Correlations", {}):
+    #             return player1["Player Correlations"][player2["Name"]]
+    #
+    #         # If no specific correlation is found, proceed with the general logic
+    #         position_correlations = {
+    #             "PG": -0.1324,
+    #             "SG": -0.1324,
+    #             "SF": -0.0812,
+    #             "PF": -0.0812,
+    #             "C": -0.1231,
+    #         }
+    #
+    #         if (
+    #             player1["Team"] == player2["Team"]
+    #             and player1["Position"][0] == player2["Position"][0]
+    #         ):
+    #             primary_position = player1["Position"][0]
+    #             return position_correlations[primary_position]
+    #
+    #         if player1["Team"] != player2["Team"]:
+    #             player_2_pos = "Opp " + str(player2["Position"][0])
+    #         else:
+    #             player_2_pos = player2["Position"][0]
+    #
+    #         return player1["Correlations"].get(
+    #             player_2_pos, 0
+    #         )  # Default to 0 if no correlation is found
+    #
+    #     def build_covariance_matrix(players):
+    #         N = len(players)
+    #         matrix = [[0 for _ in range(N)] for _ in range(N)]
+    #         corr_matrix = [[0 for _ in range(N)] for _ in range(N)]
+    #
+    #         for i in range(N):
+    #             for j in range(N):
+    #                 if i == j:
+    #                     matrix[i][j] = (
+    #                         players[i]["StdDev"] ** 2
+    #                     )  # Variance on the diagonal
+    #                     corr_matrix[i][j] = 1
+    #                 else:
+    #                     matrix[i][j] = (
+    #                         get_corr_value(players[i], players[j])
+    #                         * players[i]["StdDev"]
+    #                         * players[j]["StdDev"]
+    #                     )
+    #                     corr_matrix[i][j] = get_corr_value(players[i], players[j])
+    #         return matrix, corr_matrix
+    #
+    #     def ensure_positive_semidefinite(matrix):
+    #         eigs = np.linalg.eigvals(matrix)
+    #         if np.any(eigs < 0):
+    #             jitter = abs(min(eigs)) + 1e-6  # a small value
+    #             matrix += np.eye(len(matrix)) * jitter
+    #         return matrix
+    #
+    #     game = team1 + team2
+    #     covariance_matrix, corr_matrix = build_covariance_matrix(game)
+    #
+    #     # Given eigenvalues and eigenvectors from previous code
+    #     eigenvalues, eigenvectors = np.linalg.eigh(covariance_matrix)
+    #
+    #     # Set negative eigenvalues to zero
+    #     eigenvalues[eigenvalues < 0] = 0
+    #
+    #     # Reconstruct the matrix
+    #     covariance_matrix = eigenvectors.dot(np.diag(eigenvalues)).dot(eigenvectors.T)
+    #     # Build correlation matrix with detailed output
+    #     try:
+    #         samples = multivariate_normal.rvs(
+    #             mean=[player["Fpts"] for player in game],
+    #             cov=covariance_matrix,
+    #             size=num_iterations,
+    #         )
+    #     except:
+    #         print(team1_id, team2_id, "bad matrix")
+    #
+    #     player_samples = []
+    #     for i, player in enumerate(game):
+    #         sample = samples[:, i]
+    #         player_samples.append(sample)
+    #
+    #     temp_fpts_dict = {}
+    #
+    #     for i, player in enumerate(game):
+    #         temp_fpts_dict[player["ID"]] = player_samples[i]
+    #
+    #     return temp_fpts_dict
 
     @staticmethod
     @jit(nopython=True)

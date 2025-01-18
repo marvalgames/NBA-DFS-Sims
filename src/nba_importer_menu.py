@@ -1375,7 +1375,7 @@ class ImportTool(QMainWindow):
             print(f'Target SD: {target_sd}')
 
             # adjusted_predictions = adjust_sd(predictions, target_sd, target_sum)
-            adjusted_predictions = rescale_with_bounds(predictions, target_sd=target_sd, top_boost=1.50)
+            adjusted_predictions = rescale_with_bounds(predictions, target_sd=target_sd, top_boost=1.25)
 
             final_predictions = self.apply_low_minutes_cap(adjusted_predictions, df)
             df['Predicted Ownership'] = final_predictions

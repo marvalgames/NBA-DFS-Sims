@@ -2,10 +2,11 @@ import json
 import os
 import subprocess
 import sys
+import time
 
 from PyQt6.QtCore import QProcess, Qt, QTimer
 from PyQt6.QtWidgets import QGridLayout, QTextEdit, QProgressDialog, QComboBox, QTextBrowser, \
-    QVBoxLayout  # Add this import
+    QVBoxLayout, QHBoxLayout  # Add this import
 from PyQt6.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit, QCheckBox, QPushButton, \
     QSpinBox, QMessageBox, QApplication
 
@@ -96,6 +97,7 @@ class SwapSimThread(QThread):
                 print(message)  # Keep console output
 
             # Replace the print function in your simulation instance
+            start_time = time.time()
             sim_to.print = progress_print
 
             # Run simulation steps
@@ -110,8 +112,10 @@ class SwapSimThread(QThread):
 
             self.progress.emit("Generating output...")
             sim_to.output()
+            self.progress.emit(f"Completed lineup swap simulation in {time.time() - start_time:.1f} seconds")
 
             self.finished.emit(True, "Simulation completed successfully")
+
 
         except Exception as e:
             error_message = f"Error in swap simulation: {str(e)}"
@@ -303,7 +307,7 @@ class NbaSimsMainMenu(QMainWindow):
         self.use_contest_data = True
         self.field_size = 5000
         self.use_file_upload = False
-        self.num_iterations = 10000
+        self.num_iterations = 5000
 
 
         # Initialize the UI
@@ -587,7 +591,6 @@ class NbaSimsMainMenu(QMainWindow):
             if not csv_path:
                 QMessageBox.warning(self, "Warning", "Please select a CSV file first!")
                 return
-
             # Create progress dialog with a text browser for better output display
             self.progress_dialog = QProgressDialog(self)
             self.progress_dialog.setWindowTitle("Swap Simulation")
@@ -597,20 +600,32 @@ class NbaSimsMainMenu(QMainWindow):
             self.progress_dialog.setMinimumWidth(800)
             self.progress_dialog.setMinimumHeight(400)
 
-            # Add a close button
+            # Add a close button with fixed width
             self.close_button = QPushButton("Close")
             self.close_button.clicked.connect(self.progress_dialog.close)
+            self.close_button.setFixedWidth(200)
             self.close_button.hide()  # Hide initially
 
-            # Create text browser for output
+            # Create text browser for output with adjusted height
             self.output_browser = QTextBrowser()
             self.output_browser.setMinimumWidth(780)
-            self.output_browser.setMinimumHeight(380)
+            self.output_browser.setMinimumHeight(340)  # Reduced height to leave room for button
+            self.output_browser.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)  # Ensure scrollbar shows when needed
 
-            # Create layout for progress dialog
+            # Create layout for progress dialog with spacing
             layout = QVBoxLayout()
             layout.addWidget(self.output_browser)
-            layout.addWidget(self.close_button)  # Add close button to layout
+
+            # Create a horizontal layout for the button
+            button_layout = QHBoxLayout()
+            button_layout.addStretch()
+            button_layout.addWidget(self.close_button)
+            button_layout.addStretch()
+
+            # Add button layout to main layout with spacing
+            layout.addLayout(button_layout)
+            layout.setSpacing(10)  # Add spacing between elements
+            layout.setContentsMargins(10, 10, 10, 10)  # Add margins around the layout
 
             # Get the progress dialog's content widget
             content = self.progress_dialog.findChild(QWidget)

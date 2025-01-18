@@ -563,7 +563,7 @@ class NBA_Swaptimizer_Sims:
         # Format the date into the string format the NBA API expects ('YYYY-MM-DD')
         # Late Swap Realtime
         live = self.live_games
-        #live = False
+        live = False
         if live:
             formatted_date = game_date.strftime('%Y-%m-%d')
         else:
@@ -580,28 +580,47 @@ class NBA_Swaptimizer_Sims:
             games_info = scoreboard_json['resultSets'][0]['rowSet']
         else:
             games_info = [
-                ['2025-01-15T00:00:00', 1, '0022400561', 2, 'End of 1st Qtr      ', '20250115/NYKPHI', 1610612755,
-              1610612752, '2024', 1, '     ', 'ESPN', 'NBCSP', 'MSG', 'Q1       - ESPN', 'Wells Fargo Center', 0, 0],
-                 ['2025-01-15T00:00:00', 2, '0022400562', 2, '1st Qtr             ', '20250115/BOSTOR', 1610612761,
-                  1610612738, '2024', 1, '11:26', None, 'SN', 'NBCSB', 'Q1 11:26 - ', 'Scotiabank Arena', 0, 0],
-                 ['2025-01-15T00:00:00', 3, '0022400563', 1, '8:00 pm ET', '20250115/ATLCHI', 1610612741, 1610612737,
-                  '2024', 0, '     ', None, 'CHSN', 'FDSNSE-ATL', 'Q0       - ', 'United Center', 0, 0],
-                 ['2025-01-15T00:00:00', 4, '0022400564', 1, '8:00 pm ET', '20250115/ORLMIL', 1610612749, 1610612753,
-                  '2024', 0, '     ', None, 'FDSNWI', 'FDSNFL', 'Q0       - ', 'Fiserv Forum', 0, 0],
-                 ['2025-01-15T00:00:00', 5, '0022400566', 1, '8:00 pm ET', '20250115/DALNOP', 1610612740, 1610612742,
-                  '2024', 0, '     ', None, 'GCSEN', 'KFAA', 'Q0       - ', 'Smoothie King Center', 0, 0],
-                 ['2025-01-15T00:00:00', 6, '0022400567', 1, '8:00 pm ET', '20250115/MEMSAS', 1610612759, 1610612763,
-                  '2024', 0, '     ', None, 'FDSNSW', 'FDSNSE-MEM', 'Q0       - ', 'Frost Bank Center', 0, 0],
-                 ['2025-01-15T00:00:00', 7, '0022400568', 1, '9:00 pm ET', '20250115/HOUDEN', 1610612743, 1610612745,
-                  '2024', 0, '     ', None, 'ALT', 'SCHN', 'Q0       - ', 'Ball Arena', 0, 0],
-                 ['2025-01-15T00:00:00', 8, '0022400569', 1, '9:00 pm ET', '20250115/CHAUTA', 1610612762, 1610612766,
-                  '2024', 0, '     ', None, 'KJZZ', 'FDSNSE-CHA', 'Q0       - ', 'Delta Center', 0, 0],
-                 ['2025-01-15T00:00:00', 9, '0022400565', 1, '9:30 pm ET', '20250115/GSWMIN', 1610612750, 1610612744,
-                  '2024', 0, '     ', 'ESPN', 'FDSNNO', 'NBCSBA', 'Q0       - ESPN', 'Target Center', 0, 0],
-                 ['2025-01-15T00:00:00', 10, '0022400570', 1, '10:00 pm ET', '20250115/MIALAL', 1610612747, 1610612748,
-                  '2024', 0, '     ', None, 'SPECSN', 'FDSNSU', 'Q0       - ', 'Crypto.com Arena', 0, 0],
-                 ['2025-01-15T00:00:00', 11, '0022400571', 1, '10:30 pm ET', '20250115/BKNLAC', 1610612746, 1610612751,
-                  '2024', 0, '     ', None, 'FDSNSC', 'YES', 'Q0       - ', 'Intuit Dome', 0, 0]
+                ['2025-01-17T00:00:00', 1, '0022400577', 2, 'Tipoff              ', '20250117/ORLBOS', 1610612738,
+                 1610612753, '2024', 1, '12:00', 'ESPN', 'NBCSB', 'FDSNFL', 'Q1 12:00 - ESPN', 'TD Garden', 0, 0],
+                ['2025-01-17T00:00:00', 2, '0022400578', 1, '7:30 pm ET', '20250117/MINNYK', 1610612752, 1610612750,
+                 '2024', 0, '     ', None, 'MSG', 'FDSNNO', 'Q0       - ', 'Madison Square Garden', 0, 0],
+                ['2025-01-17T00:00:00', 3, '0022400579', 1, '8:00 pm ET', '20250117/DENMIA', 1610612748, 1610612743,
+                 '2024', 0, '     ', None, 'FDSNSU', 'ALT/KTVD', 'Q0       - ', 'Kaseya Center', 0, 0],
+                ['2025-01-17T00:00:00', 4, '0022400580', 1, '8:00 pm ET', '20250117/TORMIL', 1610612749, 1610612761,
+                 '2024', 0, '     ', None, 'FDSNWI', 'SN', 'Q0       - ', 'Fiserv Forum', 0, 0],
+                ['2025-01-17T00:00:00', 5, '0022400581', 1, '8:00 pm ET', '20250117/UTANOP', 1610612740, 1610612762,
+                 '2024', 0, '     ', None, 'GCSEN', 'KJZZ', 'Q0       - ', 'Smoothie King Center', 0, 0],
+                ['2025-01-17T00:00:00', 6, '0022400584', 1, '8:00 pm ET', '20250117/CHACHI', 1610612741, 1610612766,
+                 '2024', 0, '     ', None, 'CHSN', 'FDSNSE-CHA', 'Q0       - ', 'United Center', 0, 0],
+                ['2025-01-17T00:00:00', 7, '0022400583', 1, '8:30 pm ET', '20250117/OKCDAL', 1610612742, 1610612760,
+                 '2024', 0, '     ', None, 'KFAA', 'FDSNOK', 'Q0       - ', 'American Airlines Center', 0, 0],
+                ['2025-01-17T00:00:00', 8, '0022400582', 1, '9:30 pm ET', '20250117/MEMSAS', 1610612759, 1610612763,
+                 '2024', 0, '     ', 'ESPN', 'FDSNSW', 'FDSNSE-MEM', 'Q0       - ESPN', 'Frost Bank Center', 0, 0],
+                ['2025-01-17T00:00:00', 9, '0022400585', 1, '10:30 pm ET', '20250117/BKNLAL', 1610612747, 1610612751,
+                 '2024', 0, '     ', None, 'SPECSN', 'YES', 'Q0       - ', 'Crypto.com Arena', 0, 0]
+
+                #   ['2025-01-15T00:00:00', 1, '0022400561', 2, 'End of 1st Qtr      ', '20250115/NYKPHI', 1610612755,
+              # 1610612752, '2024', 1, '     ', 'ESPN', 'NBCSP', 'MSG', 'Q1       - ESPN', 'Wells Fargo Center', 0, 0],
+              #    ['2025-01-15T00:00:00', 2, '0022400562', 2, '1st Qtr             ', '20250115/BOSTOR', 1610612761,
+              #     1610612738, '2024', 1, '11:26', None, 'SN', 'NBCSB', 'Q1 11:26 - ', 'Scotiabank Arena', 0, 0],
+              #    ['2025-01-15T00:00:00', 3, '0022400563', 1, '8:00 pm ET', '20250115/ATLCHI', 1610612741, 1610612737,
+              #     '2024', 0, '     ', None, 'CHSN', 'FDSNSE-ATL', 'Q0       - ', 'United Center', 0, 0],
+              #    ['2025-01-15T00:00:00', 4, '0022400564', 1, '8:00 pm ET', '20250115/ORLMIL', 1610612749, 1610612753,
+              #     '2024', 0, '     ', None, 'FDSNWI', 'FDSNFL', 'Q0       - ', 'Fiserv Forum', 0, 0],
+              #    ['2025-01-15T00:00:00', 5, '0022400566', 1, '8:00 pm ET', '20250115/DALNOP', 1610612740, 1610612742,
+              #     '2024', 0, '     ', None, 'GCSEN', 'KFAA', 'Q0       - ', 'Smoothie King Center', 0, 0],
+              #    ['2025-01-15T00:00:00', 6, '0022400567', 1, '8:00 pm ET', '20250115/MEMSAS', 1610612759, 1610612763,
+              #     '2024', 0, '     ', None, 'FDSNSW', 'FDSNSE-MEM', 'Q0       - ', 'Frost Bank Center', 0, 0],
+              #    ['2025-01-15T00:00:00', 7, '0022400568', 1, '9:00 pm ET', '20250115/HOUDEN', 1610612743, 1610612745,
+              #     '2024', 0, '     ', None, 'ALT', 'SCHN', 'Q0       - ', 'Ball Arena', 0, 0],
+              #    ['2025-01-15T00:00:00', 8, '0022400569', 1, '9:00 pm ET', '20250115/CHAUTA', 1610612762, 1610612766,
+              #     '2024', 0, '     ', None, 'KJZZ', 'FDSNSE-CHA', 'Q0       - ', 'Delta Center', 0, 0],
+              #    ['2025-01-15T00:00:00', 9, '0022400565', 1, '9:30 pm ET', '20250115/GSWMIN', 1610612750, 1610612744,
+              #     '2024', 0, '     ', 'ESPN', 'FDSNNO', 'NBCSBA', 'Q0       - ESPN', 'Target Center', 0, 0],
+              #    ['2025-01-15T00:00:00', 10, '0022400570', 1, '10:00 pm ET', '20250115/MIALAL', 1610612747, 1610612748,
+              #     '2024', 0, '     ', None, 'SPECSN', 'FDSNSU', 'Q0       - ', 'Crypto.com Arena', 0, 0],
+              #    ['2025-01-15T00:00:00', 11, '0022400571', 1, '10:30 pm ET', '20250115/BKNLAC', 1610612746, 1610612751,
+              #     '2024', 0, '     ', None, 'FDSNSC', 'YES', 'Q0       - ', 'Intuit Dome', 0, 0]
             ]
 
 
@@ -619,7 +638,7 @@ class NBA_Swaptimizer_Sims:
         if live:
             current_time_utc = datetime.datetime.now(timezone.utc)  # Current time in UTC
         else:
-            current_time_utc = pytz.utc.localize(datetime.datetime(2024, 11, 26, 19, 35))  # Testing as aware datetime
+            current_time_utc = pytz.utc.localize(datetime.datetime(2025, 1, 17, 19, 35))  # Testing as aware datetime
 
         for game in games_info:
             game_id = game[2]
@@ -629,8 +648,9 @@ class NBA_Swaptimizer_Sims:
             live_period = game[9]
             live_pc_time = game[10].strip()
 
+
             # Check if the game has a status indicating it's locked
-            if 'Final' in game_status or 'Qtr' in game_status or 'Halftime' in game_status:
+            if 'Final' in game_status or 'Qtr' in game_status or 'Halftime' in game_status or game[4] == "Tipoff" or game[4] == "Tipoff              ":
                 game_locked = True
             else:
                 # Handle scheduled games
@@ -667,6 +687,8 @@ class NBA_Swaptimizer_Sims:
                             overtime_period_length - minutes)  # Add remaining minutes for the current overtime
                     if seconds > 0:
                         total_minutes_remaining -= 1  # Subtract a minute if there are seconds remaining
+
+
 
             # For finished games, set the remaining time to 0
             if 'Final' in game[4]:
@@ -714,10 +736,8 @@ class NBA_Swaptimizer_Sims:
 
                 try:
                     # First, handle special cases
-                    if time_part_str == "Tipoff" or time_part_str == "Tipoff              ":
-                        # Use a default time for tipoff (e.g., current time)
-                        time_part = datetime.datetime.now()
-                    elif "1st OT" in time_part_str:
+
+                    if "1st OT" in time_part_str:
                         time_part_str = time_part_str.replace("1st OT", "Q5")
                         clean_time_str = time_part_str.replace("ET", "").strip()
                         time_part = datetime.datetime.strptime(clean_time_str, '%I:%M %p')
@@ -742,37 +762,6 @@ class NBA_Swaptimizer_Sims:
                     self.time_remaining_dict[home_team_abbreviation]['GameTime'] = fallback_time
                     self.time_remaining_dict[visitor_team_abbreviation]['GameTime'] = fallback_time
 
-                #
-                # date_part = datetime.datetime.strptime(game[0], '%Y-%m-%dT%H:%M:%S')
-                # # Convert '9:00 pm ET' to 24-hour format and handle timezone
-                # time_part_str = game[4]
-                # # Handle special cases like '1st OT'
-                # if "1st OT" in time_part_str:
-                #     time_part_str = time_part_str.replace("1st OT", "Q5")
-                #     print(f"Replaced invalid time data with: '{time_part_str}'")
-                #
-                # # Remove 'ET' and parse the time
-                # try:
-                #     # Clean the time string: remove 'ET' and strip extra whitespace
-                #     clean_time_str = time_part_str.replace("ET", "").strip()
-                #     time_part = datetime.datetime.strptime(clean_time_str, '%I:%M %p')
-                #     print(f"Parsed time: {time_part.time()}")
-                # except ValueError as e:
-                #     print(f"Error parsing time: {e}")
-                #
-                # # Remove 'ET' and strip whitespace, then parse time
-                # # time_part = datetime.datetime.strptime(time_part_str[:-3].strip(), '%I:%M %p')
-                #
-                #
-                # # Combine date and time parts
-                # combined_datetime = datetime.datetime.combine(date_part.date(), time_part.time())
-                #
-                # # Assume the input is for the Eastern Time timezone
-                # eastern = pytz.timezone('US/Eastern')
-                # localized_datetime = eastern.localize(combined_datetime)
-                #
-                # self.time_remaining_dict[home_team_abbreviation]['GameTime'] = localized_datetime
-                # self.time_remaining_dict[visitor_team_abbreviation]['GameTime'] = localized_datetime
 
     def extract_player_points(self, path):
         with open(path, encoding="utf-8-sig") as file:
@@ -1310,6 +1299,7 @@ class NBA_Swaptimizer_Sims:
 
     def swaptimize(self):
         # Initialize a dictionary to hold lineups temporarily for each entry
+        start_time = time.time()
         self.entry_lineups = {pk: [] for pk in self.player_keys}
 
         for pk in self.player_keys:
@@ -1666,7 +1656,7 @@ class NBA_Swaptimizer_Sims:
                 if len(self.output_lineups) == 0:
                     print("No valid lineups found at all - stopping process")
                     break
-
+        self.print(f"Completed lineup swaps in {time.time() - start_time:.1f} seconds")
 
     def convert_player_dict_to_pid_keys(self):
         self.player_dict = {v['ID']: v for v in self.player_dict.values()}
@@ -3175,7 +3165,7 @@ class NBA_Swaptimizer_Sims:
             lu_names, lu_teams, own_p, total_salary, total_projection, total_variance = players_info
 
             # Calculate statistics
-            ceil_p = total_projection + np.sqrt(total_variance)  # Modified this
+            ceil_p = total_projection + total_variance  # Modified this
             counter = Counter(lu_teams)
             stacks = counter.most_common()
             primaryStack = f"{stacks[0][0]} {stacks[0][1]}"
@@ -3247,14 +3237,15 @@ class NBA_Swaptimizer_Sims:
                     own_p.append(v["Ownership"])
                     total_salary += v["Salary"]
                     total_projection += v["BayesianProjectedFpts"]
-                    total_variance += v["BayesianProjectedVar"]
+                    total_variance += np.sqrt(v["BayesianProjectedVar"])
+                    print(total_variance, total_projection)
                     player_found = True
                     break
 
             if not player_found:
                 print(f"Warning: Player ID {Id} not found in player dictionary")
                 return None
-
+        print("==================================")
         return lu_names, lu_teams, own_p, total_salary, total_projection, total_variance
 
     def format_lineup_string(self, lu_names, x, fpts_p, ceil_p, total_salary,
