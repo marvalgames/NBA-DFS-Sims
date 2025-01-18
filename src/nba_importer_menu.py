@@ -366,13 +366,18 @@ class ImportTool(QMainWindow):
         excel_file = "nba.xlsm"
         sheet_name = "dk_list"
 
+        app = None
+        wb = None
+
         try:
+            # Set up output directories
             progress_print("Setting up output directories...")
             current_folder = Path(__file__).resolve().parent
             sibling_folder = current_folder.parent / "dk_data"
             sibling_folder.mkdir(exist_ok=True)
             output_csv_file = sibling_folder / "DKSalaries.csv"
 
+            # Read CSV data
             progress_print("Reading CSV data...")
             columns_to_read = list(range(13, 22))
             data = pd.read_csv(
@@ -382,31 +387,66 @@ class ImportTool(QMainWindow):
                 header=0
             )
 
+            # Verify we have data before proceeding
+            if data.empty:
+                raise ValueError("No data was read from the CSV file")
+
+            # Write to output CSV
             progress_print("Writing data to output CSV...")
             data.to_csv(output_csv_file, index=False)
             progress_print(f"Data written to '{output_csv_file}'")
 
+            # Initialize Excel
+            progress_print("Opening Excel application...")
             app = xw.App(visible=False)
+            app.display_alerts = False
+            app.screen_updating = False
+
+            if app is None:
+                raise RuntimeError("Failed to initialize Excel application")
+
+            progress_print("Opening Excel workbook...")
+            wb = app.books.open(excel_file)
+
+            if wb is None:
+                raise RuntimeError(f"Failed to open workbook: {excel_file}")
+
+            # Get worksheet and verify it exists
             try:
-                progress_print("Opening Excel workbook...")
-                wb = app.books.open(excel_file)
                 ws = wb.sheets[sheet_name]
+            except Exception as e:
+                raise ValueError(f"Sheet '{sheet_name}' not found in workbook") from e
 
-                progress_print("Clearing existing data...")
-                ws.range("B2").expand().clear()
+            progress_print("Clearing existing data...")
+            # Get the used range before clearing
+            used_range = ws.range("B2").expand()
+            if used_range:  # Verify range exists before clearing
+                used_range.clear_contents()
 
-                progress_print("Writing new data...")
-                ws.range("B2").value = data.values
+            progress_print("Writing new data...")
+            # Verify data dimensions before writing
+            target_range = ws.range("B2").resize(data.shape[0], data.shape[1])
+            if target_range:
+                target_range.value = data.values
+            else:
+                raise ValueError("Failed to create target range for data")
 
-                progress_print("Saving workbook...")
-                wb.save()
-            finally:
-                wb.close()
-                app.quit()
+            progress_print("Saving workbook...")
+            wb.save()
 
         except Exception as e:
-            progress_print(f"Error occurred: {e}")
+            progress_print(f"Error occurred: {str(e)}")
             raise
+
+        finally:
+            # Ensure proper cleanup even if errors occur
+            try:
+                if wb:
+                    wb.close()
+                if app:
+                    app.quit()
+            except Exception as cleanup_error:
+                progress_print(f"Warning: Error during cleanup: {str(cleanup_error)}")
 
         progress_print("Done importing DKEntries to dk_list.")
 
@@ -781,10 +821,13 @@ class ImportTool(QMainWindow):
             progress_print(f"An error occurred: {e}")
             raise
 
-
     def export_projections(self, progress_print=print):
         progress_print("Exporting projections to CSV...")
+        app = None
+        wb = None
+
         try:
+            # Set up paths
             current_folder = Path(__file__).resolve().parent
             dk_import_folder = current_folder.parent / "dk_import"
             dk_data_folder = current_folder.parent / "dk_data"
@@ -796,13 +839,46 @@ class ImportTool(QMainWindow):
             output_csv_file = dk_data_folder / "projections.csv"
             sheet_name = "AceMind REPO"
 
-            progress_print("Opening Excel workbook...")
+            # Verify Excel file exists
+            if not excel_file.exists():
+                raise FileNotFoundError(f"Excel file not found: {excel_file}")
+
+            # Initialize Excel
+            progress_print("Opening Excel application...")
             app = xw.App(visible=False)
+            app.display_alerts = False
+            app.screen_updating = False
+
+            if app is None:
+                raise RuntimeError("Failed to initialize Excel application")
+
+            progress_print("Opening Excel workbook...")
             wb = app.books.open(str(excel_file))
-            ws = wb.sheets[sheet_name]
+
+            if wb is None:
+                raise RuntimeError(f"Failed to open workbook: {excel_file}")
+
+            # Get worksheet and verify it exists
+            try:
+                ws = wb.sheets[sheet_name]
+            except Exception as e:
+                raise ValueError(f"Sheet '{sheet_name}' not found in workbook") from e
 
             progress_print("Reading sheet data...")
-            data = ws.range("A1").expand().value
+            # Get initial range and verify it exists
+            initial_range = ws.range("A1")
+            if initial_range is None:
+                raise ValueError("Failed to get initial range at 'A1'")
+
+            # Expand the range and verify expansion worked
+            expanded_range = initial_range.expand()
+            if expanded_range is None:
+                raise ValueError("Failed to expand range from 'A1'")
+
+            # Get the values and verify we got data
+            data = expanded_range.value
+            if not data:
+                raise ValueError("No data found in expanded range")
 
             progress_print("Processing data...")
             end_index = next(
@@ -811,6 +887,9 @@ class ImportTool(QMainWindow):
             )
             filtered_data = data[:end_index]
 
+            if not filtered_data:
+                raise ValueError("No valid data found after filtering")
+
             progress_print("Writing to CSV...")
             with open(output_csv_file, "w", newline="") as file:
                 rows_processed = 0
@@ -818,23 +897,36 @@ class ImportTool(QMainWindow):
                 for row in filtered_data:
                     if all(cell in [None, "", " "] for cell in row) or row[0] == 0:
                         continue
-                    formatted_row = [
-                        int(cell) if col_idx == 4 and isinstance(cell, float) and cell.is_integer() else
-                        f"{cell:.2f}" if isinstance(cell, float) and col_idx != 4 else
-                        cell if cell not in [None, "", " "] else ""
-                        for col_idx, cell in enumerate(row)
-                    ]
-                    file.write(",".join(str(cell) for cell in formatted_row) + "\n")
-                    rows_processed += 1
-                    if rows_processed % 100 == 0:  # Update every 100 rows
-                        progress_print(f"Processed {rows_processed}/{total_rows} rows...")
+                    try:
+                        formatted_row = [
+                            int(cell) if col_idx == 4 and isinstance(cell, float) and cell.is_integer() else
+                            f"{cell:.2f}" if isinstance(cell, float) and col_idx != 4 else
+                            cell if cell not in [None, "", " "] else ""
+                            for col_idx, cell in enumerate(row)
+                        ]
+                        file.write(",".join(str(cell) for cell in formatted_row) + "\n")
+                        rows_processed += 1
+                        if rows_processed % 100 == 0:
+                            progress_print(f"Processed {rows_processed}/{total_rows} rows...")
+                    except Exception as row_error:
+                        progress_print(f"Warning: Error processing row {rows_processed + 1}: {str(row_error)}")
+                        continue
 
             progress_print(f"Projections successfully exported to '{output_csv_file}'.")
-            wb.close()
-            app.quit()
+
         except Exception as e:
-            progress_print(f"An error occurred: {e}")
+            progress_print(f"An error occurred: {str(e)}")
             raise
+
+        finally:
+            # Ensure proper cleanup even if errors occur
+            try:
+                if wb:
+                    wb.close()
+                if app:
+                    app.quit()
+            except Exception as cleanup_error:
+                progress_print(f"Warning: Error during cleanup: {str(cleanup_error)}")
 
     def run_all_imports(self, progress_print=print):
         progress_print("Running all imports...")
@@ -1019,7 +1111,21 @@ class ImportTool(QMainWindow):
             sheet = wb.sheets["ownership"]
 
             progress_print("Reading and processing data...")
-            data = sheet.range('A1').expand().value
+            # Get initial range and verify it exists
+            initial_range = sheet.range('A1')
+            if initial_range is None:
+                raise ValueError("Failed to get initial range at 'A1'")
+
+            # Expand the range and verify expansion worked
+            expanded_range = initial_range.expand()
+            if expanded_range is None:
+                raise ValueError("Failed to expand range from 'A1'")
+
+            # Get the values and verify we got data
+            data = expanded_range.value
+            if not data:
+                raise ValueError("No data found in expanded range")
+            #data = sheet.range('A1').expand().value
             columns = data[0]
             rows = data[1:]
             df = pd.DataFrame(rows, columns=columns)
@@ -1213,7 +1319,7 @@ class ImportTool(QMainWindow):
             from tabulate import tabulate
             print("Generating predictions...")
 
-            shift_start = .35
+            shift_start = .40
             shift_end = 1.00
             add = 1.0  # Constant to avoid log issues with zero
             drift = 1.35
@@ -1269,7 +1375,7 @@ class ImportTool(QMainWindow):
             print(f'Target SD: {target_sd}')
 
             # adjusted_predictions = adjust_sd(predictions, target_sd, target_sum)
-            adjusted_predictions = rescale_with_bounds(predictions, target_sd=target_sd, top_boost=1.75)
+            adjusted_predictions = rescale_with_bounds(predictions, target_sd=target_sd, top_boost=1.50)
 
             final_predictions = self.apply_low_minutes_cap(adjusted_predictions, df)
             df['Predicted Ownership'] = final_predictions
