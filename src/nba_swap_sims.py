@@ -563,7 +563,7 @@ class NBA_Swaptimizer_Sims:
         # Format the date into the string format the NBA API expects ('YYYY-MM-DD')
         # Late Swap Realtime
         live = self.live_games
-        #live = False
+        live = False
         if live:
             formatted_date = game_date.strftime('%Y-%m-%d')
         else:
@@ -1297,9 +1297,18 @@ class NBA_Swaptimizer_Sims:
         self.print(f"Successfully loaded {len(self.player_keys)} lineups for {self.user_lineups} entries in late swap.")
         self.print(f"Total lineups in contest_lineups: {len(self.contest_lineups)}")
 
+
+
+
     def swaptimize(self):
         # Initialize a dictionary to hold lineups temporarily for each entry
+        #number lineups before next set it swapped is self.num_lineups
         start_time = time.time()
+        total_lineups = len(self.player_keys)
+        total_entries = self.user_lineups
+        group_size = total_lineups // total_entries
+        group_size_counter = 0
+        optimal_search = True
         self.entry_lineups = {pk: [] for pk in self.player_keys}
 
         for pk in self.player_keys:
@@ -1326,10 +1335,10 @@ class NBA_Swaptimizer_Sims:
                         total_projection += attributes["BayesianProjectedFpts"]
 
             # Set the minimum projected points using the total projection
-            min_projected_points = total_projection * 0.98  # add to config - suggest lower values for contrarian / aggressive
+            min_projected_points = total_projection * 1.98  # add to config - suggest lower values for contrarian / aggressive
             print(f"Minimum required projection: {min_projected_points:.2f}")
 
-            while not solution_found and max_attempts > 0:
+            while not solution_found and max_attempts > 0 and optimal_search:
 
                 problem = plp.LpProblem("NBA", plp.LpMaximize)
                 lp_variables = {}
@@ -1608,9 +1617,16 @@ class NBA_Swaptimizer_Sims:
                         print(f"Hit minimum salary floor (${min_salary_floor:,}). Giving up on this lineup.")
                         break
 
+            group_size_counter += 1
+            print(group_size)
+            if group_size_counter > group_size:
+                optimal_search = True
+                group_size_counter = 0
+
             if solution_found:
                 # Assuming this is in your results processing section where you're creating the optimal lineup
                 optimal_lineup = []
+                optimal_search = True
                 total_salary = 0
                 total_points = 0  # Initialize total points counter
                 for player, attributes in self.player_dict.items():
@@ -1631,7 +1647,10 @@ class NBA_Swaptimizer_Sims:
                             total_points += attributes["BayesianProjectedFpts"]  # Add player's points to total
 
                 # Print the results
+
+
                 self.print(f"\nOptimal Lineup: {i+1}")
+                self.print(f"\nGroup Lineup: {group_size_counter+ 1}")
                 for player in optimal_lineup:
                     print(
                         f"{player['Position']}: {player['Name']} (Salary: ${player['Salary']})"
@@ -1639,6 +1658,7 @@ class NBA_Swaptimizer_Sims:
                 self.print(f"\nTotal Salary: ${total_salary}")
                 self.print(f"Total Projected Points: {total_points:.2f}")  # Print total points with 2 decimal places
             if not solution_found:
+                optimal_search = False
                 print(f"Failed to find valid lineup for {pk} after all attempts")
                 # Create a tuple with the original lineup structure
                 original_lineup = []
@@ -1651,7 +1671,7 @@ class NBA_Swaptimizer_Sims:
 
                 # Add the original lineup to output_lineups
                 self.output_lineups.append((original_lineup, lineup_obj))
-                self.print(f"Retained original lineup: {i} ")
+                self.print(f"Retained original lineup: {i+1} ")
 
                 if len(self.output_lineups) == 0:
                     print("No valid lineups found at all - stopping process")
@@ -3238,7 +3258,6 @@ class NBA_Swaptimizer_Sims:
                     total_salary += v["Salary"]
                     total_projection += v["BayesianProjectedFpts"]
                     total_variance += np.sqrt(v["BayesianProjectedVar"])
-                    print(total_variance, total_projection)
                     player_found = True
                     break
 

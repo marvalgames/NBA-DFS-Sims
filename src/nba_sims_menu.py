@@ -296,7 +296,7 @@ class NbaSimsMainMenu(QMainWindow):
 
         # Default Parameters
         self.site = "dk"
-        self.num_lineups = 5
+        self.num_lineups = 10
         self.num_uniques = 1
         self.min_salary = int(self.config.get("min_lineup_salary", 49000))
         self.global_team_limit = int(self.config.get("global_team_limit", 4))
