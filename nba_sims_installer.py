@@ -67,6 +67,10 @@ def setup_shared_directory():
     dist_dir = os.path.join('dist', 'NBA_Tools')
     os.makedirs(dist_dir, exist_ok=True)
 
+    # Create src directory instead of _internal
+    src_dir = os.path.join(dist_dir, 'src')
+    os.makedirs(src_dir, exist_ok=True)
+
     # Create _internal directory
     internal_dir = os.path.join(dist_dir, '_internal')
     os.makedirs(internal_dir, exist_ok=True)
@@ -76,20 +80,21 @@ def setup_shared_directory():
         shutil.copy2('config.json', dist_dir)
         print(f"Copied config.json to {dist_dir}")
 
-    # Copy source files to _internal
+    # Copy source files to src directory
     src_files = [
         'nba_gpp_simulator.py',
         'run_swap_sim.py',
         'nba_swap_sims.py',
-        'nba_importer_menu.py'
+        'nba_importer_menu.py',
+        'final_nba_model.pkl'  # Include the model file in the list
     ]
 
     for file in src_files:
         src_path = os.path.join('src', file)
-        dst_path = os.path.join(internal_dir, file)
+        dst_path = os.path.join(src_dir, file)  # Copy to src directory
         if os.path.exists(src_path):
             shutil.copy2(src_path, dst_path)
-            print(f"Copied {file} to {internal_dir}")
+            print(f"Copied {file} to {src_dir}")
 
     # Copy data directories
     for dir_name in ['dk_contests', 'dk_data', 'dk_output', 'dk_import']:
@@ -109,7 +114,6 @@ def setup_shared_directory():
         shutil.copy2(solver.path, dist_dir)
         print(f"Copied CBC solver to {dist_dir}")
 
-
 def build_app(app_name, main_script, additional_files=None):
     """Build a single executable"""
     print(f"Building {app_name}...")
@@ -128,7 +132,14 @@ def build_app(app_name, main_script, additional_files=None):
     # Add data files
     if additional_files:
         for file in additional_files:
-            cmd.extend(['--add-data', f'src/{file}{os.pathsep}_internal'])
+            cmd.extend(['--add-data', f'src/{file}{os.pathsep}src'])  # Change destination to src
+
+    # Add the model file to the build
+    if os.path.exists('src/final_nba_model.pkl'):
+        cmd.extend(['--add-data', f'src/final_nba_model.pkl{os.pathsep}src'])  # Change destination to src
+
+    # Rest of the build_app function remains the same...
+
 
     # Add common options
     cmd.extend([
@@ -137,6 +148,7 @@ def build_app(app_name, main_script, additional_files=None):
         '--hidden-import=pulp.apis.core',
         '--hidden-import=pulp.apis.coin_api',
         '--hidden-import=pulp.solvers.coin',
+        '--hidden-import=catboost',  # Add catboost to hidden imports
         '--collect-submodules=pulp',
         '--paths=src',
         '--noconfirm',

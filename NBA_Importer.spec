@@ -1,7 +1,7 @@
 # -*- mode: python ; coding: utf-8 -*-
 from PyInstaller.utils.hooks import collect_submodules
 
-hiddenimports = ['pulp', 'pulp.apis', 'pulp.apis.core', 'pulp.apis.coin_api', 'pulp.solvers.coin']
+hiddenimports = ['pulp', 'pulp.apis', 'pulp.apis.core', 'pulp.apis.coin_api', 'pulp.solvers.coin', 'catboost']
 hiddenimports += collect_submodules('pulp')
 
 
@@ -9,7 +9,7 @@ a = Analysis(
     ['src\\nba_importer_menu.py'],
     pathex=['src'],
     binaries=[],
-    datas=[],
+    datas=[('src/final_nba_model.pkl', 'src')],
     hiddenimports=hiddenimports,
     hookspath=[],
     hooksconfig={},

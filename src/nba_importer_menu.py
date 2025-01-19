@@ -289,43 +289,103 @@ class ImportTool(QMainWindow):
     # def run_bbm_import(self):
     #     self.run_threaded_import(self.import_bbm, "Importing BBM data...")
 
-
-    # Modified import_csv_to_sheet to support progress updates
     def import_csv_to_sheet(self, csv_file, sheet_name, csv_start_row, csv_start_col,
                             excel_start_row, excel_start_col, usecols=None, progress_print=print):
-        progress_print(f"Reading CSV file: {csv_file}")
-        combined_csv_file = csv_file
-        excel_file = "nba.xlsm"
+        app = None
+        wb = None
 
-        app = xw.App(visible=False)
         try:
-            progress_print("Opening Excel workbook...")
-            wb = app.books.open(excel_file)
+            # Verify CSV file exists
+            if not Path(csv_file).exists():
+                raise FileNotFoundError(f"CSV file not found: {csv_file}")
 
+            progress_print(f"Reading CSV file: {csv_file}")
+            excel_file = "nba.xlsm"
+
+            # Verify Excel file exists
+            if not Path(excel_file).exists():
+                raise FileNotFoundError(f"Excel file not found: {excel_file}")
+
+            # Load CSV data first to ensure it's valid before opening Excel
             progress_print("Loading CSV data...")
-            data = pd.read_csv(combined_csv_file, usecols=usecols)
+            data = pd.read_csv(csv_file, usecols=usecols)
+            if data.empty:
+                raise ValueError("No data found in CSV file")
+
             data_to_write = data.iloc[csv_start_row:, csv_start_col:]
             csv_row_count, csv_col_count = data_to_write.shape
 
+            if csv_row_count == 0 or csv_col_count == 0:
+                raise ValueError("No data to write after applying row/column filters")
+
+            # Initialize Excel
+            progress_print("Opening Excel application...")
+            app = xw.App(visible=False)
+            app.display_alerts = False
+            app.screen_updating = False
+
+            if app is None:
+                raise RuntimeError("Failed to initialize Excel application")
+
+            progress_print("Opening Excel workbook...")
+            wb = app.books.open(excel_file)
+
+            if wb is None:
+                raise RuntimeError(f"Failed to open workbook: {excel_file}")
+
+            # Get worksheet and verify it exists
+            try:
+                ws = wb.sheets[sheet_name]
+            except Exception as e:
+                raise ValueError(f"Sheet '{sheet_name}' not found in workbook") from e
+
             progress_print(f"Writing {csv_row_count} rows to sheet {sheet_name}...")
-            ws = wb.sheets[sheet_name]
 
+            # Verify the clear range is valid
             progress_print("Clearing existing data...")
-            clear_range = ws.range(
-                (excel_start_row, excel_start_col),
-                (excel_start_row + csv_row_count + 1000, excel_start_col + csv_col_count - 1)
-            )
-            clear_range.value = None
+            try:
+                clear_range = ws.range(
+                    (excel_start_row, excel_start_col),
+                    (excel_start_row + csv_row_count + 1000, excel_start_col + csv_col_count - 1)
+                )
+                if clear_range is None:
+                    raise ValueError("Failed to create clear range")
+                clear_range.clear_contents()
+            except Exception as e:
+                raise ValueError(f"Error clearing range: {str(e)}")
 
+            # Verify the write range is valid
             progress_print("Writing new data...")
-            ws.range((excel_start_row, excel_start_col)).value = data_to_write.values
+            try:
+                write_range = ws.range((excel_start_row, excel_start_col))
+                if write_range is None:
+                    raise ValueError("Failed to create write range")
+
+                target_range = write_range.resize(csv_row_count, csv_col_count)
+                if target_range is None:
+                    raise ValueError("Failed to resize write range")
+
+                target_range.value = data_to_write.values
+            except Exception as e:
+                raise ValueError(f"Error writing data: {str(e)}")
 
             progress_print("Saving workbook...")
             wb.save()
             progress_print("Import completed successfully.")
+
+        except Exception as e:
+            progress_print(f"An error occurred: {str(e)}")
+            raise
+
         finally:
-            wb.close()
-            app.quit()
+            # Ensure proper cleanup even if errors occur
+            try:
+                if wb:
+                    wb.close()
+                if app:
+                    app.quit()
+            except Exception as cleanup_error:
+                progress_print(f"Warning: Error during cleanup: {str(cleanup_error)}")
 
 
 
@@ -1375,7 +1435,7 @@ class ImportTool(QMainWindow):
             print(f'Target SD: {target_sd}')
 
             # adjusted_predictions = adjust_sd(predictions, target_sd, target_sum)
-            adjusted_predictions = rescale_with_bounds(predictions, target_sd=target_sd, top_boost=1.25)
+            adjusted_predictions = rescale_with_bounds(predictions, target_sd=target_sd, top_boost=1.50)
 
             final_predictions = self.apply_low_minutes_cap(adjusted_predictions, df)
             df['Predicted Ownership'] = final_predictions
