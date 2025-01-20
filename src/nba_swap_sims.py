@@ -563,7 +563,7 @@ class NBA_Swaptimizer_Sims:
         # Format the date into the string format the NBA API expects ('YYYY-MM-DD')
         # Late Swap Realtime
         live = self.live_games
-        live = False
+        #live = False
         if live:
             formatted_date = game_date.strftime('%Y-%m-%d')
         else:
@@ -1307,375 +1307,389 @@ class NBA_Swaptimizer_Sims:
         total_lineups = len(self.player_keys)
         total_entries = self.user_lineups
         group_size = total_lineups // total_entries
-        group_size_counter = 0
-        optimal_search = True
+
         self.entry_lineups = {pk: [] for pk in self.player_keys}
 
-        for pk in self.player_keys:
-            lineup_obj = self.contest_lineups[pk]
-            self.print(
-                f"Swaptimizing lineup {pk}"
-            )
+        # Outer loop for entries
+        for entry in range(total_entries):
+            solution_found_previous = True
+            # Inner loop for groups within each entry
+            for group in range(group_size):
+                # Calculate the current index
+                current_index = entry * group_size + group
+                pk = self.player_keys[current_index]
+                lineup_obj = self.contest_lineups[pk]
+                # If previous lineup in this group failed, skip optimization
+                if group > 0 and not solution_found_previous:
+                    # Just add the original lineup without optimization
+                    original_lineup = []
+                    for position in ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]:
+                        player_id = lineup_obj[position]
+                        for player, attributes in self.player_dict.items():
+                            if str(attributes["ID"]) == str(player_id):
+                                original_lineup.append((player, position, player_id))
 
-            # Initialize salary backoff parameters
-            original_min_salary = self.min_salary if self.min_salary is not None else 49000
-            temp_min_salary = original_min_salary
-            min_salary_floor = original_min_salary * 0.6  # 60% of original as floor
-            backoff_factor = 0.95
-            max_attempts = 4  # Maximum number of attempts with salary reduction
-            solution_found = False
+                    self.output_lineups.append((original_lineup, lineup_obj))
+                    self.print(f"Skipping optimization - Using original lineup: Entry: {entry + 1} Set: {group + 1}")
+                    continue
 
-            # Before setting the minimum projected points constraint, calculate the total projection
-            total_projection = 0
-            for position in ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]:
-                player_id = lineup_obj[position]
-                # Find the player in player_dict and add their projection
-                for player, attributes in self.player_dict.items():
-                    if str(attributes["ID"]) == str(player_id):
-                        total_projection += attributes["BayesianProjectedFpts"]
+                self.print(
+                    f"Swaptimizing lineup {pk}"
+                )
 
-            # Set the minimum projected points using the total projection
-            min_projected_points = total_projection * 1.98  # add to config - suggest lower values for contrarian / aggressive
-            print(f"Minimum required projection: {min_projected_points:.2f}")
 
-            while not solution_found and max_attempts > 0 and optimal_search:
+                # Initialize salary backoff parameters
+                original_min_salary = self.min_salary if self.min_salary is not None else 49000
+                temp_min_salary = original_min_salary
+                min_salary_floor = original_min_salary * 0.6  # 60% of original as floor
+                backoff_factor = 0.95
+                max_attempts = 4  # Maximum number of attempts with salary reduction
+                solution_found = False
 
-                problem = plp.LpProblem("NBA", plp.LpMaximize)
-                lp_variables = {}
-                for player, attributes in self.player_dict.items():
-                    player_id = attributes["ID"]
+                # Before setting the minimum projected points constraint, calculate the total projection
+                total_projection = 0
+                for position in ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]:
+                    player_id = lineup_obj[position]
+                    # Find the player in player_dict and add their projection
+                    for player, attributes in self.player_dict.items():
+                        if str(attributes["ID"]) == str(player_id):
+                            total_projection += attributes["BayesianProjectedFpts"]
 
-                    for pos in attributes["Position"]:
-                        lp_variables[(player, pos, player_id)] = plp.LpVariable(
-                            name=f"{player}_{pos}_{player_id}", cat=plp.LpBinary
-                        )
+                # Set the minimum projected points using the total projection
+                min_projected_points = total_projection * 1.01  # add to config - suggest lower values for contrarian / aggressive
+                print(f"Minimum required projection: {min_projected_points:.2f}")
 
-                # set the objective - maximize fpts & set randomness amount from config
-                if self.randomness_amount != 0:
-                    problem += (
-                        plp.lpSum(
-                            np.random.normal(
-                                self.player_dict[player]["Fpts"],
-                                (
-                                        self.player_dict[player]["StdDev"]
-                                        * self.randomness_amount
-                                        / 100
-                                ),
+                while not solution_found and max_attempts > 0:
+
+                    problem = plp.LpProblem("NBA", plp.LpMaximize)
+                    lp_variables = {}
+                    for player, attributes in self.player_dict.items():
+                        player_id = attributes["ID"]
+
+                        for pos in attributes["Position"]:
+                            lp_variables[(player, pos, player_id)] = plp.LpVariable(
+                                name=f"{player}_{pos}_{player_id}", cat=plp.LpBinary
                             )
-                            * lp_variables[(player, pos, attributes["ID"])]
-                            for player, attributes in self.player_dict.items()
-                            for pos in attributes["Position"]
-                        ),
-                        "Objective",
-                    )
-                else:
-                    problem += (
-                        plp.lpSum(
-                            self.player_dict[player]["Fpts"]
-                            * lp_variables[(player, pos, attributes["ID"])]
-                            for player, attributes in self.player_dict.items()
-                            for pos in attributes["Position"]
-                        ),
-                        "Objective",
-                    )
 
-                # Set the salary constraints
-                max_salary = 50000
-
-                # Maximum Salary Constraint
-                problem += (
-                    plp.lpSum(
-                        self.player_dict[player]["Salary"]
-                        * lp_variables[(player, pos, attributes["ID"])]
-                        for player, attributes in self.player_dict.items()
-                        for pos in attributes["Position"]
-                    )
-                    <= max_salary,
-                    "Max Salary",
-                )
-
-
-
-
-                # Minimum Projected Points Constraint
-                problem += (
-                    plp.lpSum(
-                        self.player_dict[player]["BayesianProjectedFpts"]  # Make sure "Fpts" matches your data column name
-                        * lp_variables[(player, pos, attributes["ID"])]
-                        for player, attributes in self.player_dict.items()
-                        for pos in attributes["Position"]
-                    )
-                    >= min_projected_points,
-                    "Min Projected Points",
-                )
-
-
-
-                # Minimum Salary Constraint (now uses temp_min_salary)
-                problem += (
-                    plp.lpSum(
-                        self.player_dict[player]["Salary"]
-                        * lp_variables[(player, pos, attributes["ID"])]
-                        for player, attributes in self.player_dict.items()
-                        for pos in attributes["Position"]
-                    )
-                    >= temp_min_salary,
-                    "Min Salary",
-                )
-
-                # Must not play all 8 or 9 players from the same team (8 if dk, 9 if fd)
-                for matchup in self.matchup_list:
-                    problem += (
-                        plp.lpSum(
-                            lp_variables[(player, pos, attributes["ID"])]
-                            for player, attributes in self.player_dict.items()
-                            for pos in attributes["Position"]
-                            if attributes["Matchup"] == matchup
+                    # set the objective - maximize fpts & set randomness amount from config
+                    if self.randomness_amount != 0:
+                        problem += (
+                            plp.lpSum(
+                                np.random.normal(
+                                    self.player_dict[player]["Fpts"],
+                                    (
+                                            self.player_dict[player]["StdDev"]
+                                            * self.randomness_amount
+                                            / 100
+                                    ),
+                                )
+                                * lp_variables[(player, pos, attributes["ID"])]
+                                for player, attributes in self.player_dict.items()
+                                for pos in attributes["Position"]
+                            ),
+                            "Objective",
                         )
-                        <= 8
+                    else:
+                        problem += (
+                            plp.lpSum(
+                                self.player_dict[player]["Fpts"]
+                                * lp_variables[(player, pos, attributes["ID"])]
+                                for player, attributes in self.player_dict.items()
+                                for pos in attributes["Position"]
+                            ),
+                            "Objective",
+                        )
+
+                    # Set the salary constraints
+                    max_salary = 50000
+
+                    # Maximum Salary Constraint
+                    problem += (
+                        plp.lpSum(
+                            self.player_dict[player]["Salary"]
+                            * lp_variables[(player, pos, attributes["ID"])]
+                            for player, attributes in self.player_dict.items()
+                            for pos in attributes["Position"]
+                        )
+                        <= max_salary,
+                        "Max Salary",
                     )
 
-                # Address limit rules if any
-                for limit, groups in self.at_least.items():
-                    for group in groups:
+
+
+
+                    # Minimum Projected Points Constraint
+                    problem += (
+                        plp.lpSum(
+                            self.player_dict[player]["BayesianProjectedFpts"]  # Make sure "Fpts" matches your data column name
+                            * lp_variables[(player, pos, attributes["ID"])]
+                            for player, attributes in self.player_dict.items()
+                            for pos in attributes["Position"]
+                        )
+                        >= min_projected_points,
+                        "Min Projected Points",
+                    )
+
+
+
+                    # Minimum Salary Constraint (now uses temp_min_salary)
+                    problem += (
+                        plp.lpSum(
+                            self.player_dict[player]["Salary"]
+                            * lp_variables[(player, pos, attributes["ID"])]
+                            for player, attributes in self.player_dict.items()
+                            for pos in attributes["Position"]
+                        )
+                        >= temp_min_salary,
+                        "Min Salary",
+                    )
+
+                    # Must not play all 8 or 9 players from the same team (8 if dk, 9 if fd)
+                    for matchup in self.matchup_list:
                         problem += (
                             plp.lpSum(
                                 lp_variables[(player, pos, attributes["ID"])]
                                 for player, attributes in self.player_dict.items()
                                 for pos in attributes["Position"]
-                                if attributes["Name"] in group
+                                if attributes["Matchup"] == matchup
                             )
-                            >= int(limit),
-                            f"At least {limit} players {group}",
+                            <= 8
                         )
 
-                for limit, groups in self.at_most.items():
-                    for group in groups:
+                    # Address limit rules if any
+                    for limit, groups in self.at_least.items():
+                        for group in groups:
+                            problem += (
+                                plp.lpSum(
+                                    lp_variables[(player, pos, attributes["ID"])]
+                                    for player, attributes in self.player_dict.items()
+                                    for pos in attributes["Position"]
+                                    if attributes["Name"] in group
+                                )
+                                >= int(limit),
+                                f"At least {limit} players {group}",
+                            )
+
+                    for limit, groups in self.at_most.items():
+                        for group in groups:
+                            problem += (
+                                plp.lpSum(
+                                    lp_variables[(player, pos, attributes["ID"])]
+                                    for player, attributes in self.player_dict.items()
+                                    for pos in attributes["Position"]
+                                    if attributes["Name"] in group
+                                )
+                                <= int(limit),
+                                f"At most {limit} players {group}",
+                            )
+
+                    for matchup, limit in self.matchup_limits.items():
                         problem += (
                             plp.lpSum(
                                 lp_variables[(player, pos, attributes["ID"])]
                                 for player, attributes in self.player_dict.items()
                                 for pos in attributes["Position"]
-                                if attributes["Name"] in group
+                                if attributes["Matchup"] == matchup
                             )
                             <= int(limit),
-                            f"At most {limit} players {group}",
+                            "At most {} players from {}".format(limit, matchup),
                         )
 
-                for matchup, limit in self.matchup_limits.items():
-                    problem += (
-                        plp.lpSum(
-                            lp_variables[(player, pos, attributes["ID"])]
-                            for player, attributes in self.player_dict.items()
-                            for pos in attributes["Position"]
-                            if attributes["Matchup"] == matchup
-                        )
-                        <= int(limit),
-                        "At most {} players from {}".format(limit, matchup),
-                    )
-
-                for matchup, limit in self.matchup_at_least.items():
-                    problem += (
-                        plp.lpSum(
-                            lp_variables[(player, pos, attributes["ID"])]
-                            for player, attributes in self.player_dict.items()
-                            for pos in attributes["Position"]
-                            if attributes["Matchup"] == matchup
-                        )
-                        >= int(limit),
-                        "At least {} players from {}".format(limit, matchup),
-                    )
-
-                # Address team limits
-                for teamIdent, limit in self.team_limits.items():
-                    problem += plp.lpSum(
-                        lp_variables[self.player_dict[(player, pos_str, team)]["ID"]]
-                        for (player, pos_str, team) in self.player_dict
-                        if team == teamIdent
-                    ) <= int(limit), "At most {} players from {}".format(limit, teamIdent)
-
-                if self.global_team_limit is not None:
-                    for teamIdent in self.team_list:
+                    for matchup, limit in self.matchup_at_least.items():
                         problem += (
                             plp.lpSum(
                                 lp_variables[(player, pos, attributes["ID"])]
                                 for player, attributes in self.player_dict.items()
                                 for pos in attributes["Position"]
-                                if attributes["Team"] == teamIdent
+                                if attributes["Matchup"] == matchup
                             )
-                            <= int(self.global_team_limit),
-                            f"Global team limit - at most {self.global_team_limit} players from {teamIdent}",
+                            >= int(limit),
+                            "At least {} players from {}".format(limit, matchup),
                         )
 
-                # Force players to be used if they are locked
-                POSITIONS = ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]
-                FORCE_PLAYERS = []
+                    # Address team limits
+                    for teamIdent, limit in self.team_limits.items():
+                        problem += plp.lpSum(
+                            lp_variables[self.player_dict[(player, pos_str, team)]["ID"]]
+                            for (player, pos_str, team) in self.player_dict
+                            if team == teamIdent
+                        ) <= int(limit), "At most {} players from {}".format(limit, teamIdent)
 
-                # Identify forced players
-                for position in POSITIONS:
-                    if lineup_obj[position + "_is_locked"]:
-                        player_id = lineup_obj[position]
-                        for p_tuple, attributes in self.player_dict.items():
-                            if str(attributes["ID"]) == str(player_id):
-                                FORCE_PLAYERS.append((p_tuple, position, attributes["ID"]))
-
-                # Create a set of forced player IDs for quick lookup
-                forced_player_ids = {player_id for _, _, player_id in FORCE_PLAYERS}
-
-                # Add constraints to force players
-                for forced_player in FORCE_PLAYERS:
-                    problem += (
-                        lp_variables[forced_player] == 1,
-                        f"Force player {forced_player}",
-                    )
-
-                # Exclude players who are locked AND not forced
-                for player, attributes in self.player_dict.items():
-                    player_id = attributes["ID"]
-                    player_game_locked = attributes["GameLocked"]
-
-                    for pos in attributes["Position"]:
-                        variable_key = (player, pos, player_id)
-
-                        if player_game_locked and player_id not in forced_player_ids:
+                    if self.global_team_limit is not None:
+                        for teamIdent in self.team_list:
                             problem += (
-                                lp_variables[variable_key] == 0,
-                                f"Exclude locked player {player} at {pos}",
+                                plp.lpSum(
+                                    lp_variables[(player, pos, attributes["ID"])]
+                                    for player, attributes in self.player_dict.items()
+                                    for pos in attributes["Position"]
+                                    if attributes["Team"] == teamIdent
+                                )
+                                <= int(self.global_team_limit),
+                                f"Global team limit - at most {self.global_team_limit} players from {teamIdent}",
                             )
 
-                # Constraints for specific positions
-                for pos in ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]:
-                    problem += (
-                        plp.lpSum(
-                            lp_variables[(player, pos, attributes["ID"])]
-                            for player, attributes in self.player_dict.items()
-                            if pos in attributes["Position"]
-                        )
-                        == 1,
-                        f"Must have at 1 {pos}",
-                    )
+                    # Force players to be used if they are locked
+                    POSITIONS = ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]
+                    FORCE_PLAYERS = []
 
-                # Constraint to ensure each player is only selected once
-                for player in self.player_dict:
-                    player_id = self.player_dict[player]["ID"]
-                    problem += (
-                        plp.lpSum(
-                            lp_variables[(player, pos, player_id)]
-                            for pos in self.player_dict[player]["Position"]
-                        )
-                        <= 1,
-                        f"Can only select {player} once",
-                    )
+                    # Identify forced players
+                    for position in POSITIONS:
+                        if lineup_obj[position + "_is_locked"]:
+                            player_id = lineup_obj[position]
+                            for p_tuple, attributes in self.player_dict.items():
+                                if str(attributes["ID"]) == str(player_id):
+                                    FORCE_PLAYERS.append((p_tuple, position, attributes["ID"]))
 
-                # Replace the lineup uniqueness constraint section with this:
-                i = 0
-                if self.output_lineups:  # Only add these constraints if we have previous lineups
-                    for lineup, _ in self.output_lineups:
-                        player_ids = [tpl[2] for tpl in lineup]
-                        player_keys_to_exclude = []
-                        for key, attr in self.player_dict.items():
-                            if attr["ID"] in player_ids:
-                                for pos in attr["Position"]:
-                                    player_keys_to_exclude.append((key, pos, attr["ID"]))
+                    # Create a set of forced player IDs for quick lookup
+                    forced_player_ids = {player_id for _, _, player_id in FORCE_PLAYERS}
+
+                    # Add constraints to force players
+                    for forced_player in FORCE_PLAYERS:
                         problem += (
-                            plp.lpSum(lp_variables[x] for x in player_keys_to_exclude)
-                            <= len(lineup) - self.num_uniques,
-                            f"Lineup {i}",
+                            lp_variables[forced_player] == 1,
+                            f"Force player {forced_player}",
                         )
-                        i += 1
+
+                    # Exclude players who are locked AND not forced
+                    for player, attributes in self.player_dict.items():
+                        player_id = attributes["ID"]
+                        player_game_locked = attributes["GameLocked"]
+
+                        for pos in attributes["Position"]:
+                            variable_key = (player, pos, player_id)
+
+                            if player_game_locked and player_id not in forced_player_ids:
+                                problem += (
+                                    lp_variables[variable_key] == 0,
+                                    f"Exclude locked player {player} at {pos}",
+                                )
+
+                    # Constraints for specific positions
+                    for pos in ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]:
+                        problem += (
+                            plp.lpSum(
+                                lp_variables[(player, pos, attributes["ID"])]
+                                for player, attributes in self.player_dict.items()
+                                if pos in attributes["Position"]
+                            )
+                            == 1,
+                            f"Must have at 1 {pos}",
+                        )
+
+                    # Constraint to ensure each player is only selected once
+                    for player in self.player_dict:
+                        player_id = self.player_dict[player]["ID"]
+                        problem += (
+                            plp.lpSum(
+                                lp_variables[(player, pos, player_id)]
+                                for pos in self.player_dict[player]["Position"]
+                            )
+                            <= 1,
+                            f"Can only select {player} once",
+                        )
+
+                    # Replace the lineup uniqueness constraint section with this:
+                    i = 0
+                    if self.output_lineups:  # Only add these constraints if we have previous lineups
+                        for lineup, _ in self.output_lineups:
+                            player_ids = [tpl[2] for tpl in lineup]
+                            player_keys_to_exclude = []
+                            for key, attr in self.player_dict.items():
+                                if attr["ID"] in player_ids:
+                                    for pos in attr["Position"]:
+                                        player_keys_to_exclude.append((key, pos, attr["ID"]))
+                            problem += (
+                                plp.lpSum(lp_variables[x] for x in player_keys_to_exclude)
+                                <= len(lineup) - self.num_uniques,
+                                f"Lineup {i}",
+                            )
+                            i += 1
 
 
+                    try:
+                        problem.solve(plp.PULP_CBC_CMD(msg=0))
+                        if plp.LpStatus[problem.status] == "Optimal":
+                            # Solution found
+                            selected_vars = [
+                                player for player in lp_variables if lp_variables[player].varValue != 0
+                            ]
+                            for player in selected_vars:
+                                lineup_obj[player[1]] = player[2]
+                            self.output_lineups.append((selected_vars, lineup_obj))
+                            count = len(self.output_lineups)
+                            print(f"Swapped lineup : {count} (min salary: ${temp_min_salary:,})")
+                            solution_found = True
+                        else:
+                            # No solution at this salary level, try lower
+                            temp_min_salary = temp_min_salary * backoff_factor
+                            max_attempts -= 1
+                            #print(f"No solution found. Reducing minimum salary to ${temp_min_salary:,.0f}")
 
-                try:
-                    problem.solve(plp.PULP_CBC_CMD(msg=0))
-                    if plp.LpStatus[problem.status] == "Optimal":
-                        # Solution found
-                        selected_vars = [
-                            player for player in lp_variables if lp_variables[player].varValue != 0
-                        ]
-                        for player in selected_vars:
-                            lineup_obj[player[1]] = player[2]
-                        self.output_lineups.append((selected_vars, lineup_obj))
-                        count = len(self.output_lineups)
-                        print(f"Swapped lineup : {count} (min salary: ${temp_min_salary:,})")
-                        solution_found = True
-                    else:
-                        # No solution at this salary level, try lower
+                            if temp_min_salary < min_salary_floor:
+                                print(f"Hit minimum salary floor (${min_salary_floor:,}). Giving up on this lineup.")
+                                break
+
+                    except plp.PulpSolverError:
+                        print(f"Solver error at minimum salary ${temp_min_salary:,}")
                         temp_min_salary = temp_min_salary * backoff_factor
                         max_attempts -= 1
-                        #print(f"No solution found. Reducing minimum salary to ${temp_min_salary:,.0f}")
-
                         if temp_min_salary < min_salary_floor:
                             print(f"Hit minimum salary floor (${min_salary_floor:,}). Giving up on this lineup.")
                             break
 
-                except plp.PulpSolverError:
-                    print(f"Solver error at minimum salary ${temp_min_salary:,}")
-                    temp_min_salary = temp_min_salary * backoff_factor
-                    max_attempts -= 1
-                    if temp_min_salary < min_salary_floor:
-                        print(f"Hit minimum salary floor (${min_salary_floor:,}). Giving up on this lineup.")
-                        break
 
-            group_size_counter += 1
-            print(group_size)
-            if group_size_counter > group_size:
-                optimal_search = True
-                group_size_counter = 0
-
-            if solution_found:
-                # Assuming this is in your results processing section where you're creating the optimal lineup
-                optimal_lineup = []
-                optimal_search = True
-                total_salary = 0
-                total_points = 0  # Initialize total points counter
-                for player, attributes in self.player_dict.items():
-                    for pos in attributes["Position"]:
-                        if (
-                                lp_variables[(player, pos, attributes["ID"])].varValue == 1
-                        ):  # If player is selected
-                            optimal_lineup.append(
-                                {
-                                    "Position": pos,
-                                    "Name": player,
-                                    "Salary": attributes["Salary"],
-                                    "BayesianProjectedFpts": attributes["BayesianProjectedFpts"],  # Make sure this matches your column name
-                                    "ID": attributes["ID"],
-                                }
-                            )
-                            total_salary += attributes["Salary"]
-                            total_points += attributes["BayesianProjectedFpts"]  # Add player's points to total
-
-                # Print the results
-
-
-                self.print(f"\nOptimal Lineup: {i+1}")
-                self.print(f"\nGroup Lineup: {group_size_counter+ 1}")
-                for player in optimal_lineup:
-                    print(
-                        f"{player['Position']}: {player['Name']} (Salary: ${player['Salary']})"
-                    )
-                self.print(f"\nTotal Salary: ${total_salary}")
-                self.print(f"Total Projected Points: {total_points:.2f}")  # Print total points with 2 decimal places
-            if not solution_found:
-                optimal_search = False
-                print(f"Failed to find valid lineup for {pk} after all attempts")
-                # Create a tuple with the original lineup structure
-                original_lineup = []
-                for position in ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]:
-                    player_id = lineup_obj[position]
-                    # Find the corresponding player tuple
+                solution_found_previous = solution_found
+                if solution_found:
+                    # Assuming this is in your results processing section where you're creating the optimal lineup
+                    optimal_lineup = []
+                    total_salary = 0
+                    total_points = 0  # Initialize total points counter
                     for player, attributes in self.player_dict.items():
-                        if str(attributes["ID"]) == str(player_id):
-                            original_lineup.append((player, position, player_id))
+                        for pos in attributes["Position"]:
+                            if (
+                                    lp_variables[(player, pos, attributes["ID"])].varValue == 1
+                            ):  # If player is selected
+                                optimal_lineup.append(
+                                    {
+                                        "Position": pos,
+                                        "Name": player,
+                                        "Salary": attributes["Salary"],
+                                        "BayesianProjectedFpts": attributes["BayesianProjectedFpts"],  # Make sure this matches your column name
+                                        "ID": attributes["ID"],
+                                    }
+                                )
+                                total_salary += attributes["Salary"]
+                                total_points += attributes["BayesianProjectedFpts"]  # Add player's points to total
 
-                # Add the original lineup to output_lineups
-                self.output_lineups.append((original_lineup, lineup_obj))
-                self.print(f"Retained original lineup: {i+1} ")
+                    # Print the results
 
-                if len(self.output_lineups) == 0:
-                    print("No valid lineups found at all - stopping process")
-                    break
+                    self.print(f"\nOptimal Lineup: Entry: {entry+1} Set: {group+1}")
+
+                    # for player in optimal_lineup:
+                    #     print(
+                    #         f"{player['Position']}: {player['Name']} (Salary: ${player['Salary']})"
+                    #     )
+                    self.print(f"\nTotal Salary: ${total_salary}")
+                    self.print(f"Total Projected Points: {total_points:.2f}")  # Print total points with 2 decimal places
+                if not solution_found:
+
+                    print(f"Failed to find valid lineup for {pk} after all attempts")
+                    # Create a tuple with the original lineup structure
+                    original_lineup = []
+                    for position in ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]:
+                        player_id = lineup_obj[position]
+                        # Find the corresponding player tuple
+                        for player, attributes in self.player_dict.items():
+                            if str(attributes["ID"]) == str(player_id):
+                                original_lineup.append((player, position, player_id))
+
+                    # Add the original lineup to output_lineups
+                    self.output_lineups.append((original_lineup, lineup_obj))
+                    self.print(f"Retained original lineup: Entry: {entry+1} Set: {group+1} ")
+
+                    if len(self.output_lineups) == 0:
+                        print("No valid lineups found at all - stopping process")
+                        break
         self.print(f"Completed lineup swaps in {time.time() - start_time:.1f} seconds")
 
     def convert_player_dict_to_pid_keys(self):
@@ -3056,7 +3070,7 @@ class NBA_Swaptimizer_Sims:
                             # Analyze exposure for all sets
                             self.analyze_player_exposure(late_swap_files, log_print)
 
-                            log_print("Late swap processing and exposure analysis complete")
+                            #log_print("Late swap processing and exposure analysis complete")
 
                         except Exception as e:
                             log_print(f"Error in late swap processing: {str(e)}")
@@ -3077,8 +3091,8 @@ class NBA_Swaptimizer_Sims:
         """Analyze player exposure for each late swap set."""
         summary_data = []
 
-        log_print("\nPlayer Exposure Analysis")
-        log_print("=" * 50)
+        #og_print("\nPlayer Exposure Analysis")
+        #log_print("=" * 50)
 
         for file_num, file_path in enumerate(file_paths):
             set_number = file_num + 1
@@ -3132,17 +3146,17 @@ class NBA_Swaptimizer_Sims:
             summary_data.append(exposure_data)
 
             # Console output for each set
-            log_print(f"\nSet {set_number} Analysis:")
-            log_print(f"Total Entries: {total_entries}")
-            log_print("Top Players by Exposure:")
-            log_print("{:<30} {:<10} {:<10}".format("Player", "Count", "Exposure"))
-            log_print("-" * 50)
-            for player in sorted_players[:10]:  # Show top 10
-                log_print("{:<30} {:<10} {:<10.2f}%".format(
-                    player[0],
-                    player_counts[player[0]],
-                    player[1]
-                ))
+            # log_print(f"\nSet {set_number} Analysis:")
+            # log_print(f"Total Entries: {total_entries}")
+            # log_print("Top Players by Exposure:")
+            # log_print("{:<30} {:<10} {:<10}".format("Player", "Count", "Exposure"))
+            # log_print("-" * 50)
+            # for player in sorted_players[:10]:  # Show top 10
+            #     log_print("{:<30} {:<10} {:<10.2f}%".format(
+            #         player[0],
+            #         player_counts[player[0]],
+            #         player[1]
+            #     ))
 
         # Write complete summary to CSV
         summary_path = os.path.join(
@@ -3167,7 +3181,7 @@ class NBA_Swaptimizer_Sims:
                 writer.writerow(['Total Entries:', data['Total Entries']])
                 writer.writerow([])
 
-        log_print(f"\nComplete exposure summary written to {summary_path}")
+        #log_print(f"\nComplete exposure summary written to {summary_path}")
 
 
 
@@ -3264,7 +3278,7 @@ class NBA_Swaptimizer_Sims:
             if not player_found:
                 print(f"Warning: Player ID {Id} not found in player dictionary")
                 return None
-        print("==================================")
+        #print("==================================")
         return lu_names, lu_teams, own_p, total_salary, total_projection, total_variance
 
     def format_lineup_string(self, lu_names, x, fpts_p, ceil_p, total_salary,

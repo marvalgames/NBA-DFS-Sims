@@ -158,6 +158,7 @@ class SimulationThread(QThread):
                 print(message)  # Keep console output
 
             sim.print = progress_print
+            sim.initialiize()
 
             self.progress.emit("Generating field lineups...")
             sim.generate_field_lineups()

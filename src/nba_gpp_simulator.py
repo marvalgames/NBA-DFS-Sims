@@ -24,6 +24,7 @@ def salary_boost(salary, max_salary):
 
 
 class NBA_GPP_Simulator:
+    contest_path = None
     config = None
     player_dict = {}
     field_lineups = {}
@@ -80,9 +81,18 @@ class NBA_GPP_Simulator:
         self.projection_min = int(projection_min)
         self.site = site
         self.use_lineup_input = use_lineup_input
+        self.contest_path = contest_path
+        self.roster_construction = ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]
+        self.salary = 50000
+        self.num_iterations = int(num_iterations)
+        self.min_lineup_salary = int(min_lineup_salary)
+
+
+
+
+    def initialiize(self):
         self.load_config()
         self.load_rules()
-
 
         projection_path = os.path.join(
             os.path.dirname(__file__),
@@ -99,26 +109,23 @@ class NBA_GPP_Simulator:
 
         self.load_player_ids(player_path)
 
-        self.roster_construction = ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]
-        self.salary = 50000
-
         # Use the provided contest_path instead of hardcoding it
-        if contest_path and os.path.exists(contest_path):
-            self.load_contest_data(contest_path)
-            print(f"Contest data loaded from: {contest_path}")
+        if self.contest_path and os.path.exists(self.contest_path):
+            self.load_contest_data(self.contest_path)
+            print(f"Contest data loaded from: {self.contest_path}")
         else:
             print("Warning: Contest path not provided or file does not exist")
 
-        self.load_contest_data(contest_path)
+        self.load_contest_data(self.contest_path)
         print(f"Contest payout structure loaded.")
 
         self.assertPlayerDict()
-        self.num_iterations = int(num_iterations)
-        self.min_lineup_salary = int(min_lineup_salary)
+
         self.get_optimal()
         if self.use_lineup_input:
             self.load_lineups_from_file()
         self.load_correlation_rules()
+
 
     # make column lookups on datafiles case-insensitive
     def lower_first(self, iterator):
@@ -635,6 +642,10 @@ class NBA_GPP_Simulator:
                 self.teams_dict[team].append(
                     player_data
                 )  # Add player data to their respective team
+        # After all the player processing, at the end of the function
+        for team, players in self.teams_dict.items():
+            total_minutes = sum(float(player['Minutes']) for player in players if player['Minutes'])
+            self.print(f"Team: {team}, Total Minutes: {total_minutes}")
 
     def extract_id(self, cell_value):
         if "(" in cell_value and ")" in cell_value:
