@@ -15,6 +15,7 @@ import requests
 import numpy as np
 import pulp as plp
 import pytz
+from PyQt6.QtCore import QMetaObject, Qt, Q_ARG, QThread
 from numba import jit
 from scipy.stats import multivariate_normal
 import zipfile
@@ -69,17 +70,18 @@ class NBA_Swaptimizer_Sims:
     teams_dict = defaultdict(list)
     missing_ids = {}
     lineup_sets = 5
+    contest_path = None
 
-    def print(self, *args, **kwargs):
-        """Override to allow progress capturing"""
-        print(*args, **kwargs)  # Default to regular print unless overridden
+    # def print(self, *args, **kwargs):
+    #     """Override to allow progress capturing"""
+    #     print(*args, **kwargs)  # Default to regular print unless overridden
 
 
     def __init__(self, num_iterations, site=None, num_uniques=1, num_lineup_sets=5, min_salary=49000, projection_minimum=16,
                  contest_path=None, is_subprocess=False):
         self.is_subprocess = is_subprocess
         self.live_games = True
-        self.entry_lineups = None
+        self.entry_lineups = []  # Initialize as empty list instead of None
         self.user_entries = 6
         self.lineup_sets = num_lineup_sets
         self.site = site
@@ -89,28 +91,32 @@ class NBA_Swaptimizer_Sims:
         self.projection_minimum = int(projection_minimum)
         self.roster_construction = ['PG', 'SG', 'SF', 'PF', 'C', 'G', 'F', 'UTIL']
         self.max_salary = 50000
+        self.contest_path = contest_path
+        self.config = {}  # Initialize config dictionary
+
+    def initialize(self):
         self.load_config()
         self.load_rules()
         self.get_live_scores()
         projection_path = os.path.join(
             os.path.dirname(__file__),
-            "../{}_data/{}".format(self.site, self.config["projection_path"]),
+            "../dk_data/{}".format(self.config["projection_path"]),
         )
         self.load_projections(projection_path)
 
         player_path = os.path.join(
             os.path.dirname(__file__),
-            "../{}_data/{}".format(self.site, self.config["player_path"]),
+            "../dk_data/{}".format(self.config["player_path"]),
         )
         print('player path: ', player_path)
         self.load_player_ids(player_path)
         self.get_optimal()
 
         # Use provided contest_path if available
-        print(contest_path)
-        if contest_path and os.path.exists(contest_path):
-            self.load_contest_data(contest_path)
-            self.print(f"Contest data loaded from: {contest_path}")
+        print(self.contest_path)
+        if self.contest_path and os.path.exists(self.contest_path):
+            self.load_contest_data(self.contest_path)
+            self.print(f"Contest data loaded from: {self.contest_path}")
         else:
             # Fallback to default path
             default_contest_path = os.path.join(
@@ -563,7 +569,7 @@ class NBA_Swaptimizer_Sims:
         # Format the date into the string format the NBA API expects ('YYYY-MM-DD')
         # Late Swap Realtime
         live = self.live_games
-        #live = False
+        live = False
         if live:
             formatted_date = game_date.strftime('%Y-%m-%d')
         else:
@@ -1230,6 +1236,9 @@ class NBA_Swaptimizer_Sims:
                     player_data
                 )  # Add player data to their respective team
 
+            for team, players in self.teams_dict.items():
+                total_minutes = sum(float(player['Minutes']) for player in players if player['Minutes'])
+                self.print(f"Team: {team}, Total Minutes: {total_minutes}")
 
 
     def assign_unique_keys_to_contest_lineups(self):
@@ -1330,7 +1339,7 @@ class NBA_Swaptimizer_Sims:
                                 original_lineup.append((player, position, player_id))
 
                     self.output_lineups.append((original_lineup, lineup_obj))
-                    self.print(f"Skipping optimization - Using original lineup: Entry: {entry + 1} Set: {group + 1}")
+                    #self.print(f"Skipping optimization - Using original lineup: Entry: {entry + 1} Set: {group + 1}")
                     continue
 
                 self.print(
@@ -1356,7 +1365,7 @@ class NBA_Swaptimizer_Sims:
                             total_projection += attributes["BayesianProjectedFpts"]
 
                 # Set the minimum projected points using the total projection
-                min_projected_points = total_projection * 0.98  # add to config - suggest lower values for contrarian / aggressive
+                min_projected_points = total_projection * 1.05  # add to config - suggest lower values for contrarian / aggressive
                 print(f"Minimum required projection: {min_projected_points:.2f}")
 
                 while not solution_found and max_attempts > 0:
@@ -3008,7 +3017,7 @@ class NBA_Swaptimizer_Sims:
             chunk_size = 5
             for chunk_start in range(0, num_sets, chunk_size):
                 chunk_end = min(chunk_start + chunk_size, num_sets)
-                log_print(f"\nProcessing sets {chunk_start + 1} to {chunk_end}")
+                #log_print(f"\nProcessing sets {chunk_start + 1} to {chunk_end}")
 
                 for set_index in range(chunk_start, chunk_end):
                     try:
@@ -3243,7 +3252,24 @@ class NBA_Swaptimizer_Sims:
             print(f"Warning: Error processing lineup {entry}: {str(e)}")
             return None
 
+    def update_simulation_progress(self, message):
+        # Print to console
+        print(message)
 
+        # Add a small delay to prevent GUI flooding
+        QThread.msleep(1)  # 1ms delay
+
+        # Update GUI using signals/slots for thread safety
+        if hasattr(self, 'output_browser') and self.output_browser is not None:
+            # Use QMetaObject.invokeMethod for thread-safe GUI updates
+            QMetaObject.invokeMethod(self.output_browser, "append",
+                                     Qt.ConnectionType.QueuedConnection,
+                                     Q_ARG(str, message))
+
+            # Scroll to bottom safely
+            QMetaObject.invokeMethod(self.output_browser, "verticalScrollBar",
+                                     Qt.ConnectionType.QueuedConnection,
+                                     lambda sb: sb.setValue(sb.maximum()))
 
     def get_players_info(self, lineup):
         """Get detailed player information for a lineup"""

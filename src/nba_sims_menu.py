@@ -13,13 +13,8 @@ from PyQt6.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit, QCheckBox, 
 import nba_gpp_simulator
 import nba_swap_sims
 from nba_optimizer import NBA_Optimizer
-
-# In your MainApp class, add these imports at the top:
 from PyQt6.QtCore import QThread, pyqtSignal
-
 from utils import resource_path  # Local import from same directory
-
-
 
 def resource_path(relative_path):
     """Get absolute path to resource, works for dev and for PyInstaller"""
@@ -99,6 +94,8 @@ class SwapSimThread(QThread):
             # Replace the print function in your simulation instance
             start_time = time.time()
             sim_to.print = progress_print
+
+            sim_to.initialize()
 
             # Run simulation steps
             self.progress.emit("Starting swaptimization process...")
@@ -276,24 +273,18 @@ class NbaSimsMainMenu(QMainWindow):
                     }
                 """)
 
-
-
         # Get the current file's directory (src)
         current_dir = os.path.dirname(os.path.abspath(__file__))
         project_root = os.path.dirname(current_dir)
         os.chdir(project_root)
         print("Current working directory init:", os.getcwd())
 
-
         # Get the directory of the current script and its parent
         self.script_dir = os.path.dirname(os.path.abspath(__file__))
 
         self.parent_dir = os.path.dirname(self.script_dir)
-        #self.config_file = os.path.join(self.parent_dir, "config.json")
-        #self.config = self.load_config(self.config_file)
         config_path = resource_path(r'config.json')
         self.config = self.load_config(config_path)
-
 
         # Default Parameters
         self.site = "dk"
@@ -514,6 +505,12 @@ class NbaSimsMainMenu(QMainWindow):
             QMessageBox.critical(self, "Error", f"An error occurred: {e}")
 
     def run_sim(self):
+        self.run_simulation("standard")
+
+    def run_swap_sim(self):
+        self.run_simulation("swap")
+
+    def run_simulation(self, sim_type="standard"):
         try:
             self.update_parameters()
 
@@ -523,38 +520,72 @@ class NbaSimsMainMenu(QMainWindow):
                 QMessageBox.warning(self, "Warning", "Please select a CSV file first!")
                 return
 
-            # Create progress dialog with fixed size
-            self.progress_dialog = QProgressDialog("Running simulation...", None, 0, 0, self)
-            self.progress_dialog.setWindowModality(Qt.WindowModality.WindowModal)
-            self.progress_dialog.setMinimumDuration(0)
+            # Create progress dialog with a text browser
+            self.progress_dialog = QProgressDialog(self)
+            self.progress_dialog.setWindowTitle(f"{'Swap' if sim_type == 'swap' else 'Standard'} Simulation")
+            self.progress_dialog.setMinimum(0)
+            self.progress_dialog.setMaximum(0)
             self.progress_dialog.setCancelButton(None)
-            self.progress_dialog.setAutoClose(False)
-            self.progress_dialog.setAutoReset(False)
-            self.progress_dialog.setWindowTitle('Running')
+            self.progress_dialog.setMinimumWidth(800)
+            self.progress_dialog.setMinimumHeight(400)
 
-            # Set fixed size for the dialog
-            self.progress_dialog.setFixedWidth(400)  # Adjust width as needed
-            self.progress_dialog.setMinimumHeight(100)  # Minimum height
+            # Add a close button
+            self.close_button = QPushButton("Close")
+            self.close_button.clicked.connect(self.progress_dialog.close)
+            self.close_button.setFixedWidth(200)
+            self.close_button.hide()
 
-            # Make the label inside the dialog wrap text
-            label = self.progress_dialog.findChild(QLabel)
-            if label:
-                label.setWordWrap(True)
-                label.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
+            # Create text browser for output
+            self.output_browser = QTextBrowser()
+            self.output_browser.setMinimumWidth(780)
+            self.output_browser.setMinimumHeight(340)
+            self.output_browser.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
 
+            # Create layout
+            layout = QVBoxLayout()
+            layout.addWidget(self.output_browser)
 
-            # Prepare simulation parameters
-            sim_params = (self.site, self.field_size, self.num_iterations,
-                          self.use_contest_data, self.use_file_upload,
-                          self.min_salary, self.projection_minimum,
-                          self.num_lineups,
-                          csv_path,
-                          )
+            # Create button layout
+            button_layout = QHBoxLayout()
+            button_layout.addStretch()
+            button_layout.addWidget(self.close_button)
+            button_layout.addStretch()
 
-            # Create and setup simulation thread
-            self.sim_thread = SimulationThread(sim_params)
-            self.sim_thread.progress.connect(self.update_progress)
-            self.sim_thread.finished.connect(self.simulation_finished)
+            layout.addLayout(button_layout)
+            layout.setSpacing(10)
+            layout.setContentsMargins(10, 10, 10, 10)
+
+            # Set layout to progress dialog
+            content = self.progress_dialog.findChild(QWidget)
+            if content:
+                content.setLayout(layout)
+
+            if sim_type == "swap":
+                # Create swap simulation thread
+                self.sim_thread = SwapSimThread(
+                    self.num_iterations,
+                    self.site,
+                    self.num_uniques,
+                    self.num_lineups,
+                    self.min_salary,
+                    self.projection_minimum,
+                    csv_path
+                )
+            else:
+                # Create standard simulation thread
+                sim_params = (
+                    self.site, self.field_size, self.num_iterations,
+                    self.use_contest_data, self.use_file_upload,
+                    self.min_salary, self.projection_minimum,
+                    self.num_lineups,
+                    csv_path,
+                )
+                self.sim_thread = SimulationThread(sim_params)
+
+            # Connect signals
+            self.sim_thread.progress.connect(self.update_simulation_progress)
+            self.sim_thread.finished.connect(lambda success, message:
+                                             self.simulation_finished(success, message, sim_type))
 
             # Start simulation
             self.sim_thread.start()
@@ -563,99 +594,7 @@ class NbaSimsMainMenu(QMainWindow):
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {e}")
 
-    def update_progress(self, message):
-        try:
-            # Update progress text
-            self.progress_dialog.setLabelText(message)
-
-            # Process events to keep GUI responsive
-            QApplication.processEvents()
-
-        except Exception as e:
-            print(f"Error updating progress: {e}")
-
-
-    def simulation_finished(self, success, message):
-        self.progress_dialog.close()
-        if success:
-            QMessageBox.information(self, "Success", message)
-        else:
-            QMessageBox.critical(self, "Error", f"An error occurred: {message}")
-
-
-    def run_swap_sim(self):
-        try:
-            self.update_parameters()
-
-            # Get the selected CSV file path
-            csv_path = self.get_selected_csv_path()
-            if not csv_path:
-                QMessageBox.warning(self, "Warning", "Please select a CSV file first!")
-                return
-            # Create progress dialog with a text browser for better output display
-            self.progress_dialog = QProgressDialog(self)
-            self.progress_dialog.setWindowTitle("Swap Simulation")
-            self.progress_dialog.setMinimum(0)
-            self.progress_dialog.setMaximum(0)
-            self.progress_dialog.setCancelButton(None)
-            self.progress_dialog.setMinimumWidth(800)
-            self.progress_dialog.setMinimumHeight(400)
-
-            # Add a close button with fixed width
-            self.close_button = QPushButton("Close")
-            self.close_button.clicked.connect(self.progress_dialog.close)
-            self.close_button.setFixedWidth(200)
-            self.close_button.hide()  # Hide initially
-
-            # Create text browser for output with adjusted height
-            self.output_browser = QTextBrowser()
-            self.output_browser.setMinimumWidth(780)
-            self.output_browser.setMinimumHeight(340)  # Reduced height to leave room for button
-            self.output_browser.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)  # Ensure scrollbar shows when needed
-
-            # Create layout for progress dialog with spacing
-            layout = QVBoxLayout()
-            layout.addWidget(self.output_browser)
-
-            # Create a horizontal layout for the button
-            button_layout = QHBoxLayout()
-            button_layout.addStretch()
-            button_layout.addWidget(self.close_button)
-            button_layout.addStretch()
-
-            # Add button layout to main layout with spacing
-            layout.addLayout(button_layout)
-            layout.setSpacing(10)  # Add spacing between elements
-            layout.setContentsMargins(10, 10, 10, 10)  # Add margins around the layout
-
-            # Get the progress dialog's content widget
-            content = self.progress_dialog.findChild(QWidget)
-            if content:
-                content.setLayout(layout)
-
-            # Create swap simulation thread
-            self.swap_thread = SwapSimThread(
-                self.num_iterations,
-                self.site,
-                self.num_uniques,
-                self.num_lineups,
-                self.min_salary,
-                self.projection_minimum,
-                csv_path
-            )
-
-            # Connect signals
-            self.swap_thread.progress.connect(self.update_swap_progress)
-            self.swap_thread.finished.connect(self.swap_sim_finished)
-
-            # Start simulation
-            self.swap_thread.start()
-            self.progress_dialog.show()
-
-        except Exception as e:
-            QMessageBox.critical(self, "Error", f"An error occurred: {e}")
-
-    def update_swap_progress(self, message):
+    def update_simulation_progress(self, message):
         # Print to console
         print(message)
 
@@ -666,25 +605,23 @@ class NbaSimsMainMenu(QMainWindow):
             scrollbar.setValue(scrollbar.maximum())
             QApplication.processEvents()
 
-
-    def swap_sim_finished(self, success, message):
+    def simulation_finished(self, success, message, sim_type):
         if hasattr(self, 'progress_dialog') and self.progress_dialog is not None:
-            # Show the close button instead of auto-closing
             if hasattr(self, 'close_button'):
                 self.close_button.show()
 
-            # Update dialog title to show completion
-            self.progress_dialog.setWindowTitle("Swap Simulation - Completed")
+            self.progress_dialog.setWindowTitle(
+                f"Sims - Completed")
 
         if success:
             completion_message = "Simulation completed successfully!"
-            print(completion_message)  # Print to console
-            # Show success message but don't close progress dialog
+            print(completion_message)
             QMessageBox.information(self, "Success", completion_message)
         else:
-            error_message = f"Swap simulation failed: {message}"
-            print(error_message)  # Print to console
+            error_message = f"Simulation failed: {message}"
+            print(error_message)
             QMessageBox.critical(self, "Error", error_message)
+
 
 if __name__ == "__main__":
     import multiprocessing

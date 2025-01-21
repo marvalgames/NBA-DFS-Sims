@@ -917,6 +917,23 @@ class ImportTool(QMainWindow):
             capped_predictions[df['Low_Minutes_Flag'] == 1], 0.01)
         return capped_predictions
 
+    def read_excel_data_alternative(self, sheet):
+        # Try multiple methods to read the data
+        methods = [
+            lambda: sheet.range('A1').expand().value,
+            lambda: sheet.used_range.value,
+            lambda: sheet.range('A1').current_region.value
+        ]
+
+        for method in methods:
+            try:
+                data = method()
+                if data:
+                    return data
+            except:
+                continue
+
+        raise ValueError("All methods failed to read Excel data")
 
 
     def ownership_projections(self, progress_print=print):
@@ -1082,18 +1099,9 @@ class ImportTool(QMainWindow):
             sheet = wb.sheets["ownership"]
 
             progress_print("Reading and processing data...")
-            # Get initial range and verify it exists
-            initial_range = sheet.range('A1')
-            if initial_range is None:
-                raise ValueError("Failed to get initial range at 'A1'")
 
-            # Expand the range and verify expansion worked
-            expanded_range = initial_range.expand()
-            if expanded_range is None:
-                raise ValueError("Failed to expand range from 'A1'")
+            data = self.read_excel_data_alternative(sheet)
 
-            # Get the values and verify we got data
-            data = expanded_range.value
             if not data:
                 raise ValueError("No data found in expanded range")
             #data = sheet.range('A1').expand().value
