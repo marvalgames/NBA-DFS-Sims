@@ -135,6 +135,9 @@ class ImportTool(QMainWindow):
         self.progress_display.setReadOnly(True)
         layout.addWidget(self.progress_display)  # Add to your layout appropriately
 
+        #self.ownership_projections()
+
+
     def show_progress_dialog(self, title):
         self.progress_dialog = QProgressDialog(title, None, 0, 0, self)
         self.progress_dialog.setWindowModality(Qt.WindowModality.WindowModal)
@@ -177,98 +180,6 @@ class ImportTool(QMainWindow):
             QMessageBox.critical(self, "Error", f"An error occurred: {e}")
 
         self.setWindowTitle("Excel Import Tool")
-        #self.setGeometry(200, 200, 400, 300)
-        # Combine all styles into a single setStyleSheet call
-        # self.setStyleSheet("""
-        #                    QMainWindow {
-        #                        background-color: #2E3440;  /* Dark background */
-        #                        color: white;               /* Default text color */
-        #                    }
-        #
-        #                    QPushButton {
-        #                        background-color: #5E81AC;
-        #                        color: white;
-        #                        font-size: 16px;
-        #                        font-weight: regular;
-        #                        border-radius: 10px;
-        #                        min-height: 30px;
-        #                    }
-        #                    QPushButton:hover {
-        #                        background-color: #81A1C1;
-        #                    }
-        #
-        #                    QLineEdit {
-        #                        background-color: #3B4252;  /* Dark background */
-        #                        color: white;               /* White text */
-        #                        border: 1px solid #555555;  /* Border color */
-        #                        border-radius: 5px;         /* Rounded corners */
-        #                        padding: 5px;               /* Inner padding */
-        #                        font-size: 16px;            /* Font size */
-        #                        font-family: Arial;         /* Font name */
-        #                        font-weight: bold;          /* Font weight (bold, normal, etc.) */
-        #                    }
-        #
-        #                    QLineEdit:focus {
-        #                        border: 1px solid #88C0D0;  /* Highlighted border on focus */
-        #                        background-color: #434C5E;  /* Slightly lighter background */
-        #                    }
-        #
-        #                    QComboBox {
-        #                        background-color: #3B4252;  /* Dark background */
-        #                        color: white;               /* White text */
-        #                        border: 1px solid #555555;  /* Border color */
-        #                        border-radius: 5px;         /* Rounded corners */
-        #                        padding: 5px;               /* Inner padding */
-        #                        font-size: 14px;            /* Font size */
-        #                    }
-        #
-        #                      QSpinBox {
-        #                        width: 64px;
-        #                        background-color: #3B4252;  /* Dark background */
-        #                        color: white;               /* White text */
-        #                        border: 1px solid #555555;  /* Border color */
-        #                        border-radius: 5px;         /* Rounded corners */
-        #                        padding: 5px;               /* Inner padding */
-        #                        font-size: 14px;            /* Font size */
-        #                        font-weight: bold;          /* Font weight (bold, normal, etc.) */
-        #                    }
-        #
-        #                    QSpinBox::up-button, QSpinBox::down-button {
-        #                        width: 32px;  /* Wider button area for arrows */
-        #                        height: 16px; /* Taller button area for arrows */
-        #                    }
-        #
-        #                     QSpinBox::up-arrow {
-        #                        width: 32px;  /* Increase arrow width */
-        #                        height: 16px; /* Increase arrow height */
-        #                    }
-        #
-        #                    QSpinBox::down-arrow {
-        #                        width: 32px;  /* Increase arrow width */
-        #                        height: 16px; /* Increase arrow height */
-        #                    }
-        #
-        #                    QComboBox::drop-down {
-        #                        subcontrol-origin: padding;
-        #                        subcontrol-position: top right;
-        #                        width: 40px;
-        #                        border-left: 1px solid #555555;
-        #                        background-color: #2E3440;  /* Dropdown arrow background */
-        #                    }
-        #
-        #                    QComboBox QAbstractItemView {
-        #                        background-color: #3B4252;  /* Dropdown list background */
-        #                        color: white;               /* Text color */
-        #                        selection-background-color: #88C0D0; /* Selected item background */
-        #                        selection-color: black;     /* Selected item text color */
-        #                    }
-        #
-        #                    QLabel {
-        #                        color: #88C0D0;  /* Default text color */
-        #                        font-size: 16px;
-        #                        font-weight: bold;
-        #                    }
-        #                """)
 
 
         # Define the target folder
@@ -1034,7 +945,7 @@ class ImportTool(QMainWindow):
             return random_scores
 
         def simulate_weighted_feasibility_with_progress(data, max_salary=50000, lineup_size=8,
-                                                        num_samples=50000, print_every=1000,
+                                                        num_samples=10000, print_every=2000,
                                                         progress_print=print):
             slot_map = {
                 1: ['PG', 'PG/SG', 'PG/SF', 'G'],
@@ -1066,8 +977,6 @@ class ImportTool(QMainWindow):
             progress_print("Beginning lineup generation...")
             i = 1
             while i <= num_samples:
-                if i % print_every == 0:
-                    progress_print(f"Processing lineup {i}/{num_samples}")
 
                 lineup = []
                 selected_players = set()
@@ -1098,6 +1007,10 @@ class ImportTool(QMainWindow):
                             'lineup': lineup,
                             'total_points': total_points
                         })
+                        if i % print_every == 0:
+                            # pass
+                            progress_print(f"Processing lineup {i}/{num_samples}")
+
 
             progress_print("Sorting lineups by total points...")
             lineups.sort(key=lambda x: x['total_points'], reverse=True)
@@ -1158,13 +1071,11 @@ class ImportTool(QMainWindow):
         try:
             progress_print("Starting ownership projections process...")
 
-            progress_print("Loading trained model...")
             current_dir = os.path.dirname(__file__)
             model_path = os.path.join(current_dir, '..', 'src', 'final_nba_model.pkl')
             with open(model_path, 'rb') as file:
                 model = pickle.load(file)
 
-            progress_print("Opening Excel workbook...")
             file_path = os.path.join('..', 'dk_import', 'nba.xlsm')
             app = xw.App(visible=False)
             wb = app.books.open(file_path)
@@ -1203,7 +1114,6 @@ class ImportTool(QMainWindow):
             df['Player_Pool_Size'] = df.groupby('Contest ID')['DK Name'].transform('count')
             df['Games Played'] = df['Team'].nunique() // 2
 
-            progress_print("Cleaning data...")
             # ... your data cleaning code ...
 
             progress_print("Calculating weighted feasibility scores...")
@@ -1211,11 +1121,11 @@ class ImportTool(QMainWindow):
             progress_print("Calculating feasibility scores...")
             feasibility = simulate_feasibility_with_progress(
                 df, max_salary=1000000, lineup_size=8, num_samples=100000,
-                print_every=1000, progress_print=progress_print)
+                print_every=10000, progress_print=progress_print)
 
             weighted_feasibility, tournament_feasibility = simulate_weighted_feasibility_with_progress(
-                df, max_salary=50000, lineup_size=8, num_samples=2000,
-                print_every=1000, progress_print=progress_print)
+                df, max_salary=50000, lineup_size=8, num_samples=10000,
+                print_every=2000, progress_print=progress_print)
 
 
             progress_print("Processing feature engineering...")
@@ -1379,7 +1289,7 @@ class ImportTool(QMainWindow):
             from tabulate import tabulate
             print("Generating predictions...")
 
-            shift_start = .35
+            shift_start = .40
             shift_end = 1.00
             add = 1.0  # Constant to avoid log issues with zero
             drift = 1.35
