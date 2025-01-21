@@ -1214,7 +1214,7 @@ class ImportTool(QMainWindow):
                 print_every=1000, progress_print=progress_print)
 
             weighted_feasibility, tournament_feasibility = simulate_weighted_feasibility_with_progress(
-                df, max_salary=50000, lineup_size=8, num_samples=10000,
+                df, max_salary=50000, lineup_size=8, num_samples=2000,
                 print_every=1000, progress_print=progress_print)
 
 
@@ -1379,7 +1379,7 @@ class ImportTool(QMainWindow):
             from tabulate import tabulate
             print("Generating predictions...")
 
-            shift_start = .40
+            shift_start = .35
             shift_end = 1.00
             add = 1.0  # Constant to avoid log issues with zero
             drift = 1.35
