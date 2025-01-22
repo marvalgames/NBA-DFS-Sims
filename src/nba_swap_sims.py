@@ -569,7 +569,7 @@ class NBA_Swaptimizer_Sims:
         # Format the date into the string format the NBA API expects ('YYYY-MM-DD')
         # Late Swap Realtime
         live = self.live_games
-        live = False
+        #live = False
         if live:
             formatted_date = game_date.strftime('%Y-%m-%d')
         else:
@@ -1339,7 +1339,7 @@ class NBA_Swaptimizer_Sims:
                                 original_lineup.append((player, position, player_id))
 
                     self.output_lineups.append((original_lineup, lineup_obj))
-                    #self.print(f"Skipping optimization - Using original lineup: Entry: {entry + 1} Set: {group + 1}")
+                    self.print(f"Skipping optimization - Using original lineup: Entry: {entry + 1} Set: {group + 1}")
                     continue
 
                 self.print(
@@ -1365,7 +1365,7 @@ class NBA_Swaptimizer_Sims:
                             total_projection += attributes["BayesianProjectedFpts"]
 
                 # Set the minimum projected points using the total projection
-                min_projected_points = total_projection * 1.05  # add to config - suggest lower values for contrarian / aggressive
+                min_projected_points = total_projection * 1.00  # add to config - suggest lower values for contrarian / aggressive
                 print(f"Minimum required projection: {min_projected_points:.2f}")
 
                 while not solution_found and max_attempts > 0:
