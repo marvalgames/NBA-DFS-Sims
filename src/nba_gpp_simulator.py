@@ -643,9 +643,14 @@ class NBA_GPP_Simulator:
                     player_data
                 )  # Add player data to their respective team
         # After all the player processing, at the end of the function
+        self.print("\nTeam Summary:")
+        self.print("-" * 50)
+        self.print(f"{'Team':<15} {'Minutes':>10} {'Ownership':>10}")
+        self.print("-" * 50)
         for team, players in self.teams_dict.items():
             total_minutes = sum(float(player['Minutes']) for player in players if player['Minutes'])
-            self.print(f"Team: {team}, Total Minutes: {total_minutes}")
+            total_own = sum(float(player['Ownership']) for player in players if player['Ownership'])
+            self.print(f"{team:<15} {total_minutes:>10.2f} {total_own:>10.2f}")
 
     def extract_id(self, cell_value):
         if "(" in cell_value and ")" in cell_value:

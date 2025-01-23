@@ -1339,7 +1339,7 @@ class NBA_Swaptimizer_Sims:
                                 original_lineup.append((player, position, player_id))
 
                     self.output_lineups.append((original_lineup, lineup_obj))
-                    self.print(f"Skipping optimization - Using original lineup: Entry: {entry + 1} Set: {group + 1}")
+                    #self.print(f"Skipping optimization - Using original lineup: Entry: {entry + 1} Set: {group + 1}")
                     continue
 
                 self.print(
