@@ -1,291 +1,321 @@
 Entry ID,Contest Name,Contest ID,Entry Fee,PG,SG,SF,PF,C,G,F,UTIL,,Instructions
-4620913250,NBA $60K Four Point Play [20 Entry Max],173457582,$4,Shai Gilgeous-Alexander (37420602),Brandin Podziemski (37421039),Olivier-Maxence Prosper (37421166),Robert Williams (37421162) (LOCKED),Ivica Zubac (37420697),Quentin Grimes (37420887),Giannis Antetokounmpo (37420593),Kel'el Ware (37420799),,1. Column A lists all of your contest entries for this draftgroup
-4620913251,NBA $60K Four Point Play [20 Entry Max],173457582,$4,Shai Gilgeous-Alexander (37420602),Jordan Poole (37420713),Andrew Wiggins (37420773),Robert Williams (37421162) (LOCKED),Ivica Zubac (37420697),Jamal Murray (37420693),Olivier-Maxence Prosper (37421166),Kel'el Ware (37420799),,2. Your current lineup is listed next to each entry (blank for reservations)
-4620913252,NBA $60K Four Point Play [20 Entry Max],173457582,$4,Scottie Barnes (37420627) (LOCKED),Brandin Podziemski (37421039),Quentin Grimes (37420887),Robert Williams (37421162) (LOCKED),Onyeka Okongwu (37420805) (LOCKED),Shai Gilgeous-Alexander (37420602),RJ Barrett (37420675) (LOCKED),Kel'el Ware (37420799),,3. You can change the lineup for an entry by entering the IDs of the players in the row next to that entry
-4620913253,NBA $60K Four Point Play [20 Entry Max],173457582,$4,Shai Gilgeous-Alexander (37420602),Quentin Grimes (37420887),Julian Strawther (37421066),Olivier-Maxence Prosper (37421166),Ivica Zubac (37420697),Stephen Curry (37420624),Andrew Wiggins (37420773),Kel'el Ware (37420799),,4. Use data from the Name+ID column or the ID column; you cannot use just the player's name
-4620913254,NBA $60K Four Point Play [20 Entry Max],173457582,$4,Russell Westbrook (37420759),Kentavious Caldwell-Pope (37420909) (LOCKED),RJ Barrett (37420675) (LOCKED),Robert Williams (37421162) (LOCKED),Ivica Zubac (37420697),Shai Gilgeous-Alexander (37420602),Quentin Grimes (37420887),Kel'el Ware (37420799),,5. For faster processing only include entries you are changing in the file you upload
-,,,,,,,,,,,,,
+4622198016,NBA $50K Four-Point Play [$10K to 1st],173508276,$4,Jose Alvarado (37433879) (LOCKED),Jordan Hawkins (37433981) (LOCKED),Nick Smith Jr. (37433678) (LOCKED),Miles Bridges (37433494) (LOCKED),Domantas Sabonis (37433367) (LOCKED),Trae Young (37433371) (LOCKED),Chris Boucher (37433977) (LOCKED),Nikola Vucevic (37433442),,1. Column A lists all of your contest entries for this draftgroup
+4622198017,NBA $50K Four-Point Play [$10K to 1st],173508276,$4,LaMelo Ball (37433358) (LOCKED),Jordan Poole (37433516),Bogdan Bogdanovic (37433716) (LOCKED),Kevin Durant (37433376),Larry Nance Jr. (37434113) (LOCKED),Jose Alvarado (37433879) (LOCKED),Chris Boucher (37433977) (LOCKED),Trae Young (37433371) (LOCKED),,2. Your current lineup is listed next to each entry (blank for reservations)
+4622198018,NBA $50K Four-Point Play [$10K to 1st],173508276,$4,Jose Alvarado (37433879) (LOCKED),Jordan Hawkins (37433981) (LOCKED),Zach LaVine (37433437),Kevin Durant (37433376),Moussa Diabate (37434194) (LOCKED),Trae Young (37433371) (LOCKED),Chris Boucher (37433977) (LOCKED),Domantas Sabonis (37433367) (LOCKED),,3. You can change the lineup for an entry by entering the IDs of the players in the row next to that entry
+4622198019,NBA $50K Four-Point Play [$10K to 1st],173508276,$4,Jordan Poole (37433516),Jordan Hawkins (37433981) (LOCKED),Nick Smith Jr. (37433678) (LOCKED),Chris Boucher (37433977) (LOCKED),Moussa Diabate (37434194) (LOCKED),Trae Young (37433371) (LOCKED),LeBron James (37433361),Domantas Sabonis (37433367) (LOCKED),,4. Use data from the Name+ID column or the ID column; you cannot use just the player's name
+4622198020,NBA $50K Four-Point Play [$10K to 1st],173508276,$4,Jose Alvarado (37433879) (LOCKED),Bogdan Bogdanovic (37433716) (LOCKED),Nick Smith Jr. (37433678) (LOCKED),Chris Boucher (37433977) (LOCKED),Jonas Valanciunas (37433639),Trae Young (37433371) (LOCKED),Kevin Durant (37433376),Anthony Davis (37433356),,5. For faster processing only include entries you are changing in the file you upload
+4622198021,NBA $50K Four-Point Play [$10K to 1st],173508276,$4,Trae Young (37433371) (LOCKED),Jordan Hawkins (37433981) (LOCKED),Paul George (37433432),Chris Boucher (37433977) (LOCKED),Moussa Diabate (37434194) (LOCKED),Jordan Poole (37433516),Jaren Jackson Jr. (37433447),Nikola Vucevic (37433442),,
 ,,,,,,,,,,,,,Position,Name + ID,Name,ID,Roster Position,Salary,Game Info,TeamAbbrev,AvgPointsPerGame
-,,,,,,,,,,,,,C,Nikola Jokic (37420591),Nikola Jokic,37420591,C/UTIL,12200,SAC@DEN 01/23/2025 09:00PM ET,DEN,68.63
-,,,,,,,,,,,,,PF/C,Giannis Antetokounmpo (37420593),Giannis Antetokounmpo,37420593,PF/C/F/UTIL,11700,MIA@MIL 01/23/2025 08:30PM ET,MIL,60.31
-,,,,,,,,,,,,,PG,Luka Doncic (37420597),Luka Doncic,37420597,PG/G/UTIL,11000,DAL@OKC 01/23/2025 08:00PM ET,DAL,56.17
-,,,,,,,,,,,,,C,Anthony Davis (37420600),Anthony Davis,37420600,C/UTIL,10700,BOS@LAL 01/23/2025 10:00PM ET,LAL,53.24
-,,,,,,,,,,,,,PG,Shai Gilgeous-Alexander (37420602),Shai Gilgeous-Alexander,37420602,PG/G/UTIL,10500,DAL@OKC 01/23/2025 08:00PM ET,OKC,53.66
-,,,,,,,,,,,,,PF,LeBron James (37420605),LeBron James,37420605,PF/F/UTIL,10200,BOS@LAL 01/23/2025 10:00PM ET,LAL,50.26
-,,,,,,,,,,,,,C,Domantas Sabonis (37420608),Domantas Sabonis,37420608,C/UTIL,10000,SAC@DEN 01/23/2025 09:00PM ET,SAC,51.29
-,,,,,,,,,,,,,SF/PF,Jayson Tatum (37420610),Jayson Tatum,37420610,SF/PF/F/UTIL,9800,BOS@LAL 01/23/2025 10:00PM ET,BOS,52.04
-,,,,,,,,,,,,,PG,Trae Young (37420614) (LOCKED),Trae Young,37420614,PG/G/UTIL,9600,TOR@ATL 01/23/2025 07:30PM ET,ATL,48.21
-,,,,,,,,,,,,,PG,James Harden (37420617),James Harden,37420617,PG/G/UTIL,9500,WAS@LAC 01/23/2025 10:30PM ET,LAC,44.67
-,,,,,,,,,,,,,PG/SG,Kyrie Irving (37420620),Kyrie Irving,37420620,PG/SG/G/UTIL,9000,DAL@OKC 01/23/2025 08:00PM ET,DAL,41.16
-,,,,,,,,,,,,,PG,Stephen Curry (37420624),Stephen Curry,37420624,PG/G/UTIL,8800,CHI@GSW 01/23/2025 10:00PM ET,GSW,42.29
-,,,,,,,,,,,,,PG/SF,Scottie Barnes (37420627) (LOCKED),Scottie Barnes,37420627,PG/SF/F/G/UTIL,8700,TOR@ATL 01/23/2025 07:30PM ET,TOR,44.52
-,,,,,,,,,,,,,PF,Jalen Johnson (37420632) (LOCKED),Jalen Johnson,37420632,PF/F/UTIL,8600,TOR@ATL 01/23/2025 07:30PM ET,ATL,45.13
-,,,,,,,,,,,,,PG,Damian Lillard (37420635),Damian Lillard,37420635,PG/G/UTIL,8500,MIA@MIL 01/23/2025 08:30PM ET,MIL,44.41
-,,,,,,,,,,,,,PG,De'Aaron Fox (37420641),De'Aaron Fox,37420641,PG/G/UTIL,8400,SAC@DEN 01/23/2025 09:00PM ET,SAC,45.14
-,,,,,,,,,,,,,PF,Paolo Banchero (37420638) (LOCKED),Paolo Banchero,37420638,PF/F/UTIL,8400,In Progress,ORL,44.70
-,,,,,,,,,,,,,PF,Franz Wagner (37420644) (LOCKED),Franz Wagner,37420644,PF/F/UTIL,8300,In Progress,ORL,44.24
-,,,,,,,,,,,,,PG/SG,Tyler Herro (37420652),Tyler Herro,37420652,PG/SG/G/UTIL,8300,MIA@MIL 01/23/2025 08:30PM ET,MIA,41.32
-,,,,,,,,,,,,,SG/SF,Zach LaVine (37420647),Zach LaVine,37420647,SG/SF/F/G/UTIL,8200,CHI@GSW 01/23/2025 10:00PM ET,CHI,39.42
-,,,,,,,,,,,,,C,Nikola Vucevic (37420656),Nikola Vucevic,37420656,C/UTIL,8200,CHI@GSW 01/23/2025 10:00PM ET,CHI,42.60
-,,,,,,,,,,,,,PG/SG,Jalen Suggs (37420658) (LOCKED),Jalen Suggs,37420658,PG/SG/G/UTIL,8100,In Progress,ORL,31.62
-,,,,,,,,,,,,,PF,Jalen Williams (37420662),Jalen Williams,37420662,PF/F/UTIL,8100,DAL@OKC 01/23/2025 08:00PM ET,OKC,40.02
-,,,,,,,,,,,,,PG,Austin Reaves (37420665),Austin Reaves,37420665,PG/G/UTIL,8000,BOS@LAL 01/23/2025 10:00PM ET,LAL,35.48
-,,,,,,,,,,,,,C,Chet Holmgren (37420668),Chet Holmgren,37420668,C/UTIL,7900,DAL@OKC 01/23/2025 08:00PM ET,OKC,37.22
-,,,,,,,,,,,,,SG/SF,Jaylen Brown (37420670),Jaylen Brown,37420670,SG/SF/F/G/UTIL,7800,BOS@LAL 01/23/2025 10:00PM ET,BOS,40.79
-,,,,,,,,,,,,,SF,RJ Barrett (37420675) (LOCKED),RJ Barrett,37420675,SF/F/UTIL,7700,TOR@ATL 01/23/2025 07:30PM ET,TOR,41.7
-,,,,,,,,,,,,,C,Bam Adebayo (37420678),Bam Adebayo,37420678,C/UTIL,7600,MIA@MIL 01/23/2025 08:30PM ET,MIA,39.12
-,,,,,,,,,,,,,SF/PF,Kawhi Leonard (37420680),Kawhi Leonard,37420680,SF/PF/F/UTIL,7500,WAS@LAC 01/23/2025 10:30PM ET,LAC,21.75
-,,,,,,,,,,,,,SG/SF,Norman Powell (37420684),Norman Powell,37420684,SG/SF/F/G/UTIL,7400,WAS@LAC 01/23/2025 10:30PM ET,LAC,35.03
-,,,,,,,,,,,,,PG/SG,Dyson Daniels (37420702) (LOCKED),Dyson Daniels,37420702,PG/SG/G/UTIL,7300,TOR@ATL 01/23/2025 07:30PM ET,ATL,32.32
-,,,,,,,,,,,,,SF/PF,Jimmy Butler (37420689),Jimmy Butler,37420689,SF/PF/F/UTIL,7300,MIA@MIL 01/23/2025 08:30PM ET,MIA,33.65
-,,,,,,,,,,,,,PG/SG,Jamal Murray (37420693),Jamal Murray,37420693,PG/SG/G/UTIL,7200,SAC@DEN 01/23/2025 09:00PM ET,DEN,37.99
-,,,,,,,,,,,,,C,Ivica Zubac (37420697),Ivica Zubac,37420697,C/UTIL,7200,WAS@LAC 01/23/2025 10:30PM ET,LAC,38.60
-,,,,,,,,,,,,,PG,Josh Giddey (37420699),Josh Giddey,37420699,PG/G/UTIL,7100,CHI@GSW 01/23/2025 10:00PM ET,CHI,33.53
-,,,,,,,,,,,,,PG/SG,Malik Monk (37420706),Malik Monk,37420706,PG/SG/G/UTIL,7000,SAC@DEN 01/23/2025 09:00PM ET,SAC,34.13
-,,,,,,,,,,,,,SF,DeMar DeRozan (37420710),DeMar DeRozan,37420710,SF/F/UTIL,7000,SAC@DEN 01/23/2025 09:00PM ET,SAC,35.43
-,,,,,,,,,,,,,PG/SG,Jordan Poole (37420713),Jordan Poole,37420713,PG/SG/G/UTIL,6900,WAS@LAC 01/23/2025 10:30PM ET,WAS,36.09
-,,,,,,,,,,,,,SF/PF,Deni Avdija (37420717) (LOCKED),Deni Avdija,37420717,SF/PF/F/UTIL,6900,In Progress,POR,30.41
-,,,,,,,,,,,,,C,Kristaps Porzingis (37420721),Kristaps Porzingis,37420721,C/UTIL,6900,BOS@LAL 01/23/2025 10:00PM ET,BOS,35.17
-,,,,,,,,,,,,,PG/SG,Derrick White (37420725),Derrick White,37420725,PG/SG/G/UTIL,6800,BOS@LAL 01/23/2025 10:00PM ET,BOS,32.97
-,,,,,,,,,,,,,C,Isaiah Hartenstein (37420723),Isaiah Hartenstein,37420723,C/UTIL,6800,DAL@OKC 01/23/2025 08:00PM ET,OKC,37.34
-,,,,,,,,,,,,,PG,Immanuel Quickley (37420729) (LOCKED),Immanuel Quickley,37420729,PG/G/UTIL,6700,TOR@ATL 01/23/2025 07:30PM ET,TOR,30.28
-,,,,,,,,,,,,,PG,Scoot Henderson (37420732) (LOCKED),Scoot Henderson,37420732,PG/G/UTIL,6600,In Progress,POR,26.56
-,,,,,,,,,,,,,PF,PJ Washington (37420735),PJ Washington,37420735,PF/F/UTIL,6600,DAL@OKC 01/23/2025 08:00PM ET,DAL,31.10
-,,,,,,,,,,,,,PF,Jonathan Kuminga (37420738),Jonathan Kuminga,37420738,PF/F/UTIL,6500,CHI@GSW 01/23/2025 10:00PM ET,GSW,29.12
-,,,,,,,,,,,,,PG/SG,Cole Anthony (37420741) (LOCKED),Cole Anthony,37420741,PG/SG/G/UTIL,6500,In Progress,ORL,17.39
-,,,,,,,,,,,,,C,Daniel Gafford (37420745),Daniel Gafford,37420745,C/UTIL,6500,DAL@OKC 01/23/2025 08:00PM ET,DAL,25.72
-,,,,,,,,,,,,,C,Deandre Ayton (37420747) (LOCKED),Deandre Ayton,37420747,C/UTIL,6400,In Progress,POR,32.28
-,,,,,,,,,,,,,PG/SG,Anfernee Simons (37420753) (LOCKED),Anfernee Simons,37420753,PG/SG/G/UTIL,6400,In Progress,POR,31.23
-,,,,,,,,,,,,,PG/SG,Coby White (37420749),Coby White,37420749,PG/SG/G/UTIL,6300,CHI@GSW 01/23/2025 10:00PM ET,CHI,32.24
-,,,,,,,,,,,,,C,Wendell Carter Jr. (37420757) (LOCKED),Wendell Carter Jr.,37420757,C/UTIL,6300,In Progress,ORL,23.86
-,,,,,,,,,,,,,C,Jakob Poeltl (37420762) (LOCKED),Jakob Poeltl,37420762,C/UTIL,6200,TOR@ATL 01/23/2025 07:30PM ET,TOR,35.86
-,,,,,,,,,,,,,PG,Russell Westbrook (37420759),Russell Westbrook,37420759,PG/G/UTIL,6200,SAC@DEN 01/23/2025 09:00PM ET,DEN,33.01
-,,,,,,,,,,,,,PF,Kyle Kuzma (37420783),Kyle Kuzma,37420783,PF/F/UTIL,6200,WAS@LAC 01/23/2025 10:30PM ET,WAS,26.26
-,,,,,,,,,,,,,SF/PF,Andrew Wiggins (37420773),Andrew Wiggins,37420773,SF/PF/F/UTIL,6100,CHI@GSW 01/23/2025 10:00PM ET,GSW,30.18
-,,,,,,,,,,,,,PG,Spencer Dinwiddie (37420764),Spencer Dinwiddie,37420764,PG/G/UTIL,6100,DAL@OKC 01/23/2025 08:00PM ET,DAL,20.90
-,,,,,,,,,,,,,C,Dereck Lively II (37420767),Dereck Lively II,37420767,C/UTIL,6100,DAL@OKC 01/23/2025 08:00PM ET,DAL,27.02
-,,,,,,,,,,,,,SF/PF,De'Andre Hunter (37420779) (LOCKED),De'Andre Hunter,37420779,SF/PF/F/UTIL,6000,TOR@ATL 01/23/2025 07:30PM ET,ATL,28.68
-,,,,,,,,,,,,,PG/SG,Malcolm Brogdon (37420769),Malcolm Brogdon,37420769,PG/SG/G/UTIL,6000,WAS@LAC 01/23/2025 10:30PM ET,WAS,26.21
-,,,,,,,,,,,,,C,Goga Bitadze (37420777) (LOCKED),Goga Bitadze,37420777,C/UTIL,6000,In Progress,ORL,28.40
-,,,,,,,,,,,,,PG/SG,Ayo Dosunmu (37420786),Ayo Dosunmu,37420786,PG/SG/G/UTIL,5900,CHI@GSW 01/23/2025 10:00PM ET,CHI,26.87
-,,,,,,,,,,,,,PF/C,Draymond Green (37420795),Draymond Green,37420795,PF/C/F/UTIL,5800,CHI@GSW 01/23/2025 10:00PM ET,GSW,27.98
-,,,,,,,,,,,,,SG/SF,Shaedon Sharpe (37420790) (LOCKED),Shaedon Sharpe,37420790,SG/SF/F/G/UTIL,5800,In Progress,POR,29.06
-,,,,,,,,,,,,,SF/PF,Michael Porter Jr. (37420801),Michael Porter Jr.,37420801,SF/PF/F/UTIL,5700,SAC@DEN 01/23/2025 09:00PM ET,DEN,32.85
-,,,,,,,,,,,,,C,Kel'el Ware (37420799),Kel'el Ware,37420799,C/UTIL,5700,MIA@MIL 01/23/2025 08:30PM ET,MIA,17.06
-,,,,,,,,,,,,,C,Onyeka Okongwu (37420805) (LOCKED),Onyeka Okongwu,37420805,C/UTIL,5600,TOR@ATL 01/23/2025 07:30PM ET,ATL,27.14
-,,,,,,,,,,,,,SF,Bilal Coulibaly (37420807),Bilal Coulibaly,37420807,SF/F/UTIL,5600,WAS@LAC 01/23/2025 10:30PM ET,WAS,27.41
-,,,,,,,,,,,,,SG/SF,Khris Middleton (37420814),Khris Middleton,37420814,SG/SF/F/G/UTIL,5600,MIA@MIL 01/23/2025 08:30PM ET,MIL,27.10
-,,,,,,,,,,,,,C,Trayce Jackson-Davis (37420819),Trayce Jackson-Davis,37420819,C/UTIL,5500,CHI@GSW 01/23/2025 10:00PM ET,GSW,22.12
-,,,,,,,,,,,,,PF/C,Alexandre Sarr (37420810),Alexandre Sarr,37420810,PF/C/F/UTIL,5500,WAS@LAC 01/23/2025 10:30PM ET,WAS,28.04
-,,,,,,,,,,,,,SG/SF,Klay Thompson (37420828),Klay Thompson,37420828,SG/SF/F/G/UTIL,5500,DAL@OKC 01/23/2025 08:00PM ET,DAL,24.17
-,,,,,,,,,,,,,PG,Anthony Black (37420825) (LOCKED),Anthony Black,37420825,PG/G/UTIL,5400,In Progress,ORL,20.33
-,,,,,,,,,,,,,PF/C,Nikola Jovic (37420821),Nikola Jovic,37420821,PF/C/F/UTIL,5300,MIA@MIL 01/23/2025 08:30PM ET,MIA,21.61
-,,,,,,,,,,,,,PG/SG,Terry Rozier (37420833),Terry Rozier,37420833,PG/SG/G/UTIL,5300,MIA@MIL 01/23/2025 08:30PM ET,MIA,23.34
-,,,,,,,,,,,,,C,Jaylin Williams (37420837),Jaylin Williams,37420837,C/UTIL,5300,DAL@OKC 01/23/2025 08:00PM ET,OKC,17.02
-,,,,,,,,,,,,,SF,Toumani Camara (37420839) (LOCKED),Toumani Camara,37420839,SF/F/UTIL,5200,In Progress,POR,23.31
-,,,,,,,,,,,,,C,Brook Lopez (37420842),Brook Lopez,37420842,C/UTIL,5200,MIA@MIL 01/23/2025 08:30PM ET,MIL,26.87
-,,,,,,,,,,,,,PF,Jerami Grant (37420864) (LOCKED),Jerami Grant,37420864,PF/F/UTIL,5100,In Progress,POR,26.73
-,,,,,,,,,,,,,SG,Duncan Robinson (37420844),Duncan Robinson,37420844,SG/G/UTIL,5100,MIA@MIL 01/23/2025 08:30PM ET,MIA,20.04
-,,,,,,,,,,,,,PF/C,Bobby Portis (37420847),Bobby Portis,37420847,PF/C/F/UTIL,5100,MIA@MIL 01/23/2025 08:30PM ET,MIL,28.65
-,,,,,,,,,,,,,PF,Keegan Murray (37420851),Keegan Murray,37420851,PF/F/UTIL,5000,SAC@DEN 01/23/2025 09:00PM ET,SAC,26.99
-,,,,,,,,,,,,,C,Jonas Valanciunas (37420862),Jonas Valanciunas,37420862,C/UTIL,5000,WAS@LAC 01/23/2025 10:30PM ET,WAS,27.08
-,,,,,,,,,,,,,PG/SG,Payton Pritchard (37420854),Payton Pritchard,37420854,PG/SG/G/UTIL,5000,BOS@LAL 01/23/2025 10:00PM ET,BOS,27.20
-,,,,,,,,,,,,,SF/PF,Jaime Jaquez Jr. (37420858),Jaime Jaquez Jr.,37420858,SF/PF/F/UTIL,5000,MIA@MIL 01/23/2025 08:30PM ET,MIA,22.17
-,,,,,,,,,,,,,SF/PF,Naji Marshall (37420867),Naji Marshall,37420867,SF/PF/F/UTIL,4900,DAL@OKC 01/23/2025 08:00PM ET,DAL,21.26
-,,,,,,,,,,,,,SG/SF,Quentin Grimes (37420887),Quentin Grimes,37420887,SG/SF/F/G/UTIL,4900,DAL@OKC 01/23/2025 08:00PM ET,DAL,20.27
-,,,,,,,,,,,,,PG/SG,Dennis Schroder (37420871),Dennis Schroder,37420871,PG/SG/G/UTIL,4800,CHI@GSW 01/23/2025 10:00PM ET,GSW,28.68
-,,,,,,,,,,,,,SF/PF,Tristan da Silva (37420883) (LOCKED),Tristan da Silva,37420883,SF/PF/F/UTIL,4800,In Progress,ORL,17.77
-,,,,,,,,,,,,,SF/PF,Rui Hachimura (37420879),Rui Hachimura,37420879,SF/PF/F/UTIL,4800,BOS@LAL 01/23/2025 10:00PM ET,LAL,24.12
-,,,,,,,,,,,,,SF,Saddiq Bey (37420901),Saddiq Bey,37420901,SF/F/UTIL,4700,WAS@LAC 01/23/2025 10:30PM ET,WAS,0
-,,,,,,,,,,,,,PG/SG,Jrue Holiday (37420875),Jrue Holiday,37420875,PG/SG/G/UTIL,4700,BOS@LAL 01/23/2025 10:00PM ET,BOS,25.78
-,,,,,,,,,,,,,C,Clint Capela (37420892) (LOCKED),Clint Capela,37420892,C/UTIL,4600,TOR@ATL 01/23/2025 07:30PM ET,ATL,25.64
-,,,,,,,,,,,,,PF,Derrick Jones Jr. (37420894),Derrick Jones Jr.,37420894,PF/F/UTIL,4600,WAS@LAC 01/23/2025 10:30PM ET,LAC,18.96
-,,,,,,,,,,,,,PF/C,Al Horford (37420921),Al Horford,37420921,PF/C/F/UTIL,4600,BOS@LAL 01/23/2025 10:00PM ET,BOS,21.88
-,,,,,,,,,,,,,PG/SG,Cason Wallace (37420897),Cason Wallace,37420897,PG/SG/G/UTIL,4600,DAL@OKC 01/23/2025 08:00PM ET,OKC,20.36
-,,,,,,,,,,,,,PG/SF,Vit Krejci (37420912) (LOCKED),Vit Krejci,37420912,PG/SF/F/G/UTIL,4500,TOR@ATL 01/23/2025 07:30PM ET,ATL,14.52
-,,,,,,,,,,,,,SG/SF,Buddy Hield (37420904),Buddy Hield,37420904,SG/SF/F/G/UTIL,4500,CHI@GSW 01/23/2025 10:00PM ET,GSW,21.84
-,,,,,,,,,,,,,SG,Kentavious Caldwell-Pope (37420909) (LOCKED),Kentavious Caldwell-Pope,37420909,SG/G/UTIL,4500,In Progress,ORL,19.39
-,,,,,,,,,,,,,SF/PF,Aaron Wiggins (37420917),Aaron Wiggins,37420917,SF/PF/F/UTIL,4500,DAL@OKC 01/23/2025 08:00PM ET,OKC,18.26
-,,,,,,,,,,,,,PG,Keaton Wallace (37420950) (LOCKED),Keaton Wallace,37420950,PG/G/UTIL,4400,TOR@ATL 01/23/2025 07:30PM ET,ATL,13.91
-,,,,,,,,,,,,,PG,Lonzo Ball (37420938),Lonzo Ball,37420938,PG/G/UTIL,4400,CHI@GSW 01/23/2025 10:00PM ET,CHI,20.71
-,,,,,,,,,,,,,PG,Kevin Porter Jr. (37420925),Kevin Porter Jr.,37420925,PG/G/UTIL,4400,WAS@LAC 01/23/2025 10:30PM ET,LAC,20.99
-,,,,,,,,,,,,,C,Luke Kornet (37420941),Luke Kornet,37420941,C/UTIL,4400,BOS@LAL 01/23/2025 10:00PM ET,BOS,16.22
-,,,,,,,,,,,,,PF,Christian Wood (37420947),Christian Wood,37420947,PF/F/UTIL,4400,BOS@LAL 01/23/2025 10:00PM ET,LAL,0
-,,,,,,,,,,,,,SG/SF,Luguentz Dort (37420928),Luguentz Dort,37420928,SG/SF/F/G/UTIL,4400,DAL@OKC 01/23/2025 08:00PM ET,OKC,21.96
-,,,,,,,,,,,,,SG/SF,Christian Braun (37420933),Christian Braun,37420933,SG/SF/F/G/UTIL,4300,SAC@DEN 01/23/2025 09:00PM ET,DEN,25.89
-,,,,,,,,,,,,,SF/PF,Amir Coffey (37420943),Amir Coffey,37420943,SF/PF/F/UTIL,4300,WAS@LAC 01/23/2025 10:30PM ET,LAC,17.44
-,,,,,,,,,,,,,SG,Gradey Dick (37420953) (LOCKED),Gradey Dick,37420953,SG/G/UTIL,4200,TOR@ATL 01/23/2025 07:30PM ET,TOR,25.82
-,,,,,,,,,,,,,SF/PF,Zaccharie Risacher (37420968) (LOCKED),Zaccharie Risacher,37420968,SF/PF/F/UTIL,4200,TOR@ATL 01/23/2025 07:30PM ET,ATL,19.16
-,,,,,,,,,,,,,PF,Aaron Gordon (37420956),Aaron Gordon,37420956,PF/F/UTIL,4200,SAC@DEN 01/23/2025 09:00PM ET,DEN,25.54
-,,,,,,,,,,,,,C,Mo Bamba (37420966),Mo Bamba,37420966,C/UTIL,4200,WAS@LAC 01/23/2025 10:30PM ET,LAC,13
-,,,,,,,,,,,,,SG/SF,Max Christie (37420972),Max Christie,37420972,SG/SF/F/G/UTIL,4200,BOS@LAL 01/23/2025 10:00PM ET,LAL,16.19
-,,,,,,,,,,,,,PG/SG,Jaden Hardy (37420959),Jaden Hardy,37420959,PG/SG/G/UTIL,4200,DAL@OKC 01/23/2025 08:00PM ET,DAL,13.68
-,,,,,,,,,,,,,PF,Patrick Williams (37420963),Patrick Williams,37420963,PF/F/UTIL,4100,CHI@GSW 01/23/2025 10:00PM ET,CHI,20.62
-,,,,,,,,,,,,,C,Kevon Looney (37420977),Kevon Looney,37420977,C/UTIL,4100,CHI@GSW 01/23/2025 10:00PM ET,GSW,18.14
-,,,,,,,,,,,,,PG/SG,Carlton Carrington (37420979),Carlton Carrington,37420979,PG/SG/G/UTIL,4100,WAS@LAC 01/23/2025 10:30PM ET,WAS,22.05
-,,,,,,,,,,,,,SG/SF,Corey Kispert (37420986),Corey Kispert,37420986,SG/SF/F/G/UTIL,4100,WAS@LAC 01/23/2025 10:30PM ET,WAS,19.76
-,,,,,,,,,,,,,PG/SG,Trevelin Queen (37420994) (LOCKED),Trevelin Queen,37420994,PG/SG/G/UTIL,4100,In Progress,ORL,13.5
-,,,,,,,,,,,,,SG/SF,Bogdan Bogdanovic (37421015) (LOCKED),Bogdan Bogdanovic,37421015,SG/SF/F/G/UTIL,4000,TOR@ATL 01/23/2025 07:30PM ET,ATL,18.40
-,,,,,,,,,,,,,SG,Keon Ellis (37420991),Keon Ellis,37420991,SG/G/UTIL,4000,SAC@DEN 01/23/2025 09:00PM ET,SAC,16.99
-,,,,,,,,,,,,,PF,Kyle Anderson (37420983),Kyle Anderson,37420983,PF/F/UTIL,4000,CHI@GSW 01/23/2025 10:00PM ET,GSW,15.45
-,,,,,,,,,,,,,C,Donovan Clingan (37421003) (LOCKED),Donovan Clingan,37421003,C/UTIL,4000,In Progress,POR,18.36
-,,,,,,,,,,,,,SG/SF,Isaiah Joe (37420998),Isaiah Joe,37420998,SG/SF/F/G/UTIL,4000,DAL@OKC 01/23/2025 08:00PM ET,OKC,17.08
-,,,,,,,,,,,,,SG/SF,Bruce Brown (37421010) (LOCKED),Bruce Brown,37421010,SG/SF/F/G/UTIL,3900,TOR@ATL 01/23/2025 07:30PM ET,TOR,16.15
-,,,,,,,,,,,,,SG/SF,Moses Moody (37421005),Moses Moody,37421005,SG/SF/F/G/UTIL,3900,CHI@GSW 01/23/2025 10:00PM ET,GSW,14.08
-,,,,,,,,,,,,,PF/C,Nicolas Batum (37421020),Nicolas Batum,37421020,PF/C/F/UTIL,3900,WAS@LAC 01/23/2025 10:30PM ET,LAC,11.31
-,,,,,,,,,,,,,PG/SG,Davion Mitchell (37421035) (LOCKED),Davion Mitchell,37421035,PG/SG/G/UTIL,3800,TOR@ATL 01/23/2025 07:30PM ET,TOR,16.97
-,,,,,,,,,,,,,SG,Kris Dunn (37421028),Kris Dunn,37421028,SG/G/UTIL,3800,WAS@LAC 01/23/2025 10:30PM ET,LAC,17.67
-,,,,,,,,,,,,,SF/PF,Kyshawn George (37421031),Kyshawn George,37421031,SF/PF/F/UTIL,3800,WAS@LAC 01/23/2025 10:30PM ET,WAS,18.83
-,,,,,,,,,,,,,PF/C,Jonathan Isaac (37421024) (LOCKED),Jonathan Isaac,37421024,PF/C/F/UTIL,3800,In Progress,ORL,17.09
-,,,,,,,,,,,,,C,Kelly Olynyk (37421043) (LOCKED),Kelly Olynyk,37421043,C/UTIL,3700,TOR@ATL 01/23/2025 07:30PM ET,TOR,16.2
-,,,,,,,,,,,,,SG/SF,Terance Mann (37421045),Terance Mann,37421045,SG/SF/F/G/UTIL,3700,WAS@LAC 01/23/2025 10:30PM ET,LAC,15.37
-,,,,,,,,,,,,,PG/SF,Alex Caruso (37421050),Alex Caruso,37421050,PG/SF/F/G/UTIL,3700,DAL@OKC 01/23/2025 08:00PM ET,OKC,17.54
-,,,,,,,,,,,,,PG/SG,Brandin Podziemski (37421039),Brandin Podziemski,37421039,PG/SG/G/UTIL,3600,CHI@GSW 01/23/2025 10:00PM ET,GSW,20.81
-,,,,,,,,,,,,,PF/C,Dorian Finney-Smith (37421055),Dorian Finney-Smith,37421055,PF/C/F/UTIL,3600,BOS@LAL 01/23/2025 10:00PM ET,LAL,19.92
-,,,,,,,,,,,,,PF,Jarred Vanderbilt (37421059),Jarred Vanderbilt,37421059,PF/F/UTIL,3600,BOS@LAL 01/23/2025 10:00PM ET,LAL,0
-,,,,,,,,,,,,,SG/SF,Gary Trent Jr. (37421076),Gary Trent Jr.,37421076,SG/SF/F/G/UTIL,3600,MIA@MIL 01/23/2025 08:30PM ET,MIL,16.76
-,,,,,,,,,,,,,SG/SF,Julian Strawther (37421066),Julian Strawther,37421066,SG/SF/F/G/UTIL,3500,SAC@DEN 01/23/2025 09:00PM ET,DEN,16.69
-,,,,,,,,,,,,,SG/SF,Kevin Huerter (37421085),Kevin Huerter,37421085,SG/SF/F/G/UTIL,3500,SAC@DEN 01/23/2025 09:00PM ET,SAC,17.78
-,,,,,,,,,,,,,SG/SF,Talen Horton-Tucker (37421071),Talen Horton-Tucker,37421071,SG/SF/F/G/UTIL,3500,CHI@GSW 01/23/2025 10:00PM ET,CHI,11.95
-,,,,,,,,,,,,,PF,Gui Santos (37421100),Gui Santos,37421100,PF/F/UTIL,3500,CHI@GSW 01/23/2025 10:00PM ET,GSW,8.60
-,,,,,,,,,,,,,C,Jalen Smith (37421103),Jalen Smith,37421103,C/UTIL,3500,CHI@GSW 01/23/2025 10:00PM ET,CHI,18.46
-,,,,,,,,,,,,,PG/SG,Dalano Banton (37421062) (LOCKED),Dalano Banton,37421062,PG/SG/G/UTIL,3500,In Progress,POR,17.58
-,,,,,,,,,,,,,SF/PF,Caleb Houstan (37421094) (LOCKED),Caleb Houstan,37421094,SF/PF/F/UTIL,3500,In Progress,ORL,5.88
-,,,,,,,,,,,,,SF/PF,Sam Hauser (37421081),Sam Hauser,37421081,SF/PF/F/UTIL,3500,BOS@LAL 01/23/2025 10:00PM ET,BOS,15.71
-,,,,,,,,,,,,,PG/SG,Gabe Vincent (37421090),Gabe Vincent,37421090,PG/SG/G/UTIL,3500,BOS@LAL 01/23/2025 10:00PM ET,LAL,10.07
-,,,,,,,,,,,,,C,Branden Carlson (37421098),Branden Carlson,37421098,C/UTIL,3500,DAL@OKC 01/23/2025 08:00PM ET,OKC,7
-,,,,,,,,,,,,,PF,Chris Boucher (37421121) (LOCKED),Chris Boucher,37421121,PF/F/UTIL,3400,TOR@ATL 01/23/2025 07:30PM ET,TOR,19.41
-,,,,,,,,,,,,,PF,Peyton Watson (37421110),Peyton Watson,37421110,PF/F/UTIL,3400,SAC@DEN 01/23/2025 09:00PM ET,DEN,18.87
-,,,,,,,,,,,,,PF/C,Trey Lyles (37421117),Trey Lyles,37421117,PF/C/F/UTIL,3400,SAC@DEN 01/23/2025 09:00PM ET,SAC,16.62
-,,,,,,,,,,,,,SG/SF,Dalton Knecht (37421105),Dalton Knecht,37421105,SG/SF/F/G/UTIL,3400,BOS@LAL 01/23/2025 10:00PM ET,LAL,15.94
-,,,,,,,,,,,,,SF/PF,Taurean Prince (37421113),Taurean Prince,37421113,SF/PF/F/UTIL,3400,MIA@MIL 01/23/2025 08:30PM ET,MIL,16.67
-,,,,,,,,,,,,,PF/C,Kenrich Williams (37421124),Kenrich Williams,37421124,PF/C/F/UTIL,3400,DAL@OKC 01/23/2025 08:00PM ET,OKC,12.46
-,,,,,,,,,,,,,SG,Garrison Mathews (37421142) (LOCKED),Garrison Mathews,37421142,SG/G/UTIL,3300,TOR@ATL 01/23/2025 07:30PM ET,ATL,15.40
-,,,,,,,,,,,,,SF/PF,Ochai Agbaji (37421145) (LOCKED),Ochai Agbaji,37421145,SF/PF/F/UTIL,3300,TOR@ATL 01/23/2025 07:30PM ET,TOR,21.01
-,,,,,,,,,,,,,PF,Julian Phillips (37421135),Julian Phillips,37421135,PF/F/UTIL,3300,CHI@GSW 01/23/2025 10:00PM ET,CHI,9.19
-,,,,,,,,,,,,,PF/C,Kobe Brown (37421138),Kobe Brown,37421138,PF/C/F/UTIL,3300,WAS@LAC 01/23/2025 10:30PM ET,LAC,9.21
-,,,,,,,,,,,,,C,Jaxson Hayes (37421128),Jaxson Hayes,37421128,C/UTIL,3300,BOS@LAL 01/23/2025 10:00PM ET,LAL,13.35
-,,,,,,,,,,,,,C,Neemias Queta (37421133),Neemias Queta,37421133,C/UTIL,3300,BOS@LAL 01/23/2025 10:00PM ET,BOS,12.81
-,,,,,,,,,,,,,PF,Dillon Jones (37421130),Dillon Jones,37421130,PF/F/UTIL,3300,DAL@OKC 01/23/2025 08:00PM ET,OKC,5.90
-,,,,,,,,,,,,,PG,Jamal Shead (37421179) (LOCKED),Jamal Shead,37421179,PG/G/UTIL,3200,TOR@ATL 01/23/2025 07:30PM ET,TOR,12.88
-,,,,,,,,,,,,,C,DeAndre Jordan (37421157),DeAndre Jordan,37421157,C/UTIL,3200,SAC@DEN 01/23/2025 09:00PM ET,DEN,11.76
-,,,,,,,,,,,,,SF,Gary Payton II (37421159),Gary Payton II,37421159,SF/F/UTIL,3200,CHI@GSW 01/23/2025 10:00PM ET,GSW,12.27
-,,,,,,,,,,,,,SF/PF,Matas Buzelis (37421175),Matas Buzelis,37421175,SF/PF/F/UTIL,3200,CHI@GSW 01/23/2025 10:00PM ET,CHI,11.13
-,,,,,,,,,,,,,PF/C,Robert Williams (37421162) (LOCKED),Robert Williams,37421162,PF/C/F/UTIL,3200,In Progress,POR,18.02
-,,,,,,,,,,,,,SF/PF,Haywood Highsmith (37421153),Haywood Highsmith,37421153,SF/PF/F/UTIL,3200,MIA@MIL 01/23/2025 08:30PM ET,MIA,16.09
-,,,,,,,,,,,,,SG/SF,Andre Jackson Jr. (37421170),Andre Jackson Jr.,37421170,SG/SF/F/G/UTIL,3200,MIA@MIL 01/23/2025 08:30PM ET,MIL,11.07
-,,,,,,,,,,,,,PF/C,Maxi Kleber (37421149),Maxi Kleber,37421149,PF/C/F/UTIL,3200,DAL@OKC 01/23/2025 08:00PM ET,DAL,9.84
-,,,,,,,,,,,,,SF/PF,Olivier-Maxence Prosper (37421166),Olivier-Maxence Prosper,37421166,SF/PF/F/UTIL,3200,DAL@OKC 01/23/2025 08:00PM ET,DAL,7.05
-,,,,,,,,,,,,,SG/SF,Ja'Kobe Walter (37421197) (LOCKED),Ja'Kobe Walter,37421197,SG/SF/F/G/UTIL,3100,TOR@ATL 01/23/2025 07:30PM ET,TOR,13.95
-,,,,,,,,,,,,,C,Alex Len (37421182),Alex Len,37421182,C/UTIL,3100,SAC@DEN 01/23/2025 09:00PM ET,SAC,7.13
-,,,,,,,,,,,,,SF,Dalen Terry (37421188),Dalen Terry,37421188,SF/F/UTIL,3100,CHI@GSW 01/23/2025 10:00PM ET,CHI,8.43
-,,,,,,,,,,,,,SG/SF,Lindy Waters III (37421202),Lindy Waters III,37421202,SG/SF/F/G/UTIL,3100,CHI@GSW 01/23/2025 10:00PM ET,GSW,13.18
-,,,,,,,,,,,,,PG,Cory Joseph (37421194) (LOCKED),Cory Joseph,37421194,PG/G/UTIL,3100,In Progress,ORL,5.15
-,,,,,,,,,,,,,SF,Pelle Larsson (37421191),Pelle Larsson,37421191,SF/F/UTIL,3100,MIA@MIL 01/23/2025 08:30PM ET,MIA,8.92
-,,,,,,,,,,,,,PF/C,Ousmane Dieng (37421184),Ousmane Dieng,37421184,PF/C/F/UTIL,3100,DAL@OKC 01/23/2025 08:00PM ET,OKC,8.90
-,,,,,,,,,,,,,PF,David Roddy (37421234) (LOCKED),David Roddy,37421234,PF/F/UTIL,3000,TOR@ATL 01/23/2025 07:30PM ET,ATL,11.54
-,,,,,,,,,,,,,C,Dominick Barlow (37421237) (LOCKED),Dominick Barlow,37421237,C/UTIL,3000,TOR@ATL 01/23/2025 07:30PM ET,ATL,2.14
-,,,,,,,,,,,,,SG/SF,Daeqwon Plowden (37421343) (LOCKED),Daeqwon Plowden,37421343,SG/SF/F/G/UTIL,3000,TOR@ATL 01/23/2025 07:30PM ET,ATL,26
-,,,,,,,,,,,,,C,Mouhamed Gueye (37421348) (LOCKED),Mouhamed Gueye,37421348,C/UTIL,3000,TOR@ATL 01/23/2025 07:30PM ET,ATL,2
-,,,,,,,,,,,,,C,Larry Nance Jr. (37421350) (LOCKED),Larry Nance Jr.,37421350,C/UTIL,3000,TOR@ATL 01/23/2025 07:30PM ET,ATL,21.57
-,,,,,,,,,,,,,PG,Kobe Bufkin (37421352) (LOCKED),Kobe Bufkin,37421352,PG/G/UTIL,3000,TOR@ATL 01/23/2025 07:30PM ET,ATL,11.28
-,,,,,,,,,,,,,C,Cody Zeller (37421355) (LOCKED),Cody Zeller,37421355,C/UTIL,3000,TOR@ATL 01/23/2025 07:30PM ET,ATL,0
-,,,,,,,,,,,,,C,Orlando Robinson (37421494) (LOCKED),Orlando Robinson,37421494,C/UTIL,3000,TOR@ATL 01/23/2025 07:30PM ET,TOR,5.65
-,,,,,,,,,,,,,SF,Eugene Omoruyi (37421496) (LOCKED),Eugene Omoruyi,37421496,SF/F/UTIL,3000,TOR@ATL 01/23/2025 07:30PM ET,TOR,0
-,,,,,,,,,,,,,SG,Garrett Temple (37421499) (LOCKED),Garrett Temple,37421499,SG/G/UTIL,3000,TOR@ATL 01/23/2025 07:30PM ET,TOR,3.25
-,,,,,,,,,,,,,PF/C,Jonathan Mogbo (37421502) (LOCKED),Jonathan Mogbo,37421502,PF/C/F/UTIL,3000,TOR@ATL 01/23/2025 07:30PM ET,TOR,14.60
-,,,,,,,,,,,,,C,Ulrich Chomche (37421506) (LOCKED),Ulrich Chomche,37421506,C/UTIL,3000,TOR@ATL 01/23/2025 07:30PM ET,TOR,2.42
-,,,,,,,,,,,,,SF,Jamison Battle (37421508) (LOCKED),Jamison Battle,37421508,SF/F/UTIL,3000,TOR@ATL 01/23/2025 07:30PM ET,TOR,10.06
-,,,,,,,,,,,,,PG,AJ Lawson (37421511) (LOCKED),AJ Lawson,37421511,PG/G/UTIL,3000,TOR@ATL 01/23/2025 07:30PM ET,TOR,3.94
-,,,,,,,,,,,,,SG/SF,Colby Jones (37421220),Colby Jones,37421220,SG/SF/F/G/UTIL,3000,SAC@DEN 01/23/2025 09:00PM ET,SAC,3.44
-,,,,,,,,,,,,,PF,Isaiah Crawford (37421225),Isaiah Crawford,37421225,PF/F/UTIL,3000,SAC@DEN 01/23/2025 09:00PM ET,SAC,1.92
-,,,,,,,,,,,,,SG,Mason Jones (37421228),Mason Jones,37421228,SG/G/UTIL,3000,SAC@DEN 01/23/2025 09:00PM ET,SAC,5.17
-,,,,,,,,,,,,,PG,Jordan McLaughlin (37421231),Jordan McLaughlin,37421231,PG/G/UTIL,3000,SAC@DEN 01/23/2025 09:00PM ET,SAC,5.14
-,,,,,,,,,,,,,PG/SG,Trey Alexander (37421271),Trey Alexander,37421271,PG/SG/G/UTIL,3000,SAC@DEN 01/23/2025 09:00PM ET,DEN,2.18
-,,,,,,,,,,,,,SF/PF,Hunter Tyson (37421275),Hunter Tyson,37421275,SF/PF/F/UTIL,3000,SAC@DEN 01/23/2025 09:00PM ET,DEN,5.09
-,,,,,,,,,,,,,C,Zeke Nnaji (37421279),Zeke Nnaji,37421279,C/UTIL,3000,SAC@DEN 01/23/2025 09:00PM ET,DEN,2.23
-,,,,,,,,,,,,,C,PJ Hall (37421281),PJ Hall,37421281,C/UTIL,3000,SAC@DEN 01/23/2025 09:00PM ET,DEN,2.61
-,,,,,,,,,,,,,PG/SG,Jalen Pickett (37421283),Jalen Pickett,37421283,PG/SG/G/UTIL,3000,SAC@DEN 01/23/2025 09:00PM ET,DEN,6.72
-,,,,,,,,,,,,,C,Dario Saric (37421287),Dario Saric,37421287,C/UTIL,3000,SAC@DEN 01/23/2025 09:00PM ET,DEN,11.86
-,,,,,,,,,,,,,SG/SF,Spencer Jones (37421289),Spencer Jones,37421289,SG/SF/F/G/UTIL,3000,SAC@DEN 01/23/2025 09:00PM ET,DEN,1.85
-,,,,,,,,,,,,,C,Vlatko Cancar (37421294),Vlatko Cancar,37421294,C/UTIL,3000,SAC@DEN 01/23/2025 09:00PM ET,DEN,5.12
-,,,,,,,,,,,,,C,DaRon Holmes II (37421296),DaRon Holmes II,37421296,C/UTIL,3000,SAC@DEN 01/23/2025 09:00PM ET,DEN,0
-,,,,,,,,,,,,,SF/PF,Doug McDermott (37421404),Doug McDermott,37421404,SF/PF/F/UTIL,3000,SAC@DEN 01/23/2025 09:00PM ET,SAC,5.31
-,,,,,,,,,,,,,PF/C,Jae Crowder (37421408),Jae Crowder,37421408,PF/C/F/UTIL,3000,SAC@DEN 01/23/2025 09:00PM ET,SAC,7.54
-,,,,,,,,,,,,,PF/C,Isaac Jones (37421412),Isaac Jones,37421412,PF/C/F/UTIL,3000,SAC@DEN 01/23/2025 09:00PM ET,SAC,6.17
-,,,,,,,,,,,,,PG/SG,Devin Carter (37421416),Devin Carter,37421416,PG/SG/G/UTIL,3000,SAC@DEN 01/23/2025 09:00PM ET,SAC,11.88
-,,,,,,,,,,,,,PG,Pat Spencer (37421338),Pat Spencer,37421338,PG/G/UTIL,3000,CHI@GSW 01/23/2025 10:00PM ET,GSW,7.47
-,,,,,,,,,,,,,C,Quinten Post (37421341),Quinten Post,37421341,C/UTIL,3000,CHI@GSW 01/23/2025 10:00PM ET,GSW,8.8
-,,,,,,,,,,,,,C,E.J. Liddell (37421476),E.J. Liddell,37421476,C/UTIL,3000,CHI@GSW 01/23/2025 10:00PM ET,CHI,5.04
-,,,,,,,,,,,,,PF,Emanuel Miller (37421478),Emanuel Miller,37421478,PF/F/UTIL,3000,CHI@GSW 01/23/2025 10:00PM ET,CHI,0
-,,,,,,,,,,,,,C,Adama Sanogo (37421481),Adama Sanogo,37421481,C/UTIL,3000,CHI@GSW 01/23/2025 10:00PM ET,CHI,4.12
-,,,,,,,,,,,,,SG/SF,Chris Duarte (37421483),Chris Duarte,37421483,SG/SF/F/G/UTIL,3000,CHI@GSW 01/23/2025 10:00PM ET,CHI,4.72
-,,,,,,,,,,,,,PG,Jevon Carter (37421488),Jevon Carter,37421488,PG/G/UTIL,3000,CHI@GSW 01/23/2025 10:00PM ET,CHI,6.09
-,,,,,,,,,,,,,PF,Torrey Craig (37421491),Torrey Craig,37421491,PF/F/UTIL,3000,CHI@GSW 01/23/2025 10:00PM ET,CHI,12.69
-,,,,,,,,,,,,,SF/PF,Justin Champagnie (37421207),Justin Champagnie,37421207,SF/PF/F/UTIL,3000,WAS@LAC 01/23/2025 10:30PM ET,WAS,20.25
-,,,,,,,,,,,,,C,Kai Jones (37421298),Kai Jones,37421298,C/UTIL,3000,WAS@LAC 01/23/2025 10:30PM ET,LAC,6.23
-,,,,,,,,,,,,,PG,Bones Hyland (37421300),Bones Hyland,37421300,PG/G/UTIL,3000,WAS@LAC 01/23/2025 10:30PM ET,LAC,13.10
-,,,,,,,,,,,,,SG,Trentyn Flowers (37421303),Trentyn Flowers,37421303,SG/G/UTIL,3000,WAS@LAC 01/23/2025 10:30PM ET,LAC,6.75
-,,,,,,,,,,,,,SG,Jordan Miller (37421306),Jordan Miller,37421306,SG/G/UTIL,3000,WAS@LAC 01/23/2025 10:30PM ET,LAC,10.56
-,,,,,,,,,,,,,SG,Cam Christie (37421309),Cam Christie,37421309,SG/G/UTIL,3000,WAS@LAC 01/23/2025 10:30PM ET,LAC,4.31
-,,,,,,,,,,,,,PF,P.J. Tucker (37421312),P.J. Tucker,37421312,PF/F/UTIL,3000,WAS@LAC 01/23/2025 10:30PM ET,LAC,0
-,,,,,,,,,,,,,PG,Jared Butler (37421420),Jared Butler,37421420,PG/G/UTIL,3000,WAS@LAC 01/23/2025 10:30PM ET,WAS,13.22
-,,,,,,,,,,,,,PF,Patrick Baldwin Jr. (37421423),Patrick Baldwin Jr.,37421423,PF/F/UTIL,3000,WAS@LAC 01/23/2025 10:30PM ET,WAS,3.80
-,,,,,,,,,,,,,C,Anthony Gill (37421426),Anthony Gill,37421426,C/UTIL,3000,WAS@LAC 01/23/2025 10:30PM ET,WAS,4.10
-,,,,,,,,,,,,,SG/SF,Johnny Davis (37421428),Johnny Davis,37421428,SG/SF/F/G/UTIL,3000,WAS@LAC 01/23/2025 10:30PM ET,WAS,5.74
-,,,,,,,,,,,,,C,Richaun Holmes (37421433),Richaun Holmes,37421433,C/UTIL,3000,WAS@LAC 01/23/2025 10:30PM ET,WAS,7.36
-,,,,,,,,,,,,,C,Tristan Vukcevic (37421435),Tristan Vukcevic,37421435,C/UTIL,3000,WAS@LAC 01/23/2025 10:30PM ET,WAS,1.05
-,,,,,,,,,,,,,C,Marvin Bagley III (37421437),Marvin Bagley III,37421437,C/UTIL,3000,WAS@LAC 01/23/2025 10:30PM ET,WAS,10.16
-,,,,,,,,,,,,,C,Jabari Walker (37421211) (LOCKED),Jabari Walker,37421211,C/UTIL,3000,In Progress,POR,8.5
-,,,,,,,,,,,,,PG,Mac McClung (37421315) (LOCKED),Mac McClung,37421315,PG/G/UTIL,3000,In Progress,ORL,4.25
-,,,,,,,,,,,,,SF/PF,Jett Howard (37421318) (LOCKED),Jett Howard,37421318,SF/PF/F/UTIL,3000,In Progress,ORL,8.02
-,,,,,,,,,,,,,SG/SF,Gary Harris (37421322) (LOCKED),Gary Harris,37421322,SG/SF/F/G/UTIL,3000,In Progress,ORL,8.41
-,,,,,,,,,,,,,C,Moritz Wagner (37421327) (LOCKED),Moritz Wagner,37421327,C/UTIL,3000,In Progress,ORL,23.22
-,,,,,,,,,,,,,PG/SF,Rayan Rupert (37421439) (LOCKED),Rayan Rupert,37421439,PG/SF/F/G/UTIL,3000,In Progress,POR,5.67
-,,,,,,,,,,,,,PF,Justin Minaya (37421444) (LOCKED),Justin Minaya,37421444,PF/F/UTIL,3000,In Progress,POR,1.75
-,,,,,,,,,,,,,C,Duop Reath (37421447) (LOCKED),Duop Reath,37421447,C/UTIL,3000,In Progress,POR,4.39
-,,,,,,,,,,,,,SG,Bryce McGowens (37421449) (LOCKED),Bryce McGowens,37421449,SG/G/UTIL,3000,In Progress,POR,2.06
-,,,,,,,,,,,,,SG,Taze Moore (37421452) (LOCKED),Taze Moore,37421452,SG/G/UTIL,3000,In Progress,POR,10.5
-,,,,,,,,,,,,,PF,Kris Murray (37421455) (LOCKED),Kris Murray,37421455,PF/F/UTIL,3000,In Progress,POR,10
-,,,,,,,,,,,,,PF,Matisse Thybulle (37421458) (LOCKED),Matisse Thybulle,37421458,PF/F/UTIL,3000,In Progress,POR,0
-,,,,,,,,,,,,,C,Trey Jemison (37421249),Trey Jemison,37421249,C/UTIL,3000,BOS@LAL 01/23/2025 10:00PM ET,LAL,7.83
-,,,,,,,,,,,,,C,Christian Koloko (37421251),Christian Koloko,37421251,C/UTIL,3000,BOS@LAL 01/23/2025 10:00PM ET,LAL,6.70
-,,,,,,,,,,,,,PF/C,Armel Traore (37421253),Armel Traore,37421253,PF/C/F/UTIL,3000,BOS@LAL 01/23/2025 10:00PM ET,LAL,5.25
-,,,,,,,,,,,,,PG/SG,Shake Milton (37421257),Shake Milton,37421257,PG/SG/G/UTIL,3000,BOS@LAL 01/23/2025 10:00PM ET,LAL,13.05
-,,,,,,,,,,,,,SF/PF,Cam Reddish (37421261),Cam Reddish,37421261,SF/PF/F/UTIL,3000,BOS@LAL 01/23/2025 10:00PM ET,LAL,9.92
-,,,,,,,,,,,,,PG,Bronny James (37421265),Bronny James,37421265,PG/G/UTIL,3000,BOS@LAL 01/23/2025 10:00PM ET,LAL,1.54
-,,,,,,,,,,,,,PG,Jalen Hood-Schifino (37421268),Jalen Hood-Schifino,37421268,PG/G/UTIL,3000,BOS@LAL 01/23/2025 10:00PM ET,LAL,4.12
-,,,,,,,,,,,,,SG,Baylor Scheierman (37421380),Baylor Scheierman,37421380,SG/G/UTIL,3000,BOS@LAL 01/23/2025 10:00PM ET,BOS,4.28
-,,,,,,,,,,,,,SG/SF,Jaden Springer (37421383),Jaden Springer,37421383,SG/SF/F/G/UTIL,3000,BOS@LAL 01/23/2025 10:00PM ET,BOS,3.7
-,,,,,,,,,,,,,PF/C,Xavier Tillman (37421388),Xavier Tillman,37421388,PF/C/F/UTIL,3000,BOS@LAL 01/23/2025 10:00PM ET,BOS,4.18
-,,,,,,,,,,,,,SF,Anton Watson (37421392),Anton Watson,37421392,SF/F/UTIL,3000,BOS@LAL 01/23/2025 10:00PM ET,BOS,0
-,,,,,,,,,,,,,PG,JD Davison (37421395),JD Davison,37421395,PG/G/UTIL,3000,BOS@LAL 01/23/2025 10:00PM ET,BOS,1.9
-,,,,,,,,,,,,,SF,Jordan Walsh (37421398),Jordan Walsh,37421398,SF/F/UTIL,3000,BOS@LAL 01/23/2025 10:00PM ET,BOS,4.88
-,,,,,,,,,,,,,PF,Drew Peterson (37421401),Drew Peterson,37421401,PF/F/UTIL,3000,BOS@LAL 01/23/2025 10:00PM ET,BOS,7.70
-,,,,,,,,,,,,,SG,AJ Johnson (37421239),AJ Johnson,37421239,SG/G/UTIL,3000,MIA@MIL 01/23/2025 08:30PM ET,MIL,1.96
-,,,,,,,,,,,,,PG,Ryan Rollins (37421242),Ryan Rollins,37421242,PG/G/UTIL,3000,MIA@MIL 01/23/2025 08:30PM ET,MIL,11.17
-,,,,,,,,,,,,,PG/SG,AJ Green (37421245),AJ Green,37421245,PG/SG/G/UTIL,3000,MIA@MIL 01/23/2025 08:30PM ET,MIL,14.87
-,,,,,,,,,,,,,SG,Stanley Umude (37421357),Stanley Umude,37421357,SG/G/UTIL,3000,MIA@MIL 01/23/2025 08:30PM ET,MIL,2.25
-,,,,,,,,,,,,,PG,Delon Wright (37421360),Delon Wright,37421360,PG/G/UTIL,3000,MIA@MIL 01/23/2025 08:30PM ET,MIL,9.69
-,,,,,,,,,,,,,SF/PF,Pat Connaughton (37421363),Pat Connaughton,37421363,SF/PF/F/UTIL,3000,MIA@MIL 01/23/2025 08:30PM ET,MIL,11.32
-,,,,,,,,,,,,,PF,Tyler Smith (37421367),Tyler Smith,37421367,PF/F/UTIL,3000,MIA@MIL 01/23/2025 08:30PM ET,MIL,3.5
-,,,,,,,,,,,,,C,Liam Robbins (37421370),Liam Robbins,37421370,C/UTIL,3000,MIA@MIL 01/23/2025 08:30PM ET,MIL,2.46
-,,,,,,,,,,,,,SF,Chris Livingston (37421372),Chris Livingston,37421372,SF/F/UTIL,3000,MIA@MIL 01/23/2025 08:30PM ET,MIL,1.75
-,,,,,,,,,,,,,PG/SF,Marjon Beauchamp (37421375),Marjon Beauchamp,37421375,PG/SF/F/G/UTIL,3000,MIA@MIL 01/23/2025 08:30PM ET,MIL,3.56
-,,,,,,,,,,,,,PG,Isaiah Stevens (37421514),Isaiah Stevens,37421514,PG/G/UTIL,3000,MIA@MIL 01/23/2025 08:30PM ET,MIA,0
-,,,,,,,,,,,,,PG/SG,Alec Burks (37421517),Alec Burks,37421517,PG/SG/G/UTIL,3000,MIA@MIL 01/23/2025 08:30PM ET,MIA,11.5
-,,,,,,,,,,,,,PG,Josh Christopher (37421521),Josh Christopher,37421521,PG/G/UTIL,3000,MIA@MIL 01/23/2025 08:30PM ET,MIA,2.25
-,,,,,,,,,,,,,C,Kevin Love (37421524),Kevin Love,37421524,C/UTIL,3000,MIA@MIL 01/23/2025 08:30PM ET,MIA,15.43
-,,,,,,,,,,,,,SF,Keshad Johnson (37421526),Keshad Johnson,37421526,SF/F/UTIL,3000,MIA@MIL 01/23/2025 08:30PM ET,MIA,5.14
-,,,,,,,,,,,,,PG,Josh Richardson (37421529),Josh Richardson,37421529,PG/G/UTIL,3000,MIA@MIL 01/23/2025 08:30PM ET,MIA,10.25
-,,,,,,,,,,,,,PG,Dru Smith (37421532),Dru Smith,37421532,PG/G/UTIL,3000,MIA@MIL 01/23/2025 08:30PM ET,MIA,15.71
-,,,,,,,,,,,,,PG,Adam Flagler (37421213),Adam Flagler,37421213,PG/G/UTIL,3000,DAL@OKC 01/23/2025 08:00PM ET,OKC,2.2
-,,,,,,,,,,,,,SF/PF,Kessler Edwards (37421216),Kessler Edwards,37421216,SF/PF/F/UTIL,3000,DAL@OKC 01/23/2025 08:00PM ET,DAL,1.34
-,,,,,,,,,,,,,SG,Alex Ducas (37421329),Alex Ducas,37421329,SG/G/UTIL,3000,DAL@OKC 01/23/2025 08:00PM ET,OKC,2.31
-,,,,,,,,,,,,,PG,Ajay Mitchell (37421332),Ajay Mitchell,37421332,PG/G/UTIL,3000,DAL@OKC 01/23/2025 08:00PM ET,OKC,12.86
-,,,,,,,,,,,,,PG,Nikola Topic (37421335),Nikola Topic,37421335,PG/G/UTIL,3000,DAL@OKC 01/23/2025 08:00PM ET,OKC,0
-,,,,,,,,,,,,,PG,Jazian Gortman (37421461),Jazian Gortman,37421461,PG/G/UTIL,3000,DAL@OKC 01/23/2025 08:00PM ET,DAL,2.98
-,,,,,,,,,,,,,PG,Brandon Williams (37421464),Brandon Williams,37421464,PG/G/UTIL,3000,DAL@OKC 01/23/2025 08:00PM ET,DAL,5
-,,,,,,,,,,,,,PF/C,Markieff Morris (37421467),Markieff Morris,37421467,PF/C/F/UTIL,3000,DAL@OKC 01/23/2025 08:00PM ET,DAL,4.8
-,,,,,,,,,,,,,C,Dwight Powell (37421471),Dwight Powell,37421471,C/UTIL,3000,DAL@OKC 01/23/2025 08:00PM ET,DAL,6.31
-,,,,,,,,,,,,,SF,Dante Exum (37421473),Dante Exum,37421473,SF/F/UTIL,3000,DAL@OKC 01/23/2025 08:00PM ET,DAL,0
+,,,,,,,,,,,,,PG,Cade Cunningham (37433353) (LOCKED),Cade Cunningham,37433353,PG/G/UTIL,10600,In Progress,DET,50.46
+,,,,,,,,,,,,,C,Anthony Davis (37433356),Anthony Davis,37433356,C/UTIL,10500,LAL@GSW 01/25/2025 08:30PM ET,LAL,53.06
+,,,,,,,,,,,,,PG,LaMelo Ball (37433358) (LOCKED),LaMelo Ball,37433358,PG/G/UTIL,10200,In Progress,CHA,51.09
+,,,,,,,,,,,,,PF,LeBron James (37433361),LeBron James,37433361,PF/F/UTIL,9900,LAL@GSW 01/25/2025 08:30PM ET,LAL,50.17
+,,,,,,,,,,,,,PG,Tyrese Maxey (37433364),Tyrese Maxey,37433364,PG/G/UTIL,9800,PHI@CHI 01/25/2025 08:00PM ET,PHI,45.28
+,,,,,,,,,,,,,C,Domantas Sabonis (37433367) (LOCKED),Domantas Sabonis,37433367,C/UTIL,9800,In Progress,SAC,51.47
+,,,,,,,,,,,,,C,Karl-Anthony Towns (37433369) (LOCKED),Karl-Anthony Towns,37433369,C/UTIL,9700,In Progress,NYK,52.33
+,,,,,,,,,,,,,PG,Trae Young (37433371) (LOCKED),Trae Young,37433371,PG/G/UTIL,9600,In Progress,ATL,48.01
+,,,,,,,,,,,,,C,Joel Embiid (37433374),Joel Embiid,37433374,C/UTIL,9500,PHI@CHI 01/25/2025 08:00PM ET,PHI,43.25
+,,,,,,,,,,,,,PF,Kevin Durant (37433376),Kevin Durant,37433376,PF/F/UTIL,9300,WAS@PHX 01/25/2025 09:00PM ET,PHX,45.29
+,,,,,,,,,,,,,PG,Ja Morant (37433379),Ja Morant,37433379,PG/G/UTIL,9100,UTA@MEM 01/25/2025 08:00PM ET,MEM,40.76
+,,,,,,,,,,,,,PG/SF,Scottie Barnes (37433386) (LOCKED),Scottie Barnes,37433386,PG/SF/F/G/UTIL,9000,In Progress,TOR,44.34
+,,,,,,,,,,,,,C,Alperen Sengun (37433394) (LOCKED),Alperen Sengun,37433394,C/UTIL,9000,In Progress,HOU,44.23
+,,,,,,,,,,,,,PG/SG,Devin Booker (37433382),Devin Booker,37433382,PG/SG/G/UTIL,9000,WAS@PHX 01/25/2025 09:00PM ET,PHX,43.80
+,,,,,,,,,,,,,PG,Jalen Brunson (37433391) (LOCKED),Jalen Brunson,37433391,PG/G/UTIL,9000,In Progress,NYK,42.68
+,,,,,,,,,,,,,PF,Zion Williamson (37433396) (LOCKED),Zion Williamson,37433396,PF/F/UTIL,8800,In Progress,NOP,44.05
+,,,,,,,,,,,,,PG,Stephen Curry (37433399),Stephen Curry,37433399,PG/G/UTIL,8700,LAL@GSW 01/25/2025 08:30PM ET,GSW,42.16
+,,,,,,,,,,,,,PF,Jalen Johnson (37433405) (LOCKED),Jalen Johnson,37433405,PF/F/UTIL,8600,In Progress,ATL,44.06
+,,,,,,,,,,,,,PG,Brandon Ingram (37433402) (LOCKED),Brandon Ingram,37433402,PG/G/UTIL,8600,In Progress,NOP,39.19
+,,,,,,,,,,,,,PG,Dejounte Murray (37433412) (LOCKED),Dejounte Murray,37433412,PG/G/UTIL,8500,In Progress,NOP,41.92
+,,,,,,,,,,,,,PF/C,Evan Mobley (37433408) (LOCKED),Evan Mobley,37433408,PF/C/F/UTIL,8500,In Progress,CLE,38.89
+,,,,,,,,,,,,,PF,Paolo Banchero (37433415) (LOCKED),Paolo Banchero,37433415,PF/F/UTIL,8500,In Progress,ORL,43.46
+,,,,,,,,,,,,,SG/SF,Trey Murphy III (37433418) (LOCKED),Trey Murphy III,37433418,SG/SF/F/G/UTIL,8400,In Progress,NOP,36.93
+,,,,,,,,,,,,,PG/SG,Donovan Mitchell (37433423) (LOCKED),Donovan Mitchell,37433423,PG/SG/G/UTIL,8400,In Progress,CLE,40.13
+,,,,,,,,,,,,,PG,De'Aaron Fox (37433427) (LOCKED),De'Aaron Fox,37433427,PG/G/UTIL,8300,In Progress,SAC,44.93
+,,,,,,,,,,,,,C,Mark Williams (37433430) (LOCKED),Mark Williams,37433430,C/UTIL,8200,In Progress,CHA,34.62
+,,,,,,,,,,,,,SG/SF,Paul George (37433432),Paul George,37433432,SG/SF/F/G/UTIL,8200,PHI@CHI 01/25/2025 08:00PM ET,PHI,36.17
+,,,,,,,,,,,,,SG/SF,Zach LaVine (37433437),Zach LaVine,37433437,SG/SF/F/G/UTIL,8200,PHI@CHI 01/25/2025 08:00PM ET,CHI,39.32
+,,,,,,,,,,,,,C,Nikola Vucevic (37433442),Nikola Vucevic,37433442,C/UTIL,8100,PHI@CHI 01/25/2025 08:00PM ET,CHI,42.31
+,,,,,,,,,,,,,SG,Desmond Bane (37433444),Desmond Bane,37433444,SG/G/UTIL,8100,UTA@MEM 01/25/2025 08:00PM ET,MEM,36.31
+,,,,,,,,,,,,,PG/SF,Amen Thompson (37433451) (LOCKED),Amen Thompson,37433451,PG/SF/F/G/UTIL,8000,In Progress,HOU,31.29
+,,,,,,,,,,,,,PF/C,Jaren Jackson Jr. (37433447),Jaren Jackson Jr.,37433447,PF/C/F/UTIL,8000,UTA@MEM 01/25/2025 08:00PM ET,MEM,39.90
+,,,,,,,,,,,,,SF,Franz Wagner (37433456) (LOCKED),Franz Wagner,37433456,SF/F/UTIL,8000,In Progress,ORL,43.5
+,,,,,,,,,,,,,SF,RJ Barrett (37433459) (LOCKED),RJ Barrett,37433459,SF/F/UTIL,7800,In Progress,TOR,41.38
+,,,,,,,,,,,,,PG/SG,CJ McCollum (37433462) (LOCKED),CJ McCollum,37433462,PG/SG/G/UTIL,7800,In Progress,NOP,36.19
+,,,,,,,,,,,,,PG,Darius Garland (37433477) (LOCKED),Darius Garland,37433477,PG/G/UTIL,7700,In Progress,CLE,37.62
+,,,,,,,,,,,,,PG,Austin Reaves (37433474),Austin Reaves,37433474,PG/G/UTIL,7700,LAL@GSW 01/25/2025 08:30PM ET,LAL,35.54
+,,,,,,,,,,,,,PG/SG,Jalen Suggs (37433466) (LOCKED),Jalen Suggs,37433466,PG/SG/G/UTIL,7700,In Progress,ORL,31.62
+,,,,,,,,,,,,,SF/PF,Josh Hart (37433470) (LOCKED),Josh Hart,37433470,SF/PF/F/UTIL,7700,In Progress,NYK,38.84
+,,,,,,,,,,,,,PG/SG,Dyson Daniels (37433480) (LOCKED),Dyson Daniels,37433480,PG/SG/G/UTIL,7500,In Progress,ATL,32.7
+,,,,,,,,,,,,,PG,Fred VanVleet (37433484) (LOCKED),Fred VanVleet,37433484,PG/G/UTIL,7500,In Progress,HOU,34.22
+,,,,,,,,,,,,,SG,Jalen Green (37433487) (LOCKED),Jalen Green,37433487,SG/G/UTIL,7500,In Progress,HOU,33.56
+,,,,,,,,,,,,,SF/PF,Lauri Markkanen (37433490),Lauri Markkanen,37433490,SF/PF/F/UTIL,7500,UTA@MEM 01/25/2025 08:00PM ET,UTA,33.56
+,,,,,,,,,,,,,PF,Miles Bridges (37433494) (LOCKED),Miles Bridges,37433494,PF/F/UTIL,7400,In Progress,CHA,35.99
+,,,,,,,,,,,,,PG/SG,Malik Monk (37433497) (LOCKED),Malik Monk,37433497,PG/SG/G/UTIL,7200,In Progress,SAC,33.99
+,,,,,,,,,,,,,C,Jarrett Allen (37433501) (LOCKED),Jarrett Allen,37433501,C/UTIL,7100,In Progress,CLE,33.48
+,,,,,,,,,,,,,PG,Josh Giddey (37433503),Josh Giddey,37433503,PG/G/UTIL,7000,PHI@CHI 01/25/2025 08:00PM ET,CHI,33.67
+,,,,,,,,,,,,,PG/SG,Collin Sexton (37433506),Collin Sexton,37433506,PG/SG/G/UTIL,7000,UTA@MEM 01/25/2025 08:00PM ET,UTA,29.34
+,,,,,,,,,,,,,SF,DeMar DeRozan (37433510) (LOCKED),DeMar DeRozan,37433510,SF/F/UTIL,6900,In Progress,SAC,35.41
+,,,,,,,,,,,,,PG,Keyonte George (37433513),Keyonte George,37433513,PG/G/UTIL,6800,UTA@MEM 01/25/2025 08:00PM ET,UTA,31.48
+,,,,,,,,,,,,,PG,Immanuel Quickley (37433520) (LOCKED),Immanuel Quickley,37433520,PG/G/UTIL,6700,In Progress,TOR,30.28
+,,,,,,,,,,,,,PG/SG,Jordan Poole (37433516),Jordan Poole,37433516,PG/SG/G/UTIL,6700,WAS@PHX 01/25/2025 09:00PM ET,WAS,36.35
+,,,,,,,,,,,,,C,Walker Kessler (37433523),Walker Kessler,37433523,C/UTIL,6600,UTA@MEM 01/25/2025 08:00PM ET,UTA,33.85
+,,,,,,,,,,,,,PF/C,John Collins (37433525),John Collins,37433525,PF/C/F/UTIL,6600,UTA@MEM 01/25/2025 08:00PM ET,UTA,36.15
+,,,,,,,,,,,,,PF,Jonathan Kuminga (37433529),Jonathan Kuminga,37433529,PF/F/UTIL,6500,LAL@GSW 01/25/2025 08:30PM ET,GSW,29.12
+,,,,,,,,,,,,,PG/SG,Cole Anthony (37433532) (LOCKED),Cole Anthony,37433532,PG/SG/G/UTIL,6500,In Progress,ORL,17.39
+,,,,,,,,,,,,,C,Jakob Poeltl (37433536) (LOCKED),Jakob Poeltl,37433536,C/UTIL,6400,In Progress,TOR,36.02
+,,,,,,,,,,,,,PG/SG,Coby White (37433547),Coby White,37433547,PG/SG/G/UTIL,6300,PHI@CHI 01/25/2025 08:00PM ET,CHI,32.24
+,,,,,,,,,,,,,SF/PF,Andrew Wiggins (37433538),Andrew Wiggins,37433538,SF/PF/F/UTIL,6300,LAL@GSW 01/25/2025 08:30PM ET,GSW,30.10
+,,,,,,,,,,,,,SG/SF,Mikal Bridges (37433542) (LOCKED),Mikal Bridges,37433542,SG/SF/F/G/UTIL,6300,In Progress,NYK,29.82
+,,,,,,,,,,,,,C,Onyeka Okongwu (37433551) (LOCKED),Onyeka Okongwu,37433551,C/UTIL,6200,In Progress,ATL,27.66
+,,,,,,,,,,,,,SG,Kelly Oubre Jr. (37433553),Kelly Oubre Jr.,37433553,SG/G/UTIL,6100,PHI@CHI 01/25/2025 08:00PM ET,PHI,27.88
+,,,,,,,,,,,,,C,Wendell Carter Jr. (37433556) (LOCKED),Wendell Carter Jr.,37433556,C/UTIL,6100,In Progress,ORL,23.68
+,,,,,,,,,,,,,SF/PF,De'Andre Hunter (37433560) (LOCKED),De'Andre Hunter,37433560,SF/PF/F/UTIL,6000,In Progress,ATL,28.18
+,,,,,,,,,,,,,C,Goga Bitadze (37433558) (LOCKED),Goga Bitadze,37433558,C/UTIL,6000,In Progress,ORL,28.40
+,,,,,,,,,,,,,SG/SF,Bradley Beal (37433564),Bradley Beal,37433564,SG/SF/F/G/UTIL,6000,WAS@PHX 01/25/2025 09:00PM ET,PHX,30.06
+,,,,,,,,,,,,,PF,Kyle Kuzma (37433569),Kyle Kuzma,37433569,PF/F/UTIL,6000,WAS@PHX 01/25/2025 09:00PM ET,WAS,26.09
+,,,,,,,,,,,,,PG/SG,Malcolm Brogdon (37433576),Malcolm Brogdon,37433576,PG/SG/G/UTIL,5900,WAS@PHX 01/25/2025 09:00PM ET,WAS,26.21
+,,,,,,,,,,,,,SF/PF,OG Anunoby (37433572) (LOCKED),OG Anunoby,37433572,SF/PF/F/UTIL,5900,In Progress,NYK,29.76
+,,,,,,,,,,,,,SG,Jordan Clarkson (37433580),Jordan Clarkson,37433580,SG/G/UTIL,5800,UTA@MEM 01/25/2025 08:00PM ET,UTA,27.98
+,,,,,,,,,,,,,PF/C,Draymond Green (37433583),Draymond Green,37433583,PF/C/F/UTIL,5800,LAL@GSW 01/25/2025 08:30PM ET,GSW,27.98
+,,,,,,,,,,,,,PF,Tobias Harris (37433587) (LOCKED),Tobias Harris,37433587,PF/F/UTIL,5800,In Progress,DET,28.14
+,,,,,,,,,,,,,C,Jalen Duren (37433590) (LOCKED),Jalen Duren,37433590,C/UTIL,5700,In Progress,DET,29.02
+,,,,,,,,,,,,,PG/SG,Ayo Dosunmu (37433592),Ayo Dosunmu,37433592,PG/SG/G/UTIL,5500,PHI@CHI 01/25/2025 08:00PM ET,CHI,26.65
+,,,,,,,,,,,,,PF/C,Guerschon Yabusele (37433596),Guerschon Yabusele,37433596,PF/C/F/UTIL,5500,PHI@CHI 01/25/2025 08:00PM ET,PHI,22.76
+,,,,,,,,,,,,,SF,Bilal Coulibaly (37433600),Bilal Coulibaly,37433600,SF/F/UTIL,5400,WAS@PHX 01/25/2025 09:00PM ET,WAS,27.42
+,,,,,,,,,,,,,C,Trayce Jackson-Davis (37433610),Trayce Jackson-Davis,37433610,C/UTIL,5300,LAL@GSW 01/25/2025 08:30PM ET,GSW,21.89
+,,,,,,,,,,,,,PG,Anthony Black (37433607) (LOCKED),Anthony Black,37433607,PG/G/UTIL,5300,In Progress,ORL,20.45
+,,,,,,,,,,,,,PF/C,Alexandre Sarr (37433603),Alexandre Sarr,37433603,PF/C/F/UTIL,5300,WAS@PHX 01/25/2025 09:00PM ET,WAS,28.18
+,,,,,,,,,,,,,PF,Tari Eason (37433612) (LOCKED),Tari Eason,37433612,PF/F/UTIL,5200,In Progress,HOU,27.04
+,,,,,,,,,,,,,PG/SG,Isaiah Collier (37433615),Isaiah Collier,37433615,PG/SG/G/UTIL,5200,UTA@MEM 01/25/2025 08:00PM ET,UTA,16.34
+,,,,,,,,,,,,,C,Yves Missi (37433631) (LOCKED),Yves Missi,37433631,C/UTIL,5100,In Progress,NOP,25.17
+,,,,,,,,,,,,,C,Andre Drummond (37433629),Andre Drummond,37433629,C/UTIL,5100,PHI@CHI 01/25/2025 08:00PM ET,PHI,19.82
+,,,,,,,,,,,,,PF/C,Jabari Smith Jr. (37433621) (LOCKED),Jabari Smith Jr.,37433621,PF/C/F/UTIL,5100,In Progress,HOU,24.84
+,,,,,,,,,,,,,SF/PF,Brice Sensabaugh (37433625),Brice Sensabaugh,37433625,SF/PF/F/UTIL,5100,UTA@MEM 01/25/2025 08:00PM ET,UTA,17.19
+,,,,,,,,,,,,,C,Nick Richards (37433619),Nick Richards,37433619,C/UTIL,5100,WAS@PHX 01/25/2025 09:00PM ET,PHX,23.42
+,,,,,,,,,,,,,PF,Santi Aldama (37433633),Santi Aldama,37433633,PF/F/UTIL,4900,UTA@MEM 01/25/2025 08:00PM ET,MEM,28.69
+,,,,,,,,,,,,,C,Daniel Theis (37433647) (LOCKED),Daniel Theis,37433647,C/UTIL,4800,In Progress,NOP,14.24
+,,,,,,,,,,,,,PF,Dillon Brooks (37433644) (LOCKED),Dillon Brooks,37433644,PF/F/UTIL,4800,In Progress,HOU,22.63
+,,,,,,,,,,,,,SG,Malik Beasley (37433641) (LOCKED),Malik Beasley,37433641,SG/G/UTIL,4800,In Progress,DET,25.64
+,,,,,,,,,,,,,C,Jonas Valanciunas (37433639),Jonas Valanciunas,37433639,C/UTIL,4800,WAS@PHX 01/25/2025 09:00PM ET,WAS,27.07
+,,,,,,,,,,,,,PF,Keegan Murray (37433636) (LOCKED),Keegan Murray,37433636,PF/F/UTIL,4800,In Progress,SAC,27.06
+,,,,,,,,,,,,,SF/PF,Caleb Martin (37433655),Caleb Martin,37433655,SF/PF/F/UTIL,4700,PHI@CHI 01/25/2025 08:00PM ET,PHI,21.26
+,,,,,,,,,,,,,PG/SG,Dennis Schroder (37433651),Dennis Schroder,37433651,PG/SG/G/UTIL,4700,LAL@GSW 01/25/2025 08:30PM ET,GSW,28.57
+,,,,,,,,,,,,,C,Jusuf Nurkic (37433649),Jusuf Nurkic,37433649,C/UTIL,4700,WAS@PHX 01/25/2025 09:00PM ET,PHX,25.71
+,,,,,,,,,,,,,SF,Saddiq Bey (37433659),Saddiq Bey,37433659,SF/F/UTIL,4700,WAS@PHX 01/25/2025 09:00PM ET,WAS,0
+,,,,,,,,,,,,,C,Clint Capela (37433662) (LOCKED),Clint Capela,37433662,C/UTIL,4600,In Progress,ATL,25.64
+,,,,,,,,,,,,,SG/SF,Nick Smith Jr. (37433678) (LOCKED),Nick Smith Jr.,37433678,SG/SF/F/G/UTIL,4600,In Progress,CHA,11.70
+,,,,,,,,,,,,,SG/SF,Svi Mykhailiuk (37433673),Svi Mykhailiuk,37433673,SG/SF/F/G/UTIL,4600,UTA@MEM 01/25/2025 08:00PM ET,UTA,17.69
+,,,,,,,,,,,,,SF/PF,Rui Hachimura (37433664),Rui Hachimura,37433664,SF/PF/F/UTIL,4600,LAL@GSW 01/25/2025 08:30PM ET,LAL,24.14
+,,,,,,,,,,,,,SG/SF,Buddy Hield (37433668),Buddy Hield,37433668,SG/SF/F/G/UTIL,4600,LAL@GSW 01/25/2025 08:30PM ET,GSW,21.62
+,,,,,,,,,,,,,SG,Gradey Dick (37433683) (LOCKED),Gradey Dick,37433683,SG/G/UTIL,4500,In Progress,TOR,25.82
+,,,,,,,,,,,,,PG/SF,Vit Krejci (37433693) (LOCKED),Vit Krejci,37433693,PG/SF/F/G/UTIL,4500,In Progress,ATL,14.84
+,,,,,,,,,,,,,PG,Lonzo Ball (37433686),Lonzo Ball,37433686,PG/G/UTIL,4500,PHI@CHI 01/25/2025 08:00PM ET,CHI,20.71
+,,,,,,,,,,,,,SF/PF,Ricky Council IV (37433698),Ricky Council IV,37433698,SF/PF/F/UTIL,4500,PHI@CHI 01/25/2025 08:00PM ET,PHI,11.62
+,,,,,,,,,,,,,SF/PF,Tristan da Silva (37433689) (LOCKED),Tristan da Silva,37433689,SF/PF/F/UTIL,4500,In Progress,ORL,18.01
+,,,,,,,,,,,,,PF/C,Precious Achiuwa (37433702) (LOCKED),Precious Achiuwa,37433702,PF/C/F/UTIL,4500,In Progress,NYK,16.69
+,,,,,,,,,,,,,SG/SF,Bogdan Bogdanovic (37433716) (LOCKED),Bogdan Bogdanovic,37433716,SG/SF/F/G/UTIL,4400,In Progress,ATL,18.85
+,,,,,,,,,,,,,PG/SG,Luke Kennard (37433709),Luke Kennard,37433709,PG/SG/G/UTIL,4400,UTA@MEM 01/25/2025 08:00PM ET,MEM,20.90
+,,,,,,,,,,,,,PF,Christian Wood (37433713),Christian Wood,37433713,PF/F/UTIL,4400,LAL@GSW 01/25/2025 08:30PM ET,LAL,0
+,,,,,,,,,,,,,PG,Tyus Jones (37433706),Tyus Jones,37433706,PG/G/UTIL,4400,WAS@PHX 01/25/2025 09:00PM ET,PHX,26.26
+,,,,,,,,,,,,,PG,Keaton Wallace (37433730) (LOCKED),Keaton Wallace,37433730,PG/G/UTIL,4300,In Progress,ATL,13.91
+,,,,,,,,,,,,,SF/PF,Dean Wade (37433736) (LOCKED),Dean Wade,37433736,SF/PF/F/UTIL,4300,In Progress,CLE,18
+,,,,,,,,,,,,,PF/C,Kyle Filipowski (37433740),Kyle Filipowski,37433740,PF/C/F/UTIL,4300,UTA@MEM 01/25/2025 08:00PM ET,UTA,15.83
+,,,,,,,,,,,,,SF/PF,Ausar Thompson (37433721) (LOCKED),Ausar Thompson,37433721,SF/PF/F/UTIL,4300,In Progress,DET,19.64
+,,,,,,,,,,,,,SG,Kentavious Caldwell-Pope (37433733) (LOCKED),Kentavious Caldwell-Pope,37433733,SG/G/UTIL,4300,In Progress,ORL,19.24
+,,,,,,,,,,,,,SG/SF,Grayson Allen (37433725),Grayson Allen,37433725,SG/SF/F/G/UTIL,4300,WAS@PHX 01/25/2025 09:00PM ET,PHX,20.76
+,,,,,,,,,,,,,SF/PF,Zaccharie Risacher (37433754) (LOCKED),Zaccharie Risacher,37433754,SF/PF/F/UTIL,4200,In Progress,ATL,19.16
+,,,,,,,,,,,,,SG/SF,Max Strus (37433749) (LOCKED),Max Strus,37433749,SG/SF/F/G/UTIL,4200,In Progress,CLE,18.48
+,,,,,,,,,,,,,SG/SF,Jaylen Wells (37433744),Jaylen Wells,37433744,SG/SF/F/G/UTIL,4200,UTA@MEM 01/25/2025 08:00PM ET,MEM,20.26
+,,,,,,,,,,,,,PG,Tre Mann (37433761) (LOCKED),Tre Mann,37433761,PG/G/UTIL,4100,In Progress,CHA,23.88
+,,,,,,,,,,,,,PG,Ty Jerome (37433758) (LOCKED),Ty Jerome,37433758,PG/G/UTIL,4100,In Progress,CLE,21.38
+,,,,,,,,,,,,,SG/SF,Bruce Brown (37433768) (LOCKED),Bruce Brown,37433768,SG/SF/F/G/UTIL,4000,In Progress,TOR,17.57
+,,,,,,,,,,,,,SF/PF,Javonte Green (37433793) (LOCKED),Javonte Green,37433793,SF/PF/F/UTIL,4000,In Progress,NOP,15.17
+,,,,,,,,,,,,,SG,Eric Gordon (37433785),Eric Gordon,37433785,SG/G/UTIL,4000,PHI@CHI 01/25/2025 08:00PM ET,PHI,12.22
+,,,,,,,,,,,,,PG/SG,Caris LeVert (37433781) (LOCKED),Caris LeVert,37433781,PG/SG/G/UTIL,4000,In Progress,CLE,23.11
+,,,,,,,,,,,,,C,Drew Eubanks (37433779),Drew Eubanks,37433779,C/UTIL,4000,UTA@MEM 01/25/2025 08:00PM ET,UTA,15.14
+,,,,,,,,,,,,,PF,Gui Santos (37433773),Gui Santos,37433773,PF/F/UTIL,4000,LAL@GSW 01/25/2025 08:30PM ET,GSW,9.91
+,,,,,,,,,,,,,PF,Kyle Anderson (37433776),Kyle Anderson,37433776,PF/F/UTIL,4000,LAL@GSW 01/25/2025 08:30PM ET,GSW,15.45
+,,,,,,,,,,,,,SG/SF,Max Christie (37433788),Max Christie,37433788,SG/SF/F/G/UTIL,4000,LAL@GSW 01/25/2025 08:30PM ET,LAL,16.13
+,,,,,,,,,,,,,PG/SG,Carlton Carrington (37433764),Carlton Carrington,37433764,PG/SG/G/UTIL,4000,WAS@PHX 01/25/2025 09:00PM ET,WAS,22.26
+,,,,,,,,,,,,,PF,Patrick Williams (37433821),Patrick Williams,37433821,PF/F/UTIL,3900,PHI@CHI 01/25/2025 08:00PM ET,CHI,20.39
+,,,,,,,,,,,,,SF/PF,Justin Edwards (37433824),Justin Edwards,37433824,SF/PF/F/UTIL,3900,PHI@CHI 01/25/2025 08:00PM ET,PHI,14.18
+,,,,,,,,,,,,,SG/SF,Cam Whitmore (37433803) (LOCKED),Cam Whitmore,37433803,SG/SF/F/G/UTIL,3900,In Progress,HOU,17.65
+,,,,,,,,,,,,,SG,Marcus Smart (37433808),Marcus Smart,37433808,SG/G/UTIL,3900,UTA@MEM 01/25/2025 08:00PM ET,MEM,20.92
+,,,,,,,,,,,,,SG/SF,Johnny Juzang (37433832),Johnny Juzang,37433832,SG/SF/F/G/UTIL,3900,UTA@MEM 01/25/2025 08:00PM ET,UTA,13.95
+,,,,,,,,,,,,,C,Kevon Looney (37433797),Kevon Looney,37433797,C/UTIL,3900,LAL@GSW 01/25/2025 08:30PM ET,GSW,18.32
+,,,,,,,,,,,,,SG/SF,Tim Hardaway Jr. (37433816) (LOCKED),Tim Hardaway Jr.,37433816,SG/SF/F/G/UTIL,3900,In Progress,DET,17.71
+,,,,,,,,,,,,,SF/PF,Ryan Dunn (37433799),Ryan Dunn,37433799,SF/PF/F/UTIL,3900,WAS@PHX 01/25/2025 09:00PM ET,PHX,16.05
+,,,,,,,,,,,,,SG/SF,Corey Kispert (37433811),Corey Kispert,37433811,SG/SF/F/G/UTIL,3900,WAS@PHX 01/25/2025 09:00PM ET,WAS,19.57
+,,,,,,,,,,,,,PG/SG,Miles McBride (37433828) (LOCKED),Miles McBride,37433828,PG/SG/G/UTIL,3900,In Progress,NYK,19.02
+,,,,,,,,,,,,,SG/SF,Cody Martin (37433837) (LOCKED),Cody Martin,37433837,SG/SF/F/G/UTIL,3800,In Progress,CHA,20.42
+,,,,,,,,,,,,,C,Adem Bona (37433848),Adem Bona,37433848,C/UTIL,3800,PHI@CHI 01/25/2025 08:00PM ET,PHI,7.56
+,,,,,,,,,,,,,C,Zach Edey (37433842),Zach Edey,37433842,C/UTIL,3800,UTA@MEM 01/25/2025 08:00PM ET,MEM,22.97
+,,,,,,,,,,,,,SF,Cody Williams (37433859),Cody Williams,37433859,SF/F/UTIL,3800,UTA@MEM 01/25/2025 08:00PM ET,UTA,10.28
+,,,,,,,,,,,,,PG/SG,Trevelin Queen (37433852) (LOCKED),Trevelin Queen,37433852,PG/SG/G/UTIL,3800,In Progress,ORL,13.13
+,,,,,,,,,,,,,SF/PF,Royce O'Neale (37433844),Royce O'Neale,37433844,SF/PF/F/UTIL,3800,WAS@PHX 01/25/2025 09:00PM ET,PHX,22.93
+,,,,,,,,,,,,,C,Mitchell Robinson (37433850) (LOCKED),Mitchell Robinson,37433850,C/UTIL,3800,In Progress,NYK,0
+,,,,,,,,,,,,,SG,Keon Ellis (37433856) (LOCKED),Keon Ellis,37433856,SG/G/UTIL,3800,In Progress,SAC,17.05
+,,,,,,,,,,,,,PF/C,Jeremiah Robinson-Earl (37433871) (LOCKED),Jeremiah Robinson-Earl,37433871,PF/C/F/UTIL,3700,In Progress,NOP,15.95
+,,,,,,,,,,,,,SG/SF,Moses Moody (37433862),Moses Moody,37433862,SG/SF/F/G/UTIL,3700,LAL@GSW 01/25/2025 08:30PM ET,GSW,14.67
+,,,,,,,,,,,,,SF/PF,Kyshawn George (37433867),Kyshawn George,37433867,SF/PF/F/UTIL,3700,WAS@PHX 01/25/2025 09:00PM ET,WAS,18.64
+,,,,,,,,,,,,,PG/SG,Davion Mitchell (37433886) (LOCKED),Davion Mitchell,37433886,PG/SG/G/UTIL,3600,In Progress,TOR,16.86
+,,,,,,,,,,,,,PG,Jose Alvarado (37433879) (LOCKED),Jose Alvarado,37433879,PG/G/UTIL,3600,In Progress,NOP,22.32
+,,,,,,,,,,,,,SF/PF,Georges Niang (37433875) (LOCKED),Georges Niang,37433875,SF/PF/F/UTIL,3600,In Progress,CLE,16.59
+,,,,,,,,,,,,,SF/PF,Jake LaRavia (37433882),Jake LaRavia,37433882,SF/PF/F/UTIL,3600,UTA@MEM 01/25/2025 08:00PM ET,MEM,20.33
+,,,,,,,,,,,,,PF/C,Micah Potter (37433894),Micah Potter,37433894,PF/C/F/UTIL,3600,UTA@MEM 01/25/2025 08:00PM ET,UTA,10.78
+,,,,,,,,,,,,,PF/C,Jarred Vanderbilt (37433890),Jarred Vanderbilt,37433890,PF/C/F/UTIL,3600,LAL@GSW 01/25/2025 08:30PM ET,LAL,0
+,,,,,,,,,,,,,C,Kelly Olynyk (37433901) (LOCKED),Kelly Olynyk,37433901,C/UTIL,3500,In Progress,TOR,16.64
+,,,,,,,,,,,,,C,Dominick Barlow (37433915) (LOCKED),Dominick Barlow,37433915,C/UTIL,3500,In Progress,ATL,4.31
+,,,,,,,,,,,,,PG,Scotty Pippen Jr. (37433898),Scotty Pippen Jr.,37433898,PG/G/UTIL,3500,UTA@MEM 01/25/2025 08:00PM ET,MEM,23.92
+,,,,,,,,,,,,,PF/C,Dorian Finney-Smith (37433909),Dorian Finney-Smith,37433909,PF/C/F/UTIL,3500,LAL@GSW 01/25/2025 08:30PM ET,LAL,19.54
+,,,,,,,,,,,,,PF/C,Jonathan Isaac (37433905) (LOCKED),Jonathan Isaac,37433905,PF/C/F/UTIL,3500,In Progress,ORL,17.01
+,,,,,,,,,,,,,C,Isaiah Stewart (37433913) (LOCKED),Isaiah Stewart,37433913,C/UTIL,3500,In Progress,DET,19.19
+,,,,,,,,,,,,,C,Jericho Sims (37433903) (LOCKED),Jericho Sims,37433903,C/UTIL,3500,In Progress,NYK,8.18
+,,,,,,,,,,,,,SF,Josh Green (37433931) (LOCKED),Josh Green,37433931,SF/F/UTIL,3400,In Progress,CHA,15.91
+,,,,,,,,,,,,,SG/SF,Talen Horton-Tucker (37433934),Talen Horton-Tucker,37433934,SG/SF/F/G/UTIL,3400,PHI@CHI 01/25/2025 08:00PM ET,CHI,11.81
+,,,,,,,,,,,,,SG,Sam Merrill (37433939) (LOCKED),Sam Merrill,37433939,SG/G/UTIL,3400,In Progress,CLE,13.53
+,,,,,,,,,,,,,PG,EJ Harkless (37433942),EJ Harkless,37433942,PG/G/UTIL,3400,UTA@MEM 01/25/2025 08:00PM ET,UTA,9.62
+,,,,,,,,,,,,,PG/SG,Brandin Podziemski (37433917),Brandin Podziemski,37433917,PG/SG/G/UTIL,3400,LAL@GSW 01/25/2025 08:30PM ET,GSW,20.80
+,,,,,,,,,,,,,PG/SG,Gabe Vincent (37433923),Gabe Vincent,37433923,PG/SG/G/UTIL,3400,LAL@GSW 01/25/2025 08:30PM ET,LAL,10.36
+,,,,,,,,,,,,,PF,Simone Fontecchio (37433945) (LOCKED),Simone Fontecchio,37433945,PF/F/UTIL,3400,In Progress,DET,12.67
+,,,,,,,,,,,,,C,Mason Plumlee (37433921),Mason Plumlee,37433921,C/UTIL,3400,WAS@PHX 01/25/2025 09:00PM ET,PHX,16.70
+,,,,,,,,,,,,,PG/SG,Cameron Payne (37433927) (LOCKED),Cameron Payne,37433927,PG/SG/G/UTIL,3400,In Progress,NYK,15.31
+,,,,,,,,,,,,,SF/PF,Ochai Agbaji (37433964) (LOCKED),Ochai Agbaji,37433964,SF/PF/F/UTIL,3300,In Progress,TOR,21.01
+,,,,,,,,,,,,,PG,Vasilije Micic (37433952) (LOCKED),Vasilije Micic,37433952,PG/G/UTIL,3300,In Progress,CHA,15.1
+,,,,,,,,,,,,,C,Jalen Smith (37433948),Jalen Smith,37433948,C/UTIL,3300,PHI@CHI 01/25/2025 08:00PM ET,CHI,18.51
+,,,,,,,,,,,,,C,Brandon Clarke (37433950),Brandon Clarke,37433950,C/UTIL,3300,UTA@MEM 01/25/2025 08:00PM ET,MEM,17.90
+,,,,,,,,,,,,,SG/SF,Dalton Knecht (37433968),Dalton Knecht,37433968,SG/SF/F/G/UTIL,3300,LAL@GSW 01/25/2025 08:30PM ET,LAL,16.02
+,,,,,,,,,,,,,SF/PF,Caleb Houstan (37433955) (LOCKED),Caleb Houstan,37433955,SF/PF/F/UTIL,3300,In Progress,ORL,5.74
+,,,,,,,,,,,,,SG/SF,Kevin Huerter (37433959) (LOCKED),Kevin Huerter,37433959,SG/SF/F/G/UTIL,3300,In Progress,SAC,17.33
+,,,,,,,,,,,,,PF/C,Chris Boucher (37433977) (LOCKED),Chris Boucher,37433977,PF/C/F/UTIL,3200,In Progress,TOR,19.48
+,,,,,,,,,,,,,SG,Garrison Mathews (37433987) (LOCKED),Garrison Mathews,37433987,SG/G/UTIL,3200,In Progress,ATL,15.11
+,,,,,,,,,,,,,SG,Jordan Hawkins (37433981) (LOCKED),Jordan Hawkins,37433981,SG/G/UTIL,3200,In Progress,NOP,18.31
+,,,,,,,,,,,,,PF,Julian Phillips (37433984),Julian Phillips,37433984,PF/F/UTIL,3200,PHI@CHI 01/25/2025 08:00PM ET,CHI,9.10
+,,,,,,,,,,,,,C,Jaxson Hayes (37433994),Jaxson Hayes,37433994,C/UTIL,3200,LAL@GSW 01/25/2025 08:30PM ET,LAL,13.5
+,,,,,,,,,,,,,PF/C,Oso Ighodaro (37433990),Oso Ighodaro,37433990,PF/C/F/UTIL,3200,WAS@PHX 01/25/2025 09:00PM ET,PHX,11.04
+,,,,,,,,,,,,,PF/C,Trey Lyles (37433973) (LOCKED),Trey Lyles,37433973,PF/C/F/UTIL,3200,In Progress,SAC,16.95
+,,,,,,,,,,,,,PG,Jamal Shead (37434009) (LOCKED),Jamal Shead,37434009,PG/G/UTIL,3100,In Progress,TOR,12.75
+,,,,,,,,,,,,,SF/PF,Josh Okogie (37433998) (LOCKED),Josh Okogie,37433998,SF/PF/F/UTIL,3100,In Progress,CHA,14.05
+,,,,,,,,,,,,,SF/PF,Matas Buzelis (37434002),Matas Buzelis,37434002,SF/PF/F/UTIL,3100,PHI@CHI 01/25/2025 08:00PM ET,CHI,11.05
+,,,,,,,,,,,,,C,Steven Adams (37433996) (LOCKED),Steven Adams,37433996,C/UTIL,3100,In Progress,HOU,11.36
+,,,,,,,,,,,,,SF,Gary Payton II (37434006),Gary Payton II,37434006,SF/F/UTIL,3100,LAL@GSW 01/25/2025 08:30PM ET,GSW,12.13
+,,,,,,,,,,,,,PG/SG,Marcus Sasser (37434012) (LOCKED),Marcus Sasser,37434012,PG/SG/G/UTIL,3100,In Progress,DET,12.24
+,,,,,,,,,,,,,PF,David Roddy (37434103) (LOCKED),David Roddy,37434103,PF/F/UTIL,3000,In Progress,ATL,11.31
+,,,,,,,,,,,,,SG/SF,Daeqwon Plowden (37434106) (LOCKED),Daeqwon Plowden,37434106,SG/SF/F/G/UTIL,3000,In Progress,ATL,26
+,,,,,,,,,,,,,C,Mouhamed Gueye (37434111) (LOCKED),Mouhamed Gueye,37434111,C/UTIL,3000,In Progress,ATL,2
+,,,,,,,,,,,,,C,Larry Nance Jr. (37434113) (LOCKED),Larry Nance Jr.,37434113,C/UTIL,3000,In Progress,ATL,21.57
+,,,,,,,,,,,,,PG,Kobe Bufkin (37434115) (LOCKED),Kobe Bufkin,37434115,PG/G/UTIL,3000,In Progress,ATL,11.28
+,,,,,,,,,,,,,C,Cody Zeller (37434118) (LOCKED),Cody Zeller,37434118,C/UTIL,3000,In Progress,ATL,0
+,,,,,,,,,,,,,C,Orlando Robinson (37434256) (LOCKED),Orlando Robinson,37434256,C/UTIL,3000,In Progress,TOR,5.65
+,,,,,,,,,,,,,SG,Garrett Temple (37434258) (LOCKED),Garrett Temple,37434258,SG/G/UTIL,3000,In Progress,TOR,3.25
+,,,,,,,,,,,,,PF/C,Jonathan Mogbo (37434261) (LOCKED),Jonathan Mogbo,37434261,PF/C/F/UTIL,3000,In Progress,TOR,14.60
+,,,,,,,,,,,,,C,Ulrich Chomche (37434265) (LOCKED),Ulrich Chomche,37434265,C/UTIL,3000,In Progress,TOR,2.42
+,,,,,,,,,,,,,SF,Jamison Battle (37434267) (LOCKED),Jamison Battle,37434267,SF/F/UTIL,3000,In Progress,TOR,10.06
+,,,,,,,,,,,,,PG,AJ Lawson (37434270) (LOCKED),AJ Lawson,37434270,PG/G/UTIL,3000,In Progress,TOR,3.94
+,,,,,,,,,,,,,SG/SF,Ja'Kobe Walter (37434273) (LOCKED),Ja'Kobe Walter,37434273,SG/SF/F/G/UTIL,3000,In Progress,TOR,13.46
+,,,,,,,,,,,,,PF,Brandon Miller (37434016) (LOCKED),Brandon Miller,37434016,PF/F/UTIL,3000,In Progress,CHA,36.81
+,,,,,,,,,,,,,PF,Tidjane Salaun (37434040) (LOCKED),Tidjane Salaun,37434040,PF/F/UTIL,3000,In Progress,CHA,13.01
+,,,,,,,,,,,,,SG,Seth Curry (37434043) (LOCKED),Seth Curry,37434043,SG/G/UTIL,3000,In Progress,CHA,9.18
+,,,,,,,,,,,,,PG/SG,Isaiah Wong (37434185) (LOCKED),Isaiah Wong,37434185,PG/SG/G/UTIL,3000,In Progress,CHA,11.46
+,,,,,,,,,,,,,C,Taj Gibson (37434189) (LOCKED),Taj Gibson,37434189,C/UTIL,3000,In Progress,CHA,7.62
+,,,,,,,,,,,,,PG,KJ Simpson (37434191) (LOCKED),KJ Simpson,37434191,PG/G/UTIL,3000,In Progress,CHA,11.12
+,,,,,,,,,,,,,C,Moussa Diabate (37434194) (LOCKED),Moussa Diabate,37434194,C/UTIL,3000,In Progress,CHA,15.12
+,,,,,,,,,,,,,PF,DaQuan Jeffries (37434196) (LOCKED),DaQuan Jeffries,37434196,PF/F/UTIL,3000,In Progress,CHA,13.05
+,,,,,,,,,,,,,C,Grant Williams (37434199) (LOCKED),Grant Williams,37434199,C/UTIL,3000,In Progress,CHA,24.09
+,,,,,,,,,,,,,SF/PF,Keion Brooks Jr. (37434352) (LOCKED),Keion Brooks Jr.,37434352,SF/PF/F/UTIL,3000,In Progress,NOP,0
+,,,,,,,,,,,,,SG/SF,Antonio Reeves (37434356) (LOCKED),Antonio Reeves,37434356,SG/SF/F/G/UTIL,3000,In Progress,NOP,7.79
+,,,,,,,,,,,,,C,Karlo Matkovic (37434361) (LOCKED),Karlo Matkovic,37434361,C/UTIL,3000,In Progress,NOP,6.36
+,,,,,,,,,,,,,SF,Jamal Cain (37434363) (LOCKED),Jamal Cain,37434363,SF/F/UTIL,3000,In Progress,NOP,9.69
+,,,,,,,,,,,,,SG/SF,Brandon Boston Jr. (37434366) (LOCKED),Brandon Boston Jr.,37434366,SG/SF/F/G/UTIL,3000,In Progress,NOP,20.92
+,,,,,,,,,,,,,C,Herbert Jones (37434371) (LOCKED),Herbert Jones,37434371,C/UTIL,3000,In Progress,NOP,24.28
+,,,,,,,,,,,,,PG,Jeff Dowtin (37434023),Jeff Dowtin,37434023,PG/G/UTIL,3000,PHI@CHI 01/25/2025 08:00PM ET,PHI,9.08
+,,,,,,,,,,,,,C,Pete Nance (37434026),Pete Nance,37434026,C/UTIL,3000,PHI@CHI 01/25/2025 08:00PM ET,PHI,6.95
+,,,,,,,,,,,,,PG,Reggie Jackson (37434046),Reggie Jackson,37434046,PG/G/UTIL,3000,PHI@CHI 01/25/2025 08:00PM ET,PHI,9.12
+,,,,,,,,,,,,,C,E.J. Liddell (37434056),E.J. Liddell,37434056,C/UTIL,3000,PHI@CHI 01/25/2025 08:00PM ET,CHI,5.04
+,,,,,,,,,,,,,SF,Dalen Terry (37434058),Dalen Terry,37434058,SF/F/UTIL,3000,PHI@CHI 01/25/2025 08:00PM ET,CHI,8.34
+,,,,,,,,,,,,,PF,Emanuel Miller (37434061),Emanuel Miller,37434061,PF/F/UTIL,3000,PHI@CHI 01/25/2025 08:00PM ET,CHI,0
+,,,,,,,,,,,,,C,Adama Sanogo (37434064),Adama Sanogo,37434064,C/UTIL,3000,PHI@CHI 01/25/2025 08:00PM ET,CHI,4.12
+,,,,,,,,,,,,,PG,Jevon Carter (37434066),Jevon Carter,37434066,PG/G/UTIL,3000,PHI@CHI 01/25/2025 08:00PM ET,CHI,6.38
+,,,,,,,,,,,,,SG/SF,Chris Duarte (37434069),Chris Duarte,37434069,SG/SF/F/G/UTIL,3000,PHI@CHI 01/25/2025 08:00PM ET,CHI,4.72
+,,,,,,,,,,,,,PF,Torrey Craig (37434074),Torrey Craig,37434074,PF/F/UTIL,3000,PHI@CHI 01/25/2025 08:00PM ET,CHI,12.69
+,,,,,,,,,,,,,PG/SG,Kyle Lowry (37434218),Kyle Lowry,37434218,PG/SG/G/UTIL,3000,PHI@CHI 01/25/2025 08:00PM ET,PHI,13.26
+,,,,,,,,,,,,,SF,KJ Martin (37434222),KJ Martin,37434222,SF/F/UTIL,3000,PHI@CHI 01/25/2025 08:00PM ET,PHI,13.52
+,,,,,,,,,,,,,PG,Jared McCain (37434225),Jared McCain,37434225,PG/G/UTIL,3000,PHI@CHI 01/25/2025 08:00PM ET,PHI,23.94
+,,,,,,,,,,,,,C,Tristan Thompson (37434021) (LOCKED),Tristan Thompson,37434021,C/UTIL,3000,In Progress,CLE,7.42
+,,,,,,,,,,,,,PG,Craig Porter Jr. (37434037) (LOCKED),Craig Porter Jr.,37434037,PG/G/UTIL,3000,In Progress,CLE,6.05
+,,,,,,,,,,,,,SF/PF,JT Thor (37434166) (LOCKED),JT Thor,37434166,SF/PF/F/UTIL,3000,In Progress,CLE,5.69
+,,,,,,,,,,,,,SG/SF,Jaylon Tyson (37434170) (LOCKED),Jaylon Tyson,37434170,SG/SF/F/G/UTIL,3000,In Progress,CLE,6.08
+,,,,,,,,,,,,,PG,Emoni Bates (37434175) (LOCKED),Emoni Bates,37434175,PG/G/UTIL,3000,In Progress,CLE,0
+,,,,,,,,,,,,,SF/PF,Isaac Okoro (37434178) (LOCKED),Isaac Okoro,37434178,SF/PF/F/UTIL,3000,In Progress,CLE,13.30
+,,,,,,,,,,,,,SF,Luke Travers (37434182) (LOCKED),Luke Travers,37434182,SF/F/UTIL,3000,In Progress,CLE,4.33
+,,,,,,,,,,,,,PG,Aaron Holiday (37434325) (LOCKED),Aaron Holiday,37434325,PG/G/UTIL,3000,In Progress,HOU,7.99
+,,,,,,,,,,,,,PG/SF,Nate Williams (37434328) (LOCKED),Nate Williams,37434328,PG/SF/F/G/UTIL,3000,In Progress,HOU,4.62
+,,,,,,,,,,,,,PG/SG,Reed Sheppard (37434333) (LOCKED),Reed Sheppard,37434333,PG/SG/G/UTIL,3000,In Progress,HOU,8.22
+,,,,,,,,,,,,,SG,Jack McVeigh (37434337) (LOCKED),Jack McVeigh,37434337,SG/G/UTIL,3000,In Progress,HOU,2.83
+,,,,,,,,,,,,,PF/C,Jeff Green (37434340) (LOCKED),Jeff Green,37434340,PF/C/F/UTIL,3000,In Progress,HOU,7.12
+,,,,,,,,,,,,,SF/PF,Jae'Sean Tate (37434344) (LOCKED),Jae'Sean Tate,37434344,SF/PF/F/UTIL,3000,In Progress,HOU,8.78
+,,,,,,,,,,,,,C,Jock Landale (37434348) (LOCKED),Jock Landale,37434348,C/UTIL,3000,In Progress,HOU,8.33
+,,,,,,,,,,,,,C,N'Faly Dante (37434350) (LOCKED),N'Faly Dante,37434350,C/UTIL,3000,In Progress,HOU,0
+,,,,,,,,,,,,,SG/SF,John Konchar (37434030),John Konchar,37434030,SG/SF/F/G/UTIL,3000,UTA@MEM 01/25/2025 08:00PM ET,MEM,11.94
+,,,,,,,,,,,,,C,Jay Huff (37434035),Jay Huff,37434035,C/UTIL,3000,UTA@MEM 01/25/2025 08:00PM ET,MEM,15.36
+,,,,,,,,,,,,,PG/SG,Zyon Pullin (37434128),Zyon Pullin,37434128,PG/SG/G/UTIL,3000,UTA@MEM 01/25/2025 08:00PM ET,MEM,0
+,,,,,,,,,,,,,PG,Yuki Kawamura (37434132),Yuki Kawamura,37434132,PG/G/UTIL,3000,UTA@MEM 01/25/2025 08:00PM ET,MEM,3.03
+,,,,,,,,,,,,,SF/PF,Gregory Jackson (37434135),Gregory Jackson,37434135,SF/PF/F/UTIL,3000,UTA@MEM 01/25/2025 08:00PM ET,MEM,9.33
+,,,,,,,,,,,,,PG,Cam Spencer (37434139),Cam Spencer,37434139,PG/G/UTIL,3000,UTA@MEM 01/25/2025 08:00PM ET,MEM,9.32
+,,,,,,,,,,,,,PF,Vince Williams Jr. (37434142),Vince Williams Jr.,37434142,PF/F/UTIL,3000,UTA@MEM 01/25/2025 08:00PM ET,MEM,14.75
+,,,,,,,,,,,,,PG,Patty Mills (37434296),Patty Mills,37434296,PG/G/UTIL,3000,UTA@MEM 01/25/2025 08:00PM ET,UTA,9.98
+,,,,,,,,,,,,,C,Oscar Tshiebwe (37434299),Oscar Tshiebwe,37434299,C/UTIL,3000,UTA@MEM 01/25/2025 08:00PM ET,UTA,15.5
+,,,,,,,,,,,,,SF,Taylor Hendricks (37434301),Taylor Hendricks,37434301,SF/F/UTIL,3000,UTA@MEM 01/25/2025 08:00PM ET,UTA,18.08
+,,,,,,,,,,,,,C,Quinten Post (37434019),Quinten Post,37434019,C/UTIL,3000,LAL@GSW 01/25/2025 08:30PM ET,GSW,12.79
+,,,,,,,,,,,,,PG,Bronny James (37434053),Bronny James,37434053,PG/G/UTIL,3000,LAL@GSW 01/25/2025 08:30PM ET,LAL,1.42
+,,,,,,,,,,,,,PG,Pat Spencer (37434120),Pat Spencer,37434120,PG/G/UTIL,3000,LAL@GSW 01/25/2025 08:30PM ET,GSW,7.12
+,,,,,,,,,,,,,SG/SF,Lindy Waters III (37434123),Lindy Waters III,37434123,SG/SF/F/G/UTIL,3000,LAL@GSW 01/25/2025 08:30PM ET,GSW,12.99
+,,,,,,,,,,,,,C,Trey Jemison (37434278),Trey Jemison,37434278,C/UTIL,3000,LAL@GSW 01/25/2025 08:30PM ET,LAL,7.83
+,,,,,,,,,,,,,C,Christian Koloko (37434280),Christian Koloko,37434280,C/UTIL,3000,LAL@GSW 01/25/2025 08:30PM ET,LAL,6.5
+,,,,,,,,,,,,,SF/PF,Armel Traore (37434282),Armel Traore,37434282,SF/PF/F/UTIL,3000,LAL@GSW 01/25/2025 08:30PM ET,LAL,5.25
+,,,,,,,,,,,,,PG/SG,Shake Milton (37434286),Shake Milton,37434286,PG/SG/G/UTIL,3000,LAL@GSW 01/25/2025 08:30PM ET,LAL,12.85
+,,,,,,,,,,,,,SF,Cam Reddish (37434290),Cam Reddish,37434290,SF/F/UTIL,3000,LAL@GSW 01/25/2025 08:30PM ET,LAL,9.59
+,,,,,,,,,,,,,PG,Jalen Hood-Schifino (37434293),Jalen Hood-Schifino,37434293,PG/G/UTIL,3000,LAL@GSW 01/25/2025 08:30PM ET,LAL,4.12
+,,,,,,,,,,,,,PG,Mac McClung (37434201) (LOCKED),Mac McClung,37434201,PG/G/UTIL,3000,In Progress,ORL,4.25
+,,,,,,,,,,,,,PG,Cory Joseph (37434204) (LOCKED),Cory Joseph,37434204,PG/G/UTIL,3000,In Progress,ORL,5.25
+,,,,,,,,,,,,,SF/PF,Jett Howard (37434207) (LOCKED),Jett Howard,37434207,SF/PF/F/UTIL,3000,In Progress,ORL,8.20
+,,,,,,,,,,,,,SG/SF,Gary Harris (37434211) (LOCKED),Gary Harris,37434211,SG/SF/F/G/UTIL,3000,In Progress,ORL,8.41
+,,,,,,,,,,,,,C,Moritz Wagner (37434216) (LOCKED),Moritz Wagner,37434216,C/UTIL,3000,In Progress,ORL,23.22
+,,,,,,,,,,,,,C,Tolu Smith (37434373) (LOCKED),Tolu Smith,37434373,C/UTIL,3000,In Progress,DET,0
+,,,,,,,,,,,,,PG,Daniss Jenkins (37434375) (LOCKED),Daniss Jenkins,37434375,PG/G/UTIL,3000,In Progress,DET,-0.17
+,,,,,,,,,,,,,PF,Ron Harper Jr. (37434378) (LOCKED),Ron Harper Jr.,37434378,PF/F/UTIL,3000,In Progress,DET,0
+,,,,,,,,,,,,,SG/SF,Wendell Moore Jr. (37434381) (LOCKED),Wendell Moore Jr.,37434381,SG/SF/F/G/UTIL,3000,In Progress,DET,10.06
+,,,,,,,,,,,,,PF,Bobi Klintman (37434386) (LOCKED),Bobi Klintman,37434386,PF/F/UTIL,3000,In Progress,DET,2.5
+,,,,,,,,,,,,,C,Paul Reed (37434389) (LOCKED),Paul Reed,37434389,C/UTIL,3000,In Progress,DET,12.41
+,,,,,,,,,,,,,SF/PF,Ronald Holland II (37434391) (LOCKED),Ronald Holland II,37434391,SF/PF/F/UTIL,3000,In Progress,DET,11.99
+,,,,,,,,,,,,,PG,Jaden Ivey (37434395) (LOCKED),Jaden Ivey,37434395,PG/G/UTIL,3000,In Progress,DET,30.88
+,,,,,,,,,,,,,C,Anthony Gill (37434028),Anthony Gill,37434028,C/UTIL,3000,WAS@PHX 01/25/2025 09:00PM ET,WAS,3.97
+,,,,,,,,,,,,,PG,Monte Morris (37434145),Monte Morris,37434145,PG/G/UTIL,3000,WAS@PHX 01/25/2025 09:00PM ET,PHX,10.72
+,,,,,,,,,,,,,PG,TyTy Washington Jr. (37434148),TyTy Washington Jr.,37434148,PG/G/UTIL,3000,WAS@PHX 01/25/2025 09:00PM ET,PHX,4.94
+,,,,,,,,,,,,,SG/SF,Damion Lee (37434151),Damion Lee,37434151,SG/SF/F/G/UTIL,3000,WAS@PHX 01/25/2025 09:00PM ET,PHX,5.58
+,,,,,,,,,,,,,SF,Jalen Bridges (37434156),Jalen Bridges,37434156,SF/F/UTIL,3000,WAS@PHX 01/25/2025 09:00PM ET,PHX,0.94
+,,,,,,,,,,,,,PF/C,Bol Bol (37434159),Bol Bol,37434159,PF/C/F/UTIL,3000,WAS@PHX 01/25/2025 09:00PM ET,PHX,5.64
+,,,,,,,,,,,,,PG,Collin Gillespie (37434163),Collin Gillespie,37434163,PG/G/UTIL,3000,WAS@PHX 01/25/2025 09:00PM ET,PHX,3.38
+,,,,,,,,,,,,,PG,Jared Butler (37434304),Jared Butler,37434304,PG/G/UTIL,3000,WAS@PHX 01/25/2025 09:00PM ET,WAS,13.22
+,,,,,,,,,,,,,SF/PF,Justin Champagnie (37434307),Justin Champagnie,37434307,SF/PF/F/UTIL,3000,WAS@PHX 01/25/2025 09:00PM ET,WAS,19.71
+,,,,,,,,,,,,,PF,Patrick Baldwin Jr. (37434311),Patrick Baldwin Jr.,37434311,PF/F/UTIL,3000,WAS@PHX 01/25/2025 09:00PM ET,WAS,3.80
+,,,,,,,,,,,,,SG/SF,Johnny Davis (37434314),Johnny Davis,37434314,SG/SF/F/G/UTIL,3000,WAS@PHX 01/25/2025 09:00PM ET,WAS,5.66
+,,,,,,,,,,,,,C,Richaun Holmes (37434319),Richaun Holmes,37434319,C/UTIL,3000,WAS@PHX 01/25/2025 09:00PM ET,WAS,7.36
+,,,,,,,,,,,,,C,Tristan Vukcevic (37434321),Tristan Vukcevic,37434321,C/UTIL,3000,WAS@PHX 01/25/2025 09:00PM ET,WAS,1.08
+,,,,,,,,,,,,,C,Marvin Bagley III (37434323),Marvin Bagley III,37434323,C/UTIL,3000,WAS@PHX 01/25/2025 09:00PM ET,WAS,10.16
+,,,,,,,,,,,,,SF/PF,Doug McDermott (37434049) (LOCKED),Doug McDermott,37434049,SF/PF/F/UTIL,3000,In Progress,SAC,5.74
+,,,,,,,,,,,,,SG/SF,Landry Shamet (37434077) (LOCKED),Landry Shamet,37434077,SG/SF/F/G/UTIL,3000,In Progress,NYK,5.29
+,,,,,,,,,,,,,SG/SF,Matt Ryan (37434082) (LOCKED),Matt Ryan,37434082,SG/SF/F/G/UTIL,3000,In Progress,NYK,2.45
+,,,,,,,,,,,,,PF,Jacob Toppin (37434087) (LOCKED),Jacob Toppin,37434087,PF/F/UTIL,3000,In Progress,NYK,1.86
+,,,,,,,,,,,,,PG,Tyler Kolek (37434090) (LOCKED),Tyler Kolek,37434090,PG/G/UTIL,3000,In Progress,NYK,4.51
+,,,,,,,,,,,,,C,Ariel Hukporti (37434093) (LOCKED),Ariel Hukporti,37434093,C/UTIL,3000,In Progress,NYK,5.63
+,,,,,,,,,,,,,SG/SF,Pacome Dadiet (37434095) (LOCKED),Pacome Dadiet,37434095,SG/SF/F/G/UTIL,3000,In Progress,NYK,3.90
+,,,,,,,,,,,,,SF,Kevin McCullar Jr. (37434100) (LOCKED),Kevin McCullar Jr.,37434100,SF/F/UTIL,3000,In Progress,NYK,0
+,,,,,,,,,,,,,C,Alex Len (37434228) (LOCKED),Alex Len,37434228,C/UTIL,3000,In Progress,SAC,7.13
+,,,,,,,,,,,,,SG/SF,Colby Jones (37434230) (LOCKED),Colby Jones,37434230,SG/SF/F/G/UTIL,3000,In Progress,SAC,3.44
+,,,,,,,,,,,,,PF,Isaiah Crawford (37434235) (LOCKED),Isaiah Crawford,37434235,PF/F/UTIL,3000,In Progress,SAC,1.92
+,,,,,,,,,,,,,PF/C,Jae Crowder (37434238) (LOCKED),Jae Crowder,37434238,PF/C/F/UTIL,3000,In Progress,SAC,7.54
+,,,,,,,,,,,,,SG,Mason Jones (37434242) (LOCKED),Mason Jones,37434242,SG/G/UTIL,3000,In Progress,SAC,5.17
+,,,,,,,,,,,,,PF/C,Isaac Jones (37434245) (LOCKED),Isaac Jones,37434245,PF/C/F/UTIL,3000,In Progress,SAC,6.17
+,,,,,,,,,,,,,PG,Jordan McLaughlin (37434249) (LOCKED),Jordan McLaughlin,37434249,PG/G/UTIL,3000,In Progress,SAC,5.14
+,,,,,,,,,,,,,PG/SG,Devin Carter (37434252) (LOCKED),Devin Carter,37434252,PG/SG/G/UTIL,3000,In Progress,SAC,10.72
