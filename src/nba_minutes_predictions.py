@@ -5,50 +5,153 @@ import xlwings as xw
 import os
 
 
-def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, team_total=240, max_minutes=38):
+def apply_high_minutes_curve(minutes, max_minutes):
+    """
+    Applies a gradual penalty as minutes approach max_minutes.
+    The penalty increases more sharply as it gets closer to max.
+    """
+    if minutes >= 36:  # Only apply curve to high-minute predictions
+        # Calculate how close we are to max (0 to 1)
+        proximity_to_max = (minutes - 36) / (max_minutes - 36)
+        # Apply sigmoid-like curve
+        penalty_factor = 1 - (proximity_to_max ** 2 * .5)  # Adjust 0.5 to control curve steepness
+        # Apply penalty
+        adjusted_minutes = 36 + (minutes - 36) * penalty_factor
+        return adjusted_minutes
+    return minutes
+
+
+def ensure_minimum_rotation(team_predictions, team_data, max_mins, min_players=8, min_minutes=8):
+    """
+    Ensure at least min_players get min_minutes, prioritizing by Last 10 Minutes,
+    but only considering players whose max_minutes allow it
+    """
+    # Get eligible players (Last 10 > 1 and max minutes allows for minimum minutes)
+    eligible_mask = ((team_data['Last 10 Minutes'] > 1) &
+                     (team_data['Max Minutes'] >= min_minutes) &
+                     (team_data['Max Minutes'] > 0))  # Ensure max minutes isn't 0
+    eligible_players = team_predictions[eligible_mask].index
+
+    if len(eligible_players) >= min_players:
+        # Sort eligible players by Last 10 Minutes
+        player_priorities = team_data.loc[eligible_players, 'Last 10 Minutes'].sort_values(ascending=False)
+
+        # Ensure top min_players get at least min_minutes (respecting max minutes)
+        for idx in player_priorities.index[:min_players]:
+            if team_predictions[idx] < min_minutes:
+                max_allowed = max_mins[idx]
+                team_predictions[idx] = min(min_minutes, max_allowed)
+
+    return team_predictions
+
+def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, team_total=240, default_max=38,
+                                               boost_threshold=36,  min_rotation=8):
     adjusted_predictions = predictions_df['Predicted_Minutes'].copy()
 
-    # Set predictions under threshold to zero and cap at max_minutes
+    # Set predictions under threshold to zero
     adjusted_predictions[adjusted_predictions <= min_threshold] = 0
-    adjusted_predictions = adjusted_predictions.clip(upper=max_minutes)
 
-    # Adjust team totals to 240
+    # Handle team adjustments
     for team in predictions_df['Team'].unique():
         team_mask = predictions_df['Team'] == team
-        team_total_mins = adjusted_predictions[team_mask].sum()
+        team_data = predictions_df[team_mask]
+        team_predictions = adjusted_predictions[team_mask]
+        max_mins = team_data['Max Minutes'].fillna(default_max)
 
-        if team_total_mins > 0:
-            non_zero_mask = (predictions_df['Team'] == team) & (adjusted_predictions > 0)
-            scale_factor = team_total / team_total_mins
-            team_predictions = adjusted_predictions[non_zero_mask]
-            scaled_predictions = team_predictions * scale_factor
-            scaled_predictions = scaled_predictions.clip(upper=max_minutes)
-            rounded_predictions = np.round(scaled_predictions, 1)
+        # First enforce max minutes constraints AND ensure minimum rotation size
+        team_predictions = ensure_minimum_rotation(team_predictions, team_data, max_mins, min_rotation, min_threshold)
 
-            # Final adjustment to maintain team total
-            total_after_cap = rounded_predictions.sum()
-            if total_after_cap < team_total:
-                remaining_mins = team_total - total_after_cap
-                candidates = rounded_predictions[rounded_predictions < max_minutes].sort_values(ascending=False)
+        # Reapply max minutes constraints
+        for idx in team_predictions.index:
+            if pd.notnull(max_mins[idx]):
+                team_predictions[idx] = min(team_predictions[idx], max_mins[idx])
 
-                while remaining_mins > 0 and len(candidates) > 0:
-                    for idx in candidates.index:
-                        space_to_max = max_minutes - rounded_predictions[idx]
-                        if space_to_max > 0:
-                            adjustment = min(0.1, remaining_mins, space_to_max)
-                            rounded_predictions[idx] += adjustment
-                            remaining_mins -= adjustment
-                        if remaining_mins <= 0:
+        if team_predictions.sum() > 0:  # Skip if team has no minutes
+            # Get top 5 minute players (only consider those not at max)
+            available_for_top = team_predictions[team_predictions < max_mins]
+            top_5_idx = available_for_top.nlargest(5).index
+            top_5_mins = team_predictions[top_5_idx]
+
+            # Calculate boost for eligible players (under 36 minutes)
+            eligible_mask = (top_5_mins < boost_threshold) & (top_5_mins > 0)
+            if eligible_mask.any():
+                available_boost = sum(boost_threshold - mins for mins in top_5_mins[eligible_mask])
+
+                # Calculate proportional boost
+                boost_proportions = (boost_threshold - top_5_mins[eligible_mask]) / available_boost
+
+                # Calculate minutes to redistribute from non-top 5 players
+                other_players_idx = team_predictions.index.difference(top_5_idx)
+                if len(other_players_idx) > 0:
+                    minutes_to_redistribute = min(available_boost * 0.5,
+                                                  team_predictions[other_players_idx].sum() * 0.01)
+
+                    # Apply boost to eligible top 5 players
+                    for idx in top_5_mins[eligible_mask].index:
+                        boost = minutes_to_redistribute * boost_proportions[idx]
+                        max_allowed = max_mins[idx]
+                        team_predictions[idx] = min(team_predictions[idx] + boost, max_allowed)
+
+                    # Proportionally reduce other players' minutes
+                    if minutes_to_redistribute > 0:
+                        reduction_factor = 1 - (minutes_to_redistribute / team_predictions[other_players_idx].sum())
+                        team_predictions[other_players_idx] *= reduction_factor
+
+            # Scale to 240 while respecting max minutes
+            current_total = team_predictions.sum()
+            if current_total > 0:  # Avoid division by zero
+                remaining_minutes = team_total - current_total
+                while abs(remaining_minutes) > 0.1:
+                    # Find players who can be adjusted
+                    adjustable_mask = (team_predictions > 0) & (team_predictions < max_mins)
+
+                    if not adjustable_mask.any():
+                        break
+
+                    adjustable_total = team_predictions[adjustable_mask].sum()
+                    if adjustable_total > 0:
+                        scale_factor = min(1.2, (adjustable_total + remaining_minutes) / adjustable_total)
+                        old_predictions = team_predictions.copy()
+
+                        # Apply scaling
+                        team_predictions[adjustable_mask] *= scale_factor
+
+                        # Recheck max minutes
+                        for idx in team_predictions.index:
+                            if pd.notnull(max_mins[idx]):
+                                team_predictions[idx] = min(team_predictions[idx], max_mins[idx])
+
+                        current_total = team_predictions.sum()
+                        remaining_minutes = team_total - current_total
+
+                        # Check if we're making progress
+                        if (team_predictions == old_predictions).all():
                             break
 
-                    if remaining_mins > 0:
-                        candidates = rounded_predictions[rounded_predictions < max_minutes].sort_values(ascending=False)
-                        if len(candidates) == 0:
-                            break
+            # Now apply the curve to high-minute players (but still respect max minutes)
+            for idx in team_predictions.index:
+                if team_predictions[idx] >= 36:
+                    curved_value = apply_high_minutes_curve(team_predictions[idx], max_mins[idx])
+                    team_predictions[idx] = min(curved_value, max_mins[idx])
 
-            adjusted_predictions[non_zero_mask] = rounded_predictions
+            # Round to 1 decimal place
+            team_predictions = np.round(team_predictions, 1)
+
+            # Final adjustment if needed (respecting max minutes)
+            if abs(team_predictions.sum() - team_total) > 0.1:
+                diff = team_total - team_predictions.sum()
+                adjustable_players = team_predictions[(team_predictions > 0) & (team_predictions < max_mins)]
+                if len(adjustable_players) > 0:
+                    # Distribute difference among adjustable players
+                    adjustment_per_player = diff / len(adjustable_players)
+                    for idx in adjustable_players.index:
+                        new_mins = team_predictions[idx] + adjustment_per_player
+                        team_predictions[idx] = round(min(new_mins, max_mins[idx]), 1)
+
+            adjusted_predictions[team_mask] = team_predictions
 
     return adjusted_predictions
+
 
 
 def predict_minutes():
@@ -72,7 +175,9 @@ def predict_minutes():
             'Team': sheet.range(f'B2:B{last_row}').value,
             'Salary': sheet.range(f'D2:D{last_row}').value,
             'Minutes': sheet.range(f'E2:E{last_row}').value,
+            'Max Minutes': sheet.range(f'J2:J{last_row}').value,
             'Projection': sheet.range(f'M2:M{last_row}').value,
+            'Last 10 Minutes': sheet.range(f'N2:N{last_row}').value,  # Added this line
         }
 
         # Convert to DataFrame
@@ -86,15 +191,16 @@ def predict_minutes():
         data['Salary'] = pd.to_numeric(data['Salary'], errors='coerce')
         data['Minutes'] = pd.to_numeric(data['Minutes'], errors='coerce')
         data['Projection'] = pd.to_numeric(data['Projection'], errors='coerce')
+        data['Max Minutes'] = pd.to_numeric(data['Max Minutes'], errors='coerce')
+        data['Last 10 Minutes'] = pd.to_numeric(data['Last 10 Minutes'], errors='coerce')  # Added this line
+
 
         # Create DK feature from Projection
         data['DK'] = data['Projection']
         data['DK Name'] = data['Player']
 
-
         # Set Minutes to 0 where Projection is 0
-        data.loc[data['DK'] == 0, 'Minutes'] = 0
-
+        data.loc[data['Projection'] == 0, 'Minutes'] = 0
 
         # Features used in training
         features = ['Salary', 'DK', 'Minutes']
@@ -103,10 +209,12 @@ def predict_minutes():
         X = data[features]
         predictions = model.predict(X)
 
-        # Apply adjustments
-        data['Predicted_Minutes'] = adjust_team_minutes_with_minimum_and_boost(
-            data.assign(Predicted_Minutes=predictions)
-        )
+        # Force minutes to 0 for players with 0 projection
+        data['Predicted_Minutes'] = predictions
+        data.loc[data['Projection'] == 0, 'Predicted_Minutes'] = 0
+
+        # Apply all adjustments including max minutes constraint
+        data['Predicted_Minutes'] = adjust_team_minutes_with_minimum_and_boost(data)
 
         # Create a mapping of predictions
         predictions_dict = dict(zip(data['Player'], data['Predicted_Minutes']))
@@ -128,6 +236,8 @@ def predict_minutes():
             top_players = team_data.nlargest(8, 'Predicted_Minutes')
             for _, row in top_players.iterrows():
                 print(f"{row['DK Name']:<20} {row['Predicted_Minutes']:.1f}")
+                if row['Predicted_Minutes'] >= 36:
+                    print(f"  ** High minutes player (Max: {row['Max Minutes']})")
 
         # Save and close
         wb.save()
