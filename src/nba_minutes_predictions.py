@@ -23,26 +23,43 @@ def apply_high_minutes_curve(minutes, max_minutes):
 
 def ensure_minimum_rotation(team_predictions, team_data, max_mins, min_players=8, min_minutes=8):
     """
-    Ensure at least min_players get min_minutes, prioritizing by Last 10 Minutes,
-    but only considering players whose max_minutes allow it
+    Ensure at least min_players get min_minutes, with priority order:
+    1. Players with projection > 0, max minutes > min_minutes, and Last 10 > 1
+    2. If needed, add players with only max minutes > min_minutes and Last 10 > 1
     """
-    # Get eligible players (Last 10 > 1 and max minutes allows for minimum minutes)
-    eligible_mask = ((team_data['Last 10 Minutes'] > 1) &
-                     (team_data['Max Minutes'] >= min_minutes) &
-                     (team_data['Max Minutes'] > 0))  # Ensure max minutes isn't 0
-    eligible_players = team_predictions[eligible_mask].index
+    # First try with projected players only
+    primary_mask = ((team_data['Last 10 Minutes'] > 1) &
+                    (team_data['Max Minutes'] >= min_minutes) &
+                    (team_data['Max Minutes'] > 0) &
+                    (team_data['Projection'] > 0))
+    primary_eligible = team_predictions[primary_mask].index
 
-    if len(eligible_players) >= min_players:
-        # Sort eligible players by Last 10 Minutes
+    # If we don't have enough primary eligible players, consider backup players
+    if len(primary_eligible) < min_players:
+        backup_mask = ((team_data['Last 10 Minutes'] > 1) &
+                       (team_data['Max Minutes'] >= min_minutes) &
+                       (team_data['Max Minutes'] > 0) &
+                       (~primary_mask))  # Players not in primary group
+        backup_eligible = team_predictions[backup_mask].index
+
+        # Combine eligible players, prioritizing primary ones
+        eligible_players = list(primary_eligible) + list(backup_eligible)
+        eligible_players = eligible_players[:min_players]  # Only take what we need
+    else:
+        # If we have enough primary eligible players, only use those
+        eligible_players = list(primary_eligible)[:min_players]
+
+    # Sort selected players by Last 10 Minutes and apply minimum minutes
+    if eligible_players:
         player_priorities = team_data.loc[eligible_players, 'Last 10 Minutes'].sort_values(ascending=False)
-
-        # Ensure top min_players get at least min_minutes (respecting max minutes)
-        for idx in player_priorities.index[:min_players]:
+        for idx in player_priorities.index:
             if team_predictions[idx] < min_minutes:
                 max_allowed = max_mins[idx]
                 team_predictions[idx] = min(min_minutes, max_allowed)
 
     return team_predictions
+
+
 
 def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, team_total=240, default_max=38,
                                                boost_threshold=36,  min_rotation=8):

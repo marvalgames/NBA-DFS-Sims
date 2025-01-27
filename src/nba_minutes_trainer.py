@@ -247,7 +247,7 @@ def save_predictions(all_results, output_dir='predictions'):
         #print(f"Contest {contest_id} results saved to: {filename}")
 
 # Load the dataset
-file_path = 'nba_minutes_1.csv'
+file_path = 'nba_minutes_2.csv'
 data = pd.read_csv(file_path)
 
 # Define features for minutes prediction
