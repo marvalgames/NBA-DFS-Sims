@@ -188,21 +188,21 @@ def create_advanced_features(df):
 
     # Create basic required features if they don't exist
     df['MIN'] = df['Minutes']
-    df['PTS'] = df['Projection'] * 0.8  # Rough estimate
-    df['REB'] = df['Projection'] * 0.15  # Rough estimate
-    df['AST'] = df['Projection'] * 0.12  # Rough estimate
+    #df['PTS'] = df['Projection'] * 0.8  # Rough estimate
+    #df['REB'] = df['Projection'] * 0.15  # Rough estimate
+    #df['AST'] = df['Projection'] * 0.12  # Rough estimate
     df['DK'] = df['Projection']
 
     # Create advanced features using available data
     df['MIN_LAST_10_AVG'] = df['Last 10 Minutes']
-    df['PTS_LAST_10_AVG'] = df['Projection'] * 0.8
-    df['REB_LAST_10_AVG'] = df['Projection'] * 0.15
-    df['AST_LAST_10_AVG'] = df['Projection'] * 0.12
-    df['DK_LAST_10_AVG'] = df['Projection']
+    df['PTS_LAST_10_AVG'] = df['Last 10 Points']
+    df['REB_LAST_10_AVG'] = df['Last 10 Reb']
+    df['AST_LAST_10_AVG'] = df['Last 10 Ast']
+    df['DK_LAST_10_AVG'] = df['Last 10 DK']
 
     # Cumulative averages (use Last 10 as proxy)
-    df['MIN_CUM_AVG'] = df['Last 10 Minutes']
-    df['PTS_CUM_AVG'] = df['Projection'] * 0.8
+    df['MIN_CUM_AVG'] = df['MIN']
+    df['PTS_CUM_AVG'] = df['PTS']
 
     # Other features
     df['MIN_TREND'] = 0  # Default to neutral trend
@@ -268,6 +268,14 @@ def predict_minutes():
             'Max Minutes': sheet.range(f'J2:J{last_row}').value,
             'Projection': sheet.range(f'M2:M{last_row}').value,
             'Last 10 Minutes': sheet.range(f'N2:N{last_row}').value,
+            'PTS': sheet.range(f'R2:R{last_row}').value,
+            'REB': sheet.range(f'S2:S{last_row}').value,
+            'AST': sheet.range(f'T2:T{last_row}').value,
+            'Last 10 Points': sheet.range(f'U2:U{last_row}').value,
+            'Last 10 Reb': sheet.range(f'V2:V{last_row}').value,
+            'Last 10 Ast': sheet.range(f'W2:W{last_row}').value,
+            'Last 10 DK': sheet.range(f'X2:X{last_row}').value,
+
         }
 
         # Convert to DataFrame
@@ -278,7 +286,13 @@ def predict_minutes():
         data = data[data['Team'] != '']
 
         # Convert numeric columns
-        numeric_columns = ['Salary', 'Minutes', 'Projection', 'Max Minutes', 'Last 10 Minutes']
+        numeric_columns = ['Salary', 'Minutes', 'Projection', 'Max Minutes', 'Last 10 Minutes', 'PTS', 'REB', 'AST',
+                           'Last 10 Points',
+                           'Last 10 Reb',
+                           'Last 10 Ast',
+                           'Last 10 DK',
+
+                           ]
         for col in numeric_columns:
             data[col] = pd.to_numeric(data[col], errors='coerce')
 
@@ -294,8 +308,15 @@ def predict_minutes():
 
         # Define features for prediction (match training features)
         features = [
-            'MIN_LAST_10_AVG', 'PTS_LAST_10_AVG', 'REB_LAST_10_AVG', 'AST_LAST_10_AVG',
-            'DK_LAST_10_AVG', 'MIN_CUM_AVG', 'PTS_CUM_AVG', 'MIN_TREND', 'DAYS_REST',
+            'MIN_LAST_10_AVG',
+            'PTS_LAST_10_AVG',
+            'REB_LAST_10_AVG',
+            'AST_LAST_10_AVG',
+            'DK_LAST_10_AVG',
+            'MIN_CUM_AVG',
+            'PTS_CUM_AVG',
+            'MIN_TREND',
+            'DAYS_REST',
             'IS_B2B', 'IS_HOME', 'PTS_PER_MIN', 'AST_PER_MIN', 'REB_PER_MIN',
             'MIN_VS_TEAM_AVG', 'MIN_CONSISTENCY', 'MIN_ABOVE_AVG_STREAK', 'DK_TREND_5',
             'BLOWOUT_GAME', 'MIN_LAST_3_AVG', 'MIN_LAST_5_AVG', 'MIN_LAST_7_AVG',

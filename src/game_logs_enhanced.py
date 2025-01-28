@@ -132,12 +132,12 @@ def main():
         # Read the CSV file with different encoding
         print("Reading input file...")
         try:
-            df = pd.read_csv('game_logs.csv', encoding='utf-8')
+            df = pd.read_csv('game_logs_short.csv', encoding='utf-8')
         except UnicodeDecodeError:
             try:
-                df = pd.read_csv('game_logs.csv', encoding='cp1252')
+                df = pd.read_csv('game_logs_short.csv', encoding='cp1252')
             except UnicodeDecodeError:
-                df = pd.read_csv('game_logs.csv', encoding='latin-1')
+                df = pd.read_csv('game_logs_short.csv', encoding='latin-1')
 
         print(f"Successfully read {len(df)} rows")
 
