@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import xlwings as xw
+import os
 
 
 def calculate_streaks(df, stat, avg_col):
@@ -19,7 +20,7 @@ def calculate_streaks(df, stat, avg_col):
 
 def enhance_game_logs(df):
     # Convert GAME DATE to datetime if not already
-    df['GAME DATE'] = pd.to_datetime(df['GAME DATE'])
+    df['GAME DATE'] = pd.to_datetime(df['GAME_DATE'])
 
     # Fill numeric columns with 0 for empty values
     numeric_columns = df.select_dtypes(include=['float64', 'float32', 'int64', 'int32']).columns
@@ -30,9 +31,15 @@ def enhance_game_logs(df):
     unique_dates = df['GAME DATE'].unique()
     date_to_gameday = {date: idx + 1 for idx, date in enumerate(sorted(unique_dates))}
     df['GAME_DAY'] = df['GAME DATE'].map(date_to_gameday)
-
+    df['PLAYER'] = df['PLAYER_NAME']
+    df['DK'] = df['FANTASY_PTS']
+    df['PLUS MINUS'] = df['PLUS_MINUS']
+    df['MATCH UP'] = df['MATCHUP']
+    df['W/L'] = df['WL']
+    df['TEAM'] = df['TEAM_NAME']
     # Sort by player and date for the rest of the calculations
     df = df.sort_values(['PLAYER', 'GAME DATE'])
+
 
     # Basic stats to track
     stats = ['MIN', 'PTS', 'REB', 'AST', 'DK', 'PLUS MINUS']
@@ -129,15 +136,20 @@ def format_decimals(df, decimal_places=3):
 
 def main():
     try:
+        # Define file paths
+        input_path = os.path.join('..', 'dk_import', 'nba_boxscores.csv')
+        output_csv_path = os.path.join('..', 'dk_import', 'nba_boxscores_enhanced.csv')
+        excel_path = os.path.join('..', 'dk_import', 'nba_wip.xlsm')
+
         # Read the CSV file with different encoding
         print("Reading input file...")
         try:
-            df = pd.read_csv('game_logs_short.csv', encoding='utf-8')
+            df = pd.read_csv(input_path, encoding='utf-8')
         except UnicodeDecodeError:
             try:
-                df = pd.read_csv('game_logs_short.csv', encoding='cp1252')
+                df = pd.read_csv(input_path, encoding='cp1252')
             except UnicodeDecodeError:
-                df = pd.read_csv('game_logs_short.csv', encoding='latin-1')
+                df = pd.read_csv(input_path, encoding='latin-1')
 
         print(f"Successfully read {len(df)} rows")
 
@@ -156,53 +168,47 @@ def main():
         # Round all decimal places
         enhanced_df = format_decimals(enhanced_df, decimal_places=3)
 
-        # Save to new CSV with float_format to limit decimals
+        # Save enhanced dataset to CSV
         print("Saving enhanced dataset...")
-        enhanced_df.to_csv('game_logs_expanded.csv',
+        enhanced_df.to_csv(output_csv_path,
                            index=False,
                            encoding='utf-8',
                            float_format='%.3f')
 
-        # Save to Excel using xlwings with formatting
-        print("Creating Excel workbook...")
-        wb = xw.Book()
-        sheet = wb.sheets[0]
-        sheet.name = 'Enhanced Game Logs'
+        # Update existing Excel workbook
+        print("Updating Excel workbook...")
+        try:
+            wb = xw.Book(excel_path)
+            sheet = wb.sheets['game_logs']
+            table = sheet.tables['game_logs']
 
-        # Write data to Excel
-        sheet.range('A1').value = enhanced_df
+            # Get the existing table
+            data_range = table.data_body_range
 
-        # Auto-fit columns
-        sheet.autofit()
+            # Calculate the range up to column CA
+            last_data_column = 'CA'  # This is the last column before formulas
+            if data_range is not None:
+                start_row = data_range.row
+                end_row = start_row + len(enhanced_df) - 1
+                limited_range = sheet.range(f"A{start_row}:{last_data_column}{end_row}")
 
-        # Format numeric columns in Excel
-        print("Formatting Excel columns...")
-        for col_idx, col_name in enumerate(enhanced_df.columns):
-            if enhanced_df[col_name].dtype in ['float64', 'float32']:
-                # Convert column index to Excel column letter
-                col_letter = chr(65 + col_idx) if col_idx < 26 else chr(64 + col_idx // 26) + chr(65 + col_idx % 26)
-                # Get the last row number
-                last_row = len(enhanced_df) + 1  # +1 for header row
-                # Format the column
-                number_range = f'{col_letter}2:{col_letter}{last_row}'
-                try:
-                    sheet.range(number_range).number_format = '0.000'
-                except Exception as e:
-                    print(f"Warning: Could not format column {col_name}: {str(e)}")
+                # Clear and update only up to column CB
+                limited_range.clear_contents()
+                limited_range.value = enhanced_df.values
 
-        # Save Excel file
-        print("Saving Excel workbook...")
-        wb.save('game_logs_expanded.xlsx')
-        wb.close()
+            # Save Excel file
+            wb.save()
+            wb.close()
+
+            print("Excel table updated successfully!")
+
+        except Exception as e:
+            print(f"Error updating Excel file: {str(e)}")
+            raise
 
         print("Processing completed successfully!")
         print(f"Total rows processed: {len(enhanced_df)}")
         print(f"Total columns created: {len(enhanced_df.columns)}")
-
-        # Print all column names for reference
-        print("\nColumns created:")
-        for col in enhanced_df.columns:
-            print(f"- {col}")
 
     except Exception as e:
         print(f"An error occurred: {str(e)}")
