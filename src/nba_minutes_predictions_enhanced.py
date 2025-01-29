@@ -201,7 +201,7 @@ def create_advanced_features(df):
     df['DK_LAST_10_AVG'] = df['Last 10 DK']
 
     # Cumulative averages (use Last 10 as proxy)
-    df['MIN_CUM_AVG'] = df['MIN']
+    #df['MIN_CUM_AVG'] = df['MIN']
     df['PTS_CUM_AVG'] = df['PTS']
 
     # Other features
@@ -216,9 +216,9 @@ def create_advanced_features(df):
     df['REB_PER_MIN'] = df['REB'] / df['Minutes'].clip(1)
 
     # Team averages
-    df['MIN_VS_TEAM_AVG'] = 1  # Default to average
+    #df['MIN_VS_TEAM_AVG'] = 1  # Default to average
     df['MIN_CONSISTENCY'] = 0.1  # Default to stable
-    df['MIN_ABOVE_AVG_STREAK'] = 0  # Default to no streak
+    #df['MIN_ABOVE_AVG_STREAK'] = 0  # Default to no streak
     df['DK_TREND_5'] = 0  # Default to neutral trend
     df['BLOWOUT_GAME'] = 0  # Default to no blowout
 
@@ -252,7 +252,7 @@ def predict_minutes():
     app = xw.App(visible=False)
     try:
         # Connect to Excel
-        excel_path = os.path.join('..', 'dk_import', 'nba_min.xlsm')
+        excel_path = os.path.join('..', 'dk_import', 'nba_wip.xlsm')
         wb = xw.Book(excel_path)
         sheet = wb.sheets['sog_minutes']
 
@@ -268,6 +268,7 @@ def predict_minutes():
             'Max Minutes': sheet.range(f'J2:J{last_row}').value,
             'Projection': sheet.range(f'M2:M{last_row}').value,
             'Last 10 Minutes': sheet.range(f'N2:N{last_row}').value,
+            'DARKO Minutes': sheet.range(f'Q2:Q{last_row}').value,
             'PTS': sheet.range(f'R2:R{last_row}').value,
             'REB': sheet.range(f'S2:S{last_row}').value,
             'AST': sheet.range(f'T2:T{last_row}').value,
@@ -275,7 +276,9 @@ def predict_minutes():
             'Last 10 Reb': sheet.range(f'V2:V{last_row}').value,
             'Last 10 Ast': sheet.range(f'W2:W{last_row}').value,
             'Last 10 DK': sheet.range(f'X2:X{last_row}').value,
-
+            'MIN_VS_TEAM_AVG': sheet.range(f'Y2:Y{last_row}').value,
+            'MIN_CUM_AVG': sheet.range(f'AA2:AA{last_row}').value,
+            'MIN_ABOVE_AVG_STREAK': sheet.range(f'AB2:AB{last_row}').value,
         }
 
         # Convert to DataFrame
@@ -287,10 +290,14 @@ def predict_minutes():
 
         # Convert numeric columns
         numeric_columns = ['Salary', 'Minutes', 'Projection', 'Max Minutes', 'Last 10 Minutes', 'PTS', 'REB', 'AST',
-                           'Last 10 Points',
-                           'Last 10 Reb',
-                           'Last 10 Ast',
-                           'Last 10 DK',
+                            'Last 10 Points',
+                            'Last 10 Reb',
+                            'Last 10 Ast',
+                            'Last 10 DK',
+                            'MIN_VS_TEAM_AVG',
+                            'DARKO Minutes',
+                            'MIN_CUM_AVG',
+                            'MIN_ABOVE_AVG_STREAK'
 
                            ]
         for col in numeric_columns:
@@ -333,6 +340,10 @@ def predict_minutes():
         # Force minutes to 0 for players with 0 projection
         data['Predicted_Minutes'] = predictions
         data.loc[data['Projection'] == 0, 'Predicted_Minutes'] = 0
+
+        # Add new conditions for DARKO Minutes and Minutes
+        data.loc[data['Minutes'] <= 6, 'Predicted_Minutes'] = 0
+        #data.loc[data['DARKO Minutes'] <= 6, 'Predicted_Minutes'] = 0  # Assuming 'Projection' is DARKO Minutes
 
         # Apply all adjustments including max minutes constraint
         data['Predicted_Minutes'] = adjust_team_minutes_with_minimum_and_boost(data)
