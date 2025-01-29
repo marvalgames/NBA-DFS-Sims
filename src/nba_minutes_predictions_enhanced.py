@@ -5,6 +5,183 @@ import xlwings as xw
 import os
 
 
+
+
+def get_position_compatibility():
+    position_map = {
+        'PG': ['PG', 'SG'],
+        'SG': ['SG', 'SF', 'PG'],
+        'SF': ['SF', 'SG', 'PF'],
+        'PF': ['PF', 'SF', 'C'],
+        'C': ['C', 'PF'],
+        'PG/SG': ['PG', 'SG', 'SF'],
+        'SG/SF': ['SG', 'SF', 'PG'],
+        'PG/SF': ['PG', 'SF', 'SG'],
+        'SF/PF': ['SF', 'PF', 'SG'],
+        'PF/C': ['PF', 'C', 'SF']
+    }
+    return position_map
+
+
+def apply_position_constraints(predictions_df):
+    """Apply position constraints while preserving top players at each position"""
+    adjusted_predictions = predictions_df['Predicted_Minutes'].copy()
+    position_compat = get_position_compatibility()
+
+    for team in predictions_df['Team'].unique():
+        team_mask = predictions_df['Team'] == team
+        team_data = predictions_df[team_mask]
+        team_predictions = adjusted_predictions[team_mask]
+
+        total_team_minutes = team_predictions.sum()
+        if total_team_minutes == 0:
+            continue
+
+        # Target minutes per position should be 20% of total team minutes ±5
+        target_pos_minutes = total_team_minutes * 0.2
+        min_pos_minutes = max(target_pos_minutes - 8, 0)
+        max_pos_minutes = target_pos_minutes + 8
+
+        # Create a list of all players and their eligible positions based on compatibility table
+        player_eligibility = {}
+        for idx, player in team_data.iterrows():
+            listed_pos = player['Position']
+            eligible_positions = set()
+            # Add all compatible positions based on the mapping
+            if listed_pos in position_compat:
+                eligible_positions.update(position_compat[listed_pos])
+            player_eligibility[idx] = eligible_positions
+
+        # Try to find 5 unique players for the main positions
+        protected_players = set()
+        position_assignments = {}
+        main_positions = ['PG', 'SG', 'SF', 'PF', 'C']
+
+        # First pass: Try to assign highest-minute players to their primary positions
+        for pos in main_positions:
+            eligible_players = [(idx, team_predictions[idx])
+                                for idx in player_eligibility
+                                if pos in player_eligibility[idx] and idx not in protected_players]
+
+            if eligible_players:
+                # Sort by minutes descending
+                eligible_players.sort(key=lambda x: x[1], reverse=True)
+                player_idx = eligible_players[0][0]
+                protected_players.add(player_idx)
+                position_assignments[pos] = player_idx
+
+        # If we couldn't find 5 unique players, try to fill remaining positions
+        remaining_positions = set(main_positions) - set(position_assignments.keys())
+        if remaining_positions:
+            for pos in remaining_positions:
+                # Look for any player who can play this position and isn't protected
+                eligible_players = [(idx, team_predictions[idx])
+                                    for idx in player_eligibility
+                                    if pos in player_eligibility[idx]]
+
+                if eligible_players:
+                    eligible_players.sort(key=lambda x: x[1], reverse=True)
+                    player_idx = eligible_players[0][0]
+                    protected_players.add(player_idx)
+                    position_assignments[pos] = player_idx
+
+        # Debug output
+        print(f"\n{team} Protected Players:")
+        for pos in main_positions:
+            if pos in position_assignments:
+                player_idx = position_assignments[pos]
+                player = team_data.loc[player_idx]
+                print(f"{pos}: {player['Player']} ({player['Position']}) - {team_predictions[player_idx]:.1f} minutes")
+            else:
+                print(f"{pos}: No assignment found")
+
+        # Calculate position totals including protected players
+        position_totals = {pos: 0 for pos in main_positions}
+
+        # First add protected players' minutes to their assigned positions
+        for pos, idx in position_assignments.items():
+            position_totals[pos] += team_predictions[idx]
+
+        # Add remaining players' minutes to their eligible positions
+        for idx, player in team_data.iterrows():
+            if idx not in protected_players:
+                eligible_pos = player_eligibility[idx]
+                minutes = team_predictions[idx]
+                # Distribute minutes equally among eligible positions
+                minutes_per_pos = minutes / len(eligible_pos)
+                for pos in eligible_pos:
+                    if pos in position_totals:
+                        position_totals[pos] += minutes_per_pos
+
+        # Only adjust non-protected players when position totals are outside target range
+        for pos in position_totals:
+            if position_totals[pos] < min_pos_minutes or position_totals[pos] > max_pos_minutes:
+                eligible_players = [idx for idx in player_eligibility
+                                    if pos in player_eligibility[idx] and
+                                    idx not in protected_players]
+
+                if eligible_players:
+                    if position_totals[pos] < min_pos_minutes:
+                        deficit = min_pos_minutes - position_totals[pos]
+                        increase_per_player = deficit / len(eligible_players)
+                        for idx in eligible_players:
+                            team_predictions[idx] += increase_per_player
+                    elif position_totals[pos] > max_pos_minutes:
+                        excess = position_totals[pos] - max_pos_minutes
+                        decrease_per_player = excess / len(eligible_players)
+                        for idx in eligible_players:
+                            team_predictions[idx] = max(0, team_predictions[idx] - decrease_per_player)
+
+        adjusted_predictions[team_mask] = team_predictions
+
+    return adjusted_predictions
+
+
+
+def smooth_adjustments(original_predictions, adjusted_predictions, smoothing_factor=0.5):
+    return original_predictions * (1 - smoothing_factor) + adjusted_predictions * smoothing_factor
+
+
+def adjust_predictions(predictions, players_df):
+    position_map = get_position_compatibility()
+    adjusted_predictions = predictions.copy()
+
+    # Create position groups
+    position_totals = {pos: 0 for pos in ['PG', 'SG', 'SF', 'PF', 'C']}
+
+    # First pass: assign minutes to primary positions
+    for idx, player in players_df.iterrows():
+        primary_pos = player['Position'].split('/')[0]
+        position_totals[primary_pos] += predictions[idx]
+
+    # Adjust if position totals are outside bounds (45-50 minutes)
+    for pos in position_totals:
+        if position_totals[pos] < 45:
+            # Find players who can play this position and increase their minutes
+            for idx, player in players_df.iterrows():
+                if pos in position_map[player['Position']]:
+                    deficit = 45 - position_totals[pos]
+                    increase = min(deficit, 48 - adjusted_predictions[idx])
+                    adjusted_predictions[idx] += increase
+                    position_totals[pos] += increase
+
+        elif position_totals[pos] > 50:
+            # Reduce minutes proportionally for players in this position
+            excess = position_totals[pos] - 50
+            players_in_pos = players_df[players_df['Position'].str.contains(pos)].index
+            if len(players_in_pos) > 0:
+                reduction_per_player = excess / len(players_in_pos)
+                for idx in players_in_pos:
+                    adjusted_predictions[idx] = max(0, adjusted_predictions[idx] - reduction_per_player)
+
+    # Ensure total minutes = 240
+    total_minutes = sum(adjusted_predictions)
+    if total_minutes != 240:
+        scale_factor = 240 / total_minutes
+        adjusted_predictions *= scale_factor
+
+    return adjusted_predictions
+
 def apply_high_minutes_curve(minutes, max_minutes):
     """
     Applies a gradual penalty as minutes approach max_minutes.
@@ -170,17 +347,8 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
     return adjusted_predictions
 
 
-import pickle
-import pandas as pd
-import numpy as np
-import xlwings as xw
-import os
 
 
-# [Keep your existing adjustment functions]
-# apply_high_minutes_curve
-# ensure_minimum_rotation
-# adjust_team_minutes_with_minimum_and_boost
 
 def create_advanced_features(df):
     """Create advanced features for single day predictions"""
@@ -217,7 +385,7 @@ def create_advanced_features(df):
 
     # Team averages
     #df['MIN_VS_TEAM_AVG'] = 1  # Default to average
-    df['MIN_CONSISTENCY'] = 0.1  # Default to stable
+    #df['MIN_CONSISTENCY'] = 0.1  # Default to stable
     #df['MIN_ABOVE_AVG_STREAK'] = 0  # Default to no streak
     df['DK_TREND_5'] = 0  # Default to neutral trend
     df['BLOWOUT_GAME'] = 0  # Default to no blowout
@@ -263,6 +431,7 @@ def predict_minutes():
         needed_data = {
             'Player': sheet.range(f'A2:A{last_row}').value,
             'Team': sheet.range(f'B2:B{last_row}').value,
+            'Position': sheet.range(f'C2:C{last_row}').value,
             'Salary': sheet.range(f'D2:D{last_row}').value,
             'Minutes': sheet.range(f'E2:E{last_row}').value,
             'Max Minutes': sheet.range(f'J2:J{last_row}').value,
@@ -279,6 +448,7 @@ def predict_minutes():
             'MIN_VS_TEAM_AVG': sheet.range(f'Y2:Y{last_row}').value,
             'MIN_CUM_AVG': sheet.range(f'AA2:AA{last_row}').value,
             'MIN_ABOVE_AVG_STREAK': sheet.range(f'AB2:AB{last_row}').value,
+            'MIN_CONSISTENCY': sheet.range(f'AC2:AC{last_row}').value,
         }
 
         # Convert to DataFrame
@@ -297,7 +467,8 @@ def predict_minutes():
                             'MIN_VS_TEAM_AVG',
                             'DARKO Minutes',
                             'MIN_CUM_AVG',
-                            'MIN_ABOVE_AVG_STREAK'
+                            'MIN_ABOVE_AVG_STREAK',
+                            'MIN_CONSISTENCY',
 
                            ]
         for col in numeric_columns:
@@ -335,10 +506,39 @@ def predict_minutes():
 
         # Make predictions
         X = enhanced_data[features]
-        predictions = model.predict(X)
+        raw_predictions = model.predict(X)
+        # Set initial zeros
+        #raw_predictions[data['Projection'] == 0] = 0
+        data['Predicted_Minutes'] = raw_predictions
+
+
+        # In your main prediction code
+        data['Original_Minutes'] = raw_predictions
+        data['Predicted_Minutes'] = apply_position_constraints(data)
+
+        # Debug output
+        for team in data['Team'].unique():
+            team_mask = data['Team'] == team
+            team_data = data[team_mask]
+            print(f"\n{team}:")
+
+            # # Track protected players and their positions
+            # protected = set()
+            # for pos in ['PG', 'SG', 'SF', 'PF', 'C']:
+            #     pos_players = team_data[team_data['Position'].str.contains(pos)]
+            #     if len(pos_players) > 0:
+            #         top_player = pos_players.nlargest(1, 'Original_Minutes')
+            #         if top_player.index[0] not in protected:
+            #             protected.add(top_player.index[0])
+            #             print(f"Protected {pos}: {top_player.iloc[0]['Player']} "
+            #                   f"({top_player.iloc[0]['Position']}): "
+            #                   f"Original: {top_player.iloc[0]['Original_Minutes']:.1f}, "
+            #                   f"Adjusted: {top_player.iloc[0]['Predicted_Minutes']:.1f}")
+
+
+
 
         # Force minutes to 0 for players with 0 projection
-        data['Predicted_Minutes'] = predictions
         data.loc[data['Projection'] == 0, 'Predicted_Minutes'] = 0
 
         # Add new conditions for DARKO Minutes and Minutes

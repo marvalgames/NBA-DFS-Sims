@@ -229,9 +229,9 @@ def download_daily_projections():
 
 if __name__ == "__main__":
     print("Starting downloads...")
-    #download_talent_projections()
-    #time.sleep(5)  # Wait between downloads
-    #download_daily_projections()
-    #time.sleep(5)  # Wait between downloads
+    download_talent_projections()
+    time.sleep(5)  # Wait between downloads
+    download_daily_projections()
+    time.sleep(5)  # Wait between downloads
     get_nba_boxscores()
     print("All downloads completed")
