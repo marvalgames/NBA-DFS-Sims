@@ -192,65 +192,23 @@ def create_advanced_features(df):
             lambda x: x.rolling(10, min_periods=1).mean()
         )
 
+    # Add team minutes rank features
+    df['TEAM_PROJ_RANK'] = df.groupby(['TEAM', 'GAME_DAY'])['DK_LAST_10_AVG'].rank(ascending=False)
+    df['IS_TOP_3_PROJ'] = (df['TEAM_PROJ_RANK'] <= 3).astype(int)
+
+    # Add percentage of team minutes feature
+    team_totals = df.groupby(['TEAM', 'GAME_DAY'])['MIN'].transform('sum')
+    df['TEAM_MIN_PERCENTAGE'] = (df['MIN'] / team_totals) * 100
+
+    # Create interaction feature for low-minute top players
+    df['LOW_MIN_TOP_PLAYER'] = ((df['TEAM_PROJ_RANK'] <= 3) &
+                                (df['TEAM_MIN_PERCENTAGE'] < 14)).astype(int)
+
     # Fill NaN values with appropriate defaults
     numeric_columns = df.select_dtypes(include=[np.number]).columns
     df[numeric_columns] = df[numeric_columns].fillna(0)
 
     return df
-
-
-# Function to prepare features for the model
-def prepare_model_features(df):
-    """
-    Prepare final feature set including advanced features
-    """
-    # Create advanced features
-    df = create_advanced_features(df)
-
-    # Define final feature set
-    model_features = [
-        # Original features
-        'MIN_LAST_10_AVG',
-        'PTS_LAST_10_AVG',
-        'REB_LAST_10_AVG',
-        'AST_LAST_10_AVG',
-        'DK_LAST_10_AVG',
-        'MIN_CUM_AVG',
-        'PTS_CUM_AVG',
-        'MIN_TREND',
-        'DAYS_REST',
-        'IS_B2B',
-        'IS_HOME',
-        'PTS_PER_MIN',
-        'AST_PER_MIN',
-        'REB_PER_MIN',
-        'MIN_VS_TEAM_AVG',
-        'MIN_CONSISTENCY',
-        'MIN_ABOVE_AVG_STREAK',
-        'DK_TREND_5',
-        'BLOWOUT_GAME',
-
-        # New advanced features
-        'MIN_LAST_3_AVG',
-        'MIN_LAST_5_AVG',
-        'MIN_LAST_7_AVG',
-        'MIN_LAST_3_STD',
-        'MIN_LAST_5_STD',
-        'MIN_LAST_7_STD',
-        'MIN_TREND_3',
-        'MIN_TREND_5',
-        'MIN_TREND_7',
-        'ROLE_CHANGE_3_10',
-        'ROLE_CHANGE_5_10',
-        'MIN_CONSISTENCY_SCORE',
-        'RECENT_SCORING_EFF',
-        'RECENT_IMPACT',
-        'FREQ_ABOVE_20',
-        'FREQ_ABOVE_25',
-        'FREQ_ABOVE_30'
-    ]
-
-    return df[model_features]
 
 
 def prepare_training_data(data):
@@ -271,7 +229,7 @@ def save_predictions(all_results, output_dir='predictions'):
 
 
 # Load the enhanced dataset
-file_path = 'game_logs_expanded.csv'
+file_path = 'nba_boxscores_enhanced.csv'
 data = pd.read_csv(file_path)
 
 data = create_advanced_features(data)
@@ -318,7 +276,13 @@ features = [
     'RECENT_IMPACT',
     'FREQ_ABOVE_20',
     'FREQ_ABOVE_25',
-    'FREQ_ABOVE_30'
+    'FREQ_ABOVE_30',
+
+    'TEAM_PROJ_RANK',
+    'IS_TOP_3_MINUTES',
+    'TEAM_MIN_PERCENTAGE',
+    'LOW_MIN_TOP_PLAYER',
+
 ]
 
 
