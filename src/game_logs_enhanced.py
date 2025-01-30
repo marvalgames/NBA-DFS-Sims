@@ -50,6 +50,11 @@ def enhance_game_logs(df):
             lambda x: x.rolling(10, min_periods=1).mean()
         )
 
+        # Rolling 5-game averages
+        df[f'{stat}_LAST_5_AVG'] = df.groupby('PLAYER')[stat].transform(
+            lambda x: x.rolling(5, min_periods=1).mean()
+        )
+
         # Cumulative averages
         df[f'{stat}_CUM_AVG'] = df.groupby('PLAYER')[stat].transform(
             lambda x: x.expanding().mean()
@@ -120,6 +125,12 @@ def enhance_game_logs(df):
     # Game margin categories
     df['BLOWOUT_GAME'] = (abs(df['PLUS MINUS']) > 20).astype(int)
 
+    # Move all _LAST_5_AVG columns to the end
+    last_5_cols = [col for col in df.columns if col.endswith('_LAST_5_AVG')]
+    other_cols = [col for col in df.columns if not col.endswith('_LAST_5_AVG')]
+
+    df = df[other_cols + last_5_cols]
+
     # Final check for any remaining empty numeric values
     numeric_columns = df.select_dtypes(include=['float64', 'float32', 'int64', 'int32']).columns
     df[numeric_columns] = df[numeric_columns].fillna(0)
@@ -178,7 +189,18 @@ def main():
         # Update existing Excel workbook
         print("Updating Excel workbook...")
         try:
-            wb = xw.Book(excel_path)
+            # Get the most recent game date from the DataFrame
+            most_recent_date = enhanced_df['GAME DATE'].max()
+
+            # Filter DataFrame for last 7 days from most recent game
+            seven_days_ago = most_recent_date - pd.Timedelta(days=7)
+            filtered_df = enhanced_df[enhanced_df['GAME DATE'] >= seven_days_ago]
+
+            app = xw.App(visible=False)
+            app.display_alerts = False
+            app.screen_updating = False
+
+            wb = app.books.open(excel_path)
             sheet = wb.sheets['game_logs']
             table = sheet.tables['game_logs']
 
@@ -186,19 +208,21 @@ def main():
             data_range = table.data_body_range
 
             # Calculate the range up to column CA
-            last_data_column = 'CA'  # This is the last column before formulas
+            last_data_column = 'CG'  # This is the last column before formulas
             if data_range is not None:
                 start_row = data_range.row
-                end_row = start_row + len(enhanced_df) - 1
+                end_row = start_row + len(filtered_df) - 1
                 limited_range = sheet.range(f"A{start_row}:{last_data_column}{end_row}")
 
-                # Clear and update only up to column CB
+                # Clear and update only up to column CF
                 limited_range.clear_contents()
-                limited_range.value = enhanced_df.values
+                limited_range.value = filtered_df.values
 
             # Save Excel file
             wb.save()
             wb.close()
+            app.quit()
+
 
             print("Excel table updated successfully!")
 

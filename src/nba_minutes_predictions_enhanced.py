@@ -356,9 +356,6 @@ def create_advanced_features(df):
 
     # Create basic required features if they don't exist
     df['MIN'] = df['Minutes']
-    #df['PTS'] = df['Projection'] * 0.8  # Rough estimate
-    #df['REB'] = df['Projection'] * 0.15  # Rough estimate
-    #df['AST'] = df['Projection'] * 0.12  # Rough estimate
     df['DK'] = df['Projection']
 
     # Create advanced features using available data
@@ -368,12 +365,8 @@ def create_advanced_features(df):
     df['AST_LAST_10_AVG'] = df['Last 10 Ast']
     df['DK_LAST_10_AVG'] = df['Last 10 DK']
 
-    # Cumulative averages (use Last 10 as proxy)
-    #df['MIN_CUM_AVG'] = df['MIN']
-    df['PTS_CUM_AVG'] = df['PTS']
 
     # Other features
-    df['MIN_TREND'] = 0  # Default to neutral trend
     df['DAYS_REST'] = 1  # Default to 1 day rest
     df['IS_B2B'] = 0  # Default to not back-to-back
     df['IS_HOME'] = 1  # Will be set based on game info
@@ -383,11 +376,6 @@ def create_advanced_features(df):
     df['AST_PER_MIN'] = df['AST'] / df['Minutes'].clip(1)
     df['REB_PER_MIN'] = df['REB'] / df['Minutes'].clip(1)
 
-    # Team averages
-    #df['MIN_VS_TEAM_AVG'] = 1  # Default to average
-    #df['MIN_CONSISTENCY'] = 0.1  # Default to stable
-    #df['MIN_ABOVE_AVG_STREAK'] = 0  # Default to no streak
-    df['DK_TREND_5'] = 0  # Default to neutral trend
     df['BLOWOUT_GAME'] = 0  # Default to no blowout
 
     # New advanced features
@@ -449,6 +437,11 @@ def predict_minutes():
             'MIN_CUM_AVG': sheet.range(f'AA2:AA{last_row}').value,
             'MIN_ABOVE_AVG_STREAK': sheet.range(f'AB2:AB{last_row}').value,
             'MIN_CONSISTENCY': sheet.range(f'AC2:AC{last_row}').value,
+            'DK_TREND_5': sheet.range(f'AD2:AD{last_row}').value,
+            'PTS_CUM_AVG': sheet.range(f'AE2:AE{last_row}').value,
+            'MIN_TREND': sheet.range(f'AF2:AF{last_row}').value,
+            'PTS_TREND': sheet.range(f'AG2:AG{last_row}').value,
+            'DK_TREND': sheet.range(f'AH2:AH{last_row}').value,
         }
 
         # Convert to DataFrame
@@ -469,7 +462,11 @@ def predict_minutes():
                             'MIN_CUM_AVG',
                             'MIN_ABOVE_AVG_STREAK',
                             'MIN_CONSISTENCY',
-
+                            'DK_TREND_5',
+                            'PTS_CUM_AVG',
+                            'MIN_TREND',
+                            'PTS_TREND',
+                            'DK_TREND',
                            ]
         for col in numeric_columns:
             data[col] = pd.to_numeric(data[col], errors='coerce')
