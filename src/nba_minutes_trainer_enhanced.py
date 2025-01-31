@@ -229,7 +229,7 @@ def save_predictions(all_results, output_dir='predictions'):
 
 
 # Load the enhanced dataset
-file_path = 'nba_boxscores_enhanced.csv'
+file_path = 'nba_game_logs_enhanced_training_set.csv'
 data = pd.read_csv(file_path)
 
 data = create_advanced_features(data)
@@ -262,18 +262,22 @@ features = [
     # New advanced features
     'MIN_LAST_3_AVG',
     'MIN_LAST_5_AVG',
-    'MIN_LAST_7_AVG',
-    'MIN_LAST_3_STD',
-    'MIN_LAST_5_STD',
-    'MIN_LAST_7_STD',
-    'MIN_TREND_3',
-    'MIN_TREND_5',
-    'MIN_TREND_7',
+    #'MIN_LAST_7_AVG',
+    #'MIN_LAST_3_STD',
+    #'MIN_LAST_5_STD',
+    #'MIN_LAST_7_STD',
+    #'MIN_LAST_3_CV',
+    #'MIN_LAST_5_CV',
+    #'MIN_LAST_7_CV',
+    #'MIN_TREND_3',
+    #'MIN_TREND_5',
+    #'MIN_TREND_7',
     'ROLE_CHANGE_3_10',
     'ROLE_CHANGE_5_10',
     'MIN_CONSISTENCY_SCORE',
     'RECENT_SCORING_EFF',
     'RECENT_IMPACT',
+
     'FREQ_ABOVE_20',
     'FREQ_ABOVE_25',
     'FREQ_ABOVE_30',
@@ -353,12 +357,12 @@ for test_game_day in sorted(data['GAME_DAY'].unique()):
         team_data = test_data[test_data['TEAM'] == team]
         print(f"\n{team}:")
         print(f"Team Total: {team_data['Predicted_Minutes'].sum():.1f}")
-        print(f"Max Minutes: {team_data['Predicted_Minutes'].max():.1f}")
+        #print(f"Max Minutes: {team_data['Predicted_Minutes'].max():.1f}")
         print(f"Players > 35 mins: {len(team_data[team_data['Predicted_Minutes'] > 35])}")
         top_5 = team_data.nlargest(5, 'Predicted_Minutes')
-        print("\nTop 5 Players:")
-        for _, row in top_5.iterrows():
-            print(f"{row['PLAYER']:<20} {row['Predicted_Minutes']:.1f}")
+        #print("\nTop 5 Players:")
+        #for _, row in top_5.iterrows():
+            #print(f"{row['PLAYER']:<20} {row['Predicted_Minutes']:.1f}")
 
     # Calculate metrics comparing predictions to actual minutes
     predictions = test_data['Predicted_Minutes']
