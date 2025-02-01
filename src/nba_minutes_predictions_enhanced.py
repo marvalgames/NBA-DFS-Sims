@@ -519,22 +519,6 @@ def predict_minutes():
             team_data = data[team_mask]
             print(f"\n{team}:")
 
-            # # Track protected players and their positions
-            # protected = set()
-            # for pos in ['PG', 'SG', 'SF', 'PF', 'C']:
-            #     pos_players = team_data[team_data['Position'].str.contains(pos)]
-            #     if len(pos_players) > 0:
-            #         top_player = pos_players.nlargest(1, 'Original_Minutes')
-            #         if top_player.index[0] not in protected:
-            #             protected.add(top_player.index[0])
-            #             print(f"Protected {pos}: {top_player.iloc[0]['Player']} "
-            #                   f"({top_player.iloc[0]['Position']}): "
-            #                   f"Original: {top_player.iloc[0]['Original_Minutes']:.1f}, "
-            #                   f"Adjusted: {top_player.iloc[0]['Predicted_Minutes']:.1f}")
-
-
-
-
         # Force minutes to 0 for players with 0 projection
         data.loc[data['Projection'] == 0, 'Predicted_Minutes'] = 0
 
