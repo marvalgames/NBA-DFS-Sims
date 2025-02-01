@@ -262,16 +262,6 @@ features = [
     # New advanced features
     'MIN_LAST_3_AVG',
     'MIN_LAST_5_AVG',
-    #'MIN_LAST_7_AVG',
-    #'MIN_LAST_3_STD',
-    #'MIN_LAST_5_STD',
-    #'MIN_LAST_7_STD',
-    #'MIN_LAST_3_CV',
-    #'MIN_LAST_5_CV',
-    #'MIN_LAST_7_CV',
-    #'MIN_TREND_3',
-    #'MIN_TREND_5',
-    #'MIN_TREND_7',
     'ROLE_CHANGE_3_10',
     'ROLE_CHANGE_5_10',
     'MIN_CONSISTENCY_SCORE',
@@ -283,7 +273,7 @@ features = [
     'FREQ_ABOVE_30',
 
     'TEAM_PROJ_RANK',
-    'IS_TOP_3_MINUTES',
+    'IS_TOP_3_PROJ',
     'TEAM_MIN_PERCENTAGE',
     'LOW_MIN_TOP_PLAYER',
 

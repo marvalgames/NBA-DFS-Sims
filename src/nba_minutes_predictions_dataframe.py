@@ -94,6 +94,10 @@ def process_excel_data():
         # Metadata
         'PLAYER_ID', 'TEAM_ID', 'TEAM_NAME', 'GAME_ID', 'SEASON_ID',
         'VIDEO_AVAILABLE'
+
+        'FREQ_ABOVE_20',
+        'FREQ_ABOVE_25',
+        'FREQ_ABOVE_30',
     ]
 
     # Reorder the DataFrame

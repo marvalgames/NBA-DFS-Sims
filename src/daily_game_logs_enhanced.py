@@ -26,6 +26,8 @@ def format_decimals(df, decimal_places=3):
     return df
 
 
+
+
 def enhance_game_logs(df):
     # Initialize dictionary for new columns
     new_columns = {}
@@ -142,6 +144,23 @@ def enhance_game_logs(df):
         # Also store the binary threshold columns in new_columns
         new_columns[col_name] = temp_df[col_name]
 
+        # Streak indicators (new version)
+    for stat in ['MIN', 'PTS']:
+        # Process each player separately to avoid the groupby.apply
+        players = temp_df['PLAYER'].unique()
+        streaks = pd.Series(index=temp_df.index, dtype=float)
+
+        for player in players:
+            player_mask = temp_df['PLAYER'] == player
+            player_data = temp_df[player_mask].copy()
+            player_streaks = calculate_streaks(
+                player_data,
+                stat,
+                f'{stat}_CUM_AVG'
+            )
+            streaks[player_mask] = player_streaks
+        new_columns[f'{stat}_ABOVE_AVG_STREAK'] = streaks
+
     # Team minutes and rank features - using temp_df for calculations
     new_columns['TEAM_PROJ_RANK'] = temp_df.groupby(['TEAM', 'GAME_DAY'])['DK_LAST_10_AVG'].rank(ascending=False)
     new_columns['IS_TOP_3_PROJ'] = (new_columns['TEAM_PROJ_RANK'] <= 3).astype(int)
@@ -175,6 +194,10 @@ def enhance_game_logs(df):
     new_columns['RECENT_IMPACT'] = temp_df.groupby('PLAYER')['PLUS_MINUS_PER_MIN'].transform(
         lambda x: x.rolling(3, min_periods=1).mean())
 
+
+
+
+
     # Combine all new columns with original DataFrame, but sort only the new columns first
     original_cols = df.columns.tolist()
     new_cols_sorted = sorted(new_columns.keys())
@@ -201,7 +224,7 @@ def main():
         # Define file paths
         input_path = os.path.join('..', 'dk_import', 'nba_boxscores.csv')
         output_csv_path = os.path.join('..', 'dk_import', 'nba_boxscores_enhanced.csv')
-        excel_path = os.path.join('..', 'dk_import', 'nba_wip.xlsm')
+        #excel_path = os.path.join('..', 'dk_import', 'nba_wip.xlsm')
 
         # Read the CSV file with different encoding
         print("Reading input file...")
@@ -237,85 +260,85 @@ def main():
                            encoding='utf-8',
                            float_format='%.3f')
 
-        #Update existing Excel workbook
-        print("Updating Excel workbook...")
-        print("  • Getting most recent game date...")
-        try:
-            # Get the most recent game date from the DataFrame
-            most_recent_date = enhanced_df['GAME DATE'].max()
-
-            print("  • Filtering data for last 7 days...")
-            # Filter DataFrame for last 7 days from most recent game
-            seven_days_ago = most_recent_date - pd.Timedelta(days=7)
-            filtered_df = enhanced_df[enhanced_df['GAME DATE'] >= seven_days_ago]
-            print(f"    - Found {len(filtered_df)} rows of recent data")
-
-            print("  • Opening Excel application...")
-            app = xw.App(visible=False)
-            app.display_alerts = False
-            app.screen_updating = False
-
-            print("  • Opening workbook...")
-            wb = app.books.open(excel_path)
-            sheet = wb.sheets['game_logs']
-            table = sheet.tables['game_logs']
-
-            print("  • Preparing to update data...")
-            # Get the existing table
-            data_range = table.data_body_range
-
-            # Calculate the range up to column DB
-            last_data_column = 'CU'  # This is the last column before formulas
-            if data_range is not None:
-                start_row = data_range.row
-                end_row = start_row + len(filtered_df) - 1
-                limited_range = sheet.range(f"A{start_row}:{last_data_column}{end_row}")
-
-                print("  • Clearing existing data...")
-                limited_range.clear_contents()
-
-                print("  • Writing new data...")
-                # Convert DataFrame to values and get total rows
-                data_values = filtered_df.values
-                total_rows = len(data_values)
-
-                # Write data in chunks and show progress
-                chunk_size = max(1, total_rows // 10)  # Show progress every 5%
-                for i in range(0, total_rows, chunk_size):
-                    # Calculate current chunk
-                    end_idx = min(i + chunk_size, total_rows)
-                    chunk_range = sheet.range(f"A{start_row + i}:{last_data_column}{start_row + end_idx - 1}")
-
-                    # Write chunk
-                    chunk_range.value = data_values[i:end_idx]
-
-                    # Calculate and display progress
-                    progress = min(100, (end_idx / total_rows) * 100)
-                    print(f"    - Progress: {progress:.1f}% ({end_idx}/{total_rows} rows)")
-
-                print("  • Saving workbook...")
-                wb.save()
-
-                print("  • Cleaning up...")
-                wb.close()
-                app.quit()
-
-                print("✓ Excel table updated successfully!")
-            else:
-                print("⚠ Warning: No data range found in Excel table")
-
-        except Exception as e:
-            print(f"❌ Error updating Excel: {str(e)}")
-            print("Full error details:")
-            traceback.print_exc()
-
-            # Ensure Excel is properly closed even if there's an error
-            try:
-                wb.close()
-                app.quit()
-            except:
-                pass
-
+        # #Update existing Excel workbook
+        # print("Updating Excel workbook...")
+        # print("  • Getting most recent game date...")
+        # try:
+        #     # Get the most recent game date from the DataFrame
+        #     most_recent_date = enhanced_df['GAME DATE'].max()
+        #
+        #     print("  • Filtering data for last 7 days...")
+        #     # Filter DataFrame for last 7 days from most recent game
+        #     seven_days_ago = most_recent_date - pd.Timedelta(days=7)
+        #     filtered_df = enhanced_df[enhanced_df['GAME DATE'] >= seven_days_ago]
+        #     print(f"    - Found {len(filtered_df)} rows of recent data")
+        #
+        #     print("  • Opening Excel application...")
+        #     app = xw.App(visible=False)
+        #     app.display_alerts = False
+        #     app.screen_updating = False
+        #
+        #     print("  • Opening workbook...")
+        #     wb = app.books.open(excel_path)
+        #     sheet = wb.sheets['game_logs']
+        #     table = sheet.tables['game_logs']
+        #
+        #     print("  • Preparing to update data...")
+        #     # Get the existing table
+        #     data_range = table.data_body_range
+        #
+        #     # Calculate the range up to column DB
+        #     last_data_column = 'CU'  # This is the last column before formulas
+        #     if data_range is not None:
+        #         start_row = data_range.row
+        #         end_row = start_row + len(filtered_df) - 1
+        #         limited_range = sheet.range(f"A{start_row}:{last_data_column}{end_row}")
+        #
+        #         print("  • Clearing existing data...")
+        #         limited_range.clear_contents()
+        #
+        #         print("  • Writing new data...")
+        #         # Convert DataFrame to values and get total rows
+        #         data_values = filtered_df.values
+        #         total_rows = len(data_values)
+        #
+        #         # Write data in chunks and show progress
+        #         chunk_size = max(1, total_rows // 10)  # Show progress every 5%
+        #         for i in range(0, total_rows, chunk_size):
+        #             # Calculate current chunk
+        #             end_idx = min(i + chunk_size, total_rows)
+        #             chunk_range = sheet.range(f"A{start_row + i}:{last_data_column}{start_row + end_idx - 1}")
+        #
+        #             # Write chunk
+        #             chunk_range.value = data_values[i:end_idx]
+        #
+        #             # Calculate and display progress
+        #             progress = min(100, (end_idx / total_rows) * 100)
+        #             print(f"    - Progress: {progress:.1f}% ({end_idx}/{total_rows} rows)")
+        #
+        #         print("  • Saving workbook...")
+        #         wb.save()
+        #
+        #         print("  • Cleaning up...")
+        #         wb.close()
+        #         app.quit()
+        #
+        #         print("✓ Excel table updated successfully!")
+        #     else:
+        #         print("⚠ Warning: No data range found in Excel table")
+        #
+        # except Exception as e:
+        #     print(f"❌ Error updating Excel: {str(e)}")
+        #     print("Full error details:")
+        #     traceback.print_exc()
+        #
+        #     # Ensure Excel is properly closed even if there's an error
+        #     try:
+        #         wb.close()
+        #         app.quit()
+        #     except:
+        #         pass
+        #
 
 
         print("Processing completed successfully!")
