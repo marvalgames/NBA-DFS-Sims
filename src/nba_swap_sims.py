@@ -1365,7 +1365,7 @@ class NBA_Swaptimizer_Sims:
                             total_projection += attributes["BayesianProjectedFpts"]
 
                 # Set the minimum projected points using the total projection
-                min_projected_points = total_projection * 1.00  # add to config - suggest lower values for contrarian / aggressive
+                min_projected_points = total_projection * 1.01  # add to config - suggest lower values for contrarian / aggressive
                 print(f"Minimum required projection: {min_projected_points:.2f}")
 
                 while not solution_found and max_attempts > 0:

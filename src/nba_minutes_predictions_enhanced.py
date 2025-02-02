@@ -352,11 +352,15 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
 
 def create_advanced_features(df):
     """Create advanced features for single day predictions"""
-    df = df.copy()
 
+
+
+
+    df = df.copy()
+    df['MIN_VS_TEAM_AVG'] = df['DARKO Minutes']
     # Create basic required features if they don't exist
-    df['MIN'] = df['Minutes']
-    df['DK'] = df['Projection']
+    #df['MIN'] = df['Minutes']
+    #df['DK'] = df['Projection']
 
     # Create advanced features using available data
     #df['MIN_LAST_10_AVG'] = df['Last 10 Minutes']
@@ -408,13 +412,12 @@ def predict_minutes():
     app = xw.App(visible=False)
     try:
         # Connect to Excel
-        excel_path = os.path.join('..', 'dk_import', 'nba_merge.xlsm')
+        excel_path = os.path.join('..', 'dk_import', 'nba_merged.xlsm')
         wb = xw.Book(excel_path)
         sheet = wb.sheets['sog_minutes']
 
         # Get the last row with actual data
         last_row = sheet.range('A' + str(sheet.cells.last_cell.row)).end('up').row
-
         needed_data = {
             'Player': sheet.range(f'A2:A{last_row}').value,
             'Team': sheet.range(f'B2:B{last_row}').value,
@@ -444,88 +447,94 @@ def predict_minutes():
             'MIN_ABOVE_20': sheet.range(f'Z2:Z{last_row}').value,
             'MIN_ABOVE_25': sheet.range(f'AA2:AA{last_row}').value,
             'MIN_ABOVE_30': sheet.range(f'AB2:AB{last_row}').value,
-            'Projected Pts': sheet.range(f'AC2:AC{last_row}').value,
-            'DK': sheet.range(f'AD2:AD{last_row}').value,
-            'DK_CUM_AVG': sheet.range(f'AE2:AE{last_row}').value,
-            'DK_LAST_3_AVG': sheet.range(f'AF2:AF{last_row}').value,
-            'DK_LAST_5_AVG': sheet.range(f'AG2:AG{last_row}').value,
-            'DK_LAST_10_AVG': sheet.range(f'AH2:AH{last_row}').value,
-            'DK_TREND': sheet.range(f'AI2:AI{last_row}').value,
-            'DK_TREND_5': sheet.range(f'AJ2:AJ{last_row}').value,
-            'DK_CONSISTENCY': sheet.range(f'AK2:AK{last_row}').value,
-            'PTS_LAST_3_AVG': sheet.range(f'AL2:AL{last_row}').value,
-            'PTS_LAST_5_AVG': sheet.range(f'AM2:AM{last_row}').value,
-            'PTS_LAST_10_AVG': sheet.range(f'AN2:AN{last_row}').value,
-            'REB_LAST_3_AVG': sheet.range(f'AO2:AO{last_row}').value,
-            'REB_LAST_5_AVG': sheet.range(f'AP2:AP{last_row}').value,
-            'REB_LAST_10_AVG': sheet.range(f'AQ2:AQ{last_row}').value,
-            'AST_LAST_3_AVG': sheet.range(f'AR2:AR{last_row}').value,
-            'AST_LAST_5_AVG': sheet.range(f'AS2:AS{last_row}').value,
-            'AST_LAST_10_AVG': sheet.range(f'AT2:AT{last_row}').value,
-            'PTS_CUM_AVG': sheet.range(f'AU2:AU{last_row}').value,
-            'REB_CUM_AVG': sheet.range(f'AV2:AV{last_row}').value,
-            'AST_CUM_AVG': sheet.range(f'AW2:AW{last_row}').value,
-            'PTS_PER_MIN': sheet.range(f'AX2:AX{last_row}').value,
-            'REB_PER_MIN': sheet.range(f'AY2:AY{last_row}').value,
-            'AST_PER_MIN': sheet.range(f'AZ2:AZ{last_row}').value,
-            'SCORING_EFFICIENCY': sheet.range(f'BA2:BA{last_row}').value,
-            'RECENT_SCORING_EFF': sheet.range(f'BB2:BB{last_row}').value,
-            'FG_PCT': sheet.range(f'BC2:BC{last_row}').value,
-            'FG3_PCT': sheet.range(f'BD2:BD{last_row}').value,
-            'FT_PCT': sheet.range(f'BE2:BE{last_row}').value,
-            'FGM': sheet.range(f'BF2:BF{last_row}').value,
-            'FGA': sheet.range(f'BG2:BG{last_row}').value,
-            'FG3M': sheet.range(f'BH2:BH{last_row}').value,
-            'FG3A': sheet.range(f'BI2:BI{last_row}').value,
-            'FTM': sheet.range(f'BJ2:BJ{last_row}').value,
-            'FTA': sheet.range(f'BK2:BK{last_row}').value,
-            'PLUS_MINUS': sheet.range(f'BL2:BL{last_row}').value,
-            'PLUS_MINUS_PER_MIN': sheet.range(f'BM2:BM{last_row}').value,
-            'PLUS MINUS_LAST_3_AVG': sheet.range(f'BN2:BN{last_row}').value,
-            'PLUS MINUS_LAST_5_AVG': sheet.range(f'BO2:BO{last_row}').value,
-            'PLUS MINUS_LAST_10_AVG': sheet.range(f'BP2:BP{last_row}').value,
-            'PLUS MINUS_CUM_AVG': sheet.range(f'BQ2:BQ{last_row}').value,
-            'PLUS MINUS_TREND': sheet.range(f'BR2:BR{last_row}').value,
-            'PLUS MINUS_CONSISTENCY': sheet.range(f'BS2:BS{last_row}').value,
-            'PTS_TREND': sheet.range(f'BT2:BT{last_row}').value,
-            'REB_TREND': sheet.range(f'BU2:BU{last_row}').value,
-            'AST_TREND': sheet.range(f'BV2:BV{last_row}').value,
-            'PTS_CONSISTENCY': sheet.range(f'BW2:BW{last_row}').value,
-            'REB_CONSISTENCY': sheet.range(f'BX2:BX{last_row}').value,
-            'AST_CONSISTENCY': sheet.range(f'BY2:BY{last_row}').value,
-            'TEAM_MIN_PERCENTAGE': sheet.range(f'BZ2:BZ{last_row}').value,
-            'TEAM_PROJ_RANK': sheet.range(f'CA2:CA{last_row}').value,
-            'PTS_VS_TEAM_AVG': sheet.range(f'CB2:CB{last_row}').value,
-            'REB_VS_TEAM_AVG': sheet.range(f'CC2:CC{last_row}').value,
-            'AST_VS_TEAM_AVG': sheet.range(f'CD2:CD{last_row}').value,
-            'MIN_VS_TEAM_AVG': sheet.range(f'CE2:CE{last_row}').value,
-            'ROLE_CHANGE_3_10': sheet.range(f'CF2:CF{last_row}').value,
-            'ROLE_CHANGE_5_10': sheet.range(f'CG2:CG{last_row}').value,
-            'IS_TOP_3_PROJ': sheet.range(f'CH2:CH{last_row}').value,
-            'LOW_MIN_TOP_PLAYER': sheet.range(f'CI2:CI{last_row}').value,
-            'GAME_DATE': sheet.range(f'CJ2:CJ{last_row}').value,
-            'IS_HOME': sheet.range(f'CK2:CK{last_row}').value,
-            'IS_B2B': sheet.range(f'CL2:CL{last_row}').value,
-            'DAYS_REST': sheet.range(f'CM2:CM{last_row}').value,
-            'MATCHUP': sheet.range(f'CN2:CN{last_row}').value,
-            'WL': sheet.range(f'CO2:CO{last_row}').value,
-            'BLOWOUT_GAME': sheet.range(f'CP2:CP{last_row}').value,
-            'STL': sheet.range(f'CQ2:CQ{last_row}').value,
-            'BLK': sheet.range(f'CR2:CR{last_row}').value,
-            'TOV': sheet.range(f'CS2:CS{last_row}').value,
-            'OREB': sheet.range(f'CT2:CT{last_row}').value,
-            'DREB': sheet.range(f'CU2:CU{last_row}').value,
-            'PF': sheet.range(f'CV2:CV{last_row}').value,
-            'PLAYER_ID': sheet.range(f'CW2:CW{last_row}').value,
-            'TEAM_ID': sheet.range(f'CX2:CX{last_row}').value,
-            'TEAM_NAME': sheet.range(f'CY2:CY{last_row}').value,
-            'GAME_ID': sheet.range(f'CZ2:CZ{last_row}').value,
-            'SEASON_ID': sheet.range(f'DA2:DA{last_row}').value,
-            'VIDEO_AVAILABLE': sheet.range(f'DB2:DB{last_row}').value,
+            'MIN_ABOVE_AVG_STREAK': sheet.range(f'AC2:AC{last_row}').value,
+            'FREQ_ABOVE_20': sheet.range(f'AD2:AD{last_row}').value,
+            'FREQ_ABOVE_25': sheet.range(f'AE2:AE{last_row}').value,
+            'FREQ_ABOVE_30': sheet.range(f'AF2:AF{last_row}').value,
+            'Projected Pts': sheet.range(f'AG2:AG{last_row}').value,
+            'DK': sheet.range(f'AH2:AH{last_row}').value,
+            'DK_CUM_AVG': sheet.range(f'AI2:AI{last_row}').value,
+            'DK_LAST_3_AVG': sheet.range(f'AJ2:AJ{last_row}').value,
+            'DK_LAST_5_AVG': sheet.range(f'AK2:AK{last_row}').value,
+            'DK_LAST_10_AVG': sheet.range(f'AL2:AL{last_row}').value,
+            'DK_TREND': sheet.range(f'AM2:AM{last_row}').value,
+            'DK_TREND_5': sheet.range(f'AN2:AN{last_row}').value,
+            'DK_CONSISTENCY': sheet.range(f'AO2:AO{last_row}').value,
+            'PTS_LAST_3_AVG': sheet.range(f'AP2:AP{last_row}').value,
+            'PTS_LAST_5_AVG': sheet.range(f'AQ2:AQ{last_row}').value,
+            'PTS_LAST_10_AVG': sheet.range(f'AR2:AR{last_row}').value,
+            'REB_LAST_3_AVG': sheet.range(f'AS2:AS{last_row}').value,
+            'REB_LAST_5_AVG': sheet.range(f'AT2:AT{last_row}').value,
+            'REB_LAST_10_AVG': sheet.range(f'AU2:AU{last_row}').value,
+            'AST_LAST_3_AVG': sheet.range(f'AV2:AV{last_row}').value,
+            'AST_LAST_5_AVG': sheet.range(f'AW2:AW{last_row}').value,
+            'AST_LAST_10_AVG': sheet.range(f'AX2:AX{last_row}').value,
+            'PTS_CUM_AVG': sheet.range(f'AY2:AY{last_row}').value,
+            'REB_CUM_AVG': sheet.range(f'AZ2:AZ{last_row}').value,
+            'AST_CUM_AVG': sheet.range(f'BA2:BA{last_row}').value,
+            'PTS_PER_MIN': sheet.range(f'BB2:BB{last_row}').value,
+            'REB_PER_MIN': sheet.range(f'BC2:BC{last_row}').value,
+            'AST_PER_MIN': sheet.range(f'BD2:BD{last_row}').value,
+            'SCORING_EFFICIENCY': sheet.range(f'BE2:BE{last_row}').value,
+            'RECENT_SCORING_EFF': sheet.range(f'BF2:BF{last_row}').value,
+            'FG_PCT': sheet.range(f'BG2:BG{last_row}').value,
+            'FG3_PCT': sheet.range(f'BH2:BH{last_row}').value,
+            'FT_PCT': sheet.range(f'BI2:BI{last_row}').value,
+            'FGM': sheet.range(f'BJ2:BJ{last_row}').value,
+            'FGA': sheet.range(f'BK2:BK{last_row}').value,
+            'FG3M': sheet.range(f'BL2:BL{last_row}').value,
+            'FG3A': sheet.range(f'BM2:BM{last_row}').value,
+            'FTM': sheet.range(f'BN2:BN{last_row}').value,
+            'FTA': sheet.range(f'BO2:BO{last_row}').value,
+            'PLUS_MINUS': sheet.range(f'BP2:BP{last_row}').value,
+            'PLUS_MINUS_PER_MIN': sheet.range(f'BQ2:BQ{last_row}').value,
+            'PLUS MINUS_LAST_3_AVG': sheet.range(f'BR2:BR{last_row}').value,
+            'PLUS MINUS_LAST_5_AVG': sheet.range(f'BS2:BS{last_row}').value,
+            'PLUS MINUS_LAST_10_AVG': sheet.range(f'BT2:BT{last_row}').value,
+            'PLUS MINUS_CUM_AVG': sheet.range(f'BU2:BU{last_row}').value,
+            'PLUS MINUS_TREND': sheet.range(f'BV2:BV{last_row}').value,
+            'PLUS MINUS_CONSISTENCY': sheet.range(f'BW2:BW{last_row}').value,
+            'PTS_TREND': sheet.range(f'BX2:BX{last_row}').value,
+            'REB_TREND': sheet.range(f'BY2:BY{last_row}').value,
+            'AST_TREND': sheet.range(f'BZ2:BZ{last_row}').value,
+            'PTS_CONSISTENCY': sheet.range(f'CA2:CA{last_row}').value,
+            'REB_CONSISTENCY': sheet.range(f'CB2:CB{last_row}').value,
+            'AST_CONSISTENCY': sheet.range(f'CC2:CC{last_row}').value,
+            'TEAM_MIN_PERCENTAGE': sheet.range(f'CD2:CD{last_row}').value,
+            'TEAM_PROJ_RANK': sheet.range(f'CE2:CE{last_row}').value,
+            'PTS_VS_TEAM_AVG': sheet.range(f'CF2:CF{last_row}').value,
+            'REB_VS_TEAM_AVG': sheet.range(f'CG2:CG{last_row}').value,
+            'AST_VS_TEAM_AVG': sheet.range(f'CH2:CH{last_row}').value,
+            'MIN_VS_TEAM_AVG': sheet.range(f'CI2:CI{last_row}').value,
+            'ROLE_CHANGE_3_10': sheet.range(f'CJ2:CJ{last_row}').value,
+            'ROLE_CHANGE_5_10': sheet.range(f'CK2:CK{last_row}').value,
+            'IS_TOP_3_PROJ': sheet.range(f'CL2:CL{last_row}').value,
+            'LOW_MIN_TOP_PLAYER': sheet.range(f'CM2:CM{last_row}').value,
+            'GAME_DATE': sheet.range(f'CN2:CN{last_row}').value,
+            'IS_HOME': sheet.range(f'CO2:CO{last_row}').value,
+            'IS_B2B': sheet.range(f'CP2:CP{last_row}').value,
+            'DAYS_REST': sheet.range(f'CQ2:CQ{last_row}').value,
+            'MATCHUP': sheet.range(f'CR2:CR{last_row}').value,
+            'WL': sheet.range(f'CS2:CS{last_row}').value,
+            'BLOWOUT_GAME': sheet.range(f'CT2:CT{last_row}').value,
+            'STL': sheet.range(f'CU2:CU{last_row}').value,
+            'BLK': sheet.range(f'CV2:CV{last_row}').value,
+            'TOV': sheet.range(f'CW2:CW{last_row}').value,
+            'OREB': sheet.range(f'CX2:CX{last_row}').value,
+            'DREB': sheet.range(f'CY2:CY{last_row}').value,
+            'PF': sheet.range(f'CZ2:CZ{last_row}').value,
+            'PLAYER_ID': sheet.range(f'DA2:DA{last_row}').value,
+            'TEAM_ID': sheet.range(f'DB2:DB{last_row}').value,
+            'TEAM_NAME': sheet.range(f'DC2:DC{last_row}').value,
+            'GAME_ID': sheet.range(f'DD2:DD{last_row}').value,
+            'SEASON_ID': sheet.range(f'DE2:DE{last_row}').value,
+            'VIDEO_AVAILABLE': sheet.range(f'DF2:DF{last_row}').value,
         }
+
 
         # Convert to DataFrame
         data = pd.DataFrame(needed_data)
+
 
         # Basic data cleaning
         data = data.dropna(subset=['Team'])
@@ -551,12 +560,16 @@ def predict_minutes():
             'MIN_LAST_3_AVG',
             'MIN_LAST_5_AVG',
             'MIN_LAST_10_AVG',
+            'MIN_ABOVE_AVG_STREAK',
             'MIN_TREND',
             'MIN_CONSISTENCY',
             'MIN_CONSISTENCY_SCORE',
             'MIN_ABOVE_20',
             'MIN_ABOVE_25',
             'MIN_ABOVE_30',
+            'FREQ_ABOVE_20',
+            'FREQ_ABOVE_25',
+            'FREQ_ABOVE_30',
             'Projected Pts',
             'DK',
             'DK_CUM_AVG',
@@ -682,9 +695,29 @@ def predict_minutes():
 
         ]
 
+        # After reading data but before predictions
+        print("Before override - AD's MIN_VS_TEAM_AVG:",
+              enhanced_data.loc[enhanced_data['Player'] == 'Anthony Davis', 'MIN_VS_TEAM_AVG'].values[0])
+
+        # Override the value
+        enhanced_data['MIN_VS_TEAM_AVG'] = enhanced_data.groupby('Team')['DARKO Minutes'].transform(
+            lambda x: x / x.mean()
+        )
+
+        print("After override - AD's MIN_VS_TEAM_AVG:",
+              enhanced_data.loc[enhanced_data['Player'] == 'Anthony Davis', 'MIN_VS_TEAM_AVG'].values[0])
+
+        # Before making predictions, verify the value
+        print("Right before prediction - AD's MIN_VS_TEAM_AVG:",
+              enhanced_data.loc[enhanced_data['Player'] == 'Anthony Davis', 'MIN_VS_TEAM_AVG'].values[0])
+
         # Make predictions
         X = enhanced_data[features]
+        print("In prediction data - AD's MIN_VS_TEAM_AVG:",
+              X.loc[X.index[enhanced_data['Player'] == 'Anthony Davis'], 'MIN_VS_TEAM_AVG'].values[0])
+
         raw_predictions = model.predict(X)
+
         # Set initial zeros
         #raw_predictions[data['Projection'] == 0] = 0
         data['Predicted_Minutes'] = raw_predictions
@@ -725,7 +758,7 @@ def predict_minutes():
             print("\nTop Players:")
             top_players = team_data.nlargest(8, 'Predicted_Minutes')
             for _, row in top_players.iterrows():
-                print(f"{row['DK Name']:<20} {row['Predicted_Minutes']:.1f}")
+                print(f"{row['Player']:<20} {row['Predicted_Minutes']:.1f}")
                 if row['Predicted_Minutes'] >= 36:
                     print(f"  ** High minutes player (Max: {row['Max Minutes']})")
 

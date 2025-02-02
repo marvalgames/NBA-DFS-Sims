@@ -1,14 +1,19 @@
+
+
 import pandas as pd
 import numpy as np
 import xlwings as xw
 import os
+import time
 
 
 def process_excel_data():
     # Read from Excel using XWings
+
     app = xw.App(visible=False)
+    time.sleep(1)  # Give Excel a moment to fully initialize
     # Connect to Excel
-    excel_path = os.path.join('..', 'dk_import', 'nba_merge.xlsm')
+    excel_path = os.path.join('..', 'dk_import', 'nba_merged.xlsm')
     csv_path = os.path.join('..', 'dk_import', 'nba_merge.csv')
     csv_read = os.path.join('..', 'dk_import', 'nba_boxscores_enhanced.csv')
 
@@ -36,7 +41,7 @@ def process_excel_data():
     # Load your combined DataFrame
     combined_df = pd.read_csv(csv_read)  # or however you load it
     result_df = merge_latest_records_with_columns(excel_df, combined_df, excel_key='Player', combined_key='PLAYER_NAME', date_column="GAME_DATE" )
-
+    result_df = result_df.rename(columns={'Projection': 'Projected Pts'})
     # Define the new column order
     new_column_order = [
         # Core Player Info
@@ -46,9 +51,14 @@ def process_excel_data():
         'Minutes', 'Max Minutes', 'MIN_CUM_AVG', 'MIN_LAST_3_AVG', 'MIN_LAST_5_AVG', 'MIN_LAST_10_AVG',
         'MIN_TREND', 'MIN_CONSISTENCY', 'MIN_CONSISTENCY_SCORE',
         'MIN_ABOVE_20', 'MIN_ABOVE_25', 'MIN_ABOVE_30',
+        'MIN_ABOVE_AVG_STREAK',
+
+        'FREQ_ABOVE_20',
+        'FREQ_ABOVE_25',
+        'FREQ_ABOVE_30',
 
         # DraftKings Scoring
-        'Projection', 'DK', 'DK_CUM_AVG', 'DK_LAST_3_AVG', 'DK_LAST_5_AVG', 'DK_LAST_10_AVG',
+        'Projected Pts', 'DK', 'DK_CUM_AVG', 'DK_LAST_3_AVG', 'DK_LAST_5_AVG', 'DK_LAST_10_AVG',
         'DK_TREND', 'DK_TREND_5', 'DK_CONSISTENCY',
 
         # Key Stats - Recent Averages
@@ -95,9 +105,7 @@ def process_excel_data():
         'PLAYER_ID', 'TEAM_ID', 'TEAM_NAME', 'GAME_ID', 'SEASON_ID',
         'VIDEO_AVAILABLE'
 
-        'FREQ_ABOVE_20',
-        'FREQ_ABOVE_25',
-        'FREQ_ABOVE_30',
+
     ]
 
     # Reorder the DataFrame
@@ -222,6 +230,8 @@ def merge_latest_records_with_columns(excel_df, combined_df,
     print("\nStandardizing player names...")
     excel_df = standardize_player_names(excel_df, excel_key)
     combined_df = standardize_player_names(combined_df, combined_key)
+
+
 
     print("Creating working copy of data...")
     working_df = combined_df.copy()
