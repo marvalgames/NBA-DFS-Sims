@@ -138,6 +138,8 @@ def create_advanced_features(df):
     # Initialize new features dictionary
     new_features = {}
 
+    df['Projection'] = df['DK']
+
     # Momentum and Trend Features
     for window in [3, 5, 7]:
         # Rolling minutes averages
@@ -242,40 +244,41 @@ features = [
     'MIN_ABOVE_AVG_STREAK',
     'MIN_LAST_10_AVG',
     'MIN_CONSISTENCY',
-
-    'DK_TREND_5',
-    'DK_LAST_10_AVG',
-    'PTS_CUM_AVG',
-    'REB_PER_MIN',
-    'AST_PER_MIN',
-    'PTS_PER_MIN',
-    'AST_LAST_10_AVG',
-    'REB_LAST_10_AVG',
-
-    'DAYS_REST',
-    'PTS_LAST_10_AVG',
-    'BLOWOUT_GAME',
-    'IS_HOME',
-    'MIN_TREND',
-    'IS_B2B',
-
-    # New advanced features
-    'MIN_LAST_3_AVG',
-    'MIN_LAST_5_AVG',
-    'ROLE_CHANGE_3_10',
-    'ROLE_CHANGE_5_10',
-    'MIN_CONSISTENCY_SCORE',
-    'RECENT_SCORING_EFF',
-    'RECENT_IMPACT',
-
-    'FREQ_ABOVE_20',
-    'FREQ_ABOVE_25',
-    'FREQ_ABOVE_30',
-
+    #
+     'DK_TREND_5',
+     'DK_LAST_10_AVG',
+    # 'PTS_CUM_AVG',
+    # 'REB_PER_MIN',
+    # 'AST_PER_MIN',
+    # 'PTS_PER_MIN',
+    # 'AST_LAST_10_AVG',
+    # 'REB_LAST_10_AVG',
+    #
+    # 'DAYS_REST',
+    # 'PTS_LAST_10_AVG',
+    # 'BLOWOUT_GAME',
+    # 'IS_HOME',
+    # 'MIN_TREND',
+    # 'IS_B2B',
+    #
+    # # New advanced features
+    # 'MIN_LAST_3_AVG',
+    # 'MIN_LAST_5_AVG',
+    # 'ROLE_CHANGE_3_10',
+    # 'ROLE_CHANGE_5_10',
+    # 'MIN_CONSISTENCY_SCORE',
+    # 'RECENT_SCORING_EFF',
+    # 'RECENT_IMPACT',
+    #
+    # 'FREQ_ABOVE_20',
+    # 'FREQ_ABOVE_25',
+    # 'FREQ_ABOVE_30',
+    #
     'TEAM_PROJ_RANK',
     'IS_TOP_3_PROJ',
     'TEAM_MIN_PERCENTAGE',
     'LOW_MIN_TOP_PLAYER',
+    'Projection'
 
 ]
 

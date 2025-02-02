@@ -357,7 +357,7 @@ def create_advanced_features(df):
 
 
     df = df.copy()
-    df['MIN_VS_TEAM_AVG'] = df['DARKO Minutes']
+    #df['MIN_VS_TEAM_AVG'] = df['DARKO Minutes']
     # Create basic required features if they don't exist
     #df['MIN'] = df['Minutes']
     #df['DK'] = df['Projection']
@@ -656,39 +656,40 @@ def predict_minutes():
             'MIN_LAST_10_AVG',
             'MIN_CONSISTENCY',
 
-            'DK_TREND_5',
-            'DK_LAST_10_AVG',
-            'PTS_CUM_AVG',
-            'REB_PER_MIN',
-            'AST_PER_MIN',
-            'PTS_PER_MIN',
-            'AST_LAST_10_AVG',
-            'REB_LAST_10_AVG',
-
-            'DAYS_REST',
-            'PTS_LAST_10_AVG',
-            'BLOWOUT_GAME',
-            'IS_HOME',
-            'MIN_TREND',
-            'IS_B2B',
-
-            # New advanced features
-            'MIN_LAST_3_AVG',
-            'MIN_LAST_5_AVG',
-            'ROLE_CHANGE_3_10',
-            'ROLE_CHANGE_5_10',
-            'MIN_CONSISTENCY_SCORE',
-            'RECENT_SCORING_EFF',
-            'RECENT_IMPACT',
-
-            'FREQ_ABOVE_20',
-            'FREQ_ABOVE_25',
-            'FREQ_ABOVE_30',
-
-            'TEAM_PROJ_RANK',
-            'IS_TOP_3_PROJ',
-            'TEAM_MIN_PERCENTAGE',
-            'LOW_MIN_TOP_PLAYER',
+             'DK_TREND_5',
+             'DK_LAST_10_AVG',
+            # 'PTS_CUM_AVG',
+            # 'REB_PER_MIN',
+            # 'AST_PER_MIN',
+            # 'PTS_PER_MIN',
+            # 'AST_LAST_10_AVG',
+            # 'REB_LAST_10_AVG',
+            #
+            # 'DAYS_REST',
+            # 'PTS_LAST_10_AVG',
+            # 'BLOWOUT_GAME',
+            # 'IS_HOME',
+            # 'MIN_TREND',
+            # 'IS_B2B',
+            #
+            # # New advanced features
+            # 'MIN_LAST_3_AVG',
+            # 'MIN_LAST_5_AVG',
+            # 'ROLE_CHANGE_3_10',
+            # 'ROLE_CHANGE_5_10',
+            # 'MIN_CONSISTENCY_SCORE',
+            # 'RECENT_SCORING_EFF',
+            # 'RECENT_IMPACT',
+            #
+            # 'FREQ_ABOVE_20',
+            # 'FREQ_ABOVE_25',
+            # 'FREQ_ABOVE_30',
+            #
+             'TEAM_PROJ_RANK',
+             'IS_TOP_3_PROJ',
+             'TEAM_MIN_PERCENTAGE',
+             'LOW_MIN_TOP_PLAYER',
+             'Projection'
 
 
 
@@ -697,24 +698,24 @@ def predict_minutes():
 
         # After reading data but before predictions
         print("Before override - AD's MIN_VS_TEAM_AVG:",
-              enhanced_data.loc[enhanced_data['Player'] == 'Anthony Davis', 'MIN_VS_TEAM_AVG'].values[0])
+              enhanced_data.loc[enhanced_data['Player'] == 'Anthony Davis', 'TEAM_MIN_PERCENTAGE'].values[0])
+
 
         # Override the value
+        enhanced_data['TEAM_MIN_PERCENTAGE'] = enhanced_data.groupby('Team')['DARKO Minutes'].transform(
+            lambda x: x / x.sum() * 100
+        )
+
         enhanced_data['MIN_VS_TEAM_AVG'] = enhanced_data.groupby('Team')['DARKO Minutes'].transform(
             lambda x: x / x.mean()
         )
 
         print("After override - AD's MIN_VS_TEAM_AVG:",
-              enhanced_data.loc[enhanced_data['Player'] == 'Anthony Davis', 'MIN_VS_TEAM_AVG'].values[0])
+              enhanced_data.loc[enhanced_data['Player'] == 'Anthony Davis', 'TEAM_MIN_PERCENTAGE'].values[0])
 
-        # Before making predictions, verify the value
-        print("Right before prediction - AD's MIN_VS_TEAM_AVG:",
-              enhanced_data.loc[enhanced_data['Player'] == 'Anthony Davis', 'MIN_VS_TEAM_AVG'].values[0])
 
         # Make predictions
         X = enhanced_data[features]
-        print("In prediction data - AD's MIN_VS_TEAM_AVG:",
-              X.loc[X.index[enhanced_data['Player'] == 'Anthony Davis'], 'MIN_VS_TEAM_AVG'].values[0])
 
         raw_predictions = model.predict(X)
 
@@ -728,10 +729,10 @@ def predict_minutes():
         data['Predicted_Minutes'] = apply_position_constraints(data)
 
         # Debug output
-        for team in data['Team'].unique():
-            team_mask = data['Team'] == team
-            team_data = data[team_mask]
-            print(f"\n{team}:")
+        #for team in data['Team'].unique():
+            #team_mask = data['Team'] == team
+            #team_data = data[team_mask]
+            #print(f"\n{team}:")
 
         # Force minutes to 0 for players with 0 projection
         data.loc[data['Projection'] == 0, 'Predicted_Minutes'] = 0
