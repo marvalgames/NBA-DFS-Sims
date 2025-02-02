@@ -187,13 +187,13 @@ def apply_high_minutes_curve(minutes, max_minutes):
     Applies a gradual penalty as minutes approach max_minutes.
     The penalty increases more sharply as it gets closer to max.
     """
-    if minutes >= 36:  # Only apply curve to high-minute predictions
+    if minutes >= 32:  # Only apply curve to high-minute predictions
         # Calculate how close we are to max (0 to 1)
-        proximity_to_max = (minutes - 36) / (max_minutes - 36)
+        proximity_to_max = (minutes - 32) / (max_minutes - 32)
         # Apply sigmoid-like curve
         penalty_factor = 1 - (proximity_to_max ** 2 * .5)  # Adjust 0.5 to control curve steepness
         # Apply penalty
-        adjusted_minutes = 36 + (minutes - 36) * penalty_factor
+        adjusted_minutes = 32 + (minutes - 32) * penalty_factor
         return adjusted_minutes
     return minutes
 
@@ -412,7 +412,7 @@ def predict_minutes():
     app = xw.App(visible=False)
     try:
         # Connect to Excel
-        excel_path = os.path.join('..', 'dk_import', 'nba_merged.xlsm')
+        excel_path = os.path.join('..', 'dk_import', 'nba.xlsm')
         wb = xw.Book(excel_path)
         sheet = wb.sheets['sog_minutes']
 
@@ -697,8 +697,8 @@ def predict_minutes():
         ]
 
         # After reading data but before predictions
-        print("Before override - AD's MIN_VS_TEAM_AVG:",
-              enhanced_data.loc[enhanced_data['Player'] == 'Anthony Davis', 'TEAM_MIN_PERCENTAGE'].values[0])
+        # print("Before override - AD's MIN_VS_TEAM_AVG:",
+        #       enhanced_data.loc[enhanced_data['Player'] == 'Anthony Davis', 'TEAM_MIN_PERCENTAGE'].values[0])
 
 
         # Override the value
@@ -710,8 +710,8 @@ def predict_minutes():
             lambda x: x / x.mean()
         )
 
-        print("After override - AD's MIN_VS_TEAM_AVG:",
-              enhanced_data.loc[enhanced_data['Player'] == 'Anthony Davis', 'TEAM_MIN_PERCENTAGE'].values[0])
+        # print("After override - AD's MIN_VS_TEAM_AVG:",
+        #       enhanced_data.loc[enhanced_data['Player'] == 'Anthony Davis', 'TEAM_MIN_PERCENTAGE'].values[0])
 
 
         # Make predictions
