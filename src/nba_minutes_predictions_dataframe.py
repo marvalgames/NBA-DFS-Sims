@@ -39,7 +39,7 @@ def process_excel_data():
 
 
     # Load your combined DataFrame
-    combined_df = pd.read_csv(csv_read)  # or however you load it
+    combined_df = pd.read_csv(csv_read, encoding='utf-8')  # or however you load it
     result_df = merge_latest_records_with_columns(excel_df, combined_df, excel_key='Player', combined_key='PLAYER_NAME', date_column="GAME_DATE" )
     result_df = result_df.rename(columns={'Projection': 'Projected Pts'})
     # Define the new column order
@@ -146,6 +146,10 @@ def process_excel_data():
     return result_df
 
 
+import unicodedata
+import pandas as pd
+
+
 def standardize_player_names(df, name_column):
     """
     Standardizes player names according to specific rules
@@ -157,40 +161,26 @@ def standardize_player_names(df, name_column):
     df = df.copy()
 
     name_mappings = {
-        "Herb Jones": "Herbert Jones",
-        "GG Jackson": "Gregory Jackson",
-        "G.G. Jackson": "Gregory Jackson",
-        "Alexandre Sarr": "Alex Sarr",
-        "Yongxi Cui": "Cui Yongxi",
-        "Nicolas Claxton": "Nic Claxton",
-        "Cameron Johnson": "Cam Johnson",
-        "Kenyon Martin Jr": "KJ Martin",
-        "Ronald Holland": "Ron Holland",
-        "Nah'Shon Hyland": "Bones Hyland",
-        "Elijah Harkless": "EJ Harkless",
-        "Cameron Payne": "Cam Payne",
-        "Bub Carrington": "Carlton Carrington",
-        "Jabari Smith Jr": "Jabari Smith",
-        "Gary Trent Jr": "Gary Trent",
-        "Tim Hardaway Jr": "Tim Hardaway",
-        "Michael Porter Jr": "Michael Porter",
-        "Kelly Oubre Jr": "Kelly Oubre",
-        "Patrick Baldwin Jr": "Patrick Baldwin",
-        "Kevin Knox II": "Kevin Knox",
-        "Trey Murphy III": "Trey Murphy",
-        "Wendell Moore Jr": "Wendell Moore",
-        "Vernon Carey Jr": "Vernon Carey"
+        # ... your existing mappings ...
+        "Kristaps PorziÅ†Ä£is": "Kristaps Porzingis"  # Add this specific mapping if needed
     }
 
     def remove_accents(text):
         if not isinstance(text, str):
             return text
-        accents = "áàâãäéèêëíìîïóòôõöúùûüýÿÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÝćčćdšžCCÐŠŽū"
-        regular = "aaaaaeeeeiiiiooooouuuuyyAAAAAEEEEIIIIOOOOOUUUUYcccdszCCDSZu"
+        try:
+            # Normalize to decomposed form (separate letters from accents)
+            nfkd_form = unicodedata.normalize('NFKD', text)
+            # Remove non-ASCII characters (like accents)
+            return "".join([c for c in nfkd_form if not unicodedata.combining(c)])
+        except:
+            # Fallback method if Unicode normalization fails
+            accents = "áàâãäéèêëíìîïóòôõöúùûüýÿÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÝćčćdšžCCÐŠŽūÅ†Ä£"
+            regular = "aaaaaeeeeiiiiooooouuuuyyAAAAAEEEEIIIIOOOOOUUUUYcccdszCCDSZuAng"
 
-        for accent, reg in zip(accents, regular):
-            text = text.replace(accent, reg)
-        return text
+            for accent, reg in zip(accents, regular):
+                text = text.replace(accent, reg)
+            return text
 
     # Apply standardization to the name column
     df[name_column] = df[name_column].apply(lambda x: x if not isinstance(x, str) else x.strip())
@@ -198,19 +188,22 @@ def standardize_player_names(df, name_column):
     # Apply name mappings
     for old_name, new_name in name_mappings.items():
         df[name_column] = df[name_column].apply(
-            lambda x: x.replace(old_name, new_name) if isinstance(x, str) else x
+            lambda x: new_name if isinstance(x, str) and x.strip() == old_name else x
         )
 
-    # Remove suffixes and special characters
+    # Remove accents and special characters
     df[name_column] = df[name_column].apply(
         lambda x: remove_accents(x) if isinstance(x, str) else x
     )
+
+    # Remove suffixes and special characters
     df[name_column] = df[name_column].apply(
         lambda x: x.replace(" Jr", "").replace("III", "").replace("II", "").replace("'", "").replace(".", "").strip()
         if isinstance(x, str) else x
     )
 
     return df
+
 
 def merge_latest_records_with_columns(excel_df, combined_df,
                                       excel_key='Player',
