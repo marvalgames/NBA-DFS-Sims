@@ -14,7 +14,7 @@ def process_excel_data():
     time.sleep(1)  # Give Excel a moment to fully initialize
     # Connect to Excel
     excel_path = os.path.join('..', 'dk_import', 'nba.xlsm')
-    csv_path = os.path.join('..', 'dk_import', 'nba_merge.csv')
+    csv_path = os.path.join('..', 'dk_import', 'nba_daily_combined.csv')
     csv_read = os.path.join('..', 'dk_import', 'nba_boxscores_enhanced.csv')
 
     wb = app.books.open(excel_path)

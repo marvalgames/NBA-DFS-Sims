@@ -256,10 +256,10 @@ features = [
 
     'DAYS_REST',
     'PTS_LAST_10_AVG',
-    'BLOWOUT_GAME',
-    'IS_HOME',
+    #'BLOWOUT_GAME',
+    #'IS_HOME',
     'MIN_TREND',
-    'IS_B2B',
+    #'IS_B2B',
 
     # New advanced features
     'MIN_LAST_3_AVG',
@@ -276,7 +276,7 @@ features = [
 
     'TEAM_PROJ_RANK',
     'IS_TOP_3_PROJ',
-   # 'TEAM_MIN_PERCENTAGE',
+    'TEAM_MIN_PERCENTAGE',
     'LOW_MIN_TOP_PLAYER',
     'Projection'
 
@@ -324,7 +324,16 @@ for test_game_day in sorted(data['GAME_DAY'].unique()):
         l2_leaf_reg=10,
         loss_function='RMSE',
         random_state=42,
-        verbose=0
+        verbose=0,
+        #feature_weights=[10.0 if col == 'Projection' else 1 for col in features]
+        feature_weights = [
+            0 if col == 'TEAM_MIN_PERCENTAGE'
+            else 0 if col == 'Projection'
+            #else 3.0 if col == 'Feature3'
+            else 1.0
+            for col in features
+        ]
+
     )
     cat_model.fit(X_train, y_train)
 

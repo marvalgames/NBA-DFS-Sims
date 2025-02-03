@@ -242,9 +242,8 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
     adjusted_predictions = predictions_df['Predicted_Minutes'].copy()
 
     # Create a mask for players that should be forced to zero
-    force_zero_mask = (predictions_df['Projection'] == 0) | \
-                      (predictions_df['Minutes'] <= 6) | \
-                      (predictions_df['DARKO Minutes'] <= 6)
+    #force_zero_mask = (predictions_df['Projection'] == 0) | (predictions_df['Minutes'] <= 6)
+    force_zero_mask = (predictions_df['Projection'] == 0)
 
     # Set initial zeros based on force_zero_mask
     adjusted_predictions[force_zero_mask] = 0
@@ -292,7 +291,7 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
                 other_players_idx = team_predictions.index.difference(top_5_idx)
                 if len(other_players_idx) > 0:
                     minutes_to_redistribute = min(available_boost * 0.5,
-                                                  team_predictions[other_players_idx].sum() * 0.01)
+                                                  team_predictions[other_players_idx].sum() * 0.1)
 
                     # Apply boost to eligible top 5 players
                     for idx in top_5_mins[eligible_mask].index:
@@ -342,7 +341,7 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
 
             # Now apply the curve to high-minute players
             for idx in team_predictions.index:
-                if team_predictions[idx] >= 36:
+                if team_predictions[idx] >= 32 / 240 * current_total:
                     curved_value = apply_high_minutes_curve(team_predictions[idx], max_mins[idx])
                     team_predictions[idx] = min(curved_value, max_mins[idx])
 
@@ -363,12 +362,85 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
                         new_mins = team_predictions[idx] + adjustment_per_player
                         team_predictions[idx] = round(min(new_mins, max_mins[idx]), 1)
 
-        adjusted_predictions[team_mask] = team_predictions
+        # After all other adjustments, apply the 95% minimum requirement
+        eligible_mask = (~team_force_zero &
+                         (team_data['Last 10 Minutes'] > 0) &
+                         (team_predictions > 0))
+
+        if eligible_mask.any():
+            min_required = team_data['Last 10 Minutes'] * 0.95
+            below_min = (team_predictions < min_required) & eligible_mask
+
+            if below_min.any():
+                increases = min_required[below_min] - team_predictions[below_min]
+                total_increase = increases.sum()
+
+                if total_increase > 0:
+                    reducible_mask = (~below_min &
+                                      (team_predictions > min_required) &
+                                      (team_predictions > 0))
+
+                    if reducible_mask.any():
+                        available_reduction = team_predictions[reducible_mask] - min_required[reducible_mask]
+                        total_available = available_reduction.sum()
+
+                        if total_available > 0:
+                            reduction_factor = min(1.0, total_increase / total_available)
+
+                            # Apply increases to players below minimum
+                            for idx in team_predictions[below_min].index:
+                                needed_increase = min_required[idx] - team_predictions[idx]
+                                team_predictions[idx] = min(min_required[idx], max_mins[idx])
+
+                            # Apply proportional reductions to other players
+                            for idx in team_predictions[reducible_mask].index:
+                                max_reduction = available_reduction[idx] * reduction_factor
+                                team_predictions[idx] -= max_reduction
+
+                                # Final scaling to ensure team total is 240
+                                current_total = team_predictions.sum()
+                                if current_total > 0:  # Only scale if team has minutes
+                                    scale_factor = team_total / current_total
+                                    adjustable_mask = (team_predictions > 0) & ~team_force_zero
+
+                                    # Scale while respecting max minutes
+                                    for idx in team_predictions[adjustable_mask].index:
+                                        scaled_mins = team_predictions[idx] * scale_factor
+                                        team_predictions[idx] = min(scaled_mins, max_mins[idx])
+
+                                    # Final adjustment if still not at 240
+                                    final_total = team_predictions.sum()
+                                    if abs(final_total - team_total) > 0.1:
+                                        adjustable_players = team_predictions[
+                                            (team_predictions > 0) &
+                                            (team_predictions < max_mins) &
+                                            ~team_force_zero
+                                            ]
+                                        if len(adjustable_players) > 0:
+                                            diff = team_total - final_total
+                                            adjustment_per_player = diff / len(adjustable_players)
+                                            for idx in adjustable_players.index:
+                                                new_mins = team_predictions[idx] + adjustment_per_player
+                                                team_predictions[idx] = min(new_mins, max_mins[idx])
+
+                                    # Round final adjustments
+                                    team_predictions = np.round(team_predictions, 1)
+
+                                adjusted_predictions[team_mask] = team_predictions
+
+                            # Round final adjustments
+                            team_predictions = np.round(team_predictions, 1)
+
+        #adjusted_predictions[team_mask] = team_predictions
 
     # Final check to ensure forced zeros remain zero
     adjusted_predictions[force_zero_mask] = 0
 
     return adjusted_predictions
+
+
+
+
 
 def create_advanced_features(df):
     """Create advanced features for single day predictions"""
@@ -687,10 +759,10 @@ def predict_minutes():
 
             'DAYS_REST',
             'PTS_LAST_10_AVG',
-            'BLOWOUT_GAME',
-            'IS_HOME',
+            #'BLOWOUT_GAME',
+            #'IS_HOME',
             'MIN_TREND',
-            'IS_B2B',
+            #'IS_B2B',
 
             # New advanced features
             'MIN_LAST_3_AVG',
@@ -707,7 +779,7 @@ def predict_minutes():
 
              'TEAM_PROJ_RANK',
              'IS_TOP_3_PROJ',
-             #'TEAM_MIN_PERCENTAGE',
+             'TEAM_MIN_PERCENTAGE',
              'LOW_MIN_TOP_PLAYER',
              'Projection'
 
@@ -722,9 +794,7 @@ def predict_minutes():
 
 
         # # Override the value
-        # enhanced_data['TEAM_MIN_PERCENTAGE'] = enhanced_data.groupby('Team')['Minutes'].transform(
-        #     lambda x: x / x.sum() * 100
-        # )
+        enhanced_data['TEAM_MIN_PERCENTAGE'] = enhanced_data.groupby('Team')['Minutes'].transform(lambda x: x / x.sum() * 100)
         #
         # enhanced_data['MIN_VS_TEAM_AVG'] = enhanced_data.groupby('Team')['Minutes'].transform(
         #     lambda x: x / x.mean()
@@ -745,9 +815,14 @@ def predict_minutes():
 
 
         # Apply zero conditions
-        zero_mask = (data['Projection'] == 0) | \
-                    (data['Minutes'] <= 6) | \
-                    (data['DARKO Minutes'] <= 6)
+        # No \ needed here because of the parentheses
+        zero_mask = (
+                (data['Projection'] == 0)
+                #(data['Projection'] == 0) |
+                #(data['Minutes'] <= 8)
+                #(data['DARKO Minutes'] <= 6)
+        )
+
         data.loc[zero_mask, 'Predicted_Minutes'] = 0
 
         # NOW apply position constraints to the already-modified predictions
