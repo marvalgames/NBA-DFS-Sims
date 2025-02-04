@@ -263,6 +263,7 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
         team_predictions[team_force_zero] = 0
 
         # First enforce max minutes constraints AND ensure minimum rotation size
+        min_threshold = 8
         team_predictions = ensure_minimum_rotation(team_predictions, team_data, max_mins, min_rotation, min_threshold)
 
         # Reapply max minutes constraints
@@ -280,6 +281,7 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
             top_5_mins = team_predictions[top_5_idx]
 
             # Calculate boost for eligible players (under 36 minutes)
+            boost_threshold = 0
             eligible_mask = (top_5_mins < boost_threshold) & (top_5_mins > 0)
             if eligible_mask.any():
                 available_boost = sum(boost_threshold - mins for mins in top_5_mins[eligible_mask])
@@ -304,7 +306,43 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
                         reduction_factor = 1 - (minutes_to_redistribute / team_predictions[other_players_idx].sum())
                         team_predictions[other_players_idx] *= reduction_factor
 
-            # Scale to 240 while respecting max minutes
+            def nonlinear_scale(values, target_total, current_total, method='log', intensity=1.0):
+                """
+                Apply non-linear scaling to array of values.
+
+                Parameters:
+                - values: array of player minutes to scale
+                - target_total: desired total minutes
+                - current_total: current total minutes
+                - method: 'log', 'sqrt', or 'exp'
+                - intensity: controls how pronounced the non-linear effect is
+                """
+                if current_total <= 0:
+                    return values
+
+                # Calculate base adjustment needed
+                total_adjustment = target_total - current_total
+
+                # Calculate weights for distributing the adjustment
+                if method == 'log':
+                    weights = 1 - np.log1p(values / 5)
+                elif method == 'sqrt':
+                    weights = 1 - np.sqrt(values / 20)
+                elif method == 'exp':
+                    weights = np.exp(-values / 20)
+
+                # Normalize weights to sum to 1
+                weights = np.maximum(weights, 0)  # Ensure no negative weights
+                weight_sum = weights.sum()
+                if weight_sum > 0:
+                    weights = weights / weight_sum
+
+                # Calculate adjustments for each player
+                adjustments = total_adjustment * weights
+
+                return values + adjustments
+
+            # Modified scaling loop
             current_total = team_predictions.sum()
             iteration_count = 0
             max_iterations = 50
@@ -315,15 +353,22 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
                 if not adjustable_mask.any():
                     break
 
-                adjustable_total = team_predictions[adjustable_mask].sum()
-                if adjustable_total <= 0:
-                    break
-
-                scale_factor = min(1.2, (adjustable_total + (team_total - current_total)) / adjustable_total)
                 old_predictions = team_predictions.copy()
 
-                # Apply scaling
-                team_predictions[adjustable_mask] *= scale_factor
+                # Get adjustable values
+                adjustable_values = team_predictions[adjustable_mask].values
+
+                # Apply non-linear scaling to adjustable values
+                new_values = nonlinear_scale(
+                    adjustable_values,
+                    team_total - team_predictions[~adjustable_mask].sum(),  # target for adjustable players
+                    adjustable_values.sum(),  # current total for adjustable players
+                    method='log',  # Try 'log', 'sqrt', or 'exp'
+                    intensity=1.0  # Adjust this parameter to control scaling intensity
+                )
+
+                # Update predictions
+                team_predictions[adjustable_mask] = new_values
 
                 # Recheck max minutes
                 for idx in team_predictions.index:
@@ -348,90 +393,22 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
             # Round to 1 decimal place
             team_predictions = np.round(team_predictions, 1)
 
-            # Final adjustment if needed (respecting max minutes)
-            if abs(team_predictions.sum() - team_total) > 0.1:
-                diff = team_total - team_predictions.sum()
-                adjustable_players = team_predictions[
-                    (team_predictions > 0) &
-                    (team_predictions < max_mins) &
-                    ~team_force_zero
-                    ]
-                if len(adjustable_players) > 0:
-                    adjustment_per_player = diff / len(adjustable_players)
-                    for idx in adjustable_players.index:
-                        new_mins = team_predictions[idx] + adjustment_per_player
-                        team_predictions[idx] = round(min(new_mins, max_mins[idx]), 1)
+            # # Final adjustment if needed (respecting max minutes)
+            # if abs(team_predictions.sum() - team_total) > 0.1:
+            #     diff = team_total - team_predictions.sum()
+            #     adjustable_players = team_predictions[
+            #         (team_predictions > 0) &
+            #         (team_predictions < max_mins) &
+            #         ~team_force_zero
+            #         ]
+            #     if len(adjustable_players) > 0:
+            #         adjustment_per_player = diff / len(adjustable_players)
+            #         for idx in adjustable_players.index:
+            #             new_mins = team_predictions[idx] + adjustment_per_player
+            #             team_predictions[idx] = round(min(new_mins, max_mins[idx]), 1)
 
-        # After all other adjustments, apply the 95% minimum requirement
-        eligible_mask = (~team_force_zero &
-                         (team_data['Last 10 Minutes'] > 0) &
-                         (team_predictions > 0))
 
-        if eligible_mask.any():
-            min_required = team_data['Last 10 Minutes'] * 0.95
-            below_min = (team_predictions < min_required) & eligible_mask
-
-            if below_min.any():
-                increases = min_required[below_min] - team_predictions[below_min]
-                total_increase = increases.sum()
-
-                if total_increase > 0:
-                    reducible_mask = (~below_min &
-                                      (team_predictions > min_required) &
-                                      (team_predictions > 0))
-
-                    if reducible_mask.any():
-                        available_reduction = team_predictions[reducible_mask] - min_required[reducible_mask]
-                        total_available = available_reduction.sum()
-
-                        if total_available > 0:
-                            reduction_factor = min(1.0, total_increase / total_available)
-
-                            # Apply increases to players below minimum
-                            for idx in team_predictions[below_min].index:
-                                needed_increase = min_required[idx] - team_predictions[idx]
-                                team_predictions[idx] = min(min_required[idx], max_mins[idx])
-
-                            # Apply proportional reductions to other players
-                            for idx in team_predictions[reducible_mask].index:
-                                max_reduction = available_reduction[idx] * reduction_factor
-                                team_predictions[idx] -= max_reduction
-
-                                # Final scaling to ensure team total is 240
-                                current_total = team_predictions.sum()
-                                if current_total > 0:  # Only scale if team has minutes
-                                    scale_factor = team_total / current_total
-                                    adjustable_mask = (team_predictions > 0) & ~team_force_zero
-
-                                    # Scale while respecting max minutes
-                                    for idx in team_predictions[adjustable_mask].index:
-                                        scaled_mins = team_predictions[idx] * scale_factor
-                                        team_predictions[idx] = min(scaled_mins, max_mins[idx])
-
-                                    # Final adjustment if still not at 240
-                                    final_total = team_predictions.sum()
-                                    if abs(final_total - team_total) > 0.1:
-                                        adjustable_players = team_predictions[
-                                            (team_predictions > 0) &
-                                            (team_predictions < max_mins) &
-                                            ~team_force_zero
-                                            ]
-                                        if len(adjustable_players) > 0:
-                                            diff = team_total - final_total
-                                            adjustment_per_player = diff / len(adjustable_players)
-                                            for idx in adjustable_players.index:
-                                                new_mins = team_predictions[idx] + adjustment_per_player
-                                                team_predictions[idx] = min(new_mins, max_mins[idx])
-
-                                    # Round final adjustments
-                                    team_predictions = np.round(team_predictions, 1)
-
-                                adjusted_predictions[team_mask] = team_predictions
-
-                            # Round final adjustments
-                            team_predictions = np.round(team_predictions, 1)
-
-        #adjusted_predictions[team_mask] = team_predictions
+        adjusted_predictions[team_mask] = team_predictions
 
     # Final check to ensure forced zeros remain zero
     adjusted_predictions[force_zero_mask] = 0
