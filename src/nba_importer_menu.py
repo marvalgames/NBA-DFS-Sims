@@ -668,11 +668,13 @@ class ImportTool(QMainWindow):
             progress_print(f"An error occurred: {e}")
             raise
 
-
     from datetime import datetime, timezone, timedelta
     def fetch_and_save_team_data_with_odds(self, progress_print=print):
 
         try:
+            # Get today's date in EST
+            today_est = datetime.now(timezone(timedelta(hours=-5))).date()
+
             # The Odds API Key and Endpoints
             api_key = 'd4237a37fb55c03282af5de33235e1d6'
             events_url = f'https://api.the-odds-api.com/v4/sports/basketball_nba/events?apiKey={api_key}&dateFormat=iso'
@@ -693,6 +695,14 @@ class ImportTool(QMainWindow):
 
             odds_data = response_odds.json()
 
+            # Filter odds_data for today's games only
+            today_odds_data = []
+            for odds_event in odds_data:
+                game_time_utc = datetime.fromisoformat(odds_event["commence_time"].replace("Z", "+00:00"))
+                game_time_est = game_time_utc.astimezone(timezone(timedelta(hours=-5)))
+                if game_time_est.date() == today_est:
+                    today_odds_data.append(odds_event)
+
             progress_print("Processing team data...")
             # Prepare team data from events
             teams = []
@@ -701,19 +711,26 @@ class ImportTool(QMainWindow):
                 game_time_utc = datetime.fromisoformat(event["commence_time"].replace("Z", "+00:00"))
                 game_time_est = game_time_utc.astimezone(timezone(timedelta(hours=-5)))  # EST is UTC-5
 
-                # Add each team and game time to the list
-                teams.append({
-                    "Team": event["home_team"],
-                    "Game Time (EST)": game_time_est.strftime("%Y-%m-%d %I:%M %p"),
-                    "Spread": None,
-                    "Total": None
-                })
-                teams.append({
-                    "Team": event["away_team"],
-                    "Game Time (EST)": game_time_est.strftime("%Y-%m-%d %I:%M %p"),
-                    "Spread": None,
-                    "Total": None
-                })
+                # Only include games that are happening today
+                if game_time_est.date() == today_est:
+                    # Add each team and game time to the list
+                    teams.append({
+                        "Team": event["home_team"],
+                        "Game Time (EST)": game_time_est.strftime("%Y-%m-%d %I:%M %p"),
+                        "Spread": None,
+                        "Total": None
+                    })
+                    teams.append({
+                        "Team": event["away_team"],
+                        "Game Time (EST)": game_time_est.strftime("%Y-%m-%d %I:%M %p"),
+                        "Spread": None,
+                        "Total": None
+                    })
+
+            # If no games today, return early
+            if not teams:
+                progress_print("No games scheduled for today.")
+                return
 
             progress_print("Creating DataFrame...")
             # Convert teams data to DataFrame
@@ -740,7 +757,7 @@ class ImportTool(QMainWindow):
 
             progress_print("Updating odds values...")
             # Match teams with odds data and update the DataFrame
-            for odds_event in odds_data:
+            for odds_event in today_odds_data:  # Use filtered odds data
                 progress_print(f"Processing odds for game: {odds_event['home_team']} vs {odds_event['away_team']}")
                 bookmaker = next((b for b in odds_event["bookmakers"] if b["title"] == "DraftKings"), None)
                 if not bookmaker:
@@ -782,7 +799,7 @@ class ImportTool(QMainWindow):
                 csv_file=str(csv_path),
                 sheet_name="odds",
                 csv_start_row=0,
-                csv_start_col=0,  # No need to filter columns here; `usecols` handles it
+                csv_start_col=0,
                 excel_start_row=2,
                 excel_start_col=1
             )

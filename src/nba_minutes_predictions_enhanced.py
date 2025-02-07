@@ -324,6 +324,7 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
                 total_adjustment = target_total - current_total
 
                 # Calculate weights for distributing the adjustment
+                method = 'sqrt'
                 if method == 'log':
                     weights = 1 - np.log1p(values / 5)
                 elif method == 'sqrt':
@@ -481,7 +482,7 @@ def predict_minutes():
     app = xw.App(visible=False)
     try:
         # Connect to Excel
-        excel_path = os.path.join('..', 'dk_import', 'nba.xlsm')
+        excel_path = os.path.join('..', 'dk_import', 'nba - Copy.xlsm')
         wb = xw.Book(excel_path)
         sheet = wb.sheets['sog_minutes']
 

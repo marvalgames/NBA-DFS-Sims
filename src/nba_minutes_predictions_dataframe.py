@@ -13,7 +13,7 @@ def process_excel_data():
     app = xw.App(visible=False)
     time.sleep(1)  # Give Excel a moment to fully initialize
     # Connect to Excel
-    excel_path = os.path.join('..', 'dk_import', 'nba.xlsm')
+    excel_path = os.path.join('..', 'dk_import', 'nba - Copy.xlsm')
     csv_path = os.path.join('..', 'dk_import', 'nba_daily_combined.csv')
     csv_read = os.path.join('..', 'dk_import', 'nba_boxscores_enhanced.csv')
 
