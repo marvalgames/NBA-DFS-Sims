@@ -327,9 +327,9 @@ for test_game_day in sorted(data['GAME_DAY'].unique()):
         verbose=0,
         #feature_weights=[10.0 if col == 'Projection' else 1 for col in features]
         feature_weights = [
-            0 if col == 'TEAM_MIN_PERCENTAGE'
+            1 if col == 'TEAM_MIN_PERCENTAGE'
             else 0 if col == 'Projection'
-            #else 3.0 if col == 'Feature3'
+            else 10 if col == 'DK_LAST_10_AVG'
             else 1.0
             for col in features
         ]

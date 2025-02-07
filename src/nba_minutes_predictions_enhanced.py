@@ -358,18 +358,18 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
 
                 # Get adjustable values
                 adjustable_values = team_predictions[adjustable_mask].values
-
-                # Apply non-linear scaling to adjustable values
-                new_values = nonlinear_scale(
-                    adjustable_values,
-                    team_total - team_predictions[~adjustable_mask].sum(),  # target for adjustable players
-                    adjustable_values.sum(),  # current total for adjustable players
-                    method='log',  # Try 'log', 'sqrt', or 'exp'
-                    intensity=1.0  # Adjust this parameter to control scaling intensity
-                )
+                #
+                # # Apply non-linear scaling to adjustable values
+                # new_values = nonlinear_scale(
+                #     adjustable_values,
+                #     team_total - team_predictions[~adjustable_mask].sum(),  # target for adjustable players
+                #     adjustable_values.sum(),  # current total for adjustable players
+                #     method='log',  # Try 'log', 'sqrt', or 'exp'
+                #     intensity=1.0  # Adjust this parameter to control scaling intensity
+                # )
 
                 # Update predictions
-                team_predictions[adjustable_mask] = new_values
+                team_predictions[adjustable_mask] = adjustable_values
 
                 # Recheck max minutes
                 for idx in team_predictions.index:
@@ -394,19 +394,19 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
             # Round to 1 decimal place
             team_predictions = np.round(team_predictions, 1)
 
-            # # Final adjustment if needed (respecting max minutes)
-            # if abs(team_predictions.sum() - team_total) > 0.1:
-            #     diff = team_total - team_predictions.sum()
-            #     adjustable_players = team_predictions[
-            #         (team_predictions > 0) &
-            #         (team_predictions < max_mins) &
-            #         ~team_force_zero
-            #         ]
-            #     if len(adjustable_players) > 0:
-            #         adjustment_per_player = diff / len(adjustable_players)
-            #         for idx in adjustable_players.index:
-            #             new_mins = team_predictions[idx] + adjustment_per_player
-            #             team_predictions[idx] = round(min(new_mins, max_mins[idx]), 1)
+            # Final adjustment if needed (respecting max minutes)
+            if abs(team_predictions.sum() - team_total) > 0.1:
+                diff = team_total - team_predictions.sum()
+                adjustable_players = team_predictions[
+                    (team_predictions > 0) &
+                    (team_predictions < max_mins) &
+                    ~team_force_zero
+                    ]
+                if len(adjustable_players) > 0:
+                    adjustment_per_player = diff / len(adjustable_players)
+                    for idx in adjustable_players.index:
+                        new_mins = team_predictions[idx] + adjustment_per_player
+                        team_predictions[idx] = round(min(new_mins, max_mins[idx]), 1)
 
 
         adjusted_predictions[team_mask] = team_predictions
@@ -482,7 +482,8 @@ def predict_minutes():
     app = xw.App(visible=False)
     try:
         # Connect to Excel
-        excel_path = os.path.join('..', 'dk_import', 'nba - Copy.xlsm')
+        #excel_path = os.path.join('..', 'dk_import', 'nba - Copy.xlsm')
+        excel_path = os.path.join('..', 'dk_import', 'nba.xlsm')
         wb = xw.Book(excel_path)
         sheet = wb.sheets['sog_minutes']
 
@@ -767,8 +768,8 @@ def predict_minutes():
         ]
 
         # After reading data but before predictions
-        # print("Before override - AD's MIN_VS_TEAM_AVG:",
-        #       enhanced_data.loc[enhanced_data['Player'] == 'Anthony Davis', 'TEAM_MIN_PERCENTAGE'].values[0])
+        #print("Before override - AD's MIN_VS_TEAM_AVG:",
+               #enhanced_data.loc[enhanced_data['Player'] == 'Lamelo Ball', 'TEAM_MIN_PERCENTAGE'].values[0])
 
 
         # # Override the value
@@ -778,8 +779,8 @@ def predict_minutes():
         #     lambda x: x / x.mean()
         # )
 
-        # print("After override - AD's MIN_VS_TEAM_AVG:",
-        #       enhanced_data.loc[enhanced_data['Player'] == 'Anthony Davis', 'TEAM_MIN_PERCENTAGE'].values[0])
+        #print("After override - AD's MIN_VS_TEAM_AVG:",
+               #enhanced_data.loc[enhanced_data['Player'] == 'Lamelo Ball', 'TEAM_MIN_PERCENTAGE'].values[0])
 
         # Make predictions
         X = enhanced_data[features]
