@@ -205,7 +205,7 @@ def ensure_minimum_rotation(team_predictions, team_data, max_mins, min_players=8
     2. If needed, add players with only max minutes > min_minutes and Last 10 > 1
     """
     # First try with projected players only
-    primary_mask = ((team_data['Last 10 Minutes'] > 1) &
+    primary_mask = ((team_data['MIN_LAST_10_AVG'] > 1) &
                     (team_data['Max Minutes'] >= min_minutes) &
                     (team_data['Max Minutes'] > 0) &
                     (team_data['Projection'] > 0))
@@ -213,7 +213,7 @@ def ensure_minimum_rotation(team_predictions, team_data, max_mins, min_players=8
 
     # If we don't have enough primary eligible players, consider backup players
     if len(primary_eligible) < min_players:
-        backup_mask = ((team_data['Last 10 Minutes'] > 1) &
+        backup_mask = ((team_data['MIN_LAST_10_AVG'] > 1) &
                        (team_data['Max Minutes'] >= min_minutes) &
                        (team_data['Max Minutes'] > 0) &
                        (~primary_mask))  # Players not in primary group
@@ -305,43 +305,6 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
                     if minutes_to_redistribute > 0:
                         reduction_factor = 1 - (minutes_to_redistribute / team_predictions[other_players_idx].sum())
                         team_predictions[other_players_idx] *= reduction_factor
-
-            def nonlinear_scale(values, target_total, current_total, method='log', intensity=1.0):
-                """
-                Apply non-linear scaling to array of values.
-
-                Parameters:
-                - values: array of player minutes to scale
-                - target_total: desired total minutes
-                - current_total: current total minutes
-                - method: 'log', 'sqrt', or 'exp'
-                - intensity: controls how pronounced the non-linear effect is
-                """
-                if current_total <= 0:
-                    return values
-
-                # Calculate base adjustment needed
-                total_adjustment = target_total - current_total
-
-                # Calculate weights for distributing the adjustment
-                method = 'sqrt'
-                if method == 'log':
-                    weights = 1 - np.log1p(values / 5)
-                elif method == 'sqrt':
-                    weights = 1 - np.sqrt(values / 20)
-                elif method == 'exp':
-                    weights = np.exp(-values / 20)
-
-                # Normalize weights to sum to 1
-                weights = np.maximum(weights, 0)  # Ensure no negative weights
-                weight_sum = weights.sum()
-                if weight_sum > 0:
-                    weights = weights / weight_sum
-
-                # Calculate adjustments for each player
-                adjustments = total_adjustment * weights
-
-                return values + adjustments
 
             # Modified scaling loop
             current_total = team_predictions.sum()
@@ -740,7 +703,7 @@ def predict_minutes():
             'PTS_LAST_10_AVG',
             #'BLOWOUT_GAME',
             #'IS_HOME',
-            'MIN_TREND',
+            #'MIN_TREND',
             #'IS_B2B',
 
             # New advanced features
@@ -757,13 +720,10 @@ def predict_minutes():
             'FREQ_ABOVE_30',
 
              'TEAM_PROJ_RANK',
-             'IS_TOP_3_PROJ',
+             #'IS_TOP_3_PROJ',
              'TEAM_MIN_PERCENTAGE',
              'LOW_MIN_TOP_PLAYER',
              'Projection'
-
-
-
 
         ]
 

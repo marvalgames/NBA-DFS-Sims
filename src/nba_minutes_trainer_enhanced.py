@@ -258,7 +258,7 @@ features = [
     'PTS_LAST_10_AVG',
     #'BLOWOUT_GAME',
     #'IS_HOME',
-    'MIN_TREND',
+    #'MIN_TREND',
     #'IS_B2B',
 
     # New advanced features
@@ -275,7 +275,7 @@ features = [
     'FREQ_ABOVE_30',
 
     'TEAM_PROJ_RANK',
-    'IS_TOP_3_PROJ',
+    #'IS_TOP_3_PROJ',
     'TEAM_MIN_PERCENTAGE',
     'LOW_MIN_TOP_PLAYER',
     'Projection'
