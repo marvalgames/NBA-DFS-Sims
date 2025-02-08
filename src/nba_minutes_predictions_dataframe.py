@@ -162,6 +162,29 @@ def standardize_player_names(df, name_column):
     df = df.copy()
 
     name_mappings = {
+        "Herb Jones": "Herbert Jones",
+        "GG Jackson": "Gregory Jackson",
+        "G.G. Jackson": "Gregory Jackson",
+        "Alexandre Sarr": "Alex Sarr",
+        "Yongxi Cui": "Cui Yongxi",
+        "Nicolas Claxton": "Nic Claxton",
+        "Cameron Johnson": "Cam Johnson",
+        "Kenyon Martin Jr": "KJ Martin",
+        "Ronald Holland": "Ron Holland",
+        "Nah'Shon Hyland": "Bones Hyland",
+        "Elijah Harkless": "EJ Harkless",
+        "Cameron Payne": "Cam Payne",
+        "Bub Carrington": "Carlton Carrington",
+        "Jabari Smith Jr": "Jabari Smith",
+        "Gary Trent Jr": "Gary Trent",
+        "Tim Hardaway Jr": "Tim Hardaway",
+        "Michael Porter Jr": "Michael Porter",
+        "Kelly Oubre Jr": "Kelly Oubre",
+        "Patrick Baldwin Jr": "Patrick Baldwin",
+        "Kevin Knox II": "Kevin Knox",
+        "Trey Murphy III": "Trey Murphy",
+        "Wendell Moore Jr": "Wendell Moore",
+        "Vernon Carey Jr": "Vernon Carey",
         # ... your existing mappings ...
         "Kristaps PorziÅ†Ä£is": "Kristaps Porzingis"  # Add this specific mapping if needed
     }
