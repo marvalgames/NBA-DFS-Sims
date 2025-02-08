@@ -182,18 +182,21 @@ def adjust_predictions(predictions, players_df):
 
     return adjusted_predictions
 
-def apply_high_minutes_curve(minutes, max_minutes):
+def apply_high_minutes_curve(current_total, minutes, max_minutes, min_minutes = 32):
     """
     Applies a gradual penalty as minutes approach max_minutes.
     The penalty increases more sharply as it gets closer to max.
     """
-    if minutes >= 32:  # Only apply curve to high-minute predictions
+    min_minutes = min_minutes / 240 * current_total
+    max_minutes = max_minutes / 240 * current_total
+
+    if minutes >= min_minutes and max_minutes > min_minutes:  # Only apply curve to high-minute predictions
         # Calculate how close we are to max (0 to 1)
-        proximity_to_max = (minutes - 32) / (max_minutes - 32)
+        proximity_to_max = (minutes - min_minutes) / (max_minutes - min_minutes)
         # Apply sigmoid-like curve
         penalty_factor = 1 - (proximity_to_max ** 2 * .5)  # Adjust 0.5 to control curve steepness
         # Apply penalty
-        adjusted_minutes = 32 + (minutes - 32) * penalty_factor
+        adjusted_minutes = min_minutes + (minutes - min_minutes) * penalty_factor
         return adjusted_minutes
     return minutes
 
@@ -228,7 +231,7 @@ def ensure_minimum_rotation(team_predictions, team_data, max_mins, min_players=8
 
     # Sort selected players by Last 10 Minutes and apply minimum minutes
     if eligible_players:
-        player_priorities = team_data.loc[eligible_players, 'Last 10 Minutes'].sort_values(ascending=False)
+        player_priorities = team_data.loc[eligible_players, 'MIN_LAST_10_AVG'].sort_values(ascending=False)
         for idx in player_priorities.index:
             if team_predictions[idx] < min_minutes:
                 max_allowed = max_mins[idx]
@@ -349,9 +352,10 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
                     break
 
             # Now apply the curve to high-minute players
+            min_minutes = 32
             for idx in team_predictions.index:
-                if team_predictions[idx] >= 32 / 240 * current_total:
-                    curved_value = apply_high_minutes_curve(team_predictions[idx], max_mins[idx])
+                if team_predictions[idx] >= min_minutes / 240 * current_total:
+                    curved_value = apply_high_minutes_curve(current_total, team_predictions[idx], max_mins[idx], min_minutes)
                     team_predictions[idx] = min(curved_value, max_mins[idx])
 
             # Round to 1 decimal place
@@ -615,7 +619,7 @@ def predict_minutes():
             'DK_CONSISTENCY',
             'PTS_LAST_3_AVG',
             'PTS_LAST_5_AVG',
-            'PTS_LAST_10_AVG',
+            #'PTS_LAST_10_AVG',
             'REB_LAST_3_AVG',
             'REB_LAST_5_AVG',
             'REB_LAST_10_AVG',

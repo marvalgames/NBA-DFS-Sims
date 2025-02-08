@@ -255,7 +255,7 @@ features = [
     'REB_LAST_10_AVG',
 
     'DAYS_REST',
-    'PTS_LAST_10_AVG',
+    #'PTS_LAST_10_AVG',
     #'BLOWOUT_GAME',
     #'IS_HOME',
     #'MIN_TREND',
