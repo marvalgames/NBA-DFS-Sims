@@ -17,6 +17,8 @@ from nba_api.stats.endpoints import leaguedashteamstats
 # In your MainApp class, add these imports at the top:
 from PyQt6.QtCore import QThread, pyqtSignal, Qt
 
+from daily_download import DailyDownload
+
 
 class ImportThread(QThread):
     progress = pyqtSignal(str)
@@ -56,6 +58,11 @@ class ImportTool(QMainWindow):
         layout = QVBoxLayout()
         # Buttons
 
+
+        daily_button = QPushButton("Download daily data")
+        daily_button.clicked.connect(lambda: self.run_threaded_import(self.import_daily, "Downloading daily data..."))
+
+
         bbm_button = QPushButton("Import bbm.csv to BBM Projections")
         bbm_button.clicked.connect(lambda: self.run_threaded_import(self.import_bbm, "Importing BBM data..."))
 
@@ -88,15 +95,15 @@ class ImportTool(QMainWindow):
         traditional_button.clicked.connect(lambda: self.run_threaded_import(
             self.import_traditional, "Importing Traditional Stats..."))
 
-        odds_button = QPushButton("Export NBA Game Odds to NBA Sheet")
+        odds_button = QPushButton("Import NBA Game Odds to NBA Sheet")
         odds_button.clicked.connect(lambda: self.run_threaded_import(
             self.fetch_and_save_team_data_with_odds, "Fetching Game Odds..."))
 
-        export_button = QPushButton("Export Point Projections to NBA Sheet")
+        export_button = QPushButton("Export Point Projections for Simulations")
         export_button.clicked.connect(lambda: self.run_threaded_import(
             self.export_projections, "Exporting Projections..."))
 
-        own_button = QPushButton("Export Ownership Projections to NBA Sheet")
+        own_button = QPushButton("Calculate Ownership Projections to NBA Sheet")
         own_button.clicked.connect(lambda: self.run_threaded_import(
             self.ownership_projections, "Calculating ownership projections..."))
 
@@ -108,6 +115,7 @@ class ImportTool(QMainWindow):
 
 
         # Add buttons to layout
+        layout.addWidget(daily_button)
         layout.addWidget(bbm_button)
         layout.addWidget(fta_button)
         layout.addWidget(dk_button)
@@ -297,6 +305,12 @@ class ImportTool(QMainWindow):
                     app.quit()
             except Exception as cleanup_error:
                 progress_print(f"Warning: Error during cleanup: {str(cleanup_error)}")
+
+
+    def import_daily(self, progress_print=print):
+        downloader = DailyDownload()
+        downloader.download_all()
+        progress_print("Done downloading data.")
 
 
 
