@@ -1,4 +1,6 @@
 import pickle
+from pathlib import Path
+
 import pandas as pd
 import numpy as np
 import xlwings as xw
@@ -441,362 +443,379 @@ def create_advanced_features(df):
     return df
 
 
-def predict_minutes():
-    # Load the trained model
-    with open('final_minutes_expanded_prediction_model.pkl', 'rb') as f:
-        model = pickle.load(f)
 
-    app = xw.App(visible=False)
-    try:
-        # Connect to Excel
-        #excel_path = os.path.join('..', 'dk_import', 'nba - Copy.xlsm')
-        excel_path = os.path.join('..', 'dk_import', 'nba.xlsm')
-        wb = xw.Book(excel_path)
-        sheet = wb.sheets['sog_minutes']
+class PredictMinutes:
+    def __int__(self):
+        pass
 
-        # Get the last row with actual data
-        last_row = sheet.range('A' + str(sheet.cells.last_cell.row)).end('up').row
-        needed_data = {
-            'Player': sheet.range(f'A2:A{last_row}').value,
-            'Team': sheet.range(f'B2:B{last_row}').value,
-            'Position': sheet.range(f'C2:C{last_row}').value,
-            'Salary': sheet.range(f'D2:D{last_row}').value,
-            'Minutes': sheet.range(f'E2:E{last_row}').value,
-            'BBM Minutes': sheet.range(f'F2:F{last_row}').value,
-            'FTA Minutes': sheet.range(f'G2:G{last_row}').value,
-            'SOG Minutes': sheet.range(f'H2:H{last_row}').value,
-            'Minutes Played': sheet.range(f'I2:I{last_row}').value,
-            'Max Minutes': sheet.range(f'J2:J{last_row}').value,
-            'FTA Own': sheet.range(f'K2:K{last_row}').value,
-            'SOG Own': sheet.range(f'L2:L{last_row}').value,
-            'Projection': sheet.range(f'M2:M{last_row}').value,
-            'Last 10 Minutes': sheet.range(f'N2:N{last_row}').value,
-            'Name': sheet.range(f'O2:O{last_row}').value,
-            'MSE': sheet.range(f'P2:P{last_row}').value,
-            'DARKO Minutes': sheet.range(f'Q2:Q{last_row}').value,
-            'Minutes Override': sheet.range(f'R2:R{last_row}').value,
-            'MIN_CUM_AVG': sheet.range(f'S2:S{last_row}').value,
-            'MIN_LAST_3_AVG': sheet.range(f'T2:T{last_row}').value,
-            'MIN_LAST_5_AVG': sheet.range(f'U2:U{last_row}').value,
-            'MIN_LAST_10_AVG': sheet.range(f'V2:V{last_row}').value,
-            'MIN_TREND': sheet.range(f'W2:W{last_row}').value,
-            'MIN_CONSISTENCY': sheet.range(f'X2:X{last_row}').value,
-            'MIN_CONSISTENCY_SCORE': sheet.range(f'Y2:Y{last_row}').value,
-            'MIN_ABOVE_20': sheet.range(f'Z2:Z{last_row}').value,
-            'MIN_ABOVE_25': sheet.range(f'AA2:AA{last_row}').value,
-            'MIN_ABOVE_30': sheet.range(f'AB2:AB{last_row}').value,
-            'MIN_ABOVE_AVG_STREAK': sheet.range(f'AC2:AC{last_row}').value,
-            'FREQ_ABOVE_20': sheet.range(f'AD2:AD{last_row}').value,
-            'FREQ_ABOVE_25': sheet.range(f'AE2:AE{last_row}').value,
-            'FREQ_ABOVE_30': sheet.range(f'AF2:AF{last_row}').value,
-            'Projected Pts': sheet.range(f'AG2:AG{last_row}').value,
-            'DK': sheet.range(f'AH2:AH{last_row}').value,
-            'DK_CUM_AVG': sheet.range(f'AI2:AI{last_row}').value,
-            'DK_LAST_3_AVG': sheet.range(f'AJ2:AJ{last_row}').value,
-            'DK_LAST_5_AVG': sheet.range(f'AK2:AK{last_row}').value,
-            'DK_LAST_10_AVG': sheet.range(f'AL2:AL{last_row}').value,
-            'DK_TREND': sheet.range(f'AM2:AM{last_row}').value,
-            'DK_TREND_5': sheet.range(f'AN2:AN{last_row}').value,
-            'DK_CONSISTENCY': sheet.range(f'AO2:AO{last_row}').value,
-            'PTS_LAST_3_AVG': sheet.range(f'AP2:AP{last_row}').value,
-            'PTS_LAST_5_AVG': sheet.range(f'AQ2:AQ{last_row}').value,
-            'PTS_LAST_10_AVG': sheet.range(f'AR2:AR{last_row}').value,
-            'REB_LAST_3_AVG': sheet.range(f'AS2:AS{last_row}').value,
-            'REB_LAST_5_AVG': sheet.range(f'AT2:AT{last_row}').value,
-            'REB_LAST_10_AVG': sheet.range(f'AU2:AU{last_row}').value,
-            'AST_LAST_3_AVG': sheet.range(f'AV2:AV{last_row}').value,
-            'AST_LAST_5_AVG': sheet.range(f'AW2:AW{last_row}').value,
-            'AST_LAST_10_AVG': sheet.range(f'AX2:AX{last_row}').value,
-            'PTS_CUM_AVG': sheet.range(f'AY2:AY{last_row}').value,
-            'REB_CUM_AVG': sheet.range(f'AZ2:AZ{last_row}').value,
-            'AST_CUM_AVG': sheet.range(f'BA2:BA{last_row}').value,
-            'PTS_PER_MIN': sheet.range(f'BB2:BB{last_row}').value,
-            'REB_PER_MIN': sheet.range(f'BC2:BC{last_row}').value,
-            'AST_PER_MIN': sheet.range(f'BD2:BD{last_row}').value,
-            'SCORING_EFFICIENCY': sheet.range(f'BE2:BE{last_row}').value,
-            'RECENT_SCORING_EFF': sheet.range(f'BF2:BF{last_row}').value,
-            'FG_PCT': sheet.range(f'BG2:BG{last_row}').value,
-            'FG3_PCT': sheet.range(f'BH2:BH{last_row}').value,
-            'FT_PCT': sheet.range(f'BI2:BI{last_row}').value,
-            'FGM': sheet.range(f'BJ2:BJ{last_row}').value,
-            'FGA': sheet.range(f'BK2:BK{last_row}').value,
-            'FG3M': sheet.range(f'BL2:BL{last_row}').value,
-            'FG3A': sheet.range(f'BM2:BM{last_row}').value,
-            'FTM': sheet.range(f'BN2:BN{last_row}').value,
-            'FTA': sheet.range(f'BO2:BO{last_row}').value,
-            'PLUS_MINUS': sheet.range(f'BP2:BP{last_row}').value,
-            'PLUS_MINUS_PER_MIN': sheet.range(f'BQ2:BQ{last_row}').value,
-            'PLUS MINUS_LAST_3_AVG': sheet.range(f'BR2:BR{last_row}').value,
-            'PLUS MINUS_LAST_5_AVG': sheet.range(f'BS2:BS{last_row}').value,
-            'PLUS MINUS_LAST_10_AVG': sheet.range(f'BT2:BT{last_row}').value,
-            'PLUS MINUS_CUM_AVG': sheet.range(f'BU2:BU{last_row}').value,
-            'PLUS MINUS_TREND': sheet.range(f'BV2:BV{last_row}').value,
-            'PLUS MINUS_CONSISTENCY': sheet.range(f'BW2:BW{last_row}').value,
-            'PTS_TREND': sheet.range(f'BX2:BX{last_row}').value,
-            'REB_TREND': sheet.range(f'BY2:BY{last_row}').value,
-            'AST_TREND': sheet.range(f'BZ2:BZ{last_row}').value,
-            'PTS_CONSISTENCY': sheet.range(f'CA2:CA{last_row}').value,
-            'REB_CONSISTENCY': sheet.range(f'CB2:CB{last_row}').value,
-            'AST_CONSISTENCY': sheet.range(f'CC2:CC{last_row}').value,
-            'TEAM_MIN_PERCENTAGE': sheet.range(f'CD2:CD{last_row}').value,
-            'TEAM_PROJ_RANK': sheet.range(f'CE2:CE{last_row}').value,
-            'PTS_VS_TEAM_AVG': sheet.range(f'CF2:CF{last_row}').value,
-            'REB_VS_TEAM_AVG': sheet.range(f'CG2:CG{last_row}').value,
-            'AST_VS_TEAM_AVG': sheet.range(f'CH2:CH{last_row}').value,
-            'MIN_VS_TEAM_AVG': sheet.range(f'CI2:CI{last_row}').value,
-            'ROLE_CHANGE_3_10': sheet.range(f'CJ2:CJ{last_row}').value,
-            'ROLE_CHANGE_5_10': sheet.range(f'CK2:CK{last_row}').value,
-            'IS_TOP_3_PROJ': sheet.range(f'CL2:CL{last_row}').value,
-            'LOW_MIN_TOP_PLAYER': sheet.range(f'CM2:CM{last_row}').value,
-            'GAME_DATE': sheet.range(f'CN2:CN{last_row}').value,
-            'IS_HOME': sheet.range(f'CO2:CO{last_row}').value,
-            'IS_B2B': sheet.range(f'CP2:CP{last_row}').value,
-            'DAYS_REST': sheet.range(f'CQ2:CQ{last_row}').value,
-            'MATCHUP': sheet.range(f'CR2:CR{last_row}').value,
-            'WL': sheet.range(f'CS2:CS{last_row}').value,
-            'BLOWOUT_GAME': sheet.range(f'CT2:CT{last_row}').value,
-            'STL': sheet.range(f'CU2:CU{last_row}').value,
-            'BLK': sheet.range(f'CV2:CV{last_row}').value,
-            'TOV': sheet.range(f'CW2:CW{last_row}').value,
-            'OREB': sheet.range(f'CX2:CX{last_row}').value,
-            'DREB': sheet.range(f'CY2:CY{last_row}').value,
-            'PF': sheet.range(f'CZ2:CZ{last_row}').value,
-            'PLAYER_ID': sheet.range(f'DA2:DA{last_row}').value,
-            'TEAM_ID': sheet.range(f'DB2:DB{last_row}').value,
-            'TEAM_NAME': sheet.range(f'DC2:DC{last_row}').value,
-            'GAME_ID': sheet.range(f'DD2:DD{last_row}').value,
-            'SEASON_ID': sheet.range(f'DE2:DE{last_row}').value,
-            'VIDEO_AVAILABLE': sheet.range(f'DF2:DF{last_row}').value,
-        }
+    def predict_minutes(self):
+        # Load the trained model
+        # Define the target folder
+        current_folder = Path(__file__).parent  # Current script directory (src)
+        target_folder = current_folder.parent / "src"  # Sibling folder (dk-import)
+
+        # Change the working directory
+        os.chdir(target_folder)
+
+        # Verify the working directory
+        print(f"Current working directory: {os.getcwd()}")
 
 
-        # Convert to DataFrame
-        data = pd.DataFrame(needed_data)
+        with open('final_minutes_expanded_prediction_model.pkl', 'rb') as f:
+            model = pickle.load(f)
+
+        app = xw.App(visible=False)
+        try:
+            # Connect to Excel
+            #excel_path = os.path.join('..', 'dk_import', 'nba - Copy.xlsm')
+            excel_path = os.path.join('..', 'dk_import', 'nba.xlsm')
+            wb = xw.Book(excel_path)
+            sheet = wb.sheets['sog_minutes']
+
+            # Get the last row with actual data
+            last_row = sheet.range('A' + str(sheet.cells.last_cell.row)).end('up').row
+            needed_data = {
+                'Player': sheet.range(f'A2:A{last_row}').value,
+                'Team': sheet.range(f'B2:B{last_row}').value,
+                'Position': sheet.range(f'C2:C{last_row}').value,
+                'Salary': sheet.range(f'D2:D{last_row}').value,
+                'Minutes': sheet.range(f'E2:E{last_row}').value,
+                'BBM Minutes': sheet.range(f'F2:F{last_row}').value,
+                'FTA Minutes': sheet.range(f'G2:G{last_row}').value,
+                'SOG Minutes': sheet.range(f'H2:H{last_row}').value,
+                'Minutes Played': sheet.range(f'I2:I{last_row}').value,
+                'Max Minutes': sheet.range(f'J2:J{last_row}').value,
+                'FTA Own': sheet.range(f'K2:K{last_row}').value,
+                'SOG Own': sheet.range(f'L2:L{last_row}').value,
+                'Projection': sheet.range(f'M2:M{last_row}').value,
+                'Last 10 Minutes': sheet.range(f'N2:N{last_row}').value,
+                'Name': sheet.range(f'O2:O{last_row}').value,
+                'MSE': sheet.range(f'P2:P{last_row}').value,
+                'DARKO Minutes': sheet.range(f'Q2:Q{last_row}').value,
+                'Minutes Override': sheet.range(f'R2:R{last_row}').value,
+                'MIN_CUM_AVG': sheet.range(f'S2:S{last_row}').value,
+                'MIN_LAST_3_AVG': sheet.range(f'T2:T{last_row}').value,
+                'MIN_LAST_5_AVG': sheet.range(f'U2:U{last_row}').value,
+                'MIN_LAST_10_AVG': sheet.range(f'V2:V{last_row}').value,
+                'MIN_TREND': sheet.range(f'W2:W{last_row}').value,
+                'MIN_CONSISTENCY': sheet.range(f'X2:X{last_row}').value,
+                'MIN_CONSISTENCY_SCORE': sheet.range(f'Y2:Y{last_row}').value,
+                'MIN_ABOVE_20': sheet.range(f'Z2:Z{last_row}').value,
+                'MIN_ABOVE_25': sheet.range(f'AA2:AA{last_row}').value,
+                'MIN_ABOVE_30': sheet.range(f'AB2:AB{last_row}').value,
+                'MIN_ABOVE_AVG_STREAK': sheet.range(f'AC2:AC{last_row}').value,
+                'FREQ_ABOVE_20': sheet.range(f'AD2:AD{last_row}').value,
+                'FREQ_ABOVE_25': sheet.range(f'AE2:AE{last_row}').value,
+                'FREQ_ABOVE_30': sheet.range(f'AF2:AF{last_row}').value,
+                'Projected Pts': sheet.range(f'AG2:AG{last_row}').value,
+                'DK': sheet.range(f'AH2:AH{last_row}').value,
+                'DK_CUM_AVG': sheet.range(f'AI2:AI{last_row}').value,
+                'DK_LAST_3_AVG': sheet.range(f'AJ2:AJ{last_row}').value,
+                'DK_LAST_5_AVG': sheet.range(f'AK2:AK{last_row}').value,
+                'DK_LAST_10_AVG': sheet.range(f'AL2:AL{last_row}').value,
+                'DK_TREND': sheet.range(f'AM2:AM{last_row}').value,
+                'DK_TREND_5': sheet.range(f'AN2:AN{last_row}').value,
+                'DK_CONSISTENCY': sheet.range(f'AO2:AO{last_row}').value,
+                'PTS_LAST_3_AVG': sheet.range(f'AP2:AP{last_row}').value,
+                'PTS_LAST_5_AVG': sheet.range(f'AQ2:AQ{last_row}').value,
+                'PTS_LAST_10_AVG': sheet.range(f'AR2:AR{last_row}').value,
+                'REB_LAST_3_AVG': sheet.range(f'AS2:AS{last_row}').value,
+                'REB_LAST_5_AVG': sheet.range(f'AT2:AT{last_row}').value,
+                'REB_LAST_10_AVG': sheet.range(f'AU2:AU{last_row}').value,
+                'AST_LAST_3_AVG': sheet.range(f'AV2:AV{last_row}').value,
+                'AST_LAST_5_AVG': sheet.range(f'AW2:AW{last_row}').value,
+                'AST_LAST_10_AVG': sheet.range(f'AX2:AX{last_row}').value,
+                'PTS_CUM_AVG': sheet.range(f'AY2:AY{last_row}').value,
+                'REB_CUM_AVG': sheet.range(f'AZ2:AZ{last_row}').value,
+                'AST_CUM_AVG': sheet.range(f'BA2:BA{last_row}').value,
+                'PTS_PER_MIN': sheet.range(f'BB2:BB{last_row}').value,
+                'REB_PER_MIN': sheet.range(f'BC2:BC{last_row}').value,
+                'AST_PER_MIN': sheet.range(f'BD2:BD{last_row}').value,
+                'SCORING_EFFICIENCY': sheet.range(f'BE2:BE{last_row}').value,
+                'RECENT_SCORING_EFF': sheet.range(f'BF2:BF{last_row}').value,
+                'FG_PCT': sheet.range(f'BG2:BG{last_row}').value,
+                'FG3_PCT': sheet.range(f'BH2:BH{last_row}').value,
+                'FT_PCT': sheet.range(f'BI2:BI{last_row}').value,
+                'FGM': sheet.range(f'BJ2:BJ{last_row}').value,
+                'FGA': sheet.range(f'BK2:BK{last_row}').value,
+                'FG3M': sheet.range(f'BL2:BL{last_row}').value,
+                'FG3A': sheet.range(f'BM2:BM{last_row}').value,
+                'FTM': sheet.range(f'BN2:BN{last_row}').value,
+                'FTA': sheet.range(f'BO2:BO{last_row}').value,
+                'PLUS_MINUS': sheet.range(f'BP2:BP{last_row}').value,
+                'PLUS_MINUS_PER_MIN': sheet.range(f'BQ2:BQ{last_row}').value,
+                'PLUS MINUS_LAST_3_AVG': sheet.range(f'BR2:BR{last_row}').value,
+                'PLUS MINUS_LAST_5_AVG': sheet.range(f'BS2:BS{last_row}').value,
+                'PLUS MINUS_LAST_10_AVG': sheet.range(f'BT2:BT{last_row}').value,
+                'PLUS MINUS_CUM_AVG': sheet.range(f'BU2:BU{last_row}').value,
+                'PLUS MINUS_TREND': sheet.range(f'BV2:BV{last_row}').value,
+                'PLUS MINUS_CONSISTENCY': sheet.range(f'BW2:BW{last_row}').value,
+                'PTS_TREND': sheet.range(f'BX2:BX{last_row}').value,
+                'REB_TREND': sheet.range(f'BY2:BY{last_row}').value,
+                'AST_TREND': sheet.range(f'BZ2:BZ{last_row}').value,
+                'PTS_CONSISTENCY': sheet.range(f'CA2:CA{last_row}').value,
+                'REB_CONSISTENCY': sheet.range(f'CB2:CB{last_row}').value,
+                'AST_CONSISTENCY': sheet.range(f'CC2:CC{last_row}').value,
+                'TEAM_MIN_PERCENTAGE': sheet.range(f'CD2:CD{last_row}').value,
+                'TEAM_PROJ_RANK': sheet.range(f'CE2:CE{last_row}').value,
+                'PTS_VS_TEAM_AVG': sheet.range(f'CF2:CF{last_row}').value,
+                'REB_VS_TEAM_AVG': sheet.range(f'CG2:CG{last_row}').value,
+                'AST_VS_TEAM_AVG': sheet.range(f'CH2:CH{last_row}').value,
+                'MIN_VS_TEAM_AVG': sheet.range(f'CI2:CI{last_row}').value,
+                'ROLE_CHANGE_3_10': sheet.range(f'CJ2:CJ{last_row}').value,
+                'ROLE_CHANGE_5_10': sheet.range(f'CK2:CK{last_row}').value,
+                'IS_TOP_3_PROJ': sheet.range(f'CL2:CL{last_row}').value,
+                'LOW_MIN_TOP_PLAYER': sheet.range(f'CM2:CM{last_row}').value,
+                'GAME_DATE': sheet.range(f'CN2:CN{last_row}').value,
+                'IS_HOME': sheet.range(f'CO2:CO{last_row}').value,
+                'IS_B2B': sheet.range(f'CP2:CP{last_row}').value,
+                'DAYS_REST': sheet.range(f'CQ2:CQ{last_row}').value,
+                'MATCHUP': sheet.range(f'CR2:CR{last_row}').value,
+                'WL': sheet.range(f'CS2:CS{last_row}').value,
+                'BLOWOUT_GAME': sheet.range(f'CT2:CT{last_row}').value,
+                'STL': sheet.range(f'CU2:CU{last_row}').value,
+                'BLK': sheet.range(f'CV2:CV{last_row}').value,
+                'TOV': sheet.range(f'CW2:CW{last_row}').value,
+                'OREB': sheet.range(f'CX2:CX{last_row}').value,
+                'DREB': sheet.range(f'CY2:CY{last_row}').value,
+                'PF': sheet.range(f'CZ2:CZ{last_row}').value,
+                'PLAYER_ID': sheet.range(f'DA2:DA{last_row}').value,
+                'TEAM_ID': sheet.range(f'DB2:DB{last_row}').value,
+                'TEAM_NAME': sheet.range(f'DC2:DC{last_row}').value,
+                'GAME_ID': sheet.range(f'DD2:DD{last_row}').value,
+                'SEASON_ID': sheet.range(f'DE2:DE{last_row}').value,
+                'VIDEO_AVAILABLE': sheet.range(f'DF2:DF{last_row}').value,
+            }
 
 
-        # Basic data cleaning
-        data = data.dropna(subset=['Team'])
-        data = data[data['Team'] != '']
-
-        # Convert numeric columns
-        numeric_columns = [
-            'Salary',
-            'Minutes',
-            'BBM Minutes',
-            'FTA Minutes',
-            'SOG Minutes',
-            'Minutes Played',
-            'Max Minutes',
-            'FTA Own',
-            'SOG Own',
-            'Projection',
-            'Last 10 Minutes',
-            'MSE',
-            'DARKO Minutes',
-            'Minutes Override',
-            'MIN_CUM_AVG',
-            'MIN_LAST_3_AVG',
-            'MIN_LAST_5_AVG',
-            'MIN_LAST_10_AVG',
-            'MIN_ABOVE_AVG_STREAK',
-            'MIN_TREND',
-            'MIN_CONSISTENCY',
-            'MIN_CONSISTENCY_SCORE',
-            'MIN_ABOVE_20',
-            'MIN_ABOVE_25',
-            'MIN_ABOVE_30',
-            'FREQ_ABOVE_20',
-            'FREQ_ABOVE_25',
-            'FREQ_ABOVE_30',
-            'Projected Pts',
-            'DK',
-            'DK_CUM_AVG',
-            'DK_LAST_3_AVG',
-            'DK_LAST_5_AVG',
-            'DK_LAST_10_AVG',
-            'DK_TREND',
-            'DK_TREND_5',
-            'DK_CONSISTENCY',
-            'PTS_LAST_3_AVG',
-            'PTS_LAST_5_AVG',
-            #'PTS_LAST_10_AVG',
-            'REB_LAST_3_AVG',
-            'REB_LAST_5_AVG',
-            'REB_LAST_10_AVG',
-            'AST_LAST_3_AVG',
-            'AST_LAST_5_AVG',
-            'AST_LAST_10_AVG',
-            'PTS_CUM_AVG',
-            'REB_CUM_AVG',
-            'AST_CUM_AVG',
-            'PTS_PER_MIN',
-            'REB_PER_MIN',
-            'AST_PER_MIN',
-            'SCORING_EFFICIENCY',
-            'RECENT_SCORING_EFF',
-            'FG_PCT',
-            'FG3_PCT',
-            'FT_PCT',
-            'FGM',
-            'FGA',
-            'FG3M',
-            'FG3A',
-            'FTM',
-            'FTA',
-            'PLUS_MINUS',
-            'PLUS_MINUS_PER_MIN',
-            'PLUS MINUS_LAST_3_AVG',
-            'PLUS MINUS_LAST_5_AVG',
-            'PLUS MINUS_LAST_10_AVG',
-            'PLUS MINUS_CUM_AVG',
-            'PLUS MINUS_TREND',
-            'PLUS MINUS_CONSISTENCY',
-            'PTS_TREND',
-            'REB_TREND',
-            'AST_TREND',
-            'PTS_CONSISTENCY',
-            'REB_CONSISTENCY',
-            'AST_CONSISTENCY',
-            'TEAM_MIN_PERCENTAGE',
-            'TEAM_PROJ_RANK',
-            'PTS_VS_TEAM_AVG',
-            'REB_VS_TEAM_AVG',
-            'AST_VS_TEAM_AVG',
-            'MIN_VS_TEAM_AVG',
-            'ROLE_CHANGE_3_10',
-            'ROLE_CHANGE_5_10',
-            'DAYS_REST',
-            'STL',
-            'BLK',
-            'TOV',
-            'OREB',
-            'DREB',
-            'PF'
-        ]
-
-        for col in numeric_columns:
-            data[col] = pd.to_numeric(data[col], errors='coerce')
-        # Create DK feature from Projection
-        #data['DK'] = data['Projection']
-        #data['DK Name'] = data['Player']
-
-        # Set Minutes to 0 where Projection is 0
-        data.loc[data['Projection'] == 0, 'Minutes'] = 0
-
-        # Create advanced features
-        enhanced_data = create_advanced_features(data)
-
-        # Define features for prediction (match training features)
-        features = [
-            #'MIN_VS_TEAM_AVG',
-            'MIN_CUM_AVG',
-            'MIN_ABOVE_AVG_STREAK',
-            'MIN_LAST_10_AVG',
-            'MIN_CONSISTENCY',
-
-             'DK_TREND_5',
-             'DK_LAST_10_AVG',
-            'PTS_CUM_AVG',
-            'REB_PER_MIN',
-            'AST_PER_MIN',
-            'PTS_PER_MIN',
-            'AST_LAST_10_AVG',
-            'REB_LAST_10_AVG',
-
-            'DAYS_REST',
-            'PTS_LAST_10_AVG',
-            #'BLOWOUT_GAME',
-            #'IS_HOME',
-            #'MIN_TREND',
-            #'IS_B2B',
-
-            # New advanced features
-            'MIN_LAST_3_AVG',
-            'MIN_LAST_5_AVG',
-            'ROLE_CHANGE_3_10',
-            'ROLE_CHANGE_5_10',
-            'MIN_CONSISTENCY_SCORE',
-            'RECENT_SCORING_EFF',
-            'RECENT_IMPACT',
-
-            'FREQ_ABOVE_20',
-            'FREQ_ABOVE_25',
-            'FREQ_ABOVE_30',
-
-             'TEAM_PROJ_RANK',
-             #'IS_TOP_3_PROJ',
-             'TEAM_MIN_PERCENTAGE',
-             'LOW_MIN_TOP_PLAYER',
-             'Projection'
-
-        ]
-
-        # After reading data but before predictions
-        #print("Before override - AD's MIN_VS_TEAM_AVG:",
-               #enhanced_data.loc[enhanced_data['Player'] == 'Lamelo Ball', 'TEAM_MIN_PERCENTAGE'].values[0])
+            # Convert to DataFrame
+            data = pd.DataFrame(needed_data)
 
 
-        # # Override the value
-        enhanced_data['TEAM_MIN_PERCENTAGE'] = enhanced_data.groupby('Team')['Minutes'].transform(lambda x: x / x.sum() * 100)
-        #
-        # enhanced_data['MIN_VS_TEAM_AVG'] = enhanced_data.groupby('Team')['Minutes'].transform(
-        #     lambda x: x / x.mean()
-        # )
+            # Basic data cleaning
+            data = data.dropna(subset=['Team'])
+            data = data[data['Team'] != '']
 
-        #print("After override - AD's MIN_VS_TEAM_AVG:",
-               #enhanced_data.loc[enhanced_data['Player'] == 'Lamelo Ball', 'TEAM_MIN_PERCENTAGE'].values[0])
+            # Convert numeric columns
+            numeric_columns = [
+                'Salary',
+                'Minutes',
+                'BBM Minutes',
+                'FTA Minutes',
+                'SOG Minutes',
+                'Minutes Played',
+                'Max Minutes',
+                'FTA Own',
+                'SOG Own',
+                'Projection',
+                'Last 10 Minutes',
+                'MSE',
+                'DARKO Minutes',
+                'Minutes Override',
+                'MIN_CUM_AVG',
+                'MIN_LAST_3_AVG',
+                'MIN_LAST_5_AVG',
+                'MIN_LAST_10_AVG',
+                'MIN_ABOVE_AVG_STREAK',
+                'MIN_TREND',
+                'MIN_CONSISTENCY',
+                'MIN_CONSISTENCY_SCORE',
+                'MIN_ABOVE_20',
+                'MIN_ABOVE_25',
+                'MIN_ABOVE_30',
+                'FREQ_ABOVE_20',
+                'FREQ_ABOVE_25',
+                'FREQ_ABOVE_30',
+                'Projected Pts',
+                'DK',
+                'DK_CUM_AVG',
+                'DK_LAST_3_AVG',
+                'DK_LAST_5_AVG',
+                'DK_LAST_10_AVG',
+                'DK_TREND',
+                'DK_TREND_5',
+                'DK_CONSISTENCY',
+                'PTS_LAST_3_AVG',
+                'PTS_LAST_5_AVG',
+                #'PTS_LAST_10_AVG',
+                'REB_LAST_3_AVG',
+                'REB_LAST_5_AVG',
+                'REB_LAST_10_AVG',
+                'AST_LAST_3_AVG',
+                'AST_LAST_5_AVG',
+                'AST_LAST_10_AVG',
+                'PTS_CUM_AVG',
+                'REB_CUM_AVG',
+                'AST_CUM_AVG',
+                'PTS_PER_MIN',
+                'REB_PER_MIN',
+                'AST_PER_MIN',
+                'SCORING_EFFICIENCY',
+                'RECENT_SCORING_EFF',
+                'FG_PCT',
+                'FG3_PCT',
+                'FT_PCT',
+                'FGM',
+                'FGA',
+                'FG3M',
+                'FG3A',
+                'FTM',
+                'FTA',
+                'PLUS_MINUS',
+                'PLUS_MINUS_PER_MIN',
+                'PLUS MINUS_LAST_3_AVG',
+                'PLUS MINUS_LAST_5_AVG',
+                'PLUS MINUS_LAST_10_AVG',
+                'PLUS MINUS_CUM_AVG',
+                'PLUS MINUS_TREND',
+                'PLUS MINUS_CONSISTENCY',
+                'PTS_TREND',
+                'REB_TREND',
+                'AST_TREND',
+                'PTS_CONSISTENCY',
+                'REB_CONSISTENCY',
+                'AST_CONSISTENCY',
+                'TEAM_MIN_PERCENTAGE',
+                'TEAM_PROJ_RANK',
+                'PTS_VS_TEAM_AVG',
+                'REB_VS_TEAM_AVG',
+                'AST_VS_TEAM_AVG',
+                'MIN_VS_TEAM_AVG',
+                'ROLE_CHANGE_3_10',
+                'ROLE_CHANGE_5_10',
+                'DAYS_REST',
+                'STL',
+                'BLK',
+                'TOV',
+                'OREB',
+                'DREB',
+                'PF'
+            ]
 
-        # Make predictions
-        X = enhanced_data[features]
-        raw_predictions = model.predict(X)
+            for col in numeric_columns:
+                data[col] = pd.to_numeric(data[col], errors='coerce')
+            # Create DK feature from Projection
+            #data['DK'] = data['Projection']
+            #data['DK Name'] = data['Player']
 
-        # Store original predictions
-        data['Original_Minutes'] = raw_predictions
+            # Set Minutes to 0 where Projection is 0
+            data.loc[data['Projection'] == 0, 'Minutes'] = 0
 
-        # Apply zeros BEFORE position constraints
-        data['Predicted_Minutes'] = raw_predictions.copy()  # Start with a copy of raw predictions
+            # Create advanced features
+            enhanced_data = create_advanced_features(data)
+
+            # Define features for prediction (match training features)
+            features = [
+                #'MIN_VS_TEAM_AVG',
+                'MIN_CUM_AVG',
+                'MIN_ABOVE_AVG_STREAK',
+                'MIN_LAST_10_AVG',
+                'MIN_CONSISTENCY',
+
+                 'DK_TREND_5',
+                 'DK_LAST_10_AVG',
+                'PTS_CUM_AVG',
+                'REB_PER_MIN',
+                'AST_PER_MIN',
+                'PTS_PER_MIN',
+                'AST_LAST_10_AVG',
+                'REB_LAST_10_AVG',
+
+                'DAYS_REST',
+                'PTS_LAST_10_AVG',
+                #'BLOWOUT_GAME',
+                #'IS_HOME',
+                #'MIN_TREND',
+                #'IS_B2B',
+
+                # New advanced features
+                'MIN_LAST_3_AVG',
+                'MIN_LAST_5_AVG',
+                'ROLE_CHANGE_3_10',
+                'ROLE_CHANGE_5_10',
+                'MIN_CONSISTENCY_SCORE',
+                'RECENT_SCORING_EFF',
+                'RECENT_IMPACT',
+
+                'FREQ_ABOVE_20',
+                'FREQ_ABOVE_25',
+                'FREQ_ABOVE_30',
+
+                 'TEAM_PROJ_RANK',
+                 #'IS_TOP_3_PROJ',
+                 'TEAM_MIN_PERCENTAGE',
+                 'LOW_MIN_TOP_PLAYER',
+                 'Projection'
+
+            ]
+
+            # After reading data but before predictions
+            #print("Before override - AD's MIN_VS_TEAM_AVG:",
+                   #enhanced_data.loc[enhanced_data['Player'] == 'Lamelo Ball', 'TEAM_MIN_PERCENTAGE'].values[0])
 
 
-        # Apply zero conditions
-        # No \ needed here because of the parentheses
-        zero_mask = (
-                (data['Projection'] == 0)
-                #(data['Projection'] == 0) |
-                #(data['Minutes'] <= 8)
-                #(data['DARKO Minutes'] <= 6)
-        )
+            # # Override the value
+            enhanced_data['TEAM_MIN_PERCENTAGE'] = enhanced_data.groupby('Team')['Minutes'].transform(lambda x: x / x.sum() * 100)
+            #
+            # enhanced_data['MIN_VS_TEAM_AVG'] = enhanced_data.groupby('Team')['Minutes'].transform(
+            #     lambda x: x / x.mean()
+            # )
 
-        data.loc[zero_mask, 'Predicted_Minutes'] = 0
+            #print("After override - AD's MIN_VS_TEAM_AVG:",
+                   #enhanced_data.loc[enhanced_data['Player'] == 'Lamelo Ball', 'TEAM_MIN_PERCENTAGE'].values[0])
 
-        # NOW apply position constraints to the already-modified predictions
-        data['Predicted_Minutes'] = apply_position_constraints(data)
-        data['Predicted_Minutes'] = adjust_team_minutes_with_minimum_and_boost(data)
-        # Create predictions mapping and write back to Excel
-        predictions_dict = dict(zip(data['Player'], data['Predicted_Minutes']))
-        predictions_to_write = [predictions_dict.get(player, '') if player else ''
-                                for player in needed_data['Player']]
-        sheet.range(f'H2').options(transpose=True).value = predictions_to_write
+            # Make predictions
+            X = enhanced_data[features]
+            raw_predictions = model.predict(X)
 
-        # Print summary
-        print("\nFinal Predictions:")
-        for team in sorted(data['Team'].unique()):
-            team_data = data[data['Team'] == team]
-            print(f"\n{team}:")
-            print(f"Team Total: {team_data['Predicted_Minutes'].sum():.1f}")
-            print("\nTop Players:")
-            top_players = team_data.nlargest(8, 'Predicted_Minutes')
-            for _, row in top_players.iterrows():
-                print(f"{row['Player']:<20} {row['Predicted_Minutes']:.1f}")
-                if row['Predicted_Minutes'] >= 36:
-                    print(f"  ** High minutes player (Max: {row['Max Minutes']})")
+            # Store original predictions
+            data['Original_Minutes'] = raw_predictions
 
-        # Save and close
-        wb.save()
-        wb.close()
+            # Apply zeros BEFORE position constraints
+            data['Predicted_Minutes'] = raw_predictions.copy()  # Start with a copy of raw predictions
 
-    finally:
-        app.quit()
+
+            # Apply zero conditions
+            # No \ needed here because of the parentheses
+            zero_mask = (
+                    (data['Projection'] == 0)
+                    #(data['Projection'] == 0) |
+                    #(data['Minutes'] <= 8)
+                    #(data['DARKO Minutes'] <= 6)
+            )
+
+            data.loc[zero_mask, 'Predicted_Minutes'] = 0
+
+            # NOW apply position constraints to the already-modified predictions
+            data['Predicted_Minutes'] = apply_position_constraints(data)
+            data['Predicted_Minutes'] = adjust_team_minutes_with_minimum_and_boost(data)
+            # Create predictions mapping and write back to Excel
+            predictions_dict = dict(zip(data['Player'], data['Predicted_Minutes']))
+            predictions_to_write = [predictions_dict.get(player, '') if player else ''
+                                    for player in needed_data['Player']]
+            sheet.range(f'H2').options(transpose=True).value = predictions_to_write
+
+            # Print summary
+            print("\nFinal Predictions:")
+            for team in sorted(data['Team'].unique()):
+                team_data = data[data['Team'] == team]
+                print(f"\n{team}:")
+                print(f"Team Total: {team_data['Predicted_Minutes'].sum():.1f}")
+                print("\nTop Players:")
+                top_players = team_data.nlargest(8, 'Predicted_Minutes')
+                for _, row in top_players.iterrows():
+                    print(f"{row['Player']:<20} {row['Predicted_Minutes']:.1f}")
+                    if row['Predicted_Minutes'] >= 36:
+                        print(f"  ** High minutes player (Max: {row['Max Minutes']})")
+
+            # Save and close
+            wb.save()
+            wb.close()
+
+        finally:
+            app.quit()
 
 
 if __name__ == "__main__":
-    predict_minutes()
+    predictions = PredictMinutes()
+    predictions.predict_minutes()

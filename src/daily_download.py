@@ -34,6 +34,41 @@ class DailyDownload:
     import os
     import shutil
 
+    import os
+    import shutil
+
+    def copy_dk_entries(self):
+        try:
+            # Get the parent directory
+            parent_dir = os.path.dirname(os.getcwd())
+
+            # Define source and destination paths
+            source_file = os.path.join(parent_dir, 'dk_data', 'DKEntries.csv')
+            dest_dir = os.path.join(parent_dir, 'dk_import')
+            dest_file = os.path.join(dest_dir, 'entries.csv')  # Changed to entries.csv
+
+            # Ensure destination directory exists
+            if not os.path.exists(dest_dir):
+                os.makedirs(dest_dir)
+                print(f"Created directory: {dest_dir}")
+
+            # Copy the file
+            if os.path.exists(source_file):
+                # Remove destination file if it exists
+                if os.path.exists(dest_file):
+                    os.remove(dest_file)
+
+                shutil.copy2(source_file, dest_file)
+                print(f"Successfully copied and renamed to: {dest_file}")
+            else:
+                print(f"Source file not found: {source_file}")
+
+        except Exception as e:
+            print(f"An error occurred: {str(e)}")
+
+
+
+
     def download_and_rename_csv(self, username, password):
         chrome_options = webdriver.ChromeOptions()
         download_dir = os.getcwd()
@@ -302,4 +337,5 @@ if __name__ == "__main__":
     #downloader.download_all()
     USERNAME = "marvalgames"
     PASSWORD = "NWMUCBPOUD"
-    downloader.download_and_rename_csv(USERNAME, PASSWORD)
+    #downloader.download_and_rename_csv(USERNAME, PASSWORD)
+    #downloader.copy_dk_entries()

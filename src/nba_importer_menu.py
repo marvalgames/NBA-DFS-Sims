@@ -18,6 +18,8 @@ from nba_api.stats.endpoints import leaguedashteamstats
 from PyQt6.QtCore import QThread, pyqtSignal, Qt
 
 from daily_download import DailyDownload
+from nba_minutes_prediction_setup import NbaMInutesPredictions
+from nba_minutes_predictions_enhanced import PredictMinutes
 
 
 class ImportThread(QThread):
@@ -59,14 +61,19 @@ class ImportTool(QMainWindow):
         # Buttons
 
 
+
+
         daily_button = QPushButton("Download daily data")
         daily_button.clicked.connect(lambda: self.run_threaded_import(self.import_daily, "Downloading daily data..."))
 
+        minutes_button = QPushButton("Predict Player Minutes")
+        minutes_button.clicked.connect(lambda: self.run_threaded_import(self.predict_minutes, "Calculating player minutes..."))
 
-        bbm_button = QPushButton("Import bbm.csv to BBM Projections")
+
+        bbm_button = QPushButton("Import BBM Projections")
         bbm_button.clicked.connect(lambda: self.run_threaded_import(self.import_bbm, "Importing BBM data..."))
 
-        fta_button = QPushButton("Import fta.csv to FTA Projections")
+        fta_button = QPushButton("Import FTA Projections")
         fta_button.clicked.connect(lambda: self.run_threaded_import(self.import_fta_entries, "Importing FTA data..."))
 
         dk_button = QPushButton("Import entries.csv to DK List")
@@ -76,7 +83,7 @@ class ImportTool(QMainWindow):
         sog_button.clicked.connect(
             lambda: self.run_threaded_import(self.import_sog_projections, "Importing SOG projections..."))
 
-        darko_button = QPushButton("Import darko.csv to DARKO Projections")
+        darko_button = QPushButton("Import DARKO Projections")
         darko_button.clicked.connect(lambda: self.run_threaded_import(self.import_darko, "Importing DARKO data..."))
 
         last10_button = QPushButton("Import last10.csv to L10 Sheet")
@@ -87,23 +94,23 @@ class ImportTool(QMainWindow):
         all_button.clicked.connect(
             lambda: self.run_threaded_import(self.run_all_imports, "Running all imports..."))
 
-        advanced_button = QPushButton("Import advanced.csv to Advanced Team Stats Sheet")
+        advanced_button = QPushButton("Import Advanced Team Stats Sheet")
         advanced_button.clicked.connect(lambda: self.run_threaded_import(
             self.import_advanced, "Importing Advanced Stats..."))
 
-        traditional_button = QPushButton("Import traditional.csv to Traditional Team Stats Sheet")
+        traditional_button = QPushButton("Import Traditional Team Stats Sheet")
         traditional_button.clicked.connect(lambda: self.run_threaded_import(
             self.import_traditional, "Importing Traditional Stats..."))
 
-        odds_button = QPushButton("Import NBA Game Odds to NBA Sheet")
+        odds_button = QPushButton("Import NBA Game Odds")
         odds_button.clicked.connect(lambda: self.run_threaded_import(
             self.fetch_and_save_team_data_with_odds, "Fetching Game Odds..."))
 
-        export_button = QPushButton("Export Point Projections for Simulations")
+        export_button = QPushButton("Export Point Projections")
         export_button.clicked.connect(lambda: self.run_threaded_import(
             self.export_projections, "Exporting Projections..."))
 
-        own_button = QPushButton("Calculate Ownership Projections to NBA Sheet")
+        own_button = QPushButton("Calculate Ownership Projections")
         own_button.clicked.connect(lambda: self.run_threaded_import(
             self.ownership_projections, "Calculating ownership projections..."))
 
@@ -123,13 +130,13 @@ class ImportTool(QMainWindow):
         layout.addWidget(darko_button)
         layout.addWidget(advanced_button)
         layout.addWidget(traditional_button)
-        layout.addWidget(last10_button)
+        #layout.addWidget(last10_button)
         layout.addWidget(all_button)
 
         layout.addWidget(odds_button)
+        layout.addWidget(minutes_button)
         layout.addWidget(own_button)
         layout.addWidget(export_button)
-
         layout.addWidget(quit_button)
 
 
@@ -145,6 +152,10 @@ class ImportTool(QMainWindow):
 
         #self.ownership_projections()
 
+
+    def predict_minutes(self, progress_print = print):
+        predictions = PredictMinutes()
+        predictions.predict_minutes()
 
     def show_progress_dialog(self, title):
         self.progress_dialog = QProgressDialog(title, None, 0, 0, self)
@@ -309,7 +320,17 @@ class ImportTool(QMainWindow):
 
     def import_daily(self, progress_print=print):
         downloader = DailyDownload()
+        downloader.copy_dk_entries()
         downloader.download_all()
+        USERNAME = "marvalgames"
+        PASSWORD = "NWMUCBPOUD"
+        downloader.download_and_rename_csv(USERNAME, PASSWORD)
+
+        predictions = NbaMInutesPredictions()
+        predictions.nba_enhance_game_logs()
+        predictions.process_excel_data()
+        print('Completed')
+
         progress_print("Done downloading data.")
 
 
