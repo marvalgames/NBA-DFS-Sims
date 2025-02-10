@@ -61,10 +61,11 @@ class ImportTool(QMainWindow):
         # Buttons
 
 
-
-
-        daily_button = QPushButton("Download daily data")
+        daily_button = QPushButton("Download Daily Data")
         daily_button.clicked.connect(lambda: self.run_threaded_import(self.import_daily, "Downloading daily data..."))
+
+        game_logs_button = QPushButton("Expand Daily Game Logs")
+        game_logs_button.clicked.connect(lambda: self.run_threaded_import(self.expand_game_logs, "Expanding daily game logs..."))
 
         minutes_button = QPushButton("Predict Player Minutes")
         minutes_button.clicked.connect(lambda: self.run_threaded_import(self.predict_minutes, "Calculating player minutes..."))
@@ -76,8 +77,8 @@ class ImportTool(QMainWindow):
         fta_button = QPushButton("Import FTA Projections")
         fta_button.clicked.connect(lambda: self.run_threaded_import(self.import_fta_entries, "Importing FTA data..."))
 
-        dk_button = QPushButton("Import entries.csv to DK List")
-        dk_button.clicked.connect(lambda: self.run_threaded_import(self.import_dk_entries, "Importing DK entries..."))
+        dk_button = QPushButton("Import Contest Entries")
+        dk_button.clicked.connect(lambda: self.run_threaded_import(self.import_entries, "Importing Contest Entries..."))
 
         sog_button = QPushButton("Import entries.csv to SOG Projections")
         sog_button.clicked.connect(
@@ -94,13 +95,12 @@ class ImportTool(QMainWindow):
         all_button.clicked.connect(
             lambda: self.run_threaded_import(self.run_all_imports, "Running all imports..."))
 
-        advanced_button = QPushButton("Import Advanced Team Stats Sheet")
-        advanced_button.clicked.connect(lambda: self.run_threaded_import(
-            self.import_advanced, "Importing Advanced Stats..."))
 
-        traditional_button = QPushButton("Import Traditional Team Stats Sheet")
-        traditional_button.clicked.connect(lambda: self.run_threaded_import(
-            self.import_traditional, "Importing Traditional Stats..."))
+
+        team_stats_button = QPushButton("Import Team Stats")
+        team_stats_button.clicked.connect(lambda: self.run_threaded_import(
+            self.import_team_stats, "Importing Team Stats..."))
+
 
         odds_button = QPushButton("Import NBA Game Odds")
         odds_button.clicked.connect(lambda: self.run_threaded_import(
@@ -126,13 +126,10 @@ class ImportTool(QMainWindow):
         layout.addWidget(bbm_button)
         layout.addWidget(fta_button)
         layout.addWidget(dk_button)
-        layout.addWidget(sog_button)
         layout.addWidget(darko_button)
-        layout.addWidget(advanced_button)
-        layout.addWidget(traditional_button)
-        #layout.addWidget(last10_button)
+        layout.addWidget(team_stats_button)
         layout.addWidget(all_button)
-
+        layout.addWidget(game_logs_button)
         layout.addWidget(odds_button)
         layout.addWidget(minutes_button)
         layout.addWidget(own_button)
@@ -326,12 +323,17 @@ class ImportTool(QMainWindow):
         PASSWORD = "NWMUCBPOUD"
         downloader.download_and_rename_csv(USERNAME, PASSWORD)
 
+        print('Completed')
+
+        progress_print("Done downloading data.")
+
+    def expand_game_logs(self, progress_print=print):
+
         predictions = NbaMInutesPredictions()
         predictions.nba_enhance_game_logs()
         predictions.process_excel_data()
         print('Completed')
-
-        progress_print("Done downloading data.")
+        progress_print("Done expanding game logs.")
 
 
 
@@ -365,6 +367,12 @@ class ImportTool(QMainWindow):
             progress_print=progress_print
         )
         progress_print("Done importing FTA to fta.")
+
+    def import_entries(self, progress_print=print()):
+        #progress_print("Importing DKEntries...")
+        self.import_dk_entries(progress_print=progress_print)
+        self.import_sog_projections(progress_print=progress_print)
+
 
     def import_dk_entries(self, progress_print=print):
         progress_print("Importing DKEntries to dk_list...")
@@ -628,6 +636,10 @@ class ImportTool(QMainWindow):
             measure_type_detailed_defense='Advanced'
         )
         return team_stats.get_data_frames()[0]
+
+    def import_team_stats(self, progress_print=print):
+        self.import_advanced(progress_print=progress_print)
+        self.import_traditional(progress_print=progress_print)
 
 
     def import_advanced(self, progress_print=print):

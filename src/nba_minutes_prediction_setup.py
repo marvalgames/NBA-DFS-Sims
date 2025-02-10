@@ -58,7 +58,7 @@ class NbaMInutesPredictions:
 
             # Process the data
             print("Enhancing dataset...")
-            enhanced_df = predictions.enhance_game_logs(df)
+            enhanced_df = self.enhance_game_logs(df)
 
             # Check for any remaining empty numeric values
             numeric_columns = enhanced_df.select_dtypes(include=['float64', 'float32', 'int64', 'int32']).columns
@@ -69,7 +69,7 @@ class NbaMInutesPredictions:
                     print(f"- {col}: {empty_counts[col]} empty values")
 
             # Round all decimal places
-            enhanced_df = predictions.format_decimals(enhanced_df, decimal_places=3)
+            enhanced_df = self.format_decimals(enhanced_df, decimal_places=3)
 
             # Save enhanced dataset to CSV
             print("Saving enhanced dataset...")
