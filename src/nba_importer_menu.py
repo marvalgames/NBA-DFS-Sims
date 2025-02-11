@@ -1,4 +1,5 @@
 import sys
+import time
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import os
@@ -464,12 +465,14 @@ class ImportTool(QMainWindow):
 
         progress_print("Done importing DKEntries to dk_list.")
 
+
     def import_sog_projections(self, progress_print=print):
         progress_print("Importing SOG projections...")
         csv_file = "entries.csv"
         excel_file = "nba.xlsm"
         sheet_name = "sog_projections"
 
+        time.sleep(2)
         app = None
         wb = None
 
@@ -509,7 +512,7 @@ class ImportTool(QMainWindow):
                 raise ValueError(f"Sheet '{sheet_name}' not found in workbook") from e
 
             progress_print("Clearing existing data...")
-            clear_range = ws.range(f"B2:J{360}")
+            clear_range = ws.range(f"B2:J{480}")
             if clear_range:  # Verify range exists before clearing
                 clear_range.clear_contents()
 
