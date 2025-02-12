@@ -1,40 +1,40 @@
 Entry ID,Contest Name,Contest ID,Entry Fee,PG,SG,SF,PF,C,G,F,UTIL,,Instructions
-4639067332,NBA $60K Four Point Play [20 Entry Max],173917628,$4,,,,,,,,,,1. Column A lists all of your contest entries for this draftgroup
-4639067333,NBA $60K Four Point Play [20 Entry Max],173917628,$4,,,,,,,,,,2. Your current lineup is listed next to each entry (blank for reservations)
-4639067334,NBA $60K Four Point Play [20 Entry Max],173917628,$4,,,,,,,,,,3. You can change the lineup for an entry by entering the IDs of the players in the row next to that entry
-4639067335,NBA $60K Four Point Play [20 Entry Max],173917628,$4,,,,,,,,,,4. Use data from the Name+ID column or the ID column; you cannot use just the player's name
-4639067336,NBA $60K Four Point Play [20 Entry Max],173917628,$4,,,,,,,,,,5. For faster processing only include entries you are changing in the file you upload
-4639067337,NBA $60K Four Point Play [20 Entry Max],173917628,$4,,,,,,,,,,
-4639067338,NBA $60K Four Point Play [20 Entry Max],173917628,$4,,,,,,,,,,Position,Name + ID,Name,ID,Roster Position,Salary,Game Info,TeamAbbrev,AvgPointsPerGame
-4639067339,NBA $60K Four Point Play [20 Entry Max],173917628,$4,,,,,,,,,,PG,Cade Cunningham (37681019),Cade Cunningham,37681019,PG/G/UTIL,10500,DET@CHI 02/11/2025 08:00PM ET,DET,51.26
-4639067340,NBA $60K Four Point Play [20 Entry Max],173917628,$4,,,,,,,,,,C,Joel Embiid (37681022),Joel Embiid,37681022,C/UTIL,10000,TOR@PHI 02/11/2025 07:00PM ET,PHI,45.30
-4639067341,NBA $60K Four Point Play [20 Entry Max],173917628,$4,,,,,,,,,,PG,Tyrese Maxey (37681024),Tyrese Maxey,37681024,PG/G/UTIL,9800,TOR@PHI 02/11/2025 07:00PM ET,PHI,47.05
+4639067332,NBA $60K Four Point Play [20 Entry Max],173917628,$4,Jalen Brunson (37681045),Quentin Grimes (37681171) (LOCKED),Ausar Thompson (37681142),Pascal Siakam (37681061),Thomas Bryant (37681150),Cade Cunningham (37681019),Matas Buzelis (37681165),Jalen Smith (37681259),,1. Column A lists all of your contest entries for this draftgroup
+4639067333,NBA $60K Four Point Play [20 Entry Max],173917628,$4,Immanuel Quickley (37681109) (LOCKED),Quentin Grimes (37681171) (LOCKED),Ausar Thompson (37681142),Matas Buzelis (37681165),Joel Embiid (37681022) (LOCKED),Tyus Jones (37681168),Royce O'Neale (37681146),Karl-Anthony Towns (37681031),,2. Your current lineup is listed next to each entry (blank for reservations)
+4639067334,NBA $60K Four Point Play [20 Entry Max],173917628,$4,Josh Giddey (37681075),Desmond Bane (37681068),Royce O'Neale (37681146),Ochai Agbaji (37681227) (LOCKED),Joel Embiid (37681022) (LOCKED),Tyus Jones (37681168),Josh Hart (37681064),Jalen Smith (37681259),,3. You can change the lineup for an entry by entering the IDs of the players in the row next to that entry
+4639067335,NBA $60K Four Point Play [20 Entry Max],173917628,$4,Devin Booker (37681027),Quentin Grimes (37681171) (LOCKED),Ausar Thompson (37681142),Pascal Siakam (37681061),Karl-Anthony Towns (37681031),Tyus Jones (37681168),Matas Buzelis (37681165),Jalen Smith (37681259),,4. Use data from the Name+ID column or the ID column; you cannot use just the player's name
+4639067336,NBA $60K Four Point Play [20 Entry Max],173917628,$4,Immanuel Quickley (37681109) (LOCKED),Quentin Grimes (37681171) (LOCKED),Gregory Jackson (37681233),Ochai Agbaji (37681227) (LOCKED),Joel Embiid (37681022) (LOCKED),Jalen Brunson (37681045),Kevin Durant (37681038),Jalen Smith (37681259),,5. For faster processing only include entries you are changing in the file you upload
+4639067337,NBA $60K Four Point Play [20 Entry Max],173917628,$4,Cade Cunningham (37681019),Aaron Nesmith (37681263),Ausar Thompson (37681142),Pascal Siakam (37681061),Karl-Anthony Towns (37681031),Tyus Jones (37681168),Royce O'Neale (37681146),Jalen Smith (37681259),,
+4639067338,NBA $60K Four Point Play [20 Entry Max],173917628,$4,Scottie Barnes (37681033) (LOCKED),Grayson Allen (37681156),Ausar Thompson (37681142),Ochai Agbaji (37681227) (LOCKED),Joel Embiid (37681022) (LOCKED),Jalen Brunson (37681045),Matas Buzelis (37681165),Brandon Clarke (37681261),,Position,Name + ID,Name,ID,Roster Position,Salary,Game Info,TeamAbbrev,AvgPointsPerGame
+4639067339,NBA $60K Four Point Play [20 Entry Max],173917628,$4,Immanuel Quickley (37681109) (LOCKED),Quentin Grimes (37681171) (LOCKED),Scottie Barnes (37681033) (LOCKED),Ochai Agbaji (37681227) (LOCKED),Karl-Anthony Towns (37681031),Tyus Jones (37681168),Pascal Siakam (37681061),Jalen Smith (37681259),,PG,Cade Cunningham (37681019),Cade Cunningham,37681019,PG/G/UTIL,10500,DET@CHI 02/11/2025 08:00PM ET,DET,51.26
+4639067340,NBA $60K Four Point Play [20 Entry Max],173917628,$4,Immanuel Quickley (37681109) (LOCKED),Coby White (37681083),Quentin Grimes (37681171) (LOCKED),Ochai Agbaji (37681227) (LOCKED),Karl-Anthony Towns (37681031),Cade Cunningham (37681019),Matas Buzelis (37681165),Jalen Smith (37681259),,C,Joel Embiid (37681022) (LOCKED),Joel Embiid,37681022,C/UTIL,10000,In Progress,PHI,45.30
+4639067341,NBA $60K Four Point Play [20 Entry Max],173917628,$4,Jalen Brunson (37681045),Desmond Bane (37681068),Royce O'Neale (37681146),Ayo Dosunmu (37681130),Joel Embiid (37681022) (LOCKED),Tyus Jones (37681168),Matas Buzelis (37681165),Jalen Smith (37681259),,PG,Tyrese Maxey (37681024) (LOCKED),Tyrese Maxey,37681024,PG/G/UTIL,9800,In Progress,PHI,47.05
 ,,,,,,,,,,,,,PG/SG,Devin Booker (37681027),Devin Booker,37681027,PG/SG/G/UTIL,9500,MEM@PHX 02/11/2025 10:00PM ET,PHX,44.28
 ,,,,,,,,,,,,,C,Karl-Anthony Towns (37681031),Karl-Anthony Towns,37681031,C/UTIL,9400,NYK@IND 02/11/2025 07:30PM ET,NYK,50.31
-,,,,,,,,,,,,,PG/SF,Scottie Barnes (37681033),Scottie Barnes,37681033,PG/SF/F/G/UTIL,9200,TOR@PHI 02/11/2025 07:00PM ET,TOR,44.18
+,,,,,,,,,,,,,PG/SF,Scottie Barnes (37681033) (LOCKED),Scottie Barnes,37681033,PG/SF/F/G/UTIL,9200,In Progress,TOR,44.18
 ,,,,,,,,,,,,,PF/C,Kevin Durant (37681038),Kevin Durant,37681038,PF/C/F/UTIL,9000,MEM@PHX 02/11/2025 10:00PM ET,PHX,44.84
 ,,,,,,,,,,,,,PG,Ja Morant (37681042),Ja Morant,37681042,PG/G/UTIL,8600,MEM@PHX 02/11/2025 10:00PM ET,MEM,39.74
 ,,,,,,,,,,,,,PG,Jalen Brunson (37681045),Jalen Brunson,37681045,PG/G/UTIL,8400,NYK@IND 02/11/2025 07:30PM ET,NYK,43.36
 ,,,,,,,,,,,,,PG,Tyrese Haliburton (37681048),Tyrese Haliburton,37681048,PG/G/UTIL,8200,NYK@IND 02/11/2025 07:30PM ET,IND,40.11
 ,,,,,,,,,,,,,PF/C,Jaren Jackson Jr. (37681051),Jaren Jackson Jr.,37681051,PF/C/F/UTIL,8100,MEM@PHX 02/11/2025 10:00PM ET,MEM,40.12
-,,,,,,,,,,,,,SF/PF,Brandon Ingram (37681055),Brandon Ingram,37681055,SF/PF/F/UTIL,8000,TOR@PHI 02/11/2025 07:00PM ET,TOR,39.19
+,,,,,,,,,,,,,SF/PF,Brandon Ingram (37681055) (LOCKED),Brandon Ingram,37681055,SF/PF/F/UTIL,8000,In Progress,TOR,39.19
 ,,,,,,,,,,,,,C,Nikola Vucevic (37681059),Nikola Vucevic,37681059,C/UTIL,7800,DET@CHI 02/11/2025 08:00PM ET,CHI,41.78
 ,,,,,,,,,,,,,PF,Pascal Siakam (37681061),Pascal Siakam,37681061,PF/F/UTIL,7700,NYK@IND 02/11/2025 07:30PM ET,IND,38.29
 ,,,,,,,,,,,,,SF/PF,Josh Hart (37681064),Josh Hart,37681064,SF/PF/F/UTIL,7600,NYK@IND 02/11/2025 07:30PM ET,NYK,39.48
 ,,,,,,,,,,,,,SG,Desmond Bane (37681068),Desmond Bane,37681068,SG/G/UTIL,7500,MEM@PHX 02/11/2025 10:00PM ET,MEM,36.66
-,,,,,,,,,,,,,SF/PF,Paul George (37681071),Paul George,37681071,SF/PF/F/UTIL,7400,TOR@PHI 02/11/2025 07:00PM ET,PHI,34.44
+,,,,,,,,,,,,,SF/PF,Paul George (37681071) (LOCKED),Paul George,37681071,SF/PF/F/UTIL,7400,In Progress,PHI,34.44
 ,,,,,,,,,,,,,PG,Josh Giddey (37681075),Josh Giddey,37681075,PG/G/UTIL,7300,DET@CHI 02/11/2025 08:00PM ET,CHI,34.06
-,,,,,,,,,,,,,SG/SF,RJ Barrett (37681078),RJ Barrett,37681078,SG/SF/F/G/UTIL,7200,TOR@PHI 02/11/2025 07:00PM ET,TOR,40.52
+,,,,,,,,,,,,,SG/SF,RJ Barrett (37681078) (LOCKED),RJ Barrett,37681078,SG/SF/F/G/UTIL,7200,In Progress,TOR,40.52
 ,,,,,,,,,,,,,SG/SF,Coby White (37681083),Coby White,37681083,SG/SF/F/G/UTIL,6700,DET@CHI 02/11/2025 08:00PM ET,CHI,32.35
 ,,,,,,,,,,,,,C,Jalen Duren (37681088),Jalen Duren,37681088,C/UTIL,6600,DET@CHI 02/11/2025 08:00PM ET,DET,30.44
 ,,,,,,,,,,,,,SG/SF,Bradley Beal (37681090),Bradley Beal,37681090,SG/SF/F/G/UTIL,6500,MEM@PHX 02/11/2025 10:00PM ET,PHX,30.21
-,,,,,,,,,,,,,SG,Kelly Oubre Jr. (37681095),Kelly Oubre Jr.,37681095,SG/G/UTIL,6400,TOR@PHI 02/11/2025 07:00PM ET,PHI,29.46
-,,,,,,,,,,,,,C,Jakob Poeltl (37681098),Jakob Poeltl,37681098,C/UTIL,6400,TOR@PHI 02/11/2025 07:00PM ET,TOR,35.62
+,,,,,,,,,,,,,SG,Kelly Oubre Jr. (37681095) (LOCKED),Kelly Oubre Jr.,37681095,SG/G/UTIL,6400,In Progress,PHI,29.46
+,,,,,,,,,,,,,C,Jakob Poeltl (37681098) (LOCKED),Jakob Poeltl,37681098,C/UTIL,6400,In Progress,TOR,35.62
 ,,,,,,,,,,,,,SG/SF,Mikal Bridges (37681100),Mikal Bridges,37681100,SG/SF/F/G/UTIL,6300,NYK@IND 02/11/2025 07:30PM ET,NYK,30.19
 ,,,,,,,,,,,,,SF/PF,OG Anunoby (37681105),OG Anunoby,37681105,SF/PF/F/UTIL,6200,NYK@IND 02/11/2025 07:30PM ET,NYK,30.29
-,,,,,,,,,,,,,PG,Immanuel Quickley (37681109),Immanuel Quickley,37681109,PG/G/UTIL,6100,TOR@PHI 02/11/2025 07:00PM ET,TOR,28.45
+,,,,,,,,,,,,,PG,Immanuel Quickley (37681109) (LOCKED),Immanuel Quickley,37681109,PG/G/UTIL,6100,In Progress,TOR,28.45
 ,,,,,,,,,,,,,C,Myles Turner (37681116),Myles Turner,37681116,C/UTIL,6000,NYK@IND 02/11/2025 07:30PM ET,IND,31.11
-,,,,,,,,,,,,,PF/C,Guerschon Yabusele (37681112),Guerschon Yabusele,37681112,PF/C/F/UTIL,6000,TOR@PHI 02/11/2025 07:00PM ET,PHI,23.90
+,,,,,,,,,,,,,PF/C,Guerschon Yabusele (37681112) (LOCKED),Guerschon Yabusele,37681112,PF/C/F/UTIL,6000,In Progress,PHI,23.90
 ,,,,,,,,,,,,,PF,Tobias Harris (37681118),Tobias Harris,37681118,PF/F/UTIL,5900,DET@CHI 02/11/2025 08:00PM ET,DET,27.78
 ,,,,,,,,,,,,,PF/C,Precious Achiuwa (37681121),Precious Achiuwa,37681121,PF/C/F/UTIL,5600,NYK@IND 02/11/2025 07:30PM ET,NYK,18.54
 ,,,,,,,,,,,,,SG/SF,Malik Beasley (37681125),Malik Beasley,37681125,SG/SF/F/G/UTIL,5500,DET@CHI 02/11/2025 08:00PM ET,DET,26.05
@@ -47,31 +47,31 @@ Entry ID,Contest Name,Contest ID,Entry Fee,PG,SG,SF,PF,C,G,F,UTIL,,Instructions
 ,,,,,,,,,,,,,SF/PF,Royce O'Neale (37681146),Royce O'Neale,37681146,SF/PF/F/UTIL,5000,MEM@PHX 02/11/2025 10:00PM ET,PHX,22.56
 ,,,,,,,,,,,,,PG/SG,Lonzo Ball (37681152),Lonzo Ball,37681152,PG/SG/G/UTIL,4900,DET@CHI 02/11/2025 08:00PM ET,CHI,20.91
 ,,,,,,,,,,,,,SG/SF,Grayson Allen (37681156),Grayson Allen,37681156,SG/SF/F/G/UTIL,4900,MEM@PHX 02/11/2025 10:00PM ET,PHX,21.79
-,,,,,,,,,,,,,C,Jonathan Mogbo (37681161),Jonathan Mogbo,37681161,C/UTIL,4900,TOR@PHI 02/11/2025 07:00PM ET,TOR,15.3
+,,,,,,,,,,,,,C,Jonathan Mogbo (37681161) (LOCKED),Jonathan Mogbo,37681161,C/UTIL,4900,In Progress,TOR,15.3
 ,,,,,,,,,,,,,PF,Matas Buzelis (37681165),Matas Buzelis,37681165,PF/F/UTIL,4800,DET@CHI 02/11/2025 08:00PM ET,CHI,12.97
 ,,,,,,,,,,,,,C,Zach Edey (37681163),Zach Edey,37681163,C/UTIL,4800,MEM@PHX 02/11/2025 10:00PM ET,MEM,24.18
 ,,,,,,,,,,,,,PG,Tyus Jones (37681168),Tyus Jones,37681168,PG/G/UTIL,4800,MEM@PHX 02/11/2025 10:00PM ET,PHX,25.51
-,,,,,,,,,,,,,SG/SF,Quentin Grimes (37681171),Quentin Grimes,37681171,SG/SF/F/G/UTIL,4700,TOR@PHI 02/11/2025 07:00PM ET,PHI,20.40
+,,,,,,,,,,,,,SG/SF,Quentin Grimes (37681171) (LOCKED),Quentin Grimes,37681171,SG/SF/F/G/UTIL,4700,In Progress,PHI,20.40
 ,,,,,,,,,,,,,PG,Vasilije Micic (37681176),Vasilije Micic,37681176,PG/G/UTIL,4600,MEM@PHX 02/11/2025 10:00PM ET,PHX,16.26
 ,,,,,,,,,,,,,PF,Santi Aldama (37681179),Santi Aldama,37681179,PF/F/UTIL,4600,MEM@PHX 02/11/2025 10:00PM ET,MEM,28.28
 ,,,,,,,,,,,,,PG/SG,Dennis Schroder (37681182),Dennis Schroder,37681182,PG/SG/G/UTIL,4500,DET@CHI 02/11/2025 08:00PM ET,DET,28
-,,,,,,,,,,,,,C,Andre Drummond (37681190),Andre Drummond,37681190,C/UTIL,4500,TOR@PHI 02/11/2025 07:00PM ET,PHI,19.55
+,,,,,,,,,,,,,C,Andre Drummond (37681190) (LOCKED),Andre Drummond,37681190,C/UTIL,4500,In Progress,PHI,19.55
 ,,,,,,,,,,,,,PF/C,Obi Toppin (37681186),Obi Toppin,37681186,PF/C/F/UTIL,4400,NYK@IND 02/11/2025 07:30PM ET,IND,19.50
 ,,,,,,,,,,,,,PF/C,Bol Bol (37681195),Bol Bol,37681195,PF/C/F/UTIL,4300,MEM@PHX 02/11/2025 10:00PM ET,PHX,9.11
-,,,,,,,,,,,,,SG,Gradey Dick (37681192),Gradey Dick,37681192,SG/G/UTIL,4300,TOR@PHI 02/11/2025 07:00PM ET,TOR,24.68
+,,,,,,,,,,,,,SG,Gradey Dick (37681192) (LOCKED),Gradey Dick,37681192,SG/G/UTIL,4300,In Progress,TOR,24.68
 ,,,,,,,,,,,,,SF/PF,Patrick Williams (37681199),Patrick Williams,37681199,SF/PF/F/UTIL,4200,DET@CHI 02/11/2025 08:00PM ET,CHI,20.58
-,,,,,,,,,,,,,SG/SF,Ja'Kobe Walter (37681203),Ja'Kobe Walter,37681203,SG/SF/F/G/UTIL,4200,TOR@PHI 02/11/2025 07:00PM ET,TOR,14.87
+,,,,,,,,,,,,,SG/SF,Ja'Kobe Walter (37681203) (LOCKED),Ja'Kobe Walter,37681203,SG/SF/F/G/UTIL,4200,In Progress,TOR,14.87
 ,,,,,,,,,,,,,PG,T.J. McConnell (37681208),T.J. McConnell,37681208,PG/G/UTIL,4100,NYK@IND 02/11/2025 07:30PM ET,IND,22.08
 ,,,,,,,,,,,,,PG/SG,Luke Kennard (37681215),Luke Kennard,37681215,PG/SG/G/UTIL,4100,MEM@PHX 02/11/2025 10:00PM ET,MEM,20.26
-,,,,,,,,,,,,,SF/PF,Justin Edwards (37681211),Justin Edwards,37681211,SF/PF/F/UTIL,4100,TOR@PHI 02/11/2025 07:00PM ET,PHI,16.30
-,,,,,,,,,,,,,PF/C,Chris Boucher (37681219),Chris Boucher,37681219,PF/C/F/UTIL,4100,TOR@PHI 02/11/2025 07:00PM ET,TOR,19.28
+,,,,,,,,,,,,,SF/PF,Justin Edwards (37681211) (LOCKED),Justin Edwards,37681211,SF/PF/F/UTIL,4100,In Progress,PHI,16.30
+,,,,,,,,,,,,,PF/C,Chris Boucher (37681219) (LOCKED),Chris Boucher,37681219,PF/C/F/UTIL,4100,In Progress,TOR,19.28
 ,,,,,,,,,,,,,SG/SF,Tim Hardaway Jr. (37681240),Tim Hardaway Jr.,37681240,SG/SF/F/G/UTIL,4000,DET@CHI 02/11/2025 08:00PM ET,DET,17.77
 ,,,,,,,,,,,,,PG/SG,Miles McBride (37681223),Miles McBride,37681223,PG/SG/G/UTIL,4000,NYK@IND 02/11/2025 07:30PM ET,NYK,18.78
 ,,,,,,,,,,,,,PG,Scotty Pippen Jr. (37681230),Scotty Pippen Jr.,37681230,PG/G/UTIL,4000,MEM@PHX 02/11/2025 10:00PM ET,MEM,23.46
-,,,,,,,,,,,,,PF,Ochai Agbaji (37681227),Ochai Agbaji,37681227,PF/F/UTIL,4000,TOR@PHI 02/11/2025 07:00PM ET,TOR,20.77
+,,,,,,,,,,,,,PF,Ochai Agbaji (37681227) (LOCKED),Ochai Agbaji,37681227,PF/F/UTIL,4000,In Progress,TOR,20.77
 ,,,,,,,,,,,,,SF/PF,Gregory Jackson (37681233),Gregory Jackson,37681233,SF/PF/F/UTIL,3900,MEM@PHX 02/11/2025 10:00PM ET,MEM,17
-,,,,,,,,,,,,,PG,Jamal Shead (37681245),Jamal Shead,37681245,PG/G/UTIL,3900,TOR@PHI 02/11/2025 07:00PM ET,TOR,13.86
-,,,,,,,,,,,,,C,Orlando Robinson (37681252),Orlando Robinson,37681252,C/UTIL,3900,TOR@PHI 02/11/2025 07:00PM ET,TOR,8.46
+,,,,,,,,,,,,,PG,Jamal Shead (37681245) (LOCKED),Jamal Shead,37681245,PG/G/UTIL,3900,In Progress,TOR,13.86
+,,,,,,,,,,,,,C,Orlando Robinson (37681252) (LOCKED),Orlando Robinson,37681252,C/UTIL,3900,In Progress,TOR,8.46
 ,,,,,,,,,,,,,C,Mitchell Robinson (37681248),Mitchell Robinson,37681248,C/UTIL,3800,NYK@IND 02/11/2025 07:30PM ET,NYK,0
 ,,,,,,,,,,,,,PF,Marvin Bagley III (37681237),Marvin Bagley III,37681237,PF/F/UTIL,3800,MEM@PHX 02/11/2025 10:00PM ET,MEM,10.16
 ,,,,,,,,,,,,,C,Mason Plumlee (37681250),Mason Plumlee,37681250,C/UTIL,3800,MEM@PHX 02/11/2025 10:00PM ET,PHX,16.74
@@ -94,12 +94,12 @@ Entry ID,Contest Name,Contest ID,Entry Fee,PG,SG,SF,PF,C,G,F,UTIL,,Instructions
 ,,,,,,,,,,,,,PF,Simone Fontecchio (37681310),Simone Fontecchio,37681310,PF/F/UTIL,3200,DET@CHI 02/11/2025 08:00PM ET,DET,12.46
 ,,,,,,,,,,,,,PG/SG,Cameron Payne (37681313),Cameron Payne,37681313,PG/SG/G/UTIL,3200,NYK@IND 02/11/2025 07:30PM ET,NYK,14.86
 ,,,,,,,,,,,,,SG,Damion Lee (37681324),Damion Lee,37681324,SG/G/UTIL,3200,MEM@PHX 02/11/2025 10:00PM ET,PHX,6.05
-,,,,,,,,,,,,,SG,Eric Gordon (37681307),Eric Gordon,37681307,SG/G/UTIL,3200,TOR@PHI 02/11/2025 07:00PM ET,PHI,13.10
-,,,,,,,,,,,,,SF,Jamison Battle (37681321),Jamison Battle,37681321,SF/F/UTIL,3200,TOR@PHI 02/11/2025 07:00PM ET,TOR,9.90
+,,,,,,,,,,,,,SG,Eric Gordon (37681307) (LOCKED),Eric Gordon,37681307,SG/G/UTIL,3200,In Progress,PHI,13.10
+,,,,,,,,,,,,,SF,Jamison Battle (37681321) (LOCKED),Jamison Battle,37681321,SF/F/UTIL,3200,In Progress,TOR,9.90
 ,,,,,,,,,,,,,SF,Ronald Holland II (37681332),Ronald Holland II,37681332,SF/F/UTIL,3100,DET@CHI 02/11/2025 08:00PM ET,DET,12.37
 ,,,,,,,,,,,,,SG/SF,Vince Williams Jr. (37681327),Vince Williams Jr.,37681327,SG/SF/F/G/UTIL,3100,MEM@PHX 02/11/2025 10:00PM ET,MEM,13.85
 ,,,,,,,,,,,,,PG,Monte Morris (37681338),Monte Morris,37681338,PG/G/UTIL,3100,MEM@PHX 02/11/2025 10:00PM ET,PHX,10.17
-,,,,,,,,,,,,,PG,Jared Butler (37681335),Jared Butler,37681335,PG/G/UTIL,3100,TOR@PHI 02/11/2025 07:00PM ET,PHI,13.10
+,,,,,,,,,,,,,PG,Jared Butler (37681335) (LOCKED),Jared Butler,37681335,PG/G/UTIL,3100,In Progress,PHI,13.10
 ,,,,,,,,,,,,,C,Paul Reed (37681341),Paul Reed,37681341,C/UTIL,3000,DET@CHI 02/11/2025 08:00PM ET,DET,12.06
 ,,,,,,,,,,,,,C,Zach Collins (37681353),Zach Collins,37681353,C/UTIL,3000,DET@CHI 02/11/2025 08:00PM ET,CHI,11.80
 ,,,,,,,,,,,,,C,E.J. Liddell (37681407),E.J. Liddell,37681407,C/UTIL,3000,DET@CHI 02/11/2025 08:00PM ET,CHI,5.04
@@ -135,13 +135,13 @@ Entry ID,Contest Name,Contest ID,Entry Fee,PG,SG,SF,PF,C,G,F,UTIL,,Instructions
 ,,,,,,,,,,,,,C,Jay Huff (37681458),Jay Huff,37681458,C/UTIL,3000,MEM@PHX 02/11/2025 10:00PM ET,MEM,13.93
 ,,,,,,,,,,,,,PG,Cam Spencer (37681460),Cam Spencer,37681460,PG/G/UTIL,3000,MEM@PHX 02/11/2025 10:00PM ET,MEM,9.32
 ,,,,,,,,,,,,,PG,Johnny Davis (37681463),Johnny Davis,37681463,PG/G/UTIL,3000,MEM@PHX 02/11/2025 10:00PM ET,MEM,5.47
-,,,,,,,,,,,,,SF/PF,Ricky Council IV (37681355),Ricky Council IV,37681355,SF/PF/F/UTIL,3000,TOR@PHI 02/11/2025 07:00PM ET,PHI,12.43
-,,,,,,,,,,,,,C,Adem Bona (37681359),Adem Bona,37681359,C/UTIL,3000,TOR@PHI 02/11/2025 07:00PM ET,PHI,8.56
-,,,,,,,,,,,,,PG/SG,Kyle Lowry (37681361),Kyle Lowry,37681361,PG/SG/G/UTIL,3000,TOR@PHI 02/11/2025 07:00PM ET,PHI,13.33
-,,,,,,,,,,,,,SF/PF,Chuma Okeke (37681387),Chuma Okeke,37681387,SF/PF/F/UTIL,3000,TOR@PHI 02/11/2025 07:00PM ET,PHI,1.25
-,,,,,,,,,,,,,PG,Jeff Dowtin (37681391),Jeff Dowtin,37681391,PG/G/UTIL,3000,TOR@PHI 02/11/2025 07:00PM ET,PHI,8.29
-,,,,,,,,,,,,,PG,Jared McCain (37681394),Jared McCain,37681394,PG/G/UTIL,3000,TOR@PHI 02/11/2025 07:00PM ET,PHI,23.94
-,,,,,,,,,,,,,SG,Garrett Temple (37681441),Garrett Temple,37681441,SG/G/UTIL,3000,TOR@PHI 02/11/2025 07:00PM ET,TOR,3.21
-,,,,,,,,,,,,,C,Ulrich Chomche (37681444),Ulrich Chomche,37681444,C/UTIL,3000,TOR@PHI 02/11/2025 07:00PM ET,TOR,2.42
-,,,,,,,,,,,,,PG/SG,AJ Lawson (37681446),AJ Lawson,37681446,PG/SG/G/UTIL,3000,TOR@PHI 02/11/2025 07:00PM ET,TOR,3.94
-,,,,,,,,,,,,,C,P.J. Tucker (37681450),P.J. Tucker,37681450,C/UTIL,3000,TOR@PHI 02/11/2025 07:00PM ET,TOR,0
+,,,,,,,,,,,,,SF/PF,Ricky Council IV (37681355) (LOCKED),Ricky Council IV,37681355,SF/PF/F/UTIL,3000,In Progress,PHI,12.43
+,,,,,,,,,,,,,C,Adem Bona (37681359) (LOCKED),Adem Bona,37681359,C/UTIL,3000,In Progress,PHI,8.56
+,,,,,,,,,,,,,PG/SG,Kyle Lowry (37681361) (LOCKED),Kyle Lowry,37681361,PG/SG/G/UTIL,3000,In Progress,PHI,13.33
+,,,,,,,,,,,,,SF/PF,Chuma Okeke (37681387) (LOCKED),Chuma Okeke,37681387,SF/PF/F/UTIL,3000,In Progress,PHI,1.25
+,,,,,,,,,,,,,PG,Jeff Dowtin (37681391) (LOCKED),Jeff Dowtin,37681391,PG/G/UTIL,3000,In Progress,PHI,8.29
+,,,,,,,,,,,,,PG,Jared McCain (37681394) (LOCKED),Jared McCain,37681394,PG/G/UTIL,3000,In Progress,PHI,23.94
+,,,,,,,,,,,,,SG,Garrett Temple (37681441) (LOCKED),Garrett Temple,37681441,SG/G/UTIL,3000,In Progress,TOR,3.21
+,,,,,,,,,,,,,C,Ulrich Chomche (37681444) (LOCKED),Ulrich Chomche,37681444,C/UTIL,3000,In Progress,TOR,2.42
+,,,,,,,,,,,,,PG/SG,AJ Lawson (37681446) (LOCKED),AJ Lawson,37681446,PG/SG/G/UTIL,3000,In Progress,TOR,3.94
+,,,,,,,,,,,,,C,P.J. Tucker (37681450) (LOCKED),P.J. Tucker,37681450,C/UTIL,3000,In Progress,TOR,0
