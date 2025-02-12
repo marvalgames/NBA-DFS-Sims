@@ -277,6 +277,8 @@ class NbaMInutesPredictions:
 
         return enhanced_df
 
+
+
     def process_excel_data(self):
         # Read from Excel using XWings
 
@@ -412,6 +414,109 @@ class NbaMInutesPredictions:
 
         wb.close()
         app.quit()
+        result_df.to_csv(csv_path, index=False)
+        return result_df
+
+
+    def process_game_logs(self):
+        # Read from Excel using XWings
+
+        time.sleep(1)  # Give Excel a moment to fully initialize
+        # Connect to Excel
+        # excel_path = os.path.join('..', 'dk_import', 'nba - Copy.xlsm')
+        csv_path = os.path.join('..', 'dk_import', 'nba_daily_combined.csv')
+        csv_read = os.path.join('..', 'dk_import', 'nba_boxscores_enhanced.csv')
+
+
+        # Read data
+        # needed_data = {
+        #     'Player': ws.range(f'A2:A{last_row}').value,
+        #     'Team': ws.range(f'B2:B{last_row}').value,
+        #     'Position': ws.range(f'C2:C{last_row}').value,
+        #     'Salary': ws.range(f'D2:D{last_row}').value,
+        #     'Minutes': ws.range(f'E2:E{last_row}').value,
+        #     'Max Minutes': ws.range(f'J2:J{last_row}').value,
+        #     'Projection': ws.range(f'M2:M{last_row}').value,
+        #
+        # }
+
+        needed_data = {}
+
+        df = pd.DataFrame(needed_data)
+
+        # Load your combined DataFrame
+        combined_df = pd.read_csv(csv_read, encoding='utf-8')  # or however you load it
+        result_df = self.merge_latest_records_with_columns(df, combined_df, excel_key='Player',
+                                                      combined_key='PLAYER_NAME', date_column="GAME_DATE")
+        result_df = result_df.rename(columns={'Projection': 'Projected Pts'})
+        # Define the new column order
+        new_column_order = [
+            # Core Player Info
+            'Player', 'Team', 'Position', 'Salary',
+
+            # Minutes Data
+            'Minutes', 'Max Minutes', 'MIN_CUM_AVG', 'MIN_LAST_3_AVG', 'MIN_LAST_5_AVG', 'MIN_LAST_10_AVG',
+            'MIN_TREND', 'MIN_CONSISTENCY', 'MIN_CONSISTENCY_SCORE',
+            'MIN_ABOVE_20', 'MIN_ABOVE_25', 'MIN_ABOVE_30',
+            'MIN_ABOVE_AVG_STREAK',
+
+            'FREQ_ABOVE_20',
+            'FREQ_ABOVE_25',
+            'FREQ_ABOVE_30',
+
+            # DraftKings Scoring
+            'Projected Pts', 'DK', 'DK_CUM_AVG', 'DK_LAST_3_AVG', 'DK_LAST_5_AVG', 'DK_LAST_10_AVG',
+            'DK_TREND', 'DK_TREND_5', 'DK_CONSISTENCY',
+
+            # Key Stats - Recent Averages
+            'PTS_LAST_3_AVG', 'PTS_LAST_5_AVG', 'PTS_LAST_10_AVG',
+            'REB_LAST_3_AVG', 'REB_LAST_5_AVG', 'REB_LAST_10_AVG',
+            'AST_LAST_3_AVG', 'AST_LAST_5_AVG', 'AST_LAST_10_AVG',
+
+            # Cumulative Averages
+            'PTS_CUM_AVG', 'REB_CUM_AVG', 'AST_CUM_AVG',
+
+            # Efficiency Metrics
+            'PTS_PER_MIN', 'REB_PER_MIN', 'AST_PER_MIN',
+            'SCORING_EFFICIENCY', 'RECENT_SCORING_EFF',
+
+            # Shooting Stats
+            'FG_PCT', 'FG3_PCT', 'FT_PCT',
+            'FGM', 'FGA', 'FG3M', 'FG3A', 'FTM', 'FTA',
+
+            # Game Impact Stats
+            'PLUS_MINUS', 'PLUS_MINUS_PER_MIN',
+            'PLUS MINUS_LAST_3_AVG', 'PLUS MINUS_LAST_5_AVG', 'PLUS MINUS_LAST_10_AVG',
+            'PLUS MINUS_CUM_AVG', 'PLUS MINUS_TREND', 'PLUS MINUS_CONSISTENCY',
+
+            # Trend Analysis
+            'PTS_TREND', 'REB_TREND', 'AST_TREND',
+            'PTS_CONSISTENCY', 'REB_CONSISTENCY', 'AST_CONSISTENCY',
+
+            # Team Context
+            'TEAM_MIN_PERCENTAGE', 'TEAM_PROJ_RANK',
+            'PTS_VS_TEAM_AVG', 'REB_VS_TEAM_AVG', 'AST_VS_TEAM_AVG', 'MIN_VS_TEAM_AVG',
+
+            # Role Analysis
+            'ROLE_CHANGE_3_10', 'ROLE_CHANGE_5_10',
+            'IS_TOP_3_PROJ', 'LOW_MIN_TOP_PLAYER',
+
+            # Game Info
+            'GAME_DATE', 'IS_HOME', 'IS_B2B', 'DAYS_REST',
+            'MATCHUP', 'WL', 'BLOWOUT_GAME',
+
+            # Additional Stats
+            'STL', 'BLK', 'TOV', 'OREB', 'DREB', 'PF',
+
+            # Metadata
+            'PLAYER_ID', 'TEAM_ID', 'TEAM_NAME', 'GAME_ID', 'SEASON_ID',
+            'VIDEO_AVAILABLE'
+
+        ]
+
+        # Reorder the DataFrame
+        result_df = result_df[new_column_order]
+
         result_df.to_csv(csv_path, index=False)
         return result_df
 
