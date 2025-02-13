@@ -7,6 +7,7 @@ import os
 
 import numpy as np
 import requests
+import unicodedata
 
 # In your MainApp class, add these imports at the top:
 from PyQt6.QtCore import QThread, pyqtSignal, Qt
@@ -139,7 +140,7 @@ class ImportTool(QMainWindow):
         viewer_group = QGroupBox("Data Viewer")
         viewer_layout = QVBoxLayout()
         self.data_selector = QComboBox()
-        self.data_selector.addItems(['BBM', 'FTA', 'DK Entries', 'Darko', 'Team Stats', 'Odds'])
+        self.data_selector.addItems(['BBM', 'FTA', 'DK Entries', 'Darko', 'Team Stats', 'Odds', 'SOG'])
         self.data_selector.currentTextChanged.connect(self.on_data_selection_changed)
         viewer_layout.addWidget(self.data_selector)
         viewer_group.setLayout(viewer_layout)
@@ -294,6 +295,48 @@ class ImportTool(QMainWindow):
         # Create a copy to avoid modifying the original
         df = df.copy()
 
+        # Dictionary for special capitalization cases
+        special_capitalization = {
+            # Mc/Mac names
+            "mcdaniels": "McDaniels",
+            "mcconnell": "McConnell",
+            "mccollum": "McCollum",
+            "mcgee": "McGee",
+            "mcdermott": "McDermott",
+            "mclemore": "McLemore",
+
+            # De/Le names
+            "derozan": "DeRozan",
+            "deandre": "DeAndre",
+            "demarcus": "DeMarcus",
+            "deaaron": "DeAaron",
+            "devonte": "DeVonte",
+            "deanthony": "DeAnthony",
+            "deangelis": "DeAngelis",
+            "dejounte": "DeJounte",
+            "demarre": "DeMarre",
+            "derozan": "DeRozan",
+
+            # La/Le names
+            "lavine": "LaVine",
+            "lebron": "LeBron",
+            "levert": "LeVert",
+            "lamelo": "LaMelo",
+            "lonzo": "Lonzo",
+            "luca": "Luca",
+
+            # D' names
+            "dangelo": "D'Angelo",
+
+            # Other special cases
+            "ayton": "Ayton",
+            "okoro": "Okoro",
+            "okogie": "Okogie",
+            "anunoby": "Anunoby",
+            "dosunmu": "Dosunmu"
+        }
+
+        # Common name mappings for different variations
         name_mappings = {
             "Herb Jones": "Herbert Jones",
             "GG Jackson": "Gregory Jackson",
@@ -318,9 +361,35 @@ class ImportTool(QMainWindow):
             "Trey Murphy III": "Trey Murphy",
             "Wendell Moore Jr": "Wendell Moore",
             "Vernon Carey Jr": "Vernon Carey",
-            # ... your existing mappings ...
-            "Kristaps PorziÅ†Ä£is": "Kristaps Porzingis"  # Add this specific mapping if needed
+            "Kristaps Porzingis": "Kristaps Porzingis",
+            "PJ Washington": "P.J. Washington",
+            "RJ Barrett": "R.J. Barrett",
+            "OG Anunoby": "O.G. Anunoby",
+            "AJ Griffin": "A.J. Griffin",
+            "Alperen Sengun": "Alperen Sengun",
+            "Dennis Schroder": "Dennis Schroder",
+            "Dennis Schröder": "Dennis Schroder"
         }
+
+        def fix_internal_caps(name):
+            if not isinstance(name, str):
+                return name
+
+            # Split the name into parts
+            name_parts = name.split()
+
+            # Process each part of the name
+            fixed_parts = []
+            for part in name_parts:
+                part_lower = part.lower()
+                # Check if this part needs special capitalization
+                if part_lower in special_capitalization:
+                    fixed_parts.append(special_capitalization[part_lower])
+                else:
+                    # Default capitalization (first letter capital)
+                    fixed_parts.append(part.capitalize())
+
+            return " ".join(fixed_parts)
 
         def remove_accents(text):
             if not isinstance(text, str):
@@ -360,7 +429,11 @@ class ImportTool(QMainWindow):
             if isinstance(x, str) else x
         )
 
+        # Apply special capitalization fixes
+        df[name_column] = df[name_column].apply(fix_internal_caps)
+
         return df
+
 
     def merge_latest_records_with_columns(self, excel_df, combined_df,
                                           excel_key='Player',
@@ -552,51 +625,6 @@ class ImportTool(QMainWindow):
         return result_df
 
 
-    def merge_three_dataframes(self):
-        """
-        Merges SOG, BBM, and game logs DataFrames based on standardized player names.
-        """
-        # Step 1: Load the DataFrames
-        sog_df = self.import_sog_projections()
-        bbm_df = self.import_bbm()
-        game_logs_df = self.process_game_logs()
-
-        # Step 2: Select Relevant Columns
-        # Selecting specific columns from SOG
-        sog_df = sog_df[['Position', 'Name', 'Salary', 'TeamAbbrev']]
-        bbm_df = bbm_df[['Name', 'Minutes']]  # Selecting only Name and Minutes from BBM
-        # game_logs_df: Use all columns as specified
-
-        # Step 3: Standardize Player Names
-        # Create a standardized column 'PLAYER_NAME' for all three DataFrames
-        sog_df = self.standardize_player_names(sog_df, 'Name')
-        sog_df.rename(columns={'Name': 'PLAYER_NAME'}, inplace=True)
-
-        bbm_df = self.standardize_player_names(bbm_df, 'Name')
-        bbm_df.rename(columns={'Name': 'PLAYER_NAME'}, inplace=True)
-
-        game_logs_df = self.standardize_player_names(game_logs_df, 'Player')  # Assuming player names are in 'Player'
-        game_logs_df.rename(columns={'Player': 'PLAYER_NAME'}, inplace=True)
-
-        # Step 4: Merge DataFrames
-        # Merge game_logs_df with sog_df and then with bbm_df on 'PLAYER_NAME'.
-        merged_df = pd.merge(
-            game_logs_df,  # Base DataFrame
-            sog_df[['PLAYER_NAME', 'Position', 'Salary', 'TeamAbbrev']],
-            on='PLAYER_NAME',
-            how='left'  # Keep all rows from game_logs_df
-        )
-
-        merged_df = pd.merge(
-            merged_df,
-            bbm_df[['PLAYER_NAME', 'Minutes']],
-            on='PLAYER_NAME',
-            how='left'  # Keep all rows from the previous merge
-        )
-
-        # Step 5: Return or Save the Final Merged DataFrame
-        return merged_df
-
 
     def on_data_selection_changed(self, selection):
         if selection in self.dataframes:
@@ -664,7 +692,6 @@ class ImportTool(QMainWindow):
     def expand_game_logs(self, progress_print=print):
         predictions = NbaMInutesPredictions()
         predictions.nba_enhance_game_logs()
-        self.merge_three_dataframes()
         #predictions.process_game_logs()
         print('Completed')
         progress_print("Done expanding game logs.")
@@ -769,6 +796,67 @@ class ImportTool(QMainWindow):
         except Exception as e:
             progress_print(f"Error in Tram Stats Advanced import: {str(e)}")
             raise
+
+
+
+    def merge_dataframes(self, progress_print=print):
+        """
+        Merges DK, BBM, FTA, DARKO and game logs DataFrames based on standardized player names.
+        """
+        # Step 1: Load the DataFrames
+        dk_df = self.dataframes['DK Entries']
+        bbm_df = self.dataframes['BBM']
+        fta_df = self.dataframes['FTA']
+        #game_logs_df = self.process_game_logs()
+
+        # Step 2: Select Relevant Columns
+        # Selecting specific columns from SOG
+        # sog_df = sog_df[['Position', 'Name', 'Salary', 'TeamAbbrev']]
+        bbm_df = bbm_df[['PLAYER_NAME', 'minutes', 'BB_PROJECTION']]  # Selecting only Name and Minutes from BBM
+        fta_df = fta_df[['PLAYER_NAME', 'Minutes', 'Projection']]  # Selecting only Name and Minutes from BBM
+        # game_logs_df: Use all columns as specified
+
+        # Step 3: Standardize Player Names
+        # Create a standardized column 'PLAYER_NAME' for all three DataFrames
+
+        #game_logs_df = self.standardize_player_names(game_logs_df, 'Player')  # Assuming player names are in 'Player'
+
+        # Step 4: Merge DataFrames
+        # Merge game_logs_df with sog_df and then with bbm_df on 'PLAYER_NAME'.
+        data = pd.merge(
+            dk_df,  # Base DataFrame
+            bbm_df,
+            on='PLAYER_NAME',
+            how='left'  # Keep all rows from game_logs_df
+        )
+
+        data = pd.merge(
+             data,
+             fta_df,
+             on='PLAYER_NAME',
+             how='left'  # Keep all rows from the previous merge
+        )
+
+        # Verify we have data
+        if data.empty:
+            raise ValueError("No data was read from the SOG CSV file")
+
+        progress_print(f"Successfully read {len(data)} rows of data")
+
+        data.rename(columns={'Minutes': 'FTA Minutes'}, inplace=True)
+
+
+        # Store in dataframes dictionary
+        self.dataframes['SOG'] = data
+
+        # Update display if FTA is currently selected
+        if self.data_selector.currentText() == 'SOG':
+            self.display_dataframe(data)
+
+        progress_print("SOG import completed successfully")
+        return data
+
+
 
 
     def import_bbm(self, progress_print=print):
@@ -1280,6 +1368,7 @@ class ImportTool(QMainWindow):
         self.import_dk_entries(progress_print=progress_print)
         self.import_darko(progress_print=progress_print)
         self.import_team_stats(progress_print=progress_print)
+        self.merge_dataframes(progress_print=progress_print)
         progress_print("All imports completed.")
 
     # Post-process predictions to apply the 1% ownership cap for low minutes players
