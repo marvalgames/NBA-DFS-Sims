@@ -139,7 +139,7 @@ class ImportTool(QMainWindow):
         viewer_group = QGroupBox("Data Viewer")
         viewer_layout = QVBoxLayout()
         self.data_selector = QComboBox()
-        self.data_selector.addItems(['BBM', 'FTA', 'DK Entries', 'Darko', 'Team Stats'])
+        self.data_selector.addItems(['BBM', 'FTA', 'DK Entries', 'Darko', 'Team Stats', 'Odds'])
         self.data_selector.currentTextChanged.connect(self.on_data_selection_changed)
         viewer_layout.addWidget(self.data_selector)
         viewer_group.setLayout(viewer_layout)
@@ -283,6 +283,84 @@ class ImportTool(QMainWindow):
         print('Completed')
 
         progress_print("Done downloading data.")
+
+    def standardize_player_names(self, df, name_column):
+        """
+        Standardizes player names according to specific rules
+        """
+        if not isinstance(df, pd.DataFrame):
+            return df
+
+        # Create a copy to avoid modifying the original
+        df = df.copy()
+
+        name_mappings = {
+            "Herb Jones": "Herbert Jones",
+            "GG Jackson": "Gregory Jackson",
+            "G.G. Jackson": "Gregory Jackson",
+            "Alexandre Sarr": "Alex Sarr",
+            "Yongxi Cui": "Cui Yongxi",
+            "Nicolas Claxton": "Nic Claxton",
+            "Cameron Johnson": "Cam Johnson",
+            "Kenyon Martin Jr": "KJ Martin",
+            "Ronald Holland": "Ron Holland",
+            "Nah'Shon Hyland": "Bones Hyland",
+            "Elijah Harkless": "EJ Harkless",
+            "Cameron Payne": "Cam Payne",
+            "Bub Carrington": "Carlton Carrington",
+            "Jabari Smith Jr": "Jabari Smith",
+            "Gary Trent Jr": "Gary Trent",
+            "Tim Hardaway Jr": "Tim Hardaway",
+            "Michael Porter Jr": "Michael Porter",
+            "Kelly Oubre Jr": "Kelly Oubre",
+            "Patrick Baldwin Jr": "Patrick Baldwin",
+            "Kevin Knox II": "Kevin Knox",
+            "Trey Murphy III": "Trey Murphy",
+            "Wendell Moore Jr": "Wendell Moore",
+            "Vernon Carey Jr": "Vernon Carey",
+            # ... your existing mappings ...
+            "Kristaps PorziÅ†Ä£is": "Kristaps Porzingis"  # Add this specific mapping if needed
+        }
+
+        def remove_accents(text):
+            if not isinstance(text, str):
+                return text
+            try:
+                # Normalize to decomposed form (separate letters from accents)
+                nfkd_form = unicodedata.normalize('NFKD', text)
+                # Remove non-ASCII characters (like accents)
+                return "".join([c for c in nfkd_form if not unicodedata.combining(c)])
+            except:
+                # Fallback method if Unicode normalization fails
+                accents = "áàâãäéèêëíìîïóòôõöúùûüýÿÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÝćčćdšžCCÐŠŽūÅ†Ä£"
+                regular = "aaaaaeeeeiiiiooooouuuuyyAAAAAEEEEIIIIOOOOOUUUUYcccdszCCDSZuAng"
+
+                for accent, reg in zip(accents, regular):
+                    text = text.replace(accent, reg)
+                return text
+
+        # Apply standardization to the name column
+        df[name_column] = df[name_column].apply(lambda x: x if not isinstance(x, str) else x.strip())
+
+        # Apply name mappings
+        for old_name, new_name in name_mappings.items():
+            df[name_column] = df[name_column].apply(
+                lambda x: new_name if isinstance(x, str) and x.strip() == old_name else x
+            )
+
+        # Remove accents and special characters
+        df[name_column] = df[name_column].apply(
+            lambda x: remove_accents(x) if isinstance(x, str) else x
+        )
+
+        # Remove suffixes and special characters
+        df[name_column] = df[name_column].apply(
+            lambda x: x.replace(" Jr", "").replace("III", "").replace("II", "").replace("'", "").replace(".",
+                                                                                                         "").strip()
+            if isinstance(x, str) else x
+        )
+
+        return df
 
     def merge_latest_records_with_columns(self, excel_df, combined_df,
                                           excel_key='Player',
@@ -519,511 +597,6 @@ class ImportTool(QMainWindow):
         # Step 5: Return or Save the Final Merged DataFrame
         return merged_df
 
-    def expand_game_logs(self, progress_print=print):
-
-        predictions = NbaMInutesPredictions()
-        predictions.nba_enhance_game_logs()
-        self.merge_three_dataframes()
-        #predictions.process_game_logs()
-        print('Completed')
-        progress_print("Done expanding game logs.")
-
-
-
-
-
-
-    def import_team_stats(self, progress_print=print):
-        try:
-            progress_print("Fetching team advanced stats data...")
-            season = '2024-25'
-            season_type = 'Regular Season'
-            df = self.fetch_advanced_team_stats(season, season_type)
-
-            team_stats_advanced_file = self.import_folder / "advanced.csv"
-            df.to_csv(team_stats_advanced_file, index=False)
-
-            if not team_stats_advanced_file.exists():
-                raise FileNotFoundError(f"team_stats_advanced.csv file not found at {team_stats_advanced_file}")
-
-            progress_print(f"Reading file: {team_stats_advanced_file}")
-            data_advanced = pd.read_csv(team_stats_advanced_file)
-
-            progress_print("Fetching traditional stats data...")
-            season = '2024-25'
-            season_type = 'Regular Season'
-
-            team_stats = leaguedashteamstats.LeagueDashTeamStats(
-                season=season,
-                season_type_all_star=season_type,
-                measure_type_detailed_defense='Base',
-                per_mode_detailed='Totals'
-            )
-            df = team_stats.get_data_frames()[0]
-
-            team_stats_basic_file = self.import_folder / "traditional.csv"
-            df.to_csv(team_stats_basic_file, index=False)
-
-            if not team_stats_basic_file.exists():
-                raise FileNotFoundError(f"team_stats_traditional.csv file not found at {team_stats_basic_file}")
-
-            progress_print(f"Reading file: {team_stats_basic_file}")
-            data_traditional = pd.read_csv(team_stats_basic_file)
-
-            # After reading both CSV files, add this code:
-            merged_df = pd.merge(
-                data_advanced,
-                data_traditional,
-                on='TEAM_ID',  # Replace with the actual common column name
-                how='inner'  # You can use 'left', 'right', or 'outer' depending on your needs
-            )
-
-            # Then update the rest of the code to use merged_df instead of data
-            if merged_df.empty:
-                raise ValueError("No data was read from the merged Team Stats CSV files")
-
-            progress_print(f"Successfully read {len(merged_df)} rows of merged data")
-
-            # Store in dataframes dictionary
-            self.dataframes['Team Stats'] = merged_df
-
-            # Update display if Team Stats is currently selected
-            if self.data_selector.currentText() == 'Team Stats':
-                self.display_dataframe(merged_df)
-
-            progress_print("Team Stats import completed successfully")
-            return merged_df
-
-        except Exception as e:
-            progress_print(f"Error in Tram Stats Advanced import: {str(e)}")
-            raise
-
-
-    def import_bbm(self, progress_print=print):
-        try:
-            progress_print("Starting BBM import...")
-
-            # Use the correct file path
-            bbm_file = self.import_folder / "bbm.csv"
-
-            if not bbm_file.exists():
-                raise FileNotFoundError(f"bbm.csv file not found at {bbm_file}")
-
-            progress_print(f"Reading file: {bbm_file}")
-            data = pd.read_csv(bbm_file)
-
-            # Verify we have data
-            if data.empty:
-                raise ValueError("No data was read from the BBM CSV file")
-
-            progress_print(f"Successfully read {len(data)} rows of data")
-
-            # Store in dataframes dictionary
-            self.dataframes['BBM'] = data
-
-            # Update display if BBM is currently selected
-            if self.data_selector.currentText() == 'BBM':
-                self.display_dataframe(data)
-
-            progress_print("BBM import completed successfully")
-            return data
-
-        except Exception as e:
-            progress_print(f"Error in BBM import: {str(e)}")
-            raise
-
-    def import_fta_entries(self, progress_print=print):
-        try:
-            progress_print("Starting FTA import...")
-
-            # Use the correct file path
-            fta_file = self.import_folder / "fta.csv"
-
-            if not fta_file.exists():
-                raise FileNotFoundError(f"fta.csv file not found at {fta_file}")
-
-            progress_print(f"Reading file: {fta_file}")
-            data = pd.read_csv(fta_file)
-
-            # Verify we have data
-            if data.empty:
-                raise ValueError("No data was read from the FTA CSV file")
-
-            progress_print(f"Successfully read {len(data)} rows of data")
-
-            # Store in dataframes dictionary
-            self.dataframes['FTA'] = data
-
-            # Update display if FTA is currently selected
-            if self.data_selector.currentText() == 'FTA':
-                self.display_dataframe(data)
-
-            progress_print("FTA import completed successfully")
-            return data
-
-        except Exception as e:
-            progress_print(f"Error in FTA import: {str(e)}")
-            raise
-
-
-    def import_sog_projections(self, progress_print=print):
-        try:
-            progress_print("Starting SOG Projections import...")
-
-            # Use the correct file path
-            entries_file = self.import_folder / "entries.csv"
-
-            if not entries_file.exists():
-                raise FileNotFoundError(f"entries.csv file not found at {entries_file}")
-
-            progress_print(f"Reading file: {entries_file}")
-            # Read specific columns for SOG projections
-            columns_to_read = list(range(13, 22))
-            data = pd.read_csv(
-                entries_file,
-                skiprows=7,
-                usecols=columns_to_read,
-                header=0
-            )
-
-            # Verify we have data
-            if data.empty:
-                raise ValueError("No data was read from the SOG Projections CSV file")
-
-            progress_print(f"Successfully read {len(data)} rows of data")
-
-            # Store in dataframes dictionary
-            self.dataframes['SOG'] = data
-
-            # Update display if SOG is currently selected
-            if self.data_selector.currentText() == 'SOG':
-                self.display_dataframe(data)
-
-            progress_print("SOG Projections import completed successfully")
-            return data
-
-        except Exception as e:
-            progress_print(f"Error in SOG Projections import: {str(e)}")
-            raise
-
-    def import_darko(self, progress_print=print):
-        try:
-            progress_print("Starting Darko import...")
-
-            # Use the correct file path
-            darko_file = self.import_folder / "darko.csv"
-
-            if not darko_file.exists():
-                raise FileNotFoundError(f"darko.csv file not found at {darko_file}")
-
-            progress_print(f"Reading file: {darko_file}")
-            data = pd.read_csv(darko_file)
-
-            # Verify we have data
-            if data.empty:
-                raise ValueError("No data was read from the Darko CSV file")
-
-            progress_print(f"Successfully read {len(data)} rows of data")
-
-            # Store in dataframes dictionary
-            self.dataframes['Darko'] = data
-
-            # Update display if Darko is currently selected
-            if self.data_selector.currentText() == 'Darko':
-                self.display_dataframe(data)
-
-            progress_print("Darko import completed successfully")
-            return data
-
-        except Exception as e:
-            progress_print(f"Error in Darko import: {str(e)}")
-            raise
-
-
-    def import_sog_projections(self, progress_print=print):
-        try:
-            progress_print("Starting SOG Projections import...")
-
-            # Use the correct file path
-            entries_file = self.import_folder / "entries.csv"
-
-            if not entries_file.exists():
-                raise FileNotFoundError(f"entries.csv file not found at {entries_file}")
-
-            progress_print(f"Reading file: {entries_file}")
-            # Read specific columns for SOG projections
-            columns_to_read = list(range(13, 22))
-            data = pd.read_csv(
-                entries_file,
-                skiprows=7,
-                usecols=columns_to_read,
-                header=0
-            )
-
-            # Verify we have data
-            if data.empty:
-                raise ValueError("No data was read from the SOG Projections CSV file")
-
-            progress_print(f"Successfully read {len(data)} rows of data")
-
-            # Store in dataframes dictionary
-            self.dataframes['SOG'] = data
-
-            # Update display if SOG is currently selected
-            if self.data_selector.currentText() == 'SOG':
-                self.display_dataframe(data)
-
-            progress_print("SOG Projections import completed successfully")
-            return data
-
-        except Exception as e:
-            progress_print(f"Error in SOG Projections import: {str(e)}")
-            raise
-
-    def import_darko(self, progress_print=print):
-        try:
-            progress_print("Starting Darko import...")
-
-            # Use the correct file path
-            darko_file = self.import_folder / "darko.csv"
-
-            if not darko_file.exists():
-                raise FileNotFoundError(f"darko.csv file not found at {darko_file}")
-
-            progress_print(f"Reading file: {darko_file}")
-            data = pd.read_csv(darko_file)
-
-            # Verify we have data
-            if data.empty:
-                raise ValueError("No data was read from the Darko CSV file")
-
-            progress_print(f"Successfully read {len(data)} rows of data")
-
-            # Store in dataframes dictionary
-            self.dataframes['Darko'] = data
-
-            # Update display if Darko is currently selected
-            if self.data_selector.currentText() == 'Darko':
-                self.display_dataframe(data)
-
-            progress_print("Darko import completed successfully")
-            return data
-
-        except Exception as e:
-            progress_print(f"Error in Darko import: {str(e)}")
-            raise
-
-    def import_last10(self, progress_print=print):
-        try:
-            progress_print("Starting Last 10 import...")
-
-            # Use the correct file path
-            last10_file = self.import_folder / "last10.csv"
-
-            if not last10_file.exists():
-                raise FileNotFoundError(f"last10.csv file not found at {last10_file}")
-
-            progress_print(f"Reading file: {last10_file}")
-            data = pd.read_csv(last10_file)
-
-            # Verify we have data
-            if data.empty:
-                raise ValueError("No data was read from the Last 10 CSV file")
-
-            progress_print(f"Successfully read {len(data)} rows of data")
-
-            # Store in dataframes dictionary
-            self.dataframes['Last 10'] = data
-
-            # Update display if Last 10 is currently selected
-            if self.data_selector.currentText() == 'Last 10':
-                self.display_dataframe(data)
-
-            progress_print("Last 10 import completed successfully")
-            return data
-
-        except Exception as e:
-            progress_print(f"Error in Last 10 import: {str(e)}")
-            raise
-
-    def import_dk_entries(self, progress_print=print):
-        try:
-            progress_print("Importing DK Entries...")
-
-            # Set up file paths
-            entries_file = self.import_folder / "entries.csv"
-            output_csv_file = self.data_folder / "DKSalaries.csv"
-
-            if not entries_file.exists():
-                raise FileNotFoundError(f"entries.csv file not found at {entries_file}")
-
-            # Read CSV data with specific columns
-            progress_print("Reading CSV data...")
-            columns_to_read = list(range(13, 22))
-            try:
-                data = pd.read_csv(
-                    entries_file,
-                    skiprows=7,
-                    usecols=columns_to_read,
-                    header=0
-                )
-            except Exception as e:
-                raise ValueError(f"Error reading CSV: {str(e)}")
-
-            # Verify we have data
-            if data.empty:
-                raise ValueError("No data was read from the CSV file")
-
-            progress_print(f"Successfully read {len(data)} rows of data")
-
-            # Write to output CSV
-            progress_print("Writing data to output CSV...")
-            try:
-                data.to_csv(output_csv_file, index=False)
-                progress_print(f"Data written to '{output_csv_file}'")
-            except Exception as e:
-                raise ValueError(f"Error writing output CSV: {str(e)}")
-
-            # Store in dataframes dictionary
-            self.dataframes['DK Entries'] = data
-
-            # Update display if DK Entries is currently selected
-            if self.data_selector.currentText() == 'DK Entries':
-                self.display_dataframe(data)
-
-            progress_print("DK Entries import completed successfully")
-            return data
-
-        except Exception as e:
-            progress_print(f"Error in DK Entries import: {str(e)}")
-            raise
-
-    def import_darko(self, progress_print=print):
-        try:
-            progress_print("Starting Darko import...")
-
-            # Set up file paths
-            darko_file = self.import_folder / "darko.csv"
-
-            if not darko_file.exists():
-                raise FileNotFoundError(f"darko.csv file not found at {darko_file}")
-
-            # Read CSV data
-            progress_print("Reading Darko CSV data...")
-            try:
-                # Define exact column names
-                expected_columns = [
-                    'nba_id',
-                    'Team',
-                    'Player',
-                    'Experience',
-                    'DPM',
-                    'DPM Improvement',
-                    'O-DPM',
-                    'D-DPM',
-                    'Box DPM',
-                    'Box O-DPM',
-                    'Box D-DPM',
-                    'FGA/100',
-                    'FG2%',
-                    'FG3A/100',
-                    'FG3%',
-                    'FG3ARate%',
-                    'RimFGA/100',
-                    'RimFG%',
-                    'FTA/100',
-                    'FT%',
-                    'FTARate%',
-                    'USG%',
-                    'REB/100',
-                    'AST/100',
-                    'AST%',
-                    'BLK/100',
-                    'BLK%',
-                    'STL/100',
-                    'STL%',
-                    'TOV/100'
-                ]
-
-                data = pd.read_csv(darko_file)
-
-                # Verify we have data
-                if data.empty:
-                    raise ValueError("No data was read from the Darko CSV file")
-
-                progress_print(f"Successfully read {len(data)} rows of Darko data")
-
-                # Verify columns match expected format
-                if set(data.columns) != set(expected_columns):
-                    progress_print("Warning: Columns don't match expected format")
-                    progress_print(f"Expected columns: {expected_columns}")
-                    progress_print(f"Found columns: {list(data.columns)}")
-
-                def process_darko_data(df):
-                    processed_df = df.copy()
-
-                    # Convert numeric columns
-                    percentage_columns = [
-                        'FG2%', 'FG3%', 'FG3ARate%', 'RimFG%', 'FT%',
-                        'FTARate%', 'USG%', 'AST%', 'BLK%', 'STL%'
-                    ]
-
-                    rate_columns = [
-                        'FGA/100', 'FG3A/100', 'RimFGA/100', 'FTA/100',
-                        'REB/100', 'AST/100', 'BLK/100', 'STL/100', 'TOV/100'
-                    ]
-
-                    dpm_columns = [
-                        'DPM', 'DPM Improvement', 'O-DPM', 'D-DPM',
-                        'Box DPM', 'Box O-DPM', 'Box D-DPM'
-                    ]
-
-                    # Convert percentages
-                    for col in percentage_columns:
-                        if col in processed_df.columns:
-                            processed_df[col] = pd.to_numeric(processed_df[col], errors='coerce')
-
-                    # Convert rate stats
-                    for col in rate_columns:
-                        if col in processed_df.columns:
-                            processed_df[col] = pd.to_numeric(processed_df[col], errors='coerce')
-
-                    # Convert DPM stats
-                    for col in dpm_columns:
-                        if col in processed_df.columns:
-                            processed_df[col] = pd.to_numeric(processed_df[col], errors='coerce')
-
-                    # Convert Experience to numeric
-                    processed_df['Experience'] = pd.to_numeric(processed_df['Experience'], errors='coerce')
-
-                    # Sort by DPM descending
-                    processed_df = processed_df.sort_values('DPM', ascending=False)
-
-                    return processed_df
-
-                # Apply processing
-                data = process_darko_data(data)
-
-                # Store in dataframes dictionary
-                self.dataframes['Darko'] = data
-
-                # Update display if Darko is currently selected
-                if self.data_selector.currentText() == 'Darko':
-                    self.display_dataframe(data)
-
-                progress_print("Darko import completed successfully")
-                return data
-
-            except pd.errors.EmptyDataError:
-                raise ValueError("The Darko CSV file is empty")
-            except Exception as e:
-                raise ValueError(f"Error reading Darko CSV: {str(e)}")
-
-        except Exception as e:
-            progress_print(f"Error in Darko import: {str(e)}")
-            raise
-
-
 
     def on_data_selection_changed(self, selection):
         if selection in self.dataframes:
@@ -1088,7 +661,314 @@ class ImportTool(QMainWindow):
             except Exception as e:
                 print(f"Error displaying dataframe: {e}")
 
+    def expand_game_logs(self, progress_print=print):
+        predictions = NbaMInutesPredictions()
+        predictions.nba_enhance_game_logs()
+        self.merge_three_dataframes()
+        #predictions.process_game_logs()
+        print('Completed')
+        progress_print("Done expanding game logs.")
 
+    def import_team_stats(self, progress_print=print):
+        team_abbr_dict = {
+            'Atlanta Hawks': 'ATL',
+            'Boston Celtics': 'BOS',
+            'Brooklyn Nets': 'BKN',
+            'Charlotte Hornets': 'CHA',
+            'Chicago Bulls': 'CHI',
+            'Cleveland Cavaliers': 'CLE',
+            'Dallas Mavericks': 'DAL',
+            'Denver Nuggets': 'DEN',
+            'Detroit Pistons': 'DET',
+            'Golden State Warriors': 'GSW',
+            'Houston Rockets': 'HOU',
+            'Indiana Pacers': 'IND',
+            'LA Clippers': 'LAC',
+            'Los Angeles Lakers': 'LAL',
+            'Memphis Grizzlies': 'MEM',
+            'Miami Heat': 'MIA',
+            'Milwaukee Bucks': 'MIL',
+            'Minnesota Timberwolves': 'MIN',
+            'New Orleans Pelicans': 'NOP',
+            'New York Knicks': 'NYK',
+            'Oklahoma City Thunder': 'OKC',
+            'Orlando Magic': 'ORL',
+            'Philadelphia 76ers': 'PHI',
+            'Phoenix Suns': 'PHX',
+            'Portland Trail Blazers': 'POR',
+            'Sacramento Kings': 'SAC',
+            'San Antonio Spurs': 'SAS',
+            'Toronto Raptors': 'TOR',
+            'Utah Jazz': 'UTA',
+            'Washington Wizards': 'WAS'
+        }
+
+        try:
+            progress_print("Fetching team advanced stats data...")
+            season = '2024-25'
+            season_type = 'Regular Season'
+            df = self.fetch_advanced_team_stats(season, season_type)
+
+            team_stats_advanced_file = self.import_folder / "advanced.csv"
+            df.to_csv(team_stats_advanced_file, index=False)
+
+            if not team_stats_advanced_file.exists():
+                raise FileNotFoundError(f"team_stats_advanced.csv file not found at {team_stats_advanced_file}")
+
+            progress_print(f"Reading file: {team_stats_advanced_file}")
+            data_advanced = pd.read_csv(team_stats_advanced_file)
+
+            progress_print("Fetching traditional stats data...")
+            season = '2024-25'
+            season_type = 'Regular Season'
+
+            team_stats = leaguedashteamstats.LeagueDashTeamStats(
+                season=season,
+                season_type_all_star=season_type,
+                measure_type_detailed_defense='Base',
+                per_mode_detailed='Totals'
+            )
+            df = team_stats.get_data_frames()[0]
+
+            team_stats_basic_file = self.import_folder / "traditional.csv"
+            df.to_csv(team_stats_basic_file, index=False)
+
+            if not team_stats_basic_file.exists():
+                raise FileNotFoundError(f"team_stats_traditional.csv file not found at {team_stats_basic_file}")
+
+            progress_print(f"Reading file: {team_stats_basic_file}")
+            data_traditional = pd.read_csv(team_stats_basic_file)
+
+            # After reading both CSV files, add this code:
+            merged_df = pd.merge(
+                data_advanced,
+                data_traditional,
+                on='TEAM_ID',  # Replace with the actual common column name
+                how='inner'  # You can use 'left', 'right', or 'outer' depending on your needs
+            )
+
+            # Then update the rest of the code to use merged_df instead of data
+            if merged_df.empty:
+                raise ValueError("No data was read from the merged Team Stats CSV files")
+
+            progress_print(f"Successfully read {len(merged_df)} rows of merged data")
+
+            # Add the Abbr column based on the Team column
+            merged_df['Abbr'] = merged_df['TEAM_NAME_x'].map(team_abbr_dict)
+
+            # Store in dataframes dictionary
+            self.dataframes['Team Stats'] = merged_df
+
+            # Update display if Team Stats is currently selected
+            if self.data_selector.currentText() == 'Team Stats':
+                self.display_dataframe(merged_df)
+
+            progress_print("Team Stats import completed successfully")
+            return merged_df
+
+        except Exception as e:
+            progress_print(f"Error in Tram Stats Advanced import: {str(e)}")
+            raise
+
+
+    def import_bbm(self, progress_print=print):
+        try:
+            progress_print("Starting BBM import...")
+
+            # Use the correct file path
+            bbm_file = self.import_folder / "bbm.csv"
+
+            if not bbm_file.exists():
+                raise FileNotFoundError(f"bbm.csv file not found at {bbm_file}")
+
+            progress_print(f"Reading file: {bbm_file}")
+            data = pd.read_csv(bbm_file, index_col=False)
+
+            # Verify we have data
+            if data.empty:
+                raise ValueError("No data was read from the BBM CSV file")
+
+            progress_print(f"Successfully read {len(data)} rows of data")
+
+            # Combine first_name and last_name into a new column called 'player'
+            if 'first_name' in data.columns and 'last_name' in data.columns:
+                data['Player'] = data['first_name'].str.strip() + ' ' + data['last_name'].str.strip()
+                progress_print("Successfully combined first_name and last_name into 'Player' column")
+                data = self.standardize_player_names(data, 'Player')
+                data.rename(columns={'Player': 'PLAYER_NAME'}, inplace=True)
+            else:
+                raise KeyError("'first_name' or 'last_name' column is missing in the CSV file")
+
+            # Add BB_PROJECTION column based on the formula
+            required_columns = ['id', 'points', 'threes', 'rebounds', 'assists', 'steals',
+                                'blocks', 'turnovers', 'double doubles', 'triple doubles']
+            if all(col in data.columns for col in required_columns):
+                data['BB_PROJECTION'] = data.apply(
+                    lambda row: 0 if pd.isna(row['id']) or row['id'] == "" else (
+                            row['points'] +
+                            row['threes'] * 0.5 +
+                            row['rebounds'] * 1.25 +
+                            row['assists'] * 1.5 +
+                            row['steals'] * 2 +
+                            row['blocks'] * 2 -
+                            row['turnovers'] * 0.5 +
+                            row['double doubles'] * 1.5 +
+                            row['triple doubles'] * 3
+                    ),
+                    axis=1
+                )
+                progress_print("Successfully added 'BB_PROJECTION' column")
+            else:
+                missing_cols = [col for col in required_columns if col not in data.columns]
+                raise KeyError(f"The following required columns are missing in the CSV file: {missing_cols}")
+
+
+
+
+            # Store in dataframes dictionary
+            self.dataframes['BBM'] = data
+
+            # Update display if BBM is currently selected
+            if self.data_selector.currentText() == 'BBM':
+                self.display_dataframe(data)
+
+            progress_print("BBM import completed successfully")
+            return data
+
+        except Exception as e:
+            progress_print(f"Error in BBM import: {str(e)}")
+            raise
+
+    def import_fta_entries(self, progress_print=print):
+        try:
+            progress_print("Starting FTA import...")
+
+            # Use the correct file path
+            fta_file = self.import_folder / "fta.csv"
+
+            if not fta_file.exists():
+                raise FileNotFoundError(f"fta.csv file not found at {fta_file}")
+
+            progress_print(f"Reading file: {fta_file}")
+            data = pd.read_csv(fta_file)
+
+            # Verify we have data
+            if data.empty:
+                raise ValueError("No data was read from the FTA CSV file")
+
+            progress_print(f"Successfully read {len(data)} rows of data")
+
+            data = self.standardize_player_names(data, 'Name')
+            data.rename(columns={'Name': 'PLAYER_NAME'}, inplace=True)
+
+
+            # Store in dataframes dictionary
+            self.dataframes['FTA'] = data
+
+            # Update display if FTA is currently selected
+            if self.data_selector.currentText() == 'FTA':
+                self.display_dataframe(data)
+
+            progress_print("FTA import completed successfully")
+            return data
+
+        except Exception as e:
+            progress_print(f"Error in FTA import: {str(e)}")
+            raise
+
+
+    def import_darko(self, progress_print=print):
+        try:
+            progress_print("Starting Darko import...")
+
+            # Use the correct file path
+            darko_file = self.import_folder / "darko.csv"
+
+            if not darko_file.exists():
+                raise FileNotFoundError(f"darko.csv file not found at {darko_file}")
+
+            progress_print(f"Reading file: {darko_file}")
+            data = pd.read_csv(darko_file)
+
+            # Verify we have data
+            if data.empty:
+                raise ValueError("No data was read from the Darko CSV file")
+
+            progress_print(f"Successfully read {len(data)} rows of data")
+
+            data = self.standardize_player_names(data, 'Player')
+            data.rename(columns={'Player': 'PLAYER_NAME'}, inplace=True)
+
+            # Store in dataframes dictionary
+            self.dataframes['Darko'] = data
+
+            # Update display if Darko is currently selected
+            if self.data_selector.currentText() == 'Darko':
+                self.display_dataframe(data)
+
+            progress_print("Darko import completed successfully")
+            return data
+
+        except Exception as e:
+            progress_print(f"Error in Darko import: {str(e)}")
+            raise
+
+
+
+    def import_dk_entries(self, progress_print=print):
+        try:
+            progress_print("Importing DK Entries...")
+
+            # Set up file paths
+            entries_file = self.import_folder / "entries.csv"
+            output_csv_file = self.data_folder / "DKSalaries.csv"
+
+            if not entries_file.exists():
+                raise FileNotFoundError(f"entries.csv file not found at {entries_file}")
+
+            # Read CSV data with specific columns
+            progress_print("Reading CSV data...")
+            columns_to_read = list(range(13, 22))
+            try:
+                data = pd.read_csv(
+                    entries_file,
+                    skiprows=7,
+                    usecols=columns_to_read,
+                    header=0
+                )
+            except Exception as e:
+                raise ValueError(f"Error reading CSV: {str(e)}")
+
+            # Verify we have data
+            if data.empty:
+                raise ValueError("No data was read from the CSV file")
+
+            progress_print(f"Successfully read {len(data)} rows of data")
+
+            # Write to output CSV
+            progress_print("Writing data to output CSV...")
+            try:
+                data.to_csv(output_csv_file, index=False)
+                progress_print(f"Data written to '{output_csv_file}'")
+            except Exception as e:
+                raise ValueError(f"Error writing output CSV: {str(e)}")
+
+            data = self.standardize_player_names(data, 'Name')
+            data.rename(columns={'Name': 'PLAYER_NAME'}, inplace=True)
+
+            # Store in dataframes dictionary
+            self.dataframes['DK Entries'] = data
+
+            # Update display if DK Entries is currently selected
+            if self.data_selector.currentText() == 'DK Entries':
+                self.display_dataframe(data)
+
+            progress_print("DK Entries import completed successfully")
+            return data
+
+        except Exception as e:
+            progress_print(f"Error in DK Entries import: {str(e)}")
+            raise
 
     # Fetch advanced team stats for the regular season
     def fetch_advanced_team_stats(self, season='2023-24', season_type='Regular Season'):
@@ -1102,6 +982,39 @@ class ImportTool(QMainWindow):
 
     from datetime import datetime, timezone, timedelta
     def fetch_and_save_team_data_with_odds(self, progress_print=print):
+
+        team_abbr_dict = {
+            'Atlanta Hawks': 'ATL',
+            'Boston Celtics': 'BOS',
+            'Brooklyn Nets': 'BKN',
+            'Charlotte Hornets': 'CHA',
+            'Chicago Bulls': 'CHI',
+            'Cleveland Cavaliers': 'CLE',
+            'Dallas Mavericks': 'DAL',
+            'Denver Nuggets': 'DEN',
+            'Detroit Pistons': 'DET',
+            'Golden State Warriors': 'GSW',
+            'Houston Rockets': 'HOU',
+            'Indiana Pacers': 'IND',
+            'Los Angeles Clippers': 'LAC',
+            'Los Angeles Lakers': 'LAL',
+            'Memphis Grizzlies': 'MEM',
+            'Miami Heat': 'MIA',
+            'Milwaukee Bucks': 'MIL',
+            'Minnesota Timberwolves': 'MIN',
+            'New Orleans Pelicans': 'NOP',
+            'New York Knicks': 'NYK',
+            'Oklahoma City Thunder': 'OKC',
+            'Orlando Magic': 'ORL',
+            'Philadelphia 76ers': 'PHI',
+            'Phoenix Suns': 'PHX',
+            'Portland Trail Blazers': 'POR',
+            'Sacramento Kings': 'SAC',
+            'San Antonio Spurs': 'SAS',
+            'Toronto Raptors': 'TOR',
+            'Utah Jazz': 'UTA',
+            'Washington Wizards': 'WAS'
+        }
 
         try:
             # Get today's date in EST
@@ -1217,9 +1130,30 @@ class ImportTool(QMainWindow):
                         teams_df.loc[teams_df["Team"].isin(
                             [odds_event["home_team"], odds_event["away_team"]]), "Total"] = total_value
 
+                # Add the Abbr column based on the Team column
+                teams_df['Abbr'] = teams_df['Team'].map(team_abbr_dict)
+
+                teams_df['Points'] = np.where(
+                    (teams_df['Total'] / 2 - teams_df['Spread'] / 2) > 0,
+                    teams_df['Total'] / 2 - teams_df['Spread'] / 2,
+                    ''
+                )
+
+
             progress_print("Saving to CSV...")
             # Save the updated DataFrame to a CSV file
             teams_df.to_csv(csv_path, index=False)
+
+            # Store in dataframes dictionary
+            self.dataframes['Odds'] = teams_df
+
+            # Update display if DK Entries is currently selected
+            if self.data_selector.currentText() == 'Odds':
+                self.display_dataframe(teams_df)
+
+            progress_print("DK Entries import completed successfully")
+            return teams_df
+
 
             # Print success messages
             print("Fetched NBA Team Data with Odds:")
@@ -1344,10 +1278,8 @@ class ImportTool(QMainWindow):
         self.import_bbm(progress_print=progress_print)
         self.import_fta_entries(progress_print=progress_print)
         self.import_dk_entries(progress_print=progress_print)
-        self.import_sog_projections(progress_print=progress_print)
         self.import_darko(progress_print=progress_print)
-        self.import_advanced(progress_print=progress_print)
-        self.import_traditional(progress_print=progress_print)
+        self.import_team_stats(progress_print=progress_print)
         progress_print("All imports completed.")
 
     # Post-process predictions to apply the 1% ownership cap for low minutes players
@@ -1849,5 +1781,8 @@ class ImportTool(QMainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = ImportTool()
+    window.run_all_imports()
     window.show()
     sys.exit(app.exec())
+
+
