@@ -41,8 +41,8 @@ def apply_position_constraints(predictions_df):
 
         # Target minutes per position should be 20% of total team minutes ±5
         target_pos_minutes = total_team_minutes * 0.2
-        min_pos_minutes = max(target_pos_minutes - 8, 0)
-        max_pos_minutes = target_pos_minutes + 8
+        min_pos_minutes = max(target_pos_minutes - 5, 0)
+        max_pos_minutes = target_pos_minutes + 5
 
         # Create a list of all players and their eligible positions based on compatibility table
         player_eligibility = {}
@@ -54,6 +54,7 @@ def apply_position_constraints(predictions_df):
                 eligible_positions.update(position_compat[listed_pos])
             player_eligibility[idx] = eligible_positions
 
+
         # Try to find 5 unique players for the main positions
         protected_players = set()
         position_assignments = {}
@@ -61,16 +62,32 @@ def apply_position_constraints(predictions_df):
 
         # First pass: Try to assign highest-minute players to their primary positions
         for pos in main_positions:
-            eligible_players = [(idx, team_predictions[idx])
-                                for idx in player_eligibility
-                                if pos in player_eligibility[idx] and idx not in protected_players]
+            # First try players whose primary position matches
+            primary_position_players = [(idx, team_predictions[idx])
+                                        for idx in player_eligibility
+                                        if team_data.loc[idx, 'Position'].split('/')[0] == pos
+                                        and idx not in protected_players
+                                        and team_data.loc[idx, 'injury'] not in ['Out', 'Out for season', 'Injured']]
 
-            if eligible_players:
-                # Sort by minutes descending
-                eligible_players.sort(key=lambda x: x[1], reverse=True)
-                player_idx = eligible_players[0][0]
+
+            if primary_position_players :
+                # Sort primary position players by minutes
+                primary_position_players.sort(key=lambda x: x[1], reverse=True)
+                player_idx = primary_position_players[0][0]
                 protected_players.add(player_idx)
                 position_assignments[pos] = player_idx
+            else:
+                # If no primary position players, then consider all eligible players
+                eligible_players = [(idx, team_predictions[idx])
+                                    for idx in player_eligibility
+                                    if pos in player_eligibility[idx]
+                                    and idx not in protected_players]
+
+                if eligible_players:
+                    eligible_players.sort(key=lambda x: x[1], reverse=True)
+                    player_idx = eligible_players[0][0]
+                    protected_players.add(player_idx)
+                    position_assignments[pos] = player_idx
 
         # If we couldn't find 5 unique players, try to fill remaining positions
         remaining_positions = set(main_positions) - set(position_assignments.keys())
@@ -94,6 +111,7 @@ def apply_position_constraints(predictions_df):
                 player_idx = position_assignments[pos]
                 player = team_data.loc[player_idx]
                 print(f"{pos}: {player['Player']} ({player['Position']}) - {team_predictions[player_idx]:.1f} minutes")
+                print(player['injury'])
             else:
                 print(f"{pos}: No assignment found")
 
@@ -823,119 +841,10 @@ class PredictMinutes:
         print(f"Current working directory: {os.getcwd()}")
         with open('final_minutes_expanded_prediction_model.pkl', 'rb') as f:
             model = pickle.load(f)
-
-
-
-            # Convert to DataFrame
             data = df
-
-
             # Basic data cleaning
             data = data.dropna(subset=['Team'])
             data = data[data['Team'] != '']
-
-            # Convert numeric columns
-            numeric_columns = [
-                'Salary',
-                'Minutes',
-                'BBM Minutes',
-                'FTA Minutes',
-                'SOG Minutes',
-                'Minutes Played',
-                'Max Minutes',
-                'FTA Own',
-                'SOG Own',
-                'Projection',
-                'Last 10 Minutes',
-                'MSE',
-                'DARKO Minutes',
-                'Minutes Override',
-                'MIN_CUM_AVG',
-                'MIN_LAST_3_AVG',
-                'MIN_LAST_5_AVG',
-                'MIN_LAST_10_AVG',
-                'MIN_ABOVE_AVG_STREAK',
-                'MIN_TREND',
-                'MIN_CONSISTENCY',
-                'MIN_CONSISTENCY_SCORE',
-                'MIN_ABOVE_20',
-                'MIN_ABOVE_25',
-                'MIN_ABOVE_30',
-                'FREQ_ABOVE_20',
-                'FREQ_ABOVE_25',
-                'FREQ_ABOVE_30',
-                'Projected Pts',
-                'DK',
-                'DK_CUM_AVG',
-                'DK_LAST_3_AVG',
-                'DK_LAST_5_AVG',
-                'DK_LAST_10_AVG',
-                'DK_TREND',
-                'DK_TREND_5',
-                'DK_CONSISTENCY',
-                'PTS_LAST_3_AVG',
-                'PTS_LAST_5_AVG',
-                #'PTS_LAST_10_AVG',
-                'REB_LAST_3_AVG',
-                'REB_LAST_5_AVG',
-                'REB_LAST_10_AVG',
-                'AST_LAST_3_AVG',
-                'AST_LAST_5_AVG',
-                'AST_LAST_10_AVG',
-                'PTS_CUM_AVG',
-                'REB_CUM_AVG',
-                'AST_CUM_AVG',
-                'PTS_PER_MIN',
-                'REB_PER_MIN',
-                'AST_PER_MIN',
-                'SCORING_EFFICIENCY',
-                'RECENT_SCORING_EFF',
-                'FG_PCT',
-                'FG3_PCT',
-                'FT_PCT',
-                'FGM',
-                'FGA',
-                'FG3M',
-                'FG3A',
-                'FTM',
-                'FTA',
-                'PLUS_MINUS',
-                'PLUS_MINUS_PER_MIN',
-                'PLUS MINUS_LAST_3_AVG',
-                'PLUS MINUS_LAST_5_AVG',
-                'PLUS MINUS_LAST_10_AVG',
-                'PLUS MINUS_CUM_AVG',
-                'PLUS MINUS_TREND',
-                'PLUS MINUS_CONSISTENCY',
-                'PTS_TREND',
-                'REB_TREND',
-                'AST_TREND',
-                'PTS_CONSISTENCY',
-                'REB_CONSISTENCY',
-                'AST_CONSISTENCY',
-                'TEAM_MIN_PERCENTAGE',
-                'TEAM_PROJ_RANK',
-                'PTS_VS_TEAM_AVG',
-                'REB_VS_TEAM_AVG',
-                'AST_VS_TEAM_AVG',
-                'MIN_VS_TEAM_AVG',
-                'ROLE_CHANGE_3_10',
-                'ROLE_CHANGE_5_10',
-                'DAYS_REST',
-                'STL',
-                'BLK',
-                'TOV',
-                'OREB',
-                'DREB',
-                'PF'
-            ]
-
-            #for col in numeric_columns:
-            #data[col] = pd.to_numeric(data[col], errors='coerce')
-            # Create DK feature from Projection
-            #data['DK'] = data['Projection']
-            #data['DK Name'] = data['Player']
-
             # Set Minutes to 0 where Projection is 0
             data.loc[data['Projection'] == 0, 'Minutes'] = 0
 
@@ -950,17 +859,17 @@ class PredictMinutes:
                 'MIN_LAST_10_AVG',
                 'MIN_CONSISTENCY',
 
-                 'DK_TREND_5',
-                 'DK_LAST_10_AVG',
-                'PTS_CUM_AVG',
-                'REB_PER_MIN',
-                'AST_PER_MIN',
-                'PTS_PER_MIN',
-                'AST_LAST_10_AVG',
-                'REB_LAST_10_AVG',
-
-                'DAYS_REST',
-                'PTS_LAST_10_AVG',
+                #  'DK_TREND_5',
+                #  'DK_LAST_10_AVG',
+                # 'PTS_CUM_AVG',
+                # 'REB_PER_MIN',
+                # 'AST_PER_MIN',
+                # 'PTS_PER_MIN',
+                # 'AST_LAST_10_AVG',
+                # 'REB_LAST_10_AVG',
+                #
+                # 'DAYS_REST',
+                # 'PTS_LAST_10_AVG',
                 #'BLOWOUT_GAME',
                 #'IS_HOME',
                 #'MIN_TREND',
@@ -969,38 +878,27 @@ class PredictMinutes:
                 # New advanced features
                 'MIN_LAST_3_AVG',
                 'MIN_LAST_5_AVG',
-                'ROLE_CHANGE_3_10',
-                'ROLE_CHANGE_5_10',
-                'MIN_CONSISTENCY_SCORE',
-                'RECENT_SCORING_EFF',
-                'RECENT_IMPACT',
-
-                'FREQ_ABOVE_20',
-                'FREQ_ABOVE_25',
-                'FREQ_ABOVE_30',
-
-                 'TEAM_PROJ_RANK',
-                 #'IS_TOP_3_PROJ',
+                # 'ROLE_CHANGE_3_10',
+                # 'ROLE_CHANGE_5_10',
+                # 'MIN_CONSISTENCY_SCORE',
+                # 'RECENT_SCORING_EFF',
+                # 'RECENT_IMPACT',
+                #
+                # 'FREQ_ABOVE_20',
+                # 'FREQ_ABOVE_25',
+                # 'FREQ_ABOVE_30',
+                #
+                #  'TEAM_PROJ_RANK',
+                #  #'IS_TOP_3_PROJ',
                  'TEAM_MIN_PERCENTAGE',
-                 'LOW_MIN_TOP_PLAYER',
+                #  'LOW_MIN_TOP_PLAYER',
                  'Projection'
 
             ]
 
-            # After reading data but before predictions
-            #print("Before override - AD's MIN_VS_TEAM_AVG:",
-                   #enhanced_data.loc[enhanced_data['Player'] == 'Lamelo Ball', 'TEAM_MIN_PERCENTAGE'].values[0])
 
-
-            # # Override the value
             enhanced_data['TEAM_MIN_PERCENTAGE'] = enhanced_data.groupby('Team')['Minutes'].transform(lambda x: x / x.sum() * 100)
-            #
-            # enhanced_data['MIN_VS_TEAM_AVG'] = enhanced_data.groupby('Team')['Minutes'].transform(
-            #     lambda x: x / x.mean()
-            # )
 
-            #print("After override - AD's MIN_VS_TEAM_AVG:",
-                   #enhanced_data.loc[enhanced_data['Player'] == 'Lamelo Ball', 'TEAM_MIN_PERCENTAGE'].values[0])
 
             # Make predictions
             X = enhanced_data[features]
@@ -1011,23 +909,18 @@ class PredictMinutes:
 
             # Apply zeros BEFORE position constraints
             data['Predicted_Minutes'] = raw_predictions.copy()  # Start with a copy of raw predictions
-
-
+            # Set Predicted_Minutes to zero if Original_Minutes < 0
+            data.loc[data['Original_Minutes'] < 0, 'Predicted_Minutes'] = 0
             # Apply zero conditions
             # No \ needed here because of the parentheses
             zero_mask = (
                     (data['Projection'] == 0)
-                    #(data['Projection'] == 0) |
-                    #(data['Minutes'] <= 8)
-                    #(data['DARKO Minutes'] <= 6)
             )
             data.loc[zero_mask, 'Predicted_Minutes'] = 0
 
             # NOW apply position constraints to the already-modified predictions
             data['Predicted_Minutes'] = apply_position_constraints(data)
             data['Predicted_Minutes'] = adjust_team_minutes_with_minimum_and_boost(data)
-            # Create predictions mapping and write back to Excel
-            predictions_dict = dict(zip(data['Player'], data['Predicted_Minutes']))
 
             # Print summary
             print("\nFinal Predictions:")
@@ -1042,6 +935,7 @@ class PredictMinutes:
                     if row['Predicted_Minutes'] >= 36:
                         print(f"  ** High minutes player (Max: {row['Max Minutes']})")
 
+        return data
 
 
 if __name__ == "__main__":

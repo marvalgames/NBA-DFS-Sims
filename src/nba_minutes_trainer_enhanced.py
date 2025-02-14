@@ -245,16 +245,16 @@ features = [
     'MIN_LAST_10_AVG',
     'MIN_CONSISTENCY',
 
-     'DK_TREND_5',
-     'DK_LAST_10_AVG',
-    'PTS_CUM_AVG',
-    'REB_PER_MIN',
-    'AST_PER_MIN',
-    'PTS_PER_MIN',
-    'AST_LAST_10_AVG',
-    'REB_LAST_10_AVG',
+    # 'DK_TREND_5',
+     #'DK_LAST_10_AVG',
+    #'PTS_CUM_AVG',
+    #'REB_PER_MIN',
+    #'AST_PER_MIN',
+    #'PTS_PER_MIN',
+    #'AST_LAST_10_AVG',
+    #'REB_LAST_10_AVG',
 
-    'DAYS_REST',
+    #'DAYS_REST',
     #'PTS_LAST_10_AVG',
     #'BLOWOUT_GAME',
     #'IS_HOME',
@@ -264,20 +264,20 @@ features = [
     # New advanced features
     'MIN_LAST_3_AVG',
     'MIN_LAST_5_AVG',
-    'ROLE_CHANGE_3_10',
-    'ROLE_CHANGE_5_10',
-    'MIN_CONSISTENCY_SCORE',
-    'RECENT_SCORING_EFF',
-    'RECENT_IMPACT',
+    #'ROLE_CHANGE_3_10',
+    #'ROLE_CHANGE_5_10',
+    #'MIN_CONSISTENCY_SCORE',
+    #'RECENT_SCORING_EFF',
+    #'RECENT_IMPACT',
 
-    'FREQ_ABOVE_20',
-    'FREQ_ABOVE_25',
-    'FREQ_ABOVE_30',
+    #'FREQ_ABOVE_20',
+    #'FREQ_ABOVE_25',
+    #'FREQ_ABOVE_30',
 
-    'TEAM_PROJ_RANK',
+    #'TEAM_PROJ_RANK',
     #'IS_TOP_3_PROJ',
     'TEAM_MIN_PERCENTAGE',
-    'LOW_MIN_TOP_PLAYER',
+    #'LOW_MIN_TOP_PLAYER',
     'Projection'
 
 ]
@@ -328,9 +328,9 @@ for test_game_day in sorted(data['GAME_DAY'].unique()):
         #feature_weights=[10.0 if col == 'Projection' else 1 for col in features]
         feature_weights = [
             1 if col == 'TEAM_MIN_PERCENTAGE'
-            else 0 if col == 'Projection'
-            else 10 if col == 'DK_LAST_10_AVG'
-            else 1.0
+            else 1 if col == 'Projection'
+            else 1 if col == 'DK_LAST_10_AVG'
+            else 1
             for col in features
         ]
 

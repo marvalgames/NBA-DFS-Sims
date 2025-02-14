@@ -175,7 +175,7 @@ class ImportTool(QMainWindow):
         viewer_group = QGroupBox("Data Viewer")
         viewer_layout = QVBoxLayout()
         self.data_selector = QComboBox()
-        self.data_selector.addItems(['BBM', 'FTA', 'DK Entries', 'Darko', 'Team Stats', 'Odds', 'Game Logs', 'SOG'])
+        self.data_selector.addItems(['BBM', 'FTA', 'DK Entries', 'Darko', 'Team Stats', 'Odds', 'Game Logs', 'SOG', 'Predict Minutes'])
         self.data_selector.currentTextChanged.connect(self.on_data_selection_changed)
         viewer_layout.addWidget(self.data_selector)
         viewer_group.setLayout(viewer_layout)
@@ -305,36 +305,6 @@ class ImportTool(QMainWindow):
 
         print(f"Import folder: {self.import_folder}")
         print(f"Data folder: {self.data_folder}")
-
-    def predict_minutes(self, progress_print=print):
-        predictions = PredictMinutes()
-
-        time.sleep(1)  # Give Excel a moment to fully initialize
-        csv_path = os.path.join('..', 'dk_import', 'nba_daily_combined.csv')
-        game_logs_df = pd.read_csv(csv_path, encoding='utf-8')
-        dk_df = self.dataframes['DK Entries']
-        bbm_df = self.dataframes['BBM']
-        #game_logs_df = self.dataframes['Game Logs']
-
-        dk_df.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
-        game_logs_df.rename(columns={'TEAM_NAME': 'Team'}, inplace=True)
-        bbm_df.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
-        bbm_df.rename(columns={'BB_PROJECTION': 'Projection'}, inplace=True)
-
-        data = pd.merge(
-             dk_df,
-             game_logs_df,
-             on='Player',
-             how='left'  # Keep all rows from the previous merge
-        )
-
-        data = pd.merge(
-             data,
-             bbm_df,
-             on='Player',
-             how='left'  # Keep all rows from the previous merge
-        )
-        predictions.predict_minutes_df(data)
 
     def import_daily(self, progress_print=print):
         downloader = DailyDownload()
@@ -889,7 +859,7 @@ class ImportTool(QMainWindow):
 
         # Make sure 'Max Minutes' is in your new_column_order list
         # (it's already there in your current column order)
-
+        result_df = result_df.fillna('')
         result_df.to_csv(csv_path, index=False)
         data = result_df
 
@@ -913,6 +883,52 @@ class ImportTool(QMainWindow):
         #     self.display_dataframe(data)
 
         return data
+
+
+    def predict_minutes(self, progress_print=print):
+        predictions = PredictMinutes()
+
+        time.sleep(1)  # Give Excel a moment to fully initialize
+        csv_path = os.path.join('..', 'dk_import', 'nba_daily_combined.csv')
+        game_logs_df = pd.read_csv(csv_path, encoding='utf-8')
+        dk_df = self.dataframes['DK Entries']
+        bbm_df = self.dataframes['BBM']
+        #game_logs_df = self.dataframes['Game Logs']
+
+        dk_df.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
+        game_logs_df.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
+        game_logs_df.rename(columns={'TEAM_NAME': 'Team'}, inplace=True)
+        game_logs_df.rename(columns={'MIN': 'Minutes Last Game'}, inplace=True)
+        bbm_df.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
+        bbm_df.rename(columns={'BB_PROJECTION': 'Projection'}, inplace=True)
+        bbm_df.rename(columns={'minutes': 'Minutes'}, inplace=True)
+
+        data = pd.merge(
+             dk_df,
+             game_logs_df,
+             on='Player',
+             how='left'  # Keep all rows from the previous merge
+        )
+
+        data = pd.merge(
+             data,
+             bbm_df,
+             on='Player',
+             how='left'  # Keep all rows from the previous merge
+        )
+        data = predictions.predict_minutes_df(data)
+
+        # Store in dataframes dictionary
+        self.dataframes['Predict Minutes'] = data
+
+        # Update display if BBM is currently selected
+        #if self.data_selector.currentText() == 'Predict Minutes':
+        self.display_dataframe(data)
+
+        progress_print("BBM import completed successfully")
+        return data
+
+
 
     def import_bbm(self, progress_print=print):
         try:
@@ -965,8 +981,7 @@ class ImportTool(QMainWindow):
                 missing_cols = [col for col in required_columns if col not in data.columns]
                 raise KeyError(f"The following required columns are missing in the CSV file: {missing_cols}")
 
-
-
+            data = data.fillna('')
 
             # Store in dataframes dictionary
             self.dataframes['BBM'] = data
