@@ -175,7 +175,7 @@ class ImportTool(QMainWindow):
         viewer_group = QGroupBox("Data Viewer")
         viewer_layout = QVBoxLayout()
         self.data_selector = QComboBox()
-        self.data_selector.addItems(['BBM', 'FTA', 'DK Entries', 'Darko', 'Team Stats', 'Odds', 'Game Logs', 'SOG', 'Predict Minutes'])
+        self.data_selector.addItems(['BBM', 'FTA', 'DK Entries', 'Darko', 'Team Stats', 'Odds', 'Game Logs', 'SOG', 'Predict Minutes', 'Ownership Projections', 'Export Projections'])
         self.data_selector.currentTextChanged.connect(self.on_data_selection_changed)
         viewer_layout.addWidget(self.data_selector)
         viewer_group.setLayout(viewer_layout)
@@ -487,6 +487,7 @@ class ImportTool(QMainWindow):
 
     def on_data_selection_changed(self, selection):
         if selection in self.dataframes:
+            print(selection)
             self.display_dataframe(self.dataframes[selection])
 
     def setup_table_view(self):
@@ -521,10 +522,13 @@ class ImportTool(QMainWindow):
         self.table_view.setSortingEnabled(True)
         self.table_view.setAlternatingRowColors(True)
 
-    def display_dataframe(self, df):
+    def display_dataframe(self, df, sort_column=None, ascending=False):
         if df is not None and not df.empty:
             try:
                 print("Creating model...")  # Debug print
+                print(df)
+                # Sort DataFrame first
+                df = df.sort_values(by=sort_column, ascending=ascending)
                 model = DataFrameModel(df)
 
                 # Create proxy model for sorting
@@ -536,6 +540,12 @@ class ImportTool(QMainWindow):
 
                 # Enable sorting and editing
                 self.table_view.setSortingEnabled(True)
+                # Set initial sort if sort_column is specified
+                # if sort_column and sort_column in df.columns:
+                column_index = df.columns.get_loc(sort_column)
+                sort_order = Qt.SortOrder.AscendingOrder if ascending else Qt.SortOrder.DescendingOrder
+                self.table_view.sortByColumn(column_index, sort_order)
+
                 self.table_view.setEditTriggers(QAbstractItemView.EditTrigger.DoubleClicked)
 
                 # Connect to handle data changes
@@ -760,29 +770,51 @@ class ImportTool(QMainWindow):
         csv_path = os.path.join('..', 'dk_import', 'nba_daily_combined.csv')
         csv_read = os.path.join('..', 'dk_import', 'nba_boxscores_enhanced.csv')
 
-
-
-        # Read data
-        # needed_data = {
-        #     'Player': ws.range(f'A2:A{last_row}').value,
-        #     'Team': ws.range(f'B2:B{last_row}').value,
-        #     'Position': ws.range(f'C2:C{last_row}').value,
-        #     'Salary': ws.range(f'D2:D{last_row}').value,
-        #     'Minutes': ws.range(f'E2:E{last_row}').value,
-        #     'Max Minutes': ws.range(f'J2:J{last_row}').value,
-        #     'Projection': ws.range(f'M2:M{last_row}').value,
-        #
-        # }
-
-        #needed_data = {}
-
-        #df = self.dataframes['DK Entries']
-
-
         # Usage:
         df = pd.read_csv(csv_read, encoding='utf-8')
         result_df = self.merge_latest_records_with_columns(df)  # using default parameters
         result_df = result_df.rename(columns={'Projection': 'Projected Pts'})
+
+        dk_df = self.dataframes['DK Entries']
+        bbm_df = self.dataframes['BBM']
+        game_logs_df = result_df
+
+        #dk_df.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
+        #game_logs_df.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
+        game_logs_df.rename(columns={'TEAM_NAME': 'Team'}, inplace=True)
+        game_logs_df.rename(columns={'MIN': 'Minutes Last Game'}, inplace=True)
+        #bbm_df.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
+        bbm_df.rename(columns={'BB_PROJECTION': 'Projection'}, inplace=True)
+        bbm_df.rename(columns={'minutes': 'Minutes'}, inplace=True)
+
+        game_logs_df = self.standardize_player_names(game_logs_df, 'PLAYER_NAME')
+        bbm_df = self.standardize_player_names(bbm_df, 'PLAYER_NAME')
+
+        data = pd.merge(
+            dk_df,
+            game_logs_df,
+            on='PLAYER_NAME',
+            how='left'  # Keep all rows from the previous merge
+        )
+
+        data = pd.merge(
+            data,
+            bbm_df,
+            on='PLAYER_NAME',
+            how='left'  # Keep all rows from the previous merge
+        )
+
+        # Fill NaN values based on column type
+        numeric_columns = data.select_dtypes(include=['int64', 'float64']).columns
+        string_columns = data.select_dtypes(include=['object']).columns
+
+        # Fill numeric columns with 0
+        data[numeric_columns] = data[numeric_columns].fillna(0)
+        # Fill string columns with empty string
+        data[string_columns] = data[string_columns].fillna('')
+
+
+
         # Define the new column order
         new_column_order = [
             # Core Player Info
@@ -852,16 +884,10 @@ class ImportTool(QMainWindow):
         # result_df = result_df[new_column_order]
 
         # After reading the CSV and before displaying:
-        if 'Max Minutes' not in result_df.columns:
-            result_df['Max Minutes'] = 48 # Initialize with current minutes
-            # Or use a default value:
-            # result_df['Max Minutes'] = 48  # or any default value you prefer
+        if 'Max Minutes' not in data.columns:
+            data['Max Minutes'] = 48 # Initialize with current minutes
 
-        # Make sure 'Max Minutes' is in your new_column_order list
-        # (it's already there in your current column order)
-        result_df = result_df.fillna('')
-        result_df.to_csv(csv_path, index=False)
-        data = result_df
+        #data = result_df
 
         # Verify we have data
         if data.empty:
@@ -870,7 +896,18 @@ class ImportTool(QMainWindow):
         print(f"Successfully read {len(data)} rows of data")
 
         data.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
-        data = self.standardize_player_names(data, 'Player')
+        #data = self.standardize_player_names(data, 'Player')
+
+        # Drop columns that end with '_x' or '_y' (default merge suffixes)
+        data = data.loc[:, ~data.columns.str.contains('_x|_y$', regex=True)]
+
+        # Or drop specific duplicate columns
+        duplicate_cols = data.columns[data.columns.duplicated()]
+        data = data.drop(columns=duplicate_cols)
+
+        data = data.fillna('')
+        data.to_csv(csv_path, index=False)
+
 
 
         # Store in dataframes dictionary
@@ -891,35 +928,14 @@ class ImportTool(QMainWindow):
         time.sleep(1)  # Give Excel a moment to fully initialize
         csv_path = os.path.join('..', 'dk_import', 'nba_daily_combined.csv')
         game_logs_df = pd.read_csv(csv_path, encoding='utf-8')
-        dk_df = self.dataframes['DK Entries']
-        bbm_df = self.dataframes['BBM']
-        #game_logs_df = self.dataframes['Game Logs']
 
-        dk_df.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
-        game_logs_df.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
-        game_logs_df.rename(columns={'TEAM_NAME': 'Team'}, inplace=True)
-        game_logs_df.rename(columns={'MIN': 'Minutes Last Game'}, inplace=True)
-        bbm_df.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
-        bbm_df.rename(columns={'BB_PROJECTION': 'Projection'}, inplace=True)
-        bbm_df.rename(columns={'minutes': 'Minutes'}, inplace=True)
 
-        data = pd.merge(
-             dk_df,
-             game_logs_df,
-             on='Player',
-             how='left'  # Keep all rows from the previous merge
-        )
-
-        data = pd.merge(
-             data,
-             bbm_df,
-             on='Player',
-             how='left'  # Keep all rows from the previous merge
-        )
-        data = predictions.predict_minutes_df(data)
+        data = predictions.predict_minutes_df(game_logs_df)
 
         # Store in dataframes dictionary
         self.dataframes['Predict Minutes'] = data
+
+
 
         # Update display if BBM is currently selected
         #if self.data_selector.currentText() == 'Predict Minutes':
@@ -987,8 +1003,8 @@ class ImportTool(QMainWindow):
             self.dataframes['BBM'] = data
 
             # Update display if BBM is currently selected
-            if self.data_selector.currentText() == 'BBM':
-                self.display_dataframe(data)
+            #if self.data_selector.currentText() == 'BBM':
+            self.display_dataframe(data)
 
             progress_print("BBM import completed successfully")
             return data
@@ -1024,8 +1040,8 @@ class ImportTool(QMainWindow):
             self.dataframes['FTA'] = data
 
             # Update display if FTA is currently selected
-            if self.data_selector.currentText() == 'FTA':
-                self.display_dataframe(data)
+            #if self.data_selector.currentText() == 'FTA':
+            self.display_dataframe(data)
 
             progress_print("FTA import completed successfully")
             return data
@@ -1061,8 +1077,8 @@ class ImportTool(QMainWindow):
             self.dataframes['Darko'] = data
 
             # Update display if Darko is currently selected
-            if self.data_selector.currentText() == 'Darko':
-                self.display_dataframe(data)
+            #if self.data_selector.currentText() == 'Darko':
+            self.display_dataframe(data)
 
             progress_print("Darko import completed successfully")
             return data
@@ -1118,8 +1134,8 @@ class ImportTool(QMainWindow):
             self.dataframes['DK Entries'] = data
 
             # Update display if DK Entries is currently selected
-            if self.data_selector.currentText() == 'DK Entries':
-                self.display_dataframe(data)
+            #if self.data_selector.currentText() == 'DK Entries':
+            self.display_dataframe(data)
 
             progress_print("DK Entries import completed successfully")
             return data
@@ -1306,11 +1322,10 @@ class ImportTool(QMainWindow):
             self.dataframes['Odds'] = teams_df
 
             # Update display if DK Entries is currently selected
-            if self.data_selector.currentText() == 'Odds':
-                self.display_dataframe(teams_df)
+            #if self.data_selector.currentText() == 'Odds':
+            self.display_dataframe(teams_df)
 
             progress_print("DK Entries import completed successfully")
-            return teams_df
 
 
             # Print success messages
@@ -1319,6 +1334,8 @@ class ImportTool(QMainWindow):
             print(f"Data successfully saved to {csv_path}")
 
             progress_print("Done importing NBA Schedule to odds.")
+            return teams_df
+
 
         except Exception as e:
             progress_print(f"An error occurred: {e}")
@@ -1326,94 +1343,18 @@ class ImportTool(QMainWindow):
 
     def export_projections(self, progress_print=print):
         progress_print("Exporting projections to CSV...")
-        app = None
-        wb = None
 
         try:
             # Set up paths
             current_folder = Path(__file__).resolve().parent
-            dk_import_folder = current_folder.parent / "dk_import"
             dk_data_folder = current_folder.parent / "dk_data"
 
             progress_print("Creating output directory...")
             dk_data_folder.mkdir(exist_ok=True)
-
-            excel_file = dk_import_folder / "nba.xlsm"
             output_csv_file = dk_data_folder / "projections.csv"
-            sheet_name = "AceMind REPO"
 
-            # Verify Excel file exists
-            if not excel_file.exists():
-                raise FileNotFoundError(f"Excel file not found: {excel_file}")
-
-            # Initialize Excel
-            progress_print("Opening Excel application...")
-            app = xw.App(visible=False)
-            app.display_alerts = False
-            app.screen_updating = False
-
-            if app is None:
-                raise RuntimeError("Failed to initialize Excel application")
-
-            progress_print("Opening Excel workbook...")
-            wb = app.books.open(str(excel_file))
-
-            if wb is None:
-                raise RuntimeError(f"Failed to open workbook: {excel_file}")
-
-            # Get worksheet and verify it exists
-            try:
-                ws = wb.sheets[sheet_name]
-            except Exception as e:
-                raise ValueError(f"Sheet '{sheet_name}' not found in workbook") from e
-
-            progress_print("Reading sheet data...")
-            # Get initial range and verify it exists
-            initial_range = ws.range("A1")
-            if initial_range is None:
-                raise ValueError("Failed to get initial range at 'A1'")
-
-            # Expand the range and verify expansion worked
-            expanded_range = initial_range.expand()
-            if expanded_range is None:
-                raise ValueError("Failed to expand range from 'A1'")
-
-            # Get the values and verify we got data
-            data = expanded_range.value
-            if not data:
-                raise ValueError("No data found in expanded range")
 
             progress_print("Processing data...")
-            end_index = next(
-                (i for i, row in enumerate(data) if row[0] in [None, "", " "]),
-                len(data)
-            )
-            filtered_data = data[:end_index]
-
-            if not filtered_data:
-                raise ValueError("No valid data found after filtering")
-
-            progress_print("Writing to CSV...")
-            with open(output_csv_file, "w", newline="") as file:
-                rows_processed = 0
-                total_rows = len(filtered_data)
-                for row in filtered_data:
-                    if all(cell in [None, "", " "] for cell in row) or row[0] == 0:
-                        continue
-                    try:
-                        formatted_row = [
-                            int(cell) if col_idx == 4 and isinstance(cell, float) and cell.is_integer() else
-                            f"{cell:.2f}" if isinstance(cell, float) and col_idx != 4 else
-                            cell if cell not in [None, "", " "] else ""
-                            for col_idx, cell in enumerate(row)
-                        ]
-                        file.write(",".join(str(cell) for cell in formatted_row) + "\n")
-                        rows_processed += 1
-                        if rows_processed % 100 == 0:
-                            progress_print(f"Processed {rows_processed}/{total_rows} rows...")
-                    except Exception as row_error:
-                        progress_print(f"Warning: Error processing row {rows_processed + 1}: {str(row_error)}")
-                        continue
 
             progress_print(f"Projections successfully exported to '{output_csv_file}'.")
 
@@ -1421,15 +1362,6 @@ class ImportTool(QMainWindow):
             progress_print(f"An error occurred: {str(e)}")
             raise
 
-        finally:
-            # Ensure proper cleanup even if errors occur
-            try:
-                if wb:
-                    wb.close()
-                if app:
-                    app.quit()
-            except Exception as cleanup_error:
-                progress_print(f"Warning: Error during cleanup: {str(cleanup_error)}")
 
     def run_all_imports(self, progress_print=print):
         progress_print("Running all imports...")
@@ -1439,7 +1371,11 @@ class ImportTool(QMainWindow):
         self.import_darko(progress_print=progress_print)
         self.import_team_stats(progress_print=progress_print)
         self.merge_dataframes(progress_print=progress_print)
-        progress_print("All imports completed.")
+        #self.predict_minutes(progress_print=progress_print)
+        self.build_ownership_projections_dataframe(progress_print=progress_print)
+        self.export_projections(progress_print=progress_print)
+        #self.export_projections(progress_print=progress_print)
+        progress_print("All imports completed successfully.")
 
     # Post-process predictions to apply the 1% ownership cap for low minutes players
     def apply_low_minutes_cap(self, predictions, df):
@@ -1466,12 +1402,81 @@ class ImportTool(QMainWindow):
 
         raise ValueError("All methods failed to read Excel data")
 
+    def build_ownership_projections_dataframe(self, progress_print=print):
+        # Step 1: Load the DataFrames
+        dk_df = self.dataframes['DK Entries']
+        bbm_df = self.dataframes['BBM']
+        darko_df = self.dataframes['Darko']
+
+        # Step 2: Start with DK entries as base and merge others
+        new_df = dk_df[['PLAYER_NAME', 'Position', 'Salary']].copy()
+
+        # Merge with BBM data
+        new_df = new_df.merge(
+            bbm_df[['PLAYER_NAME', 'minutes', 'BB_PROJECTION']],
+            left_on='PLAYER_NAME',
+            right_on='PLAYER_NAME',
+            how='left'
+        )
+
+
+        # Merge with Darko data
+        new_df = new_df.merge(
+            darko_df[['PLAYER_NAME', 'Team']],
+            left_on='PLAYER_NAME',
+            right_on='PLAYER_NAME',
+            how='left'
+        )
+
+        # Drop duplicate Player columns from merges
+        new_df = new_df.drop(columns=['Player_x', 'Player_y'], errors='ignore')
+
+        # Step 3: Rename columns
+        column_renames = {
+            'PLAYER_NAME': 'DK Name',
+            'Position': 'Position',
+            'Salary': 'Salary',
+            'minutes': 'Minutes',
+            'BB_PROJECTION': 'Points Proj',
+            'Team': 'Team'
+        }
+        new_df = new_df.rename(columns=column_renames)
+
+        # Step 4: Remove rows with any NaN values
+        new_df = new_df.dropna(how='any')
+
+
+
+
+        #data.rename(columns={'Name': 'PLAYER_NAME'}, inplace=True)
+        # Step 6: Add calculated columns
+        new_df['Value'] = (new_df['Points Proj'] * 1000) / new_df['Salary']
+        new_df['Ceiling'] = new_df['Points Proj'] * 1.5
+        new_df['Plus'] = new_df['Points Proj'] - new_df['Salary'] * 5 / 1000
+        # Format numeric columns to 2 decimal places
+        numeric_columns = ['Salary', 'Minutes', 'Points Proj', 'Value', 'Ceiling', 'Plus']
+        for col in numeric_columns:
+            new_df[col] = new_df[col].round(2)
+
+        new_df = self.standardize_player_names(new_df, 'DK Name')
+        new_df['Own Actual'] = 0
+
+        # Store in dataframes dictionary
+
+        # Update display if DK Entries is currently selected
+        # if self.data_selector.currentText() == 'DK Entries':
+        new_df = new_df.sort_values(by='Points Proj', ascending=False)
+        self.dataframes['Ownership Projections'] = new_df
+        self.display_dataframe(new_df, sort_column='Points Proj', ascending=False)
+
+        return new_df
+
+
 
     def ownership_projections(self, progress_print=print):
         import os
         import pandas as pd
         import pickle
-        import xlwings as xw
         import random
         from scipy.optimize import minimize
 
@@ -1510,6 +1515,7 @@ class ImportTool(QMainWindow):
             min_salary = 49000
             min_score = 200
             min_proj_points = 12
+
 
             eligible_players = data[data['Points Proj'] >= min_proj_points].to_dict(orient='records')
             weighted_feasibility = {player['DK Name']: 0 for player in eligible_players}
@@ -1624,22 +1630,14 @@ class ImportTool(QMainWindow):
             with open(model_path, 'rb') as file:
                 model = pickle.load(file)
 
-            file_path = os.path.join('..', 'dk_import', 'nba.xlsm')
-            app = xw.App(visible=False)
-            wb = app.books.open(file_path)
-            sheet = wb.sheets["ownership"]
 
             progress_print("Reading and processing data...")
 
-            data = self.read_excel_data_alternative(sheet)
+            data = self.dataframes['Ownership Projections']
 
-            if not data:
-                raise ValueError("No data found in expanded range")
             #data = sheet.range('A1').expand().value
-            columns = data[0]
-            rows = data[1:]
-            df = pd.DataFrame(rows, columns=columns)
-
+            df = data
+            #df['Salary'] = df['Salary'].astype(int)  # Convert to integers
             # Drop rows where 'DK Name' is empty or invalid
             df = df[df['DK Name'].notna() & (df['DK Name'] != "0") & (df['DK Name'].str.strip() != "")]
 
@@ -1653,29 +1651,30 @@ class ImportTool(QMainWindow):
             df['Player_Pool_Size'] = df.groupby('Contest ID')['DK Name'].transform('count')
             df['Games Played'] = df['Team'].nunique() // 2
 
-            # ... your data cleaning code ...
-
             progress_print("Calculating weighted feasibility scores...")
-
             progress_print("Calculating feasibility scores...")
             feasibility = simulate_feasibility_with_progress(
                 df, max_salary=1000000, lineup_size=8, num_samples=100000,
                 print_every=10000, progress_print=progress_print)
 
             weighted_feasibility, tournament_feasibility = simulate_weighted_feasibility_with_progress(
-                df, max_salary=50000, lineup_size=8, num_samples=10000,
-                print_every=2000, progress_print=progress_print)
+                df, max_salary=50000, lineup_size=8, num_samples=2000,
+                print_every=200, progress_print=progress_print)
 
 
-            progress_print("Processing feature engineering...")
-            # ... rest of your feature engineering code ...
+            # Ensure all base columns are numeric
+            df['Minutes'] = pd.to_numeric(df['Minutes'], errors='coerce')
+            df['Points Proj'] = pd.to_numeric(df['Points Proj'], errors='coerce')
+            df['Salary'] = pd.to_numeric(df['Salary'], errors='coerce')
+            df['Value'] = pd.to_numeric(df['Value'], errors='coerce')
+            df['Ceiling'] = pd.to_numeric(df['Ceiling'], errors='coerce')
 
-            df['Feasibility'] = df['DK Name'].map(feasibility) * df['Minutes']
-            df['Weighted Feasibility'] = df['DK Name'].map(weighted_feasibility)
-            df['Tournament Feasibility'] = df['DK Name'].map(tournament_feasibility)
+            df['Feasibility'] = df.apply(lambda row: feasibility.get(row['DK Name'], 0), axis=1)
+            df['Weighted Feasibility'] = df.apply(lambda row: weighted_feasibility.get(row['DK Name'], 0), axis=1)
+            df['Tournament Feasibility'] = df.apply(lambda row: tournament_feasibility.get(row['DK Name'], 0), axis=1)
+            df['Feasibility'] = df['Feasibility'].astype(float) * df['Minutes'].astype(float)
+
             df['Proj_Salary_Ratio'] = df['Points Proj'] / df['Salary']
-
-            # new
             df['Normalized_Value'] = df.groupby('Contest ID')['Value'].transform(lambda x: (x - x.mean()) / x.std())
             df['Prev_Salary_Mean'] = df.groupby('DK Name')['Salary'].shift(1).rolling(window=3).mean()
             df['Log_Proj'] = np.log1p(df['Points Proj'])
@@ -1685,7 +1684,6 @@ class ImportTool(QMainWindow):
             df['Proj_Feasibility_Interaction'] = df['Points Proj'] * df['Feasibility']
             df['Value_Feasibility_Interaction'] = df['Value'] * df['Feasibility']
 
-            # df['Ceiling'] = (df['Points Proj'] + df['Ceiling'])
             df['Low_Minutes_Flag'] = (df['Minutes'] <= 12).astype(int)
             df['Low_Minutes_Penalty'] = df['Low_Minutes_Flag'] * df['Points Proj']
 
@@ -1694,6 +1692,8 @@ class ImportTool(QMainWindow):
 
             df['Value_Plus'] = df['Points Proj'] - df['Salary'] / 1000 * 4
             df['Ceiling_Plus'] = (df['Points Proj'] + df['Ceiling']) - df['Salary'] / 1000 * 5
+
+
 
             # Step 5: Define the exact feature list used during training
             features = [
@@ -1919,21 +1919,9 @@ class ImportTool(QMainWindow):
             formatted_table = tabulate(result_df.head(50), headers='keys', tablefmt='pretty', showindex=False)
             progress_print(formatted_table)
 
-            progress_print("Writing results back to Excel...")
-            predicted_ownership_col_index = columns.index('Own Proj') + 1
-            predicted_values = df['Predicted Ownership'].values.tolist()
-            sheet.range(2, predicted_ownership_col_index).value = [[v] for v in predicted_values]
-
-            progress_print("Saving workbook...")
-            wb.save()
-            progress_print("Ownership projections completed successfully!")
-
         except Exception as e:
             progress_print(f"An error occurred: {e}")
             raise
-        finally:
-            wb.close()
-            app.quit()
 
 
 

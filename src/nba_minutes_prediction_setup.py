@@ -690,8 +690,8 @@ class NbaMInutesPredictions:
 if __name__ == "__main__":
 
     predictions = NbaMInutesPredictions()
-    predictions.nba_enhance_game_logs()
-    predictions.process_excel_data()
+    #predictions.nba_enhance_game_logs()
+    #predictions.process_excel_data()
     print('Completed')
 
 #    if __name__ == "__main__":
