@@ -18,18 +18,26 @@ from daily_download import DailyDownload
 from nba_data_manager import NBADataManager
 from nba_minutes_prediction_setup import NbaMInutesPredictions
 from nba_minutes_predictions_enhanced import PredictMinutes
+from config import NBA_CONSTANTS
+from PyQt6.QtCore import Qt, QAbstractTableModel
+from PyQt6.QtWidgets import QAbstractItemView
 
 
 
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QPushButton, QVBoxLayout,
                              QWidget, QLabel, QMessageBox, QTextEdit, QProgressDialog, QHBoxLayout,
-                             QTableView, QSplitter, QComboBox, QGroupBox)
+                             QTableView, QSplitter, QComboBox, QGroupBox, QAbstractItemView)
 from PyQt6.QtCore import QAbstractTableModel, Qt
 import pandas as pd
 
 from PyQt6.QtCore import QSortFilterProxyModel
 
+
 class CustomSortFilterProxyModel(QSortFilterProxyModel):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.editable_columns = ['Max Minutes']  # Add any other columns you want to be editable
+
     def lessThan(self, left, right):
         left_data = self.sourceModel().data(left, Qt.ItemDataRole.EditRole)
         right_data = self.sourceModel().data(right, Qt.ItemDataRole.EditRole)
@@ -41,11 +49,42 @@ class CustomSortFilterProxyModel(QSortFilterProxyModel):
             # Fall back to string comparison if numeric fails
             return str(left_data) < str(right_data)
 
+    def flags(self, index):
+        flags = super().flags(index)
+        # Make specified columns editable
+        column_name = self.sourceModel().headerData(index.column(), Qt.Orientation.Horizontal,
+                                                    Qt.ItemDataRole.DisplayRole)
+        if column_name in self.editable_columns:
+            flags |= Qt.ItemFlag.ItemIsEditable
+        return flags
+
+    def setData(self, index, value, role=Qt.ItemDataRole.EditRole):
+        if role == Qt.ItemDataRole.EditRole:
+            # Get the column name
+            column_name = self.sourceModel().headerData(index.column(), Qt.Orientation.Horizontal,
+                                                        Qt.ItemDataRole.DisplayRole)
+
+            if column_name in self.editable_columns:
+                try:
+                    # Convert to float for numeric columns
+                    value = float(value)
+                    success = self.sourceModel().setData(self.mapToSource(index), value, role)
+
+                    if success:
+                        # Get the DataFrame from your main class
+                        # You'll need to set up a way to access the DataFrame
+                        # This might require storing a reference to your main class
+                        # or emitting a signal to handle the save
+                        self.dataChanged.emit(index, index)
+                        return True
+                except ValueError:
+                    return False
+        return False
+
 class DataFrameModel(QAbstractTableModel):
     def __init__(self, data):
         super().__init__()
         self._data = data
-        self._original_data = data.copy()
 
     def rowCount(self, parent=None):
         return len(self._data)
@@ -53,37 +92,33 @@ class DataFrameModel(QAbstractTableModel):
     def columnCount(self, parent=None):
         return len(self._data.columns)
 
-    def data(self, index, role=Qt.ItemDataRole.DisplayRole or Qt.ItemDataRole.EditRole):
+    def data(self, index, role=Qt.ItemDataRole.DisplayRole):
         if not index.isValid():
             return None
 
-        value = self._data.iloc[index.row(), index.column()]
-
-        if role == Qt.ItemDataRole.DisplayRole:
-            if pd.isna(value):
-                return ""
-            if isinstance(value, (float, np.float64)):
-                return f"{value:.2f}"
+        if role == Qt.ItemDataRole.DisplayRole or role == Qt.ItemDataRole.EditRole:
+            value = self._data.iloc[index.row(), index.column()]
             return str(value)
-
-        elif role == Qt.ItemDataRole.EditRole:
-            # Return the actual value for sorting
-            return float(value) if isinstance(value, (int, float, np.number)) else str(value)
-
-        elif role == Qt.ItemDataRole.TextAlignmentRole:
-            if isinstance(value, (int, float, np.number)):
-                return int(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
-            return int(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
 
         return None
 
-    def headerData(self, section, orientation, role=Qt.ItemDataRole.DisplayRole):
+    def headerData(self, section, orientation, role):
         if role == Qt.ItemDataRole.DisplayRole:
             if orientation == Qt.Orientation.Horizontal:
                 return str(self._data.columns[section])
             if orientation == Qt.Orientation.Vertical:
-                return str(section + 1)
+                return str(self._data.index[section])
         return None
+
+    def setData(self, index, value, role):
+        if role == Qt.ItemDataRole.EditRole:
+            row = index.row()
+            col = index.column()
+            column_name = self._data.columns[col]
+            self._data.iloc[row, col] = value
+            self.dataChanged.emit(index, index)
+            return True
+        return False
 
 class ImportThread(QThread):
     progress = pyqtSignal(str)
@@ -271,7 +306,35 @@ class ImportTool(QMainWindow):
         print(f"Import folder: {self.import_folder}")
         print(f"Data folder: {self.data_folder}")
 
+    def predict_minutes(self, progress_print=print):
+        predictions = PredictMinutes()
 
+        time.sleep(1)  # Give Excel a moment to fully initialize
+        csv_path = os.path.join('..', 'dk_import', 'nba_daily_combined.csv')
+        game_logs_df = pd.read_csv(csv_path, encoding='utf-8')
+        dk_df = self.dataframes['DK Entries']
+        bbm_df = self.dataframes['BBM']
+        #game_logs_df = self.dataframes['Game Logs']
+
+        dk_df.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
+        game_logs_df.rename(columns={'TEAM_NAME': 'Team'}, inplace=True)
+        bbm_df.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
+        bbm_df.rename(columns={'BB_PROJECTION': 'Projection'}, inplace=True)
+
+        data = pd.merge(
+             dk_df,
+             game_logs_df,
+             on='Player',
+             how='left'  # Keep all rows from the previous merge
+        )
+
+        data = pd.merge(
+             data,
+             bbm_df,
+             on='Player',
+             how='left'  # Keep all rows from the previous merge
+        )
+        predictions.predict_minutes_df(data)
 
     def import_daily(self, progress_print=print):
         downloader = DailyDownload()
@@ -488,9 +551,6 @@ class ImportTool(QMainWindow):
         self.table_view.setSortingEnabled(True)
         self.table_view.setAlternatingRowColors(True)
 
-
-
-
     def display_dataframe(self, df):
         if df is not None and not df.empty:
             try:
@@ -504,8 +564,12 @@ class ImportTool(QMainWindow):
                 print("Setting model to view...")  # Debug print
                 self.table_view.setModel(proxy_model)
 
-                # Enable sorting
+                # Enable sorting and editing
                 self.table_view.setSortingEnabled(True)
+                self.table_view.setEditTriggers(QAbstractItemView.EditTrigger.DoubleClicked)
+
+                # Connect to handle data changes
+                proxy_model.dataChanged.connect(self.handle_data_changed)
 
                 # Adjust column widths
                 for i in range(len(df.columns)):
@@ -514,6 +578,18 @@ class ImportTool(QMainWindow):
                 print("Model set successfully")  # Debug print
             except Exception as e:
                 print(f"Error displaying dataframe: {e}")
+
+    def handle_data_changed(self, topLeft, bottomRight):
+        try:
+            # Get the current DataFrame
+            current_df = self.dataframes[self.data_selector.currentText()]
+
+            # Save to CSV
+            csv_path = os.path.join('..', 'dk_import', 'nba_daily_combined.csv')
+            current_df.to_csv(csv_path, index=False)
+            print("Data saved successfully")
+        except Exception as e:
+            print(f"Error saving data: {e}")
 
     def expand_game_logs(self, progress_print=print):
         predictions = NbaMInutesPredictions()
@@ -704,6 +780,7 @@ class ImportTool(QMainWindow):
         progress_print("SOG import completed successfully")
         return data
 
+
     def process_game_logs(self):
         # Read from Excel using XWings
 
@@ -712,6 +789,8 @@ class ImportTool(QMainWindow):
         # excel_path = os.path.join('..', 'dk_import', 'nba - Copy.xlsm')
         csv_path = os.path.join('..', 'dk_import', 'nba_daily_combined.csv')
         csv_read = os.path.join('..', 'dk_import', 'nba_boxscores_enhanced.csv')
+
+
 
         # Read data
         # needed_data = {
@@ -802,6 +881,15 @@ class ImportTool(QMainWindow):
         # Reorder the DataFrame
         # result_df = result_df[new_column_order]
 
+        # After reading the CSV and before displaying:
+        if 'Max Minutes' not in result_df.columns:
+            result_df['Max Minutes'] = 48 # Initialize with current minutes
+            # Or use a default value:
+            # result_df['Max Minutes'] = 48  # or any default value you prefer
+
+        # Make sure 'Max Minutes' is in your new_column_order list
+        # (it's already there in your current column order)
+
         result_df.to_csv(csv_path, index=False)
         data = result_df
 
@@ -817,8 +905,12 @@ class ImportTool(QMainWindow):
 
         # Store in dataframes dictionary
         self.dataframes['Game Logs'] = data
+        # If you're using a model-view setup, you'll need to set up an editable model:
         if self.data_selector.currentText() == 'Game Logs':
             self.display_dataframe(data)
+
+        # if self.data_selector.currentText() == 'Game Logs':
+        #     self.display_dataframe(data)
 
         return data
 

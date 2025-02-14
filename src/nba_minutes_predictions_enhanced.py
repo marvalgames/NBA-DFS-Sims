@@ -424,7 +424,7 @@ def create_advanced_features(df):
     # New advanced features
     #df['MIN_LAST_3_AVG'] = df['Last 10 Minutes']
     #df['MIN_LAST_5_AVG'] = df['Last 10 Minutes']
-    df['MIN_LAST_7_AVG'] = df['Last 10 Minutes']
+    #df['MIN_LAST_7_AVG'] = df['Last 10 Minutes']
     df['MIN_LAST_3_STD'] = 2  # Default variation
     df['MIN_LAST_5_STD'] = 2
     df['MIN_LAST_7_STD'] = 2
@@ -814,6 +814,234 @@ class PredictMinutes:
 
         finally:
             app.quit()
+
+
+    def predict_minutes_df(self, df):
+        current_folder = Path(__file__).parent  # Current script directory (src)
+        target_folder = current_folder.parent / "src"  # Sibling folder (dk-import)
+        os.chdir(target_folder)
+        print(f"Current working directory: {os.getcwd()}")
+        with open('final_minutes_expanded_prediction_model.pkl', 'rb') as f:
+            model = pickle.load(f)
+
+
+
+            # Convert to DataFrame
+            data = df
+
+
+            # Basic data cleaning
+            data = data.dropna(subset=['Team'])
+            data = data[data['Team'] != '']
+
+            # Convert numeric columns
+            numeric_columns = [
+                'Salary',
+                'Minutes',
+                'BBM Minutes',
+                'FTA Minutes',
+                'SOG Minutes',
+                'Minutes Played',
+                'Max Minutes',
+                'FTA Own',
+                'SOG Own',
+                'Projection',
+                'Last 10 Minutes',
+                'MSE',
+                'DARKO Minutes',
+                'Minutes Override',
+                'MIN_CUM_AVG',
+                'MIN_LAST_3_AVG',
+                'MIN_LAST_5_AVG',
+                'MIN_LAST_10_AVG',
+                'MIN_ABOVE_AVG_STREAK',
+                'MIN_TREND',
+                'MIN_CONSISTENCY',
+                'MIN_CONSISTENCY_SCORE',
+                'MIN_ABOVE_20',
+                'MIN_ABOVE_25',
+                'MIN_ABOVE_30',
+                'FREQ_ABOVE_20',
+                'FREQ_ABOVE_25',
+                'FREQ_ABOVE_30',
+                'Projected Pts',
+                'DK',
+                'DK_CUM_AVG',
+                'DK_LAST_3_AVG',
+                'DK_LAST_5_AVG',
+                'DK_LAST_10_AVG',
+                'DK_TREND',
+                'DK_TREND_5',
+                'DK_CONSISTENCY',
+                'PTS_LAST_3_AVG',
+                'PTS_LAST_5_AVG',
+                #'PTS_LAST_10_AVG',
+                'REB_LAST_3_AVG',
+                'REB_LAST_5_AVG',
+                'REB_LAST_10_AVG',
+                'AST_LAST_3_AVG',
+                'AST_LAST_5_AVG',
+                'AST_LAST_10_AVG',
+                'PTS_CUM_AVG',
+                'REB_CUM_AVG',
+                'AST_CUM_AVG',
+                'PTS_PER_MIN',
+                'REB_PER_MIN',
+                'AST_PER_MIN',
+                'SCORING_EFFICIENCY',
+                'RECENT_SCORING_EFF',
+                'FG_PCT',
+                'FG3_PCT',
+                'FT_PCT',
+                'FGM',
+                'FGA',
+                'FG3M',
+                'FG3A',
+                'FTM',
+                'FTA',
+                'PLUS_MINUS',
+                'PLUS_MINUS_PER_MIN',
+                'PLUS MINUS_LAST_3_AVG',
+                'PLUS MINUS_LAST_5_AVG',
+                'PLUS MINUS_LAST_10_AVG',
+                'PLUS MINUS_CUM_AVG',
+                'PLUS MINUS_TREND',
+                'PLUS MINUS_CONSISTENCY',
+                'PTS_TREND',
+                'REB_TREND',
+                'AST_TREND',
+                'PTS_CONSISTENCY',
+                'REB_CONSISTENCY',
+                'AST_CONSISTENCY',
+                'TEAM_MIN_PERCENTAGE',
+                'TEAM_PROJ_RANK',
+                'PTS_VS_TEAM_AVG',
+                'REB_VS_TEAM_AVG',
+                'AST_VS_TEAM_AVG',
+                'MIN_VS_TEAM_AVG',
+                'ROLE_CHANGE_3_10',
+                'ROLE_CHANGE_5_10',
+                'DAYS_REST',
+                'STL',
+                'BLK',
+                'TOV',
+                'OREB',
+                'DREB',
+                'PF'
+            ]
+
+            #for col in numeric_columns:
+            #data[col] = pd.to_numeric(data[col], errors='coerce')
+            # Create DK feature from Projection
+            #data['DK'] = data['Projection']
+            #data['DK Name'] = data['Player']
+
+            # Set Minutes to 0 where Projection is 0
+            data.loc[data['Projection'] == 0, 'Minutes'] = 0
+
+            # Create advanced features
+            enhanced_data = create_advanced_features(data)
+
+            # Define features for prediction (match training features)
+            features = [
+                #'MIN_VS_TEAM_AVG',
+                'MIN_CUM_AVG',
+                'MIN_ABOVE_AVG_STREAK',
+                'MIN_LAST_10_AVG',
+                'MIN_CONSISTENCY',
+
+                 'DK_TREND_5',
+                 'DK_LAST_10_AVG',
+                'PTS_CUM_AVG',
+                'REB_PER_MIN',
+                'AST_PER_MIN',
+                'PTS_PER_MIN',
+                'AST_LAST_10_AVG',
+                'REB_LAST_10_AVG',
+
+                'DAYS_REST',
+                'PTS_LAST_10_AVG',
+                #'BLOWOUT_GAME',
+                #'IS_HOME',
+                #'MIN_TREND',
+                #'IS_B2B',
+
+                # New advanced features
+                'MIN_LAST_3_AVG',
+                'MIN_LAST_5_AVG',
+                'ROLE_CHANGE_3_10',
+                'ROLE_CHANGE_5_10',
+                'MIN_CONSISTENCY_SCORE',
+                'RECENT_SCORING_EFF',
+                'RECENT_IMPACT',
+
+                'FREQ_ABOVE_20',
+                'FREQ_ABOVE_25',
+                'FREQ_ABOVE_30',
+
+                 'TEAM_PROJ_RANK',
+                 #'IS_TOP_3_PROJ',
+                 'TEAM_MIN_PERCENTAGE',
+                 'LOW_MIN_TOP_PLAYER',
+                 'Projection'
+
+            ]
+
+            # After reading data but before predictions
+            #print("Before override - AD's MIN_VS_TEAM_AVG:",
+                   #enhanced_data.loc[enhanced_data['Player'] == 'Lamelo Ball', 'TEAM_MIN_PERCENTAGE'].values[0])
+
+
+            # # Override the value
+            enhanced_data['TEAM_MIN_PERCENTAGE'] = enhanced_data.groupby('Team')['Minutes'].transform(lambda x: x / x.sum() * 100)
+            #
+            # enhanced_data['MIN_VS_TEAM_AVG'] = enhanced_data.groupby('Team')['Minutes'].transform(
+            #     lambda x: x / x.mean()
+            # )
+
+            #print("After override - AD's MIN_VS_TEAM_AVG:",
+                   #enhanced_data.loc[enhanced_data['Player'] == 'Lamelo Ball', 'TEAM_MIN_PERCENTAGE'].values[0])
+
+            # Make predictions
+            X = enhanced_data[features]
+            raw_predictions = model.predict(X)
+
+            # Store original predictions
+            data['Original_Minutes'] = raw_predictions
+
+            # Apply zeros BEFORE position constraints
+            data['Predicted_Minutes'] = raw_predictions.copy()  # Start with a copy of raw predictions
+
+
+            # Apply zero conditions
+            # No \ needed here because of the parentheses
+            zero_mask = (
+                    (data['Projection'] == 0)
+                    #(data['Projection'] == 0) |
+                    #(data['Minutes'] <= 8)
+                    #(data['DARKO Minutes'] <= 6)
+            )
+            data.loc[zero_mask, 'Predicted_Minutes'] = 0
+
+            # NOW apply position constraints to the already-modified predictions
+            data['Predicted_Minutes'] = apply_position_constraints(data)
+            data['Predicted_Minutes'] = adjust_team_minutes_with_minimum_and_boost(data)
+            # Create predictions mapping and write back to Excel
+            predictions_dict = dict(zip(data['Player'], data['Predicted_Minutes']))
+
+            # Print summary
+            print("\nFinal Predictions:")
+            for team in sorted(data['Team'].unique()):
+                team_data = data[data['Team'] == team]
+                print(f"\n{team}:")
+                print(f"Team Total: {team_data['Predicted_Minutes'].sum():.1f}")
+                print("\nTop Players:")
+                top_players = team_data.nlargest(8, 'Predicted_Minutes')
+                for _, row in top_players.iterrows():
+                    print(f"{row['Player']:<20} {row['Predicted_Minutes']:.1f}")
+                    if row['Predicted_Minutes'] >= 36:
+                        print(f"  ** High minutes player (Max: {row['Max Minutes']})")
+
 
 
 if __name__ == "__main__":
