@@ -175,7 +175,7 @@ class ImportTool(QMainWindow):
         viewer_group = QGroupBox("Data Viewer")
         viewer_layout = QVBoxLayout()
         self.data_selector = QComboBox()
-        self.data_selector.addItems(['BBM', 'FTA', 'DK Entries', 'Darko', 'Team Stats', 'Odds', 'Game Logs', 'SOG', 'Predict Minutes', 'Ownership Projections', 'Export Projections'])
+        self.data_selector.addItems(['BBM', 'FTA', 'DK Entries', 'Darko', 'Team Stats', 'Odds', 'SOG', 'Predict Minutes', 'Ownership Projections', 'Export Projections'])
         self.data_selector.currentTextChanged.connect(self.on_data_selection_changed)
         viewer_layout.addWidget(self.data_selector)
         viewer_group.setLayout(viewer_layout)
@@ -190,7 +190,7 @@ class ImportTool(QMainWindow):
         daily_button.clicked.connect(lambda: self.run_threaded_import(self.import_daily))
         import_layout.addWidget(daily_button)
 
-        game_logs_button = QPushButton("Expand Daily Game Logs")
+        game_logs_button = QPushButton("Merge Daily Game Logs")
         game_logs_button.clicked.connect(lambda: self.run_threaded_import(self.expand_game_logs))
         import_layout.addWidget(game_logs_button)
 
@@ -522,12 +522,54 @@ class ImportTool(QMainWindow):
         self.table_view.setSortingEnabled(True)
         self.table_view.setAlternatingRowColors(True)
 
+    def transform_dataframe(self, df, key):
+        transformations = {
+            'FTA': {
+                'columns_to_remove': ['min', 'max', 'lock', 'exclude'],
+                'rename_mapping': {'PLAYER_NAME': 'Player Name'},
+                #'columns_reorder': ['Player Name', 'team', 'position', 'points', 'rebounds', 'assists']
+            },
+            'BBM': {
+                'columns_to_remove': ['id', 'last_name', 'first_name'],
+                'rename_mapping': {'BB_PROJECTION': 'BBM Projection', 'PLAYER_NAME': 'Player'},
+                'move_to_front': 'Player'
+                #'columns_reorder': ['Player', 'BBM Projection', 'games_played', 'minutes_per_game']
+            },
+        }
+
+        if key in transformations:
+            config = transformations[key]
+
+            # Remove specified columns
+            if 'columns_to_remove' in config:
+                df = df.drop(columns=config['columns_to_remove'], axis=1, errors='ignore')  # Safe removal
+
+            # Rename columns
+            if 'rename_mapping' in config:
+                df = df.rename(columns=config['rename_mapping'])
+
+            # Reorder columns
+            if 'columns_reorder' in config:
+                reorder = [col for col in config['columns_reorder'] if
+                           col in df.columns]  # Retain only existing columns
+                df = df[reorder]  # Reorder based on the specified list
+
+            # Move a specific column to the front
+            if 'move_to_front' in config:
+                column_to_move = config['move_to_front']
+                if column_to_move in df.columns:
+                    # Reorder columns to move the specified column to the front
+                    columns = [column_to_move] + [col for col in df.columns if col != column_to_move]
+                    df = df[columns]
+
+        return df
+
     def display_dataframe(self, df, sort_column=None, ascending=False):
         if df is not None and not df.empty:
             try:
                 print("Creating model...")  # Debug print
 
-                # Perform safe validation and sorting
+
                 if sort_column:
                     if sort_column in df.columns:
                         print(f"Sorting DataFrame by column: {sort_column}, ascending: {ascending}")  # Debug print
@@ -536,7 +578,13 @@ class ImportTool(QMainWindow):
                         print(
                             f"Warning: The specified sort_column '{sort_column}' is not in DataFrame columns.")  # Debug warning
 
-                # Create DataFrame model
+
+                # Apply transformations based on DataFrame key
+                if df.equals(self.dataframes['FTA']):
+                    df = self.transform_dataframe(df, key='FTA')
+                elif df.equals(self.dataframes['BBM']):
+                    df = self.transform_dataframe(df, key='BBM')
+
                 model = DataFrameModel(df)
                 # Create proxy model for sorting
                 proxy_model = CustomSortFilterProxyModel()
@@ -920,8 +968,8 @@ class ImportTool(QMainWindow):
         # Store in dataframes dictionary
         self.dataframes['Game Logs'] = data
         # If you're using a model-view setup, you'll need to set up an editable model:
-        if self.data_selector.currentText() == 'Game Logs':
-            self.display_dataframe(data)
+        #if self.data_selector.currentText() == 'Game Logs':
+        self.display_dataframe(data)
 
         # if self.data_selector.currentText() == 'Game Logs':
         #     self.display_dataframe(data)
@@ -929,26 +977,24 @@ class ImportTool(QMainWindow):
         return data
 
 
-    def predict_minutes(self, progress_print=print):
-        predictions = PredictMinutes()
-
+    def build_predict_minutes_dataframe(self, progress_print=print):
         time.sleep(1)  # Give Excel a moment to fully initialize
         csv_path = os.path.join('..', 'dk_import', 'nba_daily_combined.csv')
-        game_logs_df = pd.read_csv(csv_path, encoding='utf-8')
+        game_logs_df = pd.read_csv(csv_path, encoding='utf-8', keep_default_na=False)
+        game_logs_df['injury'] = game_logs_df['injury'].replace("", "Active")
+        self.dataframes['Predict Minutes'] = game_logs_df
+        self.display_dataframe(game_logs_df)
 
 
+
+
+    def predict_minutes(self, progress_print=print):
+        predictions = PredictMinutes()
+        game_logs_df = self.dataframes['Predict Minutes']
         data = predictions.predict_minutes_df(game_logs_df)
-
-        # Store in dataframes dictionary
         self.dataframes['Predict Minutes'] = data
-
-
-
-        # Update display if BBM is currently selected
-        #if self.data_selector.currentText() == 'Predict Minutes':
         self.display_dataframe(data)
-
-        progress_print("BBM import completed successfully")
+        progress_print("Predict Minutes import completed successfully")
         return data
 
 
@@ -964,7 +1010,7 @@ class ImportTool(QMainWindow):
                 raise FileNotFoundError(f"bbm.csv file not found at {bbm_file}")
 
             progress_print(f"Reading file: {bbm_file}")
-            data = pd.read_csv(bbm_file, index_col=False)
+            data = pd.read_csv(bbm_file, index_col=False, encoding='utf-8', keep_default_na=False)
 
             # Verify we have data
             if data.empty:
@@ -1004,15 +1050,14 @@ class ImportTool(QMainWindow):
                 missing_cols = [col for col in required_columns if col not in data.columns]
                 raise KeyError(f"The following required columns are missing in the CSV file: {missing_cols}")
 
+            # Round numeric columns to 2 or 3 decimal places
+            numeric_cols = ['points', 'threes', 'rebounds', 'assists', 'steals', 'blocks', 'turnovers',
+                            'BB_PROJECTION']
+            data[numeric_cols] = data[numeric_cols].round(2)  # Adjust precision here
             data = data.fillna('')
 
-            # Store in dataframes dictionary
             self.dataframes['BBM'] = data
-
-            # Update display if BBM is currently selected
-            #if self.data_selector.currentText() == 'BBM':
             self.display_dataframe(data)
-
             progress_print("BBM import completed successfully")
             return data
 
@@ -1023,38 +1068,86 @@ class ImportTool(QMainWindow):
     def import_fta_entries(self, progress_print=print):
         try:
             progress_print("Starting FTA import...")
-
-            # Use the correct file path
             fta_file = self.import_folder / "fta.csv"
-
             if not fta_file.exists():
                 raise FileNotFoundError(f"fta.csv file not found at {fta_file}")
 
             progress_print(f"Reading file: {fta_file}")
-            data = pd.read_csv(fta_file)
 
-            # Verify we have data
+            # Read file
+            data = pd.read_csv(fta_file, encoding='utf-8', keep_default_na=False)
             if data.empty:
                 raise ValueError("No data was read from the FTA CSV file")
-
             progress_print(f"Successfully read {len(data)} rows of data")
 
+            # Standardize and rename columns
             data = self.standardize_player_names(data, 'Name')
-            data.rename(columns={'Name': 'PLAYER_NAME'}, inplace=True)
+            data.rename(columns={'Name': 'PLAYER_NAME'}, inplace=True)  # Rename Name -> PLAYER_NAME
 
-
-            # Store in dataframes dictionary
+            # Store raw data (in case it is needed elsewhere)
             self.dataframes['FTA'] = data
 
-            # Update display if FTA is currently selected
-            #if self.data_selector.currentText() == 'FTA':
-            self.display_dataframe(data)
+            # Remove unwanted columns and create DataFrame for display
+            columns_to_remove = ['min', 'max', 'lock', 'exclude']
+            display_data = data.drop(columns=columns_to_remove, axis=1)  # Remove columns
+
+            # Rename PLAYER_NAME -> Player Name for display purposes
+            display_data = display_data.rename(columns={'PLAYER_NAME': 'Player Name'})
+
+            # Pass the correct display_data to the display_dataframe method
+            self.display_dataframe(display_data)
 
             progress_print("FTA import completed successfully")
             return data
 
         except Exception as e:
             progress_print(f"Error in FTA import: {str(e)}")
+            raise
+
+
+    def update_darko(self, progress_print=print):
+        try:
+            progress_print("Updating Darko ...")
+
+            data = self.dataframes['Darko']
+
+            # data['BB_PROJECTION'] = data.apply(
+            #     lambda row: 0 if pd.isna(row['id']) or row['id'] == "" else (
+            #             row['points'] +
+            #             row['threes'] * 0.5 +
+            #             row['rebounds'] * 1.25 +
+            #             row['assists'] * 1.5 +
+            #             row['steals'] * 2 +
+            #             row['blocks'] * 2 -
+            #             row['turnovers'] * 0.5 +
+            #             row['double doubles'] * 1.5 +
+            #             row['triple doubles'] * 3
+
+            # Verify we have data
+            if data.empty:
+                raise ValueError("No data was read from Darko")
+
+            progress_print(f"Successfully read {len(data)} rows of data")
+
+            # Extract the 'Minutes' column from BBM and merge into Darko data
+            if 'BBM' in self.dataframes:
+                bbm_df = self.dataframes['BBM']
+                if 'minutes' in bbm_df.columns:
+                    bbm_df = self.standardize_player_names(bbm_df, 'PLAYER_NAME')  # Ensure consistent name formatting
+                    merged_data = pd.merge(data, bbm_df[['PLAYER_NAME', 'minutes']], on='PLAYER_NAME', how='left')
+                    data = merged_data  # Update data with merged dataframe
+                    progress_print("Successfully merged 'Minutes' column from BBM.")
+                else:
+                    progress_print("Warning: 'Minutes' column not found in BBM dataframe.")
+            else:
+                progress_print("Warning: BBM dataframe not found in self.dataframes.")
+            self.dataframes['Darko'] = data
+            self.display_dataframe(data)
+            progress_print("Darko import completed successfully")
+            return data
+
+        except Exception as e:
+            progress_print(f"Error in Darko import: {str(e)}")
             raise
 
 
@@ -1070,7 +1163,6 @@ class ImportTool(QMainWindow):
 
             progress_print(f"Reading file: {darko_file}")
             data = pd.read_csv(darko_file)
-
             # Verify we have data
             if data.empty:
                 raise ValueError("No data was read from the Darko CSV file")
@@ -1376,9 +1468,10 @@ class ImportTool(QMainWindow):
         self.import_fta_entries(progress_print=progress_print)
         self.import_dk_entries(progress_print=progress_print)
         self.import_darko(progress_print=progress_print)
+        self.update_darko(progress_print=progress_print)
         self.import_team_stats(progress_print=progress_print)
         self.merge_dataframes(progress_print=progress_print)
-        #self.predict_minutes(progress_print=progress_print)
+        self.build_predict_minutes_dataframe(progress_print=progress_print)
         self.build_ownership_projections_dataframe(progress_print=progress_print)
         self.export_projections(progress_print=progress_print)
         #self.export_projections(progress_print=progress_print)
