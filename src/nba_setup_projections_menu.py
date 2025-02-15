@@ -522,20 +522,58 @@ class ImportTool(QMainWindow):
         self.table_view.setSortingEnabled(True)
         self.table_view.setAlternatingRowColors(True)
 
+    import pandas as pd
     def transform_dataframe(self, df, key):
+        print(df.columns)
         transformations = {
             'FTA': {
                 'columns_to_remove': ['min', 'max', 'lock', 'exclude'],
                 'rename_mapping': {'PLAYER_NAME': 'Player Name'},
-                #'columns_reorder': ['Player Name', 'team', 'position', 'points', 'rebounds', 'assists']
             },
             'BBM': {
                 'columns_to_remove': ['id', 'last_name', 'first_name'],
                 'rename_mapping': {'BB_PROJECTION': 'BBM Projection', 'PLAYER_NAME': 'Player'},
                 'move_to_front': 'Player'
-                #'columns_reorder': ['Player', 'BBM Projection', 'games_played', 'minutes_per_game']
+            },
+            'Team Stats': {
+                'columns_to_remove': ['TEAM_ID', 'last_name', 'first_name'],
+                'rename_mapping': {'TEAM_NAME_x': 'Team', 'W_PCT_x': 'Win Pct'},
+                'wildcard_remove': 'RANK',  # Indicate we want to remove columns with 'RANK' in column names
             },
         }
+
+        def remove_duplicate_columns(df):
+            base_columns = set(col.split('_')[0] for col in df.columns if col.endswith(('_x', '_y')))
+
+            for base in base_columns:
+                print(f"Processing base column: {base}")
+                col_without_suffix = base
+                col_x = f"{base}_x"
+                col_y = f"{base}_y"
+
+                if col_without_suffix in df.columns:
+                    print(f"Keeping base column {col_without_suffix} and dropping {col_x} and {col_y}")
+                    df = df.drop(columns=[col_x, col_y], errors='ignore')
+                elif col_x in df.columns and col_y in df.columns:
+                    print(f"Keeping {col_x} and dropping {col_y}")
+                    df = df.drop(columns=[col_y], errors='ignore')
+                    print(f"Renaming {col_x} to {base}")
+                    df = df.rename(columns={col_x: base})
+                elif col_x in df.columns:
+                    print(f"Renaming {col_x} to {base}")
+                    df = df.rename(columns={col_x: base})
+                elif col_y in df.columns:
+                    print(f"Renaming {col_y} to {base}")
+                    df = df.rename(columns={col_y: base})
+
+            print(f"Final columns: {df.columns}")
+            return df
+
+
+        # Handle wildcard column removal
+        def remove_columns_by_wildcard(df, keyword):
+            cols_to_remove = [col for col in df.columns if keyword in col]
+            return df.drop(columns=cols_to_remove, errors='ignore')
 
         if key in transformations:
             config = transformations[key]
@@ -548,6 +586,13 @@ class ImportTool(QMainWindow):
             if 'rename_mapping' in config:
                 df = df.rename(columns=config['rename_mapping'])
 
+            # Handle duplicate columns based on suffixes
+            df = remove_duplicate_columns(df)
+
+            # Handle wildcard column removal
+            if 'wildcard_remove' in config:
+                df = remove_columns_by_wildcard(df, config['wildcard_remove'])
+
             # Reorder columns
             if 'columns_reorder' in config:
                 reorder = [col for col in config['columns_reorder'] if
@@ -558,11 +603,30 @@ class ImportTool(QMainWindow):
             if 'move_to_front' in config:
                 column_to_move = config['move_to_front']
                 if column_to_move in df.columns:
-                    # Reorder columns to move the specified column to the front
                     columns = [column_to_move] + [col for col in df.columns if col != column_to_move]
                     df = df[columns]
 
         return df
+
+    # Adjusted adjust_column_widths method for PyQt6
+    def adjust_column_widths(self):
+        header = self.table_view.horizontalHeader()
+        model = self.table_view.model()
+        column_count = model.columnCount()
+
+        for column in range(column_count):
+            # Get the width needed for the header text
+            header_width = header.fontMetrics().boundingRect(
+                model.headerData(column, Qt.Orientation.Horizontal, Qt.ItemDataRole.DisplayRole)
+            ).width() + 80  # Add some padding
+
+            # First resize to content
+            self.table_view.resizeColumnToContents(column)
+            # Get content-based width
+            content_width = self.table_view.columnWidth(column)
+
+            # Use the maximum of header width and content width
+            self.table_view.setColumnWidth(column, max(header_width, content_width))
 
     def display_dataframe(self, df, sort_column=None, ascending=False):
         if df is not None and not df.empty:
@@ -584,6 +648,8 @@ class ImportTool(QMainWindow):
                     df = self.transform_dataframe(df, key='FTA')
                 elif df.equals(self.dataframes['BBM']):
                     df = self.transform_dataframe(df, key='BBM')
+                elif df.equals(self.dataframes['Team Stats']):
+                    df = self.transform_dataframe(df, key='Team Stats')
 
                 model = DataFrameModel(df)
                 # Create proxy model for sorting
@@ -607,8 +673,11 @@ class ImportTool(QMainWindow):
                 proxy_model.dataChanged.connect(self.handle_data_changed)
 
                 # Adjust column widths
-                for i in range(len(df.columns)):
-                    self.table_view.resizeColumnToContents(i)
+                self.adjust_column_widths()
+
+                # Make last column stretch to fill remaining space
+                #self.table_view.horizontalHeader().setStretchLastSection(True)
+
 
                 print("Model set successfully")  # Debug print
             except Exception as e:
@@ -1256,39 +1325,6 @@ class ImportTool(QMainWindow):
     from datetime import datetime, timezone, timedelta
     def fetch_and_save_team_data_with_odds(self, progress_print=print):
 
-        team_abbr_dict = {
-            'Atlanta Hawks': 'ATL',
-            'Boston Celtics': 'BOS',
-            'Brooklyn Nets': 'BKN',
-            'Charlotte Hornets': 'CHA',
-            'Chicago Bulls': 'CHI',
-            'Cleveland Cavaliers': 'CLE',
-            'Dallas Mavericks': 'DAL',
-            'Denver Nuggets': 'DEN',
-            'Detroit Pistons': 'DET',
-            'Golden State Warriors': 'GSW',
-            'Houston Rockets': 'HOU',
-            'Indiana Pacers': 'IND',
-            'Los Angeles Clippers': 'LAC',
-            'Los Angeles Lakers': 'LAL',
-            'Memphis Grizzlies': 'MEM',
-            'Miami Heat': 'MIA',
-            'Milwaukee Bucks': 'MIL',
-            'Minnesota Timberwolves': 'MIN',
-            'New Orleans Pelicans': 'NOP',
-            'New York Knicks': 'NYK',
-            'Oklahoma City Thunder': 'OKC',
-            'Orlando Magic': 'ORL',
-            'Philadelphia 76ers': 'PHI',
-            'Phoenix Suns': 'PHX',
-            'Portland Trail Blazers': 'POR',
-            'Sacramento Kings': 'SAC',
-            'San Antonio Spurs': 'SAS',
-            'Toronto Raptors': 'TOR',
-            'Utah Jazz': 'UTA',
-            'Washington Wizards': 'WAS'
-        }
-
         try:
             # Get today's date in EST
             today_est = datetime.now(timezone(timedelta(hours=-5))).date()
@@ -1403,19 +1439,98 @@ class ImportTool(QMainWindow):
                         teams_df.loc[teams_df["Team"].isin(
                             [odds_event["home_team"], odds_event["away_team"]]), "Total"] = total_value
 
-                # Add the Abbr column based on the Team column
-                teams_df['Abbr'] = teams_df['Team'].map(team_abbr_dict)
-
-                teams_df['Points'] = np.where(
-                    (teams_df['Total'] / 2 - teams_df['Spread'] / 2) > 0,
-                    teams_df['Total'] / 2 - teams_df['Spread'] / 2,
-                    ''
-                )
-
+                #update odds
 
             progress_print("Saving to CSV...")
             # Save the updated DataFrame to a CSV file
             teams_df.to_csv(csv_path, index=False)
+            progress_print("DK Entries import completed successfully")
+            # Print success messages
+            print("Fetched NBA Team Data with Odds:")
+            print(teams_df)
+            print(f"Data successfully saved to {csv_path}")
+            progress_print("Done importing NBA Schedule to odds.")
+            self.update_team_data_with_odds()
+            return teams_df
+
+
+        except Exception as e:
+            progress_print(f"An error occurred: {e}")
+            raise
+
+
+    from datetime import datetime, timezone, timedelta
+    def update_team_data_with_odds(self, progress_print=print):
+
+        team_abbr_dict = {
+            'Atlanta Hawks': 'ATL',
+            'Boston Celtics': 'BOS',
+            'Brooklyn Nets': 'BKN',
+            'Charlotte Hornets': 'CHA',
+            'Chicago Bulls': 'CHI',
+            'Cleveland Cavaliers': 'CLE',
+            'Dallas Mavericks': 'DAL',
+            'Denver Nuggets': 'DEN',
+            'Detroit Pistons': 'DET',
+            'Golden State Warriors': 'GSW',
+            'Houston Rockets': 'HOU',
+            'Indiana Pacers': 'IND',
+            'Los Angeles Clippers': 'LAC',
+            'Los Angeles Lakers': 'LAL',
+            'Memphis Grizzlies': 'MEM',
+            'Miami Heat': 'MIA',
+            'Milwaukee Bucks': 'MIL',
+            'Minnesota Timberwolves': 'MIN',
+            'New Orleans Pelicans': 'NOP',
+            'New York Knicks': 'NYK',
+            'Oklahoma City Thunder': 'OKC',
+            'Orlando Magic': 'ORL',
+            'Philadelphia 76ers': 'PHI',
+            'Phoenix Suns': 'PHX',
+            'Portland Trail Blazers': 'POR',
+            'Sacramento Kings': 'SAC',
+            'San Antonio Spurs': 'SAS',
+            'Toronto Raptors': 'TOR',
+            'Utah Jazz': 'UTA',
+            'Washington Wizards': 'WAS'
+        }
+
+        try:
+
+            progress_print("Processing odds data...")
+            # If the CSV already exists, read its content to preserve existing values
+            csv_path = self.import_folder / "odds.csv"
+
+            if os.path.exists(csv_path):
+                existing_data = pd.read_csv(csv_path)
+                teams_df = pd.read_csv(csv_path, index_col=False, encoding='utf-8', keep_default_na=False)
+
+                teams_df = pd.merge(teams_df, existing_data, on=["Team", "Game Time (EST)"], how="left",
+                                    suffixes=("", "_existing"))
+
+                # Preserve existing values if new data is not available
+                teams_df["Spread"] = teams_df.apply(
+                    lambda row: row["Spread"] if not pd.isna(row["Spread"]) else row["Spread_existing"], axis=1
+                )
+                teams_df["Total"] = teams_df.apply(
+                    lambda row: row["Total"] if not pd.isna(row["Total"]) else row["Total_existing"], axis=1
+                )
+
+                # Drop the merged columns
+                teams_df = teams_df.drop(columns=["Spread_existing", "Total_existing"])
+
+            progress_print("Updating odds values...")
+
+            # Add the Abbr column based on the Team column
+            teams_df['Abbr'] = teams_df['Team'].map(team_abbr_dict)
+
+            teams_df['Points'] = np.where(
+                (teams_df['Total'] / 2 - teams_df['Spread'] / 2) > 0,
+                teams_df['Total'] / 2 - teams_df['Spread'] / 2,
+                ''
+            )
+
+
 
             # Store in dataframes dictionary
             self.dataframes['Odds'] = teams_df
@@ -1439,6 +1554,7 @@ class ImportTool(QMainWindow):
         except Exception as e:
             progress_print(f"An error occurred: {e}")
             raise
+
 
     def export_projections(self, progress_print=print):
         progress_print("Exporting projections to CSV...")
@@ -1474,6 +1590,7 @@ class ImportTool(QMainWindow):
         self.build_predict_minutes_dataframe(progress_print=progress_print)
         self.build_ownership_projections_dataframe(progress_print=progress_print)
         self.export_projections(progress_print=progress_print)
+        self.update_team_data_with_odds()
         #self.export_projections(progress_print=progress_print)
         progress_print("All imports completed successfully.")
 
