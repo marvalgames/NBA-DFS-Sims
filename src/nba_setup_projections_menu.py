@@ -526,25 +526,32 @@ class ImportTool(QMainWindow):
         if df is not None and not df.empty:
             try:
                 print("Creating model...")  # Debug print
-                print(df)
-                # Sort DataFrame first
-                df = df.sort_values(by=sort_column, ascending=ascending)
-                model = DataFrameModel(df)
 
+                # Perform safe validation and sorting
+                if sort_column:
+                    if sort_column in df.columns:
+                        print(f"Sorting DataFrame by column: {sort_column}, ascending: {ascending}")  # Debug print
+                        df = df.sort_values(by=sort_column, ascending=ascending)
+                    else:
+                        print(
+                            f"Warning: The specified sort_column '{sort_column}' is not in DataFrame columns.")  # Debug warning
+
+                # Create DataFrame model
+                model = DataFrameModel(df)
                 # Create proxy model for sorting
                 proxy_model = CustomSortFilterProxyModel()
                 proxy_model.setSourceModel(model)
 
                 print("Setting model to view...")  # Debug print
                 self.table_view.setModel(proxy_model)
-
                 # Enable sorting and editing
                 self.table_view.setSortingEnabled(True)
-                # Set initial sort if sort_column is specified
-                # if sort_column and sort_column in df.columns:
-                column_index = df.columns.get_loc(sort_column)
-                sort_order = Qt.SortOrder.AscendingOrder if ascending else Qt.SortOrder.DescendingOrder
-                self.table_view.sortByColumn(column_index, sort_order)
+
+                # Optional: Set initial sort if sort_column is specified and verified
+                if sort_column and sort_column in df.columns:
+                    column_index = df.columns.get_loc(sort_column)
+                    sort_order = Qt.SortOrder.AscendingOrder if ascending else Qt.SortOrder.DescendingOrder
+                    self.table_view.sortByColumn(column_index, sort_order)
 
                 self.table_view.setEditTriggers(QAbstractItemView.EditTrigger.DoubleClicked)
 
@@ -669,8 +676,8 @@ class ImportTool(QMainWindow):
             self.dataframes['Team Stats'] = merged_df
 
             # Update display if Team Stats is currently selected
-            if self.data_selector.currentText() == 'Team Stats':
-                self.display_dataframe(merged_df)
+            #if self.data_selector.currentText() == 'Team Stats':
+            self.display_dataframe(merged_df)
 
             progress_print("Team Stats import completed successfully")
             return merged_df
