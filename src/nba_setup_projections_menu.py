@@ -524,7 +524,6 @@ class ImportTool(QMainWindow):
 
     import pandas as pd
     def transform_dataframe(self, df, key):
-        print(df.columns)
         transformations = {
             'FTA': {
                 'columns_to_remove': ['min', 'max', 'lock', 'exclude'],
@@ -1019,7 +1018,7 @@ class ImportTool(QMainWindow):
 
         print(f"Successfully read {len(data)} rows of data")
 
-        data.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
+        game_logs_df.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
         #data = self.standardize_player_names(data, 'Player')
 
         # Drop columns that end with '_x' or '_y' (default merge suffixes)
@@ -1051,6 +1050,7 @@ class ImportTool(QMainWindow):
         csv_path = os.path.join('..', 'dk_import', 'nba_daily_combined.csv')
         game_logs_df = pd.read_csv(csv_path, encoding='utf-8', keep_default_na=False)
         game_logs_df['injury'] = game_logs_df['injury'].replace("", "Active")
+        game_logs_df.rename(columns={'Player': 'PLAYER_NAME'}, inplace=True)
         self.dataframes['Predict Minutes'] = game_logs_df
         self.display_dataframe(game_logs_df)
 
@@ -1060,9 +1060,13 @@ class ImportTool(QMainWindow):
     def predict_minutes(self, progress_print=print):
         predictions = PredictMinutes()
         game_logs_df = self.dataframes['Predict Minutes']
+        game_logs_df.rename(columns={'PLAYER_NAME' : 'Player'}, inplace=True)
         data = predictions.predict_minutes_df(game_logs_df)
+        data.rename(columns={'Player': 'PLAYER_NAME'}, inplace=True)
         self.dataframes['Predict Minutes'] = data
-        self.display_dataframe(data)
+
+        self.update_darko(data)
+        #self.display_dataframe(data)
         progress_print("Predict Minutes import completed successfully")
         return data
 
@@ -1173,52 +1177,153 @@ class ImportTool(QMainWindow):
             progress_print(f"Error in FTA import: {str(e)}")
             raise
 
+    # A dictionary mapping column names to their calculation logic
+    FORMULA_CONFIG = {
+        'gm2': lambda row: ((row['FGA/100'] - row['FG3A/100']) * row['FG2%'] * row['minutes']) / 48,
 
-    def update_darko(self, progress_print=print):
-        try:
-            progress_print("Updating Darko ...")
+        # Add more column formulas here in the same way:
+        # 'column_name': lambda row: YOUR_EXCEL_EQUATION_IN_PYTHON,
+       # 'col2': lambda row: row['FG3A/100'] * row['FG3%'],  # Example formula.
+       # 'col3': lambda row: row['FGA/100'] * row['Turnover%'] / row['minutes'] if row['minutes'] > 0 else 0,
+        # Repeat for all 15 columns
+    }
 
-            data = self.dataframes['Darko']
+    def update_darko(self, df, progress_print=print):
+        progress_print("Updating Darko ...")
+        data = self.dataframes['Darko']
 
-            # data['BB_PROJECTION'] = data.apply(
-            #     lambda row: 0 if pd.isna(row['id']) or row['id'] == "" else (
-            #             row['points'] +
-            #             row['threes'] * 0.5 +
-            #             row['rebounds'] * 1.25 +
-            #             row['assists'] * 1.5 +
-            #             row['steals'] * 2 +
-            #             row['blocks'] * 2 -
-            #             row['turnovers'] * 0.5 +
-            #             row['double doubles'] * 1.5 +
-            #             row['triple doubles'] * 3
+        # Verify we have data
+        if data.empty:
+            raise ValueError("No data was read from Darko")
+        progress_print(f"Successfully read {len(data)} rows of data")
 
-            # Verify we have data
-            if data.empty:
-                raise ValueError("No data was read from Darko")
 
-            progress_print(f"Successfully read {len(data)} rows of data")
 
-            # Extract the 'Minutes' column from BBM and merge into Darko data
-            if 'BBM' in self.dataframes:
-                bbm_df = self.dataframes['BBM']
-                if 'minutes' in bbm_df.columns:
-                    bbm_df = self.standardize_player_names(bbm_df, 'PLAYER_NAME')  # Ensure consistent name formatting
-                    merged_data = pd.merge(data, bbm_df[['PLAYER_NAME', 'minutes']], on='PLAYER_NAME', how='left')
-                    data = merged_data  # Update data with merged dataframe
-                    progress_print("Successfully merged 'Minutes' column from BBM.")
-                else:
-                    progress_print("Warning: 'Minutes' column not found in BBM dataframe.")
-            else:
-                progress_print("Warning: BBM dataframe not found in self.dataframes.")
-            self.dataframes['Darko'] = data
-            self.display_dataframe(data)
-            progress_print("Darko import completed successfully")
-            return data
+        # Extract the 'Minutes' column from BBM and merge into Darko data
+        if df.equals(self.dataframes['BBM']):
+            bbm_df = df
+            bbm_df = self.standardize_player_names(bbm_df, 'PLAYER_NAME')  # Ensure consistent name formatting
+            merged_data = pd.merge(data, bbm_df[['PLAYER_NAME', 'minutes']], on='PLAYER_NAME', how='left')
+            data['minutes'] = merged_data['minutes']  # Update minutes column directly
+            progress_print("Successfully merged 'Minutes' column from BBM.")
+        else:
+            min_df = self.dataframes['Predict Minutes']
+            min_df = self.standardize_player_names(min_df, 'PLAYER_NAME')  # Ensure consistent name formatting
+            merged_data = pd.merge(data, min_df[['PLAYER_NAME', 'Predicted_Minutes']], on='PLAYER_NAME', how='left')
+            data['minutes'] = merged_data['Predicted_Minutes']  # Update minutes column with predicted values
+            progress_print("Successfully updated 'minutes' column with predicted minutes.")
+            # Apply formulas for all columns in FORMULA_CONFIG
 
-        except Exception as e:
-            progress_print(f"Error in Darko import: {str(e)}")
-            raise
 
+        # Vectorized formula
+        data['2gm'] =( (data['FGA/100'] - data['FG3A/100']) *data['FG2%'] * data['minutes'] / 48).round(2)
+        data['3gm'] = (
+                data['FG3A/100'] * data['FG3%'] * data['minutes'] / 48
+        ).round(2)
+        # Calculate 'ftm' column with vectorized operations and round to two decimals
+        data['ftm'] = (
+                data['FTA/100'] * data['FT%'] * data['minutes'] / 48
+        ).round(2)
+        # Calculate 'pts' using existing columns 'gm2', 'gm3', and 'ftm', and round to two decimals
+        data['pts'] = (
+                data['2gm'] * 2 +  # Multiply 'gm2' by 2
+                data['3gm'] * 3 +  # Multiply 'gm3' by 3
+                data['ftm']  # Add 'ftm'
+        ).round(2)
+        # Vectorized calculation of 'reb'
+        data['reb'] = (
+                data['REB/100'] * data['minutes'] / 48
+        ).round(2)
+        # Vectorized calculation of 'ast'
+        data['ast'] = (
+                data['AST/100'] * data['minutes'] / 48
+        ).round(2)
+        # Vectorized calculation of 'blk'
+        data['blk'] = (
+                data['BLK/100'] * data['minutes'] / 48
+        ).round(2)
+        # Vectorized calculation of 'stl'
+        data['stl'] = (
+                data['STL/100'] * data['minutes'] / 48
+        ).round(2)
+        # Vectorized calculation of 'tov'
+        data['tov'] = (
+                data['TOV/100'] * data['minutes'] / 48
+        ).round(2)
+
+        # Calculate the column conditionally as per the given logic
+        data['dd'] = np.where(
+            (data['pts'] >= 10) & ((data['reb'] >= 10) | (data['ast'] >= 10)),  # Condition 1
+            1.5,  # Value if condition is True
+            0  # Value if condition is False
+        ).round(2)
+
+        # Calculate 'dk' using the provided formula
+        data['dk'] = (
+                data['pts'] +  # Points
+                data['3gm'] * 0.5 +  # Three-pointers made (0.5 multiplier)
+                data['reb'] * 1.25 +  # Rebounds (1.25 multiplier)
+                data['ast'] * 1.5 +  # Assists (1.5 multiplier)
+                data['blk'] * 2 +  # Blocks (2 multiplier)
+                data['stl'] * 2 -  # Steals (2 multiplier)
+                data['tov'] * 0.5 +  # Turnovers (-0.5 multiplier)
+                data['dd']  # Double-double bonus
+        ).round(2)  # Round to two decimal places
+
+        # Calculate 'dk_rate', handle cases where 'minutes' is 0
+        data['dk_rate'] = np.where(
+            data['minutes'] > 0,  # Only calculate if 'minutes' is greater than 0
+            (data['dk'] / data['minutes']).round(2),  # Perform the division
+            0  # Assign 0 if 'minutes' is 0
+        )
+
+        # Calculate 'dk_usg_rate', handle cases where minutes = 0
+        data['dk_usg_rate'] = np.where(
+            data['minutes'] > 0,  # Only calculate if minutes > 0
+            ((data['pts'] + data['3gm'] * 0.5 - data['tov'] * 0.5) / data['minutes']).round(2),
+            0  # Assign dk_usg_rate = 0 where minutes = 0
+        )
+
+        # Calculate 'usg G' based on the formula
+        data['usg_G'] = (
+                data['FGA/100'] +  # Divide FGA by 100
+                data['FTA/100']  * 0.44 +  # Divide FTA by 100 and multiply by 0.44
+                data['TOV/100']  # Divide TOV by 100
+        ).round(2)  # Round to 4 decimal places
+
+        # Gracefully handle missing values and cases where minutes = 0
+        data['Defense'] = (
+                (data['D-DPM'].fillna(0) / 48) * data['minutes'].fillna(0)
+        ).round(2)
+
+        # Assume `data` is your DataFrame containing the stats columns
+        data['SD_Score'] = np.where(
+            data['minutes'] > 0,  # Only calculate if minutes > 0
+            (
+                    data['ast'] * NBA_CONSTANTS['SD_AST'] * 1.5 +  # Assists
+                    data['reb'] * NBA_CONSTANTS['SD_REB'] * 1.25 +  # Rebounds
+                    data['3gm'] * NBA_CONSTANTS['SD_3GM'] * 3.5 +  # Three-pointers made
+                    data['stl'] * NBA_CONSTANTS['SD_STL'] * 2 +  # Steals
+                    data['blk'] * NBA_CONSTANTS['SD_BLK'] * 2 -  # Blocks
+                    data['tov'] * NBA_CONSTANTS['SD_TO'] * 0.5 +  # Turnovers
+                    data['2gm'] * NBA_CONSTANTS['SD_2GM'] * 2 +  # Two-point field goals made
+                    data['ftm'] * NBA_CONSTANTS['SD_FTM']  # Free throws made
+            ) / data['minutes'] * 0.5,  # Scale by Constant M32 (ceiling factor)
+            0  # If minutes = 0, assign SD_Score = 0
+        ).round(3)
+
+        # # Optional: Reorganize output column order if needed
+        # desired_order = ['nba_id', 'minutes', 'gm2', 'col2', 'col3', 'other_columns']
+        # data = data[desired_order]
+
+        progress_print(f"Successfully added {len(self.FORMULA_CONFIG)} new calculated columns.")
+        # Update the Darko dataframe
+        self.dataframes['Darko'] = data
+        self.display_dataframe(data)
+        progress_print("Darko update completed successfully")
+        print(data.columns)
+
+        return data
 
     def import_darko(self, progress_print=print):
         try:
@@ -1243,9 +1348,9 @@ class ImportTool(QMainWindow):
 
             # Store in dataframes dictionary
             self.dataframes['Darko'] = data
-
             # Update display if Darko is currently selected
             #if self.data_selector.currentText() == 'Darko':
+
             self.display_dataframe(data)
 
             progress_print("Darko import completed successfully")
@@ -1584,7 +1689,7 @@ class ImportTool(QMainWindow):
         self.import_fta_entries(progress_print=progress_print)
         self.import_dk_entries(progress_print=progress_print)
         self.import_darko(progress_print=progress_print)
-        self.update_darko(progress_print=progress_print)
+        self.update_darko(self.dataframes['BBM'], progress_print=progress_print)
         self.import_team_stats(progress_print=progress_print)
         self.merge_dataframes(progress_print=progress_print)
         self.build_predict_minutes_dataframe(progress_print=progress_print)

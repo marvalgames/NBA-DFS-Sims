@@ -835,6 +835,8 @@ class PredictMinutes:
 
 
     def predict_minutes_df(self, df):
+        print(df.columns)
+        print("****************************************")
         current_folder = Path(__file__).parent  # Current script directory (src)
         target_folder = current_folder.parent / "src"  # Sibling folder (dk-import)
         os.chdir(target_folder)
