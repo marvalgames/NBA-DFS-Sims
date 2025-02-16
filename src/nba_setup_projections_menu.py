@@ -565,7 +565,7 @@ class ImportTool(QMainWindow):
                     print(f"Renaming {col_y} to {base}")
                     df = df.rename(columns={col_y: base})
 
-            print(f"Final columns: {df.columns}")
+            #print(f"Final columns: {df.columns}")
             return df
 
 
@@ -804,7 +804,7 @@ class ImportTool(QMainWindow):
 
 
 
-    def merge_dataframes(self, progress_print=print):
+    def merge_dataframes_sog(self, progress_print=print):
         """
         Merges DK, BBM, FTA, DARKO and game logs DataFrames based on standardized player names.
         """
@@ -813,29 +813,29 @@ class ImportTool(QMainWindow):
         bbm_df = self.dataframes['BBM']
         fta_df = self.dataframes['FTA']
         darko_df = self.dataframes['Darko']
+
+
+        # Check if 'SOG' exists in the dataframes dictionary
+        if 'BBM' in self.dataframes and self.dataframes['BBM'] is not None:
+            print('BBM Before Columns:')
+            print(self.dataframes['BBM'].columns)
+        else:
+            # Handle the case where 'SOG' is not present or is None
+            print("'SOG' dataframe does not exist")
+
         #game_logs_df = self.process_game_logs()
 
         # Step 2: Select Relevant Columns
         # Selecting specific columns from SOG
         # sog_df = sog_df[['Position', 'Name', 'Salary', 'TeamAbbrev']]
-        bbm_df = bbm_df[['PLAYER_NAME', 'minutes', 'BB_PROJECTION']]  # Selecting only Name and Minutes from BBM
-        fta_df = fta_df[['PLAYER_NAME', 'Minutes', 'Projection']]  # Selecting only Name and Minutes from BBM
-        darko_df = darko_df[['PLAYER_NAME', 'O-DPM', 'D-DPM',
-                             'FGA/100', 'FG2%','FG3A/100', 'FG3%','FTA/100','FT%',
-                             'USG%',
-                             'REB/100',
-                             'AST/100',
-                             'STL/100',
-                             'BLK/100',
-                             'TOV/100',
+        bbm_df = bbm_df[['PLAYER_NAME', 'BB_PROJECTION']]  # Selecting only Name and Minutes from BBM
+        fta_df = fta_df[['PLAYER_NAME', 'Minutes', 'Projection','Ownership']]  # Selecting only Name and Minutes from BBM
+
+        darko_df = darko_df[['PLAYER_NAME', 'minutes',
+                             'pts', 'reb', 'ast', 'stl', 'blk', 'tov',
+                             'dk', 'dk_rate', 'dk_usg_rate', 'usg_G',
+                             'Defense', 'SD_Score',
                              ]]  # Selecting only Name and Minutes from BBM
-
-        # game_logs_df: Use all columns as specified
-
-        # Step 3: Standardize Player Names
-        # Create a standardized column 'PLAYER_NAME' for all three DataFrames
-
-        #game_logs_df = self.standardize_player_names(game_logs_df, 'Player')  # Assuming player names are in 'Player'
 
         # Step 4: Merge DataFrames
         # Merge game_logs_df with sog_df and then with bbm_df on 'PLAYER_NAME'.
@@ -865,13 +865,14 @@ class ImportTool(QMainWindow):
             raise ValueError("No data was read from the SOG CSV file")
 
         progress_print(f"Successfully read {len(data)} rows of data")
+        #
+        # data.rename(columns={'minutes': 'BB Minutes'}, inplace=True)
+        # data.rename(columns={'Minutes': 'FTA Minutes'}, inplace=True)
+        # data.rename(columns={'BB_PROJECTION': 'BB Projection'}, inplace=True)
+        # data.rename(columns={'Projection': 'FTA Projection'}, inplace=True)
 
-        data.rename(columns={'minutes': 'BB Minutes'}, inplace=True)
-        data.rename(columns={'Minutes': 'FTA Minutes'}, inplace=True)
-        data.rename(columns={'BB_PROJECTION': 'BB Projection'}, inplace=True)
-        data.rename(columns={'Projection': 'FTA Projection'}, inplace=True)
-
-
+        print('BBM after  Columns')
+        print(self.dataframes['BBM'].columns)
 
         # Store in dataframes dictionary
         self.dataframes['SOG'] = data
@@ -1064,8 +1065,8 @@ class ImportTool(QMainWindow):
         data = predictions.predict_minutes_df(game_logs_df)
         data.rename(columns={'Player': 'PLAYER_NAME'}, inplace=True)
         self.dataframes['Predict Minutes'] = data
-
         self.update_darko(data)
+        self.merge_dataframes_sog()
         #self.display_dataframe(data)
         progress_print("Predict Minutes import completed successfully")
         return data
@@ -1691,7 +1692,7 @@ class ImportTool(QMainWindow):
         self.import_darko(progress_print=progress_print)
         self.update_darko(self.dataframes['BBM'], progress_print=progress_print)
         self.import_team_stats(progress_print=progress_print)
-        self.merge_dataframes(progress_print=progress_print)
+        self.merge_dataframes_sog(progress_print=progress_print)
         self.build_predict_minutes_dataframe(progress_print=progress_print)
         self.build_ownership_projections_dataframe(progress_print=progress_print)
         self.export_projections(progress_print=progress_print)
