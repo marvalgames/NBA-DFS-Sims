@@ -1672,28 +1672,34 @@ class ImportTool(QMainWindow):
             progress_print(f"An error occurred: {e}")
             raise
 
-
     def export_projections(self, progress_print=print):
         progress_print("Exporting projections to CSV...")
-
         try:
             # Set up paths
             current_folder = Path(__file__).resolve().parent
             dk_data_folder = current_folder.parent / "dk_data"
-
             progress_print("Creating output directory...")
             dk_data_folder.mkdir(exist_ok=True)
             output_csv_file = dk_data_folder / "projections.csv"
 
+            progress_print("Filtering required columns from 'SOG' DataFrame...")
+            # Specify keys/columns to keep
+            #selected_columns = ['PLAYER_NAME', 'Position', 'Team', 'Minutes', 'Salary', 'Projection', 'Ownership', 'SD_Score', 'BB_PROJECTION']  # Replace with your desired column names
+            selected_columns = ['PLAYER_NAME', 'Position', 'TeamAbbrev',
+             'Minutes', 'Salary', 'Projection', 'Ownership', 'SD_Score', 'BB_PROJECTION'
+                                ]  # Replace with your desired column names
+            filtered_sog = self.dataframes['SOG'][selected_columns]  # Filter the DataFrame
 
-            progress_print("Processing data...")
+            progress_print("Exporting filtered data to CSV...")
+            filtered_sog.to_csv(output_csv_file, index=False)
 
             progress_print(f"Projections successfully exported to '{output_csv_file}'.")
-
+        except KeyError as e:
+            progress_print(f"KeyError: Missing required column(s) - {e}")
+            raise
         except Exception as e:
             progress_print(f"An error occurred: {str(e)}")
             raise
-
 
     def run_all_imports(self, progress_print=print):
         progress_print("Running all imports...")
