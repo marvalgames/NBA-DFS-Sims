@@ -819,21 +819,8 @@ class ImportTool(QMainWindow):
         bbm_df = self.dataframes['BBM']
         fta_df = self.dataframes['FTA']
         darko_df = self.dataframes['Darko']
+        own_df = self.dataframes['Ownership Projections']
 
-
-        # Check if 'SOG' exists in the dataframes dictionary
-        # if 'BBM' in self.dataframes and self.dataframes['BBM'] is not None:
-        #     print('BBM Before Columns:')
-        #     print(self.dataframes['BBM'].columns)
-        # else:
-        #     # Handle the case where 'SOG' is not present or is None
-        #     print("'SOG' dataframe does not exist")
-
-        #game_logs_df = self.process_game_logs()
-
-        # Step 2: Select Relevant Columns
-        # Selecting specific columns from SOG
-        # sog_df = sog_df[['Position', 'Name', 'Salary', 'TeamAbbrev']]
         bbm_df = bbm_df[['PLAYER_NAME', 'BB_PROJECTION']]  # Selecting only Name and Minutes from BBM
         fta_df = fta_df[['PLAYER_NAME', 'Minutes', 'Projection','Ownership']]  # Selecting only Name and Minutes from BBM
 
@@ -843,6 +830,7 @@ class ImportTool(QMainWindow):
                              'Defense', 'SD_Score',
                              ]]  # Selecting only Name and Minutes from BBM
 
+        own_df = own_df[['DK Name', 'Predicted Ownership']]
         # Step 4: Merge DataFrames
         # Merge game_logs_df with sog_df and then with bbm_df on 'PLAYER_NAME'.
         data = pd.merge(
@@ -864,6 +852,16 @@ class ImportTool(QMainWindow):
              darko_df,
              on='PLAYER_NAME',
              how='left'  # Keep all rows from the previous merge
+        )
+
+
+
+        data = pd.merge(
+            data,
+            own_df,
+            left_on='PLAYER_NAME',
+            right_on='DK Name',
+            how='left'  # Keep all rows from the previous merge
         )
 
         # Verify we have data
@@ -1686,9 +1684,29 @@ class ImportTool(QMainWindow):
             # Specify keys/columns to keep
             #selected_columns = ['PLAYER_NAME', 'Position', 'Team', 'Minutes', 'Salary', 'Projection', 'Ownership', 'SD_Score', 'BB_PROJECTION']  # Replace with your desired column names
             selected_columns = ['PLAYER_NAME', 'Position', 'TeamAbbrev',
-             'Minutes', 'Salary', 'Projection', 'Ownership', 'SD_Score', 'BB_PROJECTION'
+             'minutes', 'Salary', 'dk', 'Predicted Ownership', 'SD_Score', 'BB_PROJECTION'
                                 ]  # Replace with your desired column names
-            filtered_sog = self.dataframes['SOG'][selected_columns]  # Filter the DataFrame
+            filtered_sog = self.dataframes['SOG'][selected_columns].copy()  # Filter the DataFrame
+            numeric_columns = ['minutes', 'Salary', 'dk', 'Predicted Ownership', 'SD_Score', 'BB_PROJECTION']
+            for col in numeric_columns:
+                filtered_sog[col] = pd.to_numeric(filtered_sog[col], errors='coerce').fillna(0)
+
+            renamed_columns = {
+                'PLAYER_NAME': 'Name',
+                'minutes': 'Minutes',
+                'TeamAbbrev': 'Team',
+                'dk': 'Fpts',
+                'Predicted Ownership': 'Own%',
+                'SD_Score': 'StdDev',
+                'BB_PROJECTION': 'FieldFpts'
+            }
+
+            filtered_sog = filtered_sog.rename(columns=renamed_columns)
+            self.dataframes['Export Projections'] = filtered_sog
+
+            #
+            # if self.data_selector.currentText() == 'Export Projections':
+            #     self.display_dataframe(filtered_sog)
 
             progress_print("Exporting filtered data to CSV...")
             filtered_sog.to_csv(output_csv_file, index=False)
@@ -1709,9 +1727,9 @@ class ImportTool(QMainWindow):
         self.import_darko(progress_print=progress_print)
         self.update_darko(self.dataframes['BBM'], progress_print=progress_print)
         self.import_team_stats(progress_print=progress_print)
+        self.build_ownership_projections_dataframe(progress_print=progress_print)
         self.merge_dataframes_sog(progress_print=progress_print)
         self.build_predict_minutes_dataframe(progress_print=progress_print)
-        self.build_ownership_projections_dataframe(progress_print=progress_print)
         self.export_projections(progress_print=progress_print)
         self.update_team_data_with_odds()
         #self.export_projections(progress_print=progress_print)
@@ -1747,6 +1765,7 @@ class ImportTool(QMainWindow):
         dk_df = self.dataframes['DK Entries']
         bbm_df = self.dataframes['BBM']
         darko_df = self.dataframes['Darko']
+        fta_df = self.dataframes['FTA']
 
         # Step 2: Start with DK entries as base and merge others
         new_df = dk_df[['PLAYER_NAME', 'Position', 'Salary']].copy()
@@ -1760,6 +1779,7 @@ class ImportTool(QMainWindow):
         )
 
 
+
         # Merge with Darko data
         new_df = new_df.merge(
             darko_df[['PLAYER_NAME', 'Team']],
@@ -1770,6 +1790,7 @@ class ImportTool(QMainWindow):
 
         # Drop duplicate Player columns from merges
         new_df = new_df.drop(columns=['Player_x', 'Player_y'], errors='ignore')
+
 
         # Step 3: Rename columns
         column_renames = {
@@ -1799,7 +1820,8 @@ class ImportTool(QMainWindow):
             new_df[col] = new_df[col].round(2)
 
         new_df = self.standardize_player_names(new_df, 'DK Name')
-        new_df['Own Actual'] = 0
+        new_df['Own Actual'] = 10
+        new_df['Predicted Ownership'] = 10
 
         # Store in dataframes dictionary
 
@@ -2258,6 +2280,15 @@ class ImportTool(QMainWindow):
             result_df.loc[:, 'Dynamic_Shift'] = result_df['Dynamic_Shift'].round(3)
             formatted_table = tabulate(result_df.head(50), headers='keys', tablefmt='pretty', showindex=False)
             progress_print(formatted_table)
+
+            final_predictions = final_predictions.round(2)  # Round to 2 decimal places
+            self.dataframes['Ownership Projections']['Predicted Ownership'] = final_predictions
+
+            self.merge_dataframes_sog()
+
+            if self.data_selector.currentText() == 'Ownership Projections':
+                self.display_dataframe(data)
+
 
         except Exception as e:
             progress_print(f"An error occurred: {e}")
