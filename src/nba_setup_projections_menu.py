@@ -222,6 +222,7 @@ class ImportTool(QMainWindow):
 
         minutes_button = QPushButton("Predict Player Minutes")
         minutes_button.clicked.connect(lambda: self.run_threaded_import(self.predict_minutes))
+
         import_layout.addWidget(minutes_button)
 
         own_button = QPushButton("Calculate Ownership")
@@ -281,7 +282,7 @@ class ImportTool(QMainWindow):
         if success:
             if data is not None and isinstance(data, pd.DataFrame):
                 current_selection = self.data_selector.currentText()
-                self.dataframes[current_selection] = data
+                #self.dataframes[current_selection] = data
                 self.display_dataframe(data)
             QMessageBox.information(self, "Success", message)
         else:
@@ -534,6 +535,11 @@ class ImportTool(QMainWindow):
                 'rename_mapping': {'BB_PROJECTION': 'BBM Projection', 'PLAYER_NAME': 'Player'},
                 'move_to_front': 'Player'
             },
+            'SOG': {
+                'columns_to_remove': ['ID', 'Name + ID'],
+                'rename_mapping': {'PLAYER_NAME': 'Player'},
+                'move_to_front': 'Player'
+            },
             'Team Stats': {
                 'columns_to_remove': ['TEAM_ID', 'last_name', 'first_name'],
                 'rename_mapping': {'TEAM_NAME_x': 'Team', 'W_PCT_x': 'Win Pct'},
@@ -551,18 +557,13 @@ class ImportTool(QMainWindow):
                 col_y = f"{base}_y"
 
                 if col_without_suffix in df.columns:
-                    print(f"Keeping base column {col_without_suffix} and dropping {col_x} and {col_y}")
                     df = df.drop(columns=[col_x, col_y], errors='ignore')
                 elif col_x in df.columns and col_y in df.columns:
-                    print(f"Keeping {col_x} and dropping {col_y}")
                     df = df.drop(columns=[col_y], errors='ignore')
-                    print(f"Renaming {col_x} to {base}")
                     df = df.rename(columns={col_x: base})
                 elif col_x in df.columns:
-                    print(f"Renaming {col_x} to {base}")
                     df = df.rename(columns={col_x: base})
                 elif col_y in df.columns:
-                    print(f"Renaming {col_y} to {base}")
                     df = df.rename(columns={col_y: base})
 
             #print(f"Final columns: {df.columns}")
@@ -630,8 +631,8 @@ class ImportTool(QMainWindow):
     def display_dataframe(self, df, sort_column=None, ascending=False):
         if df is not None and not df.empty:
             try:
-                print("Creating model...")  # Debug print
-
+                print("Creating model...", len(df.columns))  # Debug print
+                print("DARKO LOADED", df.equals(self.dataframes['Darko']))
 
                 if sort_column:
                     if sort_column in df.columns:
@@ -649,6 +650,9 @@ class ImportTool(QMainWindow):
                     df = self.transform_dataframe(df, key='BBM')
                 elif df.equals(self.dataframes['Team Stats']):
                     df = self.transform_dataframe(df, key='Team Stats')
+                elif df.equals(self.dataframes['SOG']):
+                    df = self.transform_dataframe(df, key='SOG')
+
 
                 model = DataFrameModel(df)
                 # Create proxy model for sorting
@@ -673,6 +677,8 @@ class ImportTool(QMainWindow):
 
                 # Adjust column widths
                 self.adjust_column_widths()
+
+
 
                 # Make last column stretch to fill remaining space
                 #self.table_view.horizontalHeader().setStretchLastSection(True)
@@ -816,12 +822,12 @@ class ImportTool(QMainWindow):
 
 
         # Check if 'SOG' exists in the dataframes dictionary
-        if 'BBM' in self.dataframes and self.dataframes['BBM'] is not None:
-            print('BBM Before Columns:')
-            print(self.dataframes['BBM'].columns)
-        else:
-            # Handle the case where 'SOG' is not present or is None
-            print("'SOG' dataframe does not exist")
+        # if 'BBM' in self.dataframes and self.dataframes['BBM'] is not None:
+        #     print('BBM Before Columns:')
+        #     print(self.dataframes['BBM'].columns)
+        # else:
+        #     # Handle the case where 'SOG' is not present or is None
+        #     print("'SOG' dataframe does not exist")
 
         #game_logs_df = self.process_game_logs()
 
@@ -871,15 +877,13 @@ class ImportTool(QMainWindow):
         # data.rename(columns={'BB_PROJECTION': 'BB Projection'}, inplace=True)
         # data.rename(columns={'Projection': 'FTA Projection'}, inplace=True)
 
-        print('BBM after  Columns')
-        print(self.dataframes['BBM'].columns)
 
         # Store in dataframes dictionary
         self.dataframes['SOG'] = data
 
         # Update display if FTA is currently selected
-        if self.data_selector.currentText() == 'SOG':
-            self.display_dataframe(data)
+        # if self.data_selector.currentText() == 'SOG':
+        #     self.display_dataframe(data)
 
         progress_print("SOG import completed successfully")
         return data
@@ -1052,6 +1056,8 @@ class ImportTool(QMainWindow):
         game_logs_df = pd.read_csv(csv_path, encoding='utf-8', keep_default_na=False)
         game_logs_df['injury'] = game_logs_df['injury'].replace("", "Active")
         game_logs_df.rename(columns={'Player': 'PLAYER_NAME'}, inplace=True)
+        game_logs_df['Original_Minutes'] = game_logs_df['Minutes'].round(2)
+        game_logs_df['Predicted_Minutes'] = game_logs_df['Minutes']
         self.dataframes['Predict Minutes'] = game_logs_df
         self.display_dataframe(game_logs_df)
 
@@ -1059,19 +1065,23 @@ class ImportTool(QMainWindow):
 
 
     def predict_minutes(self, progress_print=print):
+        data = self.Predictor(progress_print)
+        return data
+
+    def Predictor(self, progress_print):
         predictions = PredictMinutes()
         game_logs_df = self.dataframes['Predict Minutes']
-        game_logs_df.rename(columns={'PLAYER_NAME' : 'Player'}, inplace=True)
+        game_logs_df.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
         data = predictions.predict_minutes_df(game_logs_df)
         data.rename(columns={'Player': 'PLAYER_NAME'}, inplace=True)
+
+        data['Original_Minutes'] = data['Original_Minutes'].round(2)
         self.dataframes['Predict Minutes'] = data
         self.update_darko(data)
         self.merge_dataframes_sog()
-        #self.display_dataframe(data)
+        # self.display_dataframe(data)
         progress_print("Predict Minutes import completed successfully")
         return data
-
-
 
     def import_bbm(self, progress_print=print):
         try:
@@ -1131,7 +1141,7 @@ class ImportTool(QMainWindow):
             data = data.fillna('')
 
             self.dataframes['BBM'] = data
-            self.display_dataframe(data)
+            #self.display_dataframe(data)
             progress_print("BBM import completed successfully")
             return data
 
@@ -1169,7 +1179,7 @@ class ImportTool(QMainWindow):
             display_data = display_data.rename(columns={'PLAYER_NAME': 'Player Name'})
 
             # Pass the correct display_data to the display_dataframe method
-            self.display_dataframe(display_data)
+            #self.display_dataframe(display_data)
 
             progress_print("FTA import completed successfully")
             return data
@@ -1316,13 +1326,14 @@ class ImportTool(QMainWindow):
         # # Optional: Reorganize output column order if needed
         # desired_order = ['nba_id', 'minutes', 'gm2', 'col2', 'col3', 'other_columns']
         # data = data[desired_order]
+        print("darko columns : ", len(data.columns))
 
         progress_print(f"Successfully added {len(self.FORMULA_CONFIG)} new calculated columns.")
         # Update the Darko dataframe
         self.dataframes['Darko'] = data
-        self.display_dataframe(data)
+        #self.display_dataframe(data)
         progress_print("Darko update completed successfully")
-        print(data.columns)
+
 
         return data
 
@@ -1352,7 +1363,7 @@ class ImportTool(QMainWindow):
             # Update display if Darko is currently selected
             #if self.data_selector.currentText() == 'Darko':
 
-            self.display_dataframe(data)
+            #self.display_dataframe(data)
 
             progress_print("Darko import completed successfully")
             return data
@@ -1408,8 +1419,8 @@ class ImportTool(QMainWindow):
             self.dataframes['DK Entries'] = data
 
             # Update display if DK Entries is currently selected
-            #if self.data_selector.currentText() == 'DK Entries':
-            self.display_dataframe(data)
+            if self.data_selector.currentText() == 'DK Entries':
+                self.display_dataframe(data)
 
             progress_print("DK Entries import completed successfully")
             return data

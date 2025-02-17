@@ -786,7 +786,6 @@ class PredictMinutes:
             X = enhanced_data[features]
             raw_predictions = model.predict(X)
 
-            # Store original predictions
             data['Original_Minutes'] = raw_predictions
 
             # Apply zeros BEFORE position constraints
@@ -835,7 +834,9 @@ class PredictMinutes:
 
 
     def predict_minutes_df(self, df):
-        print(df.columns)
+        # Increase display options for columns
+
+        print("PREDICT DF", df.columns)
         print("****************************************")
         current_folder = Path(__file__).parent  # Current script directory (src)
         target_folder = current_folder.parent / "src"  # Sibling folder (dk-import)
