@@ -175,7 +175,8 @@ class ImportTool(QMainWindow):
         viewer_group = QGroupBox("Data Viewer")
         viewer_layout = QVBoxLayout()
         self.data_selector = QComboBox()
-        self.data_selector.addItems(['BBM', 'FTA', 'DK Entries', 'Darko', 'Team Stats', 'Odds', 'SOG', 'Predict Minutes', 'Ownership Projections', 'Export Projections'])
+        self.data_selector.addItems(['BBM', 'FTA', 'DK Entries', 'Darko', 'Team Stats',
+                                     'Odds', 'SOG', 'Predict Minutes', 'Ownership Projections', 'Export Projections', 'Totals'])
         self.data_selector.currentTextChanged.connect(self.on_data_selection_changed)
         viewer_layout.addWidget(self.data_selector)
         viewer_group.setLayout(viewer_layout)
@@ -278,12 +279,18 @@ class ImportTool(QMainWindow):
         self.progress_display.append(message)
         QApplication.processEvents()
 
+    def update_display(self):
+        current_selection = self.data_selector.currentText()
+        if current_selection in self.dataframes:
+            self.display_dataframe(self.dataframes[current_selection])
+
     def import_finished(self, success, message, data):
         if success:
-            if data is not None and isinstance(data, pd.DataFrame):
-                current_selection = self.data_selector.currentText()
+            self.update_display()
+            #if data is not None and isinstance(data, pd.DataFrame):
+                #current_selection = self.data_selector.currentText()
                 #self.dataframes[current_selection] = data
-                self.display_dataframe(data)
+                #self.display_dataframe(data)
             QMessageBox.information(self, "Success", message)
         else:
             QMessageBox.critical(self, "Error", f"An error occurred: {message}")
@@ -488,8 +495,6 @@ class ImportTool(QMainWindow):
 
     def on_data_selection_changed(self, selection):
         if selection in self.dataframes:
-            print(selection)
-            print("********************************")
             self.display_dataframe(self.dataframes[selection])
 
     def setup_table_view(self):
@@ -541,10 +546,22 @@ class ImportTool(QMainWindow):
                 'rename_mapping': {'PLAYER_NAME': 'Player'},
                 'move_to_front': 'Player'
             },
+            'Darko': {
+                'columns_to_remove': ['nba_id',],
+                'rename_mapping': {'PLAYER_NAME': 'Player'},
+                'move_to_front': 'Player'
+            },
             'Team Stats': {
-                'columns_to_remove': ['TEAM_ID', 'last_name', 'first_name'],
+                'columns_to_remove': ['TEAM_ID', 'TEAM_NAME_y', 'last_name', 'first_name', 'W_PCT_y'],
                 'rename_mapping': {'TEAM_NAME_x': 'Team', 'W_PCT_x': 'Win Pct'},
                 'wildcard_remove': 'RANK',  # Indicate we want to remove columns with 'RANK' in column names
+            },
+            'Totals': {
+                'rename_mapping': {'TeamAbbrev': 'Team Abbrev.', 'BB_PROJECTION': 'Projection'},
+                'move_to_front': 'Team Name'
+            },
+            'Ownership Projections' : {
+                'columns_to_remove': ['Own Actual' ],
             },
         }
 
@@ -635,6 +652,31 @@ class ImportTool(QMainWindow):
                 print("Creating model...", len(df.columns))  # Debug print
                 print("DARKO LOADED", df.equals(self.dataframes['Darko']))
 
+
+
+                # Apply transformations based on DataFrame key
+                if df.equals(self.dataframes['FTA']):
+                    df = self.transform_dataframe(df, key='FTA')
+                    sort_column = 'Projection'
+                elif df.equals(self.dataframes['BBM']):
+                    df = self.transform_dataframe(df, key='BBM')
+                    sort_column = 'BBM Projection'
+                elif df.equals(self.dataframes['Team Stats']):
+                    df = self.transform_dataframe(df, key='Team Stats')
+                    sort_column = 'NET_RATING'
+                elif df.equals(self.dataframes['SOG']):
+                    df = self.transform_dataframe(df, key='SOG')
+                    sort_column = 'Projection'
+                elif df.equals(self.dataframes['Totals']):
+                    df = self.transform_dataframe(df, key='Totals')
+                elif df.equals(self.dataframes['Darko']):
+                    df = self.transform_dataframe(df, key='Darko')
+                    sort_column = 'dk'
+                elif df.equals(self.dataframes['Ownership Projections']):
+                    df = self.transform_dataframe(df, key='Ownership Projections')
+
+
+
                 if sort_column:
                     if sort_column in df.columns:
                         print(f"Sorting DataFrame by column: {sort_column}, ascending: {ascending}")  # Debug print
@@ -642,18 +684,6 @@ class ImportTool(QMainWindow):
                     else:
                         print(
                             f"Warning: The specified sort_column '{sort_column}' is not in DataFrame columns.")  # Debug warning
-
-
-                # Apply transformations based on DataFrame key
-                if df.equals(self.dataframes['FTA']):
-                    df = self.transform_dataframe(df, key='FTA')
-                elif df.equals(self.dataframes['BBM']):
-                    df = self.transform_dataframe(df, key='BBM')
-                elif df.equals(self.dataframes['Team Stats']):
-                    df = self.transform_dataframe(df, key='Team Stats')
-                elif df.equals(self.dataframes['SOG']):
-                    df = self.transform_dataframe(df, key='SOG')
-
 
                 model = DataFrameModel(df)
                 # Create proxy model for sorting
@@ -707,6 +737,11 @@ class ImportTool(QMainWindow):
         self.process_game_logs()
         print('Completed')
         progress_print("Done expanding game logs.")
+
+        # Update display at the end
+        # current_selection = self.data_selector.currentText()
+        # if current_selection in self.dataframes:
+        #     self.display_dataframe(self.dataframes[current_selection])
 
     def import_team_stats(self, progress_print=print):
         team_abbr_dict = {
@@ -800,9 +835,14 @@ class ImportTool(QMainWindow):
 
             # Update display if Team Stats is currently selected
             #if self.data_selector.currentText() == 'Team Stats':
-            self.display_dataframe(merged_df)
+            #self.display_dataframe(merged_df)
 
             progress_print("Team Stats import completed successfully")
+
+            # Update display at the end
+            # current_selection = self.data_selector.currentText()
+            # if current_selection in self.dataframes:
+            #     self.display_dataframe(self.dataframes[current_selection])
             return merged_df
 
         except Exception as e:
@@ -895,7 +935,14 @@ class ImportTool(QMainWindow):
         # if self.data_selector.currentText() == 'SOG':
         #     self.display_dataframe(data)
 
+
         progress_print("SOG import completed successfully")
+
+        # Update display at the end
+        # current_selection = self.data_selector.currentText()
+        # if current_selection in self.dataframes:
+        #     self.display_dataframe(self.dataframes[current_selection])
+
         return data
 
 
@@ -1052,10 +1099,15 @@ class ImportTool(QMainWindow):
         self.dataframes['Game Logs'] = data
         # If you're using a model-view setup, you'll need to set up an editable model:
         #if self.data_selector.currentText() == 'Game Logs':
-        self.display_dataframe(data)
+        #self.display_dataframe(data)
 
         # if self.data_selector.currentText() == 'Game Logs':
         #     self.display_dataframe(data)
+
+        # Update display at the end
+        # current_selection = self.data_selector.currentText()
+        # if current_selection in self.dataframes:
+        #     self.display_dataframe(self.dataframes[current_selection])
 
         return data
 
@@ -1069,7 +1121,7 @@ class ImportTool(QMainWindow):
         game_logs_df['Original_Minutes'] = game_logs_df['Minutes'].round(2)
         game_logs_df['Predicted_Minutes'] = game_logs_df['Minutes']
         self.dataframes['Predict Minutes'] = game_logs_df
-        self.display_dataframe(game_logs_df)
+        #self.display_dataframe(game_logs_df)
 
 
 
@@ -1089,9 +1141,15 @@ class ImportTool(QMainWindow):
         self.dataframes['Predict Minutes'] = data
         self.update_darko(data)
         self.merge_dataframes_sog()
+        self.build_team_totals()
         self.export_projections()
         # self.display_dataframe(data)
         progress_print("Predict Minutes import completed successfully")
+
+        # Update display at the end
+        # current_selection = self.data_selector.currentText()
+        # if current_selection in self.dataframes:
+        #     self.display_dataframe(self.dataframes[current_selection])
         return data
 
     def import_bbm(self, progress_print=print):
@@ -1154,6 +1212,11 @@ class ImportTool(QMainWindow):
             self.dataframes['BBM'] = data
             #self.display_dataframe(data)
             progress_print("BBM import completed successfully")
+
+            # Update display at the end
+            # current_selection = self.data_selector.currentText()
+            # if current_selection in self.dataframes:
+            #     self.display_dataframe(self.dataframes[current_selection])
             return data
 
         except Exception as e:
@@ -1193,6 +1256,11 @@ class ImportTool(QMainWindow):
             #self.display_dataframe(display_data)
 
             progress_print("FTA import completed successfully")
+
+            # Update display at the end
+            # current_selection = self.data_selector.currentText()
+            # if current_selection in self.dataframes:
+            #     self.display_dataframe(self.dataframes[current_selection])
             return data
 
         except Exception as e:
@@ -1347,6 +1415,11 @@ class ImportTool(QMainWindow):
         #self.display_dataframe(data)
         progress_print("Darko update completed successfully")
 
+        # Update display at the end
+        # current_selection = self.data_selector.currentText()
+        # if current_selection in self.dataframes:
+        #     self.display_dataframe(self.dataframes[current_selection])
+
 
         return data
 
@@ -1379,6 +1452,7 @@ class ImportTool(QMainWindow):
             #self.display_dataframe(data)
 
             progress_print("Darko import completed successfully")
+
             return data
 
         except Exception as e:
@@ -1438,10 +1512,16 @@ class ImportTool(QMainWindow):
             self.dataframes['DK Entries'] = data
 
             # Update display if DK Entries is currently selected
-            if self.data_selector.currentText() == 'DK Entries':
-                self.display_dataframe(data)
+            #if self.data_selector.currentText() == 'DK Entries':
+                #self.display_dataframe(data)
 
             progress_print("DK Entries import completed successfully")
+
+
+            # Update display at the end
+            # current_selection = self.data_selector.currentText()
+            # if current_selection in self.dataframes:
+            #     self.display_dataframe(self.dataframes[current_selection])
             return data
 
         except Exception as e:
@@ -1673,7 +1753,7 @@ class ImportTool(QMainWindow):
 
             # Update display if DK Entries is currently selected
             #if self.data_selector.currentText() == 'Odds':
-            self.display_dataframe(teams_df)
+            #self.display_dataframe(teams_df)
 
             progress_print("DK Entries import completed successfully")
 
@@ -1684,12 +1764,88 @@ class ImportTool(QMainWindow):
             print(f"Data successfully saved to {csv_path}")
 
             progress_print("Done importing NBA Schedule to odds.")
+
+
+            # Update display at the end
+            # current_selection = self.data_selector.currentText()
+            # if current_selection in self.dataframes:
+            #     self.display_dataframe(self.dataframes[current_selection])
             return teams_df
 
 
         except Exception as e:
             progress_print(f"An error occurred: {e}")
             raise
+
+
+    def build_team_totals(self, progress_print=print):
+        # First, let's group by TeamAbbrev and calculate the totals
+        team_totals = self.dataframes['SOG'].groupby('TeamAbbrev').agg({
+            'minutes': 'sum',
+            'Salary': 'sum',
+            'dk': 'sum',
+            'Predicted Ownership': 'sum',
+            'SD': 'sum',
+            'BB_PROJECTION': 'sum',
+            #'PLAYER_NAME': lambda x: ', '.join(x),  # Concatenate player names
+            #'Position': lambda x: ', '.join(set(x))  # Unique positions
+        }).reset_index()
+
+        # Round all numeric columns to 2 decimal places
+        numeric_columns = ['minutes', 'Salary', 'dk', 'Predicted Ownership', 'SD', 'BB_PROJECTION']
+        team_totals[numeric_columns] = team_totals[numeric_columns].round(2)
+
+        team_names = {
+            'ATL': 'Atlanta Hawks',
+            'BOS': 'Boston Celtics',
+            'BKN': 'Brooklyn Nets',
+            'CHA': 'Charlotte Hornets',
+            'CHI': 'Chicago Bulls',
+            'CLE': 'Cleveland Cavaliers',
+            'DAL': 'Dallas Mavericks',
+            'DEN': 'Denver Nuggets',
+            'DET': 'Detroit Pistons',
+            'GSW': 'Golden State Warriors',
+            'HOU': 'Houston Rockets',
+            'IND': 'Indiana Pacers',
+            'LAC': 'LA Clippers',
+            'LAL': 'Los Angeles Lakers',
+            'MEM': 'Memphis Grizzlies',
+            'MIA': 'Miami Heat',
+            'MIL': 'Milwaukee Bucks',
+            'MIN': 'Minnesota Timberwolves',
+            'NOP': 'New Orleans Pelicans',
+            'NYK': 'New York Knicks',
+            'OKC': 'Oklahoma City Thunder',
+            'ORL': 'Orlando Magic',
+            'PHI': 'Philadelphia 76ers',
+            'PHX': 'Phoenix Suns',
+            'POR': 'Portland Trail Blazers',
+            'SAC': 'Sacramento Kings',
+            'SAS': 'San Antonio Spurs',
+            'TOR': 'Toronto Raptors',
+            'UTA': 'Utah Jazz',
+            'WAS': 'Washington Wizards'
+        }
+
+        team_totals['Team Name'] = team_totals['TeamAbbrev'].map(team_names)
+
+        # Store the new dataframe
+        self.dataframes['Totals'] = team_totals
+
+        # # Optionally, you can reorder the columns if needed
+        # desired_column_order = ['TeamAbbrev', 'Team Name', 'minutes', 'Salary', 'dk',
+        #                         'Predicted Ownership', 'SD', 'BB_PROJECTION',
+        #                         'PLAYER_NAME', 'Position']
+        # self.dataframes['Totals'] = self.dataframes['Totals'][desired_column_order]
+
+        #if self.data_selector.currentText() == 'Totals':
+            #self.display_dataframe(team_totals)
+
+        # Update display at the end
+        # current_selection = self.data_selector.currentText()
+        # if current_selection in self.dataframes:
+        #     self.display_dataframe(self.dataframes[current_selection])
 
     def export_projections(self, progress_print=print):
         progress_print("Exporting projections to CSV...")
@@ -1727,13 +1883,19 @@ class ImportTool(QMainWindow):
             self.dataframes['Export Projections'] = filtered_sog
 
             # Update display if DK Entries is currently selected
-            if self.data_selector.currentText() == 'Export Projections':
-                self.display_dataframe(filtered_sog)
+            #if self.data_selector.currentText() == 'Export Projections':
+                #self.display_dataframe(filtered_sog)
+
 
             progress_print("Exporting filtered data to CSV...")
             filtered_sog.to_csv(output_csv_file, index=False)
 
             progress_print(f"Projections successfully exported to '{output_csv_file}'.")
+
+            # Update display at the end
+            # current_selection = self.data_selector.currentText()
+            # if current_selection in self.dataframes:
+            #     self.display_dataframe(self.dataframes[current_selection])
         except KeyError as e:
             progress_print(f"KeyError: Missing required column(s) - {e}")
             raise
@@ -1747,14 +1909,14 @@ class ImportTool(QMainWindow):
         self.import_fta_entries(progress_print=progress_print)
         self.import_dk_entries(progress_print=progress_print)
         self.import_darko(progress_print=progress_print)
+        self.update_team_data_with_odds()
         self.update_darko(self.dataframes['BBM'], progress_print=progress_print)
         self.import_team_stats(progress_print=progress_print)
         self.build_ownership_projections_dataframe(progress_print=progress_print)
         self.merge_dataframes_sog(progress_print=progress_print)
         self.build_predict_minutes_dataframe(progress_print=progress_print)
         self.export_projections(progress_print=progress_print)
-        self.update_team_data_with_odds()
-        #self.export_projections(progress_print=progress_print)
+        self.build_team_totals(progress_print=progress_print)
         progress_print("All imports completed successfully.")
 
     # Post-process predictions to apply the 1% ownership cap for low minutes players
@@ -2306,11 +2468,14 @@ class ImportTool(QMainWindow):
             final_predictions = final_predictions.round(2)  # Round to 2 decimal places
             self.dataframes['Ownership Projections']['Predicted Ownership'] = final_predictions
 
+            self.update_darko(data)
             self.merge_dataframes_sog()
+            self.build_team_totals()
             self.export_projections()
 
-            if self.data_selector.currentText() == 'Ownership Projections':
-                self.display_dataframe(data)
+            # current_selection = self.data_selector.currentText()
+            # if current_selection in self.dataframes:
+            #     self.display_dataframe(self.dataframes[current_selection])
 
 
         except Exception as e:
