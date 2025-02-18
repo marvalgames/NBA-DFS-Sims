@@ -3,25 +3,15 @@ import time
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import os
-
-
 import numpy as np
 import requests
 import unicodedata
-
-# In your MainApp class, add these imports at the top:
 from PyQt6.QtCore import QThread, pyqtSignal, Qt
 from nba_api.stats.endpoints import leaguedashteamstats
-
-
 from daily_download import DailyDownload
-from nba_data_manager import NBADataManager
 from nba_minutes_prediction_setup import NbaMInutesPredictions
 from nba_minutes_predictions_enhanced import PredictMinutes
 from config import NBA_CONSTANTS
-from PyQt6.QtCore import Qt, QAbstractTableModel
-from PyQt6.QtWidgets import QAbstractItemView
-
 
 
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QPushButton, QVBoxLayout,
@@ -43,10 +33,8 @@ class CustomSortFilterProxyModel(QSortFilterProxyModel):
         right_data = self.sourceModel().data(right, Qt.ItemDataRole.EditRole)
 
         try:
-            # Try numeric comparison first
             return float(left_data) < float(right_data)
         except (ValueError, TypeError):
-            # Fall back to string comparison if numeric fails
             return str(left_data) < str(right_data)
 
     def flags(self, index):
@@ -287,10 +275,6 @@ class ImportTool(QMainWindow):
     def import_finished(self, success, message, data):
         if success:
             self.update_display()
-            #if data is not None and isinstance(data, pd.DataFrame):
-                #current_selection = self.data_selector.currentText()
-                #self.dataframes[current_selection] = data
-                #self.display_dataframe(data)
             QMessageBox.information(self, "Success", message)
         else:
             QMessageBox.critical(self, "Error", f"An error occurred: {message}")
@@ -321,9 +305,7 @@ class ImportTool(QMainWindow):
         USERNAME = "marvalgames"
         PASSWORD = "NWMUCBPOUD"
         downloader.download_and_rename_csv(USERNAME, PASSWORD)
-
         print('Completed')
-
         progress_print("Done downloading data.")
 
     def standardize_player_names(self, df, name_column):
@@ -650,9 +632,6 @@ class ImportTool(QMainWindow):
         if df is not None and not df.empty:
             try:
                 print("Creating model...", len(df.columns))  # Debug print
-                print("DARKO LOADED", df.equals(self.dataframes['Darko']))
-
-
 
                 # Apply transformations based on DataFrame key
                 if df.equals(self.dataframes['FTA']):
@@ -709,11 +688,8 @@ class ImportTool(QMainWindow):
                 # Adjust column widths
                 self.adjust_column_widths()
 
-
-
                 # Make last column stretch to fill remaining space
                 #self.table_view.horizontalHeader().setStretchLastSection(True)
-
 
                 print("Model set successfully")  # Debug print
             except Exception as e:
@@ -737,11 +713,6 @@ class ImportTool(QMainWindow):
         self.process_game_logs()
         print('Completed')
         progress_print("Done expanding game logs.")
-
-        # Update display at the end
-        # current_selection = self.data_selector.currentText()
-        # if current_selection in self.dataframes:
-        #     self.display_dataframe(self.dataframes[current_selection])
 
     def import_team_stats(self, progress_print=print):
         team_abbr_dict = {
@@ -832,17 +803,7 @@ class ImportTool(QMainWindow):
 
             # Store in dataframes dictionary
             self.dataframes['Team Stats'] = merged_df
-
-            # Update display if Team Stats is currently selected
-            #if self.data_selector.currentText() == 'Team Stats':
-            #self.display_dataframe(merged_df)
-
             progress_print("Team Stats import completed successfully")
-
-            # Update display at the end
-            # current_selection = self.data_selector.currentText()
-            # if current_selection in self.dataframes:
-            #     self.display_dataframe(self.dataframes[current_selection])
             return merged_df
 
         except Exception as e:
@@ -895,8 +856,6 @@ class ImportTool(QMainWindow):
              how='left'  # Keep all rows from the previous merge
         )
 
-
-
         data = pd.merge(
             data,
             own_df,
@@ -921,27 +880,11 @@ class ImportTool(QMainWindow):
             raise ValueError("No data was read from the SOG CSV file")
 
         progress_print(f"Successfully read {len(data)} rows of data")
-        #
-        # data.rename(columns={'minutes': 'BB Minutes'}, inplace=True)
-        # data.rename(columns={'Minutes': 'FTA Minutes'}, inplace=True)
-        # data.rename(columns={'BB_PROJECTION': 'BB Projection'}, inplace=True)
-        # data.rename(columns={'Projection': 'FTA Projection'}, inplace=True)
-
 
         # Store in dataframes dictionary
         self.dataframes['SOG'] = data
 
-        # Update display if FTA is currently selected
-        # if self.data_selector.currentText() == 'SOG':
-        #     self.display_dataframe(data)
-
-
         progress_print("SOG import completed successfully")
-
-        # Update display at the end
-        # current_selection = self.data_selector.currentText()
-        # if current_selection in self.dataframes:
-        #     self.display_dataframe(self.dataframes[current_selection])
 
         return data
 
@@ -963,12 +906,8 @@ class ImportTool(QMainWindow):
         dk_df = self.dataframes['DK Entries']
         bbm_df = self.dataframes['BBM']
         game_logs_df = result_df
-
-        #dk_df.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
-        #game_logs_df.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
         game_logs_df.rename(columns={'TEAM_NAME': 'Team'}, inplace=True)
         game_logs_df.rename(columns={'MIN': 'Minutes Last Game'}, inplace=True)
-        #bbm_df.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
         bbm_df.rename(columns={'BB_PROJECTION': 'Projection'}, inplace=True)
         bbm_df.rename(columns={'minutes': 'Minutes'}, inplace=True)
 
@@ -1097,18 +1036,6 @@ class ImportTool(QMainWindow):
 
         # Store in dataframes dictionary
         self.dataframes['Game Logs'] = data
-        # If you're using a model-view setup, you'll need to set up an editable model:
-        #if self.data_selector.currentText() == 'Game Logs':
-        #self.display_dataframe(data)
-
-        # if self.data_selector.currentText() == 'Game Logs':
-        #     self.display_dataframe(data)
-
-        # Update display at the end
-        # current_selection = self.data_selector.currentText()
-        # if current_selection in self.dataframes:
-        #     self.display_dataframe(self.dataframes[current_selection])
-
         return data
 
 
@@ -1121,9 +1048,6 @@ class ImportTool(QMainWindow):
         game_logs_df['Original_Minutes'] = game_logs_df['Minutes'].round(2)
         game_logs_df['Predicted_Minutes'] = game_logs_df['Minutes']
         self.dataframes['Predict Minutes'] = game_logs_df
-        #self.display_dataframe(game_logs_df)
-
-
 
 
     def predict_minutes(self, progress_print=print):
@@ -1146,10 +1070,6 @@ class ImportTool(QMainWindow):
         # self.display_dataframe(data)
         progress_print("Predict Minutes import completed successfully")
 
-        # Update display at the end
-        # current_selection = self.data_selector.currentText()
-        # if current_selection in self.dataframes:
-        #     self.display_dataframe(self.dataframes[current_selection])
         return data
 
     def import_bbm(self, progress_print=print):
@@ -1212,11 +1132,6 @@ class ImportTool(QMainWindow):
             self.dataframes['BBM'] = data
             #self.display_dataframe(data)
             progress_print("BBM import completed successfully")
-
-            # Update display at the end
-            # current_selection = self.data_selector.currentText()
-            # if current_selection in self.dataframes:
-            #     self.display_dataframe(self.dataframes[current_selection])
             return data
 
         except Exception as e:
@@ -1249,18 +1164,7 @@ class ImportTool(QMainWindow):
             columns_to_remove = ['min', 'max', 'lock', 'exclude']
             display_data = data.drop(columns=columns_to_remove, axis=1)  # Remove columns
 
-            # Rename PLAYER_NAME -> Player Name for display purposes
-            display_data = display_data.rename(columns={'PLAYER_NAME': 'Player Name'})
-
-            # Pass the correct display_data to the display_dataframe method
-            #self.display_dataframe(display_data)
-
             progress_print("FTA import completed successfully")
-
-            # Update display at the end
-            # current_selection = self.data_selector.currentText()
-            # if current_selection in self.dataframes:
-            #     self.display_dataframe(self.dataframes[current_selection])
             return data
 
         except Exception as e:
@@ -1402,8 +1306,6 @@ class ImportTool(QMainWindow):
             0  # If minutes = 0, assign SD_Score = 0
         ).round(3)
 
-
-
         # # Optional: Reorganize output column order if needed
         # desired_order = ['nba_id', 'minutes', 'gm2', 'col2', 'col3', 'other_columns']
         # data = data[desired_order]
@@ -1412,14 +1314,7 @@ class ImportTool(QMainWindow):
         progress_print(f"Successfully added {len(self.FORMULA_CONFIG)} new calculated columns.")
         # Update the Darko dataframe
         self.dataframes['Darko'] = data
-        #self.display_dataframe(data)
         progress_print("Darko update completed successfully")
-
-        # Update display at the end
-        # current_selection = self.data_selector.currentText()
-        # if current_selection in self.dataframes:
-        #     self.display_dataframe(self.dataframes[current_selection])
-
 
         return data
 
@@ -1446,11 +1341,6 @@ class ImportTool(QMainWindow):
 
             # Store in dataframes dictionary
             self.dataframes['Darko'] = data
-            # Update display if Darko is currently selected
-            #if self.data_selector.currentText() == 'Darko':
-
-            #self.display_dataframe(data)
-
             progress_print("Darko import completed successfully")
 
             return data
@@ -1510,18 +1400,7 @@ class ImportTool(QMainWindow):
 
             # Store in dataframes dictionary
             self.dataframes['DK Entries'] = data
-
-            # Update display if DK Entries is currently selected
-            #if self.data_selector.currentText() == 'DK Entries':
-                #self.display_dataframe(data)
-
             progress_print("DK Entries import completed successfully")
-
-
-            # Update display at the end
-            # current_selection = self.data_selector.currentText()
-            # if current_selection in self.dataframes:
-            #     self.display_dataframe(self.dataframes[current_selection])
             return data
 
         except Exception as e:
@@ -1750,11 +1629,6 @@ class ImportTool(QMainWindow):
 
             # Store in dataframes dictionary
             self.dataframes['Odds'] = teams_df
-
-            # Update display if DK Entries is currently selected
-            #if self.data_selector.currentText() == 'Odds':
-            #self.display_dataframe(teams_df)
-
             progress_print("DK Entries import completed successfully")
 
 
@@ -1764,12 +1638,6 @@ class ImportTool(QMainWindow):
             print(f"Data successfully saved to {csv_path}")
 
             progress_print("Done importing NBA Schedule to odds.")
-
-
-            # Update display at the end
-            # current_selection = self.data_selector.currentText()
-            # if current_selection in self.dataframes:
-            #     self.display_dataframe(self.dataframes[current_selection])
             return teams_df
 
 
@@ -1832,20 +1700,12 @@ class ImportTool(QMainWindow):
 
         # Store the new dataframe
         self.dataframes['Totals'] = team_totals
-
         # # Optionally, you can reorder the columns if needed
         # desired_column_order = ['TeamAbbrev', 'Team Name', 'minutes', 'Salary', 'dk',
         #                         'Predicted Ownership', 'SD', 'BB_PROJECTION',
         #                         'PLAYER_NAME', 'Position']
         # self.dataframes['Totals'] = self.dataframes['Totals'][desired_column_order]
 
-        #if self.data_selector.currentText() == 'Totals':
-            #self.display_dataframe(team_totals)
-
-        # Update display at the end
-        # current_selection = self.data_selector.currentText()
-        # if current_selection in self.dataframes:
-        #     self.display_dataframe(self.dataframes[current_selection])
 
     def export_projections(self, progress_print=print):
         progress_print("Exporting projections to CSV...")
@@ -1882,20 +1742,11 @@ class ImportTool(QMainWindow):
             filtered_sog = filtered_sog.rename(columns=renamed_columns)
             self.dataframes['Export Projections'] = filtered_sog
 
-            # Update display if DK Entries is currently selected
-            #if self.data_selector.currentText() == 'Export Projections':
-                #self.display_dataframe(filtered_sog)
-
-
             progress_print("Exporting filtered data to CSV...")
             filtered_sog.to_csv(output_csv_file, index=False)
 
             progress_print(f"Projections successfully exported to '{output_csv_file}'.")
 
-            # Update display at the end
-            # current_selection = self.data_selector.currentText()
-            # if current_selection in self.dataframes:
-            #     self.display_dataframe(self.dataframes[current_selection])
         except KeyError as e:
             progress_print(f"KeyError: Missing required column(s) - {e}")
             raise
@@ -1917,6 +1768,7 @@ class ImportTool(QMainWindow):
         self.build_predict_minutes_dataframe(progress_print=progress_print)
         self.export_projections(progress_print=progress_print)
         self.build_team_totals(progress_print=progress_print)
+        self.display_dataframe(self.dataframes['BBM'])
         progress_print("All imports completed successfully.")
 
     # Post-process predictions to apply the 1% ownership cap for low minutes players
@@ -2472,11 +2324,6 @@ class ImportTool(QMainWindow):
             self.merge_dataframes_sog()
             self.build_team_totals()
             self.export_projections()
-
-            # current_selection = self.data_selector.currentText()
-            # if current_selection in self.dataframes:
-            #     self.display_dataframe(self.dataframes[current_selection])
-
 
         except Exception as e:
             progress_print(f"An error occurred: {e}")
