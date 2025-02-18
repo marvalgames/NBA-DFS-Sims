@@ -8,5 +8,8 @@ NBA_CONSTANTS = {
     'SD_TO': .200,
     'SD_2GM': .300,
     'SD_FTM': .400,
+    '0 MIN SD': .6, #e23
+    'SD MIN INCREASE': .013  #e24
+
     # ... more constants
 }

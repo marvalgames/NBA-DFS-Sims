@@ -489,6 +489,7 @@ class ImportTool(QMainWindow):
     def on_data_selection_changed(self, selection):
         if selection in self.dataframes:
             print(selection)
+            print("********************************")
             self.display_dataframe(self.dataframes[selection])
 
     def setup_table_view(self):
@@ -864,6 +865,17 @@ class ImportTool(QMainWindow):
             how='left'  # Keep all rows from the previous merge
         )
 
+        data['DK Base'] = data['dk']
+
+        team_defense = data.groupby('TeamAbbrev')['Defense'].sum().to_dict()
+        data['Opp D Rating'] = data['Opp'].map(team_defense).round(3)
+
+        # Calculate Min SD Score
+        data['Min SD Score'] = 1 + (NBA_CONSTANTS['0 MIN SD'] - (data['minutes'] * NBA_CONSTANTS['SD MIN INCREASE'])).round(2)
+
+        data['Adj SD Score'] = (data['Min SD Score'] * data['SD_Score']).round(3)
+        data['SD'] = ((data['DK Base'] * (data['Adj SD Score'] - 1)).round(3)).clip(lower=1)
+
         # Verify we have data
         if data.empty:
             raise ValueError("No data was read from the SOG CSV file")
@@ -1077,6 +1089,7 @@ class ImportTool(QMainWindow):
         self.dataframes['Predict Minutes'] = data
         self.update_darko(data)
         self.merge_dataframes_sog()
+        self.export_projections()
         # self.display_dataframe(data)
         progress_print("Predict Minutes import completed successfully")
         return data
@@ -1317,9 +1330,11 @@ class ImportTool(QMainWindow):
                     data['tov'] * NBA_CONSTANTS['SD_TO'] * 0.5 +  # Turnovers
                     data['2gm'] * NBA_CONSTANTS['SD_2GM'] * 2 +  # Two-point field goals made
                     data['ftm'] * NBA_CONSTANTS['SD_FTM']  # Free throws made
-            ) / data['minutes'] * 0.5,  # Scale by Constant M32 (ceiling factor)
+            ) / data['minutes'] * 0.5 + 1,  # Scale by Constant M32 (ceiling factor)
             0  # If minutes = 0, assign SD_Score = 0
         ).round(3)
+
+
 
         # # Optional: Reorganize output column order if needed
         # desired_order = ['nba_id', 'minutes', 'gm2', 'col2', 'col3', 'other_columns']
@@ -1412,6 +1427,12 @@ class ImportTool(QMainWindow):
 
             data = self.standardize_player_names(data, 'Name')
             data.rename(columns={'Name': 'PLAYER_NAME'}, inplace=True)
+
+            data['Visitor'] = data['Game Info'].str.split('@').str[0]
+            data['Home'] = data['Game Info'].str.split('@').str[1].str[:3]
+            data['Opp'] = np.where(data['TeamAbbrev'] == data['Visitor'],
+                                   data['Home'],
+                                   data['Visitor'])
 
             # Store in dataframes dictionary
             self.dataframes['DK Entries'] = data
@@ -1672,6 +1693,7 @@ class ImportTool(QMainWindow):
 
     def export_projections(self, progress_print=print):
         progress_print("Exporting projections to CSV...")
+        print( self.data_selector.currentText() )
         try:
             # Set up paths
             current_folder = Path(__file__).resolve().parent
@@ -1684,10 +1706,10 @@ class ImportTool(QMainWindow):
             # Specify keys/columns to keep
             #selected_columns = ['PLAYER_NAME', 'Position', 'Team', 'Minutes', 'Salary', 'Projection', 'Ownership', 'SD_Score', 'BB_PROJECTION']  # Replace with your desired column names
             selected_columns = ['PLAYER_NAME', 'Position', 'TeamAbbrev',
-             'minutes', 'Salary', 'dk', 'Predicted Ownership', 'SD_Score', 'BB_PROJECTION'
+             'minutes', 'Salary', 'dk', 'Predicted Ownership', 'SD', 'BB_PROJECTION'
                                 ]  # Replace with your desired column names
             filtered_sog = self.dataframes['SOG'][selected_columns].copy()  # Filter the DataFrame
-            numeric_columns = ['minutes', 'Salary', 'dk', 'Predicted Ownership', 'SD_Score', 'BB_PROJECTION']
+            numeric_columns = ['minutes', 'Salary', 'dk', 'Predicted Ownership', 'SD', 'BB_PROJECTION']
             for col in numeric_columns:
                 filtered_sog[col] = pd.to_numeric(filtered_sog[col], errors='coerce').fillna(0)
 
@@ -1697,16 +1719,16 @@ class ImportTool(QMainWindow):
                 'TeamAbbrev': 'Team',
                 'dk': 'Fpts',
                 'Predicted Ownership': 'Own%',
-                'SD_Score': 'StdDev',
+                'SD': 'StdDev',
                 'BB_PROJECTION': 'FieldFpts'
             }
 
             filtered_sog = filtered_sog.rename(columns=renamed_columns)
             self.dataframes['Export Projections'] = filtered_sog
 
-            #
-            # if self.data_selector.currentText() == 'Export Projections':
-            #     self.display_dataframe(filtered_sog)
+            # Update display if DK Entries is currently selected
+            if self.data_selector.currentText() == 'Export Projections':
+                self.display_dataframe(filtered_sog)
 
             progress_print("Exporting filtered data to CSV...")
             filtered_sog.to_csv(output_csv_file, index=False)
@@ -1829,7 +1851,7 @@ class ImportTool(QMainWindow):
         # if self.data_selector.currentText() == 'DK Entries':
         new_df = new_df.sort_values(by='Points Proj', ascending=False)
         self.dataframes['Ownership Projections'] = new_df
-        self.display_dataframe(new_df, sort_column='Points Proj', ascending=False)
+        #self.display_dataframe(new_df, sort_column='Points Proj', ascending=False)
 
         return new_df
 
@@ -2285,6 +2307,7 @@ class ImportTool(QMainWindow):
             self.dataframes['Ownership Projections']['Predicted Ownership'] = final_predictions
 
             self.merge_dataframes_sog()
+            self.export_projections()
 
             if self.data_selector.currentText() == 'Ownership Projections':
                 self.display_dataframe(data)
