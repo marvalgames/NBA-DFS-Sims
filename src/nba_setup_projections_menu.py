@@ -43,7 +43,7 @@ class CustomSortFilterProxyModel(QSortFilterProxyModel):
 
     @team_column.setter
     def team_column(self, value):
-        print(f"Setting team_column to: {value}")  # Debug print
+        #print(f"Setting team_column to: {value}")  # Debug print
         self._team_column = value
 
     def filterAcceptsRow(self, source_row, source_parent):
@@ -51,13 +51,13 @@ class CustomSortFilterProxyModel(QSortFilterProxyModel):
             return True
 
         try:
-            print(f"Filtering with team_column: {self._team_column}")  # Debug print
-            print(f"Available columns: {self.transformed_df.columns.tolist()}")
+            #print(f"Filtering with team_column: {self._team_column}")  # Debug print
+            #print(f"Available columns: {self.transformed_df.columns.tolist()}")
 
             if self.team_column in self.transformed_df.columns:
                 team_column_idx = self.transformed_df.columns.get_loc(self.team_column)
                 team_value = self.sourceModel().index(source_row, team_column_idx, source_parent).data()
-                print(f"Comparing {team_value} with filter {self.team_filter}")  # Debug print
+                #print(f"Comparing {team_value} with filter {self.team_filter}")  # Debug print
                 return str(team_value).strip() == str(self.team_filter).strip()
             else:
                 print(f"Column {self.team_column} not found in DataFrame")  # Debug print
@@ -67,7 +67,7 @@ class CustomSortFilterProxyModel(QSortFilterProxyModel):
             return True
 
     def set_team_filter(self, team):
-        print(f"Setting team filter to: {team}")  # Debug print
+        #print(f"Setting team filter to: {team}")  # Debug print
         self.team_filter = team
         self.invalidateFilter()
 
@@ -669,7 +669,7 @@ class ImportTool(QMainWindow):
                 'move_to_front': 'Player'
             },
             'SOG': {
-                'columns_to_remove': ['ID', 'Name + ID'],
+                'columns_to_remove': ['ID', 'Name + ID', 'USG%' ],
                 'rename_mapping': {'PLAYER_NAME': 'Player'},
                 'move_to_front': 'Player'
             },
@@ -810,7 +810,7 @@ class ImportTool(QMainWindow):
                 if current_df_key:
                     if current_df_key in self.team_column_mapping:
                         team_column = self.team_column_mapping[current_df_key]
-                        print(f"Team column: {team_column}")
+                        #print(f"Team column: {team_column}")
 
                         # Update the proxy model with the correct team column
                         proxy_model = CustomSortFilterProxyModel(original_df, transformed_df, self)
@@ -819,7 +819,7 @@ class ImportTool(QMainWindow):
                         # Populate team filter combo box if the team column exists
                         if team_column in transformed_df.columns:
                             teams = sorted(transformed_df[team_column].unique())
-                            print(f"Teams: {teams}")
+                            #print(f"Teams: {teams}")
                             self.team_filter_combo.clear()
                             self.team_filter_combo.addItem("All Teams")
                             self.team_filter_combo.addItems(teams)
@@ -869,7 +869,7 @@ class ImportTool(QMainWindow):
 
                 if current_df_key in self.team_column_mapping:
                     team_column = self.team_column_mapping[current_df_key]
-                    print(f"Setting team column for {current_df_key} to: {team_column}")  # Debug print
+                    #print(f"Setting team column for {current_df_key} to: {team_column}")  # Debug print
                     proxy_model.team_column = team_column  # This should now properly set the column name
 
                     # Populate team filter combo box
@@ -879,7 +879,6 @@ class ImportTool(QMainWindow):
                         self.team_filter_combo.addItem("All Teams")
                         self.team_filter_combo.addItems([str(team) for team in teams])
                         self.team_filter_combo.setEnabled(True)
-                        print(f"Added teams to combo box: {teams}")
 
                 # Set initial sort if sort_column is specified
                 if sort_column and sort_column in transformed_df.columns:
@@ -892,6 +891,7 @@ class ImportTool(QMainWindow):
 
                 # Connect the data changed signal
                 proxy_model.dataChanged.connect(self.handle_data_changed)
+
 
                 # Adjust column widths
                 self.adjust_column_widths()
@@ -922,11 +922,11 @@ class ImportTool(QMainWindow):
             self.dataframes[current_key] = updated_df.copy()
 
             # Debug prints
-            if 'PLAYER_NAME' in updated_df.columns and 'Min Minutes' in updated_df.columns:
-                players = ["Bruce Brown", "Josh Hart", "Player3"]
-                player_data = updated_df[updated_df['PLAYER_NAME'].isin(players)][['PLAYER_NAME', 'Min Minutes']]
-                print("\nCurrent player data:")
-                print(player_data)
+            # if 'PLAYER_NAME' in updated_df.columns and 'Min Minutes' in updated_df.columns:
+            #     players = ["Bruce Brown", "Josh Hart", "Player3"]
+            #     player_data = updated_df[updated_df['PLAYER_NAME'].isin(players)][['PLAYER_NAME', 'Min Minutes']]
+            #     print("\nCurrent player data:")
+            #     print(player_data)
 
             # Save to CSV
             csv_path = os.path.join('..', 'dk_import', 'nba_daily_combined.csv')
@@ -1050,11 +1050,13 @@ class ImportTool(QMainWindow):
         fta_df = self.dataframes['FTA']
         darko_df = self.dataframes['Darko']
         own_df = self.dataframes['Ownership Projections']
+        odds_df = self.dataframes['Odds']
+        team_stats_df = self.dataframes['Team Stats']
 
         bbm_df = bbm_df[['PLAYER_NAME', 'BB_PROJECTION']]  # Selecting only Name and Minutes from BBM
         fta_df = fta_df[['PLAYER_NAME', 'Minutes', 'Projection','Ownership']]  # Selecting only Name and Minutes from FTA
 
-        darko_df = darko_df[['PLAYER_NAME', 'minutes',
+        darko_df = darko_df[['PLAYER_NAME', 'USG%', 'minutes',
                              'pts', 'reb', 'ast', 'stl', 'blk', 'tov',
                              'dk', 'dk_rate', 'dk_usg_rate', 'usg_G',
                              'Defense', 'SD_Score',
@@ -1092,10 +1094,41 @@ class ImportTool(QMainWindow):
             how='left'  # Keep all rows from the previous merge
         )
 
+        # Add Vegas Points by matching TeamAbbrev with Odds dataframe
+        odds_dict = dict(zip(odds_df['Abbr'], odds_df['Points']))
+        data['Vegas Points'] = data['TeamAbbrev'].map(odds_dict)
+        data['Team Pts'] = data.groupby('TeamAbbrev')['pts'].transform('sum').round(2)
+        data['Usage %'] = (data['USG%'] * 100).round(2)
+        data['Team Usage%'] = data.groupby('TeamAbbrev')['Usage %'].transform('sum').round(2)
+        data['Usage Game'] = (data['Usage %'] * data['minutes'] / 48).round(2)
+        data['Team Usage Game'] =  data.groupby('TeamAbbrev')['Usage Game'].transform('sum').round(2)
+        data['Adjusted Usage Game'] = (data['Usage Game'] / data['Team Usage Game'] * 100).round(2)
+        data['Usage Auto'] = (data['Adjusted Usage Game'] - data['Usage Game']).round(3)
+        data['Usage Game Total'] = (data['Usage %'] + data['Usage Auto']).round(2)
+
+        # Create all mappings at once
+        team_mappings = {
+            'Team Offense Rating': dict(zip(team_stats_df['Abbr'], team_stats_df['OFF_RATING'])),
+            'Team Defense Rating': dict(zip(team_stats_df['Abbr'], team_stats_df['DEF_RATING'])),
+            'Pace': dict(zip(team_stats_df['Abbr'], team_stats_df['PACE']))
+        }
+
+
+        # Apply all mappings in one loop
+        for new_col, mapping in team_mappings.items():
+            data[new_col] = data['TeamAbbrev'].map(mapping)
+
+
         data['DK Base'] = data['dk']
 
         team_defense = data.groupby('TeamAbbrev')['Defense'].sum().to_dict()
         data['Opp D Rating'] = data['Opp'].map(team_defense).round(3)
+
+        # = [ @ Pts]*(1 + [ @ [Opp D Rating]]) + ([ @ [USG Auto]]) / [ @ [USG %]] *[ @ Pts]*(1 + [ @ [Opp D Rating]])
+
+        data['Points Adjusted'] = (data['pts'] * (1 - data['Opp D Rating'] / 100 ) +  (data['Usage Auto'] / data['Usage %']  * data['pts'] * (1 - data['Opp D Rating'] / 100))).round(2)
+        #data['Points Adjusted'] = (data['pts'] * (1 + data['Opp D Rating'] )).round(2)
+
 
         # Calculate Min SD Score
         data['Min SD Score'] = 1 + (NBA_CONSTANTS['0 MIN SD'] - (data['minutes'] * NBA_CONSTANTS['SD MIN INCREASE'])).round(2)
@@ -1559,7 +1592,6 @@ class ImportTool(QMainWindow):
         # data = data[desired_order]
         print("darko columns : ", len(data.columns))
 
-        progress_print(f"Successfully added {len(self.FORMULA_CONFIG)} new calculated columns.")
         # Update the Darko dataframe
         self.dataframes['Darko'] = data
         progress_print("Darko update completed successfully")
@@ -1898,6 +1930,7 @@ class ImportTool(QMainWindow):
         # First, let's group by TeamAbbrev and calculate the totals
         team_totals = self.dataframes['SOG'].groupby('TeamAbbrev').agg({
             'minutes': 'sum',
+            'pts' : 'sum',
             'Salary': 'sum',
             'dk': 'sum',
             'Predicted Ownership': 'sum',
@@ -1908,7 +1941,7 @@ class ImportTool(QMainWindow):
         }).reset_index()
 
         # Round all numeric columns to 2 decimal places
-        numeric_columns = ['minutes', 'Salary', 'dk', 'Predicted Ownership', 'SD', 'BB_PROJECTION']
+        numeric_columns = ['minutes', 'pts', 'Salary', 'dk', 'Predicted Ownership', 'SD', 'BB_PROJECTION']
         team_totals[numeric_columns] = team_totals[numeric_columns].round(2)
 
         team_names = {
