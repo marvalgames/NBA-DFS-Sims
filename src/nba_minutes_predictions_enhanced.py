@@ -910,20 +910,46 @@ class PredictMinutes:
             # Store original predictions
             data['Original_Minutes'] = raw_predictions
 
-            # Apply zeros BEFORE position constraints
-            data['Predicted_Minutes'] = raw_predictions.copy()  # Start with a copy of raw predictions
-            # Set Predicted_Minutes to zero if Original_Minutes < 0
-            data.loc[data['Original_Minutes'] <= 0, 'Predicted_Minutes'] = 0
-            # Apply zero conditions
-            # No \ needed here because of the parentheses
-            zero_mask = (
-                    (data['Projection'] == 0)
+            # Calculate team total minutes for each team
+            team_total_minutes = data.groupby('Team')['Minutes'].sum()
+
+            # Apply minimum minutes requirement based on team's actual total minutes
+            data['Min_Required_Minutes'] = data.apply(
+                lambda row: (row['Min Minutes'] / 240 * team_total_minutes[row['Team']])
+                if pd.notnull(row['Min Minutes']) else 0,
+                axis=1
             )
+
+            # Adjust raw predictions to meet minimum requirements
+            adjusted_predictions = raw_predictions.copy()
+            for idx, row in data.iterrows():
+                if adjusted_predictions[idx] < row['Min_Required_Minutes']:
+                    adjusted_predictions[idx] = row['Min_Required_Minutes']
+
+            data['Predicted_Minutes'] = adjusted_predictions
+
+            # Apply zero conditions
+            zero_mask = (data['Projection'] == 0)
             data.loc[zero_mask, 'Predicted_Minutes'] = 0
 
-            # NOW apply position constraints to the already-modified predictions
+            # Apply position constraints to the already-modified predictions
             data['Predicted_Minutes'] = apply_position_constraints(data)
             data['Predicted_Minutes'] = adjust_team_minutes_with_minimum_and_boost(data)
+
+            # # Apply zeros BEFORE position constraints
+            # data['Predicted_Minutes'] = raw_predictions.copy()  # Start with a copy of raw predictions
+            # # Set Predicted_Minutes to zero if Original_Minutes < 0
+            # data.loc[data['Original_Minutes'] <= 0, 'Predicted_Minutes'] = 0
+            # # Apply zero conditions
+            # # No \ needed here because of the parentheses
+            # zero_mask = (
+            #         (data['Projection'] == 0)
+            # )
+            # data.loc[zero_mask, 'Predicted_Minutes'] = 0
+            #
+            # # NOW apply position constraints to the already-modified predictions
+            # data['Predicted_Minutes'] = apply_position_constraints(data)
+            # data['Predicted_Minutes'] = adjust_team_minutes_with_minimum_and_boost(data)
 
             # Print summary
             print("\nFinal Predictions:")

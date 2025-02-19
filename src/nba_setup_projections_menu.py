@@ -29,7 +29,7 @@ class CustomSortFilterProxyModel(QSortFilterProxyModel):
         super().__init__(parent)
         self.original_df = original_df  # Store the original DataFrame
         self.transformed_df = transformed_df  # Store the transformed DataFrame
-        self.editable_columns = ['Max Minutes']
+        self.editable_columns = ['Max Minutes', 'Min Minutes']
         self.player_column_original = 'PLAYER_NAME'  # Original column name
         self.player_column_transformed = 'Player Name'  # Renamed column
         # Create a mapping between transformed and original indices
@@ -799,9 +799,9 @@ class ImportTool(QMainWindow):
             self.dataframes[current_key] = updated_df.copy()
 
             # Debug prints
-            if 'PLAYER_NAME' in updated_df.columns and 'Max Minutes' in updated_df.columns:
+            if 'PLAYER_NAME' in updated_df.columns and 'Min Minutes' in updated_df.columns:
                 players = ["Bruce Brown", "Josh Hart", "Player3"]
-                player_data = updated_df[updated_df['PLAYER_NAME'].isin(players)][['PLAYER_NAME', 'Max Minutes']]
+                player_data = updated_df[updated_df['PLAYER_NAME'].isin(players)][['PLAYER_NAME', 'Min Minutes']]
                 print("\nCurrent player data:")
                 print(player_data)
 
