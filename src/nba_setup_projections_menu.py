@@ -29,11 +29,47 @@ class CustomSortFilterProxyModel(QSortFilterProxyModel):
         super().__init__(parent)
         self.original_df = original_df  # Store the original DataFrame
         self.transformed_df = transformed_df  # Store the transformed DataFrame
+        self.team_filter = ""
+        self.team_column = "Team"  # default column name
         self.editable_columns = ['Max Minutes', 'Min Minutes']
         self.player_column_original = 'PLAYER_NAME'  # Original column name
         self.player_column_transformed = 'Player Name'  # Renamed column
         # Create a mapping between transformed and original indices
         self.index_mapping = self._create_index_mapping()
+
+    @property
+    def team_column(self):
+        return self._team_column
+
+    @team_column.setter
+    def team_column(self, value):
+        print(f"Setting team_column to: {value}")  # Debug print
+        self._team_column = value
+
+    def filterAcceptsRow(self, source_row, source_parent):
+        if not self.team_filter or self.team_filter == "All Teams":
+            return True
+
+        try:
+            print(f"Filtering with team_column: {self._team_column}")  # Debug print
+            print(f"Available columns: {self.transformed_df.columns.tolist()}")
+
+            if self.team_column in self.transformed_df.columns:
+                team_column_idx = self.transformed_df.columns.get_loc(self.team_column)
+                team_value = self.sourceModel().index(source_row, team_column_idx, source_parent).data()
+                print(f"Comparing {team_value} with filter {self.team_filter}")  # Debug print
+                return str(team_value).strip() == str(self.team_filter).strip()
+            else:
+                print(f"Column {self.team_column} not found in DataFrame")  # Debug print
+            return True
+        except Exception as e:
+            print(f"Error in filterAcceptsRow: {e}")  # Debug print
+            return True
+
+    def set_team_filter(self, team):
+        print(f"Setting team filter to: {team}")  # Debug print
+        self.team_filter = team
+        self.invalidateFilter()
 
     def _create_index_mapping(self):
         mapping = {}
@@ -47,7 +83,7 @@ class CustomSortFilterProxyModel(QSortFilterProxyModel):
                     if not matches.empty:
                         original_idx = matches.index[0]
                         mapping[idx] = original_idx
-                        print(f"Mapped {player}: transformed index {idx} -> original index {original_idx}")
+                        #print(f"Mapped {player}: transformed index {idx} -> original index {original_idx}")
                 except Exception as e:
                     print(f"Error mapping player {player}: {e}")
 
@@ -198,7 +234,20 @@ class ImportThread(QThread):
 class ImportTool(QMainWindow):
     def __init__(self):
         super().__init__()
-        # Set up the file paths
+
+        self.team_column_mapping = {
+            'FTA': 'Team',
+            'BBM': 'team',
+            'DK Entries': 'TeamAbbrev',
+            'Team Stats': 'Team',  # adjust these names according to your actual column names
+            'SOG': 'TeamAbbrev',
+            'Totals': 'Team',
+            'Darko': 'Team',
+            'Ownership Projections': 'Team',
+            'Predict Minutes': 'Team',
+            'Export Projections': 'Team'
+        }
+
         self.setup_file_paths()
 
         self.setWindowTitle("NBA DFS Tool")
@@ -236,6 +285,8 @@ class ImportTool(QMainWindow):
         # Import Controls
         import_group = QGroupBox("Import Controls")
         import_layout = QVBoxLayout()
+
+
 
         # Daily Operations
         daily_button = QPushButton("Download Daily Data")
@@ -302,9 +353,23 @@ class ImportTool(QMainWindow):
         right_layout = QVBoxLayout(right_widget)
         splitter.addWidget(right_widget)
 
+        # Add team filter
+        filter_widget = QWidget()
+        filter_layout = QHBoxLayout(filter_widget)
+        filter_layout.addWidget(QLabel("Filter by Team:"))
+        self.team_filter_combo = QComboBox()
+        self.team_filter_combo.setFixedSize(150, 30)
+        self.team_filter_combo.addItem("All Teams")
+        self.team_filter_combo.currentTextChanged.connect(self.on_team_filter_changed)
+        filter_layout.addWidget(self.team_filter_combo)
+        filter_layout.addStretch()
+        right_layout.addWidget(filter_widget)
+
         # Add table view
         self.setup_table_view()
         right_layout.addWidget(self.table_view)
+
+
 
         # Add progress display
         self.progress_display = QTextEdit()
@@ -535,12 +600,29 @@ class ImportTool(QMainWindow):
 
         return latest_records
 
-
-
+    def on_team_filter_changed(self, team):
+        if hasattr(self.table_view.model(), 'set_team_filter'):
+            self.table_view.model().set_team_filter(team)
 
     def on_data_selection_changed(self, selection):
+        # Your existing code for changing DataFrames
         if selection in self.dataframes:
+            # Disable team filter if the selected DataFrame doesn't have a team column
+            if selection in self.team_column_mapping:
+                team_column = self.team_column_mapping[selection]
+                if team_column in self.dataframes[selection].columns:
+                    self.team_filter_combo.setEnabled(True)
+                else:
+                    self.team_filter_combo.setEnabled(False)
+                    self.team_filter_combo.clear()
+                    self.team_filter_combo.addItem("All Teams")
+            else:
+                self.team_filter_combo.setEnabled(False)
+                self.team_filter_combo.clear()
+                self.team_filter_combo.addItem("All Teams")
+
             self.display_dataframe(self.dataframes[selection])
+
 
     def setup_table_view(self):
 
@@ -713,12 +795,39 @@ class ImportTool(QMainWindow):
         if df is not None and not df.empty:
             try:
                 print("Creating model...", len(df.columns))  # Debug print
+                # Determine which DataFrame we're dealing with
+                current_df_key = None
+                for key, stored_df in self.dataframes.items():
+                    if df.equals(stored_df):
+                        current_df_key = key
+                        break
 
                 # Store the original DataFrame
                 original_df = df.copy()
 
                 # Create transformed DataFrame
                 transformed_df = df.copy()
+                if current_df_key:
+                    if current_df_key in self.team_column_mapping:
+                        team_column = self.team_column_mapping[current_df_key]
+                        print(f"Team column: {team_column}")
+
+                        # Update the proxy model with the correct team column
+                        proxy_model = CustomSortFilterProxyModel(original_df, transformed_df, self)
+                        proxy_model.team_column = team_column
+
+                        # Populate team filter combo box if the team column exists
+                        if team_column in transformed_df.columns:
+                            teams = sorted(transformed_df[team_column].unique())
+                            print(f"Teams: {teams}")
+                            self.team_filter_combo.clear()
+                            self.team_filter_combo.addItem("All Teams")
+                            self.team_filter_combo.addItems(teams)
+                            self.team_filter_combo.setEnabled(True)
+                        else:
+                            self.team_filter_combo.clear()
+                            self.team_filter_combo.addItem("All Teams")
+                            self.team_filter_combo.setEnabled(False)
 
                 # Apply transformations based on DataFrame key
                 if df.equals(self.dataframes['FTA']):
@@ -757,6 +866,20 @@ class ImportTool(QMainWindow):
                 print("Setting model to view...")  # Debug print
                 self.table_view.setModel(proxy_model)
                 self.table_view.setSortingEnabled(True)
+
+                if current_df_key in self.team_column_mapping:
+                    team_column = self.team_column_mapping[current_df_key]
+                    print(f"Setting team column for {current_df_key} to: {team_column}")  # Debug print
+                    proxy_model.team_column = team_column  # This should now properly set the column name
+
+                    # Populate team filter combo box
+                    if team_column in transformed_df.columns:
+                        teams = sorted(transformed_df[team_column].unique())
+                        self.team_filter_combo.clear()
+                        self.team_filter_combo.addItem("All Teams")
+                        self.team_filter_combo.addItems([str(team) for team in teams])
+                        self.team_filter_combo.setEnabled(True)
+                        print(f"Added teams to combo box: {teams}")
 
                 # Set initial sort if sort_column is specified
                 if sort_column and sort_column in transformed_df.columns:
