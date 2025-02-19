@@ -24,8 +24,9 @@ from PyQt6.QtCore import QSortFilterProxyModel
 
 
 class CustomSortFilterProxyModel(QSortFilterProxyModel):
-    def __init__(self, parent=None):
+    def __init__(self, dataframe, parent=None):
         super().__init__(parent)
+        self.df = dataframe
         self.editable_columns = ['Max Minutes']  # Add any other columns you want to be editable
 
     def lessThan(self, left, right):
@@ -48,26 +49,24 @@ class CustomSortFilterProxyModel(QSortFilterProxyModel):
 
     def setData(self, index, value, role=Qt.ItemDataRole.EditRole):
         if role == Qt.ItemDataRole.EditRole:
-            # Get the column name
             column_name = self.sourceModel().headerData(index.column(), Qt.Orientation.Horizontal,
                                                         Qt.ItemDataRole.DisplayRole)
-
             if column_name in self.editable_columns:
                 try:
-                    # Convert to float for numeric columns
                     value = float(value)
-                    success = self.sourceModel().setData(self.mapToSource(index), value, role)
+                    source_index = self.mapToSource(index)
 
-                    if success:
-                        # Get the DataFrame from your main class
-                        # You'll need to set up a way to access the DataFrame
-                        # This might require storing a reference to your main class
-                        # or emitting a signal to handle the save
+                    # Update source model
+                    if self.sourceModel().setData(source_index, value, role):
+                        # Update DataFrame directly
+                        row_index = source_index.row()
+                        self.df.iloc[row_index, source_index.column()] = value
                         self.dataChanged.emit(index, index)
                         return True
                 except ValueError:
                     return False
         return False
+
 
 class DataFrameModel(QAbstractTableModel):
     def __init__(self, data):
@@ -98,15 +97,18 @@ class DataFrameModel(QAbstractTableModel):
                 return str(self._data.index[section])
         return None
 
+
     def setData(self, index, value, role):
         if role == Qt.ItemDataRole.EditRole:
-            row = index.row()
-            col = index.column()
-            column_name = self._data.columns[col]
-            self._data.iloc[row, col] = value
-            self.dataChanged.emit(index, index)
-            return True
+            try:
+                self._data.iloc[index.row(), index.column()] = value
+                self.dataChanged.emit(index, index)
+                return True
+            except Exception as e:
+                print(f"Error setting data: {e}")
+                return False
         return False
+
 
 class ImportThread(QThread):
     progress = pyqtSignal(str)
@@ -141,7 +143,7 @@ class ImportTool(QMainWindow):
         self.setup_file_paths()
 
         self.setWindowTitle("NBA DFS Tool")
-        self.setGeometry(100, 100, 1200, 800)
+        self.setGeometry(100, 100, 1600, 900)
 
         # Initialize data storage
         self.dataframes = {}
@@ -166,6 +168,8 @@ class ImportTool(QMainWindow):
         self.data_selector.addItems(['BBM', 'FTA', 'DK Entries', 'Darko', 'Team Stats',
                                      'Odds', 'SOG', 'Predict Minutes', 'Ownership Projections', 'Export Projections', 'Totals'])
         self.data_selector.currentTextChanged.connect(self.on_data_selection_changed)
+        # Customize the dropdown view
+        self.data_selector.view().setMinimumHeight(200)  # Set the minimum height for the dropdown view
         viewer_layout.addWidget(self.data_selector)
         viewer_group.setLayout(viewer_layout)
         left_layout.addWidget(viewer_group)
@@ -246,7 +250,7 @@ class ImportTool(QMainWindow):
         # Add progress display
         self.progress_display = QTextEdit()
         self.progress_display.setReadOnly(True)
-        self.progress_display.setMaximumHeight(100)
+        self.progress_display.setMaximumHeight(240)
         right_layout.addWidget(self.progress_display)
 
         # Set splitter sizes
@@ -543,8 +547,20 @@ class ImportTool(QMainWindow):
                 'move_to_front': 'Team Name'
             },
             'Ownership Projections' : {
-                'columns_to_remove': ['Own Actual' ],
+                'columns_to_remove': ['Own Actual'],
             },
+            'Predict Minutes': {
+                'rename_mapping': {'PLAYER_NAME': 'Player Name', 'Predicted_Minutes': 'Predicted Minutes', 'GAME_DATE' : 'Game Date' },
+                'move_to_front': 'Player Name',
+                'columns_to_remove': ['Name + ID', 'ID', 'SEASON_ID', 'PLUS_MINUS','BLOWOUT_GAME', 'W/L', 'TEAM_ABBREVIATION',
+                    'PLAYER_ID', 'TEAM_ID', 'GAME_ID', 'MATCHUP', 'WL', 'VIDEO_AVAILABLE', 'FANTASY_PTS', 'PLAYER', 'MATCH UP', 'LOW_MIN_TOP_PLAYER'
+                                      ],
+                'wildcard_remove': ['AST_', 'REB_', 'FREQ_', 'IS_', 'MINUS_', 'PTS_', 'ROLE_', 'WIN', 'ABOVE_', 'TREND', 'SCORING'
+
+                                    ],  # Indicate we want to remove columns with 'RANK' in column names
+
+            },
+
         }
 
         def remove_duplicate_columns(df):
@@ -571,8 +587,15 @@ class ImportTool(QMainWindow):
 
 
         # Handle wildcard column removal
-        def remove_columns_by_wildcard(df, keyword):
-            cols_to_remove = [col for col in df.columns if keyword in col]
+        # Update the remove_columns_by_wildcard function to handle multiple wildcards
+        def remove_columns_by_wildcard(df, keywords):
+            if isinstance(keywords, str):
+                keywords = [keywords]  # Convert single string to list
+
+            cols_to_remove = []
+            for keyword in keywords:
+                cols_to_remove.extend([col for col in df.columns if keyword in col])
+
             return df.drop(columns=cols_to_remove, errors='ignore')
 
         if key in transformations:
@@ -580,7 +603,7 @@ class ImportTool(QMainWindow):
 
             # Remove specified columns
             if 'columns_to_remove' in config:
-                df = df.drop(columns=config['columns_to_remove'], axis=1, errors='ignore')  # Safe removal
+                df = df.drop(columns=config['columns_to_remove'], axis=1, errors='ignore')
 
             # Rename columns
             if 'rename_mapping' in config:
@@ -589,10 +612,9 @@ class ImportTool(QMainWindow):
             # Handle duplicate columns based on suffixes
             df = remove_duplicate_columns(df)
 
-            # Handle wildcard column removal
+            # Handle wildcard column removal (now supports multiple wildcards)
             if 'wildcard_remove' in config:
                 df = remove_columns_by_wildcard(df, config['wildcard_remove'])
-
             # Reorder columns
             if 'columns_reorder' in config:
                 reorder = [col for col in config['columns_reorder'] if
@@ -633,50 +655,47 @@ class ImportTool(QMainWindow):
             try:
                 print("Creating model...", len(df.columns))  # Debug print
 
+                df_copy = df.copy()
+
                 # Apply transformations based on DataFrame key
                 if df.equals(self.dataframes['FTA']):
-                    df = self.transform_dataframe(df, key='FTA')
+                    df_copy = self.transform_dataframe(df_copy, key='FTA')
                     sort_column = 'Projection'
                 elif df.equals(self.dataframes['BBM']):
-                    df = self.transform_dataframe(df, key='BBM')
+                    df_copy = self.transform_dataframe(df_copy, key='BBM')
                     sort_column = 'BBM Projection'
                 elif df.equals(self.dataframes['Team Stats']):
-                    df = self.transform_dataframe(df, key='Team Stats')
+                    df_copy = self.transform_dataframe(df_copy, key='Team Stats')
                     sort_column = 'NET_RATING'
                 elif df.equals(self.dataframes['SOG']):
-                    df = self.transform_dataframe(df, key='SOG')
+                    df_copy = self.transform_dataframe(df_copy, key='SOG')
                     sort_column = 'Projection'
                 elif df.equals(self.dataframes['Totals']):
-                    df = self.transform_dataframe(df, key='Totals')
+                    df_copy = self.transform_dataframe(df_copy, key='Totals')
                 elif df.equals(self.dataframes['Darko']):
-                    df = self.transform_dataframe(df, key='Darko')
+                    df_copy = self.transform_dataframe(df_copy, key='Darko')
                     sort_column = 'dk'
                 elif df.equals(self.dataframes['Ownership Projections']):
-                    df = self.transform_dataframe(df, key='Ownership Projections')
+                    df_copy = self.transform_dataframe(df_copy, key='Ownership Projections')
+                elif df.equals(self.dataframes['Predict Minutes']):
+                    df_copy = self.transform_dataframe(df_copy, key='Predict Minutes')
+                    sort_column = 'Predicted Minutes'
+
+                if sort_column and sort_column in df_copy.columns:
+                    df_copy = df_copy.sort_values(by=sort_column, ascending=ascending)
 
 
-
-                if sort_column:
-                    if sort_column in df.columns:
-                        print(f"Sorting DataFrame by column: {sort_column}, ascending: {ascending}")  # Debug print
-                        df = df.sort_values(by=sort_column, ascending=ascending)
-                    else:
-                        print(
-                            f"Warning: The specified sort_column '{sort_column}' is not in DataFrame columns.")  # Debug warning
-
-                model = DataFrameModel(df)
-                # Create proxy model for sorting
-                proxy_model = CustomSortFilterProxyModel()
+                model = DataFrameModel(df_copy)
+                proxy_model = CustomSortFilterProxyModel(df.copy(), self)
                 proxy_model.setSourceModel(model)
 
                 print("Setting model to view...")  # Debug print
                 self.table_view.setModel(proxy_model)
-                # Enable sorting and editing
                 self.table_view.setSortingEnabled(True)
 
-                # Optional: Set initial sort if sort_column is specified and verified
-                if sort_column and sort_column in df.columns:
-                    column_index = df.columns.get_loc(sort_column)
+
+                if sort_column and sort_column in df_copy.columns:
+                    column_index = df_copy.columns.get_loc(sort_column)
                     sort_order = Qt.SortOrder.AscendingOrder if ascending else Qt.SortOrder.DescendingOrder
                     self.table_view.sortByColumn(column_index, sort_order)
 
@@ -695,15 +714,29 @@ class ImportTool(QMainWindow):
             except Exception as e:
                 print(f"Error displaying dataframe: {e}")
 
+    # Modify your handle_data_changed method:
     def handle_data_changed(self, topLeft, bottomRight):
         try:
-            # Get the current DataFrame
-            current_df = self.dataframes[self.data_selector.currentText()]
+            current_key = self.data_selector.currentText()
+            proxy_model = self.table_view.model()
+
+            # Get the updated DataFrame from the proxy model
+            updated_df = proxy_model.df
+
+            # Update the stored DataFrame
+            self.dataframes[current_key] = updated_df.copy()
+
+            # Debug print
+            if 'PLAYER_NAME' in updated_df.columns and 'Max Minutes' in updated_df.columns:
+                players = ["Bruce Brown", "Josh Hart", "Player3"]
+                player_data = updated_df[updated_df['PLAYER_NAME'].isin(players)][['PLAYER_NAME', 'Max Minutes']]
+                print(player_data)
 
             # Save to CSV
             csv_path = os.path.join('..', 'dk_import', 'nba_daily_combined.csv')
-            current_df.to_csv(csv_path, index=False)
+            updated_df.to_csv(csv_path, index=False)
             print("Data saved successfully")
+
         except Exception as e:
             print(f"Error saving data: {e}")
 
@@ -813,9 +846,6 @@ class ImportTool(QMainWindow):
 
 
     def merge_dataframes_sog(self, progress_print=print):
-        """
-        Merges DK, BBM, FTA, DARKO and game logs DataFrames based on standardized player names.
-        """
         # Step 1: Load the DataFrames
         dk_df = self.dataframes['DK Entries']
         bbm_df = self.dataframes['BBM']
@@ -824,7 +854,7 @@ class ImportTool(QMainWindow):
         own_df = self.dataframes['Ownership Projections']
 
         bbm_df = bbm_df[['PLAYER_NAME', 'BB_PROJECTION']]  # Selecting only Name and Minutes from BBM
-        fta_df = fta_df[['PLAYER_NAME', 'Minutes', 'Projection','Ownership']]  # Selecting only Name and Minutes from BBM
+        fta_df = fta_df[['PLAYER_NAME', 'Minutes', 'Projection','Ownership']]  # Selecting only Name and Minutes from FTA
 
         darko_df = darko_df[['PLAYER_NAME', 'minutes',
                              'pts', 'reb', 'ast', 'stl', 'blk', 'tov',
@@ -905,9 +935,12 @@ class ImportTool(QMainWindow):
 
         dk_df = self.dataframes['DK Entries']
         bbm_df = self.dataframes['BBM']
+        bbm_df = bbm_df[['PLAYER_NAME', 'minutes', 'injury', 'BB_PROJECTION']]  # Selecting only Name and Minutes from BBM
+
         game_logs_df = result_df
         game_logs_df.rename(columns={'TEAM_NAME': 'Team'}, inplace=True)
         game_logs_df.rename(columns={'MIN': 'Minutes Last Game'}, inplace=True)
+
         bbm_df.rename(columns={'BB_PROJECTION': 'Projection'}, inplace=True)
         bbm_df.rename(columns={'minutes': 'Minutes'}, inplace=True)
 
@@ -1051,16 +1084,22 @@ class ImportTool(QMainWindow):
 
 
     def predict_minutes(self, progress_print=print):
+        self.build_predict_minutes_dataframe()
         data = self.Predictor(progress_print)
         return data
 
     def Predictor(self, progress_print):
         predictions = PredictMinutes()
         game_logs_df = self.dataframes['Predict Minutes']
-        game_logs_df.rename(columns={'PLAYER_NAME': 'Player'}, inplace=True)
-        data = predictions.predict_minutes_df(game_logs_df)
-        data.rename(columns={'Player': 'PLAYER_NAME'}, inplace=True)
+        game_logs_df = game_logs_df.drop(['Team', 'TEAM_ABBREVIATION'], axis=1)  # Drop first
+        game_logs_df = game_logs_df.rename(columns={  # Then rename
+            'PLAYER_NAME': 'Player',
+            'TeamAbbrev': 'Team'
+        })
 
+        data = predictions.predict_minutes_df(game_logs_df)
+
+        data.rename(columns={'Player': 'PLAYER_NAME'}, inplace=True)
         data['Original_Minutes'] = data['Original_Minutes'].round(2)
         self.dataframes['Predict Minutes'] = data
         self.update_darko(data)
@@ -1202,6 +1241,10 @@ class ImportTool(QMainWindow):
             progress_print("Successfully merged 'Minutes' column from BBM.")
         else:
             min_df = self.dataframes['Predict Minutes']
+            # For multiple players
+            players = ["Bruce Brown", "Player2", "Player3"]  # Add the players you want to check
+            player_data = min_df[min_df['PLAYER_NAME'].isin(players)][['PLAYER_NAME', 'Predicted_Minutes']]
+            print(player_data)
             min_df = self.standardize_player_names(min_df, 'PLAYER_NAME')  # Ensure consistent name formatting
             merged_data = pd.merge(data, min_df[['PLAYER_NAME', 'Predicted_Minutes']], on='PLAYER_NAME', how='left')
             data['minutes'] = merged_data['Predicted_Minutes']  # Update minutes column with predicted values

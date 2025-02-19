@@ -913,7 +913,7 @@ class PredictMinutes:
             # Apply zeros BEFORE position constraints
             data['Predicted_Minutes'] = raw_predictions.copy()  # Start with a copy of raw predictions
             # Set Predicted_Minutes to zero if Original_Minutes < 0
-            data.loc[data['Original_Minutes'] < 0, 'Predicted_Minutes'] = 0
+            data.loc[data['Original_Minutes'] <= 0, 'Predicted_Minutes'] = 0
             # Apply zero conditions
             # No \ needed here because of the parentheses
             zero_mask = (
@@ -932,7 +932,7 @@ class PredictMinutes:
                 print(f"\n{team}:")
                 print(f"Team Total: {team_data['Predicted_Minutes'].sum():.1f}")
                 print("\nTop Players:")
-                top_players = team_data.nlargest(8, 'Predicted_Minutes')
+                top_players = team_data.nlargest(10, 'Predicted_Minutes')
                 for _, row in top_players.iterrows():
                     print(f"{row['Player']:<20} {row['Predicted_Minutes']:.1f}")
                     if row['Predicted_Minutes'] >= 36:
