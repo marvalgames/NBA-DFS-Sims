@@ -1,18 +1,19 @@
 import sys
 import time
+import traceback
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import os
 import numpy as np
 import requests
 import unicodedata
-from PyQt6.QtCore import QThread, pyqtSignal, Qt
+from PyQt6.QtCore import QThread, pyqtSignal, Qt, QModelIndex
 from nba_api.stats.endpoints import leaguedashteamstats
 from daily_download import DailyDownload
 from nba_minutes_prediction_setup import NbaMInutesPredictions
 from nba_minutes_predictions_enhanced import PredictMinutes
 from config import NBA_CONSTANTS
-
+from typing import Any
 
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QPushButton, QVBoxLayout,
                              QWidget, QLabel, QMessageBox, QTextEdit, QProgressDialog, QHBoxLayout,
@@ -24,10 +25,35 @@ from PyQt6.QtCore import QSortFilterProxyModel
 
 
 class CustomSortFilterProxyModel(QSortFilterProxyModel):
-    def __init__(self, dataframe, parent=None):
+    def __init__(self, original_df, transformed_df, parent=None):
         super().__init__(parent)
-        self.df = dataframe
-        self.editable_columns = ['Max Minutes']  # Add any other columns you want to be editable
+        self.original_df = original_df  # Store the original DataFrame
+        self.transformed_df = transformed_df  # Store the transformed DataFrame
+        self.editable_columns = ['Max Minutes']
+        self.player_column_original = 'PLAYER_NAME'  # Original column name
+        self.player_column_transformed = 'Player Name'  # Renamed column
+        # Create a mapping between transformed and original indices
+        self.index_mapping = self._create_index_mapping()
+
+    def _create_index_mapping(self):
+        mapping = {}
+        if (self.player_column_transformed in self.transformed_df.columns and
+                self.player_column_original in self.original_df.columns):
+            print("\nCreating index mapping...")
+
+            for idx, player in enumerate(self.transformed_df[self.player_column_transformed]):
+                try:
+                    matches = self.original_df[self.original_df[self.player_column_original] == player]
+                    if not matches.empty:
+                        original_idx = matches.index[0]
+                        mapping[idx] = original_idx
+                        print(f"Mapped {player}: transformed index {idx} -> original index {original_idx}")
+                except Exception as e:
+                    print(f"Error mapping player {player}: {e}")
+
+        return mapping
+
+
 
     def lessThan(self, left, right):
         left_data = self.sourceModel().data(left, Qt.ItemDataRole.EditRole)
@@ -49,29 +75,60 @@ class CustomSortFilterProxyModel(QSortFilterProxyModel):
 
     def setData(self, index, value, role=Qt.ItemDataRole.EditRole):
         if role == Qt.ItemDataRole.EditRole:
+            print(f"\nAttempting to set data:")
             column_name = self.sourceModel().headerData(index.column(), Qt.Orientation.Horizontal,
                                                         Qt.ItemDataRole.DisplayRole)
+            print(f"Column being edited: {column_name}")
+
             if column_name in self.editable_columns:
                 try:
                     value = float(value)
                     source_index = self.mapToSource(index)
+                    transformed_row = source_index.row()
+                    original_row = self.index_mapping.get(transformed_row)
 
-                    # Update source model
-                    if self.sourceModel().setData(source_index, value, role):
-                        # Update DataFrame directly
-                        row_index = source_index.row()
-                        self.df.iloc[row_index, source_index.column()] = value
-                        self.dataChanged.emit(index, index)
-                        return True
-                except ValueError:
+                    print(f"Value being set: {value}")
+                    print(f"Transformed row: {transformed_row}")
+                    print(f"Original row: {original_row}")
+
+                    if original_row is not None:
+                        # Update both DataFrames
+                        print(f"Before update - Original value: {self.original_df.at[original_row, column_name]}")
+                        print(
+                            f"Before update - Transformed value: {self.transformed_df.at[transformed_row, column_name]}")
+
+                        self.original_df.at[original_row, column_name] = value
+                        self.transformed_df.at[transformed_row, column_name] = value
+
+                        print(f"After update - Original value: {self.original_df.at[original_row, column_name]}")
+                        print(
+                            f"After update - Transformed value: {self.transformed_df.at[transformed_row, column_name]}")
+
+                        # Update source model
+                        success = self.sourceModel().setData(source_index, value, role)
+                        if success:
+                            self.dataChanged.emit(index, index)
+                            print("Data successfully updated")
+                            return True
+                        else:
+                            print("Failed to update source model")
+                    else:
+                        print("Could not find corresponding original row")
+                except ValueError as e:
+                    print(f"ValueError: {e}")
                     return False
+                except Exception as e:
+                    print(f"Unexpected error: {e}")
+                    return False
+            else:
+                print(f"Column {column_name} is not editable")
         return False
-
 
 class DataFrameModel(QAbstractTableModel):
     def __init__(self, data):
         super().__init__()
         self._data = data
+        print("Initialized DataFrameModel")
 
     def rowCount(self, parent=None):
         return len(self._data)
@@ -89,7 +146,7 @@ class DataFrameModel(QAbstractTableModel):
 
         return None
 
-    def headerData(self, section, orientation, role):
+    def headerData(self, section: int, orientation: Qt.Orientation, role: int = Qt.ItemDataRole.DisplayRole):
         if role == Qt.ItemDataRole.DisplayRole:
             if orientation == Qt.Orientation.Horizontal:
                 return str(self._data.columns[section])
@@ -97,17 +154,19 @@ class DataFrameModel(QAbstractTableModel):
                 return str(self._data.index[section])
         return None
 
-
-    def setData(self, index, value, role):
+    def setData(self, index: QModelIndex, value: Any, role: int = Qt.ItemDataRole.EditRole) -> bool:
         if role == Qt.ItemDataRole.EditRole:
             try:
+                print(f"DataFrameModel setData - row: {index.row()}, col: {index.column()}, value: {value}")
                 self._data.iloc[index.row(), index.column()] = value
                 self.dataChanged.emit(index, index)
+                print("DataFrameModel update successful")
                 return True
             except Exception as e:
-                print(f"Error setting data: {e}")
+                print(f"DataFrameModel error setting data: {e}")
                 return False
         return False
+
 
 
 class ImportThread(QThread):
@@ -655,57 +714,70 @@ class ImportTool(QMainWindow):
             try:
                 print("Creating model...", len(df.columns))  # Debug print
 
-                df_copy = df.copy()
+                # Store the original DataFrame
+                original_df = df.copy()
+
+                # Create transformed DataFrame
+                transformed_df = df.copy()
 
                 # Apply transformations based on DataFrame key
                 if df.equals(self.dataframes['FTA']):
-                    df_copy = self.transform_dataframe(df_copy, key='FTA')
+                    transformed_df = self.transform_dataframe(transformed_df, key='FTA')
                     sort_column = 'Projection'
                 elif df.equals(self.dataframes['BBM']):
-                    df_copy = self.transform_dataframe(df_copy, key='BBM')
+                    transformed_df = self.transform_dataframe(transformed_df, key='BBM')
                     sort_column = 'BBM Projection'
                 elif df.equals(self.dataframes['Team Stats']):
-                    df_copy = self.transform_dataframe(df_copy, key='Team Stats')
+                    transformed_df = self.transform_dataframe(transformed_df, key='Team Stats')
                     sort_column = 'NET_RATING'
                 elif df.equals(self.dataframes['SOG']):
-                    df_copy = self.transform_dataframe(df_copy, key='SOG')
+                    transformed_df = self.transform_dataframe(transformed_df, key='SOG')
                     sort_column = 'Projection'
                 elif df.equals(self.dataframes['Totals']):
-                    df_copy = self.transform_dataframe(df_copy, key='Totals')
+                    transformed_df = self.transform_dataframe(transformed_df, key='Totals')
                 elif df.equals(self.dataframes['Darko']):
-                    df_copy = self.transform_dataframe(df_copy, key='Darko')
+                    transformed_df = self.transform_dataframe(transformed_df, key='Darko')
                     sort_column = 'dk'
                 elif df.equals(self.dataframes['Ownership Projections']):
-                    df_copy = self.transform_dataframe(df_copy, key='Ownership Projections')
+                    transformed_df = self.transform_dataframe(transformed_df, key='Ownership Projections')
+                    sort_column = 'Predicted Ownership'
                 elif df.equals(self.dataframes['Predict Minutes']):
-                    df_copy = self.transform_dataframe(df_copy, key='Predict Minutes')
+                    transformed_df = self.transform_dataframe(transformed_df, key='Predict Minutes')
                     sort_column = 'Predicted Minutes'
+                elif df.equals(self.dataframes['Export Projections']):
+                    sort_column = 'Salary'
+                if sort_column and sort_column in transformed_df.columns:
+                    transformed_df = transformed_df.sort_values(by=sort_column, ascending=ascending)
 
-                if sort_column and sort_column in df_copy.columns:
-                    df_copy = df_copy.sort_values(by=sort_column, ascending=ascending)
 
-
-                model = DataFrameModel(df_copy)
-                proxy_model = CustomSortFilterProxyModel(df.copy(), self)
+                model = DataFrameModel(transformed_df)
+                proxy_model = CustomSortFilterProxyModel(original_df, transformed_df, self)
                 proxy_model.setSourceModel(model)
 
                 print("Setting model to view...")  # Debug print
                 self.table_view.setModel(proxy_model)
                 self.table_view.setSortingEnabled(True)
 
-
-                if sort_column and sort_column in df_copy.columns:
-                    column_index = df_copy.columns.get_loc(sort_column)
+                # Set initial sort if sort_column is specified
+                if sort_column and sort_column in transformed_df.columns:
+                    column_index = transformed_df.columns.get_loc(sort_column)
                     sort_order = Qt.SortOrder.AscendingOrder if ascending else Qt.SortOrder.DescendingOrder
                     self.table_view.sortByColumn(column_index, sort_order)
 
+                # Enable editing on double-click
                 self.table_view.setEditTriggers(QAbstractItemView.EditTrigger.DoubleClicked)
 
-                # Connect to handle data changes
+                # Connect the data changed signal
                 proxy_model.dataChanged.connect(self.handle_data_changed)
 
                 # Adjust column widths
                 self.adjust_column_widths()
+
+                print("Display setup completed successfully")
+                # Debug information
+                print(f"Total rows in original: {len(original_df)}")
+                print(f"Total rows in transformed: {len(transformed_df)}")
+                print(f"Editable columns: {proxy_model.editable_columns}")
 
                 # Make last column stretch to fill remaining space
                 #self.table_view.horizontalHeader().setStretchLastSection(True)
@@ -714,31 +786,34 @@ class ImportTool(QMainWindow):
             except Exception as e:
                 print(f"Error displaying dataframe: {e}")
 
-    # Modify your handle_data_changed method:
     def handle_data_changed(self, topLeft, bottomRight):
         try:
+            print("\nHandling data change:")
             current_key = self.data_selector.currentText()
             proxy_model = self.table_view.model()
 
-            # Get the updated DataFrame from the proxy model
-            updated_df = proxy_model.df
+            # Get the updated original DataFrame
+            updated_df = proxy_model.original_df
 
             # Update the stored DataFrame
             self.dataframes[current_key] = updated_df.copy()
 
-            # Debug print
+            # Debug prints
             if 'PLAYER_NAME' in updated_df.columns and 'Max Minutes' in updated_df.columns:
                 players = ["Bruce Brown", "Josh Hart", "Player3"]
                 player_data = updated_df[updated_df['PLAYER_NAME'].isin(players)][['PLAYER_NAME', 'Max Minutes']]
+                print("\nCurrent player data:")
                 print(player_data)
 
             # Save to CSV
             csv_path = os.path.join('..', 'dk_import', 'nba_daily_combined.csv')
             updated_df.to_csv(csv_path, index=False)
-            print("Data saved successfully")
+            print("Data saved to CSV successfully")
 
         except Exception as e:
-            print(f"Error saving data: {e}")
+            print(f"Error in handle_data_changed: {e}")
+            traceback.print_exc()
+    # Modify your handle_data_changed method:
 
     def expand_game_logs(self, progress_print=print):
         predictions = NbaMInutesPredictions()
@@ -1041,6 +1116,8 @@ class ImportTool(QMainWindow):
         # result_df = result_df[new_column_order]
 
         # After reading the CSV and before displaying:
+        if 'Min Minutes' not in data.columns:
+            data['Min Minutes'] = 0 # Initialize with current minutes
         if 'Max Minutes' not in data.columns:
             data['Max Minutes'] = 48 # Initialize with current minutes
 
@@ -1091,11 +1168,16 @@ class ImportTool(QMainWindow):
     def Predictor(self, progress_print):
         predictions = PredictMinutes()
         game_logs_df = self.dataframes['Predict Minutes']
-        game_logs_df = game_logs_df.drop(['Team', 'TEAM_ABBREVIATION'], axis=1)  # Drop first
-        game_logs_df = game_logs_df.rename(columns={  # Then rename
-            'PLAYER_NAME': 'Player',
-            'TeamAbbrev': 'Team'
-        })
+        # Check each column before dropping (Should only execute once)
+        if 'TEAM_ABBREVIATION' in game_logs_df.columns:
+            game_logs_df = game_logs_df.drop('Team', axis=1)
+            game_logs_df = game_logs_df.drop('TEAM_ABBREVIATION', axis=1)
+
+        if 'PLAYER_NAME' in game_logs_df.columns:
+            game_logs_df = game_logs_df.rename(columns={  # Then rename
+                'PLAYER_NAME': 'Player',
+                'TeamAbbrev': 'Team'
+            })
 
         data = predictions.predict_minutes_df(game_logs_df)
 
@@ -1105,7 +1187,7 @@ class ImportTool(QMainWindow):
         self.update_darko(data)
         self.merge_dataframes_sog()
         self.build_team_totals()
-        self.export_projections()
+        self.export_projections(save=False)
         # self.display_dataframe(data)
         progress_print("Predict Minutes import completed successfully")
 
@@ -1750,14 +1832,14 @@ class ImportTool(QMainWindow):
         # self.dataframes['Totals'] = self.dataframes['Totals'][desired_column_order]
 
 
-    def export_projections(self, progress_print=print):
+    def export_projections(self, save=True, progress_print=print):
         progress_print("Exporting projections to CSV...")
         print( self.data_selector.currentText() )
         try:
             # Set up paths
             current_folder = Path(__file__).resolve().parent
             dk_data_folder = current_folder.parent / "dk_data"
-            progress_print("Creating output directory...")
+            progress_print("Creating output directory... Save = ", save)
             dk_data_folder.mkdir(exist_ok=True)
             output_csv_file = dk_data_folder / "projections.csv"
 
@@ -1785,8 +1867,9 @@ class ImportTool(QMainWindow):
             filtered_sog = filtered_sog.rename(columns=renamed_columns)
             self.dataframes['Export Projections'] = filtered_sog
 
-            progress_print("Exporting filtered data to CSV...")
-            filtered_sog.to_csv(output_csv_file, index=False)
+            if save:
+                progress_print("Exporting filtered data to CSV...")
+                filtered_sog.to_csv(output_csv_file, index=False)
 
             progress_print(f"Projections successfully exported to '{output_csv_file}'.")
 
@@ -1809,7 +1892,7 @@ class ImportTool(QMainWindow):
         self.build_ownership_projections_dataframe(progress_print=progress_print)
         self.merge_dataframes_sog(progress_print=progress_print)
         self.build_predict_minutes_dataframe(progress_print=progress_print)
-        self.export_projections(progress_print=progress_print)
+        self.export_projections(save=False,progress_print=progress_print)
         self.build_team_totals(progress_print=progress_print)
         self.display_dataframe(self.dataframes['BBM'])
         progress_print("All imports completed successfully.")
@@ -2366,7 +2449,7 @@ class ImportTool(QMainWindow):
             self.update_darko(data)
             self.merge_dataframes_sog()
             self.build_team_totals()
-            self.export_projections()
+            self.export_projections(save=False)
 
         except Exception as e:
             progress_print(f"An error occurred: {e}")
