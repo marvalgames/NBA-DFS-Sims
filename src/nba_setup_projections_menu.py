@@ -9,6 +9,8 @@ import requests
 import unicodedata
 from PyQt6.QtCore import QThread, pyqtSignal, Qt, QModelIndex
 from nba_api.stats.endpoints import leaguedashteamstats
+from scipy.stats import norm
+
 from daily_download import DailyDownload
 from nba_minutes_prediction_setup import NbaMInutesPredictions
 from nba_minutes_predictions_enhanced import PredictMinutes
@@ -669,8 +671,40 @@ class ImportTool(QMainWindow):
                 'move_to_front': 'Player'
             },
             'SOG': {
-                'columns_to_remove': ['ID', 'Name + ID', 'USG%' ],
-                'rename_mapping': {'PLAYER_NAME': 'Player'},
+                'columns_to_remove': ['ID', 'Name + ID', 'DK Name',
+                                        'Ast Tro Adj',
+                                        'Roster Position', 'Visitor', 'Home', 'Opp',
+                                        'AvgPointsPerGame',
+                                        #'BB_PROJECTION',
+                                        #'Minutes',
+                                        #'Projection',
+                                        #'Ownership',
+                                        'dk', 'dk_usg_rate',
+                                        'usg_G',
+                                        'DK Name',  'DD Probability', 'TD Probability',
+                                      # 'Predicted Ownership', 'Vegas Points', 'Team Pts', 'Usage %',
+                                       'Team Usage%','Usage Game', 'Team Usage Game', 'Adjusted Usage Game',
+                                      # 'Usage Auto',
+                                        'Usage Game Total',
+                                      #'Team Offense Rating',
+                                      # 'Team Defense Rating', 'Pace', 'Opp D Rating', 'Points Today Adjusted',
+                                      # 'Team PPG X', 'Opp REB%', 'REB%', 'Reb Rate Adjusted',
+                                      # 'Points Adjusted', '3gm Adjusted', 'Reb Adjusted', 'Ast Adjusted',
+                                      # 'Stl Adjusted', 'Blk Adjusted', 'Tro Adjusted', 'Pts Total Adj',
+                                      # '3gm Proj', 'Ast Tro Adj', 'Points Projection', 'Pts Proj Total',
+                                       'Pts Proj Orig Adj',
+                                      # 'Reb Proj', 'Ast Proj', 'Stl Proj', 'Blk Proj',
+                                      # 'Tro Proj', 'DK Bonus',
+                                       'Min SD Score', 'Adj SD Score',
+                                      # 'DK Projection', 'SD'
+
+                                      ],
+                'rename_mapping': {'PLAYER_NAME': 'Player', 'Minutes' : 'FTA Minutes',
+                                   'BB_PROJECTION': 'BBM Projection',
+                                   'Projection': 'FTA Projection',
+                                   'Ownership' : 'FTA Ownership',
+
+                                   },
                 'move_to_front': 'Player'
             },
             'Darko': {
@@ -781,7 +815,7 @@ class ImportTool(QMainWindow):
             # Get the width needed for the header text
             header_width = header.fontMetrics().boundingRect(
                 model.headerData(column, Qt.Orientation.Horizontal, Qt.ItemDataRole.DisplayRole)
-            ).width() + 80  # Add some padding
+            ).width() + 50  # Add some padding
 
             # First resize to content
             self.table_view.resizeColumnToContents(column)
@@ -841,7 +875,7 @@ class ImportTool(QMainWindow):
                     sort_column = 'NET_RATING'
                 elif df.equals(self.dataframes['SOG']):
                     transformed_df = self.transform_dataframe(transformed_df, key='SOG')
-                    sort_column = 'Projection'
+                    sort_column = 'DK Projection'
                 elif df.equals(self.dataframes['Totals']):
                     transformed_df = self.transform_dataframe(transformed_df, key='Totals')
                 elif df.equals(self.dataframes['Darko']):
@@ -1056,13 +1090,15 @@ class ImportTool(QMainWindow):
         bbm_df = bbm_df[['PLAYER_NAME', 'BB_PROJECTION']]  # Selecting only Name and Minutes from BBM
         fta_df = fta_df[['PLAYER_NAME', 'Minutes', 'Projection','Ownership']]  # Selecting only Name and Minutes from FTA
 
-        darko_df = darko_df[['PLAYER_NAME', 'USG%', 'minutes',
+        darko_df = darko_df[['PLAYER_NAME', 'USG%', 'minutes', '2gm', '3gm',
                              'pts', 'reb', 'ast', 'stl', 'blk', 'tov',
                              'dk', 'dk_rate', 'dk_usg_rate', 'usg_G',
                              'Defense', 'SD_Score',
                              ]]  # Selecting only Name and Minutes from BBM
 
         own_df = own_df[['DK Name', 'Predicted Ownership']]
+
+        team_stats_df = team_stats_df[['Abbr','REB_PCT','OFF_RATING','DEF_RATING','PACE']]
         # Step 4: Merge DataFrames
         # Merge game_logs_df with sog_df and then with bbm_df on 'PLAYER_NAME'.
         data = pd.merge(
@@ -1097,6 +1133,7 @@ class ImportTool(QMainWindow):
         # Add Vegas Points by matching TeamAbbrev with Odds dataframe
         odds_dict = dict(zip(odds_df['Abbr'], odds_df['Points']))
         data['Vegas Points'] = data['TeamAbbrev'].map(odds_dict)
+        data['Vegas Points'] = pd.to_numeric(data['Vegas Points'], errors='coerce')
         data['Team Pts'] = data.groupby('TeamAbbrev')['pts'].transform('sum').round(2)
         data['Usage %'] = (data['USG%'] * 100).round(2)
         data['Team Usage%'] = data.groupby('TeamAbbrev')['Usage %'].transform('sum').round(2)
@@ -1119,22 +1156,72 @@ class ImportTool(QMainWindow):
             data[new_col] = data['TeamAbbrev'].map(mapping)
 
 
-        data['DK Base'] = data['dk']
 
         team_defense = data.groupby('TeamAbbrev')['Defense'].sum().to_dict()
         data['Opp D Rating'] = data['Opp'].map(team_defense).round(3)
 
-        # = [ @ Pts]*(1 + [ @ [Opp D Rating]]) + ([ @ [USG Auto]]) / [ @ [USG %]] *[ @ Pts]*(1 + [ @ [Opp D Rating]])
 
-        data['Points Adjusted'] = (data['pts'] * (1 - data['Opp D Rating'] / 100 ) +  (data['Usage Auto'] / data['Usage %']  * data['pts'] * (1 - data['Opp D Rating'] / 100))).round(2)
-        #data['Points Adjusted'] = (data['pts'] * (1 + data['Opp D Rating'] )).round(2)
+        data['Points Today Adjusted'] = (data['Vegas Points'] / data['Team Pts'] - 1).round(3)
+        data['Team PPG X'] = (data['Points Today Adjusted'] - data['Opp D Rating'] / 100).round(3)
+        reb_pct_mapping = dict(zip(team_stats_df['Abbr'], team_stats_df['REB_PCT']))
+        data['Opp REB%'] = data['Opp'].map(reb_pct_mapping).round(3)
+        data['REB%'] = data['TeamAbbrev'].map(reb_pct_mapping).round(3)
+        data['Reb Rate Adjusted'] = (data['REB%'] + (0.5 - data['Opp REB%'] / 2) / data['REB%']).round(3)
 
 
+        data['Points Adjusted'] = (data['pts'] * (1 - data['Opp D Rating'] / 100) + (
+                    data['Usage Auto'] / data['Usage %'] * data['pts'] * (1 - data['Opp D Rating'] / 100))).round(2)
+        data['3gm Adjusted'] = (data['3gm'] * (1 + data['Team PPG X'] * NBA_CONSTANTS['3PM_CORRELATION'])).round(2)
+        data['Reb Adjusted'] = ( data['reb'] * data['Reb Rate Adjusted'] * (1 + data['Team PPG X'] * NBA_CONSTANTS['REB_CORRELATION'])).round(2)
+        data['Ast Adjusted'] = (data['ast'] * (1 + data['Team PPG X'] * NBA_CONSTANTS['AST_CORRELATION'])).round(2)
+        data['Stl Adjusted'] = (data['stl'] * (1 + data['Team PPG X'] * NBA_CONSTANTS['STL_CORRELATION'])).round(2)
+        data['Blk Adjusted'] = (data['blk'] * (1 + data['Team PPG X'] * NBA_CONSTANTS['BLK_CORRELATION'])).round(2)
+        data['Tro Adjusted'] = (data['tov'] * (1 + data['Team PPG X'] * NBA_CONSTANTS['TRO_CORRELATION'])).round(2)
+
+        data['Pts Total Adj'] = data.groupby('TeamAbbrev')['Points Adjusted'].transform('sum').round(2)
+        data['3gm Proj'] =  (data['3gm Adjusted'] + (data['Usage Auto'] / data['Usage %'] * data['3gm Adjusted'])).round(2)
+
+        data['Ast Tro Adj'] = ((data['ast'] / 36 * data['minutes']) * (1 + data['Team PPG X'] * NBA_CONSTANTS['AST_CORRELATION'])).round(2)
+        data['Points Projection'] = (data['Points Adjusted'] * data['Vegas Points'] / data['Pts Total Adj']).round(2)
+        data['Pts Proj Total'] = data.groupby('TeamAbbrev')['Points Projection'].transform('sum').round(2)
+        data['Pts Proj Orig Adj'] = (1 + (data['Pts Proj Total'] / data['Team Pts'] - 1) / 4).round(3)
+
+        data['Reb Proj'] =  (data['Reb Adjusted'] * data['Pts Proj Orig Adj']).round(2)
+        data['Ast Proj'] =  (data['Ast Adjusted'] * data['Pts Proj Orig Adj']).round(2)
+        data['Stl Proj'] =  (data['Stl Adjusted']).round(2)
+        data['Blk Proj'] =  (data['Blk Adjusted']).round(2)
+
+        data['Tro Proj'] = ((data['tov'] + (data['Usage Auto'] / data['minutes']) * data['tov'] + data['tov'] / data['ast'] * (data['Ast Tro Adj'] - data['ast'])) * (1 + data['Team PPG X'] * NBA_CONSTANTS['TRO_CORRELATION'])).round(2)
+
+        try:
+            data = self.apply_probabilities(data)
+        except Exception as e:
+            print(f"Failed to calculate probabilities: {e}")
+            # Set default values if calculation fails
+            data['DD Probability'] = 0.0
+            data['TD Probability'] = 0.0
+
+        data['DD Probability'] = (100 * data['DD Probability']).round(2)
+        data['TD Probability'] = (100 * data['TD Probability']).round(2)
+        data['DK Bonus'] = (data['DD Probability'] * .015 + data['TD Probability'] * .03).round(2)
         # Calculate Min SD Score
-        data['Min SD Score'] = 1 + (NBA_CONSTANTS['0 MIN SD'] - (data['minutes'] * NBA_CONSTANTS['SD MIN INCREASE'])).round(2)
-
+        data['Min SD Score'] = (1 + (NBA_CONSTANTS['0 MIN SD'] - (data['minutes'] * NBA_CONSTANTS['SD MIN INCREASE']))).round(3)
         data['Adj SD Score'] = (data['Min SD Score'] * data['SD_Score']).round(3)
-        data['SD'] = ((data['DK Base'] * (data['Adj SD Score'] - 1)).round(3)).clip(lower=1)
+
+        data['DK Projection'] = (
+                data['Points Projection'] +  # Points
+                data['3gm Proj'] * 0.5 +  # Three-pointers made (0.5 multiplier)
+                data['Reb Proj'] * 1.25 +  # Rebounds (1.25 multiplier)
+                data['Ast Proj'] * 1.5 +  # Assists (1.5 multiplier)
+                data['Blk Proj'] * 2 +  # Blocks (2 multiplier)
+                data['Stl Proj'] * 2 -  # Steals (2 multiplier)
+                data['Tro Proj'] * 0.5 +  # Turnovers (-0.5 multiplier)
+                data['DK Bonus']  # Double-double bonus
+        ).round(2)  # Round to two decimal places
+
+        data['SD'] = ((data['DK Projection'] * (data['Adj SD Score'] - 1)).round(3)).clip(lower=1)
+
+        data = data.fillna(0)
 
         # Verify we have data
         if data.empty:
@@ -1144,10 +1231,73 @@ class ImportTool(QMainWindow):
 
         # Store in dataframes dictionary
         self.dataframes['SOG'] = data
+        print(data.columns)
 
         progress_print("SOG import completed successfully")
 
         return data
+
+    import numpy as np
+    from scipy.stats import norm
+    def calculate_double_triple_probability(self, points, rebounds, assists, std_dev=0.2):
+        """
+        Calculate probability of double-double and triple-double with error handling
+        """
+        # Ensure minimum standard deviation to avoid division by zero
+        min_std = 0.1  # minimum standard deviation value
+
+        # Calculate standard deviation for each stat with minimum value
+        points_std = max(points * std_dev, min_std)
+        rebounds_std = max(rebounds * std_dev, min_std)
+        assists_std = max(assists * std_dev, min_std)
+
+        try:
+            # Probability of each stat being 10 or more
+            p_points = 1 - norm.cdf(10, points, points_std)
+            p_rebounds = 1 - norm.cdf(10, rebounds, rebounds_std)
+            p_assists = 1 - norm.cdf(10, assists, assists_std)
+
+            # Probability of triple-double
+            p_triple = p_points * p_rebounds * p_assists
+
+            # Probability of double-double (including triple-doubles)
+            p_double_total = (
+                    p_points * p_rebounds +  # Points and rebounds
+                    p_points * p_assists +  # Points and assists
+                    p_rebounds * p_assists  # Rebounds and assists
+            )
+
+            # Probability of exactly double-double (excluding triple-doubles)
+            p_double = p_double_total - p_triple
+
+            # Ensure probabilities are between 0 and 1
+            p_double = max(0, min(1, p_double))
+            p_triple = max(0, min(1, p_triple))
+
+        except Exception as e:
+            print(f"Error in probability calculation: {e}")
+            return 0.0, 0.0
+
+        return p_double, p_triple
+
+    # When applying to DataFrame
+    def apply_probabilities(self, data):
+        try:
+            data['DD Probability'], data['TD Probability'] = zip(*data.apply(
+                lambda row: self.calculate_double_triple_probability(
+                    row['pts'],
+                    row['reb'],
+                    row['ast']
+                ),
+                axis=1
+            ))
+        except Exception as e:
+            print(f"Error applying probabilities: {e}")
+            data['DD Probability'] = 0.0
+            data['TD Probability'] = 0.0
+
+        return data
+
 
 
     def process_game_logs(self):
@@ -2003,10 +2153,10 @@ class ImportTool(QMainWindow):
             # Specify keys/columns to keep
             #selected_columns = ['PLAYER_NAME', 'Position', 'Team', 'Minutes', 'Salary', 'Projection', 'Ownership', 'SD_Score', 'BB_PROJECTION']  # Replace with your desired column names
             selected_columns = ['PLAYER_NAME', 'Position', 'TeamAbbrev',
-             'minutes', 'Salary', 'dk', 'Predicted Ownership', 'SD', 'BB_PROJECTION'
+             'minutes', 'Salary', 'DK Projection', 'Predicted Ownership', 'SD', 'BB_PROJECTION'
                                 ]  # Replace with your desired column names
             filtered_sog = self.dataframes['SOG'][selected_columns].copy()  # Filter the DataFrame
-            numeric_columns = ['minutes', 'Salary', 'dk', 'Predicted Ownership', 'SD', 'BB_PROJECTION']
+            numeric_columns = ['minutes', 'Salary', 'DK Projection', 'Predicted Ownership', 'SD', 'BB_PROJECTION']
             for col in numeric_columns:
                 filtered_sog[col] = pd.to_numeric(filtered_sog[col], errors='coerce').fillna(0)
 
@@ -2014,7 +2164,7 @@ class ImportTool(QMainWindow):
                 'PLAYER_NAME': 'Name',
                 'minutes': 'Minutes',
                 'TeamAbbrev': 'Team',
-                'dk': 'Fpts',
+                'DK Projection': 'Fpts',
                 'Predicted Ownership': 'Own%',
                 'SD': 'StdDev',
                 'BB_PROJECTION': 'FieldFpts'
