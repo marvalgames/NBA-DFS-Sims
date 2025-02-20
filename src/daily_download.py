@@ -327,8 +327,8 @@ class DailyDownload:
         print("Starting downloads...")
         self.download_talent_projections()
         time.sleep(5)
-        self.download_daily_projections()
-        time.sleep(5)
+        #self.download_daily_projections()
+        #time.sleep(5)
         self.get_nba_boxscores()
         print("All downloads completed")
 

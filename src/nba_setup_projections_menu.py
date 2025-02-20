@@ -722,7 +722,7 @@ class ImportTool(QMainWindow):
                 'move_to_front': 'Team Name'
             },
             'Ownership Projections' : {
-                'columns_to_remove': ['Own Actual'],
+                'columns_to_remove': ['Own Actual', 'SD'],
             },
             'Predict Minutes': {
                 'rename_mapping': {'PLAYER_NAME': 'Player Name', 'Predicted_Minutes': 'Predicted Minutes', 'GAME_DATE' : 'Game Date' },
@@ -1083,9 +1083,12 @@ class ImportTool(QMainWindow):
         bbm_df = self.dataframes['BBM']
         fta_df = self.dataframes['FTA']
         darko_df = self.dataframes['Darko']
-        own_df = self.dataframes['Ownership Projections']
         odds_df = self.dataframes['Odds']
         team_stats_df = self.dataframes['Team Stats']
+
+
+        dk_df['DK Player'] = dk_df['PLAYER_NAME'].copy()
+        dk_df = self.standardize_player_names(dk_df, 'PLAYER_NAME')
 
         bbm_df = bbm_df[['PLAYER_NAME', 'BB_PROJECTION']]  # Selecting only Name and Minutes from BBM
         fta_df = fta_df[['PLAYER_NAME', 'Minutes', 'Projection','Ownership']]  # Selecting only Name and Minutes from FTA
@@ -1096,7 +1099,6 @@ class ImportTool(QMainWindow):
                              'Defense', 'SD_Score',
                              ]]  # Selecting only Name and Minutes from BBM
 
-        own_df = own_df[['DK Name', 'Predicted Ownership']]
 
         team_stats_df = team_stats_df[['Abbr','REB_PCT','OFF_RATING','DEF_RATING','PACE']]
         # Step 4: Merge DataFrames
@@ -1122,13 +1124,20 @@ class ImportTool(QMainWindow):
              how='left'  # Keep all rows from the previous merge
         )
 
-        data = pd.merge(
-            data,
-            own_df,
-            left_on='PLAYER_NAME',
-            right_on='DK Name',
-            how='left'  # Keep all rows from the previous merge
-        )
+        # Only merge ownership data if it exists
+        if 'Ownership Projections' in self.dataframes and self.dataframes['Ownership Projections'] is not None:
+            own_df = self.dataframes['Ownership Projections']
+            own_df = own_df[['DK Name', 'Predicted Ownership']]
+            data = pd.merge(
+                data,
+                own_df,
+                left_on='PLAYER_NAME',
+                right_on='DK Name',
+                how='left'
+            )
+        else:
+            data['Predicted Ownership'] = 10.0
+
 
         # Add Vegas Points by matching TeamAbbrev with Odds dataframe
         odds_dict = dict(zip(odds_df['Abbr'], odds_df['Points']))
@@ -1219,6 +1228,9 @@ class ImportTool(QMainWindow):
                 data['DK Bonus']  # Double-double bonus
         ).round(2)  # Round to two decimal places
 
+        data['Field Projection'] = data.apply(self.calculate_field_projection, axis=1)
+        data['Field Projection'] = data['Field Projection'].round(2)
+
         data['SD'] = ((data['DK Projection'] * (data['Adj SD Score'] - 1)).round(3)).clip(lower=1)
 
         data = data.fillna(0)
@@ -1231,7 +1243,6 @@ class ImportTool(QMainWindow):
 
         # Store in dataframes dictionary
         self.dataframes['SOG'] = data
-        print(data.columns)
 
         progress_print("SOG import completed successfully")
 
@@ -1239,6 +1250,55 @@ class ImportTool(QMainWindow):
 
     import numpy as np
     from scipy.stats import norm
+
+    def calculate_field_projection(self, row):
+        projections = [
+            row['BB_PROJECTION'],
+            row['Projection'],
+            row['DK Projection']
+        ]
+
+        # Remove any NaN values
+        valid_projections = [p for p in projections if pd.notna(p)]
+
+        if len(valid_projections) < 2:
+            return max(valid_projections) if valid_projections else None
+
+        # Function to check if two numbers are within 20% of each other
+        def within_twenty_percent(a, b):
+            return abs(a - b) <= 0.2 * max(a, b)
+
+        # Check all combinations
+        all_within_twenty = all(within_twenty_percent(a, b)
+                                for i, a in enumerate(valid_projections)
+                                for b in valid_projections[i + 1:])
+
+        if all_within_twenty and len(valid_projections) >= 2:
+            return sum(valid_projections) / len(valid_projections)
+
+        # Find pairs within 20%
+        pairs_within_twenty = [
+            (i, j)
+            for i in range(len(valid_projections))
+            for j in range(i + 1, len(valid_projections))
+            if within_twenty_percent(valid_projections[i], valid_projections[j])
+        ]
+
+        if pairs_within_twenty:
+            # Find the pair with the highest average
+            best_pair = max(pairs_within_twenty,
+                            key=lambda x: (valid_projections[x[0]] + valid_projections[x[1]]) / 2)
+            pair_avg = (valid_projections[best_pair[0]] + valid_projections[best_pair[1]]) / 2
+
+            # Check if this pair is higher than the remaining projection
+            remaining_idx = set(range(len(valid_projections))) - set(best_pair)
+            if not remaining_idx or pair_avg > max(valid_projections[i] for i in remaining_idx):
+                return pair_avg
+
+        # If no other conditions are met, return the highest projection
+        return max(valid_projections)
+
+    # Apply the calculation to create the new field
     def calculate_double_triple_probability(self, points, rebounds, assists, std_dev=0.2):
         """
         Calculate probability of double-double and triple-double with error handling
@@ -1315,6 +1375,7 @@ class ImportTool(QMainWindow):
         result_df = result_df.rename(columns={'Projection': 'Projected Pts'})
 
         dk_df = self.dataframes['DK Entries']
+        dk_df = self.standardize_player_names(dk_df, 'PLAYER_NAME')
         bbm_df = self.dataframes['BBM']
         bbm_df = bbm_df[['PLAYER_NAME', 'minutes', 'injury', 'BB_PROJECTION']]  # Selecting only Name and Minutes from BBM
 
@@ -1819,7 +1880,7 @@ class ImportTool(QMainWindow):
             except Exception as e:
                 raise ValueError(f"Error writing output CSV: {str(e)}")
 
-            data = self.standardize_player_names(data, 'Name')
+            #data = self.standardize_player_names(data, 'Name')
             data.rename(columns={'Name': 'PLAYER_NAME'}, inplace=True)
 
             data['Visitor'] = data['Game Info'].str.split('@').str[0]
@@ -2151,23 +2212,22 @@ class ImportTool(QMainWindow):
 
             progress_print("Filtering required columns from 'SOG' DataFrame...")
             # Specify keys/columns to keep
-            #selected_columns = ['PLAYER_NAME', 'Position', 'Team', 'Minutes', 'Salary', 'Projection', 'Ownership', 'SD_Score', 'BB_PROJECTION']  # Replace with your desired column names
-            selected_columns = ['PLAYER_NAME', 'Position', 'TeamAbbrev',
-             'minutes', 'Salary', 'DK Projection', 'Predicted Ownership', 'SD', 'BB_PROJECTION'
-                                ]  # Replace with your desired column names
+            selected_columns = ['DK Player', 'Position', 'TeamAbbrev',
+             'minutes', 'Salary', 'DK Projection', 'Predicted Ownership', 'SD', 'Field Projection'
+                                ]
             filtered_sog = self.dataframes['SOG'][selected_columns].copy()  # Filter the DataFrame
-            numeric_columns = ['minutes', 'Salary', 'DK Projection', 'Predicted Ownership', 'SD', 'BB_PROJECTION']
+            numeric_columns = ['minutes', 'Salary', 'DK Projection', 'Predicted Ownership', 'SD', 'Field Projection']
             for col in numeric_columns:
                 filtered_sog[col] = pd.to_numeric(filtered_sog[col], errors='coerce').fillna(0)
 
             renamed_columns = {
-                'PLAYER_NAME': 'Name',
+                'DK Player': 'Name',
                 'minutes': 'Minutes',
                 'TeamAbbrev': 'Team',
                 'DK Projection': 'Fpts',
                 'Predicted Ownership': 'Own%',
                 'SD': 'StdDev',
-                'BB_PROJECTION': 'FieldFpts'
+                'Field Projection': 'FieldFpts'
             }
 
             filtered_sog = filtered_sog.rename(columns=renamed_columns)
@@ -2195,8 +2255,8 @@ class ImportTool(QMainWindow):
         self.update_team_data_with_odds()
         self.update_darko(self.dataframes['BBM'], progress_print=progress_print)
         self.import_team_stats(progress_print=progress_print)
-        self.build_ownership_projections_dataframe(progress_print=progress_print)
         self.merge_dataframes_sog(progress_print=progress_print)
+        self.build_ownership_projections_dataframe(progress_print=progress_print)
         self.build_predict_minutes_dataframe(progress_print=progress_print)
         self.export_projections(save=False,progress_print=progress_print)
         self.build_team_totals(progress_print=progress_print)
@@ -2232,57 +2292,40 @@ class ImportTool(QMainWindow):
         # Step 1: Load the DataFrames
         dk_df = self.dataframes['DK Entries']
         bbm_df = self.dataframes['BBM']
-        darko_df = self.dataframes['Darko']
-        fta_df = self.dataframes['FTA']
-
-        # Step 2: Start with DK entries as base and merge others
+        #darko_df = self.dataframes['Darko']
+        sog_df = self.dataframes['SOG']
+        dk_df = self.standardize_player_names(dk_df, 'PLAYER_NAME')
         new_df = dk_df[['PLAYER_NAME', 'Position', 'Salary']].copy()
 
-        # Merge with BBM data
+
         new_df = new_df.merge(
-            bbm_df[['PLAYER_NAME', 'minutes', 'BB_PROJECTION']],
+            bbm_df[['PLAYER_NAME', 'minutes']],
             left_on='PLAYER_NAME',
             right_on='PLAYER_NAME',
             how='left'
         )
 
-
-
-        # Merge with Darko data
         new_df = new_df.merge(
-            darko_df[['PLAYER_NAME', 'Team']],
+            sog_df[['PLAYER_NAME', 'TeamAbbrev', 'Field Projection', 'SD']],
             left_on='PLAYER_NAME',
             right_on='PLAYER_NAME',
             how='left'
         )
-
-        # Drop duplicate Player columns from merges
         new_df = new_df.drop(columns=['Player_x', 'Player_y'], errors='ignore')
-
-
-        # Step 3: Rename columns
         column_renames = {
             'PLAYER_NAME': 'DK Name',
             'Position': 'Position',
             'Salary': 'Salary',
             'minutes': 'Minutes',
-            'BB_PROJECTION': 'Points Proj',
-            'Team': 'Team'
+            'Field Projection': 'Points Proj',
+            'TeamAbbrev': 'Team'
         }
         new_df = new_df.rename(columns=column_renames)
 
-        # Step 4: Remove rows with any NaN values
         new_df = new_df.dropna(how='any')
-
-
-
-
-        #data.rename(columns={'Name': 'PLAYER_NAME'}, inplace=True)
-        # Step 6: Add calculated columns
         new_df['Value'] = (new_df['Points Proj'] * 1000) / new_df['Salary']
-        new_df['Ceiling'] = new_df['Points Proj'] * 1.5
+        new_df['Ceiling'] = new_df['SD']
         new_df['Plus'] = new_df['Points Proj'] - new_df['Salary'] * 5 / 1000
-        # Format numeric columns to 2 decimal places
         numeric_columns = ['Salary', 'Minutes', 'Points Proj', 'Value', 'Ceiling', 'Plus']
         for col in numeric_columns:
             new_df[col] = new_df[col].round(2)
@@ -2290,14 +2333,8 @@ class ImportTool(QMainWindow):
         new_df = self.standardize_player_names(new_df, 'DK Name')
         new_df['Own Actual'] = 10
         new_df['Predicted Ownership'] = 10
-
-        # Store in dataframes dictionary
-
-        # Update display if DK Entries is currently selected
-        # if self.data_selector.currentText() == 'DK Entries':
         new_df = new_df.sort_values(by='Points Proj', ascending=False)
         self.dataframes['Ownership Projections'] = new_df
-        #self.display_dataframe(new_df, sort_column='Points Proj', ascending=False)
 
         return new_df
 
