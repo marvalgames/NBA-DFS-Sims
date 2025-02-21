@@ -295,9 +295,13 @@ class ImportTool(QMainWindow):
         daily_button.clicked.connect(lambda: self.run_threaded_import(self.import_daily))
         import_layout.addWidget(daily_button)
 
-        game_logs_button = QPushButton("Merge Daily Game Logs")
-        game_logs_button.clicked.connect(lambda: self.run_threaded_import(self.expand_game_logs))
-        import_layout.addWidget(game_logs_button)
+        all_button = QPushButton("Run All Imports")
+        all_button.clicked.connect(lambda: self.run_threaded_import(self.run_all_imports))
+        import_layout.addWidget(all_button)
+
+        dk_button = QPushButton("Import DK Entries")
+        dk_button.clicked.connect(lambda: self.run_threaded_import(self.import_dk_entries))
+        import_layout.addWidget(dk_button)
 
         # Import Buttons
         bbm_button = QPushButton("Import BBM")
@@ -307,10 +311,6 @@ class ImportTool(QMainWindow):
         fta_button = QPushButton("Import FTA")
         fta_button.clicked.connect(lambda: self.run_threaded_import(self.import_fta_entries))
         import_layout.addWidget(fta_button)
-
-        dk_button = QPushButton("Import DK Entries")
-        dk_button.clicked.connect(lambda: self.run_threaded_import(self.import_dk_entries))
-        import_layout.addWidget(dk_button)
 
         darko_button = QPushButton("Import Darko")
         darko_button.clicked.connect(lambda: self.run_threaded_import(self.import_darko))
@@ -325,6 +325,11 @@ class ImportTool(QMainWindow):
         odds_button.clicked.connect(lambda: self.run_threaded_import(self.fetch_and_save_team_data_with_odds))
         import_layout.addWidget(odds_button)
 
+        game_logs_button = QPushButton("Merge Daily Game Logs")
+        game_logs_button.clicked.connect(lambda: self.run_threaded_import(self.expand_game_logs))
+        import_layout.addWidget(game_logs_button)
+
+
         minutes_button = QPushButton("Predict Player Minutes")
         minutes_button.clicked.connect(lambda: self.run_threaded_import(self.predict_minutes))
 
@@ -338,9 +343,6 @@ class ImportTool(QMainWindow):
         export_button.clicked.connect(lambda: self.run_threaded_import(self.export_projections))
         import_layout.addWidget(export_button)
 
-        all_button = QPushButton("Run All Imports")
-        all_button.clicked.connect(lambda: self.run_threaded_import(self.run_all_imports))
-        import_layout.addWidget(all_button)
 
         # Add quit button
         quit_button = QPushButton("Quit")
@@ -2287,9 +2289,9 @@ class ImportTool(QMainWindow):
 
     def run_all_imports(self, progress_print=print):
         progress_print("Running all imports...")
+        self.import_dk_entries(progress_print=progress_print)
         self.import_bbm(progress_print=progress_print)
         self.import_fta_entries(progress_print=progress_print)
-        self.import_dk_entries(progress_print=progress_print)
         self.import_darko(progress_print=progress_print)
         self.update_team_data_with_odds()
         self.update_darko(self.dataframes['BBM'], progress_print=progress_print)
