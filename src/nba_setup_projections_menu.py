@@ -833,6 +833,7 @@ class ImportTool(QMainWindow):
                 current_df_key = None
                 for key, stored_df in self.dataframes.items():
                     if df.equals(stored_df):
+                        print(key)
                         current_df_key = key
                         break
 
@@ -1819,18 +1820,51 @@ class ImportTool(QMainWindow):
                 raise FileNotFoundError(f"darko.csv file not found at {darko_file}")
 
             progress_print(f"Reading file: {darko_file}")
+
+            # Add dtype specification to ensure proper data types
             data = pd.read_csv(darko_file)
+
             # Verify we have data
             if data.empty:
                 raise ValueError("No data was read from the Darko CSV file")
 
             progress_print(f"Successfully read {len(data)} rows of data")
 
+            dk_df = self.dataframes['DK Entries'].copy()  # Create a copy to avoid modifications to original
+            dk_df = self.standardize_player_names(dk_df, 'PLAYER_NAME')
+
+            # Convert player names to strings in both dataframes
+            data['Player'] = data['Player'].astype(str)
+            dk_df['PLAYER_NAME'] = dk_df['PLAYER_NAME'].astype(str)
+
             data = self.standardize_player_names(data, 'Player')
             data.rename(columns={'Player': 'PLAYER_NAME'}, inplace=True)
 
+            dk_df = dk_df[['PLAYER_NAME']]  # Selecting only PLAYER_NAME column
+
+            # Merge dataframes
+            data = pd.merge(
+                dk_df,  # Base DataFrame
+                data,
+                on='PLAYER_NAME',
+                how='left'  # Keep all rows from dk_df
+            )
+
+            # Fill NaN values with appropriate defaults
+            numeric_columns = data.select_dtypes(include=['float64', 'int64']).columns
+            data[numeric_columns] = data[numeric_columns].fillna(0)  # Fill numeric columns with 0
+
+            # Fill non-numeric columns with appropriate defaults
+            data['Team'] = data['Team'].fillna('N/A')
+
+            # After merge, before filling NaN values
+            missing_players = data[data['Team'].isna()]['PLAYER_NAME'].tolist()
+            if missing_players:
+                progress_print(f"Players not found in Darko data: {missing_players}")
+
             # Store in dataframes dictionary
             self.dataframes['Darko'] = data
+            print(data.columns)
             progress_print("Darko import completed successfully")
 
             return data
@@ -2219,6 +2253,12 @@ class ImportTool(QMainWindow):
             for col in numeric_columns:
                 filtered_sog[col] = pd.to_numeric(filtered_sog[col], errors='coerce').fillna(0)
 
+            # Add your condition here
+            mask = (filtered_sog['minutes'] > 0) & (filtered_sog['DK Projection'] == 0)
+            filtered_sog.loc[mask, 'DK Projection'] = filtered_sog.loc[mask, 'Field Projection']
+            filtered_sog.loc[mask, 'SD'] = filtered_sog.loc[mask, 'Field Projection'] * 0.4
+            filtered_sog['SD'] = filtered_sog['SD'].round(2)
+
             renamed_columns = {
                 'DK Player': 'Name',
                 'minutes': 'Minutes',
@@ -2364,7 +2404,7 @@ class ImportTool(QMainWindow):
             return random_scores
 
         def simulate_weighted_feasibility_with_progress(data, max_salary=50000, lineup_size=8,
-                                                        num_samples=10000, print_every=2000,
+                                                        num_samples=50000, print_every=10000,
                                                         progress_print=print):
             slot_map = {
                 1: ['PG', 'PG/SG', 'PG/SF', 'G'],
@@ -2524,8 +2564,8 @@ class ImportTool(QMainWindow):
                 print_every=10000, progress_print=progress_print)
 
             weighted_feasibility, tournament_feasibility = simulate_weighted_feasibility_with_progress(
-                df, max_salary=50000, lineup_size=8, num_samples=2000,
-                print_every=200, progress_print=progress_print)
+                df, max_salary=50000, lineup_size=8, num_samples=10000,
+                print_every=2000, progress_print=progress_print)
 
 
             # Ensure all base columns are numeric
