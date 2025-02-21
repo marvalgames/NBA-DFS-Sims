@@ -1801,9 +1801,8 @@ class ImportTool(QMainWindow):
         # # Optional: Reorganize output column order if needed
         # desired_order = ['nba_id', 'minutes', 'gm2', 'col2', 'col3', 'other_columns']
         # data = data[desired_order]
-        print("darko columns : ", len(data.columns))
-
-        # Update the Darko dataframe
+        data['Box DPM'] = data['Box DPM'].round(3)
+        data = data.fillna(0)
         self.dataframes['Darko'] = data
         progress_print("Darko update completed successfully")
 
