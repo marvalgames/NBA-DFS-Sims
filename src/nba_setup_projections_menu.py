@@ -7,7 +7,7 @@ import os
 import numpy as np
 import requests
 import unicodedata
-from PyQt6.QtCore import QThread, pyqtSignal, Qt, QModelIndex
+from PyQt6.QtCore import QThread, pyqtSignal, Qt, QModelIndex, QItemSelection, pyqtSlot
 from nba_api.stats.endpoints import leaguedashteamstats
 from scipy.stats import norm
 
@@ -246,7 +246,7 @@ class ImportTool(QMainWindow):
             'Totals': 'Team',
             'Darko': 'Team',
             'Ownership Projections': 'Team',
-            'Predict Minutes': 'Team',
+            'Predict Minutes': 'TeamAbbrev',
             'Export Projections': 'Team'
         }
 
@@ -357,7 +357,11 @@ class ImportTool(QMainWindow):
         right_layout = QVBoxLayout(right_widget)
         splitter.addWidget(right_widget)
 
-        # Add team filter
+        # Create a container for the filter and label
+        top_container = QWidget()
+        top_layout = QHBoxLayout(top_container)
+
+        # Add team filter (left side of top container)
         filter_widget = QWidget()
         filter_layout = QHBoxLayout(filter_widget)
         filter_layout.addWidget(QLabel("Filter by Team:"))
@@ -366,8 +370,32 @@ class ImportTool(QMainWindow):
         self.team_filter_combo.addItem("All Teams")
         self.team_filter_combo.currentTextChanged.connect(self.on_team_filter_changed)
         filter_layout.addWidget(self.team_filter_combo)
-        filter_layout.addStretch()
-        right_layout.addWidget(filter_widget)
+        filter_layout.setContentsMargins(0, 0, 0, 0)  # Remove margins
+        top_layout.addWidget(filter_widget)
+
+        # Add spacer to push label to the right
+        top_layout.addStretch()
+
+        # Add player label (right side of top container)
+        self.selected_player_label = QLabel("")
+        self.selected_player_label.setStyleSheet("""
+            QLabel {
+                background-color: #f0f0f0;
+                color: #333333;
+                padding: 8px;
+                border: 1px solid #cccccc;
+                border-radius: 3px;
+                font-weight: bold;
+                font-size: 14px;
+            }
+        """)
+        self.selected_player_label.setFixedHeight(40)
+        self.selected_player_label.setFixedWidth(300)  # Set a fixed width for the label
+        self.selected_player_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        top_layout.addWidget(self.selected_player_label)
+
+        # Add the top container to the right layout
+        right_layout.addWidget(top_container)
 
         # Add table view
         self.setup_table_view()
@@ -727,12 +755,30 @@ class ImportTool(QMainWindow):
                 'columns_to_remove': ['Own Actual', 'SD'],
             },
             'Predict Minutes': {
-                'rename_mapping': {'PLAYER_NAME': 'Player Name', 'Predicted_Minutes': 'Predicted Minutes', 'GAME_DATE' : 'Game Date' },
+                'rename_mapping': {
+                    'PLAYER_NAME': 'Player Name', 'Predicted_Minutes': 'Predicted Minutes', 'GAME_DATE' : 'Game Date',
+                    'DK': 'DK Last Game', 'DAYS_REST': 'Rest Days', 'DK_CONSISTENCY': 'DK Consistency',
+                    'DK_CUM_AVG': 'DK Avg',
+                    'MIN_CONSISTENCY': 'Min. Consistency', 'MIN_CUM_AVG': 'Min. Avg', 'TEAM_PROJ_RANK': 'Team Proj Rank',
+                    'injury': 'Status', 'Original_Minutes' : 'Initial Prediction'
+                },
                 'move_to_front': 'Player Name',
-                'columns_to_remove': ['Name + ID', 'ID', 'SEASON_ID', 'PLUS_MINUS','BLOWOUT_GAME', 'W/L', 'TEAM_ABBREVIATION',
-                    'PLAYER_ID', 'TEAM_ID', 'GAME_ID', 'MATCHUP', 'WL', 'VIDEO_AVAILABLE', 'FANTASY_PTS', 'PLAYER', 'MATCH UP', 'LOW_MIN_TOP_PLAYER'
-                                      ],
-                'wildcard_remove': ['AST_', 'REB_', 'FREQ_', 'IS_', 'MINUS_', 'PTS_', 'ROLE_', 'WIN', 'ABOVE_', 'TREND', 'SCORING'
+                'columns_to_remove':
+                    [
+                        'Name + ID', 'ID', 'SEASON_ID', 'PLUS_MINUS','BLOWOUT_GAME', 'W/L',
+                        'TEAM_ABBREVIATION',
+                        'AvgPointsPerGame', 'Visitor', 'Home', 'Opp', 'DK Player', 'Roster Position',
+                        'OREB', 'DREB', 'REB','AST', 'STL','BLK', 'TOV','PF', 'GAME DATE',
+                        'PTS', 'PLUS MINUS', 'Min_Required_Minutes',
+                        'TEAM', 'GAME_DAY', 'MIN_CONSISTENCY_SCORE', 'MIN_VS_TEAM_AVG', 'RECENT_IMPACT', 'TEAM_MIN_PERCENTAGE',
+                    'PLAYER_ID', 'TEAM_ID', 'GAME_ID', 'MATCHUP', 'WL', 'VIDEO_AVAILABLE',
+                        'FANTASY_PTS', 'PLAYER', 'MATCH UP', 'LOW_MIN_TOP_PLAYER'
+
+
+                    ],
+
+                'wildcard_remove': ['AST_', 'REB_', 'FREQ_', 'IS_', 'MINUS_', 'PTS_', 'ROLE_', 'WIN', 'ABOVE_', 'TREND', 'SCORING',
+                                    'FG', 'FT',
 
                                     ],  # Indicate we want to remove columns with 'RANK' in column names
 
@@ -888,6 +934,7 @@ class ImportTool(QMainWindow):
                     transformed_df = self.transform_dataframe(transformed_df, key='Ownership Projections')
                     sort_column = 'Predicted Ownership'
                 elif df.equals(self.dataframes['Predict Minutes']):
+                    print(df.columns)
                     transformed_df = self.transform_dataframe(transformed_df, key='Predict Minutes')
                     sort_column = 'Predicted Minutes'
                 elif df.equals(self.dataframes['Export Projections']):
@@ -903,6 +950,16 @@ class ImportTool(QMainWindow):
                 print("Setting model to view...")  # Debug print
                 self.table_view.setModel(proxy_model)
                 self.table_view.setSortingEnabled(True)
+
+                # Get the selection model and connect it
+                selection_model = self.table_view.selectionModel()
+                if selection_model:
+                    # Use the pyqtSlot decorator
+                    @pyqtSlot("QItemSelection", "QItemSelection")
+                    def on_selection_changed(selected, deselected):
+                        self.update_selected_player_label(selected, deselected)
+
+                    selection_model.selectionChanged[QItemSelection, QItemSelection].connect(on_selection_changed)
 
                 if current_df_key in self.team_column_mapping:
                     team_column = self.team_column_mapping[current_df_key]
@@ -945,6 +1002,22 @@ class ImportTool(QMainWindow):
                 print("Model set successfully")  # Debug print
             except Exception as e:
                 print(f"Error displaying dataframe: {e}")
+
+    from PyQt6.QtCore import Qt
+
+    def update_selected_player_label(self, selected, deselected):
+        indexes = selected.indexes()
+        if indexes:
+            proxy_model = self.table_view.model()
+            if proxy_model:
+                source_model = proxy_model.sourceModel()
+                if source_model:
+                    row_index = proxy_model.mapToSource(indexes[0]).row()
+                    player_name = source_model.data(source_model.index(row_index, Qt.ItemDataRole.DisplayRole))
+                    self.selected_player_label.setText(f"{player_name}")
+        else:
+            self.selected_player_label.setText("")
+
 
     def handle_data_changed(self, topLeft, bottomRight):
         try:
@@ -1551,7 +1624,7 @@ class ImportTool(QMainWindow):
 
         data = predictions.predict_minutes_df(game_logs_df)
 
-        data.rename(columns={'Player': 'PLAYER_NAME'}, inplace=True)
+        data.rename(columns={'Player': 'PLAYER_NAME', 'Team': 'TeamAbbrev'}, inplace=True)
         data['Original_Minutes'] = data['Original_Minutes'].round(2)
         self.dataframes['Predict Minutes'] = data
         self.update_darko(data)
