@@ -380,8 +380,8 @@ class ImportTool(QMainWindow):
         self.selected_player_label = QLabel("")
         self.selected_player_label.setStyleSheet("""
             QLabel {
-                background-color: #f0f0f0;
-                color: #333333;
+                background-color: #333333;
+                color: #dddddd;
                 padding: 8px;
                 border: 1px solid #cccccc;
                 border-radius: 3px;
@@ -390,7 +390,7 @@ class ImportTool(QMainWindow):
             }
         """)
         self.selected_player_label.setFixedHeight(40)
-        self.selected_player_label.setFixedWidth(300)  # Set a fixed width for the label
+        self.selected_player_label.setFixedWidth(200)  # Set a fixed width for the label
         self.selected_player_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         top_layout.addWidget(self.selected_player_label)
 
@@ -1220,6 +1220,15 @@ class ImportTool(QMainWindow):
         data['Vegas Points'] = data['TeamAbbrev'].map(odds_dict)
         data['Vegas Points'] = pd.to_numeric(data['Vegas Points'], errors='coerce')
         data['Team Pts'] = data.groupby('TeamAbbrev')['pts'].transform('sum').round(2)
+        # Fill Vegas Points with Team Pts where Vegas Points is 0 or NaN
+        data['Vegas Points'] = data['Vegas Points'].fillna(0)  # Convert NaN to 0 first
+        mask = (data['Vegas Points'] == 0) | (data['Vegas Points'].isna())
+        data.loc[mask, 'Vegas Points'] = data.loc[mask, 'Team Pts']
+
+        # Add some debug printing
+        print("Teams with zero Vegas Points after correction:")
+        print(data[data['Vegas Points'] == 0][['TeamAbbrev', 'Vegas Points', 'Team Pts']])
+
         data['Usage %'] = (data['USG%'] * 100).round(2)
         data['Team Usage%'] = data.groupby('TeamAbbrev')['Usage %'].transform('sum').round(2)
         data['Usage Game'] = (data['Usage %'] * data['minutes'] / 48).round(2)
@@ -1244,7 +1253,6 @@ class ImportTool(QMainWindow):
 
         team_defense = data.groupby('TeamAbbrev')['Defense'].sum().to_dict()
         data['Opp D Rating'] = data['Opp'].map(team_defense).round(3)
-
 
         data['Points Today Adjusted'] = (data['Vegas Points'] / data['Team Pts'] - 1).round(3)
         data['Team PPG X'] = (data['Points Today Adjusted'] - data['Opp D Rating'] / 100).round(3)
