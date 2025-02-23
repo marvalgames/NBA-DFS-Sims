@@ -1594,6 +1594,12 @@ class NBA_GPP_Simulator:
                 "../dk_data/{}".format(self.config["entries_path"]),
             )
 
+            # Check if input_csv_path exists
+            if not os.path.exists(input_csv_path):
+                print(f"Warning: The input CSV file does not exist: {input_csv_path}")
+                # Exit early from this part of the function, but continue executing the rest
+                return
+
             with open(input_csv_path, "r") as infile:
                 reader = csv.DictReader(infile)
                 rows = list(reader)
