@@ -299,7 +299,7 @@ class NbaSimsMainMenu(QMainWindow):
         self.use_contest_data = True
         self.field_size = 5000
         self.use_file_upload = False
-        self.num_iterations = 5000
+        self.num_iterations = 50000
 
 
         # Initialize the UI

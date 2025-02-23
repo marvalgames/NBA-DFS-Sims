@@ -2647,8 +2647,8 @@ class ImportTool(QMainWindow):
                 print_every=10000, progress_print=progress_print)
 
             weighted_feasibility, tournament_feasibility = simulate_weighted_feasibility_with_progress(
-                df, max_salary=50000, lineup_size=8, num_samples=10000,
-                print_every=2000, progress_print=progress_print)
+                df, max_salary=50000, lineup_size=8, num_samples=50000,
+                print_every=10000, progress_print=progress_print)
 
 
             # Ensure all base columns are numeric
