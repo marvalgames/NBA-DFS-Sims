@@ -1608,6 +1608,7 @@ class ImportTool(QMainWindow):
         game_logs_df.rename(columns={'Player': 'PLAYER_NAME'}, inplace=True)
         game_logs_df['Original_Minutes'] = game_logs_df['Minutes'].round(2)
         game_logs_df['Predicted_Minutes'] = game_logs_df['Minutes']
+        game_logs_df = self.merge_bbm_predict(game_logs_df)
         self.dataframes['Predict Minutes'] = game_logs_df
 
 
@@ -1619,32 +1620,9 @@ class ImportTool(QMainWindow):
     def Predictor(self, progress_print):
 
         predictions = PredictMinutes()
+
         game_logs_df = self.dataframes['Predict Minutes']
-
-        bbm_df = self.dataframes['BBM'].copy()  # Create a copy to avoid modifications to original
-        bbm_df = self.standardize_player_names(bbm_df, 'PLAYER_NAME')
-        bbm_df = bbm_df[['PLAYER_NAME', 'minutes']]  # Selecting only needed columns
-
-        # Print column names before merge
-        print("\nBBM columns:", bbm_df.columns.tolist())
-        print("game_logs_df columns:", game_logs_df.columns.tolist())
-        # Merge dataframes
-        merged_data = pd.merge(
-            game_logs_df,  # Base DataFrame
-            bbm_df,
-            on='PLAYER_NAME',
-            how='left'  # Keep all rows from game_logs_df
-        )
-
-        # Swap 'Minutes' and 'minutes'
-        merged_data['Minutes_temp'] = merged_data['Minutes']  # Save 'Minutes' temporarily
-        merged_data['Minutes'] = merged_data['minutes']  # Assign 'minutes' to 'Minutes'
-        # merged_data['minutes'] = merged_data['Minutes_temp']  # Restore 'Minutes' to 'minutes'
-        # merged_data.drop(columns=['Minutes_temp'], inplace=True)  # Drop the temporary column
-
-        game_logs_df = merged_data
-       # game_logs_df['Minutes'] = game_logs_df['minutes']
-
+        #game_logs_df = self.merge_bbm_predict(game_logs_df)
 
         # Check each column before dropping (Should only execute once)
         if 'TEAM_ABBREVIATION' in game_logs_df.columns:
@@ -1672,6 +1650,29 @@ class ImportTool(QMainWindow):
         progress_print("Predict Minutes import completed successfully")
 
         return data
+
+    def merge_bbm_predict(self, game_logs_df):
+        bbm_df = self.dataframes['BBM'].copy()  # Create a copy to avoid modifications to original
+        bbm_df = self.standardize_player_names(bbm_df, 'PLAYER_NAME')
+        bbm_df = bbm_df[['PLAYER_NAME', 'minutes']]  # Selecting only needed columns
+        # Print column names before merge
+        print("\nBBM columns:", bbm_df.columns.tolist())
+        print("game_logs_df columns:", game_logs_df.columns.tolist())
+        # Merge dataframes
+        merged_data = pd.merge(
+            game_logs_df,  # Base DataFrame
+            bbm_df,
+            on='PLAYER_NAME',
+            how='left'  # Keep all rows from game_logs_df
+        )
+        # Swap 'Minutes' and 'minutes'
+        merged_data['Minutes_temp'] = merged_data['Minutes']  # Save 'Minutes' temporarily
+        merged_data['Minutes'] = merged_data['minutes']  # Assign 'minutes' to 'Minutes'
+        merged_data['minutes'] = merged_data['Minutes_temp']  # Restore 'Minutes' to 'minutes'
+        merged_data.drop(columns=['Minutes_temp'], inplace=True)  # Drop the temporary column
+        game_logs_df = merged_data
+        # game_logs_df['Minutes'] = game_logs_df['minutes']
+        return game_logs_df
 
     def import_bbm(self, progress_print=print):
         try:
