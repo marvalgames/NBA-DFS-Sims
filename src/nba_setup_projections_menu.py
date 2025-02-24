@@ -33,7 +33,7 @@ class CustomSortFilterProxyModel(QSortFilterProxyModel):
         self.transformed_df = transformed_df  # Store the transformed DataFrame
         self.team_filter = ""
         self.team_column = "Team"  # default column name
-        self.editable_columns = ['Max Minutes', 'Min Minutes']
+        self.editable_columns = ['Max Minutes', 'Min Minutes', 'Minutes']
         self.player_column_original = 'PLAYER_NAME'  # Original column name
         self.player_column_transformed = 'Player Name'  # Renamed column
         # Create a mapping between transformed and original indices
@@ -765,7 +765,7 @@ class ImportTool(QMainWindow):
                 'move_to_front': 'Player Name',
                 'columns_to_remove':
                     [
-                        'Name + ID', 'ID', 'SEASON_ID', 'PLUS_MINUS','BLOWOUT_GAME', 'W/L',
+                        'Name + ID', 'ID', 'SEASON_ID', 'PLUS_MINUS','BLOWOUT_GAME', 'W/L','minutes',
                         'TEAM_ABBREVIATION',
                         'AvgPointsPerGame', 'Visitor', 'Home', 'Opp', 'DK Player', 'Roster Position',
                         'OREB', 'DREB', 'REB','AST', 'STL','BLK', 'TOV','PF', 'GAME DATE',
@@ -1610,6 +1610,7 @@ class ImportTool(QMainWindow):
         game_logs_df['Predicted_Minutes'] = game_logs_df['Minutes']
         game_logs_df = self.merge_bbm_predict(game_logs_df)
         self.dataframes['Predict Minutes'] = game_logs_df
+        print(game_logs_df[game_logs_df['PLAYER_NAME'] == 'Darius Garland']['Minutes'])
 
 
     def predict_minutes(self, progress_print=print):
@@ -1652,27 +1653,28 @@ class ImportTool(QMainWindow):
         return data
 
     def merge_bbm_predict(self, game_logs_df):
-        bbm_df = self.dataframes['BBM'].copy()  # Create a copy to avoid modifications to original
+        # Create a copy of the BBM DataFrame
+        bbm_df = self.dataframes['BBM'].copy()
         bbm_df = self.standardize_player_names(bbm_df, 'PLAYER_NAME')
-        bbm_df = bbm_df[['PLAYER_NAME', 'minutes']]  # Selecting only needed columns
-        # Print column names before merge
-        print("\nBBM columns:", bbm_df.columns.tolist())
-        print("game_logs_df columns:", game_logs_df.columns.tolist())
-        # Merge dataframes
-        merged_data = pd.merge(
-            game_logs_df,  # Base DataFrame
+        bbm_df = bbm_df[['PLAYER_NAME', 'minutes']]  # Keep only the needed columns
+
+        # Merge game_logs_df with bbm_df, updating 'Minutes' from 'minutes'
+        game_logs_df = pd.merge(
+            game_logs_df,
             bbm_df,
             on='PLAYER_NAME',
-            how='left'  # Keep all rows from game_logs_df
+            how='left'  # Ensure all rows from game_logs_df are retained
         )
-        # Swap 'Minutes' and 'minutes'
-        merged_data['Minutes_temp'] = merged_data['Minutes']  # Save 'Minutes' temporarily
-        merged_data['Minutes'] = merged_data['minutes']  # Assign 'minutes' to 'Minutes'
-        merged_data['minutes'] = merged_data['Minutes_temp']  # Restore 'Minutes' to 'minutes'
-        merged_data.drop(columns=['Minutes_temp'], inplace=True)  # Drop the temporary column
-        game_logs_df = merged_data
-        # game_logs_df['Minutes'] = game_logs_df['minutes']
+
+        # Overwrite 'Minutes' in game_logs_df with the values from 'minutes'
+        game_logs_df['Minutes'] = game_logs_df['minutes']
+
+        # Drop the 'minutes' column as it's redundant after the assignment
+        game_logs_df.drop(columns=['minutes'], inplace=True)
+
+        # Return the updated DataFrame
         return game_logs_df
+
 
     def import_bbm(self, progress_print=print):
         try:
