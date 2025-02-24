@@ -566,7 +566,6 @@ class PredictMinutes:
             #data.loc[zero_mask, 'Predicted_Minutes'] = 0
 
             # Apply position constraints to the already-modified predictions
-            print('Stage A:  Predicted ', data[data['Player'] == 'Darius Garland']['Predicted_Minutes'])
             data['Predicted_Minutes'] = apply_position_constraints(data)
             data['Predicted_Minutes'] = adjust_team_minutes_with_minimum_and_boost(data)
 
