@@ -30,6 +30,10 @@ def apply_position_constraints(predictions_df):
     adjusted_predictions = predictions_df['Predicted_Minutes'].copy()
     position_compat = get_position_compatibility()
 
+    # First, set minutes to zero for all injured players
+    injury_mask = predictions_df['injury'].isin(['Out', 'Out for season', 'Injured',  'Doubtful'])
+    adjusted_predictions[injury_mask] = 0
+
     for team in predictions_df['Team'].unique():
         team_mask = predictions_df['Team'] == team
         team_data = predictions_df[team_mask]
@@ -54,11 +58,15 @@ def apply_position_constraints(predictions_df):
                 eligible_positions.update(position_compat[listed_pos])
             player_eligibility[idx] = eligible_positions
 
-
         # Try to find 5 unique players for the main positions
         protected_players = set()
         position_assignments = {}
         main_positions = ['PG', 'SG', 'SF', 'PF', 'C']
+
+        # Add injured players to protected automatically (they won't be adjusted)
+        for idx, player in team_data.iterrows():
+            if player['injury'] in ['Out', 'Out for season', 'Injured', 'Doubtful']:
+                protected_players.add(idx)
 
         # First pass: Try to assign highest-minute players to their primary positions
         for pos in main_positions:
@@ -67,10 +75,9 @@ def apply_position_constraints(predictions_df):
                                         for idx in player_eligibility
                                         if team_data.loc[idx, 'Position'].split('/')[0] == pos
                                         and idx not in protected_players
-                                        and team_data.loc[idx, 'injury'] not in ['Out', 'Out for season', 'Injured']]
+                                        and team_data.loc[idx, 'injury'] not in ['Out', 'Out for season', 'Injured', 'Doubtful']]
 
-
-            if primary_position_players :
+            if primary_position_players:
                 # Sort primary position players by minutes
                 primary_position_players.sort(key=lambda x: x[1], reverse=True)
                 player_idx = primary_position_players[0][0]
@@ -81,7 +88,8 @@ def apply_position_constraints(predictions_df):
                 eligible_players = [(idx, team_predictions[idx])
                                     for idx in player_eligibility
                                     if pos in player_eligibility[idx]
-                                    and idx not in protected_players]
+                                    and idx not in protected_players
+                                    and team_data.loc[idx, 'injury'] not in ['Out', 'Out for season', 'Injured', 'Doubtful']]
 
                 if eligible_players:
                     eligible_players.sort(key=lambda x: x[1], reverse=True)
@@ -96,7 +104,8 @@ def apply_position_constraints(predictions_df):
                 # Look for any player who can play this position and isn't protected
                 eligible_players = [(idx, team_predictions[idx])
                                     for idx in player_eligibility
-                                    if pos in player_eligibility[idx]]
+                                    if pos in player_eligibility[idx]
+                                    and team_data.loc[idx, 'injury'] not in ['Out', 'Out for season', 'Injured', 'Doubtful']]
 
                 if eligible_players:
                     eligible_players.sort(key=lambda x: x[1], reverse=True)
@@ -111,7 +120,7 @@ def apply_position_constraints(predictions_df):
                 player_idx = position_assignments[pos]
                 player = team_data.loc[player_idx]
                 print(f"{pos}: {player['Player']} ({player['Position']}) - {team_predictions[player_idx]:.1f} minutes")
-                print(player['injury'])
+                print(f"Injury status: {player['injury']}")
             else:
                 print(f"{pos}: No assignment found")
 
@@ -137,8 +146,9 @@ def apply_position_constraints(predictions_df):
         for pos in position_totals:
             if position_totals[pos] < min_pos_minutes or position_totals[pos] > max_pos_minutes:
                 eligible_players = [idx for idx in player_eligibility
-                                    if pos in player_eligibility[idx] and
-                                    idx not in protected_players]
+                                    if pos in player_eligibility[idx]
+                                    and idx not in protected_players
+                                    and team_data.loc[idx, 'injury'] not in ['Out', 'Out for season', 'Injured', 'Doubtful']]
 
                 if eligible_players:
                     if position_totals[pos] < min_pos_minutes:
@@ -154,8 +164,10 @@ def apply_position_constraints(predictions_df):
 
         adjusted_predictions[team_mask] = team_predictions
 
-    return adjusted_predictions
+    # Final check to ensure no injured players have minutes
+    adjusted_predictions[injury_mask] = 0
 
+    return adjusted_predictions
 
 
 def smooth_adjustments(original_predictions, adjusted_predictions, smoothing_factor=0.5):
@@ -265,8 +277,11 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
     adjusted_predictions = predictions_df['Predicted_Minutes'].copy()
 
     # Create a mask for players that should be forced to zero
-    #force_zero_mask = (predictions_df['Projection'] == 0) | (predictions_df['Minutes'] <= 6)
-    force_zero_mask = (predictions_df['Projection'] < 0)#zero
+    force_zero_mask = (predictions_df['Projection'] < 0)
+
+    # Add injured players to force_zero_mask
+    injury_mask = predictions_df['injury'].isin(['Out', 'Out for season', 'Injured', 'Doubtful'])
+    force_zero_mask = force_zero_mask | injury_mask
 
     # Set initial zeros based on force_zero_mask
     adjusted_predictions[force_zero_mask] = 0
@@ -294,6 +309,9 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
             if pd.notnull(max_mins[idx]):
                 team_predictions[idx] = min(team_predictions[idx], max_mins[idx])
 
+        # Reapply forced zeros (including injuries)
+        team_predictions[team_force_zero] = 0
+
         if team_predictions.sum() > 0:  # Skip if team has no minutes
             # Get top 5 minute players (only consider those not at max and not forced zero)
             available_for_top = team_predictions[
@@ -314,6 +332,10 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
 
                 # Calculate minutes to redistribute from non-top 5 players
                 other_players_idx = team_predictions.index.difference(top_5_idx)
+
+                # Make sure we only consider non-injured players
+                other_players_idx = [idx for idx in other_players_idx if not team_force_zero[idx]]
+
                 if len(other_players_idx) > 0:
                     minutes_to_redistribute = min(available_boost * 0.5,
                                                   team_predictions[other_players_idx].sum() * 0.1)
@@ -344,15 +366,6 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
 
                 # Get adjustable values
                 adjustable_values = team_predictions[adjustable_mask].values
-                #
-                # # Apply non-linear scaling to adjustable values
-                # new_values = nonlinear_scale(
-                #     adjustable_values,
-                #     team_total - team_predictions[~adjustable_mask].sum(),  # target for adjustable players
-                #     adjustable_values.sum(),  # current total for adjustable players
-                #     method='log',  # Try 'log', 'sqrt', or 'exp'
-                #     intensity=1.0  # Adjust this parameter to control scaling intensity
-                # )
 
                 # Update predictions
                 team_predictions[adjustable_mask] = adjustable_values
@@ -362,7 +375,7 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
                     if pd.notnull(max_mins[idx]):
                         team_predictions[idx] = min(team_predictions[idx], max_mins[idx])
 
-                # Ensure zeros stay zero
+                # Ensure zeros stay zero and injured players stay at zero
                 team_predictions[team_force_zero] = 0
 
                 current_total = team_predictions.sum()
@@ -374,8 +387,9 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
             # Now apply the curve to high-minute players
             min_minutes = 32
             for idx in team_predictions.index:
-                if team_predictions[idx] >= min_minutes / 240 * current_total:
-                    curved_value = apply_high_minutes_curve(current_total, team_predictions[idx], max_mins[idx], min_minutes)
+                if team_predictions[idx] >= min_minutes / 240 * current_total and not team_force_zero[idx]:
+                    curved_value = apply_high_minutes_curve(current_total, team_predictions[idx], max_mins[idx],
+                                                            min_minutes)
                     team_predictions[idx] = min(curved_value, max_mins[idx])
 
             # Round to 1 decimal place
@@ -395,14 +409,12 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
                         new_mins = team_predictions[idx] + adjustment_per_player
                         team_predictions[idx] = round(min(new_mins, max_mins[idx]), 1)
 
-
         adjusted_predictions[team_mask] = team_predictions
 
     # Final check to ensure forced zeros remain zero
     adjusted_predictions[force_zero_mask] = 0
 
     return adjusted_predictions
-
 
 
 
@@ -585,6 +597,6 @@ class PredictMinutes:
         return data
 
 
-if __name__ == "__main__":
-    predictions = PredictMinutes()
-    predictions.predict_minutes_df()
+#if __name__ == "__main__":
+    #predictions = PredictMinutes()
+    #predictions.predict_minutes_df()

@@ -135,8 +135,8 @@ def build_app(app_name, main_script, additional_files=None):
             cmd.extend(['--add-data', f'src/{file}{os.pathsep}src'])  # Change destination to src
 
     # Add the model file to the build
-    if os.path.exists('src/final_nba_model.pkl'):
-        cmd.extend(['--add-data', f'src/final_nba_model.pkl{os.pathsep}src'])  # Change destination to src
+    #if os.path.exists('src/final_nba_model.pkl'):
+        #cmd.extend(['--add-data', f'src/final_nba_model.pkl{os.pathsep}src'])  # Change destination to src
 
     # Rest of the build_app function remains the same...
 
@@ -173,8 +173,8 @@ if __name__ == "__main__":
 
         # Build both executables
         simulator_files = ['nba_gpp_simulator.py', 'nba_swap_sims.py']
-        build_app('NBA_GPP_Simulator', 'nba_sims_menu.py', simulator_files)
-        build_app('NBA_Importer', 'nba_setup_projections_menu.py')
+        build_app('NBA_Sims', 'nba_sims_menu.py', simulator_files)
+        build_app('NBA_Projections', 'nba_setup_projections_menu.py')
 
         print("\nBuild completed successfully!")
         print("Both executables and shared data are in the 'dist/NBA_Tools' directory")

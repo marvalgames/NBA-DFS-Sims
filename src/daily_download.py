@@ -23,8 +23,9 @@ import shutil
 class DailyDownload:
     def __init__(self):
         self.current_dir = Path(__file__).parent
-        self.download_dir = self.current_dir.parent / 'dk_import'
-        self.download_dir.mkdir(exist_ok=True)
+        self.import_dir = self.current_dir.parent / 'dk_import'
+        self.data_dir = self.current_dir.parent / 'dk_data'
+
 
     from selenium import webdriver
     from selenium.webdriver.common.by import By
@@ -43,14 +44,14 @@ class DailyDownload:
             parent_dir = os.path.dirname(os.getcwd())
 
             # Define source and destination paths
-            source_file = os.path.join(parent_dir, 'dk_data', 'DKEntries.csv')
-            dest_dir = os.path.join(parent_dir, 'dk_import')
-            dest_file = os.path.join(dest_dir, 'entries.csv')  # Changed to entries.csv
+            source_file = os.path.join(self.data_dir, 'DKEntries.csv')
+            #dest_dir = os.path.join(self.import_dir, 'dk_import')
+            dest_file = os.path.join(self.import_dir, 'entries.csv')  # Changed to entries.csv
 
             # Ensure destination directory exists
-            if not os.path.exists(dest_dir):
-                os.makedirs(dest_dir)
-                print(f"Created directory: {dest_dir}")
+            # if not os.path.exists(dest_dir):
+            #     os.makedirs(dest_dir)
+            #     print(f"Created directory: {dest_dir}")
 
             # Copy the file
             if os.path.exists(source_file):
@@ -73,12 +74,12 @@ class DailyDownload:
         chrome_options = webdriver.ChromeOptions()
         download_dir = os.getcwd()
         # Create path for dk_import directory (sibling to current directory)
-        dk_import_dir = os.path.join(os.path.dirname(os.getcwd()), 'dk_import')
+        #dk_import_dir = os.path.join(os.path.dirname(os.getcwd()), 'dk_import')
 
         # Ensure dk_import directory exists
-        if not os.path.exists(dk_import_dir):
-            os.makedirs(dk_import_dir)
-            print(f"Created directory: {dk_import_dir}")
+        #if not os.path.exists(dk_import_dir):
+            #os.makedirs(dk_import_dir)
+            #print(f"Created directory: {dk_import_dir}")
 
         prefs = {
             "download.default_directory": download_dir,
@@ -129,7 +130,7 @@ class DailyDownload:
             downloads = [f for f in os.listdir(download_dir) if f.endswith('.csv')]
             if downloads:
                 downloaded_file = max([os.path.join(download_dir, f) for f in downloads], key=os.path.getctime)
-                new_filename = os.path.join(dk_import_dir, 'bbm.csv')
+                new_filename = os.path.join(self.import_dir, 'bbm.csv')
 
                 if os.path.exists(new_filename):
                     os.remove(new_filename)
@@ -154,7 +155,7 @@ class DailyDownload:
     def setup_driver(self):
         chrome_options = webdriver.ChromeOptions()
         prefs = {
-            "download.default_directory": str(self.download_dir),
+            "download.default_directory": str(self.import_dir),
             "download.prompt_for_download": False,
             "download.directory_upgrade": True,
             "safebrowsing.enabled": True
@@ -195,10 +196,10 @@ class DailyDownload:
                     driver.execute_script("arguments[0].click();", download_button)
                     time.sleep(5)
 
-                    list_of_files = os.listdir(self.download_dir)
-                    latest_file = max([os.path.join(self.download_dir, f) for f in list_of_files if f.endswith('.csv')],
+                    list_of_files = os.listdir(self.import_dir)
+                    latest_file = max([os.path.join(self.import_dir, f) for f in list_of_files if f.endswith('.csv')],
                                     key=os.path.getctime)
-                    new_filename = os.path.join(self.download_dir, 'darko.csv')
+                    new_filename = os.path.join(self.import_dir, 'darko.csv')
                     if os.path.exists(new_filename):
                         os.remove(new_filename)
                     os.rename(latest_file, new_filename)
@@ -247,10 +248,10 @@ class DailyDownload:
                     driver.execute_script("arguments[0].click();", download_button)
                     time.sleep(5)
 
-                    list_of_files = os.listdir(self.download_dir)
-                    latest_file = max([os.path.join(self.download_dir, f) for f in list_of_files if f.endswith('.csv')],
+                    list_of_files = os.listdir(self.import_dir)
+                    latest_file = max([os.path.join(self.import_dir, f) for f in list_of_files if f.endswith('.csv')],
                                     key=os.path.getctime)
-                    new_filename = os.path.join(self.download_dir, 'darko_daily.csv')
+                    new_filename = os.path.join(self.import_dir, 'darko_daily.csv')
                     if os.path.exists(new_filename):
                         os.remove(new_filename)
                     os.rename(latest_file, new_filename)
@@ -267,7 +268,7 @@ class DailyDownload:
             driver.quit()
 
     def get_nba_boxscores(self):
-        file_path = self.download_dir / 'nba_boxscores.csv'
+        file_path = self.import_dir / 'nba_boxscores.csv'
 
         retry_strategy = Retry(
             total=3,

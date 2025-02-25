@@ -1618,6 +1618,8 @@ class ImportTool(QMainWindow):
 
     def Predictor(self, progress_print):
 
+        self.build_predict_minutes_dataframe()
+
         predictions = PredictMinutes()
 
         game_logs_df = self.dataframes['Predict Minutes']
@@ -2517,7 +2519,7 @@ class ImportTool(QMainWindow):
             return random_scores
 
         def simulate_weighted_feasibility_with_progress(data, max_salary=50000, lineup_size=8,
-                                                        num_samples=50000, print_every=10000,
+                                                        num_samples=20000, print_every=2000,
                                                         progress_print=print):
             slot_map = {
                 1: ['PG', 'PG/SG', 'PG/SF', 'G'],
@@ -2677,8 +2679,8 @@ class ImportTool(QMainWindow):
                 print_every=10000, progress_print=progress_print)
 
             weighted_feasibility, tournament_feasibility = simulate_weighted_feasibility_with_progress(
-                df, max_salary=50000, lineup_size=8, num_samples=25000,
-                print_every=5000, progress_print=progress_print)
+                df, max_salary=50000, lineup_size=8, num_samples=20000,
+                print_every=2000, progress_print=progress_print)
 
 
             # Ensure all base columns are numeric
