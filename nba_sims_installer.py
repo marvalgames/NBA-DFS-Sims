@@ -83,10 +83,10 @@ def setup_shared_directory():
     # Copy source files to src directory
     src_files = [
         'nba_gpp_simulator.py',
-        'run_swap_sim.py',
         'nba_swap_sims.py',
-        'nba_importer_menu.py',
-        'final_nba_model.pkl'  # Include the model file in the list
+        'nba_setup_projections_menu.py',
+        'final_nba_model.pkl',
+        'final_minutes_expanded_prediction_model.pkl'
     ]
 
     for file in src_files:
@@ -172,9 +172,9 @@ if __name__ == "__main__":
         setup_shared_directory()
 
         # Build both executables
-        simulator_files = ['nba_gpp_simulator.py', 'run_swap_sim.py', 'nba_swap_sims.py']
+        simulator_files = ['nba_gpp_simulator.py', 'nba_swap_sims.py']
         build_app('NBA_GPP_Simulator', 'nba_sims_menu.py', simulator_files)
-        build_app('NBA_Importer', 'nba_importer_menu.py')
+        build_app('NBA_Importer', 'nba_setup_projections_menu.py')
 
         print("\nBuild completed successfully!")
         print("Both executables and shared data are in the 'dist/NBA_Tools' directory")

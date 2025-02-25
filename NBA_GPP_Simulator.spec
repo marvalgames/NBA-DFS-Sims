@@ -9,7 +9,7 @@ a = Analysis(
     ['src\\nba_sims_menu.py'],
     pathex=['src'],
     binaries=[],
-    datas=[('src/nba_gpp_simulator.py', 'src'), ('src/run_swap_sim.py', 'src'), ('src/nba_swap_sims.py', 'src'), ('src/final_nba_model.pkl', 'src')],
+    datas=[('src/nba_gpp_simulator.py', 'src'), ('src/nba_swap_sims.py', 'src'), ('src/final_nba_model.pkl', 'src')],
     hiddenimports=hiddenimports,
     hookspath=[],
     hooksconfig={},

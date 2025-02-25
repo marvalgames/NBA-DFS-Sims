@@ -1039,7 +1039,7 @@ class ImportTool(QMainWindow):
             #     print(player_data)
 
             # Save to CSV
-            csv_path = os.path.join('..', 'dk_import', 'nba_daily_combined.csv')
+            csv_path = os.path.join(self.import_folder, 'nba_daily_combined.csv')
             updated_df.to_csv(csv_path, index=False)
             print("Data saved to CSV successfully")
 
@@ -1448,10 +1448,8 @@ class ImportTool(QMainWindow):
         # Read from Excel using XWings
 
         time.sleep(1)  # Give Excel a moment to fully initialize
-        # Connect to Excel
-        # excel_path = os.path.join('..', 'dk_import', 'nba - Copy.xlsm')
-        csv_path = os.path.join('..', 'dk_import', 'nba_daily_combined.csv')
-        csv_read = os.path.join('..', 'dk_import', 'nba_boxscores_enhanced.csv')
+        csv_path = os.path.join(self.import_folder, 'nba_daily_combined.csv')
+        csv_read = os.path.join(self.import_folder, 'nba_boxscores_enhanced.csv')
 
         # Usage:
         df = pd.read_csv(csv_read, encoding='utf-8')
@@ -1602,7 +1600,7 @@ class ImportTool(QMainWindow):
 
     def build_predict_minutes_dataframe(self, progress_print=print):
         time.sleep(1)  # Give Excel a moment to fully initialize
-        csv_path = os.path.join('..', 'dk_import', 'nba_daily_combined.csv')
+        csv_path = os.path.join(self.import_folder, 'nba_daily_combined.csv')
         game_logs_df = pd.read_csv(csv_path, encoding='utf-8', keep_default_na=False)
         game_logs_df['injury'] = game_logs_df['injury'].replace("", "Active")
         game_logs_df.rename(columns={'Player': 'PLAYER_NAME'}, inplace=True)

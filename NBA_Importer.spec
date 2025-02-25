@@ -6,7 +6,7 @@ hiddenimports += collect_submodules('pulp')
 
 
 a = Analysis(
-    ['src\\nba_importer_menu.py'],
+    ['src\\nba_setup_projections_menu.py'],
     pathex=['src'],
     binaries=[],
     datas=[('src/final_nba_model.pkl', 'src')],
