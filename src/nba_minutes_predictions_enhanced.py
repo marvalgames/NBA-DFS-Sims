@@ -45,8 +45,8 @@ def apply_position_constraints(predictions_df):
 
         # Target minutes per position should be 20% of total team minutes ±5
         target_pos_minutes = total_team_minutes * 0.2
-        min_pos_minutes = max(target_pos_minutes - 5, 0)
-        max_pos_minutes = target_pos_minutes + 5
+        min_pos_minutes = max(target_pos_minutes - 8, 0)
+        max_pos_minutes = target_pos_minutes + 8
 
         # Create a list of all players and their eligible positions based on compatibility table
         player_eligibility = {}
@@ -152,12 +152,12 @@ def apply_position_constraints(predictions_df):
 
                 if eligible_players:
                     if position_totals[pos] < min_pos_minutes:
-                        deficit = min_pos_minutes - position_totals[pos]
+                        deficit = (min_pos_minutes - position_totals[pos]) / 5
                         increase_per_player = deficit / len(eligible_players)
                         for idx in eligible_players:
                             team_predictions[idx] += increase_per_player
                     elif position_totals[pos] > max_pos_minutes:
-                        excess = position_totals[pos] - max_pos_minutes
+                        excess = (position_totals[pos] - max_pos_minutes) / 5
                         decrease_per_player = excess / len(eligible_players)
                         for idx in eligible_players:
                             team_predictions[idx] = max(0, team_predictions[idx] - decrease_per_player)
@@ -233,14 +233,14 @@ def apply_high_minutes_curve(current_total, minutes, max_minutes, min_minutes = 
     return minutes
 
 
-def ensure_minimum_rotation(team_predictions, team_data, max_mins, min_players=8, min_minutes=8):
+def ensure_minimum_rotation(team_predictions, team_data, max_mins, min_players, min_minutes):
     """
     Ensure at least min_players get min_minutes, with priority order:
     1. Players with projection > 0, max minutes > min_minutes, and Last 10 > 1
     2. If needed, add players with only max minutes > min_minutes and Last 10 > 1
     """
     # First try with projected players only
-    primary_mask = ((team_data['MIN_LAST_10_AVG'] > 1) &
+    primary_mask = ((team_data['MIN_LAST_10_AVG'] > 0) &
                     (team_data['Max Minutes'] >= min_minutes) &
                     (team_data['Max Minutes'] > 0) &
                     (team_data['Projection'] >= 0))#zero
@@ -248,7 +248,7 @@ def ensure_minimum_rotation(team_predictions, team_data, max_mins, min_players=8
 
     # If we don't have enough primary eligible players, consider backup players
     if len(primary_eligible) < min_players:
-        backup_mask = ((team_data['MIN_LAST_10_AVG'] > 1) &
+        backup_mask = ((team_data['MIN_LAST_10_AVG'] > 0) &
                        (team_data['Max Minutes'] >= min_minutes) &
                        (team_data['Max Minutes'] > 0) &
                        (~primary_mask))  # Players not in primary group
@@ -301,7 +301,8 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
         team_predictions[team_force_zero] = 0
 
         # First enforce max minutes constraints AND ensure minimum rotation size
-        min_threshold = 8
+        min_threshold = 6
+        min_rotation = 10
         team_predictions = ensure_minimum_rotation(team_predictions, team_data, max_mins, min_rotation, min_threshold)
 
         # Reapply max minutes constraints
@@ -338,7 +339,7 @@ def adjust_team_minutes_with_minimum_and_boost(predictions_df, min_threshold=8, 
 
                 if len(other_players_idx) > 0:
                     minutes_to_redistribute = min(available_boost * 0.5,
-                                                  team_predictions[other_players_idx].sum() * 0.1)
+                                                  team_predictions[other_players_idx].sum() * 0.01)
 
                     # Apply boost to eligible top 5 players
                     for idx in top_5_mins[eligible_mask].index:

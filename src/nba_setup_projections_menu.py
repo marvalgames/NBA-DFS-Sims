@@ -1656,7 +1656,10 @@ class ImportTool(QMainWindow):
         # Create a copy of the BBM DataFrame
         bbm_df = self.dataframes['BBM'].copy()
         bbm_df = self.standardize_player_names(bbm_df, 'PLAYER_NAME')
-        bbm_df = bbm_df[['PLAYER_NAME', 'minutes']]  # Keep only the needed columns
+        bbm_df = bbm_df[['PLAYER_NAME', 'minutes', 'injury']]  # Keep only the needed columns
+
+        game_logs_df.drop(columns=['injury'], inplace=True)
+
 
         # Merge game_logs_df with bbm_df, updating 'Minutes' from 'minutes'
         game_logs_df = pd.merge(
@@ -1665,6 +1668,8 @@ class ImportTool(QMainWindow):
             on='PLAYER_NAME',
             how='left'  # Ensure all rows from game_logs_df are retained
         )
+
+        print("logs ", game_logs_df.columns)
 
         # Overwrite 'Minutes' in game_logs_df with the values from 'minutes'
         game_logs_df['Minutes'] = game_logs_df['minutes']
