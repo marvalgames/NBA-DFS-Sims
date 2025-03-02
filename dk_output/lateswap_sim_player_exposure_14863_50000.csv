@@ -1,0 +1,164 @@
+Player,Position,Team,UpdatedProjection,UpdatedStdDev,Cash%,Top1%,Sim. Own%,Proj. Own%,Avg. Return,Game Minutes Remaining
+Tyrese Martin,SG/G/UTIL,BKN,31.80958333333333,5.5642128674971145,38.95%,2.17%,3.24%,4.85%,$21.45,34
+Jalen Wilson,PF/SF/F/UTIL,BKN,26.19045138888889,5.572347681630882,27.31%,1.25%,4.63%,1.7%,$14.02,34
+Jalen Duren,C/UTIL,DET,52.64560763888889,11.982581219039838,46.44%,4.69%,18.56%,28.6%,$8.46,34
+Malik Beasley,SF/SG/G/F/UTIL,DET,39.289704861111105,7.4840290030662935,42.69%,3.9%,19.57%,6.18%,$7.05,34
+Scotty Pippen Jr.,PG/G/UTIL,MEM,34.04,12.05,47.05%,3.3%,24.99%,51.69%,$6.08,48
+Stephen Curry,PG/G/UTIL,GSW,51.99,16.48,36.96%,2.53%,22.45%,27.01%,$4.72,48
+Jaren Jackson Jr.,C/PF/F/UTIL,MEM,49.57,15.32,28.55%,1.44%,44.93%,37.75%,$1.52,48
+Santi Aldama,PF/F/UTIL,MEM,38.21,11.96,30.1%,1.68%,31.65%,46.02%,$0.83,48
+Brandin Podziemski,PG/SG/G/UTIL,GSW,36.98,10.46,28.96%,1.41%,29.34%,27.04%,$0.19,48
+Giannis Antetokounmpo,C/PF/F/UTIL,MIL,56.89,21.73,24.7%,1.22%,53.9%,35.58%,$-0.06,48
+Ausar Thompson,PF/SF/F/UTIL,DET,29.12256944444444,9.224879227692584,21.51%,2.3%,20.61%,10.28%,$-0.34,34
+Paul George,PF/SF/F/UTIL,PHI,36.55,9.25,18.34%,0.55%,13.38%,8.93%,$-0.48,48
+John Konchar,SF/F/UTIL,MEM,23.9,7.58,24.25%,0.84%,26.73%,38.89%,$-1.53,48
+Gregory Jackson,PF/SF/F/UTIL,MEM,25.35,10.82,26.24%,1.11%,23.46%,25.92%,$-1.59,48
+Domantas Sabonis,C/UTIL,SAC,47.33,14.25,17.34%,0.6%,13.57%,14.41%,$-1.61,48
+Alperen Sengun,C/UTIL,HOU,47.24,17.67,21.75%,0.62%,20.2%,31.61%,$-1.80,48
+Taran Armstrong,PG/G/UTIL,GSW,0,0.0,22.45%,0.0%,0.03%,0.03%,$-1.83,48
+Luke Kennard,PG/SG/G/UTIL,MEM,25.9,8.78,25.28%,0.82%,19.62%,22.58%,$-1.88,48
+Reece Beekman,PG/G/UTIL,BKN,16.047482638888887,3.6118574753928643,22.64%,0.0%,0.09%,0.1%,$-1.89,34
+Tobias Harris,PF/F/UTIL,DET,34.20682291666667,6.694952032090827,22.71%,1.01%,4.84%,6.57%,$-2.02,34
+Dante Exum,SF/SG/G/F/UTIL,DAL,19.2,8.43,30.24%,0.0%,0.13%,0.05%,$-2.04,48
+Kelly Oubre Jr.,SF/SG/G/F/UTIL,PHI,31.47,7.4,20.39%,0.43%,12.93%,7.99%,$-2.06,48
+Draymond Green,C/UTIL,GSW,34.61,11.28,22.38%,0.65%,5.13%,10.83%,$-2.08,48
+Gary Payton II,SF/SG/G/F/UTIL,GSW,15.46,8.26,26.14%,0.0%,0.24%,0.1%,$-2.10,48
+Malik Monk,PG/SG/G/UTIL,SAC,37.1,9.5,20.75%,0.64%,14.3%,9.73%,$-2.13,48
+Tyrese Maxey,PG/G/UTIL,PHI,45.21,11.26,20.73%,0.91%,10.09%,11.55%,$-2.16,48
+De'Aaron Fox,PG/SG/G/UTIL,SAS,41.26,12.21,20.78%,0.57%,12.77%,8.65%,$-2.32,48
+Dennis Schroder,PG/SG/G/UTIL,DET,22.381215277777777,7.32133272039094,20.92%,0.46%,6.41%,0.1%,$-2.34,34
+Stephon Castle,PG/SG/G/UTIL,SAS,29.76,11.34,18.63%,0.53%,12.31%,10.3%,$-2.37,48
+Kyle Kuzma,PF/SF/F/UTIL,MIL,32.35,8.83,19.76%,0.58%,15.89%,12.07%,$-2.39,48
+Quentin Grimes,SG/G/UTIL,PHI,28.41,7.76,18.97%,0.44%,10.26%,12.05%,$-2.39,48
+Moses Moody,PF/SF/F/UTIL,GSW,24.49,8.96,18.73%,0.36%,9.27%,9.0%,$-2.42,48
+Buddy Hield,SF/SG/G/F/UTIL,GSW,21.78,9.17,20.26%,0.38%,11.73%,8.65%,$-2.42,48
+Amen Thompson,PG/SF/G/F/UTIL,HOU,38.52,11.83,18.12%,0.42%,10.32%,5.39%,$-2.43,48
+Cam Spencer,SG/G/UTIL,MEM,13.24,6.9,17.08%,1.47%,0.17%,0.1%,$-2.44,48
+Day'Ron Sharpe,C/UTIL,BKN,32.259479166666665,10.697280585904542,20.59%,0.11%,0.55%,1.56%,$-2.48,34
+Zach Edey,C/UTIL,MEM,26.71,11.65,15.76%,0.62%,4.86%,11.0%,$-2.49,48
+Cameron Johnson,PF/SF/F/UTIL,BKN,30.72189236111111,8.769329636201592,16.63%,0.45%,23.44%,12.35%,$-2.50,34
+Naji Marshall,PF/SF/F/UTIL,DAL,27.0,8.88,17.27%,0.52%,10.25%,9.44%,$-2.51,48
+Devin Vassell,SF/SG/G/F/UTIL,SAS,28.7,8.75,18.25%,0.45%,14.96%,9.21%,$-2.59,48
+Keldon Johnson,PF/SF/F/UTIL,SAS,24.62,9.77,16.75%,0.51%,14.67%,13.45%,$-2.61,48
+Damian Lillard,PG/G/UTIL,MIL,40.51,11.87,16.71%,0.43%,8.7%,10.08%,$-2.63,48
+Kyrie Irving,PG/G/UTIL,DAL,42.57,11.92,17.58%,0.42%,8.9%,8.84%,$-2.63,48
+Tim Hardaway Jr.,SF/SG/G/F/UTIL,DET,23.27552083333333,4.8808884802606265,16.69%,0.46%,1.6%,1.01%,$-2.66,34
+Riley Minix,PF/F/UTIL,SAS,0,0.0,0.0%,0.0%,0.01%,0.03%,$-2.69,48
+Ryan Rollins,PG/G/UTIL,MIL,4.75,3.17,0.0%,0.0%,0.01%,0.03%,$-2.69,48
+Moses Brown,C/UTIL,DAL,28.17,12.2,14.71%,0.29%,12.68%,30.19%,$-2.70,48
+Jalen Green,SG/G/UTIL,HOU,34.6,11.49,16.61%,0.25%,7.68%,5.94%,$-2.76,48
+Jonas Valanciunas,C/UTIL,SAC,16.45,10.63,16.33%,0.0%,0.12%,0.32%,$-2.76,48
+Quinten Post,C/UTIL,GSW,23.14,10.81,16.45%,0.03%,5.42%,15.62%,$-2.79,48
+Keon Ellis,PG/SG/G/UTIL,SAC,20.56,6.97,16.12%,0.19%,5.81%,6.79%,$-2.79,48
+DeMar DeRozan,SF/F/UTIL,SAC,33.55,9.09,15.0%,0.43%,6.22%,5.43%,$-2.80,48
+Zach LaVine,SF/SG/G/F/UTIL,SAC,35.56,9.32,15.33%,0.11%,15.0%,7.41%,$-2.83,48
+Jaylen Wells,SF/SG/G/F/UTIL,MEM,21.75,7.4,15.23%,0.01%,2.62%,1.66%,$-2.85,48
+Brook Lopez,C/UTIL,MIL,28.75,7.73,13.88%,0.56%,2.29%,4.48%,$-2.89,48
+Gary Trent Jr.,SF/SG/G/F/UTIL,MIL,15.84,6.68,13.63%,0.0%,0.13%,0.1%,$-2.89,48
+Fred VanVleet,PG/G/UTIL,HOU,31.87,8.57,14.06%,0.19%,3.89%,3.74%,$-2.93,48
+Gui Santos,PF/F/UTIL,GSW,18.01,7.98,14.41%,0.31%,2.14%,3.47%,$-2.93,48
+Klay Thompson,SF/SG/G/F/UTIL,DAL,24.62,8.94,12.86%,0.46%,4.29%,2.72%,$-2.98,48
+Tari Eason,PF/F/UTIL,HOU,25.78,10.62,11.97%,0.35%,3.86%,5.22%,$-2.99,48
+Chris Paul,PG/G/UTIL,SAS,24.34,9.35,10.45%,0.5%,2.78%,4.14%,$-2.99,48
+Jabari Smith Jr.,PF/F/UTIL,HOU,23.96,8.03,10.9%,0.37%,3.38%,4.54%,$-3.01,48
+Max Christie,SF/SG/G/F/UTIL,DAL,24.47,6.31,13.62%,0.01%,3.49%,2.17%,$-3.03,48
+Taurean Prince,SF/SG/G/F/UTIL,MIL,17.49,5.86,13.24%,0.23%,1.68%,1.28%,$-3.04,48
+Kevon Looney,C/UTIL,GSW,20.24,10.75,12.71%,0.0%,1.96%,5.46%,$-3.11,48
+Kevin Knox II,PF/SF/F/UTIL,GSW,11.82,4.73,13.64%,0.0%,0.1%,0.1%,$-3.14,48
+Dillon Brooks,PF/SF/F/UTIL,HOU,22.53,6.92,11.55%,0.01%,4.88%,4.66%,$-3.17,48
+Keegan Murray,PF/F/UTIL,SAC,24.82,7.02,10.1%,0.06%,3.51%,4.78%,$-3.22,48
+Jeremy Sochan,C/PF/F/UTIL,SAS,21.74,9.87,11.77%,0.0%,0.12%,0.1%,$-3.22,48
+Killian Hayes,PG/G/UTIL,BKN,16.040347222222223,6.345155024338815,10.35%,0.05%,50.04%,15.88%,$-3.23,34
+Ricky Council IV,PF/F/UTIL,PHI,11.9,6.66,11.45%,0.0%,0.19%,0.1%,$-3.25,48
+Guerschon Yabusele,C/PF/F/UTIL,PHI,23.87,8.26,8.9%,0.17%,3.99%,4.19%,$-3.27,48
+Harrison Barnes,PF/SF/F/UTIL,SAS,20.75,7.78,10.85%,0.0%,0.63%,0.58%,$-3.28,48
+Brandon Williams,PG/G/UTIL,DAL,0,0.0,12.12%,0.0%,0.04%,0.03%,$-3.32,48
+Cade Cunningham,PG/G/UTIL,DET,39.968888888888884,13.28415148044267,8.36%,0.13%,11.82%,18.98%,$-3.37,34
+Isaiah Stewart,C/UTIL,DET,13.342829861111111,6.727491288625897,8.96%,0.0%,3.55%,5.89%,$-3.39,34
+PJ Washington,C/PF/F/UTIL,DAL,30.68,10.22,8.43%,0.13%,5.27%,3.63%,$-3.40,48
+Kevin Porter Jr.,PG/G/UTIL,MIL,13.52,8.21,2.91%,0.0%,0.03%,0.1%,$-3.42,48
+AJ Green,PG/SG/G/UTIL,MIL,14.85,5.5,9.11%,0.0%,0.34%,0.42%,$-3.45,48
+Nic Claxton,C/UTIL,BKN,25.406840277777775,9.753642146387486,6.87%,0.1%,4.48%,5.08%,$-3.46,34
+Spencer Dinwiddie,PG/SG/G/UTIL,DAL,16.95,7.59,8.04%,0.0%,0.35%,0.34%,$-3.47,48
+Ziaire Williams,SF/SG/G/F/UTIL,BKN,17.504045138888888,7.0284794115753035,6.53%,0.0%,9.4%,4.23%,$-3.51,34
+Adem Bona,C/UTIL,PHI,10.36,5.79,4.35%,0.0%,0.05%,0.1%,$-3.52,48
+Jericho Sims,C/UTIL,MIL,9.49,5.02,5.42%,0.0%,0.13%,0.1%,$-3.54,48
+Keon Johnson,PG/SG/G/UTIL,BKN,18.330086805555556,7.776882311881932,5.93%,0.01%,17.61%,8.08%,$-3.55,34
+Ronald Holland II,SF/F/UTIL,DET,10.83095486111111,4.51482184424108,9.53%,0.0%,0.15%,0.1%,$-3.56,34
+Steven Adams,C/UTIL,HOU,4.48,3.16,0.22%,0.0%,0.03%,0.1%,$-3.58,48
+Sandro Mamukelashvili,C/PF/F/UTIL,SAS,17.34,9.35,4.81%,0.0%,0.14%,0.1%,$-3.58,48
+Jordan McLaughlin,PG/G/UTIL,SAS,0,0.0,0.0%,0.0%,0.03%,0.03%,$-3.59,48
+Marcus Sasser,PG/SG/G/UTIL,DET,2.6391319444444443,2.863454575086234,0.0%,0.0%,0.03%,0.03%,$-3.59,34
+Cody Zeller,C/UTIL,HOU,0,0.0,0.0%,0.0%,0.03%,0.03%,$-3.59,48
+Caleb Martin,PF/F/UTIL,DAL,0,0.0,0.0%,0.0%,0.03%,0.04%,$-3.59,48
+Tyler Smith,C/PF/F/UTIL,MIL,0,0.0,0.0%,0.0%,0.03%,0.03%,$-3.59,48
+Lonnie Walker IV,SF/SG/G/F/UTIL,PHI,4.35,2.9,5.16%,0.0%,0.13%,0.1%,$-3.61,48
+Jake LaRavia,PF/SF/F/UTIL,SAC,9.88,5.36,6.19%,0.0%,0.11%,0.1%,$-3.62,48
+Justin Edwards,PF/SF/F/UTIL,PHI,15.0,6.03,6.01%,0.0%,0.35%,0.31%,$-3.63,48
+Markelle Fultz,PG/G/UTIL,SAC,4.23,2.88,1.06%,0.0%,0.05%,0.1%,$-3.71,48
+Dwight Powell,C/UTIL,DAL,13.37,6.75,0.85%,0.0%,0.05%,0.1%,$-3.72,48
+Trendon Watford,C/PF/F/UTIL,BKN,0,0.0,0.48%,0.0%,0.05%,0.04%,$-3.74,34
+Aaron Holiday,PG/G/UTIL,HOU,3.46,2.29,0.24%,0.0%,0.05%,0.1%,$-3.75,48
+Trey Lyles,C/PF/F/UTIL,SAC,4.06,2.68,7.06%,0.0%,0.09%,0.1%,$-3.76,48
+Kylor Kelley,C/UTIL,DAL,0,0.0,0.0%,0.0%,0.05%,0.03%,$-3.77,48
+Paul Reed,C/UTIL,DET,0,0.0,0.0%,0.0%,0.05%,0.1%,$-3.77,34
+David Duke Jr.,SG/G/UTIL,SAS,0,0.0,0.0%,0.0%,0.05%,0.03%,$-3.77,48
+Yuri Collins,PG/G/UTIL,GSW,0,0.0,0.0%,0.0%,0.05%,0.03%,$-3.77,48
+Jack McVeigh,SG/G/UTIL,HOU,0,0.0,0.04%,0.0%,0.05%,0.03%,$-3.77,48
+Devin Carter,PG/SG/G/UTIL,SAC,0,0.0,0.0%,0.0%,0.05%,0.03%,$-3.77,48
+Yuki Kawamura,PG/G/UTIL,MEM,0,0.0,0.0%,0.0%,0.05%,0.03%,$-3.77,48
+Tosan Evbuomwan,PF/SF/F/UTIL,BKN,0,0.0,3.53%,0.0%,0.41%,0.03%,$-3.80,34
+Maxwell Lewis,PF/SF/F/UTIL,BKN,9.38048611111111,5.100528461872354,3.15%,0.0%,0.35%,1.24%,$-3.81,34
+Daniel Gafford,C/UTIL,DAL,0,0.0,0.0%,0.0%,0.07%,0.07%,$-3.84,48
+Blake Wesley,PG/G/UTIL,SAS,0,0.0,0.0%,0.0%,0.07%,0.1%,$-3.84,48
+Nate Williams,PG/SF/G/F/UTIL,HOU,0,0.0,0.67%,0.0%,0.17%,0.1%,$-3.92,48
+Jared Butler,PG/G/UTIL,PHI,0,0.0,1.88%,0.0%,0.1%,0.1%,$-3.93,48
+Jimmy Butler,PF/SF/F/UTIL,GSW,0,0.0,0.0%,0.0%,0.13%,0.07%,$-3.93,48
+Joel Embiid,C/UTIL,PHI,0,0.0,0.0%,0.0%,0.15%,0.09%,$-3.95,48
+Julian Champagnie,SF/SG/G/F/UTIL,SAS,11.48,6.13,0.01%,0.0%,0.15%,0.1%,$-3.95,48
+David Roddy,PF/SF/F/UTIL,PHI,0,0.0,1.39%,0.0%,0.14%,0.1%,$-3.96,48
+Anthony Davis,PF/F/UTIL,DAL,0,0.0,0.0%,0.0%,2.83%,0.09%,$-3.97,48
+Jae'Sean Tate,PF/SF/F/UTIL,HOU,10.75,5.59,2.4%,0.0%,0.13%,0.1%,$-4.00,48
+Jared McCain,PG/G/UTIL,PHI,0,0.0,0.33%,0.0%,0.04%,0.03%,$-4.02,48
+Cam Whitmore,SF/SG/G/F/UTIL,HOU,4.23,2.95,0.01%,0.0%,0.14%,0.1%,$-4.04,48
+Jay Huff,C/UTIL,MEM,0,0.0,0.0%,0.0%,0.1%,0.1%,$-4.04,48
+Cam Thomas,SG/G/UTIL,BKN,0,0.0,0.0%,0.0%,0.16%,0.06%,$-4.04,34
+Isaac Jones,C/PF/F/UTIL,SAC,0,0.0,0.02%,0.0%,0.02%,0.03%,$-4.04,48
+Eric Gordon,SF/F/UTIL,PHI,0,0.0,0.0%,0.0%,0.04%,0.03%,$-4.04,48
+Andre Jackson Jr.,SF/SG/G/F/UTIL,MIL,0,0.0,0.0%,0.0%,0.22%,0.1%,$-4.04,48
+Kessler Edwards,C/PF/F/UTIL,DAL,0,0.0,0.0%,0.0%,0.08%,0.1%,$-4.04,48
+Doug McDermott,SF/F/UTIL,SAC,0,0.0,0.0%,0.0%,0.04%,0.03%,$-4.04,48
+Olivier-Maxence Prosper,PF/F/UTIL,DAL,0,0.0,0.0%,0.0%,0.06%,0.1%,$-4.04,48
+Bismack Biyombo,C/UTIL,SAS,14.48,7.57,0.02%,0.0%,0.04%,0.1%,$-4.04,48
+Lamar Stevens,C/UTIL,MEM,0,0.0,0.0%,0.0%,0.02%,0.03%,$-4.04,48
+Marvin Bagley III,C/PF/F/UTIL,MEM,0,0.0,0.0%,0.0%,0.1%,0.1%,$-4.04,48
+Reed Sheppard,PG/SG/G/UTIL,HOU,0,0.0,0.0%,0.0%,0.12%,0.1%,$-4.04,48
+D'Angelo Russell,PG/G/UTIL,BKN,0,0.0,0.0%,0.0%,0.02%,0.05%,$-4.04,34
+Jae Crowder,C/UTIL,SAC,0,0.0,0.0%,0.0%,0.02%,0.03%,$-4.04,48
+Ja Morant,PG/G/UTIL,MEM,0,0.0,0.0%,0.0%,0.04%,0.08%,$-4.04,48
+Harrison Ingram,PF/SF/F/UTIL,SAS,0,0.0,0.0%,0.0%,0.02%,0.03%,$-4.04,48
+Isaiah Crawford,PF/F/UTIL,SAC,0,0.0,0.0%,0.0%,0.04%,0.03%,$-4.04,48
+Desmond Bane,SG/G/UTIL,MEM,0,0.0,0.0%,0.0%,0.06%,0.07%,$-4.04,48
+Charles Bassey,C/UTIL,SAS,0,0.0,0.0%,0.0%,0.02%,0.05%,$-4.04,48
+Simone Fontecchio,PF/F/UTIL,DET,9.585434027777778,4.116215951686462,0.0%,0.0%,0.17%,0.1%,$-4.12,34
+Jackson Rowe,PF/F/UTIL,GSW,0,0.0,0.0%,0.0%,0.13%,0.1%,$-4.14,48
+Kyle Lowry,PG/SG/G/UTIL,PHI,0,0.0,2.4%,0.0%,0.05%,0.03%,$-4.17,48
+Malaki Branham,SF/SG/G/F/UTIL,SAS,0,0.0,0.0%,0.0%,0.07%,0.03%,$-4.23,48
+Zyon Pullin,PG/G/UTIL,MEM,0,0.0,0.0%,0.0%,0.05%,0.03%,$-4.31,48
+Jonathan Kuminga,PF/F/UTIL,GSW,0,0.0,0.0%,0.0%,0.05%,0.06%,$-4.31,48
+Vince Williams Jr.,SF/SG/G/F/UTIL,MEM,0,0.0,0.0%,0.0%,0.05%,0.04%,$-4.31,48
+Pat Connaughton,PF/SF/F/UTIL,MIL,0,0.0,0.0%,0.0%,0.05%,0.03%,$-4.31,48
+Dereck Lively II,C/UTIL,DAL,0,0.0,0.0%,0.0%,0.03%,0.05%,$-4.49,48
+Mason Jones,SG/G/UTIL,SAC,0,0.0,0.0%,0.0%,0.03%,0.03%,$-4.49,48
+Brandon Clarke,C/PF/F/UTIL,MEM,0,0.0,0.0%,0.0%,0.03%,0.04%,$-4.49,48
+Chris Livingston,C/UTIL,MIL,0,0.0,0.0%,0.0%,0.03%,0.03%,$-4.49,48
+Andre Drummond,C/UTIL,PHI,15.23,9.18,0.0%,0.0%,0.03%,0.1%,$-4.49,48
+Jaden Hardy,PG/G/UTIL,DAL,0,0.0,0.0%,0.0%,0.03%,0.03%,$-4.49,48
+Pat Spencer,PG/SG/G/UTIL,GSW,0,0.0,0.0%,0.0%,0.01%,0.03%,$-5.38,48
+Jeff Dowtin,PG/G/UTIL,PHI,0,0.0,0.0%,0.0%,0.01%,0.03%,$-5.38,48
+Kendall Brown,SG/G/UTIL,BKN,0,0.0,0.0%,0.0%,0.01%,0.03%,$-5.38,34
+Alex Reese,C/UTIL,PHI,0,0.0,0.0%,0.0%,0.01%,0.03%,$-5.38,48
+Lindy Waters III,PF/F/UTIL,DET,0,0.0,0.0%,0.0%,0.01%,0.03%,$-5.38,34
+Victor Wembanyama,C/UTIL,SAS,0,0.0,0.0%,0.0%,0.01%,0.03%,$-5.38,48
+Bobby Portis,C/UTIL,MIL,0,0.0,0.0%,0.0%,0.01%,0.03%,$-5.38,48
+Stanley Umude,SG/G/UTIL,MIL,0,0.0,0.0%,0.0%,0.01%,0.03%,$-5.38,48
