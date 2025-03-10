@@ -552,7 +552,8 @@ class ImportTool(QMainWindow):
             "AJ Griffin": "A.J. Griffin",
             "Alperen Sengun": "Alperen Sengun",
             "Dennis Schroder": "Dennis Schroder",
-            "Dennis Schröder": "Dennis Schroder"
+            "Dennis Schröder": "Dennis Schroder",
+            "Lonnie Walker" : "Lonnie Walker IV",
         }
 
         def fix_internal_caps(name):
