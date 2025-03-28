@@ -510,6 +510,7 @@ class ImportTool(QMainWindow):
 
             # D' names
             "dangelo": "D'Angelo",
+            "da Silva": "Da Silva",
 
             # Other special cases
             "ayton": "Ayton",
@@ -553,7 +554,8 @@ class ImportTool(QMainWindow):
             "Alperen Sengun": "Alperen Sengun",
             "Dennis Schroder": "Dennis Schroder",
             "Dennis Schröder": "Dennis Schroder",
-            "Lonnie Walker" : "Lonnie Walker IV",
+            "Lonnie Walker": "Lonnie Walker IV",
+            "Tristan da Silva": "Tristan Da Silva",
         }
 
         def fix_internal_caps(name):
