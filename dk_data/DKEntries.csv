@@ -1,28 +1,28 @@
 Entry ID,Contest Name,Contest ID,Entry Fee,PG,SG,SF,PF,C,G,F,UTIL,,Instructions
-4678344695,NBA $30K Four Point Play [20 Entry Max],175305670,$4,Shai Gilgeous-Alexander (38239580),Colby Jones (38239966) (LOCKED),Coby White (38239640),Kenrich Williams (38239995),Tristan Vukcevic (38239923) (LOCKED),Jaime Jaquez Jr. (38240031),LeBron James (38239587),Isaiah Hartenstein (38239684),,1. Column A lists all of your contest entries for this draftgroup
-4678344696,NBA $30K Four Point Play [20 Entry Max],175305670,$4,Davion Mitchell (38239876),Jared Butler (38239721),Jaylen Martin (38240062) (LOCKED),Bam Adebayo (38239623),Tristan Vukcevic (38239923) (LOCKED),Shai Gilgeous-Alexander (38239580),LeBron James (38239587),Haywood Highsmith (38239983),,2. Your current lineup is listed next to each entry (blank for reservations)
-4678344697,NBA $30K Four Point Play [20 Entry Max],175305670,$4,Tyler Herro (38239631),Colby Jones (38239966) (LOCKED),Jaylen Martin (38240062) (LOCKED),Justin Champagnie (38239809) (LOCKED),Tristan Vukcevic (38239923) (LOCKED),Shai Gilgeous-Alexander (38239580),Jaime Jaquez Jr. (38240031),Luka Doncic (38239577),,3. You can change the lineup for an entry by entering the IDs of the players in the row next to that entry
-4678344698,NBA $30K Four Point Play [20 Entry Max],175305670,$4,Tyler Herro (38239631),Jared Butler (38239721),Justin Champagnie (38239809) (LOCKED),Anthony Davis (38239591),Tristan Vukcevic (38239923) (LOCKED),Stephon Castle (38239688),Jaime Jaquez Jr. (38240031),Isaiah Hartenstein (38239684),,4. Use data from the Name+ID column or the ID column; you cannot use just the player's name
-4678344699,NBA $30K Four Point Play [20 Entry Max],175305670,$4,Tyler Herro (38239631),Carlton Carrington (38239793) (LOCKED),Jaylen Martin (38240062) (LOCKED),Bam Adebayo (38239623),Tristan Vukcevic (38239923) (LOCKED),Shai Gilgeous-Alexander (38239580),Patrick Williams (38239940),Myles Turner (38239692),,5. For faster processing only include entries you are changing in the file you upload
-4678344700,NBA $30K Four Point Play [20 Entry Max],175305670,$4,Tyler Herro (38239631),Tyrese Martin (38239908) (LOCKED),Jaylen Martin (38240062) (LOCKED),Jayson Tatum (38239583),Tristan Vukcevic (38239923) (LOCKED),Blake Wesley (38240054),LeBron James (38239587),Isaiah Hartenstein (38239684),,
-4678344701,NBA $30K Four Point Play [20 Entry Max],175305670,$4,Blake Wesley (38240054),Colby Jones (38239966) (LOCKED),Haywood Highsmith (38239983),Bam Adebayo (38239623),Tristan Vukcevic (38239923) (LOCKED),Shai Gilgeous-Alexander (38239580),Anthony Davis (38239591),Alexandre Sarr (38239686) (LOCKED),,Position,Name + ID,Name,ID,Roster Position,Salary,Game Info,TeamAbbrev,AvgPointsPerGame
-4678344702,NBA $30K Four Point Play [20 Entry Max],175305670,$4,Cason Wallace (38239919),Colby Jones (38239966) (LOCKED),LeBron James (38239587),Bam Adebayo (38239623),Tristan Vukcevic (38239923) (LOCKED),Josh Giddey (38239598),Sandro Mamukelashvili (38239955),Isaiah Hartenstein (38239684),,PG,Luka Doncic (38239577),Luka Doncic,38239577,PG/G/UTIL,11900,LAL@MEM 03/29/2025 08:00PM ET,LAL,55.72
-4678344703,NBA $30K Four Point Play [20 Entry Max],175305670,$4,Chris Paul (38239879),Jared Butler (38239721),Jaime Jaquez Jr. (38240031),Bam Adebayo (38239623),Tristan Vukcevic (38239923) (LOCKED),Shai Gilgeous-Alexander (38239580),LeBron James (38239587),Kyle Anderson (38240065),,PG,Shai Gilgeous-Alexander (38239580),Shai Gilgeous-Alexander,38239580,PG/G/UTIL,10800,IND@OKC 03/29/2025 08:00PM ET,OKC,53.76
+4678344695,NBA $30K Four Point Play [20 Entry Max],175305670,$4,Shai Gilgeous-Alexander (38239580),Colby Jones (38239966) (LOCKED),Kevin Huerter (38239725),LeBron James (38239587),Tristan Vukcevic (38239923) (LOCKED),Davion Mitchell (38239876) (LOCKED),Kyle Anderson (38240065) (LOCKED),Tyler Herro (38239631) (LOCKED),,1. Column A lists all of your contest entries for this draftgroup
+4678344696,NBA $30K Four Point Play [20 Entry Max],175305670,$4,Davion Mitchell (38239876) (LOCKED),Kevin Huerter (38239725),Jaylen Martin (38240062) (LOCKED),Kenrich Williams (38239995),Tristan Vukcevic (38239923) (LOCKED),Shai Gilgeous-Alexander (38239580),LeBron James (38239587),Bam Adebayo (38239623) (LOCKED),,2. Your current lineup is listed next to each entry (blank for reservations)
+4678344697,NBA $30K Four Point Play [20 Entry Max],175305670,$4,Josh Giddey (38239598),Colby Jones (38239966) (LOCKED),Jaylen Martin (38240062) (LOCKED),Justin Champagnie (38239809) (LOCKED),Tristan Vukcevic (38239923) (LOCKED),Tyler Herro (38239631) (LOCKED),LeBron James (38239587),Isaiah Hartenstein (38239684),,3. You can change the lineup for an entry by entering the IDs of the players in the row next to that entry
+4678344698,NBA $30K Four Point Play [20 Entry Max],175305670,$4,Luka Doncic (38239577),Isaiah Joe (38239952),Justin Champagnie (38239809) (LOCKED),Kyle Anderson (38240065) (LOCKED),Tristan Vukcevic (38239923) (LOCKED),Shai Gilgeous-Alexander (38239580),Kenrich Williams (38239995),Tyler Herro (38239631) (LOCKED),,4. Use data from the Name+ID column or the ID column; you cannot use just the player's name
+4678344699,NBA $30K Four Point Play [20 Entry Max],175305670,$4,Tyler Herro (38239631) (LOCKED),Carlton Carrington (38239793) (LOCKED),Jaylen Martin (38240062) (LOCKED),Bam Adebayo (38239623) (LOCKED),Tristan Vukcevic (38239923) (LOCKED),Shai Gilgeous-Alexander (38239580),Kenrich Williams (38239995),Isaiah Hartenstein (38239684),,5. For faster processing only include entries you are changing in the file you upload
+4678344700,NBA $30K Four Point Play [20 Entry Max],175305670,$4,Tyler Herro (38239631) (LOCKED),Tyrese Martin (38239908) (LOCKED),Jaylen Martin (38240062) (LOCKED),Patrick Williams (38239940),Tristan Vukcevic (38239923) (LOCKED),Kevin Huerter (38239725),LeBron James (38239587),Shai Gilgeous-Alexander (38239580),,
+4678344701,NBA $30K Four Point Play [20 Entry Max],175305670,$4,Tyler Herro (38239631) (LOCKED),Colby Jones (38239966) (LOCKED),LeBron James (38239587),Sandro Mamukelashvili (38239955),Tristan Vukcevic (38239923) (LOCKED),Shai Gilgeous-Alexander (38239580),Kyle Anderson (38240065) (LOCKED),Alexandre Sarr (38239686) (LOCKED),,Position,Name + ID,Name,ID,Roster Position,Salary,Game Info,TeamAbbrev,AvgPointsPerGame
+4678344702,NBA $30K Four Point Play [20 Entry Max],175305670,$4,Tyler Herro (38239631) (LOCKED),Colby Jones (38239966) (LOCKED),LeBron James (38239587),Bam Adebayo (38239623) (LOCKED),Tristan Vukcevic (38239923) (LOCKED),Josh Giddey (38239598),Kyle Anderson (38240065) (LOCKED),Kenrich Williams (38239995),,PG,Luka Doncic (38239577),Luka Doncic,38239577,PG/G/UTIL,11900,LAL@MEM 03/29/2025 08:00PM ET,LAL,55.72
+4678344703,NBA $30K Four Point Play [20 Entry Max],175305670,$4,Tyler Herro (38239631) (LOCKED),Pelle Larsson (38240216) (LOCKED),Jalen Williams (38239627),Kenrich Williams (38239995),Tristan Vukcevic (38239923) (LOCKED),Davion Mitchell (38239876) (LOCKED),LeBron James (38239587),Bam Adebayo (38239623) (LOCKED),,PG,Shai Gilgeous-Alexander (38239580),Shai Gilgeous-Alexander,38239580,PG/G/UTIL,10800,IND@OKC 03/29/2025 08:00PM ET,OKC,53.76
 ,,,,,,,,,,,,,SF/PF,Jayson Tatum (38239583),Jayson Tatum,38239583,SF/PF/F/UTIL,10200,BOS@SAS 03/29/2025 08:00PM ET,BOS,51.20
 ,,,,,,,,,,,,,SF/PF,LeBron James (38239587),LeBron James,38239587,SF/PF/F/UTIL,10000,LAL@MEM 03/29/2025 08:00PM ET,LAL,50.85
 ,,,,,,,,,,,,,PF/C,Anthony Davis (38239591),Anthony Davis,38239591,PF/C/F/UTIL,9800,DAL@CHI 03/29/2025 08:00PM ET,DAL,52.01
-,,,,,,,,,,,,,PG,Tyrese Maxey (38239595),Tyrese Maxey,38239595,PG/G/UTIL,9600,MIA@PHI 03/29/2025 07:30PM ET,PHI,44.61
+,,,,,,,,,,,,,PG,Tyrese Maxey (38239595) (LOCKED),Tyrese Maxey,38239595,PG/G/UTIL,9600,MIA@PHI 03/29/2025 07:30PM ET,PHI,44.61
 ,,,,,,,,,,,,,PG,Ja Morant (38239601),Ja Morant,38239601,PG/G/UTIL,9300,LAL@MEM 03/29/2025 08:00PM ET,MEM,40.94
 ,,,,,,,,,,,,,PG,Josh Giddey (38239598),Josh Giddey,38239598,PG/G/UTIL,9200,DAL@CHI 03/29/2025 08:00PM ET,CHI,38.34
-,,,,,,,,,,,,,PG/SG,Quentin Grimes (38239604),Quentin Grimes,38239604,PG/SG/G/UTIL,9100,MIA@PHI 03/29/2025 07:30PM ET,PHI,26.10
+,,,,,,,,,,,,,PG/SG,Quentin Grimes (38239604) (LOCKED),Quentin Grimes,38239604,PG/SG/G/UTIL,9100,MIA@PHI 03/29/2025 07:30PM ET,PHI,26.10
 ,,,,,,,,,,,,,PG,Tyrese Haliburton (38239612),Tyrese Haliburton,38239612,PG/G/UTIL,8900,IND@OKC 03/29/2025 08:00PM ET,IND,42.37
 ,,,,,,,,,,,,,SG,Desmond Bane (38239615),Desmond Bane,38239615,SG/G/UTIL,8800,LAL@MEM 03/29/2025 08:00PM ET,MEM,37.95
 ,,,,,,,,,,,,,PG/SG,Austin Reaves (38239608),Austin Reaves,38239608,PG/SG/G/UTIL,8700,LAL@MEM 03/29/2025 08:00PM ET,LAL,37.39
 ,,,,,,,,,,,,,SG/SF,Jaylen Brown (38239618),Jaylen Brown,38239618,SG/SF/F/G/UTIL,8600,BOS@SAS 03/29/2025 08:00PM ET,BOS,39.87
 ,,,,,,,,,,,,,SF/PF,Jalen Williams (38239627),Jalen Williams,38239627,SF/PF/F/UTIL,8500,IND@OKC 03/29/2025 08:00PM ET,OKC,40.44
-,,,,,,,,,,,,,PF/C,Bam Adebayo (38239623),Bam Adebayo,38239623,PF/C/F/UTIL,8400,MIA@PHI 03/29/2025 07:30PM ET,MIA,40.18
+,,,,,,,,,,,,,PF/C,Bam Adebayo (38239623) (LOCKED),Bam Adebayo,38239623,PF/C/F/UTIL,8400,MIA@PHI 03/29/2025 07:30PM ET,MIA,40.18
 ,,,,,,,,,,,,,C,Kristaps Porzingis (38239634),Kristaps Porzingis,38239634,C/UTIL,8300,BOS@SAS 03/29/2025 08:00PM ET,BOS,37.05
-,,,,,,,,,,,,,PG,Tyler Herro (38239631),Tyler Herro,38239631,PG/G/UTIL,8300,MIA@PHI 03/29/2025 07:30PM ET,MIA,41.18
+,,,,,,,,,,,,,PG,Tyler Herro (38239631) (LOCKED),Tyler Herro,38239631,PG/G/UTIL,8300,MIA@PHI 03/29/2025 07:30PM ET,MIA,41.18
 ,,,,,,,,,,,,,SF/PF,PJ Washington (38239636),PJ Washington,38239636,SF/PF/F/UTIL,8200,DAL@CHI 03/29/2025 08:00PM ET,DAL,32.76
 ,,,,,,,,,,,,,SG/SF,Coby White (38239640),Coby White,38239640,SG/SF/F/G/UTIL,8100,DAL@CHI 03/29/2025 08:00PM ET,CHI,34.26
 ,,,,,,,,,,,,,PF/C,Jaren Jackson Jr. (38239645),Jaren Jackson Jr.,38239645,PF/C/F/UTIL,8000,LAL@MEM 03/29/2025 08:00PM ET,MEM,38.30
@@ -33,8 +33,8 @@ Entry ID,Contest Name,Contest ID,Entry Fee,PG,SG,SF,PF,C,G,F,UTIL,,Instructions
 ,,,,,,,,,,,,,C,Nikola Vucevic (38239665),Nikola Vucevic,38239665,C/UTIL,7500,DAL@CHI 03/29/2025 08:00PM ET,CHI,40.22
 ,,,,,,,,,,,,,PF/C,Chet Holmgren (38239657),Chet Holmgren,38239657,PF/C/F/UTIL,7500,IND@OKC 03/29/2025 08:00PM ET,OKC,34.55
 ,,,,,,,,,,,,,PF,Cameron Johnson (38239672) (LOCKED),Cameron Johnson,38239672,PF/F/UTIL,7100,In Progress,BKN,32.48
-,,,,,,,,,,,,,SG/SF,Kelly Oubre Jr. (38239667),Kelly Oubre Jr.,38239667,SG/SF/F/G/UTIL,7100,MIA@PHI 03/29/2025 07:30PM ET,PHI,29.71
-,,,,,,,,,,,,,SF/PF,Andrew Wiggins (38239675),Andrew Wiggins,38239675,SF/PF/F/UTIL,7000,MIA@PHI 03/29/2025 07:30PM ET,MIA,31.61
+,,,,,,,,,,,,,SG/SF,Kelly Oubre Jr. (38239667) (LOCKED),Kelly Oubre Jr.,38239667,SG/SF/F/G/UTIL,7100,MIA@PHI 03/29/2025 07:30PM ET,PHI,29.71
+,,,,,,,,,,,,,SF/PF,Andrew Wiggins (38239675) (LOCKED),Andrew Wiggins,38239675,SF/PF/F/UTIL,7000,MIA@PHI 03/29/2025 07:30PM ET,MIA,31.61
 ,,,,,,,,,,,,,SG/SF,Devin Vassell (38239679),Devin Vassell,38239679,SG/SF/F/G/UTIL,6900,BOS@SAS 03/29/2025 08:00PM ET,SAS,30.17
 ,,,,,,,,,,,,,C,Isaiah Hartenstein (38239684),Isaiah Hartenstein,38239684,C/UTIL,6800,IND@OKC 03/29/2025 08:00PM ET,OKC,34.94
 ,,,,,,,,,,,,,PG,D'Angelo Russell (38239698) (LOCKED),D'Angelo Russell,38239698,PG/G/UTIL,6700,In Progress,BKN,26.72
@@ -49,23 +49,23 @@ Entry ID,Contest Name,Contest ID,Entry Fee,PG,SG,SF,PF,C,G,F,UTIL,,Instructions
 ,,,,,,,,,,,,,PF,Santi Aldama (38239711),Santi Aldama,38239711,PF/F/UTIL,6100,LAL@MEM 03/29/2025 08:00PM ET,MEM,28.49
 ,,,,,,,,,,,,,PG/SG,Payton Pritchard (38239714),Payton Pritchard,38239714,PG/SG/G/UTIL,6100,BOS@SAS 03/29/2025 08:00PM ET,BOS,27.30
 ,,,,,,,,,,,,,PG,Jordan Poole (38239718) (LOCKED),Jordan Poole,38239718,PG/G/UTIL,6000,In Progress,WAS,34.76
-,,,,,,,,,,,,,PG/SG,Jared Butler (38239721),Jared Butler,38239721,PG/SG/G/UTIL,6000,MIA@PHI 03/29/2025 07:30PM ET,PHI,16.33
+,,,,,,,,,,,,,PG/SG,Jared Butler (38239721) (LOCKED),Jared Butler,38239721,PG/SG/G/UTIL,6000,MIA@PHI 03/29/2025 07:30PM ET,PHI,16.33
 ,,,,,,,,,,,,,SG/SF,Kevin Huerter (38239725),Kevin Huerter,38239725,SG/SF/F/G/UTIL,5900,DAL@CHI 03/29/2025 08:00PM ET,CHI,19.54
 ,,,,,,,,,,,,,SG/SF,Klay Thompson (38239730),Klay Thompson,38239730,SG/SF/F/G/UTIL,5900,DAL@CHI 03/29/2025 08:00PM ET,DAL,24.99
 ,,,,,,,,,,,,,SF/PF,Kyshawn George (38239739) (LOCKED),Kyshawn George,38239739,SF/PF/F/UTIL,5800,In Progress,WAS,21.47
 ,,,,,,,,,,,,,PG/SG,Jrue Holiday (38239745),Jrue Holiday,38239745,PG/SG/G/UTIL,5800,BOS@SAS 03/29/2025 08:00PM ET,BOS,25.19
-,,,,,,,,,,,,,C,Kel'el Ware (38239743),Kel'el Ware,38239743,C/UTIL,5800,MIA@PHI 03/29/2025 07:30PM ET,MIA,22.63
-,,,,,,,,,,,,,SF/PF,Justin Edwards (38239735),Justin Edwards,38239735,SF/PF/F/UTIL,5700,MIA@PHI 03/29/2025 07:30PM ET,PHI,19.60
-,,,,,,,,,,,,,PF/C,Guerschon Yabusele (38239753),Guerschon Yabusele,38239753,PF/C/F/UTIL,5600,MIA@PHI 03/29/2025 07:30PM ET,PHI,23.46
+,,,,,,,,,,,,,C,Kel'el Ware (38239743) (LOCKED),Kel'el Ware,38239743,C/UTIL,5800,MIA@PHI 03/29/2025 07:30PM ET,MIA,22.63
+,,,,,,,,,,,,,SF/PF,Justin Edwards (38239735) (LOCKED),Justin Edwards,38239735,SF/PF/F/UTIL,5700,MIA@PHI 03/29/2025 07:30PM ET,PHI,19.60
+,,,,,,,,,,,,,PF/C,Guerschon Yabusele (38239753) (LOCKED),Guerschon Yabusele,38239753,PF/C/F/UTIL,5600,MIA@PHI 03/29/2025 07:30PM ET,PHI,23.46
 ,,,,,,,,,,,,,PG/SG,Andrew Nembhard (38239749),Andrew Nembhard,38239749,PG/SG/G/UTIL,5600,IND@OKC 03/29/2025 08:00PM ET,IND,24.33
-,,,,,,,,,,,,,C,Andre Drummond (38239757),Andre Drummond,38239757,C/UTIL,5500,MIA@PHI 03/29/2025 07:30PM ET,PHI,20.68
+,,,,,,,,,,,,,C,Andre Drummond (38239757) (LOCKED),Andre Drummond,38239757,C/UTIL,5500,MIA@PHI 03/29/2025 07:30PM ET,PHI,20.68
 ,,,,,,,,,,,,,SF/PF,Aaron Wiggins (38239767),Aaron Wiggins,38239767,SF/PF/F/UTIL,5500,IND@OKC 03/29/2025 08:00PM ET,OKC,21.28
 ,,,,,,,,,,,,,PG/SG,Keon Johnson (38239759) (LOCKED),Keon Johnson,38239759,PG/SG/G/UTIL,5400,In Progress,BKN,20.96
 ,,,,,,,,,,,,,SF/PF,Rui Hachimura (38239763),Rui Hachimura,38239763,SF/PF/F/UTIL,5400,LAL@MEM 03/29/2025 08:00PM ET,LAL,24.44
 ,,,,,,,,,,,,,PF/C,Trendon Watford (38239774) (LOCKED),Trendon Watford,38239774,PF/C/F/UTIL,5300,In Progress,BKN,19.43
 ,,,,,,,,,,,,,C,Charles Bassey (38239778),Charles Bassey,38239778,C/UTIL,5300,BOS@SAS 03/29/2025 08:00PM ET,SAS,13.20
-,,,,,,,,,,,,,PG,Jeff Dowtin (38239771),Jeff Dowtin,38239771,PG/G/UTIL,5300,MIA@PHI 03/29/2025 07:30PM ET,PHI,12.90
-,,,,,,,,,,,,,SF/PF,Ricky Council IV (38239784),Ricky Council IV,38239784,SF/PF/F/UTIL,5200,MIA@PHI 03/29/2025 07:30PM ET,PHI,13.64
+,,,,,,,,,,,,,PG,Jeff Dowtin (38239771) (LOCKED),Jeff Dowtin,38239771,PG/G/UTIL,5300,MIA@PHI 03/29/2025 07:30PM ET,PHI,12.90
+,,,,,,,,,,,,,SF/PF,Ricky Council IV (38239784) (LOCKED),Ricky Council IV,38239784,SF/PF/F/UTIL,5200,MIA@PHI 03/29/2025 07:30PM ET,PHI,13.64
 ,,,,,,,,,,,,,SG/SF,Bennedict Mathurin (38239788),Bennedict Mathurin,38239788,SG/SF/F/G/UTIL,5200,IND@OKC 03/29/2025 08:00PM ET,IND,27.52
 ,,,,,,,,,,,,,PF/C,Al Horford (38239780),Al Horford,38239780,PF/C/F/UTIL,5100,BOS@SAS 03/29/2025 08:00PM ET,BOS,22.99
 ,,,,,,,,,,,,,PG/SG,Carlton Carrington (38239793) (LOCKED),Carlton Carrington,38239793,PG/SG/G/UTIL,5000,In Progress,WAS,22.31
@@ -81,13 +81,13 @@ Entry ID,Contest Name,Contest ID,Entry Fee,PG,SG,SF,PF,C,G,F,UTIL,,Instructions
 ,,,,,,,,,,,,,SG/SF,Aaron Nesmith (38239830),Aaron Nesmith,38239830,SG/SF/F/G/UTIL,4700,IND@OKC 03/29/2025 08:00PM ET,IND,20.92
 ,,,,,,,,,,,,,SG/SF,Max Christie (38239847),Max Christie,38239847,SG/SF/F/G/UTIL,4600,DAL@CHI 03/29/2025 08:00PM ET,DAL,19.19
 ,,,,,,,,,,,,,PG,Malcolm Brogdon (38239842) (LOCKED),Malcolm Brogdon,38239842,PG/G/UTIL,4600,In Progress,WAS,24.74
-,,,,,,,,,,,,,C,Adem Bona (38239840),Adem Bona,38239840,C/UTIL,4600,MIA@PHI 03/29/2025 07:30PM ET,PHI,11.13
-,,,,,,,,,,,,,C,Nikola Jovic (38239845),Nikola Jovic,38239845,C/UTIL,4600,MIA@PHI 03/29/2025 07:30PM ET,MIA,22.32
+,,,,,,,,,,,,,C,Adem Bona (38239840) (LOCKED),Adem Bona,38239840,C/UTIL,4600,MIA@PHI 03/29/2025 07:30PM ET,PHI,11.13
+,,,,,,,,,,,,,C,Nikola Jovic (38239845) (LOCKED),Nikola Jovic,38239845,C/UTIL,4600,MIA@PHI 03/29/2025 07:30PM ET,MIA,22.32
 ,,,,,,,,,,,,,C,Jaylin Williams (38239835),Jaylin Williams,38239835,C/UTIL,4600,IND@OKC 03/29/2025 08:00PM ET,OKC,19.26
 ,,,,,,,,,,,,,PG,T.J. McConnell (38239837),T.J. McConnell,38239837,PG/G/UTIL,4600,IND@OKC 03/29/2025 08:00PM ET,IND,21.17
 ,,,,,,,,,,,,,PF,Matas Buzelis (38239854),Matas Buzelis,38239854,PF/F/UTIL,4500,DAL@CHI 03/29/2025 08:00PM ET,CHI,15.38
 ,,,,,,,,,,,,,C,Jaxson Hayes (38239852),Jaxson Hayes,38239852,C/UTIL,4500,LAL@MEM 03/29/2025 08:00PM ET,LAL,17.66
-,,,,,,,,,,,,,SG/SF,Lonnie Walker IV (38239857),Lonnie Walker IV,38239857,SG/SF/F/G/UTIL,4500,MIA@PHI 03/29/2025 07:30PM ET,PHI,16.20
+,,,,,,,,,,,,,SG/SF,Lonnie Walker IV (38239857) (LOCKED),Lonnie Walker IV,38239857,SG/SF/F/G/UTIL,4500,MIA@PHI 03/29/2025 07:30PM ET,PHI,16.20
 ,,,,,,,,,,,,,C,Day'Ron Sharpe (38239862) (LOCKED),Day'Ron Sharpe,38239862,C/UTIL,4400,In Progress,BKN,21.84
 ,,,,,,,,,,,,,SF/PF,Noah Clowney (38239868) (LOCKED),Noah Clowney,38239868,SF/PF/F/UTIL,4400,In Progress,BKN,17.66
 ,,,,,,,,,,,,,PG/SG,Luke Kennard (38239864),Luke Kennard,38239864,PG/SG/G/UTIL,4400,LAL@MEM 03/29/2025 08:00PM ET,MEM,20.34
@@ -97,7 +97,7 @@ Entry ID,Contest Name,Contest ID,Entry Fee,PG,SG,SF,PF,C,G,F,UTIL,,Instructions
 ,,,,,,,,,,,,,SG/SF,Dalton Knecht (38239888),Dalton Knecht,38239888,SG/SF/F/G/UTIL,4300,LAL@MEM 03/29/2025 08:00PM ET,LAL,15.75
 ,,,,,,,,,,,,,PG,Chris Paul (38239879),Chris Paul,38239879,PG/G/UTIL,4300,BOS@SAS 03/29/2025 08:00PM ET,SAS,28.00
 ,,,,,,,,,,,,,C,Luke Kornet (38239893),Luke Kornet,38239893,C/UTIL,4300,BOS@SAS 03/29/2025 08:00PM ET,BOS,16.91
-,,,,,,,,,,,,,PG,Davion Mitchell (38239876),Davion Mitchell,38239876,PG/G/UTIL,4300,MIA@PHI 03/29/2025 07:30PM ET,MIA,19.02
+,,,,,,,,,,,,,PG,Davion Mitchell (38239876) (LOCKED),Davion Mitchell,38239876,PG/G/UTIL,4300,MIA@PHI 03/29/2025 07:30PM ET,MIA,19.02
 ,,,,,,,,,,,,,SF/PF,Sam Hauser (38239895),Sam Hauser,38239895,SF/PF/F/UTIL,4200,BOS@SAS 03/29/2025 08:00PM ET,BOS,15.88
 ,,,,,,,,,,,,,PF/C,Obi Toppin (38239899),Obi Toppin,38239899,PF/C/F/UTIL,4200,IND@OKC 03/29/2025 08:00PM ET,IND,19.90
 ,,,,,,,,,,,,,SG,Tyrese Martin (38239908) (LOCKED),Tyrese Martin,38239908,SG/G/UTIL,4100,In Progress,BKN,17.49
@@ -107,11 +107,11 @@ Entry ID,Contest Name,Contest ID,Entry Fee,PG,SG,SF,PF,C,G,F,UTIL,,Instructions
 ,,,,,,,,,,,,,C,Tristan Vukcevic (38239923) (LOCKED),Tristan Vukcevic,38239923,C/UTIL,4000,In Progress,WAS,15.17
 ,,,,,,,,,,,,,PF,Jarred Vanderbilt (38239925),Jarred Vanderbilt,38239925,PF/F/UTIL,4000,LAL@MEM 03/29/2025 08:00PM ET,LAL,14.62
 ,,,,,,,,,,,,,PG/SG,Cason Wallace (38239919),Cason Wallace,38239919,PG/SG/G/UTIL,4000,IND@OKC 03/29/2025 08:00PM ET,OKC,20.83
-,,,,,,,,,,,,,PG,Jalen Hood-Schifino (38239928),Jalen Hood-Schifino,38239928,PG/G/UTIL,3900,MIA@PHI 03/29/2025 07:30PM ET,PHI,14.31
+,,,,,,,,,,,,,PG,Jalen Hood-Schifino (38239928) (LOCKED),Jalen Hood-Schifino,38239928,PG/G/UTIL,3900,MIA@PHI 03/29/2025 07:30PM ET,PHI,14.31
 ,,,,,,,,,,,,,PG/SG,Jaden Hardy (38239931),Jaden Hardy,38239931,PG/SG/G/UTIL,3800,DAL@CHI 03/29/2025 08:00PM ET,DAL,13.50
 ,,,,,,,,,,,,,PF,Patrick Williams (38239940),Patrick Williams,38239940,PF/F/UTIL,3800,DAL@CHI 03/29/2025 08:00PM ET,CHI,19.59
 ,,,,,,,,,,,,,SG/SF,Marcus Smart (38239935) (LOCKED),Marcus Smart,38239935,SG/SF/F/G/UTIL,3800,In Progress,WAS,19.90
-,,,,,,,,,,,,,SG/SF,Duncan Robinson (38239943),Duncan Robinson,38239943,SG/SF/F/G/UTIL,3700,MIA@PHI 03/29/2025 07:30PM ET,MIA,19.44
+,,,,,,,,,,,,,SG/SF,Duncan Robinson (38239943) (LOCKED),Duncan Robinson,38239943,SG/SF/F/G/UTIL,3700,MIA@PHI 03/29/2025 07:30PM ET,MIA,19.44
 ,,,,,,,,,,,,,C,Richaun Holmes (38239959) (LOCKED),Richaun Holmes,38239959,C/UTIL,3600,In Progress,WAS,18.90
 ,,,,,,,,,,,,,SG/SF,Vince Williams Jr. (38239961),Vince Williams Jr.,38239961,SG/SF/F/G/UTIL,3600,LAL@MEM 03/29/2025 08:00PM ET,MEM,15.84
 ,,,,,,,,,,,,,SF/PF,Harrison Barnes (38239948),Harrison Barnes,38239948,SF/PF/F/UTIL,3600,BOS@SAS 03/29/2025 08:00PM ET,SAS,20.66
@@ -126,26 +126,26 @@ Entry ID,Contest Name,Contest ID,Entry Fee,PG,SG,SF,PF,C,G,F,UTIL,,Instructions
 ,,,,,,,,,,,,,PG/SG,Gabe Vincent (38240004),Gabe Vincent,38240004,PG/SG/G/UTIL,3400,LAL@MEM 03/29/2025 08:00PM ET,LAL,12.06
 ,,,,,,,,,,,,,SG/SF,Julian Champagnie (38239978),Julian Champagnie,38239978,SG/SF/F/G/UTIL,3400,BOS@SAS 03/29/2025 08:00PM ET,SAS,19.50
 ,,,,,,,,,,,,,SG/SF,Baylor Scheierman (38239999),Baylor Scheierman,38239999,SG/SF/F/G/UTIL,3400,BOS@SAS 03/29/2025 08:00PM ET,BOS,7.89
-,,,,,,,,,,,,,SF/PF,Haywood Highsmith (38239983),Haywood Highsmith,38239983,SF/PF/F/UTIL,3400,MIA@PHI 03/29/2025 07:30PM ET,MIA,15.80
-,,,,,,,,,,,,,SF/PF,Phillip Wheeler (38240013),Phillip Wheeler,38240013,SF/PF/F/UTIL,3400,MIA@PHI 03/29/2025 07:30PM ET,PHI,12
+,,,,,,,,,,,,,SF/PF,Haywood Highsmith (38239983) (LOCKED),Haywood Highsmith,38239983,SF/PF/F/UTIL,3400,MIA@PHI 03/29/2025 07:30PM ET,MIA,15.80
+,,,,,,,,,,,,,SF/PF,Phillip Wheeler (38240013) (LOCKED),Phillip Wheeler,38240013,SF/PF/F/UTIL,3400,MIA@PHI 03/29/2025 07:30PM ET,PHI,12
 ,,,,,,,,,,,,,PF/C,Kenrich Williams (38239995),Kenrich Williams,38239995,PF/C/F/UTIL,3400,IND@OKC 03/29/2025 08:00PM ET,OKC,13.52
 ,,,,,,,,,,,,,C,Zach Collins (38240029),Zach Collins,38240029,C/UTIL,3300,DAL@CHI 03/29/2025 08:00PM ET,CHI,15.87
 ,,,,,,,,,,,,,C,Bismack Biyombo (38240021),Bismack Biyombo,38240021,C/UTIL,3300,BOS@SAS 03/29/2025 08:00PM ET,SAS,16.2
-,,,,,,,,,,,,,PG/SG,Alec Burks (38240017),Alec Burks,38240017,PG/SG/G/UTIL,3300,MIA@PHI 03/29/2025 07:30PM ET,MIA,13.27
-,,,,,,,,,,,,,PF/C,Alex Reese (38240025),Alex Reese,38240025,PF/C/F/UTIL,3300,MIA@PHI 03/29/2025 07:30PM ET,PHI,12.52
-,,,,,,,,,,,,,SG/SF,Jaime Jaquez Jr. (38240031),Jaime Jaquez Jr.,38240031,SG/SF/F/G/UTIL,3300,MIA@PHI 03/29/2025 07:30PM ET,MIA,19.38
+,,,,,,,,,,,,,PG/SG,Alec Burks (38240017) (LOCKED),Alec Burks,38240017,PG/SG/G/UTIL,3300,MIA@PHI 03/29/2025 07:30PM ET,MIA,13.27
+,,,,,,,,,,,,,PF/C,Alex Reese (38240025) (LOCKED),Alex Reese,38240025,PF/C/F/UTIL,3300,MIA@PHI 03/29/2025 07:30PM ET,PHI,12.52
+,,,,,,,,,,,,,SG/SF,Jaime Jaquez Jr. (38240031) (LOCKED),Jaime Jaquez Jr.,38240031,SG/SF/F/G/UTIL,3300,MIA@PHI 03/29/2025 07:30PM ET,MIA,19.38
 ,,,,,,,,,,,,,C,Thomas Bryant (38240023),Thomas Bryant,38240023,C/UTIL,3300,IND@OKC 03/29/2025 08:00PM ET,IND,15.05
 ,,,,,,,,,,,,,C,Dwight Powell (38240045),Dwight Powell,38240045,C/UTIL,3200,DAL@CHI 03/29/2025 08:00PM ET,DAL,8.05
 ,,,,,,,,,,,,,C,Jay Huff (38240043),Jay Huff,38240043,C/UTIL,3200,LAL@MEM 03/29/2025 08:00PM ET,MEM,13.33
-,,,,,,,,,,,,,PG,Terry Rozier (38240036),Terry Rozier,38240036,PG/G/UTIL,3200,MIA@PHI 03/29/2025 07:30PM ET,MIA,21.64
-,,,,,,,,,,,,,SF/PF,Marcus Bagley (38240039),Marcus Bagley,38240039,SF/PF/F/UTIL,3200,MIA@PHI 03/29/2025 07:30PM ET,PHI,8.5
+,,,,,,,,,,,,,PG,Terry Rozier (38240036) (LOCKED),Terry Rozier,38240036,PG/G/UTIL,3200,MIA@PHI 03/29/2025 07:30PM ET,MIA,21.64
+,,,,,,,,,,,,,SF/PF,Marcus Bagley (38240039) (LOCKED),Marcus Bagley,38240039,SF/PF/F/UTIL,3200,MIA@PHI 03/29/2025 07:30PM ET,PHI,8.5
 ,,,,,,,,,,,,,C,Jalen Smith (38240068),Jalen Smith,38240068,C/UTIL,3100,DAL@CHI 03/29/2025 08:00PM ET,CHI,18.92
 ,,,,,,,,,,,,,SF,Jaylen Martin (38240062) (LOCKED),Jaylen Martin,38240062,SF/F/UTIL,3100,In Progress,WAS,8.08
 ,,,,,,,,,,,,,PG,Shake Milton (38240047),Shake Milton,38240047,PG/G/UTIL,3100,LAL@MEM 03/29/2025 08:00PM ET,LAL,11.77
 ,,,,,,,,,,,,,SF,John Konchar (38240059),John Konchar,38240059,SF/F/UTIL,3100,LAL@MEM 03/29/2025 08:00PM ET,MEM,9.84
 ,,,,,,,,,,,,,PG,Blake Wesley (38240054),Blake Wesley,38240054,PG/G/UTIL,3100,BOS@SAS 03/29/2025 08:00PM ET,SAS,8.18
 ,,,,,,,,,,,,,C,Neemias Queta (38240057),Neemias Queta,38240057,C/UTIL,3100,BOS@SAS 03/29/2025 08:00PM ET,BOS,12.06
-,,,,,,,,,,,,,PF,Kyle Anderson (38240065),Kyle Anderson,38240065,PF/F/UTIL,3100,MIA@PHI 03/29/2025 07:30PM ET,MIA,14.69
+,,,,,,,,,,,,,PF,Kyle Anderson (38240065) (LOCKED),Kyle Anderson,38240065,PF/F/UTIL,3100,MIA@PHI 03/29/2025 07:30PM ET,MIA,14.69
 ,,,,,,,,,,,,,SF/PF,Jarace Walker (38240050),Jarace Walker,38240050,SF/PF/F/UTIL,3100,IND@OKC 03/29/2025 08:00PM ET,IND,13.19
 ,,,,,,,,,,,,,PG,Jevon Carter (38240173),Jevon Carter,38240173,PG/G/UTIL,3000,DAL@CHI 03/29/2025 08:00PM ET,CHI,7.35
 ,,,,,,,,,,,,,PG/SG,Talen Horton-Tucker (38240176),Talen Horton-Tucker,38240176,PG/SG/G/UTIL,3000,DAL@CHI 03/29/2025 08:00PM ET,CHI,10.52
@@ -194,17 +194,17 @@ Entry ID,Contest Name,Contest ID,Entry Fee,PG,SG,SF,PF,C,G,F,UTIL,,Instructions
 ,,,,,,,,,,,,,PF,Drew Peterson (38240203),Drew Peterson,38240203,PF/F/UTIL,3000,BOS@SAS 03/29/2025 08:00PM ET,BOS,5.68
 ,,,,,,,,,,,,,SF,Miles Norris (38240206),Miles Norris,38240206,SF/F/UTIL,3000,BOS@SAS 03/29/2025 08:00PM ET,BOS,2.5
 ,,,,,,,,,,,,,PF/C,Xavier Tillman (38240209),Xavier Tillman,38240209,PF/C/F/UTIL,3000,BOS@SAS 03/29/2025 08:00PM ET,BOS,3.88
-,,,,,,,,,,,,,SF,Paul George (38240104),Paul George,38240104,SF/F/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,PHI,34.03
-,,,,,,,,,,,,,C,Joel Embiid (38240107),Joel Embiid,38240107,C/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,PHI,43.75
-,,,,,,,,,,,,,SF,Eric Gordon (38240109),Eric Gordon,38240109,SF/F/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,PHI,13.10
-,,,,,,,,,,,,,PG,Kyle Lowry (38240112),Kyle Lowry,38240112,PG/G/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,PHI,13.33
-,,,,,,,,,,,,,PG,Jared McCain (38240115),Jared McCain,38240115,PG/G/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,PHI,23.94
-,,,,,,,,,,,,,PG,Isaiah Stevens (38240213),Isaiah Stevens,38240213,PG/G/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,MIA,0
-,,,,,,,,,,,,,SG/SF,Pelle Larsson (38240216),Pelle Larsson,38240216,SG/SF/F/G/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,MIA,7.89
-,,,,,,,,,,,,,SF,Keshad Johnson (38240221),Keshad Johnson,38240221,SF/F/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,MIA,5.08
-,,,,,,,,,,,,,PG,Josh Christopher (38240224),Josh Christopher,38240224,PG/G/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,MIA,1.97
-,,,,,,,,,,,,,PG,Dru Smith (38240227),Dru Smith,38240227,PG/G/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,MIA,15.71
-,,,,,,,,,,,,,C,Kevin Love (38240230),Kevin Love,38240230,C/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,MIA,13.72
+,,,,,,,,,,,,,SF,Paul George (38240104) (LOCKED),Paul George,38240104,SF/F/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,PHI,34.03
+,,,,,,,,,,,,,C,Joel Embiid (38240107) (LOCKED),Joel Embiid,38240107,C/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,PHI,43.75
+,,,,,,,,,,,,,SF,Eric Gordon (38240109) (LOCKED),Eric Gordon,38240109,SF/F/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,PHI,13.10
+,,,,,,,,,,,,,PG,Kyle Lowry (38240112) (LOCKED),Kyle Lowry,38240112,PG/G/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,PHI,13.33
+,,,,,,,,,,,,,PG,Jared McCain (38240115) (LOCKED),Jared McCain,38240115,PG/G/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,PHI,23.94
+,,,,,,,,,,,,,PG,Isaiah Stevens (38240213) (LOCKED),Isaiah Stevens,38240213,PG/G/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,MIA,0
+,,,,,,,,,,,,,SG/SF,Pelle Larsson (38240216) (LOCKED),Pelle Larsson,38240216,SG/SF/F/G/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,MIA,7.89
+,,,,,,,,,,,,,SF,Keshad Johnson (38240221) (LOCKED),Keshad Johnson,38240221,SF/F/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,MIA,5.08
+,,,,,,,,,,,,,PG,Josh Christopher (38240224) (LOCKED),Josh Christopher,38240224,PG/G/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,MIA,1.97
+,,,,,,,,,,,,,PG,Dru Smith (38240227) (LOCKED),Dru Smith,38240227,PG/G/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,MIA,15.71
+,,,,,,,,,,,,,C,Kevin Love (38240230) (LOCKED),Kevin Love,38240230,C/UTIL,3000,MIA@PHI 03/29/2025 07:30PM ET,MIA,13.72
 ,,,,,,,,,,,,,PG/SG,Quenton Jackson (38240070),Quenton Jackson,38240070,PG/SG/G/UTIL,3000,IND@OKC 03/29/2025 08:00PM ET,IND,11.39
 ,,,,,,,,,,,,,C,Branden Carlson (38240118),Branden Carlson,38240118,C/UTIL,3000,IND@OKC 03/29/2025 08:00PM ET,OKC,7.01
 ,,,,,,,,,,,,,PF,Dillon Jones (38240120),Dillon Jones,38240120,PF/F/UTIL,3000,IND@OKC 03/29/2025 08:00PM ET,OKC,6.72
